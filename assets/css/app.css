@@ -1,0 +1,24 @@
+@responsive {
+  .word-wraping {
+    text-align: justify !important;
+    -webkit-hyphens: auto !important;
+    -moz-hyphens: auto !important;
+    -ms-hyphens: auto !important;
+    hyphens: auto !important;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.container {
+  @apply px-5;
+}
+
+[v-cloak] {
+  display: none;
+}
