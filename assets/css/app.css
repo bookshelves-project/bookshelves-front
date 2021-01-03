@@ -22,3 +22,9 @@
 [v-cloak] {
   display: none;
 }
+
+@variants group-hover, hover, focus {
+  .zoom {
+    transform: scale(1.025);
+  }
+}

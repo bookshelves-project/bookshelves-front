@@ -11,7 +11,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/css/app'],
+  css: ['~/assets/css/app', '~/assets/css/tooltip'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   loading: {
@@ -27,6 +27,7 @@ export default {
     },
     // https://github.com/ndelvalle/v-click-outside
     '~/plugins/v-click-outside',
+    '~/plugins/v-tooltip',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
