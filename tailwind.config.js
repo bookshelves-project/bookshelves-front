@@ -14,6 +14,9 @@ module.exports = {
     'nuxt.config.js',
   ],
   theme: {
+    container: {
+      center: true,
+    },
     screens: {
       sm: '320px',
       md: '500px',
@@ -21,7 +24,44 @@ module.exports = {
       xl: '1300px',
       '2xl': '1536px',
     },
-    fontFamily: {},
+    fontFamily: {
+      quicksand: ['Quicksand'],
+      handlee: ['Handlee'],
+      sans: [
+        'system-ui',
+        'BlinkMacSystemFont',
+        '-apple-system',
+        'Segoe UI',
+        'Roboto',
+        'Oxygen',
+        'Ubuntu',
+        'Cantarell',
+        'Fira Sans',
+        'Droid Sans',
+        'Helvetica Neue',
+        'sans-serif',
+      ],
+      serif: [
+        'Constantia',
+        'Lucida Bright',
+        'Lucidabright',
+        'Lucida Serif',
+        'Lucida',
+        'DejaVu Serif',
+        'Bitstream Vera Serif',
+        'Liberation Serif',
+        'Georgia',
+        'serif',
+      ],
+      mono: [
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        'Liberation Mono',
+        'Courier New',
+        'monospace',
+      ],
+    },
     extend: {
       colors: {
         primary: {
@@ -42,7 +82,11 @@ module.exports = {
   },
   variants: {
     extend: {
-      divideColor: ['group-hover'],
+      textColor: ['responsive', 'hover', 'focus', 'group-hover'],
+      scale: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+      translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+      backgroundColor: ['hover', 'focus', 'group-hover'],
+      borderColor: ['hover', 'focus', 'group-hover'],
     },
   },
   plugins: [

@@ -19,12 +19,19 @@
   @apply px-5;
 }
 
-[v-cloak] {
+[v-cloak] > * {
   display: none;
+}
+[v-cloak]::before {
+  content: '';
 }
 
 @variants group-hover, hover, focus {
   .zoom {
     transform: scale(1.025);
   }
+}
+
+button {
+  @apply focus:outline-none focus:ring focus:border-blue-300;
 }
