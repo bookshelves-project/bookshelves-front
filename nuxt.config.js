@@ -49,11 +49,28 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/dotenv',
     // Doc: https://github.com/nuxt-community/router-module
-    // '@nuxtjs/router',
+    '@nuxtjs/router',
+    // https://google-fonts.nuxtjs.org/
+    '@nuxtjs/google-fonts',
+    // https://color-mode.nuxtjs.org/
+    '@nuxtjs/color-mode',
   ],
 
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
+  },
+
+  router: {
+    middleware: ['init-store'],
+  },
+
+  googleFonts: {
+    display: 'swap',
+    prefetch: true,
+    families: {
+      Quicksand: true,
+      Handlee: true,
+    },
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -66,6 +83,8 @@ export default {
     '@nuxt/content',
     // https://github.com/nuxt-community/svg-module
     '@nuxtjs/svg',
+    // https://image.nuxtjs.org/
+    '@nuxt/image',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
