@@ -1,22 +1,31 @@
 <template>
-  <article
-    class="relative transition-shadow duration-300 hover:shadow"
-    @mouseover="displayOverlay = true"
-    @mouseleave="displayOverlay = false"
+  <nuxt-link
+    :to="{
+      name: 'book-slug',
+      params: { author: book.author.slug, slug: book.slug },
+    }"
+    class="block"
   >
-    <a :href="book.epubPath" rel="noopener noreferrer">
+    <article
+      class="relative h-full transition-shadow duration-300 hover:shadow"
+      @mouseover="displayOverlay = true"
+      @mouseleave="displayOverlay = false"
+    >
+      <!-- <a :href="book.epubPath" rel="noopener noreferrer"> -->
       <div class="w-full h-full">
-        <img
+        <nuxt-image
           v-if="book.coverPath"
           :alt="book.title"
           :src="book.coverPath"
           class="cover"
+          placeholder
         />
-        <img
+        <nuxt-image
           v-else
           src="/images/no-cover.webp"
           alt="bookshelves-default"
           class="bg-gray-600 bg-opacity-25 cover"
+          placeholder
         />
       </div>
       <div
@@ -32,24 +41,17 @@
         <div class="font-semibold">
           {{ book.title }}
         </div>
-        <div class="italic">By {{ book.author }}</div>
+        <div class="italic">By {{ book.author.name }}</div>
         <div v-if="book.serie" class="mt-5">
-          <div>
-            Serie:
-            <span class="font-semibold">
-              {{ book.serie }} (0{{ book.serieNumber }})
-            </span>
+          <div class="font-semibold">
+            {{ book.serie }}
           </div>
-        </div>
-        <div
-          v-if="book.description"
-          class="mt-5 overflow-hidden text-sm line-clamp"
-        >
-          {{ book.description }}...
+          <div>N°{{ book.serieNumber }}</div>
         </div>
       </div>
-    </a>
-  </article>
+      <!-- </a> -->
+    </article>
+  </nuxt-link>
 </template>
 
 <script>
@@ -86,11 +88,5 @@ export default {
 <style lang="postcss" scoped>
 .cover {
   @apply object-cover w-full h-full rounded-md;
-}
-.line-clamp {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 </style>
