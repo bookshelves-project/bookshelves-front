@@ -2,7 +2,7 @@
 title: "Series on Kobo"
 description: 'Series can not work on the fly with your Kobo, this guide explain to force your Kobo to display it.'
 position: 1
-category: 'Guide'
+category: 'Guides'
 ---
 
 ## About series
@@ -13,6 +13,9 @@ On Bookshelves, many EPUB files have **serie** *metadata* to display book serie 
 - With eBooks from Kobo shop you can download eBooks with **sync** and series will work because sync update *metadata* for eBooks from kobo shop.
 
 If you want to refresh *metadata* for eBooks manually transfered, you will need to use Calibre software (you can transfer manually EPUB files but you will have to execute an option on Calibre), so if you haven't, [**download and install Calibre**](https://calibre-ebook.com).
+
+![books-list](/images/guides/calibre-serie.webp)
+*An example of EPUB file with serie and number on Calibre*
 
 ## Refresh *metadata*
 
