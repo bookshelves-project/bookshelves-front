@@ -1,29 +1,7 @@
 <template>
   <main class="relative z-0 flex-1 focus:outline-none" tabindex="0">
     <!-- Page title & actions -->
-    <div
-      class="px-4 py-4 border-b border-gray-200 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
-    >
-      <div class="flex-1 min-w-0">
-        <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
-          Home
-        </h1>
-      </div>
-      <div class="flex mt-4 sm:mt-0 sm:ml-4">
-        <button
-          type="button"
-          class="inline-flex items-center order-1 px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-0 sm:ml-0"
-        >
-          Share
-        </button>
-        <button
-          type="button"
-          class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-purple-600 border border-transparent rounded-md shadow-sm order-0 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3"
-        >
-          Create
-        </button>
-      </div>
-    </div>
+    <page-title />
     <!-- Pinned projects -->
     <div class="hidden px-4 mt-6 sm:px-6 lg:px-8">
       <h2 class="text-xs font-medium tracking-wide text-gray-500 uppercase">
@@ -116,10 +94,11 @@
 import DefaultFooter from '../layout/default-footer.vue'
 import BooksGrid from './books-grid.vue'
 import BooksTable from './books-table.vue'
+import PageTitle from './page-title.vue'
 import ProjectCard from './project-card.vue'
 export default {
   name: 'ProjectsLayout',
-  components: { ProjectCard, BooksTable, BooksGrid, DefaultFooter },
+  components: { ProjectCard, BooksTable, BooksGrid, DefaultFooter, PageTitle },
   data() {
     return {
       isLoading: true,

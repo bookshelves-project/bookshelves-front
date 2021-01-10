@@ -2,7 +2,7 @@ export const state = () => ({
   sidebarOpened: false,
   layerVisible: false,
   books: [],
-  booksView: 'list',
+  booksView: 'grid',
 })
 
 export const mutations = {

@@ -43,10 +43,12 @@
             <div class="sm:col-span-1">
               <dt class="text-sm font-medium text-gray-500">ISBN</dt>
               <dd class="mt-1 text-sm text-gray-900">
-                <span v-if="isbn">
-                  {{ book.isbn }}
-                </span>
-                <span class="italic text-gray-400">Undefined</span>
+                <transition name="fade">
+                  <span v-if="isbn">
+                    {{ book.isbn }}
+                  </span>
+                  <span v-else class="italic text-gray-400">Undefined</span>
+                </transition>
               </dd>
             </div>
             <div class="sm:col-span-2">
@@ -54,21 +56,23 @@
               <dd
                 v-if="book.description"
                 class="mt-1 text-sm text-gray-900 word-wraping"
-              >
-                {{ book.description }}...
-              </dd>
+                v-html="book.description"
+              ></dd>
             </div>
           </dl>
         </div>
       </div>
     </section>
+    <api-results />
   </div>
 </template>
 
 <script>
 import isbn from 'node-isbn'
+import apiResults from './api-results.vue'
 export default {
   name: 'BookInformation',
+  components: { apiResults },
   props: {
     book: {
       type: Object,
@@ -102,18 +106,20 @@ export default {
 
       return dateToStringLocale
     },
-    checkIsbn() {
-      // eslint-disable-next-line no-unused-vars
-      const isbnNumber = this.book.isbn
-      isbn
-        .resolve(isbnNumber)
+    async checkIsbn() {
+      let isbnFormat = this.book.isbn
+      isbnFormat = isbnFormat.replaceAll('-', '')
+
+      const isbnResult = await isbn
+        .resolve(isbnFormat)
         .then(function (book) {
-          console.log('Book found %j', book)
-          this.isbn = book
+          return book
         })
         .catch(function (err) {
-          console.log('Book not found', err)
+          console.error('Book not found', err)
+          return null
         })
+      this.isbn = isbnResult
     },
   },
 }

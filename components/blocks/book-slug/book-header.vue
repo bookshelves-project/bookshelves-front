@@ -10,14 +10,14 @@
               v-if="book.coverPath"
               :alt="book.title"
               :src="book.coverPath"
-              class="w-16 h-16 rounded-full"
+              class="w-16 h-16 rounded-md"
               placeholder
             />
             <nuxt-image
               v-else
               src="/images/no-cover.webp"
               alt="bookshelves-default"
-              class="w-16 h-16 rounded-full"
+              class="w-16 h-16 rounded-md"
               placeholder
             />
           </div>

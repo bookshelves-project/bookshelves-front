@@ -21,7 +21,7 @@ export default {
   name: 'BackToTop',
   data() {
     return {
-      displayBackToTop: true,
+      displayBackToTop: false,
     }
   },
   beforeMount() {

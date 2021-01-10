@@ -28,6 +28,7 @@ export default {
     // https://github.com/ndelvalle/v-click-outside
     '~/plugins/v-click-outside',
     '~/plugins/v-tooltip',
+    '~/plugins/helper',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

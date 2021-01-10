@@ -28,5 +28,3 @@ export default {
   name: 'Loading',
 }
 </script>
-
-<style lang="postcss" scoped></style>
