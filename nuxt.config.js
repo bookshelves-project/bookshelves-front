@@ -11,7 +11,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/css/app', '~/assets/css/tooltip'],
+  css: ['~/assets/css/app', '~/assets/css/tooltip', '~/assets/css/markdown'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   loading: {
@@ -29,18 +29,21 @@ export default {
     '~/plugins/v-click-outside',
     '~/plugins/v-tooltip',
     '~/plugins/helper',
+    // '~/plugins/global-loader',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: [
-    '~/components/global',
-    {
-      path: '~/components/global',
-      global: true,
-      prefix: 'global',
-      extensions: ['vue'],
-    },
-  ],
+  // components: [
+  //   '~/components/global',
+  //   {
+  //     path: '~/components/global',
+  //     global: true,
+  //     prefix: 'global',
+  //     extensions: ['vue'],
+  //   },
+  // ],
+  // components: ['~/components/common/', { path: '~/components/common/' }],
+  components: [{ path: '~/components/common', global: true }],
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
@@ -55,6 +58,8 @@ export default {
     '@nuxtjs/google-fonts',
     // https://color-mode.nuxtjs.org/
     '@nuxtjs/color-mode',
+
+    // '@nuxt/components',
   ],
 
   tailwindcss: {
@@ -98,7 +103,13 @@ export default {
   // },
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
-  content: {},
+  content: {
+    markdown: {
+      prism: {
+        theme: '~/assets/css/prism-vsc-dark-plus.css',
+      },
+    },
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
