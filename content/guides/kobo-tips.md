@@ -6,3 +6,6 @@ category: 'Guides'
 ---
 
 kobo tips
+
+- energy saving
+- display cover instead of fnac logo

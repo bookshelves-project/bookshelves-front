@@ -30,6 +30,7 @@ export default {
     '~/plugins/v-tooltip',
     '~/plugins/helper',
     // '~/plugins/global-loader',
+    '~/plugins/vue-scrollactive',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

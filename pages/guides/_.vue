@@ -117,11 +117,42 @@
             {{ document.description }}
           </p>
         </div>
-        <div
-          class="mx-auto mt-6 prose prose-lg text-gray-500 prose-indigo word-wraping"
-        >
-          <nuxt-content :document="document" />
+        <div class="flex flex-wrap-reverse w-full xl:w-4/5">
+          <div
+            :class="{
+              'lg:border-l lg:border-r dark:border-gray-800': withBorders,
+            }"
+            class="w-full lg:w-3/4"
+          >
+            <div
+              class="mx-auto mt-6 prose prose-lg text-gray-500 prose-indigo word-wraping"
+            >
+              <nuxt-content :document="document" />
+            </div>
+          </div>
+          <div class="relative block w-full lg:w-1/4">
+            <div
+              class="lg:sticky lg:top-16 overflow-y-auto h-full lg:h-auto lg:max-h-(screen-16)"
+            >
+              <table-of-content :toc="document.toc"></table-of-content>
+            </div>
+          </div>
         </div>
+        <!-- <div class="grid grid-cols-3 gap-4">
+          <div class="col-span-2">
+            <div
+              class="mx-auto mt-6 prose prose-lg text-gray-500 prose-indigo word-wraping"
+            >
+              <nuxt-content :document="document" />
+            </div>
+          </div>
+          <div class="col-span-1">
+            <div class="fixed mx-auto mt-10 max-w-prose">
+              <div class="mb-3 text-xl">Table of content</div>
+              <table-of-content :toc="document.toc"></table-of-content>
+            </div>
+          </div>
+        </div> -->
       </div>
     </div>
   </div>
