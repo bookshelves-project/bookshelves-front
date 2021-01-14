@@ -3,7 +3,7 @@
   <nuxt-link
     v-if="book"
     :to="{
-      name: 'book-slug',
+      name: 'books-slug',
       params: { author: book.author.slug, slug: book.slug },
     }"
     :class="id % 2 ? 'bg-gray-100' : 'bg-gray-50'"

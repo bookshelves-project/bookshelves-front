@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '~/pages/index'
+import BooksIndex from '~/pages/books/index'
 import BooksSlug from '~/pages/books/_slug'
 import Guides from '~/pages/guides/index'
 import Content from '~/pages/guides/_'
@@ -18,7 +19,12 @@ export function createRouter() {
         component: Home,
       },
       {
-        name: 'book-slug',
+        name: 'books',
+        path: '/books',
+        component: BooksIndex,
+      },
+      {
+        name: 'books-slug',
         path: '/books/:author/:slug',
         component: BooksSlug,
       },

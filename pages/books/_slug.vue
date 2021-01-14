@@ -40,10 +40,10 @@
 </template>
 
 <script>
-import bookHeader from '~/components/blocks/book-slug/book-header.vue'
-import BookInformation from '~/components/blocks/book-slug/book-information.vue'
+import bookHeader from '~/components/blocks/books-slug/book-header.vue'
+import BookInformation from '~/components/blocks/books-slug/book-information.vue'
 export default {
-  name: 'BookSlug',
+  name: 'BooksSlug',
   components: { bookHeader, BookInformation },
   async asyncData({ app, query, params, error, $content, store }) {
     try {

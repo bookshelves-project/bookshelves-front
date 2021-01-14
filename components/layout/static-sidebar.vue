@@ -171,7 +171,8 @@ export default {
     return {
       navigation: [
         { label: 'Home', icon: 'home', route: 'home' },
-        { label: 'Guides', icon: 'book-open', route: 'guides' },
+        { label: 'Books', icon: 'book-open', route: 'books' },
+        { label: 'Guides', icon: 'annotation', route: 'guides' },
       ],
     }
   },

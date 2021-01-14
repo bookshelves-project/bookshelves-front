@@ -1,7 +1,7 @@
 <template>
   <nuxt-link
     :to="{
-      name: 'book-slug',
+      name: 'books-slug',
       params: { author: book.author.slug, slug: book.slug },
     }"
     class="block"
@@ -30,13 +30,13 @@
       </div>
       <div
         :class="displayOverlay ? 'opacity-0' : 'opacity-100'"
-        class="absolute bottom-0 left-0 right-0 p-2 font-semibold text-center text-white transition-opacity duration-300 bg-black bg-opacity-50 rounded-b-md"
+        class="absolute bottom-0 left-0 right-0 p-2 font-semibold text-center text-white transition-opacity duration-300 bg-black bg-opacity-50 rounded-b-sm"
       >
         {{ overflow(book.title) }}
       </div>
       <div
         :class="displayOverlay ? 'opacity-100' : 'opacity-0'"
-        class="absolute top-0 bottom-0 left-0 right-0 p-3 text-white transition-opacity duration-300 bg-black bg-opacity-75 rounded-md"
+        class="absolute top-0 bottom-0 left-0 right-0 p-3 text-white transition-opacity duration-300 bg-black bg-opacity-75 rounded-sm"
       >
         <div class="font-semibold">
           {{ book.title }}
@@ -87,6 +87,7 @@ export default {
 
 <style lang="postcss" scoped>
 .cover {
-  @apply object-cover w-full h-full rounded-md;
+  @apply object-cover w-full h-full rounded-sm;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
 }
 </style>
