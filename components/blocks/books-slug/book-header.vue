@@ -7,9 +7,9 @@
         <div class="relative">
           <div class="w-full h-full">
             <nuxt-image
-              v-if="book.coverPath"
+              v-if="book.cover.thumbnail"
               :alt="book.title"
-              :src="book.coverPath"
+              :src="book.cover.thumbnail"
               class="w-16 h-16 rounded-md"
               placeholder
             />
@@ -34,7 +34,7 @@
         <p class="text-sm font-medium text-gray-500">
           By {{ book.author.name }}
           <span v-if="book.serie">
-            in {{ book.serie }}, n°{{ book.serieNumber }}
+            in {{ book.serie.title }}, n°{{ book.serie.number }}
           </span>
         </p>
       </div>
@@ -43,7 +43,7 @@
       class="flex flex-col-reverse mt-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3"
     >
       <a
-        :href="book.epub.path"
+        :href="book.epub.download"
         class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
       >
         <svg

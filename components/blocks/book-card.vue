@@ -14,12 +14,19 @@
       <!-- <a :href="book.epubPath" rel="noopener noreferrer"> -->
       <div class="w-full h-full">
         <nuxt-image
-          v-if="book.coverPath"
+          v-if="book.cover.thumbnail"
           :alt="book.title"
-          :src="book.coverPath"
+          :src="book.cover.thumbnail"
           class="cover"
           placeholder
         />
+        <!-- <img
+          v-if="book.cover"
+          v-lazy="book.coverThumbnail"
+          :alt="book.title"
+          class="cover"
+          placeholder
+        /> -->
         <nuxt-image
           v-else
           src="/images/no-cover.webp"
@@ -44,9 +51,9 @@
         <div class="italic">By {{ book.author.name }}</div>
         <div v-if="book.serie" class="mt-5">
           <div class="font-semibold">
-            {{ book.serie }}
+            {{ book.serie.title }}
           </div>
-          <div>N°{{ book.serieNumber }}</div>
+          <div>N°{{ book.serie.number }}</div>
         </div>
       </div>
       <!-- </a> -->

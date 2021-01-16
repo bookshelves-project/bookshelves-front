@@ -8,10 +8,10 @@
             id="applicant-information-title"
             class="text-lg font-medium leading-6 text-gray-900"
           >
-            Serie: {{ book.serie }}
+            Serie: {{ book.serie.title }}
           </h2>
           <p class="max-w-2xl mt-1 text-sm text-gray-500">
-            Volume: {{ book.serieNumber }}
+            Volume: {{ book.serie.number }}
           </p>
         </div>
         <div
@@ -28,16 +28,13 @@
             <div class="sm:col-span-1">
               <dt class="text-sm font-medium text-gray-500">Publisher</dt>
               <dd class="mt-1 text-sm text-gray-900">
-                {{ book.publisher }} ({{ getDate(book.publishDate) }})
+                {{ book.publisher.name }} ({{ getDate(book.publishDate) }})
               </dd>
             </div>
             <div class="sm:col-span-1">
               <dt class="text-sm font-medium text-gray-500">Language</dt>
               <dd class="flex items-center mt-1 text-sm text-gray-900">
-                <img
-                  :src="`https://www.countryflags.io/${book.language}/flat/32.png`"
-                  alt=""
-                />
+                <img :src="book.language.flag" :alt="book.language.slug" />
               </dd>
             </div>
             <div class="sm:col-span-1">

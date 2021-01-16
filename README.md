@@ -18,3 +18,6 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+- <https://medium.com/@rafaelogic/create-a-reusable-pagination-vue-js-component-with-laravel-and-tailwind-css-c2e5c49bd93>
+- <https://github.com/tailable/pagination>

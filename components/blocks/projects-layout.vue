@@ -63,7 +63,7 @@
     <!-- Projects table (small breakpoint and up) -->
     <div class="min-h-screen">
       <div v-if="!isLoading" class="hidden py-2 mt-8 sm:block">
-        <div class="flex justify-end px-4 py-3 space-x-2">
+        <!-- <div class="flex justify-end px-4 py-3 space-x-2">
           <button
             :class="$store.state.booksView === 'list' ? 'bg-gray-200' : ''"
             class="view-btn"
@@ -78,11 +78,12 @@
           >
             <icon name="view-grid" />
           </button>
-        </div>
-        <transition name="fade">
+        </div> -->
+        <!-- <transition name="fade">
           <books-table v-if="$store.state.booksView === 'list'" />
           <books-grid v-else class="px-5" />
-        </transition>
+        </transition> -->
+        <slot />
       </div>
       <loading v-else />
     </div>
@@ -98,7 +99,15 @@ import PageTitle from './page-title.vue'
 import ProjectCard from './project-card.vue'
 export default {
   name: 'ProjectsLayout',
-  components: { ProjectCard, BooksTable, BooksGrid, DefaultFooter, PageTitle },
+  components: {
+    ProjectCard,
+    // eslint-disable-next-line vue/no-unused-components
+    BooksTable,
+    // eslint-disable-next-line vue/no-unused-components
+    BooksGrid,
+    DefaultFooter,
+    PageTitle,
+  },
   data() {
     return {
       isLoading: true,

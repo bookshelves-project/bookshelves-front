@@ -69,24 +69,28 @@
               eBooks
             </dt>
             <dd class="order-1 text-5xl font-extrabold text-white">
-              {{ $store.state.books.length }}
+              {{ booksCount }}
             </dd>
           </div>
-          <div class="flex flex-col hidden mt-10 sm:mt-0">
+          <div class="flex flex-col mt-10 sm:mt-0">
             <dt
               class="order-2 mt-2 text-lg font-medium leading-6 text-indigo-200"
             >
-              Delivery
+              Series
             </dt>
-            <dd class="order-1 text-5xl font-extrabold text-white">24/7</dd>
+            <dd class="order-1 text-5xl font-extrabold text-white">
+              {{ seriesCount }}
+            </dd>
           </div>
-          <div class="flex flex-col hidden mt-10 sm:mt-0">
+          <div class="flex flex-col mt-10 sm:mt-0">
             <dt
               class="order-2 mt-2 text-lg font-medium leading-6 text-indigo-200"
             >
-              Calories
+              Authors
             </dt>
-            <dd class="order-1 text-5xl font-extrabold text-white">100k+</dd>
+            <dd class="order-1 text-5xl font-extrabold text-white">
+              {{ authorsCount }}
+            </dd>
           </div>
         </dl>
       </div>
@@ -95,6 +99,8 @@
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
+import qs from 'qs'
 export default {
   name: 'Home',
   auth: 'auth',
@@ -103,16 +109,35 @@ export default {
     try {
       const welcome = await $content('welcome').fetch()
 
-      const booksStore = store.state.books
-      if (booksStore.length < 1) {
-        const [books] = await Promise.all([app.$axios.$get(`books`)])
-        store.commit('setBooks', books.data)
-      } else {
-        console.log('detect books in store!')
-      }
+      // const booksStore = store.state.books
+      // if (booksStore.length < 1) {
+      //   const page = query.page
+      const [booksCount, seriesCount, authorsCount] = await Promise.all([
+        app.$axios.$get('/books/count'),
+        app.$axios.$get('/series/count'),
+        app.$axios.$get('/authors/count'),
+      ])
+      // } else {
+      //   console.log('detect books in store!')
+      // }
+
+      //   const posts = await app.$axios.$get(
+      //   `/blog/posts?${qs.stringify({
+      //     page: page || 1,
+      //     perPage: 6
+      //   })}`
+      // )
+      // return {
+      // posts: posts.data,
+      // pages: posts.meta.pagination.total_pages,
+      // currentPage: posts.meta.pagination.current_page
+      // }
 
       return {
         welcome,
+        booksCount,
+        seriesCount,
+        authorsCount,
       }
     } catch (error) {
       console.error(error)

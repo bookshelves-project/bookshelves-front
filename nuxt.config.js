@@ -31,6 +31,8 @@ export default {
     '~/plugins/helper',
     // '~/plugins/global-loader',
     '~/plugins/vue-scrollactive',
+    '~/plugins/vue-lazyload',
+    '~/plugins/autocomplete',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -67,8 +69,9 @@ export default {
     cssPath: '~/assets/css/tailwind.css',
   },
 
-  router: {
+  routerModule: {
     middleware: ['init-store'],
+    keepDefaultRouter: true,
   },
 
   googleFonts: {
