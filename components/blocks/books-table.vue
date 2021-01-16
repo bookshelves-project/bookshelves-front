@@ -33,7 +33,7 @@
       </thead>
       <tbody class="bg-white divide-y divide-gray-100">
         <project-row
-          v-for="(book, bookId) in $store.state.books"
+          v-for="(book, bookId) in books"
           :id="bookId"
           :key="bookId"
           :book="book"
@@ -50,6 +50,12 @@ import projectRow from './project-row.vue'
 export default {
   name: 'BooksTable',
   components: { projectRow },
+  props: {
+    books: {
+      type: Array,
+      default: () => [],
+    },
+  },
 }
 </script>
 

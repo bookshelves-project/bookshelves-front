@@ -12,9 +12,9 @@
     <td class="px-6 py-3 text-sm font-medium text-gray-500">
       <div class="w-16 h-full">
         <nuxt-image
-          v-if="book.coverPath"
+          v-if="book.cover.thumbnail"
           :alt="book.title"
-          :src="book.coverPath"
+          :src="book.cover.thumbnail"
           class="cover"
           placeholder
         />
@@ -36,14 +36,15 @@
       {{ book.author.name }}
     </td>
     <td
+      v-if="book.serie"
       class="hidden px-6 py-3 text-sm text-gray-500 lg:table-cell whitespace-nowrap"
     >
-      {{ book.serie }}
+      {{ book.serie.title }}
     </td>
     <td
       class="hidden px-6 py-3 text-sm text-gray-500 lg:table-cell whitespace-nowrap"
     >
-      <span v-if="book.serie">N°{{ book.serieNumber }}</span>
+      <span v-if="book.serie">N°{{ book.serie.number }}</span>
     </td>
     <td class="pr-6">
       <div class="relative z-50 flex items-center justify-end">

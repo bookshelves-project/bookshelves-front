@@ -5,6 +5,10 @@ import qs from 'qs'
 import Home from '~/pages/index'
 import BooksIndex from '~/pages/books/index'
 import BooksSlug from '~/pages/books/_slug'
+import SeriesIndex from '~/pages/series/index'
+import SeriesSlug from '~/pages/series/_slug'
+import AuthorsIndex from '~/pages/authors/index'
+import AuthorsSlug from '~/pages/authors/_slug'
 import Guides from '~/pages/guides/index'
 import Content from '~/pages/guides/_'
 
@@ -46,6 +50,26 @@ const routesList = [
     name: 'books-slug',
     path: '/books/:author/:slug',
     component: BooksSlug,
+  },
+  {
+    name: 'series',
+    path: '/series',
+    component: SeriesIndex,
+  },
+  {
+    name: 'series-slug',
+    path: '/series/:slug',
+    component: SeriesSlug,
+  },
+  {
+    name: 'authors',
+    path: '/authors',
+    component: AuthorsIndex,
+  },
+  {
+    name: 'authors-slug',
+    path: '/authors/:author/:slug',
+    component: AuthorsSlug,
   },
   {
     name: 'guides',

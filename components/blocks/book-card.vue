@@ -15,6 +15,7 @@
         <nuxt-image
           v-if="book.cover.thumbnail"
           :alt="book.title"
+          :lazy="true"
           :src="book.cover.thumbnail"
           class="cover"
           placeholder

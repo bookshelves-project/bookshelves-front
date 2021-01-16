@@ -62,30 +62,7 @@
 
     <!-- Projects table (small breakpoint and up) -->
     <div class="min-h-screen">
-      <div v-if="!isLoading" class="hidden py-2 mt-8 sm:block">
-        <!-- <div class="flex justify-end px-4 py-3 space-x-2">
-          <button
-            :class="$store.state.booksView === 'list' ? 'bg-gray-200' : ''"
-            class="view-btn"
-            @click="switchBooksView()"
-          >
-            <icon name="view-list" />
-          </button>
-          <button
-            :class="$store.state.booksView === 'grid' ? 'bg-gray-200' : ''"
-            class="view-btn"
-            @click="switchBooksView()"
-          >
-            <icon name="view-grid" />
-          </button>
-        </div> -->
-        <!-- <transition name="fade">
-          <books-table v-if="$store.state.booksView === 'list'" />
-          <books-grid v-else class="px-5" />
-        </transition> -->
-        <slot />
-      </div>
-      <loading v-else />
+      <slot />
     </div>
     <default-footer />
   </main>
@@ -93,49 +70,14 @@
 
 <script>
 import DefaultFooter from '../layout/default-footer.vue'
-import BooksGrid from './books-grid.vue'
-import BooksTable from './books-table.vue'
 import PageTitle from './page-title.vue'
 import ProjectCard from './project-card.vue'
 export default {
   name: 'ProjectsLayout',
   components: {
     ProjectCard,
-    // eslint-disable-next-line vue/no-unused-components
-    BooksTable,
-    // eslint-disable-next-line vue/no-unused-components
-    BooksGrid,
     DefaultFooter,
     PageTitle,
   },
-  data() {
-    return {
-      isLoading: true,
-    }
-  },
-  mounted() {
-    const booksView = localStorage.getItem('books-view')
-    if (booksView) {
-      this.$store.commit('setBooksView', booksView)
-    }
-    this.isLoading = false
-  },
-  methods: {
-    switchBooksView() {
-      if (this.$store.state.booksView === 'list') {
-        this.$store.commit('setBooksView', 'grid')
-        localStorage.setItem('books-view', 'grid')
-      } else {
-        this.$store.commit('setBooksView', 'list')
-        localStorage.setItem('books-view', 'list')
-      }
-    },
-  },
 }
 </script>
-
-<style lang="postcss" scoped>
-.view-btn {
-  @apply p-1 transition-colors duration-300 rounded-md hover:bg-gray-100;
-}
-</style>
