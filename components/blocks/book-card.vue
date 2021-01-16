@@ -11,7 +11,6 @@
       @mouseover="displayOverlay = true"
       @mouseleave="displayOverlay = false"
     >
-      <!-- <a :href="book.epubPath" rel="noopener noreferrer"> -->
       <div class="w-full h-full">
         <nuxt-image
           v-if="book.cover.thumbnail"
@@ -56,7 +55,6 @@
           <div>N°{{ book.serie.number }}</div>
         </div>
       </div>
-      <!-- </a> -->
     </article>
   </nuxt-link>
 </template>

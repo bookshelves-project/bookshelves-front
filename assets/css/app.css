@@ -35,3 +35,11 @@
 button {
   @apply focus:outline-none focus:ring focus:border-blue-300;
 }
+
+/* navigation */
+.nuxt-link-exact-active {
+  @apply bg-gray-200;
+}
+.nuxt-link-active {
+  /* @apply bg-gray-200; */
+}

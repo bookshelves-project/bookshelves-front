@@ -3,6 +3,12 @@ export const state = () => ({
   layerVisible: false,
   books: [],
   booksView: 'grid',
+  navigation: [
+    { label: 'Home', icon: 'home', route: 'home' },
+    { label: 'Books', icon: 'book-open', route: 'books' },
+    { label: 'Guides', icon: 'annotation', route: 'guides' },
+  ],
+  design: ['bibliophile', 'book-lover', 'bookmark'],
 })
 
 export const mutations = {

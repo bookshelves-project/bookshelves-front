@@ -1,8 +1,8 @@
 ---
-title: "Series on Kobo"
+title: "Get series"
 description: 'Series can not work on the fly with your Kobo, this guide explain to force your Kobo to display it.'
-position: 1
-category: 'Guides'
+position: 3
+category: 'Kobo'
 ---
 
 ## About series

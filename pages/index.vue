@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="relative">
-      <main class="xl:relative">
-        <div class="w-full pt-20 mx-auto text-center max-w-7xl xl:text-left">
-          <div class="px-4 xl:w-1/2 sm:px-8 xl:pr-16">
-            <div>
+      <main class="xl:grid xl:grid-cols-2 xl:relative">
+        <div class="xl:col-span-1">
+          <div class="px-4 mt-10 sm:px-8 xl:pr-16">
+            <div class="mx-auto xl:mx-0 max-w-prose">
               <h1
-                class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl xl:text-5xl xl:text-6xl"
+                class="text-4xl font-extrabold tracking-tight text-center text-gray-900 xl:text-left sm:text-5xl md:text-6xl xl:text-5xl xl:text-6xl"
               >
                 <span class="block xl:inline">Welcome on</span>
                 <span class="block text-indigo-600 xl:inline">Bookshelves</span>
@@ -34,14 +34,8 @@
             </div>
           </div>
         </div>
-        <div
-          class="relative w-full h-64 sm:h-72 md:h-96 xl:absolute xl:inset-y-0 xl:right-0 xl:w-1/2 xl:h-full"
-        >
-          <img
-            class="absolute inset-0 object-cover w-full h-full"
-            src="/images/book-lover.svg"
-            alt="book-lover"
-          />
+        <div class="xl:col-span-1">
+          <design-xl />
         </div>
       </main>
     </div>
@@ -101,8 +95,10 @@
 <script>
 // eslint-disable-next-line no-unused-vars
 import qs from 'qs'
+import designXl from '~/components/blocks/design-xl.vue'
 export default {
   name: 'Home',
+  components: { designXl },
   auth: 'auth',
   layout: 'auth',
   async asyncData({ app, query, error, $content, store }) {

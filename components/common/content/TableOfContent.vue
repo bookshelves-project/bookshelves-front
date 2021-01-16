@@ -1,28 +1,7 @@
 <template>
   <div v-if="toc.length" class="relative block">
-    <ul>
-      <li
-        v-for="link of toc"
-        :key="link.id"
-        class="text-gray-700 transition-colors duration-300 dark:text-gray-300 hover:text-purple-600"
-        :class="{
-          'border-t border-dashed dark:border-gray-800 first:border-t-0 font-semibold':
-            link.depth === 2,
-        }"
-      >
-        <a
-          :href="`#${link.id}`"
-          class="block text-sm duration-300 ease-in-out scrollactive-item transition-padding hover:pl-1"
-          :class="{
-            'py-2': link.depth === 2,
-            'ml-2 pb-2': link.depth === 3,
-          }"
-          >{{ link.text }}</a
-        >
-      </li>
-    </ul>
-    <!-- <div
-      class="lg:sticky lg:top-16 overflow-y-auto h-full lg:h-auto lg:max-h-(screen-16)"
+    <div
+      class="lg:sticky lg:top-5 overflow-y-auto h-full lg:h-auto lg:max-h-(screen-5)"
     >
       <nav
         class="py-4 lg:py-8"
@@ -63,7 +42,7 @@
           </li>
         </scrollactive>
       </nav>
-    </div> -->
+    </div>
   </div>
 </template>
 

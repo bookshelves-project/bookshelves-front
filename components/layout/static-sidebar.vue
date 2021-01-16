@@ -1,5 +1,5 @@
 <template>
-  <div class="hidden lg:flex lg:flex-shrink-0">
+  <div class="fixed hidden lg:flex lg:flex-shrink-0">
     <div
       class="flex flex-col w-64 pt-5 pb-4 bg-gray-100 border-r border-gray-200"
     >
@@ -52,8 +52,8 @@
           <div class="space-y-1">
             <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-700 hover:text-gray-900 hover:bg-gray-50" -->
             <nuxt-link
-              v-for="nav in navigation"
-              :key="nav.id"
+              v-for="(nav, navId) in $store.state.navigation"
+              :key="navId"
               :to="{ name: nav.route }"
               class="flex items-center px-2 py-2 text-sm font-medium text-gray-900 transition-colors duration-300 rounded-md group hover:bg-gray-200"
             >
@@ -167,23 +167,5 @@ export default {
   name: 'StaticSidebar',
   // eslint-disable-next-line vue/no-unused-components
   components: { userAccountDropdown },
-  data() {
-    return {
-      navigation: [
-        { label: 'Home', icon: 'home', route: 'home' },
-        { label: 'Books', icon: 'book-open', route: 'books' },
-        { label: 'Guides', icon: 'annotation', route: 'guides' },
-      ],
-    }
-  },
 }
 </script>
-
-<style lang="postcss" scoped>
-.router-link-exact-active {
-  @apply bg-gray-200;
-}
-.router-link-active {
-  /* @apply bg-gray-200; */
-}
-</style>

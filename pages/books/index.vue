@@ -53,6 +53,16 @@
       </autocomplete>
     </div>
     <div>
+      <div v-if="false" class="grid grid-cols-5">
+        <nuxt-image
+          v-for="book in booksFull.data"
+          :key="book.id"
+          :alt="book.title"
+          :src="book.cover.thumbnail"
+          class="cover"
+          placeholder
+        />
+      </div>
       <books-grid class="px-5" :books="books.data" />
       <pagination
         :link-gen="linkGen"
@@ -85,6 +95,11 @@ export default {
   layout: 'auth',
   directives: {
     clickOutside: vClickOutside.directive,
+  },
+  async fetch() {
+    this.booksFull = await fetch(`${process.env.API_URL}books`).then((res) =>
+      res.json()
+    )
   },
   async asyncData({ app, query, error, $content, store }) {
     try {
@@ -145,6 +160,7 @@ export default {
       pagination: {},
       wikiUrl: 'https://en.wikipedia.org',
       params: 'action=query&list=search&format=json&origin=*',
+      booksFull: [],
     }
   },
   methods: {

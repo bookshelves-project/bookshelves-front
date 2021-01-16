@@ -1,171 +1,55 @@
 <template>
-  <div>
-    <div class="relative py-16 overflow-hidden bg-white">
-      <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
-        <div
-          class="relative h-full mx-auto text-lg max-w-prose"
-          aria-hidden="true"
-        >
-          <svg
-            class="absolute transform translate-x-32 top-12 left-full"
-            width="404"
-            height="384"
-            fill="none"
-            viewBox="0 0 404 384"
-          >
-            <defs>
-              <pattern
-                id="74b3fd99-0a6f-4271-bef2-e80eeafdf357"
-                x="0"
-                y="0"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
+  <div class="xl:grid xl:grid-cols-4">
+    <div class="flex flex-wrap-reverse w-full px-5 xl:col-span-3 md:px-10">
+      <div class="w-full ml-auto lg:w-3/4">
+        <div class="text-on-img-tailwind">
+          <div class="relative w-full">
+            <div class="source" style="z-index: -1">
+              <img
+                src="/images/no-cover.webp"
+                class="h-40 mx-auto opacity-25 object-container"
+              />
+              <div
+                class="absolute z-10 w-full text-2xl italic text-center text-white"
+                style="top: 50%; left: 50%; transform: translate(-50%, -50%)"
               >
-                <rect
-                  x="0"
-                  y="0"
-                  width="4"
-                  height="4"
-                  class="text-gray-200"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
-            <rect
-              width="404"
-              height="384"
-              fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)"
-            />
-          </svg>
-          <svg
-            class="absolute transform -translate-x-32 -translate-y-1/2 top-1/2 right-full"
-            width="404"
-            height="384"
-            fill="none"
-            viewBox="0 0 404 384"
-          >
-            <defs>
-              <pattern
-                id="f210dbf6-a58d-4871-961e-36d5016a0f49"
-                x="0"
-                y="0"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
-                  x="0"
-                  y="0"
-                  width="4"
-                  height="4"
-                  class="text-gray-200"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
-            <rect
-              width="404"
-              height="384"
-              fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)"
-            />
-          </svg>
-          <svg
-            class="absolute transform translate-x-32 bottom-12 left-full"
-            width="404"
-            height="384"
-            fill="none"
-            viewBox="0 0 404 384"
-          >
-            <defs>
-              <pattern
-                id="d3eb07ae-5182-43e6-857d-35c643af9034"
-                x="0"
-                y="0"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
-                  x="0"
-                  y="0"
-                  width="4"
-                  height="4"
-                  class="text-gray-200"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
-            <rect
-              width="404"
-              height="384"
-              fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)"
-            />
-          </svg>
+                <div class="mx-auto text-lg max-w-prose">
+                  <h1>
+                    <span
+                      class="block mt-2 text-3xl font-extrabold leading-8 tracking-tight text-center text-gray-900 sm:text-4xl"
+                    >
+                      {{ document.title }}
+                    </span>
+                  </h1>
+                  <p class="mt-8 text-xl leading-8 text-gray-500">
+                    {{ document.description }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pt-4 pb-10 mx-auto prose prose-lg lg:px-5 lg:pt-8">
+          <nuxt-content :document="document" />
         </div>
       </div>
-      <div class="relative px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto text-lg max-w-prose">
-          <h1>
-            <span
-              class="block mt-2 text-3xl font-extrabold leading-8 tracking-tight text-center text-gray-900 sm:text-4xl"
-            >
-              {{ document.title }}
-            </span>
-          </h1>
-          <p class="mt-8 text-xl leading-8 text-gray-500">
-            {{ document.description }}
-          </p>
+      <div class="relative block w-full lg:w-1/4">
+        <div class="lg:sticky lg:top-5 h-full lg:h-auto lg:max-h-(screen-5)">
+          <table-of-content :toc="document.toc"></table-of-content>
         </div>
-        <div class="flex flex-wrap-reverse w-full xl:w-4/5">
-          <div
-            :class="{
-              'lg:border-l lg:border-r dark:border-gray-800': withBorders,
-            }"
-            class="w-full lg:w-3/4"
-          >
-            <div
-              class="mx-auto mt-6 prose prose-lg text-gray-500 prose-indigo word-wraping"
-            >
-              <nuxt-content :document="document" />
-            </div>
-          </div>
-          <div class="relative block w-full lg:w-1/4">
-            <div
-              class="lg:sticky lg:top-16 overflow-y-auto h-full lg:h-auto lg:max-h-(screen-16)"
-            >
-              <table-of-content :toc="document.toc"></table-of-content>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="grid grid-cols-3 gap-4">
-          <div class="col-span-2">
-            <div
-              class="mx-auto mt-6 prose prose-lg text-gray-500 prose-indigo word-wraping"
-            >
-              <nuxt-content :document="document" />
-            </div>
-          </div>
-          <div class="col-span-1">
-            <div class="fixed mx-auto mt-10 max-w-prose">
-              <div class="mb-3 text-xl">Table of content</div>
-              <table-of-content :toc="document.toc"></table-of-content>
-            </div>
-          </div>
-        </div> -->
       </div>
+    </div>
+    <div class="xl:col-span-1">
+      <design-xl />
     </div>
   </div>
 </template>
 
 <script>
+import designXl from '~/components/blocks/design-xl.vue'
 export default {
   name: 'ContentSlugShort',
-  middleware({ app, params, redirect }) {
-    if (params.pathMatch === 'index') {
-      redirect(app.localePath('/'))
-    }
-  },
+  components: { designXl },
   async asyncData({ $content, store, app, params, error }) {
     const path = `/${params.pathMatch || 'index'}`
     const [document] = await $content({ deep: true }).where({ path }).fetch()
@@ -173,28 +57,13 @@ export default {
       return error({ statusCode: 404, message: 'Page not found' })
     }
 
-    // const pathArray = document.path.split('/')
-    // pathArray.splice(0, 1)
-    // pathArray.splice(pathArray.length - 1, 1)
-    // const otherDocumentsPath = pathArray.join('/')
-    // const otherDocuments = await $content(otherDocumentsPath, {
-    //   deep: true,
-    // })
-    //   .only(['title', 'path', 'extension', 'position'])
-    //   .sortBy('position')
-    //   .fetch()
-
-    // const [prev, next] = await $content({ deep: true })
-    //   .only(['title', 'path', 'to'])
-    //   .sortBy('position', 'asc')
-    //   .surround(document.path, { before: 1, after: 1 })
-    //   .fetch()
-
     return {
       document,
-      // otherDocuments,
-      // prev,
-      // next,
+    }
+  },
+  middleware({ app, params, redirect }) {
+    if (params.pathMatch === 'index') {
+      redirect(app.localePath('/'))
     }
   },
   head() {

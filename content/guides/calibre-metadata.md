@@ -1,8 +1,9 @@
 ---
-title: "Metadata with Calibre"
+title: "Set metadata"
+subtitle: ''
 description: 'How to update EPUB metadata with Calibre.'
 position: 2
-category: 'Guides'
+category: 'Calibre'
 ---
 
 <alert type="warning">
