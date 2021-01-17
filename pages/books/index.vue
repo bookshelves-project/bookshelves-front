@@ -17,15 +17,23 @@
             />
           </transition>
         </div>
-        <pagination
-          :link-gen="linkGen"
-          :pages="pages"
-          :current-page="currentPage"
-          :limit="5"
-          class="flex justify-center mt-8"
-          @event="event"
-        >
-        </pagination>
+        <div class="mt-10">
+          <div class="mb-5 text-center">
+            <span class="font-bold"> </span>
+            <b>{{ perPage }}</b> eBooks by page for <b>{{ total }}</b> eBooks on
+            <b>{{ pages }}</b> pages
+          </div>
+          <pagination
+            :link-gen="linkGen"
+            :pages="pages"
+            :current-page="currentPage"
+            :limit="5"
+            class="flex justify-center"
+            @event="event"
+          >
+          </pagination>
+        </div>
+
         <slot />
       </div>
       <loading v-else />
@@ -69,6 +77,8 @@ export default {
         books,
         pages: books.meta.last_page,
         currentPage: books.meta.current_page,
+        perPage: books.meta.per_page,
+        total: books.meta.total,
       }
     } catch (error) {
       console.error(error)
@@ -96,9 +106,6 @@ export default {
       }
     },
     event(data) {
-      this.componentKey += 1
-    },
-    forceRerender() {
       this.componentKey += 1
     },
     searching(result) {

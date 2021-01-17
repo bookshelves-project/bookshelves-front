@@ -8,6 +8,11 @@ export const state = () => ({
     { label: 'Books', icon: 'book-open', route: 'books' },
     { label: 'Guides', icon: 'annotation', route: 'guides' },
   ],
+  booksNavigation: [
+    { label: 'Books', icon: 'home', route: 'books' },
+    { label: 'Series', icon: 'book-open', route: 'series' },
+    { label: 'Authors', icon: 'annotation', route: 'authors' },
+  ],
   design: ['bibliophile', 'book-lover', 'bookmark'],
 })
 

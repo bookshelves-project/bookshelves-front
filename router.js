@@ -69,7 +69,7 @@ const routesList = [
   },
   {
     name: 'authors-slug',
-    path: '/authors/:author/:slug',
+    path: '/authors/:slug',
     component: AuthorsSlug,
   },
   {

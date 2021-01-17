@@ -25,7 +25,7 @@
                 {{ book.author.lastname }}, {{ book.author.firstname }}
               </dd>
             </div>
-            <div class="sm:col-span-1">
+            <div v-if="book.publisher" class="sm:col-span-1">
               <dt class="text-sm font-medium text-gray-500">Publisher</dt>
               <dd class="mt-1 text-sm text-gray-900">
                 {{ book.publisher.name }} ({{ getDate(book.publishDate) }})

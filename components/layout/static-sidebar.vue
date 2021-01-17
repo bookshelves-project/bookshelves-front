@@ -51,18 +51,42 @@
         <nav class="px-3 mt-6">
           <div class="space-y-1">
             <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-700 hover:text-gray-900 hover:bg-gray-50" -->
-            <nuxt-link
-              v-for="(nav, navId) in $store.state.navigation"
-              :key="navId"
-              :to="{ name: nav.route }"
-              class="flex items-center px-2 py-2 text-sm font-medium text-gray-900 transition-colors duration-300 rounded-md group hover:bg-gray-200"
-            >
-              <!-- Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" -->
-              <icon :name="nav.icon" stroke class="text-gray-400" :size="24" />
-              <span class="ml-2 font-semibold">
-                {{ nav.label }}
-              </span>
-            </nuxt-link>
+            <div v-for="(nav, navId) in $store.state.navigation" :key="navId">
+              <nuxt-link
+                :to="{ name: nav.route }"
+                class="flex items-center px-2 py-2 text-sm font-medium text-gray-900 transition-colors duration-300 rounded-md group hover:bg-gray-200"
+              >
+                <!-- Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" -->
+                <icon
+                  :name="nav.icon"
+                  stroke
+                  class="text-gray-400"
+                  :size="24"
+                />
+                <span class="ml-2 font-semibold">
+                  {{ nav.label }}
+                </span>
+              </nuxt-link>
+              <div v-if="nav.label === 'Books'" class="ml-3">
+                <nuxt-link
+                  v-for="(booksNav, booksNavId) in $store.state.booksNavigation"
+                  :key="booksNavId"
+                  :to="{ name: booksNav.route }"
+                  class="flex items-center px-2 py-2 text-sm font-medium text-gray-900 transition-colors duration-300 rounded-md group hover:bg-gray-200"
+                >
+                  <!-- Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500" -->
+                  <icon
+                    :name="booksNav.icon"
+                    stroke
+                    class="text-gray-400"
+                    :size="24"
+                  />
+                  <span class="ml-2 font-semibold">
+                    {{ booksNav.label }}
+                  </span>
+                </nuxt-link>
+              </div>
+            </div>
 
             <!-- <a
               href="#"
