@@ -9,6 +9,7 @@ import SeriesIndex from '~/pages/series/index'
 import SeriesSlug from '~/pages/series/_slug'
 import AuthorsIndex from '~/pages/authors/index'
 import AuthorsSlug from '~/pages/authors/_slug'
+import SearchIndex from '~/pages/search/index'
 import Guides from '~/pages/guides/index'
 import Content from '~/pages/guides/_'
 
@@ -70,6 +71,11 @@ const routesList = [
     name: 'authors-slug',
     path: '/authors/:author/:slug',
     component: AuthorsSlug,
+  },
+  {
+    name: 'search',
+    path: '/search',
+    component: SearchIndex,
   },
   {
     name: 'guides',

@@ -1,21 +1,29 @@
 <template>
   <projects-layout>
     <div>
-      <header-navigation />
+      <header-navigation @searching="searching" />
       <div v-if="!isLoading" class="hidden mt-5 sm:block">
-        <transition name="fade">
-          <books-table
-            v-if="$store.state.booksView === 'list'"
-            :books="books.data"
-          />
-          <books-grid v-else class="px-5" :books="books.data" />
-        </transition>
+        <div v-if="!isReloadForPaginate">
+          <transition name="fade">
+            <books-table
+              v-if="$store.state.booksView === 'list'"
+              :books="books.data"
+            />
+            <books-grid
+              v-else
+              :key="componentKey"
+              class="px-5"
+              :books="books.data"
+            />
+          </transition>
+        </div>
         <pagination
           :link-gen="linkGen"
           :pages="pages"
           :current-page="currentPage"
           :limit="5"
           class="flex justify-center mt-8"
+          @event="event"
         >
         </pagination>
         <slot />
@@ -52,7 +60,7 @@ export default {
         app.$axios.$get(
           `/books?${qs.stringify({
             page: page || 1,
-            perPage: 24,
+            perPage: 32,
           })}`
         ),
       ])
@@ -75,6 +83,8 @@ export default {
   data() {
     return {
       isLoading: false,
+      isReloadForPaginate: false,
+      componentKey: 0,
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
     }
   },
@@ -84,6 +94,15 @@ export default {
         name: this.$route.name,
         query: pageNum === 1 ? {} : { page: pageNum },
       }
+    },
+    event(data) {
+      this.componentKey += 1
+    },
+    forceRerender() {
+      this.componentKey += 1
+    },
+    searching(result) {
+      console.log(this.$store.state.searching)
     },
   },
   watchQuery: ['page'],

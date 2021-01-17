@@ -31,8 +31,9 @@ export default {
     '~/plugins/helper',
     // '~/plugins/global-loader',
     '~/plugins/vue-scrollactive',
-    '~/plugins/vue-lazyload',
+    // '~/plugins/vue-lazyload',
     '~/plugins/autocomplete',
+    '~/plugins/v-lazy-image',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

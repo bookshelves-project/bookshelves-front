@@ -6,7 +6,7 @@
           <div class="px-4 mt-10 sm:px-8 xl:pr-16">
             <div class="mx-auto xl:mx-0 max-w-prose">
               <h1
-                class="text-4xl font-extrabold tracking-tight text-center text-gray-900 xl:text-left sm:text-5xl md:text-6xl xl:text-5xl xl:text-6xl"
+                class="text-4xl font-extrabold tracking-tight text-center text-gray-900 font-handlee xl:text-left sm:text-5xl md:text-6xl xl:text-5xl"
               >
                 <span class="block xl:inline">Welcome on</span>
                 <span class="block text-indigo-600 xl:inline">Bookshelves</span>

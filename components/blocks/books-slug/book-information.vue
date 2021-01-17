@@ -104,19 +104,21 @@ export default {
       return dateToStringLocale
     },
     async checkIsbn() {
-      let isbnFormat = this.book.isbn
-      isbnFormat = isbnFormat.replaceAll('-', '')
+      if (this.book.isbn) {
+        let isbnFormat = this.book.isbn
+        isbnFormat = isbnFormat.replaceAll('-', '')
 
-      const isbnResult = await isbn
-        .resolve(isbnFormat)
-        .then(function (book) {
-          return book
-        })
-        .catch(function (err) {
-          console.error('Book not found', err)
-          return null
-        })
-      this.isbn = isbnResult
+        const isbnResult = await isbn
+          .resolve(isbnFormat)
+          .then(function (book) {
+            return book
+          })
+          .catch(function (err) {
+            console.error('Book not found', err)
+            return null
+          })
+        this.isbn = isbnResult
+      }
     },
   },
 }

@@ -45,7 +45,7 @@
               />
             </svg>
             <nuxt-link
-              :exact-active-class="false"
+              exact-active-class="false"
               :exact="false"
               :to="{ name: $route.name }"
               class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"

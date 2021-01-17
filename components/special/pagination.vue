@@ -21,6 +21,7 @@
         <nuxt-link
           :tag="getTag(pageNum + startNumber - 1)"
           :to="linkGen(pageNum + startNumber - 1)"
+          @click.native="forceRerender"
         >
           {{ pageNum + startNumber - 1 }}
         </nuxt-link>
@@ -136,6 +137,10 @@ export default {
     },
     getTag(pageNum) {
       return this.isActive(pageNum) ? 'span' : 'a'
+    },
+    forceRerender() {
+      // console.log(this.$parent)
+      this.$emit('event', 'data value')
     },
   },
 }

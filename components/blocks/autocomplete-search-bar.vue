@@ -7,6 +7,7 @@
     aria-label="Search for a book, a serie or an author"
     :get-result-value="getResultValue"
     @submit="handleSubmit"
+    @update="handleUpdate"
   >
     <template #result="{ result, props }">
       <nuxt-link
@@ -56,13 +57,21 @@ import qs from 'qs'
 
 export default {
   name: 'AutocompleteSearchBar',
+  data() {
+    return {
+      searchTerm: null,
+      searchResults: [],
+    }
+  },
   methods: {
     search(input) {
       const url = `${process.env.API_URL}books/search?${qs.stringify({
         'search-term': input,
       })}`
 
-      return new Promise((resolve) => {
+      this.searchTerm = input
+
+      const searchingResults = new Promise((resolve) => {
         if (input.length < 3) {
           return resolve([])
         }
@@ -70,19 +79,33 @@ export default {
         fetch(url)
           .then((response) => response.json())
           .then((data) => {
-            console.log(data)
             resolve(data.data)
           })
       })
+
+      return searchingResults
     },
     getResultValue(result) {
       return result.title
     },
     handleSubmit(result) {
-      return {
-        name: 'books-slug',
-        query: { author: result.author.slug, slug: result.slug },
+      console.log(result)
+      this.$emit('searching', this.searchResults)
+      if (result === undefined) {
+        console.log('router push')
+        this.$router.push({
+          name: 'search',
+          query: { 'search-terms': this.searchTerm },
+        })
+      } else {
+        this.$router.push({
+          name: 'books-slug',
+          params: { author: result.author.slug, slug: result.slug },
+        })
       }
+    },
+    handleUpdate(result) {
+      this.searchResults = result
     },
     onClickOutside(event) {
       // this.$refs.search.$el.children[0].childNodes[0]

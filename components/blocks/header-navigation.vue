@@ -6,7 +6,7 @@
       <nuxt-link :to="{ name: 'authors' }" class="btn"> By authors </nuxt-link>
     </div>
     <div class="flex justify-center w-full px-5 mt-5 mb-5">
-      <autocomplete-search-bar class="w-full" />
+      <autocomplete-search-bar class="w-full" @searching="searching" />
       <div class="flex justify-end px-4 py-3 space-x-2">
         <button
           :class="$store.state.booksView === 'list' ? 'bg-gray-200' : ''"
@@ -55,6 +55,9 @@ export default {
         this.$store.commit('setBooksView', 'list')
         localStorage.setItem('books-view', 'list')
       }
+    },
+    searching(result) {
+      this.$emit('searching', result)
     },
   },
 }
