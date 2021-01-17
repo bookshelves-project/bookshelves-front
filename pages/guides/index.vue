@@ -25,9 +25,6 @@
                   class="flex-1 min-w-0 px-4 md:grid md:grid-cols-2 md:gap-4"
                 >
                   <div>
-                    <p class="text-xl font-medium text-indigo-600 truncate">
-                      {{ guide.title }}
-                    </p>
                     <p class="flex items-center mt-2 text-sm text-gray-500">
                       <svg
                         class="w-6 h-6"
@@ -44,6 +41,9 @@
                       <span class="ml-1 truncate">
                         {{ guide.category }}
                       </span>
+                    </p>
+                    <p class="text-xl font-medium text-indigo-600 truncate">
+                      {{ guide.title }}
                     </p>
                   </div>
                   <div class="hidden md:block">

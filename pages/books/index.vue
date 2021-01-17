@@ -52,7 +52,7 @@ export default {
         app.$axios.$get(
           `/books?${qs.stringify({
             page: page || 1,
-            perPage: 12,
+            perPage: 24,
           })}`
         ),
       ])
