@@ -1,41 +1,41 @@
 <template>
-  <div>
-    <div
-      class="px-4 py-4 border-b border-gray-200 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
-    >
-      <div class="flex-1 min-w-0">
-        <nuxt-link
-          to="/"
-          class="text-lg font-medium leading-6 text-gray-900 sm:truncate"
-        >
-          Back
-        </nuxt-link>
-      </div>
-      <div class="flex mt-4 sm:mt-0 sm:ml-4">
-        <button
-          type="button"
-          class="inline-flex items-center order-1 px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-0 sm:ml-0"
-        >
-          Share
-        </button>
-        <button
-          type="button"
-          class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-purple-600 border border-transparent rounded-md shadow-sm order-0 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3"
-        >
-          Create
-        </button>
-      </div>
-    </div>
-    <main class="py-10">
-      <!-- Page header -->
+  <div class="max-w-3xl mx-auto lg:grid lg:grid-cols-3 lg:max-w-7xl">
+    <main class="col-span-2 py-10 mx-auto sm:px-6">
       <book-header :book="book" />
-
-      <div
-        class="grid max-w-3xl grid-cols-1 gap-6 mx-auto mt-8 sm:px-6 xl:max-w-7xl xl:grid-flow-col-dense xl:grid-cols-3"
-      >
+      <div class="mt-10">
         <book-information :book="book" />
       </div>
     </main>
+    <aside class="col-span-1">
+      <div class="fixed hidden right-32 lg:block">
+        <div class="book-container">
+          <div class="book">
+            <img :src="book.cover.original" />
+          </div>
+        </div>
+        <div class="justify-center hidden pt-5 lg:flex">
+          <a
+            :href="book.epub.download"
+            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            <span class="mx-1">Download</span>
+            <span> ({{ book.epub.size }}) </span>
+          </a>
+        </div>
+      </div>
+    </aside>
   </div>
 </template>
 
@@ -65,4 +65,71 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss" scoped>
+.book-container {
+  width: 200px;
+  height: 300px;
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 400px;
+}
+
+.book {
+  transform: rotateY(-30deg);
+  position: relative;
+  transform-style: preserve-3d;
+  width: 200px;
+  height: 300px;
+  transition: transform 1s ease;
+  animation: 1s ease 0s 1 initAnimation;
+}
+
+.book:hover {
+  transform: rotate(0deg);
+}
+
+@keyframes initAnimation {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(-30deg);
+  }
+}
+
+.book > :first-child {
+  position: absolute;
+  background: #0d47a1aa;
+  width: 200px;
+  height: 300px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-shadow: 2px 2px 5px #666;
+}
+
+.book::before {
+  content: ' ';
+  background: #fff;
+  height: calc(300px - 2 * 3px);
+  width: 50px;
+  top: 3px;
+  position: absolute;
+  transform: translateX(calc(200px - 50px / 2 - 3px)) rotateY(90deg)
+    translateX(calc(50px / 2));
+}
+
+.book::after {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  width: 200px;
+  height: 300px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background: #01060f;
+  transform: translateZ(-50px);
+  box-shadow: -5px 0 25px 5px #666;
+}
+</style>

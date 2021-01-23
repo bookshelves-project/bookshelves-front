@@ -1,5 +1,8 @@
 <template>
   <div>
+    <hero />
+    <statistics />
+    <!-- <div>
     <div class="relative">
       <main class="xl:grid xl:grid-cols-2 xl:relative">
         <div class="xl:col-span-1">
@@ -89,16 +92,23 @@
         </dl>
       </div>
     </div>
+  </div> -->
   </div>
 </template>
 
 <script>
 // eslint-disable-next-line no-unused-vars
 import qs from 'qs'
-import designXl from '~/components/blocks/design-xl.vue'
+import Hero from '~/components/blocks/hero.vue'
+import Statistics from '~/components/blocks/statistics.vue'
+// import designXl from '~/components/blocks/design-xl.vue'
 export default {
   name: 'Home',
-  components: { designXl },
+  components: {
+    Hero,
+    Statistics,
+    // designXl
+  },
   auth: 'auth',
   layout: 'auth',
   async asyncData({ app, query, error, $content, store }) {

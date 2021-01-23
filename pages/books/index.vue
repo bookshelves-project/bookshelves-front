@@ -1,63 +1,52 @@
 <template>
-  <projects-layout>
+  <main class="container mt-5 max-w-7xl">
     <div>
-      <header-navigation @searching="searching" />
-      <div v-if="!isLoading" class="hidden mt-5 sm:block">
-        <div v-if="!isReloadForPaginate">
-          <transition name="fade">
-            <books-table
-              v-if="$store.state.booksView === 'list'"
-              :books="books.data"
-            />
-            <books-grid
-              v-else
-              :key="componentKey"
-              class="px-5"
-              :books="books.data"
-            />
-          </transition>
+      <div class="flex items-center px-5 mb-5">
+        <autocomplete-search-bar class="w-full" @searching="searching" />
+        <div class="w-56 ml-5">
+          Search on <b>{{ total }}</b> eBooks
         </div>
-        <div class="mt-10">
-          <div class="mb-5 text-center">
-            <span class="font-bold"> </span>
-            <b>{{ perPage }}</b> eBooks by page for <b>{{ total }}</b> eBooks on
-            <b>{{ pages }}</b> pages
-          </div>
-          <pagination
-            :link-gen="linkGen"
-            :pages="pages"
-            :current-page="currentPage"
-            :limit="5"
-            class="flex justify-center"
-            @event="event"
-          >
-          </pagination>
-        </div>
-
-        <slot />
       </div>
-      <loading v-else />
+      <!-- <books-grid class="px-5" :books="books.data" /> -->
+      <!-- <transition name="fade">
+          <books-grid
+            v-if="!isReloadForPaginate"
+            :key="componentKey"
+            class="px-5"
+            :books="books.data"
+          />
+        </transition> -->
+      <div class="mt-10">
+        <books-grid :key="componentKey" class="px-5" :books="books.data" />
+      </div>
+      <div class="mt-6 mb-5">
+        <pagination
+          :link-gen="linkGen"
+          :pages="pages"
+          :current-page="currentPage"
+          :limit="5"
+          class="flex justify-center"
+          @event="event"
+        >
+        </pagination>
+      </div>
     </div>
-  </projects-layout>
+  </main>
 </template>
 
 <script>
 import qs from 'qs'
 
-import ProjectsLayout from '~/components/blocks/projects-layout.vue'
 import Pagination from '~/components/special/pagination.vue'
 import BooksGrid from '~/components/blocks/books-grid.vue'
-import BooksTable from '~/components/blocks/books-table.vue'
-import HeaderNavigation from '~/components/blocks/header-navigation.vue'
+import AutocompleteSearchBar from '~/components/blocks/autocomplete-search-bar.vue'
 
 export default {
   name: 'Books',
   components: {
-    ProjectsLayout,
     Pagination,
     BooksGrid,
-    BooksTable,
-    HeaderNavigation,
+    AutocompleteSearchBar,
   },
   auth: 'auth',
   layout: 'auth',

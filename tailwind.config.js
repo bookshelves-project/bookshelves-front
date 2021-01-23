@@ -19,8 +19,8 @@ module.exports = {
     },
     screens: {
       sm: '320px',
-      md: '500px',
-      lg: '900px',
+      md: '550px',
+      lg: '800px',
       xl: '1300px',
       '2xl': '1536px',
     },
@@ -94,5 +94,6 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/line-clamp'),
+    require('tailwindcss-debug-screens'),
   ],
 }

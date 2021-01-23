@@ -27,6 +27,7 @@
     "node-isbn": "^1.6.0",
     "nuxt": "^2.14.6",
     "qs": "^6.9.4",
+    "tailwindcss-debug-screens": "^2.0.0",
     "v-click-outside": "^3.1.2",
     "v-lazy-image": "^1.4.0",
     "v-tooltip": "^2.1.1",

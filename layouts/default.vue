@@ -1,5 +1,12 @@
 <template>
-  <div>
+  <div :class="dev ? 'debug-screens' : ''">
+    <navbar />
+    <div class="pt-20"></div>
+    <Nuxt />
+    <!-- <client-only>
+      <tailwind-helper sneak />
+    </client-only> -->
+    <!-- <div>
     <div class="flex">
       <div v-if="$store.state.layerVisible">
         <div
@@ -15,25 +22,31 @@
       </div>
     </div>
     <back-to-top />
-    <client-only>
-      <tailwind-helper sneak />
-    </client-only>
+
+  </div> -->
   </div>
 </template>
 
 <script>
-import BackToTop from '~/components/layout/back-to-top.vue'
-import HeaderResponsive from '~/components/layout/header-responsive.vue'
-import Sidebar from '~/components/layout/sidebar.vue'
-import StaticSidebar from '~/components/layout/static-sidebar.vue'
+import Navbar from '~/components/layout/navbar.vue'
+// import BackToTop from '~/components/layout/back-to-top.vue'
+// import HeaderResponsive from '~/components/layout/header-responsive.vue'
+// import Sidebar from '~/components/layout/sidebar.vue'
+// import StaticSidebar from '~/components/layout/static-sidebar.vue'
 
 export default {
   name: 'LayoutDefault',
   components: {
-    StaticSidebar,
-    Sidebar,
-    HeaderResponsive,
-    BackToTop,
+    Navbar,
+    // StaticSidebar,
+    // Sidebar,
+    // HeaderResponsive,
+    // BackToTop,
+  },
+  data() {
+    return {
+      dev: process.env.NODE_ENV !== 'production',
+    }
   },
 }
 </script>

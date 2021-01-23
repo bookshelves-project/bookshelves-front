@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-3xl px-4 mx-auto sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 xl:max-w-7xl xl:px-8"
+    class="max-w-3xl px-4 mx-auto sm:px-6 lg:block xl:flex md:items-center md:justify-between xl:max-w-7xl xl:px-8"
   >
     <div class="flex items-center space-x-5">
       <div class="flex-shrink-0">
@@ -39,9 +39,7 @@
         </p>
       </div>
     </div>
-    <div
-      class="flex flex-col-reverse mt-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3"
-    >
+    <div class="flex mt-5 lg:hidden">
       <a
         :href="book.epub.download"
         class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"

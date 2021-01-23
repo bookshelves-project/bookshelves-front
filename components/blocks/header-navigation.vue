@@ -1,28 +1,7 @@
 <template>
   <div>
-    <div class="flex items-center justify-start px-5 mt-5">
-      <nuxt-link :to="{ name: 'books' }" class="btn"> By books </nuxt-link>
-      <nuxt-link :to="{ name: 'series' }" class="btn"> By series </nuxt-link>
-      <nuxt-link :to="{ name: 'authors' }" class="btn"> By authors </nuxt-link>
-    </div>
     <div class="flex justify-center w-full px-5 mt-5 mb-5">
       <autocomplete-search-bar class="w-full" @searching="searching" />
-      <div class="flex justify-end px-4 py-3 space-x-2">
-        <button
-          :class="$store.state.booksView === 'list' ? 'bg-gray-200' : ''"
-          class="view-btn"
-          @click="switchBooksView()"
-        >
-          <icon name="view-list" />
-        </button>
-        <button
-          :class="$store.state.booksView === 'grid' ? 'bg-gray-200' : ''"
-          class="view-btn"
-          @click="switchBooksView()"
-        >
-          <icon name="view-grid" />
-        </button>
-      </div>
     </div>
   </div>
 </template>
