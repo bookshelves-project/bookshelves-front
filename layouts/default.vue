@@ -2,7 +2,7 @@
   <div :class="dev ? 'debug-screens' : ''">
     <navbar />
     <div class="pt-20"></div>
-    <Nuxt class="min-h-screen" />
+    <Nuxt class="min-height-content" />
     <default-footer />
     <!-- <client-only>
       <tailwind-helper sneak />
@@ -53,3 +53,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.min-height-content {
+  min-height: 62vh;
+}
+</style>

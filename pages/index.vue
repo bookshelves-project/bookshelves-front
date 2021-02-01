@@ -1,7 +1,11 @@
 <template>
   <div>
     <hero />
-    <statistics />
+    <statistics
+      :authors="authorsCount"
+      :books="booksCount"
+      :series="seriesCount"
+    />
     <!-- <div>
     <div class="relative">
       <main class="xl:grid xl:grid-cols-2 xl:relative">

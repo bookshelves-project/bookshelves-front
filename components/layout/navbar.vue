@@ -2,7 +2,7 @@
   <header class="relative">
     <div
       :class="{ shadow: displayIfScrolled }"
-      class="fixed z-50 w-full py-3 bg-white bg-opacity-90"
+      class="fixed z-50 w-full py-3 transition-shadow duration-100 bg-white bg-opacity-90"
     >
       <nav
         class="relative flex items-center justify-between px-4 mx-auto max-w-7xl sm:px-6"
@@ -14,10 +14,11 @@
               to="/"
               active-class="no-active"
               exact-active-class="no-exact-active"
+              class="group"
             >
               <span class="sr-only">Bookshelves</span>
               <img
-                class="w-auto h-8 sm:h-10"
+                class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
                 src="/images/bookshelves.svg"
                 alt="Bookshelves logo"
               />
@@ -217,4 +218,10 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss" scoped>
+@variants group-hover, hover, focus {
+  .home-logo-shadow {
+    filter: drop-shadow(2px 2px 2px #7a7a7a);
+  }
+}
+</style>
