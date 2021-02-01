@@ -14,6 +14,7 @@
   "dependencies": {
     "@nuxt/components": "^1.2.4",
     "@nuxt/content": "^1.11.1",
+    "@nuxt/http": "^0.6.2",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.0.2",

@@ -1,6 +1,9 @@
 <template>
   <header class="relative">
-    <div class="fixed z-50 w-full py-3 bg-white shadow">
+    <div
+      :class="{ shadow: displayIfScrolled }"
+      class="fixed z-50 w-full py-3 bg-white bg-opacity-90"
+    >
       <nav
         class="relative flex items-center justify-between px-4 mx-auto max-w-7xl sm:px-6"
         aria-label="Global"
@@ -9,14 +12,14 @@
           <div class="flex items-center justify-between w-full md:w-auto">
             <nuxt-link
               to="/"
-              exact
-              exact-active-class="home-exact-active-class"
+              active-class="no-active"
+              exact-active-class="no-exact-active"
             >
-              <span class="sr-only">Workflow</span>
+              <span class="sr-only">Bookshelves</span>
               <img
                 class="w-auto h-8 sm:h-10"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                alt=""
+                src="/images/bookshelves.svg"
+                alt="Bookshelves logo"
               />
             </nuxt-link>
             <div class="flex items-center -mr-2 md:hidden">
@@ -46,12 +49,12 @@
               </button>
             </div>
           </div>
-          <div class="items-center hidden h-10 md:flex md:ml-10">
+          <div class="items-center hidden h-10 md:flex md:ml-5">
             <nuxt-link
               v-for="(booksNav, booksNavId) in $store.state.navigation"
               :key="booksNavId"
               :to="{ name: booksNav.route }"
-              class="flex items-center h-full px-3 mx-1 transition-colors duration-100 hover:bg-gray-300"
+              class="flex items-center h-full px-3 mx-1 transition-colors duration-300 rounded-md hover:bg-gray-300 focus:outline-none focus:ring focus:border-blue-100"
             >
               <!-- <icon
                 :name="booksNav.icon"
@@ -63,33 +66,10 @@
                 {{ booksNav.label }}
               </span>
             </nuxt-link>
-            <!-- <a
-              href="#"
-              class="text-base font-medium text-gray-800 hover:text-gray-300"
-              >Product</a
-            >
-
-            <a
-              href="#"
-              class="text-base font-medium text-gray-800 hover:text-gray-300"
-              >Features</a
-            >
-
-            <a
-              href="#"
-              class="text-base font-medium text-gray-800 hover:text-gray-300"
-              >Marketplace</a
-            >
-
-            <a
-              href="#"
-              class="text-base font-medium text-gray-800 hover:text-gray-300"
-              >Company</a
-            > -->
           </div>
         </div>
         <div class="hidden md:flex md:items-center md:space-x-6">
-          <a
+          <!-- <a
             href="#"
             class="text-base font-medium text-gray-800 hover:text-gray-300"
           >
@@ -100,7 +80,8 @@
             class="inline-flex items-center px-4 py-2 text-base font-medium text-white bg-gray-600 border border-transparent rounded-md hover:bg-gray-700"
           >
             Register
-          </a>
+          </a> -->
+          <autocomplete-search-bar class="w-96" />
         </div>
       </nav>
     </div>
@@ -209,8 +190,30 @@
 </template>
 
 <script>
+import autocompleteSearchBar from '../blocks/autocomplete-search-bar.vue'
 export default {
   name: 'Navbar',
+  components: { autocompleteSearchBar },
+  data() {
+    return {
+      displayIfScrolled: false,
+    }
+  },
+  beforeMount() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll() {
+      if (window.scrollY > 50) {
+        this.displayIfScrolled = true
+      } else {
+        this.displayIfScrolled = false
+      }
+    },
+  },
 }
 </script>
 

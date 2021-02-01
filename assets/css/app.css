@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 @responsive {
   .word-wraping {
     text-align: justify !important;
@@ -38,10 +43,10 @@ button {
 
 /* navigation */
 .nuxt-link-exact-active {
-  @apply bg-gray-200;
+  /* @apply bg-gray-200; */
 }
 .nuxt-link-active {
-  /* @apply bg-gray-200; */
+  @apply bg-gray-300 bg-opacity-40;
 }
 
 .v-lazy-image {

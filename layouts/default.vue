@@ -2,7 +2,8 @@
   <div :class="dev ? 'debug-screens' : ''">
     <navbar />
     <div class="pt-20"></div>
-    <Nuxt />
+    <Nuxt class="min-h-screen" />
+    <default-footer />
     <!-- <client-only>
       <tailwind-helper sneak />
     </client-only> -->
@@ -28,6 +29,7 @@
 </template>
 
 <script>
+import DefaultFooter from '~/components/layout/default-footer.vue'
 import Navbar from '~/components/layout/navbar.vue'
 // import BackToTop from '~/components/layout/back-to-top.vue'
 // import HeaderResponsive from '~/components/layout/header-responsive.vue'
@@ -38,6 +40,7 @@ export default {
   name: 'LayoutDefault',
   components: {
     Navbar,
+    DefaultFooter,
     // StaticSidebar,
     // Sidebar,
     // HeaderResponsive,

@@ -1,25 +1,64 @@
 <template>
-  <div class="px-5 py-5">
-    <authors-grid :key="componentKey" :authors="authors.data" />
-    <pagination
-      :link-gen="linkGen"
-      :pages="pages"
-      :current-page="currentPage"
-      :limit="5"
-      class="flex justify-center"
-      @event="event"
-    >
-    </pagination>
-  </div>
+  <main class="container mt-5 max-w-7xl">
+    <div>
+      <!-- <search /> -->
+      <div>
+        <div
+          class="grid grid-cols-1 gap-4 2xl:grid-cols-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7"
+        >
+          <entity-card
+            v-for="author in authors.data"
+            :key="author.id"
+            :cover="author.avatar"
+            :route="{
+              name: 'authors-slug',
+              params: { slug: author.slug },
+            }"
+          >
+            <template #image>
+              <author-image :author-name="author.name" />
+            </template>
+            <template #title>
+              {{ $overflow(author.name) }}
+            </template>
+            <template #hover>
+              <div>
+                <div class="font-semibold">Available here &#8212;</div>
+                <div>{{ author.books_number }} books</div>
+              </div>
+            </template>
+            <template #title-responsive>
+              <div class="font-semibold">
+                {{ author.name }}
+              </div>
+              <div>{{ author.books_number }} books</div>
+            </template>
+          </entity-card>
+        </div>
+      </div>
+      <div class="mt-6 mb-5">
+        <pagination
+          :link-gen="linkGen"
+          :pages="pages"
+          :current-page="currentPage"
+          :limit="5"
+          class="flex justify-center"
+          @event="event"
+        >
+        </pagination>
+      </div>
+    </div>
+  </main>
 </template>
 
 <script>
 import qs from 'qs'
-import authorsGrid from '~/components/blocks/authors/authors-grid.vue'
 import Pagination from '~/components/special/pagination.vue'
+import EntityCard from '~/components/blocks/entity-card.vue'
+import AuthorImage from '~/components/blocks/author-image.vue'
 export default {
   name: 'AuthorsIndex',
-  components: { authorsGrid, Pagination },
+  components: { Pagination, EntityCard, AuthorImage },
   async asyncData({ app, query, error, $content, store }) {
     try {
       const page = query.page

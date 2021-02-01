@@ -2,10 +2,22 @@
   <div>
     <ul class="flex border rounded">
       <li class="item">
-        <nuxt-link :tag="getTag(1)" :to="linkGen(1)"> « </nuxt-link>
+        <nuxt-link
+          :tag="getTag(1)"
+          :to="linkGen(1)"
+          active-class="pagination-active"
+          exact-active-class="pagination-exact-active"
+        >
+          «
+        </nuxt-link>
       </li>
       <li class="item">
-        <nuxt-link :tag="getTag(1)" :to="linkGen(currentPage - 1)">
+        <nuxt-link
+          :tag="getTag(1)"
+          :to="linkGen(currentPage - 1)"
+          active-class="pagination-active"
+          exact-active-class="pagination-exact-active"
+        >
           ‹
         </nuxt-link>
       </li>
@@ -21,6 +33,8 @@
         <nuxt-link
           :tag="getTag(pageNum + startNumber - 1)"
           :to="linkGen(pageNum + startNumber - 1)"
+          active-class="pagination-active"
+          exact-active-class="pagination-exact-active"
           @click.native="forceRerender"
         >
           {{ pageNum + startNumber - 1 }}
@@ -30,12 +44,24 @@
         <span>...</span>
       </li>
       <li class="item">
-        <nuxt-link :tag="getTag(pages)" :to="linkGen(currentPage + 1)">
+        <nuxt-link
+          :tag="getTag(pages)"
+          :to="linkGen(currentPage + 1)"
+          active-class="pagination-active"
+          exact-active-class="pagination-exact-active"
+        >
           ›
         </nuxt-link>
       </li>
       <li class="item">
-        <nuxt-link :tag="getTag(pages)" :to="linkGen(pages)"> » </nuxt-link>
+        <nuxt-link
+          :tag="getTag(pages)"
+          :to="linkGen(pages)"
+          active-class="pagination-active"
+          exact-active-class="pagination-exact-active"
+        >
+          »
+        </nuxt-link>
       </li>
     </ul>
   </div>

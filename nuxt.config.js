@@ -96,6 +96,8 @@ export default {
     '@nuxtjs/svg',
     // https://image.nuxtjs.org/
     '@nuxt/image',
+    // https://http.nuxtjs.org
+    '@nuxt/http',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -114,6 +116,10 @@ export default {
         theme: '~/assets/css/prism-vsc-dark-plus.css',
       },
     },
+  },
+
+  http: {
+    // proxyHeaders: false
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

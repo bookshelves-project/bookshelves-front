@@ -7,7 +7,7 @@
         >&rdquo;
       </div>
     </div>
-    <books-grid :key="componentKey" class="px-5" :books="search.data" />
+    <books-grid class="px-5" :books="search.data" />
   </main>
 </template>
 

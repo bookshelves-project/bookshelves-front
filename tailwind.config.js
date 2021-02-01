@@ -18,8 +18,8 @@ module.exports = {
       center: true,
     },
     screens: {
-      sm: '320px',
-      md: '550px',
+      sm: '360px',
+      md: '600px',
       lg: '800px',
       xl: '1300px',
       '2xl': '1536px',

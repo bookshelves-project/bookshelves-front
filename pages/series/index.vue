@@ -1,27 +1,68 @@
 <template>
-  <div class="px-10 py-5">
-    <series-grid :key="componentKey" :series="series.data" />
-    <pagination
-      :link-gen="linkGen"
-      :pages="pages"
-      :current-page="currentPage"
-      :limit="5"
-      class="flex justify-center mt-5"
-      @event="event"
-    >
-    </pagination>
-  </div>
+  <main class="container mt-5 max-w-7xl">
+    <div>
+      <div
+        class="grid grid-cols-1 gap-4 2xl:grid-cols-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7"
+      >
+        <entity-card
+          v-for="serie in series.data"
+          :key="serie.id"
+          :cover="serie.covers.main"
+          :route="{
+            name: 'series-slug',
+            params: { slug: serie.slug },
+          }"
+        >
+          <template #title>
+            {{ $overflow(serie.title) }}
+          </template>
+          <template #hover>
+            <div>
+              <div class="font-semibold">Author &#8212;</div>
+              <div class="italic">
+                {{ serie.author }}
+              </div>
+              <div class="mt-5">
+                <div class="font-semibold">Serie &#8212;</div>
+                <div>{{ serie.booksNumber }} books</div>
+              </div>
+            </div>
+          </template>
+          <template #title-responsive>
+            <div class="font-semibold">
+              {{ serie.title }}
+            </div>
+            <div class="italic">
+              {{ serie.author }}
+            </div>
+            <div>{{ serie.booksNumber }} books</div>
+          </template>
+        </entity-card>
+      </div>
+    </div>
+    <div class="mt-6 mb-5">
+      <pagination
+        :link-gen="linkGen"
+        :pages="pages"
+        :current-page="currentPage"
+        :limit="5"
+        class="flex justify-center"
+        @event="event"
+      >
+      </pagination
+      >t
+    </div>
+  </main>
 </template>
 
 <script>
 import qs from 'qs'
-import SeriesGrid from '~/components/blocks/series/series-grid.vue'
 import Pagination from '~/components/special/pagination.vue'
+import EntityCard from '~/components/blocks/entity-card.vue'
 
 export default {
   name: 'SeriesIndex',
-  // eslint-disable-next-line vue/no-unused-components
-  components: { SeriesGrid, Pagination },
+  components: { Pagination, EntityCard },
   async asyncData({ app, query, error, $content, store }) {
     try {
       const page = query.page

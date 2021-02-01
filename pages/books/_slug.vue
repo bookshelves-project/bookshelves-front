@@ -7,12 +7,8 @@
       </div>
     </main>
     <aside class="col-span-1">
-      <div class="fixed hidden right-32 lg:block">
-        <div class="book-container">
-          <div class="book">
-            <img :src="book.cover.original" />
-          </div>
-        </div>
+      <div class="fixed hidden right-16 xl:right-32 lg:block">
+        <physical-book :cover="book.cover.original" />
         <div class="justify-center hidden pt-5 lg:flex">
           <a
             :href="book.epub.download"
@@ -42,9 +38,10 @@
 <script>
 import bookHeader from '~/components/blocks/books-slug/book-header.vue'
 import BookInformation from '~/components/blocks/books-slug/book-information.vue'
+import PhysicalBook from '~/components/blocks/physical-book.vue'
 export default {
   name: 'BooksSlug',
-  components: { bookHeader, BookInformation },
+  components: { bookHeader, BookInformation, PhysicalBook },
   async asyncData({ app, query, params, error, $content, store }) {
     try {
       const [book] = await Promise.all([
@@ -65,71 +62,4 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
-.book-container {
-  width: 200px;
-  height: 300px;
-  margin: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 400px;
-}
-
-.book {
-  transform: rotateY(-30deg);
-  position: relative;
-  transform-style: preserve-3d;
-  width: 200px;
-  height: 300px;
-  transition: transform 1s ease;
-  animation: 1s ease 0s 1 initAnimation;
-}
-
-.book:hover {
-  transform: rotate(0deg);
-}
-
-@keyframes initAnimation {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(-30deg);
-  }
-}
-
-.book > :first-child {
-  position: absolute;
-  background: #0d47a1aa;
-  width: 200px;
-  height: 300px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  box-shadow: 2px 2px 5px #666;
-}
-
-.book::before {
-  content: ' ';
-  background: #fff;
-  height: calc(300px - 2 * 3px);
-  width: 50px;
-  top: 3px;
-  position: absolute;
-  transform: translateX(calc(200px - 50px / 2 - 3px)) rotateY(90deg)
-    translateX(calc(50px / 2));
-}
-
-.book::after {
-  content: ' ';
-  position: absolute;
-  left: 0;
-  width: 200px;
-  height: 300px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  background: #01060f;
-  transform: translateZ(-50px);
-  box-shadow: -5px 0 25px 5px #666;
-}
-</style>
+<style lang="postcss" scoped></style>

@@ -4,7 +4,7 @@ export const state = () => ({
   books: [],
   booksView: 'grid',
   navigation: [
-    { label: 'Home', icon: 'home', route: 'home' },
+    // { label: 'Home', icon: 'home', route: 'home' },
     { label: 'Books', icon: 'book-open', route: 'books' },
     { label: 'Series', icon: 'book-open', route: 'series' },
     { label: 'Authors', icon: 'annotation', route: 'authors' },
