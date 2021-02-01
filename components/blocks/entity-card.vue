@@ -28,7 +28,7 @@
         </div>
       </div>
       <div
-        class="flex items-center w-full h-full transition-colors duration-300 bg-white md:h-16 group-hover:bg-opacity-50 rounded-b-md group-hover:bg-gray-300"
+        class="flex items-center w-full h-full p-2 transition-colors duration-300 bg-white md:h-16 group-hover:bg-opacity-50 rounded-b-md group-hover:bg-gray-300"
       >
         <div class="hidden m-auto font-semibold text-center md:block w-max">
           <slot name="title" />
@@ -67,7 +67,7 @@ export default {
 
 <style lang="postcss" scoped>
 .cover {
-  @apply object-cover w-full h-52 rounded-sm;
+  @apply object-cover object-top h-64 w-full rounded-sm;
   box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
   transition: transform 0.5s ease, filter 0.3s;
 }
@@ -75,7 +75,7 @@ export default {
 @variants group-hover, hover, focus {
   .img-hover-zoom img {
     /* transform: scale(1.2); */
-    filter: blur(2px);
+    /* filter: blur(2px); */
   }
 }
 </style>

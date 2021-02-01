@@ -9,17 +9,16 @@
           {{ serie.author }}
         </div>
       </div>
-      <div class="relative">
+      <div class="relative mb-8">
         <div class="absolute inset-0 flex items-center" aria-hidden="true">
           <div class="w-full border-t border-gray-300"></div>
         </div>
         <div class="relative flex justify-center">
           <span class="px-3 text-lg font-medium text-gray-900 bg-white">
-            {{ serie.books_number }} Books
+            {{ author.books_number }} Books
           </span>
         </div>
       </div>
-      <!-- <books-grid :key="componentKey" class="mt-5" :books="serie.books" /> -->
       <div
         class="grid grid-cols-1 gap-4 2xl:grid-cols-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7"
       >

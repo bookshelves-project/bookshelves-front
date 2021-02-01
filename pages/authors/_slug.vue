@@ -11,7 +11,7 @@
           {{ author.name }}
         </div>
       </div>
-      <div class="relative">
+      <div class="relative mb-8">
         <div class="absolute inset-0 flex items-center" aria-hidden="true">
           <div class="w-full border-t border-gray-300"></div>
         </div>
@@ -21,15 +21,6 @@
           </span>
         </div>
       </div>
-      <!-- <books-grid
-        :key="componentKey"
-        class="mt-5"
-        :books="author.books"
-        :route="{
-          name: 'authors-slug',
-          params: { author: author.slug },
-        }"
-      /> -->
       <div
         class="grid grid-cols-1 gap-4 2xl:grid-cols-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7"
       >

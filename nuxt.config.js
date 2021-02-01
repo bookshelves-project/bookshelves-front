@@ -34,6 +34,7 @@ export default {
     // '~/plugins/vue-lazyload',
     '~/plugins/autocomplete',
     '~/plugins/v-lazy-image',
+    '~/plugins/vue-awesome-swiper',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

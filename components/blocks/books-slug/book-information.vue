@@ -61,6 +61,7 @@
       </div>
     </section>
     <api-results />
+    <slot name="serie" />
   </div>
 </template>
 
@@ -117,6 +118,7 @@ export default {
             console.error('Book not found', err)
             return null
           })
+        console.log(isbnResult)
         this.isbn = isbnResult
       }
     },

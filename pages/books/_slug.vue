@@ -1,15 +1,19 @@
 <template>
-  <div class="max-w-3xl mx-auto lg:grid lg:grid-cols-3 lg:max-w-7xl">
+  <div class="max-w-3xl mx-auto xl:grid xl:grid-cols-3 xl:max-w-7xl">
     <main class="col-span-2 py-10 mx-auto sm:px-6">
       <book-header :book="book" />
       <div class="mt-10">
-        <book-information :book="book" />
+        <book-information :book="book">
+          <template #serie>
+            <book-serie v-if="serie.length > 0" :serie="serie" />
+          </template>
+        </book-information>
       </div>
     </main>
     <aside class="col-span-1">
-      <div class="fixed hidden right-16 xl:right-32 lg:block">
+      <div class="fixed hidden ml-auto xl:block" style="width: inherit">
         <physical-book :cover="book.cover.original" />
-        <div class="justify-center hidden pt-5 lg:flex">
+        <div class="justify-center hidden pt-5 xl:flex">
           <a
             :href="book.epub.download"
             class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
@@ -38,15 +42,22 @@
 <script>
 import bookHeader from '~/components/blocks/books-slug/book-header.vue'
 import BookInformation from '~/components/blocks/books-slug/book-information.vue'
+import BookSerie from '~/components/blocks/books-slug/book-serie.vue'
 import PhysicalBook from '~/components/blocks/physical-book.vue'
 export default {
   name: 'BooksSlug',
-  components: { bookHeader, BookInformation, PhysicalBook },
+  components: {
+    bookHeader,
+    BookInformation,
+    PhysicalBook,
+    BookSerie,
+  },
   async asyncData({ app, query, params, error, $content, store }) {
     try {
       const [book] = await Promise.all([
         app.$axios.$get(`books/${params.author}/${params.slug}`),
       ])
+      console.log(book)
 
       return {
         book: book.data,
@@ -58,6 +69,24 @@ export default {
         book: [],
       }
     }
+  },
+  data() {
+    return {
+      serie: [],
+    }
+  },
+  async mounted() {
+    await this.loadSerie()
+  },
+  methods: {
+    async loadSerie() {
+      if (this.book.serie) {
+        console.log(this.book.serie.show)
+        const serie = await this.$axios.$get(this.book.serie.show)
+        this.serie = serie.data.books
+        console.log(this.serie)
+      }
+    },
   },
 }
 </script>

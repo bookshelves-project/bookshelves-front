@@ -27,7 +27,7 @@
               <button
                 id="main-menu"
                 type="button"
-                class="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-900 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white"
+                class="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-900 rounded-md hover:bg-gray-800"
                 aria-haspopup="true"
               >
                 <span class="sr-only">Open main menu</span>
@@ -55,7 +55,7 @@
               v-for="(booksNav, booksNavId) in $store.state.navigation"
               :key="booksNavId"
               :to="{ name: booksNav.route }"
-              class="flex items-center h-full px-3 mx-1 transition-colors duration-300 rounded-md hover:bg-gray-300 focus:outline-none focus:ring focus:border-blue-100"
+              class="flex items-center h-full px-3 mx-1 transition-colors duration-300 rounded-md hover:bg-gray-300"
             >
               <!-- <icon
                 :name="booksNav.icon"
@@ -191,10 +191,15 @@
 </template>
 
 <script>
+import vClickOutside from 'v-click-outside'
 import autocompleteSearchBar from '../blocks/autocomplete-search-bar.vue'
+
 export default {
   name: 'Navbar',
   components: { autocompleteSearchBar },
+  directives: {
+    clickOutside: vClickOutside.directive,
+  },
   data() {
     return {
       displayIfScrolled: false,
@@ -214,14 +219,16 @@ export default {
         this.displayIfScrolled = false
       }
     },
+    onClickOutside(event) {
+      console.log('Clicked outside. Event: ', event)
+    },
   },
 }
 </script>
 
 <style lang="postcss" scoped>
 @variants group-hover, hover, focus {
-  .home-logo-shadow {
-    filter: drop-shadow(2px 2px 2px #7a7a7a);
-  }
+  /* /deep/ .home-logo-shadow {
+  } */
 }
 </style>

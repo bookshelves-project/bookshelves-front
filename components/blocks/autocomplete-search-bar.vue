@@ -60,9 +60,13 @@
 
 <script>
 import qs from 'qs'
+import vClickOutside from 'v-click-outside'
 
 export default {
   name: 'AutocompleteSearchBar',
+  directives: {
+    clickOutside: vClickOutside.directive,
+  },
   props: {
     method: {
       type: String,
@@ -108,10 +112,8 @@ export default {
       return result.title
     },
     handleSubmit(result) {
-      console.log(result)
-      this.$emit('searching', this.searchResults)
       if (result === undefined) {
-        console.log('router push')
+        this.$refs.search.setValue({ name: '', code: '' })
         this.$router.push({
           name: 'search',
           query: { 'search-terms': this.searchTerm },
@@ -127,7 +129,8 @@ export default {
       this.searchResults = result
     },
     onClickOutside(event) {
-      // this.$refs.search.$el.children[0].childNodes[0]
+      // console.log('Clicked utside. Event: ', event)
+      this.$refs.search.setValue({ name: '', code: '' })
     },
   },
 }
