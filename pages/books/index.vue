@@ -135,5 +135,10 @@ export default {
     },
   },
   watchQuery: ['page'],
+  head() {
+    return {
+      title: 'Books',
+    }
+  },
 }
 </script>

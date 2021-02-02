@@ -62,51 +62,47 @@ export default {
     }
   },
   head() {
-    // const title = `${this.document.title} in ${this.document.category}`
-    // const description = this.document.description
-    //   ? this.document.description
-    //   : 'No description'
-    // const image = `${process.env.APP_URL}/documentation/logo/${this.$slugify(
-    //   this.document.category
-    // )}.webp`
-    // return {
-    //   title,
-    //   meta: [
-    //     {
-    //       hid: 'description',
-    //       name: 'description',
-    //       content: description,
-    //     },
-    //     // Open Graph
-    //     { hid: 'og:title', property: 'og:title', content: title },
-    //     {
-    //       hid: 'og:description',
-    //       property: 'og:description',
-    //       content: description,
-    //     },
-    //     {
-    //       hid: 'og:image',
-    //       property: 'og:image',
-    //       content: image,
-    //     },
-    //     // Twitter Card
-    //     {
-    //       hid: 'twitter:title',
-    //       name: 'twitter:title',
-    //       content: title,
-    //     },
-    //     {
-    //       hid: 'twitter:description',
-    //       name: 'twitter:description',
-    //       content: description,
-    //     },
-    //     {
-    //       hid: 'twitter:image',
-    //       property: 'twitter:image',
-    //       content: image,
-    //     },
-    //   ],
-    // }
+    const title = this.document.title
+    const description = this.document.description
+    const image = `${process.env.BASE_URL}/images/no-cover.webp`
+    return {
+      title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: description,
+        },
+        // Open Graph
+        { hid: 'og:title', property: 'og:title', content: title },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: description,
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: image,
+        },
+        // Twitter Card
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: title,
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: description,
+        },
+        {
+          hid: 'twitter:image',
+          property: 'twitter:image',
+          content: image,
+        },
+      ],
+    }
   },
 }
 </script>

@@ -121,5 +121,10 @@ export default {
       // pages,
     }
   },
+  head() {
+    return {
+      title: 'Guides',
+    }
+  },
 }
 </script>

@@ -115,6 +115,11 @@ export default {
     },
   },
   watchQuery: ['page'],
+  head() {
+    return {
+      title: 'Series',
+    }
+  },
 }
 </script>
 

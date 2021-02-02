@@ -92,6 +92,11 @@ export default {
   async watchQuery(newQuery, oldQuery) {
     this.search = await this.getSearchResults(newQuery['search-terms'])
   },
+  head() {
+    return {
+      title: `Search for ${this.$route.query['search-terms']}`,
+    }
+  },
 }
 </script>
 

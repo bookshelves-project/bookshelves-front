@@ -2,10 +2,53 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'Bookshelves',
+    titleTemplate: '%s · Bookshelves',
+    htmlAttrs: {
+      lang: 'en-US',
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Reading in complete tranquility and freedom, your digital library that goes everywhere with you.',
+      },
+      // Open Graph
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'Bookshelves',
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content:
+          'Reading in complete tranquility and freedom, your digital library that goes everywhere with you',
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: `${process.env.BASE_URL}/open-graph.png`,
+      },
+      // Twitter Card
+      {
+        hid: 'twitter:title',
+        name: 'twitter:title',
+        content: 'Bookshelves',
+      },
+      {
+        hid: 'twitter:description',
+        name: 'twitter:description',
+        content:
+          'Reading in complete tranquility and freedom, your digital library that goes everywhere with you',
+      },
+      {
+        hid: 'twitter:image',
+        property: 'twitter:image',
+        content: `${process.env.BASE_URL}/open-graph.png`,
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },

@@ -34,6 +34,12 @@ export const mutations = {
   setBooks(state, data) {
     state.books = data
   },
+  setMetaDescription(state, data) {
+    state.metaDescription = data
+  },
+  setMetaPicture(state, data) {
+    state.metaPicture = data
+  },
   initializeStore() {
     // const bookView = localStorage.getItem('books-view')
     // console.log(bookView)

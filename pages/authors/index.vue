@@ -139,6 +139,11 @@ export default {
     },
   },
   watchQuery: ['page'],
+  head() {
+    return {
+      title: 'Authors',
+    }
+  },
 }
 </script>
 
