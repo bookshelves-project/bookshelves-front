@@ -89,7 +89,7 @@ export default {
           route: 'authors',
           data: this.authors,
           textTitle: 'Authors',
-          text: 'who write these eBooks',
+          text: 'who wrote these eBooks',
         },
       ],
     }

@@ -96,7 +96,7 @@ export default {
   },
   data() {
     return {
-      authorPicture: '/images/no-cover.webp',
+      authorPicture: '/images/author-no-picture.svg',
       componentKey: 0,
     }
   },
@@ -112,7 +112,7 @@ export default {
       console.log(url)
       const result = await this.$http.$get(url)
       const source = result.query.pages[Object.keys(result.query.pages)[0]]
-      let picture = '/images/no-cover.webp'
+      let picture = '/images/author-no-picture.svg'
       try {
         picture = source.thumbnail.source
       } catch (error) {}
