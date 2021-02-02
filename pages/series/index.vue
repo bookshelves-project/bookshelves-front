@@ -96,11 +96,6 @@ export default {
     return {
       componentKey: 0,
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
-      covers: [
-        'http://api.bookshelves.test/storage/covers/40a132646362c26c35668688df577970.webp',
-        'http://api.bookshelves.test/storage/covers/f4045002e4872bef8b8037fbdd94b792.webp',
-        'http://api.bookshelves.test/storage/covers/eda2979ea17efb8af89900aaa13d3c14.webp',
-      ],
     }
   },
   methods: {
