@@ -82,8 +82,9 @@ export default {
   },
   head() {
     return {
-      title: '',
-      titleTemplate: 'Bookshelves',
+      title: 'Bookshelves',
+      titleTemplate:
+        '%s · Reading in complete tranquility and freedom, your digital library that goes everywhere with you.',
     }
   },
 }

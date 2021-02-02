@@ -25,7 +25,7 @@ export default {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'Reading in complete tranquility and freedom, your digital library that goes everywhere with you',
+          'Reading in complete tranquility and freedom, your digital library that goes everywhere with you.',
       },
       {
         hid: 'og:image',
@@ -42,7 +42,7 @@ export default {
         hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          'Reading in complete tranquility and freedom, your digital library that goes everywhere with you',
+          'Reading in complete tranquility and freedom, your digital library that goes everywhere with you.',
       },
       {
         hid: 'twitter:image',
@@ -108,6 +108,20 @@ export default {
     '@nuxtjs/color-mode',
 
     // '@nuxt/components',
+    // https://github.com/nuxt-community/web-vitals-module
+    [
+      'nuxt-vitals',
+      {
+        // Tracking ID (required) { string }
+        // Replace UA-XXXXXXXX-X by your Google Analytics tracking ID.
+        trackingID: 'G-ZFLRZXPL97',
+        // Event Category (optional) { string }, default 'Web Vitals'
+        eventCategory: 'Arts',
+        // Debug (optional) { number } default 0
+        debug: 0,
+        disabled: false,
+      },
+    ],
   ],
 
   tailwindcss: {
@@ -142,11 +156,17 @@ export default {
     '@nuxt/image',
     // https://http.nuxtjs.org
     '@nuxt/http',
+    // https://sitemap.nuxtjs.org/guide/setup
+    '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: process.env.API_URL,
+  },
+
+  sitemap: {
+    // options
   },
 
   // router: {
