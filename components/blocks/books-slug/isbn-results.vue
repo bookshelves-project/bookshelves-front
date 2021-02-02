@@ -84,19 +84,30 @@ export default {
             console.error('Book not found', err)
             return null
           })
+        console.log(isbnResult)
         let isbnObject = null
-        if (isbnResult) {
+        if (isbnResult !== null) {
           isbnObject = {
-            thumbnail: isbnResult.imageLinks.thumbnail,
+            thumbnail: isbnResult.imageLinks
+              ? isbnResult.imageLinks.thumbnail
+              : null,
             identifiers: {
-              isbn13: isbnResult.industryIdentifiers[0],
-              isbn10: isbnResult.industryIdentifiers[1],
+              isbn13: isbnResult.industryIdentifiers[0]
+                ? isbnResult.industryIdentifiers[0]
+                : null,
+              isbn10: isbnResult.industryIdentifiers[1]
+                ? isbnResult.industryIdentifiers[1]
+                : null,
             },
-            link: isbnResult.infoLink,
-            rating: isbnResult.maturityRating,
-            pageCount: isbnResult.pageCount,
-            publishedDate: isbnResult.publishedDate,
-            publihser: isbnResult.publisher,
+            link: isbnResult.infoLink ? isbnResult.infoLink : null,
+            rating: isbnResult.maturityRating
+              ? isbnResult.maturityRating
+              : null,
+            pageCount: isbnResult.pageCount ? isbnResult.pageCount : null,
+            publishedDate: isbnResult.publishedDate
+              ? isbnResult.publishedDate
+              : null,
+            publihser: isbnResult.publisher ? isbnResult.publisher : null,
           }
         }
         this.isbnResult = isbnObject
