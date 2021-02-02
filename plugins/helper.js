@@ -95,3 +95,17 @@ const overflow = (text, maxLength = 30) => {
 }
 
 Vue.prototype.$overflow = overflow
+
+const slugify = (text) => {
+  if (text !== null && text !== undefined) {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/["']/i, '-')
+      .replace(/\s+/g, '-')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036F]/g, '')
+  }
+}
+
+Vue.prototype.$slugify = slugify

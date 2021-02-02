@@ -1,8 +1,7 @@
 <template>
-  <div class="relative">
+  <div v-click-outside="onClickOutside" class="relative">
     <autocomplete
       ref="search"
-      v-click-outside="onClickOutside"
       :search="search"
       placeholder="Search for a book, a serie or an author"
       aria-label="Search for a book, a serie or an author"
@@ -89,7 +88,7 @@ export default {
     search(input) {
       const method = this.searchMethod[this.method]
       const url = `${process.env.API_URL}${method}?${qs.stringify({
-        'search-term': input,
+        terms: input,
       })}`
 
       this.searchTerm = input
@@ -116,7 +115,7 @@ export default {
         this.$refs.search.setValue({ name: '', code: '' })
         this.$router.push({
           name: 'search',
-          query: { 'search-terms': this.searchTerm },
+          query: { terms: this.searchTerm },
         })
       } else {
         this.$router.push({

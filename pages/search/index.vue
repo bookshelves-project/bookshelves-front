@@ -6,7 +6,7 @@
       </div>
       <div v-if="search.length > 0" class="relative flex justify-center">
         <span class="px-3 text-lg font-medium text-gray-900 bg-white">
-          Results for &ldquo;<i>{{ $route.query['search-terms'] }}</i
+          Results for &ldquo;<i>{{ $route.query['terms'] }}</i
           >&rdquo; : {{ search.length }} Books
         </span>
       </div>
@@ -76,13 +76,13 @@ export default {
     }
   },
   async mounted() {
-    this.search = await this.getSearchResults(this.$route.query['search-terms'])
+    this.search = await this.getSearchResults(this.$route.query.terms)
   },
   methods: {
     async getSearchResults(query) {
       const search = await this.$axios.$get(
         `search?${qs.stringify({
-          'search-term': query,
+          terms: query,
         })}`
       )
 
@@ -90,11 +90,11 @@ export default {
     },
   },
   async watchQuery(newQuery, oldQuery) {
-    this.search = await this.getSearchResults(newQuery['search-terms'])
+    this.search = await this.getSearchResults(newQuery.terms)
   },
   head() {
     return {
-      title: `Search for ${this.$route.query['search-terms']}`,
+      title: `Search for ${this.$route.query.terms}`,
     }
   },
 }
