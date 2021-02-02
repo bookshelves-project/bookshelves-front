@@ -39,7 +39,7 @@
         </p>
       </div>
     </div>
-    <div class="flex mt-5 xl:hidden">
+    <div class="flex mt-5">
       <a
         :href="book.epub.download"
         class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"

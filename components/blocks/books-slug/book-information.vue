@@ -28,7 +28,7 @@
             <div v-if="book.publisher" class="sm:col-span-1">
               <dt class="text-sm font-medium text-gray-500">Publisher</dt>
               <dd class="mt-1 text-sm text-gray-900">
-                {{ book.publisher.name }} ({{ getDate(book.publishDate) }})
+                {{ book.publisher.name }} ({{ $getDate(book.publishDate) }})
               </dd>
             </div>
             <div class="sm:col-span-1">
@@ -41,7 +41,7 @@
               <dt class="text-sm font-medium text-gray-500">ISBN</dt>
               <dd class="mt-1 text-sm text-gray-900">
                 <transition name="fade">
-                  <span v-if="isbn">
+                  <span v-if="book.isbn">
                     {{ book.isbn }}
                   </span>
                   <span v-else class="italic text-gray-400">Undefined</span>
@@ -60,67 +60,18 @@
         </div>
       </div>
     </section>
-    <api-results />
     <slot name="serie" />
+    <slot name="isbn" />
   </div>
 </template>
 
 <script>
-import isbn from 'node-isbn'
-import apiResults from './api-results.vue'
 export default {
   name: 'BookInformation',
-  components: { apiResults },
   props: {
     book: {
       type: Object,
       default: () => {},
-    },
-  },
-  data() {
-    return {
-      isbn: null,
-    }
-  },
-  mounted() {
-    this.checkIsbn()
-  },
-  methods: {
-    getDate(date) {
-      date = new Date(date)
-      // define options
-      let userLang = 'en'
-      // for Nuxt
-      if (process.client) {
-        userLang = navigator.language || navigator.userLanguage
-      }
-
-      const dateOptions = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }
-      const dateToStringLocale = date.toLocaleString(userLang, dateOptions)
-
-      return dateToStringLocale
-    },
-    async checkIsbn() {
-      if (this.book.isbn) {
-        let isbnFormat = this.book.isbn
-        isbnFormat = isbnFormat.replaceAll('-', '')
-
-        const isbnResult = await isbn
-          .resolve(isbnFormat)
-          .then(function (book) {
-            return book
-          })
-          .catch(function (err) {
-            console.error('Book not found', err)
-            return null
-          })
-        console.log(isbnResult)
-        this.isbn = isbnResult
-      }
     },
   },
 }

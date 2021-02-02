@@ -1,5 +1,5 @@
 <template>
-  <div class="xl:grid xl:grid-cols-4">
+  <div class="container max-w-7xl">
     <div class="flex flex-wrap-reverse w-full px-5 xl:col-span-3 md:px-10">
       <div class="w-full ml-auto lg:w-3/4">
         <div class="text-on-img-tailwind">
@@ -34,22 +34,17 @@
         </div>
       </div>
       <div class="relative block w-full lg:w-1/4">
-        <div class="lg:sticky lg:top-5 h-full lg:h-auto lg:max-h-(screen-5)">
+        <div class="lg:sticky lg:top-16 h-full lg:h-auto lg:max-h-(screen-5)">
           <table-of-content :toc="document.toc"></table-of-content>
         </div>
       </div>
-    </div>
-    <div class="xl:col-span-1">
-      <design-xl />
     </div>
   </div>
 </template>
 
 <script>
-import designXl from '~/components/blocks/design-xl.vue'
 export default {
   name: 'ContentSlugShort',
-  components: { designXl },
   async asyncData({ $content, store, app, params, error }) {
     const path = `/${params.pathMatch || 'index'}`
     const [document] = await $content({ deep: true }).where({ path }).fetch()

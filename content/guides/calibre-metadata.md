@@ -4,6 +4,7 @@ subtitle: ''
 description: 'How to update EPUB metadata with Calibre.'
 position: 2
 category: 'Calibre'
+draft: false
 ---
 
 <alert type="warning">

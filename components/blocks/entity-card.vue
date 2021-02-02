@@ -22,7 +22,7 @@
           </span>
         </div>
         <div
-          class="absolute top-0 bottom-0 left-0 right-0 hidden p-3 text-white transition-opacity duration-300 bg-black bg-opacity-50 rounded-sm opacity-0 md:block group-hover:opacity-100"
+          class="absolute top-0 bottom-0 left-0 right-0 hidden p-3 text-white transition-all duration-300 bg-black bg-opacity-50 rounded-sm opacity-0 md:block group-hover:opacity-75 group-hover:bg-black"
         >
           <slot name="hover" />
         </div>

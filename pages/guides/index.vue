@@ -1,10 +1,8 @@
 <template>
-  <main class="container mt-5 max-w-7xl">
-    <div class="xl:grid xl:grid-cols-3">
-      <div class="xl:col-span-2">
-        <ul
-          class="px-2 mx-auto my-5 space-y-3 md:px-10 lg:mx-0 lg:pl-5 lg:w-5/6 xl:w-full"
-        >
+  <main class="container max-w-4xl mx-auto mt-5">
+    <div>
+      <div>
+        <ul class="px-2 mx-auto my-5 space-y-3">
           <nuxt-link
             v-for="guide in guides"
             :key="guide.id"
@@ -53,6 +51,9 @@
                           $getDate(guide.updatedAt)
                         }}</time>
                       </p>
+                      <div>
+                        {{ $getDate(guide.createdAt) }}
+                      </div>
                       <p class="flex items-start mt-2 text-sm text-gray-500">
                         <svg
                           class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
@@ -105,42 +106,14 @@ export default {
   async asyncData({ $content }) {
     const guides = await $content('guides', { deep: true })
       .without(['toc', 'body'])
-      .sortBy('position')
+      .where({ draft: false })
+      .sortBy('created_at')
       .fetch()
-    // const content = await $content('documentation', { deep: true })
-    // .only(['title', 'path'])
-    // .fetch()
 
-    // let pages = []
-    // content.forEach((markdownFile) => {
-    //   const path = markdownFile.path.replace('/documentation/', '').split('/')
-    //   const Page = {
-    //     label: path[0],
-    //     guides: [],
-    //     number: 0,
-    //     route: 'type-slug',
-    //   }
-    //   pages.push(Page)
-    // })
-
-    // const pagesAll = pages
-
-    // // delete duplicates
-    // pages = pages.filter(
-    //   (v, i, a) => a.findIndex((t) => t.label === v.label) === i
+    // let guidesSort = guides.sort((a, b) =>
+    //   a.createdAt > b.createdAt ? 1 : b.createdAt > a.createdAt ? -1 : 0
     // )
-    // // alphabetic sorting
-    // pages.sort((a, b) => (a.label > b.label ? 1 : -1))
-
-    // pagesAll.forEach((pageA) => {
-    //   pages.forEach((page) => {
-    //     if (pageA.label === page.label) {
-    //       page.number += 1
-    //     }
-    //   })
-    // })
-
-    // pages.unshift({ label: 'Home', iconStroke: false, route: 'home' })
+    // guidesSort = guidesSort.reverse()
 
     return {
       guides,

@@ -15,7 +15,7 @@
         </div>
         <div class="relative flex justify-center">
           <span class="px-3 text-lg font-medium text-gray-900 bg-white">
-            {{ author.books_number }} Books
+            {{ serie.books_number }} Books
           </span>
         </div>
       </div>
