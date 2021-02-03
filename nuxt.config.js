@@ -24,7 +24,7 @@ export default {
       {
         hid: 'og:title',
         property: 'og:title',
-        content: 'Bookshelves',
+        content: 'Bookshelves : your digital library',
       },
       {
         hid: 'og:description',
@@ -41,7 +41,7 @@ export default {
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: 'Bookshelves',
+        content: 'Bookshelves : your digital library',
       },
       {
         hid: 'twitter:description',
