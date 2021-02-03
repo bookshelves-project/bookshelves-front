@@ -2,7 +2,7 @@
   <nuxt-link :to="route" class="block group">
     <article class="relative">
       <div class="relative">
-        <div class="overflow-hidden group-hover:img-hover-zoom">
+        <div class="overflow-hidden group-hover:img-hover-zoom cover-shadow">
           <!-- <nuxt-image
             :src="cover
             alt="Book cover"
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div
-        class="flex items-center w-full h-full p-2 transition-colors duration-300 bg-white md:h-16 group-hover:bg-opacity-50 rounded-b-md group-hover:bg-gray-300"
+        class="flex items-center w-full h-full p-1 pb-3 transition-colors duration-300 bg-white md:h-14 group-hover:bg-opacity-50 rounded-b-md"
       >
         <div class="hidden m-auto font-semibold text-center md:block w-max">
           <slot name="title" />
@@ -68,8 +68,11 @@ export default {
 <style lang="postcss" scoped>
 .cover {
   @apply object-cover object-top h-64 w-full rounded-sm;
-  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
   transition: transform 0.5s ease, filter 0.3s;
+}
+.cover-shadow {
+  @apply rounded-sm;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
 }
 
 @variants group-hover, hover, focus {
