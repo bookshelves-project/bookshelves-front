@@ -17,6 +17,11 @@ export default {
       },
       // Open Graph
       {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        content: 'Bookshelves',
+      },
+      {
         hid: 'og:title',
         property: 'og:title',
         content: 'Bookshelves',
