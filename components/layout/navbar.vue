@@ -55,7 +55,7 @@
               v-for="(booksNav, booksNavId) in $store.state.navigation"
               :key="booksNavId"
               :to="{ name: booksNav.route }"
-              class="flex items-center h-full px-3 mx-1 transition-colors duration-300 rounded-md hover:bg-gray-300"
+              class="flex items-center h-full px-3 mx-1 transition-colors duration-300 rounded-md hover:bg-gray-300 focus:outline-none focus:ring focus:border-purple-200"
             >
               <!-- <icon
                 :name="booksNav.icon"
