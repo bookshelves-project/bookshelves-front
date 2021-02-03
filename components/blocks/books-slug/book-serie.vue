@@ -1,5 +1,91 @@
 <template>
-  <section aria-labelledby="notes-title" class="mt-5">
+  <section
+    aria-labelledby="timeline-title"
+    class="xl:col-start-2 xl:col-span-1"
+  >
+    <div class="px-4 py-5 bg-white shadow sm:rounded-lg sm:px-6">
+      <h2 id="timeline-title" class="text-lg font-medium text-gray-900">
+        Series
+      </h2>
+      <p class="max-w-2xl mt-1 text-sm text-gray-500">
+        Current volume {{ book.serie.number }}
+      </p>
+
+      <!-- Activity Feed -->
+      <div>
+        <div v-swiper:mySwiper="swiperOption" class="max-w-2xl">
+          <div class="swiper-wrapper">
+            <div
+              v-for="bookSerie in serie"
+              :key="bookSerie.id"
+              class="relative swiper-slide"
+            >
+              <entity-card
+                :data="bookSerie"
+                :cover="bookSerie.cover.basic"
+                :route="{
+                  name: 'books-slug',
+                  params: {
+                    author: bookSerie.author.slug,
+                    slug: bookSerie.slug,
+                  },
+                }"
+              >
+                <template #title>
+                  <div>
+                    <div
+                      :class="{
+                        'absolute inset-0 bg-purple-200 bg-opacity-50':
+                          bookSerie.serie.number === book.serie.number,
+                      }"
+                    ></div>
+                    {{ $overflow(bookSerie.title) }}
+                  </div>
+                </template>
+                <template #hover>
+                  <div>
+                    <div class="font-semibold">Author &#8212;</div>
+                    <div class="italic">
+                      {{ bookSerie.author.name }}
+                    </div>
+                  </div>
+                  <div v-if="bookSerie.serie" class="mt-5">
+                    <div class="font-semibold">Serie &#8212;</div>
+                    <div class="italic break-all">
+                      {{ bookSerie.serie.title }}
+                    </div>
+                    <div>Vol. {{ bookSerie.serie.number }}</div>
+                  </div>
+                </template>
+                <template #title-responsive>
+                  <div class="font-semibold">
+                    {{ bookSerie.title }}
+                  </div>
+                  <div class="italic">
+                    {{ bookSerie.author.name }}
+                  </div>
+                  <div v-if="bookSerie.serie">
+                    {{ bookSerie.serie.title }}, vol.
+                    {{ bookSerie.serie.number }}
+                  </div>
+                </template>
+              </entity-card>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <div class="flex flex-col mt-6 justify-stretch">
+        <nuxt-link
+          :to="{ name: 'series-slug', params: { slug: book.serie.slug } }"
+          class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          Check series {{ book.serie.title }}
+        </nuxt-link>
+      </div>
+    </div>
+  </section>
+  <!-- <section aria-labelledby="notes-title" class="mt-5">
     <div class="bg-white shadow sm:rounded-lg sm:overflow-hidden">
       <div class="divide-y divide-gray-200">
         <div class="px-4 py-5 sm:px-6">
@@ -8,55 +94,11 @@
           </h2>
         </div>
         <div class="px-4 py-6 sm:px-6">
-          <div v-swiper:mySwiper="swiperOption" class="max-w-2xl">
-            <div class="swiper-wrapper">
-              <div v-for="book in serie" :key="book.id" class="swiper-slide">
-                <entity-card
-                  :data="book"
-                  :cover="book.cover.basic"
-                  :route="{
-                    name: 'books-slug',
-                    params: { author: book.author.slug, slug: book.slug },
-                  }"
-                >
-                  <template #title>
-                    {{ $overflow(book.title) }}
-                  </template>
-                  <template #hover>
-                    <div>
-                      <div class="font-semibold">Author &#8212;</div>
-                      <div class="italic">
-                        {{ book.author.name }}
-                      </div>
-                    </div>
-                    <div v-if="book.serie" class="mt-5">
-                      <div class="font-semibold">Serie &#8212;</div>
-                      <div class="italic break-all">
-                        {{ book.serie.title }}
-                      </div>
-                      <div>Vol. {{ book.serie.number }}</div>
-                    </div>
-                  </template>
-                  <template #title-responsive>
-                    <div class="font-semibold">
-                      {{ book.title }}
-                    </div>
-                    <div class="italic">
-                      {{ book.author.name }}
-                    </div>
-                    <div v-if="book.serie">
-                      {{ book.serie.title }}, vol. {{ book.serie.number }}
-                    </div>
-                  </template>
-                </entity-card>
-              </div>
-            </div>
-            <div class="swiper-pagination"></div>
-          </div>
+          
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 </template>
 
 <script>
@@ -68,6 +110,10 @@ export default {
     serie: {
       type: Array,
       default: () => [],
+    },
+    book: {
+      type: Object,
+      default: () => {},
     },
   },
   data() {
