@@ -85,8 +85,8 @@ export default {
   },
   head() {
     const title = `${this.book.title} by ${this.book.author.name}${
-      this.book.serie ? ` - ${this.book.serie.title}` : ''
-    }`
+      this.book.serie ? ` in ${this.book.serie.title}` : ''
+    } - Books`
     const description = this.book.summary
     const image = this.book.cover.basic
     return {

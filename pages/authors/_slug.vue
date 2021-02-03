@@ -122,7 +122,7 @@ export default {
     },
   },
   head() {
-    const title = this.author.name
+    const title = `${this.author.name} - Authors`
     const description = `${this.author.name} author on Bookshelves with ${this.author.books_number} books available.`
     const image = this.authorPicture
     return {

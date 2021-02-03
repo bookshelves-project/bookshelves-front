@@ -16,6 +16,11 @@
                 <div class="mx-auto text-lg max-w-prose">
                   <h1>
                     <span
+                      class="block text-base font-semibold tracking-wide text-center text-indigo-600 uppercase"
+                    >
+                      {{ document.category }}
+                    </span>
+                    <span
                       class="block mt-2 text-3xl font-extrabold leading-8 tracking-tight text-center text-gray-900 sm:text-4xl"
                     >
                       {{ document.title }}
@@ -62,7 +67,7 @@ export default {
     }
   },
   head() {
-    const title = this.document.title
+    const title = `${this.document.title} in ${this.document.category} - Guides`
     const description = this.document.description
     const image = `${process.env.BASE_URL}/images/no-cover.webp`
     return {

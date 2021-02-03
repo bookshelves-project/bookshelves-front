@@ -119,8 +119,47 @@ export default {
     }
   },
   head() {
+    const title = 'Guides on Bookshelves'
+    const description = 'How to use your eReader or softwares to manage EPUB.'
+    const image = `${process.env.BASE_URL}/open-graph.png`
     return {
-      title: 'Guides',
+      title,
+      titleTemplate: '',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: description,
+        },
+        // Open Graph
+        { hid: 'og:title', property: 'og:title', content: title },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: description,
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: image,
+        },
+        // Twitter Card
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: title,
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: description,
+        },
+        {
+          hid: 'twitter:image',
+          property: 'twitter:image',
+          content: image,
+        },
+      ],
     }
   },
 }

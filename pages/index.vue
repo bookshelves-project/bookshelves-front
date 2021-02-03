@@ -83,7 +83,7 @@ export default {
   head() {
     return {
       title: 'Bookshelves',
-      titleTemplate: '%s · Your numeric library',
+      titleTemplate: '%s : your digital library',
     }
   },
 }
