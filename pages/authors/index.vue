@@ -20,7 +20,7 @@
               <v-lazy-image
                 :alt="author.name"
                 :src="author.picture"
-                src-placeholder="/images/author-no-picture.svg"
+                src-placeholder="/images/author-no-picture.png"
                 class="object-cover object-top w-32 h-32 rounded-full"
               />
             </template>
@@ -80,7 +80,7 @@ export default {
 
       await Promise.all(
         authors.data.map(async (author) => {
-          const pictureDefault = `${process.env.BASE_URL}/images/author-no-picture.svg`
+          const pictureDefault = `${process.env.BASE_URL}/images/author-no-picture.png`
           let picture = ''
           let authorName = author.name
           const regex = /\s/g
