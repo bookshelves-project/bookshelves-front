@@ -85,20 +85,6 @@
       </div>
     </div>
   </section>
-  <!-- <section aria-labelledby="notes-title" class="mt-5">
-    <div class="bg-white shadow sm:rounded-lg sm:overflow-hidden">
-      <div class="divide-y divide-gray-200">
-        <div class="px-4 py-5 sm:px-6">
-          <h2 id="notes-title" class="text-lg font-medium text-gray-900">
-            Series
-          </h2>
-        </div>
-        <div class="px-4 py-6 sm:px-6">
-          
-        </div>
-      </div>
-    </div>
-  </section> -->
 </template>
 
 <script>
