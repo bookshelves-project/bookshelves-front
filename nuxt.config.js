@@ -106,22 +106,16 @@ export default {
     '@nuxtjs/google-fonts',
     // https://color-mode.nuxtjs.org/
     '@nuxtjs/color-mode',
-
-    // '@nuxt/components',
     // https://github.com/nuxt-community/web-vitals-module
-    [
-      'nuxt-vitals',
-      {
-        // Tracking ID (required) { string }
-        // Replace UA-XXXXXXXX-X by your Google Analytics tracking ID.
-        trackingID: 'G-ZFLRZXPL97',
-        // Event Category (optional) { string }, default 'Web Vitals'
-        eventCategory: 'Arts',
-        // Debug (optional) { number } default 0
-        debug: 0,
-        disabled: false,
-      },
-    ],
+    // [
+    //   'nuxt-vitals',
+    //   {
+    //     trackingID: 'G-ZFLRZXPL97',
+    //     eventCategory: 'Arts',
+    //     debug: 0,
+    //     disabled: false,
+    //   },
+    // ],
   ],
 
   tailwindcss: {
