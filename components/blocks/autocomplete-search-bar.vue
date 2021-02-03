@@ -3,8 +3,8 @@
     <autocomplete
       ref="search"
       :search="search"
-      placeholder="Search for a book, a serie or an author"
-      aria-label="Search for a book, a serie or an author"
+      placeholder="Search for a book, a series or an author"
+      aria-label="Search for a book, a series or an author"
       :get-result-value="getResultValue"
       @submit="handleSubmit"
       @update="handleUpdate"

@@ -32,8 +32,8 @@ On a physical book, you have all this information but an eBook only has the info
 - `title`
 - `author`
 - `cover` very useful to recognize an eBook
-- `serie` if you have an eBook from a serie like `The Hunger Games` with *The Hunger Games*, *Catching Fire*, *Mockingjay* and *The Ballad of Songbirds and Snakes*
-- `number` to indicate volume number in a serie like `2,00` for *Catching Fire* in *The Hunger Games* serie
+- `series` if you have an eBook from a series like `The Hunger Games` with *The Hunger Games*, *Catching Fire*, *Mockingjay* and *The Ballad of Songbirds and Snakes*
+- `number` to indicate volume number in a series like `2,00` for *Catching Fire* in *The Hunger Games* series
 - `ids` to indicate some *ids* for eBook, the most important is ISBN[^3] like *9780545227247* for *Catching Fire* (to add *ids*, you need to indicate reference before like `isbn:9780545227247`)
 - `languages` useful if you have translations
 
@@ -49,7 +49,7 @@ To edit metadata, click right on an eBook and select **Edit metadata** and you c
 
 <alert type="warning">
 
-You can update multiple eBooks with **bulk edit** but pay attention of modifications, it's useful to update **serie** or **publisher** but you can override existant data.
+You can update multiple eBooks with **bulk edit** but pay attention of modifications, it's useful to update **series** or **publisher** but you can override existant data.
 
 </alert>
 
@@ -59,7 +59,7 @@ We take an example [**La Forêt des captifs**](https://books.google.fr/books/abo
 
 - Title: `La Forêt des captifs`
 - Author: `Pierre Bottero`, *firstname lastname* or reverse just keep same pattern for all books
-- Serie: `Les Mondes d'Ewilan`
+- Series: `Les Mondes d'Ewilan`
 - Number: `1,00`
 
 ![books-list](/images/guides/calibre-metadata/calibre-meta-title.webp)

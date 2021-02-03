@@ -27,7 +27,7 @@
                 clip-rule="evenodd"
               ></path>
             </svg>
-            <span class="mx-1">Download serie</span>
+            <span class="mx-1">Download {{ serie.title }}</span>
             <span> ({{ serie.size }}) </span>
           </a>
         </div>

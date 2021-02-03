@@ -8,7 +8,7 @@
             id="applicant-information-title"
             class="text-lg font-medium leading-6 text-gray-900"
           >
-            Serie: {{ book.serie.title }}
+            Series: {{ book.serie.title }}
           </h2>
           <p class="max-w-2xl mt-1 text-sm text-gray-500">
             Volume: {{ book.serie.number }}

@@ -16,7 +16,7 @@
       </template>
       <template #hover>
         <div v-if="book.serie">
-          <div class="font-semibold">Serie volume &#8212;</div>
+          <div class="font-semibold">Series volume &#8212;</div>
           <div>Vol. {{ book.serie.number }}</div>
         </div>
       </template>

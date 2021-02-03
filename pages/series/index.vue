@@ -49,8 +49,7 @@
         class="flex justify-center"
         @event="event"
       >
-      </pagination
-      >t
+      </pagination>
     </div>
   </main>
 </template>

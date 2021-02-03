@@ -19,12 +19,12 @@
           <th
             class="hidden px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 lg:table-cell bg-gray-50"
           >
-            Serie
+            Series
           </th>
           <th
             class="hidden px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 lg:table-cell bg-gray-50"
           >
-            Serie number
+            Series number
           </th>
           <th
             class="py-3 pr-6 text-xs font-medium tracking-wider text-gray-500 uppercase border-b border-gray-200 bg-gray-50"
