@@ -1,4 +1,5 @@
 .autocomplete-input {
+  @apply bg-gray-200 transition-colors duration-300 text-black placeholder-gray-800;
   border: 1px solid #eee;
   border-radius: 8px;
   width: 100%;
@@ -8,7 +9,7 @@
   font-size: 16px;
   line-height: 1.5;
   flex: 1;
-  background-color: #eee;
+  /* background-color: #eee; */
   /* background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+'); */
   background-repeat: no-repeat;
   background-position: 12px;

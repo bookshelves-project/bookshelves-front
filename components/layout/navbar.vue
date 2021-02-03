@@ -2,7 +2,7 @@
   <header class="relative">
     <div
       :class="{ shadow: displayIfScrolled }"
-      class="fixed z-50 w-full py-3 transition-shadow duration-100 bg-white bg-opacity-90"
+      class="fixed z-50 w-full py-3 transition-shadow duration-100 bg-white bg-opacity-95"
     >
       <nav
         class="relative flex items-center justify-between px-4 mx-auto max-w-7xl sm:px-6"

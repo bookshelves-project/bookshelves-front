@@ -59,7 +59,7 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   loading: {
     color: '#800080',
-    height: '5px',
+    height: '2px',
   },
 
   plugins: [
