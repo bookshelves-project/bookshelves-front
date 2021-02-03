@@ -87,8 +87,9 @@ const shuffle = (a) => {
 Vue.prototype.$shuffle = shuffle
 
 const overflow = (text, maxLength = 25) => {
-  let overflow = text.replace(/^(.{25}[^\s]*).*/, '$1')
+  let overflow = text
   if (text.length > maxLength) {
+    overflow = text.substring(0, maxLength)
     overflow = `${overflow}...`
   }
   return overflow
