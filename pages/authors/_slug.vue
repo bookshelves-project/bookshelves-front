@@ -133,7 +133,7 @@ export default {
       console.log(url)
       const result = await this.$http.$get(url)
       const source = result.query.pages[Object.keys(result.query.pages)[0]]
-      let picture = '/images/author-no-picture.png'
+      let picture = `${process.env.BASE_URL}/images/author-no-picture.png`
       try {
         picture = source.thumbnail.source
       } catch (error) {}
