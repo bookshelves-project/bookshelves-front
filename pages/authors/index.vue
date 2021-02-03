@@ -14,6 +14,7 @@
               name: 'authors-slug',
               params: { slug: author.slug },
             }"
+            :shadow="false"
           >
             <template #image>
               <v-lazy-image

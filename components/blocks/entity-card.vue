@@ -2,17 +2,20 @@
   <nuxt-link :to="route" class="block group">
     <article class="relative">
       <div class="relative">
-        <div class="overflow-hidden group-hover:img-hover-zoom cover-shadow">
+        <div
+          :class="{ 'cover-shadow': shadow }"
+          class="flex overflow-hidden group-hover:img-hover-zoom"
+        >
           <!-- <nuxt-image
             :src="cover
             alt="Book cover"
             class="cover"
             placeholder
           /> -->
-          <span v-if="hasImageSlot">
+          <span v-if="hasImageSlot" class="mx-auto">
             <slot name="image" />
           </span>
-          <span v-else>
+          <span v-else class="w-full mx-auto">
             <v-lazy-image
               alt="Book cover"
               :src="cover"
@@ -52,6 +55,10 @@ export default {
     route: {
       type: [Object, String],
       default: () => '/',
+    },
+    shadow: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {
