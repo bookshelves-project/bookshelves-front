@@ -86,7 +86,7 @@
                 </a>
                 <span class="hidden mx-1 lg:block"> · </span>
                 <a
-                  :href="packageJson.repository.url"
+                  :href="`${packageJson.repository.url}/-/project_members`"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="flex items-center justify-center px-1 py-2 text-base leading-6 text-center text-gray-400 transition-colors duration-300 rounded-md hover:text-gray-600"
