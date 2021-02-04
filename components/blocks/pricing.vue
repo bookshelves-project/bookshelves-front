@@ -1,6 +1,6 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <div class="bg-white">
+  <div class="container max-w-4xl bg-white">
     <div class="pt-12 sm:pt-16 lg:pt-24">
       <div class="px-4 mx-auto text-center max-w-7xl sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto space-y-2 lg:max-w-none">
@@ -17,7 +17,57 @@
         </div>
       </div>
     </div>
-    <div class="pb-12 mt-8 bg-gray-50 sm:mt-12 sm:pb-16 lg:mt-16 lg:pb-24">
+    <div
+      class="mt-12 space-y-4 lg:mt-16 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-10 lg:mx-auto xl:max-w-none xl:mx-0"
+    >
+      <div
+        v-for="pricing in pricings"
+        :key="pricing.id"
+        class="border border-gray-200 divide-y divide-gray-200 rounded-lg shadow-sm"
+      >
+        <div class="p-6">
+          <h2 class="text-lg font-medium leading-6 text-gray-900">
+            {{ pricing.title }}
+          </h2>
+          <p class="mt-4 text-sm text-gray-500">
+            All the basics for starting a new business
+          </p>
+        </div>
+        <div class="px-6 pt-6 pb-8">
+          <h3 class="text-xs font-medium tracking-wide text-gray-900 uppercase">
+            What's included
+          </h3>
+          <ul class="mt-6 space-y-4">
+            <li
+              v-for="feature in pricing.features"
+              :key="feature.id"
+              class="flex space-x-3"
+            >
+              <!-- Heroicon name: solid/check -->
+              <svg
+                class="flex-shrink-0 w-5 h-5 text-green-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span class="text-sm text-gray-500">
+                {{ feature }}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div
+      class="hidden pb-12 mt-8 bg-gray-50 sm:mt-12 sm:pb-16 lg:mt-16 lg:pb-24"
+    >
       <div class="relative">
         <div class="absolute inset-0 bg-white h-3/4"></div>
         <div class="relative z-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -27,7 +77,7 @@
             <div
               v-for="pricing in pricings"
               :key="pricing.id"
-              class="flex flex-col overflow-hidden rounded-lg shadow-lg"
+              class="flex flex-col overflow-hidden rounded-lg shadow"
             >
               <div class="px-6 py-8 bg-white sm:p-10 sm:pb-6">
                 <div>

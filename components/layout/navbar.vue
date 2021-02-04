@@ -20,20 +20,20 @@
                   clip-rule="evenodd"
                 ></path>
               </svg>
-              <img
-                class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
-                src="/images/bookshelves.svg"
-                alt="Bookshelves logo"
+              <icon
+                name="bookshelves-logo"
+                :size="40"
+                class="text-primary-600"
               />
             </button>
             <nuxt-link
               to="/"
               class="items-center hidden w-auto h-8 lg:inline-flex"
             >
-              <img
-                class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
-                src="/images/bookshelves.svg"
-                alt="Bookshelves logo"
+              <icon
+                name="bookshelves-logo"
+                :size="40"
+                class="text-primary-600"
               />
               <div class="mt-2 ml-3 text-2xl font-handlee">Bookshelves</div>
             </nuxt-link>

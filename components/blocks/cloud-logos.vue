@@ -1,42 +1,39 @@
 <template>
-  <div class="bg-indigo-200 bg-opacity-25">
-    <div class="px-4 py-16 mx-auto max-w-7xl sm:py-24 sm:px-6 lg:px-8">
-      <div class="lg:grid lg:grid-cols-2 lg:gap-8">
-        <h2
-          class="max-w-md mx-auto text-3xl font-extrabold text-center text-indigo-900 lg:max-w-xl lg:text-left"
+  <div class="bg-gray-100">
+    <div class="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <p
+        class="text-sm font-semibold tracking-wide text-center text-gray-500 uppercase"
+      >
+        These companies do not support us (and do not know us) but without their
+        work, ours would not be possible.
+      </p>
+      <div class="grid grid-cols-2 gap-8 mt-6 md:grid-cols-6 lg:grid-cols-5">
+        <a
+          v-for="logo in logos"
+          :key="logo.id"
+          :href="logo.link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex justify-center col-span-1 md:col-span-2 lg:col-span-1"
         >
-          The world's most innovative companies use Workflow
-        </h2>
-        <div class="self-center flow-root mt-8 lg:mt-0">
-          <div class="flex flex-wrap justify-between -mt-4 -ml-8 lg:-ml-4">
-            <div
-              class="flex justify-center flex-grow flex-shrink-0 mt-4 ml-8 lg:flex-grow-0 lg:ml-4"
-            >
-              <img
-                class="h-12"
-                src="https://tailwindui.com/img/logos/workcation-logo-indigo-900.svg"
-                alt="Workcation"
-              />
-            </div>
-            <div
-              class="flex justify-center flex-grow flex-shrink-0 mt-4 ml-8 lg:flex-grow-0 lg:ml-4"
-            >
-              <img
-                class="h-12"
-                src="https://tailwindui.com/img/logos/tuple-logo-indigo-900.svg"
-                alt="Tuple"
-              />
-            </div>
-            <div
-              class="flex justify-center flex-grow flex-shrink-0 mt-4 ml-8 lg:flex-grow-0 lg:ml-4"
-            >
-              <img
-                class="h-12"
-                src="https://tailwindui.com/img/logos/level-logo-indigo-900.svg"
-                alt="Level"
-              />
-            </div>
-          </div>
+          <icon :name="logo.icon" :size="100" class="text-gray-400" />
+        </a>
+      </div>
+      <div>
+        <p
+          class="mt-8 text-sm font-semibold tracking-wide text-center text-gray-500 uppercase"
+        >
+          Special thanks to
+        </p>
+        <div class="mt-6">
+          <a
+            href="https://calibre-ebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex justify-center col-span-1 md:col-span-2 lg:col-span-1"
+          >
+            <icon name="calibre" :size="80" class="text-gray-400" />
+          </a>
         </div>
       </div>
     </div>
@@ -46,6 +43,37 @@
 <script>
 export default {
   name: 'CloudLogos',
+  data() {
+    return {
+      logos: [
+        {
+          label: 'Kobo',
+          link: 'https://www.kobo.com',
+          icon: 'kobo',
+        },
+        {
+          label: 'Bookeen',
+          link: 'https://bookeen.com',
+          icon: 'bookeen',
+        },
+        {
+          label: 'Vivlio',
+          link: 'https://www.vivlio.com/en/home',
+          icon: 'vivlio',
+        },
+        {
+          label: 'ePagine',
+          link: 'https://www.epagine.fr',
+          icon: 'epagine',
+        },
+        {
+          label: 'Chapitre.com',
+          link: 'https://www.chapitre.com',
+          icon: 'chapitre-com',
+        },
+      ],
+    }
+  },
 }
 </script>
 

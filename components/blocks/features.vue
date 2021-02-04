@@ -13,33 +13,17 @@
         tempted by vast universes directly accessible by your eReader.
       </p>
       <div class="mt-12">
-        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div v-for="feature in features" :key="feature.id" class="pt-6">
             <div class="flow-root px-6 pb-8 rounded-lg bg-gray-50">
               <div class="-mt-6">
-                <div>
-                  <span
-                    class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg"
-                  >
-                    <svg
-                      class="w-6 h-6 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                      />
-                    </svg>
-                  </span>
+                <div
+                  class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow"
+                >
+                  <icon :name="feature.icon" :size="40" class="text-white" />
                 </div>
                 <h3
-                  class="mt-8 text-lg font-medium tracking-tight text-gray-900"
+                  class="mt-5 text-lg font-medium tracking-tight text-gray-900"
                 >
                   {{ feature.label }}
                 </h3>
@@ -62,28 +46,40 @@ export default {
     return {
       features: [
         {
-          icon: '',
+          icon: 'epub',
           label: 'EPUB files',
           text:
-            'EPUB files, a free DRM format that can be exchanged and edited at will',
+            'EPUB files, a free DRM format that can be exchanged and edited at will, you can edit any eBook with Calibre',
         },
         {
-          icon: '',
+          icon: 'ereader',
           label: 'Regardless of eReader',
           text:
             'Kobo, Bookeen, Vivlio or even Kindle (with Calibre), you can use eBooks in EPUB format on many eReaders',
         },
         {
-          icon: '',
+          icon: 'rocket',
           label: 'Easy',
           text:
-            'Download an eBook and/or a serie of eBook, ajoutez les eBooks à votre liseuse et lisez !',
+            'Download an eBook and/or a serie of eBooks, add eBooks to your reader and read!',
         },
         {
-          icon: '',
+          icon: 'code',
           label: 'Metadata',
           text:
             'All this information that allows you to sort and find your books by author or series is integrated into each eBook',
+        },
+        {
+          icon: 'scale',
+          label: 'Lightweight',
+          text:
+            'EPUB files have been modified to be as light as possible, by removing superfluous images, fonts and reworking the text if necessary.',
+        },
+        {
+          icon: 'user-group',
+          label: 'Account or guest',
+          text:
+            "You can use Bookshelves with an free account or as guest, it's up to you.",
         },
       ],
     }

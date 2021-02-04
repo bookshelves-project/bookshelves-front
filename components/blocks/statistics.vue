@@ -1,5 +1,5 @@
 <template>
-  <div class="relative bg-white">
+  <div class="relative mt-16 bg-white">
     <div class="absolute bottom-0 w-full h-80">
       <div class="h-full">
         <img
@@ -24,10 +24,9 @@
           Lots of ebooks for ever more insatiable readers
         </p>
         <p class="mt-5 text-lg text-gray-900">
-          Rhoncus sagittis risus arcu erat lectus bibendum. Ut in adipiscing
-          quis in viverra tristique sem. Ornare feugiat viverra eleifend fusce
-          orci in quis amet. Sit in et vitae tortor, massa. Dapibus laoreet amet
-          lacus nibh integer quis. Eu vulputate diam sit tellus quis at.
+          More and more eBooks for more and more reading, each day brings its
+          own novelties (or almost). Don't hesitate to come back from time to
+          time to discover the new books.
         </p>
         <div
           class="grid grid-cols-1 mt-12 gap-y-12 gap-x-6 md:grid-cols-2 lg:grid-cols-3"

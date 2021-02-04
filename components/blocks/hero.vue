@@ -40,8 +40,6 @@
         </div>
       </div>
     </div>
-
-    <!-- More main page content here... -->
   </main>
 </template>
 

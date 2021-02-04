@@ -15,10 +15,18 @@
 
 **Table of contents**
 
+- [TODO](#todo)
 - [**I. Setup**](#i-setup)
   - [**I. a. Production**](#i-a-production)
 
 ---
+
+## TODO
+
+- remove one entity for grid
+- review footer
+- finish home
+
 ## **I. Setup**
 
 Setup local on <http://localhost:3000>

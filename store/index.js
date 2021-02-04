@@ -12,6 +12,8 @@ export const state = () => ({
   ],
   footerNavigation: [
     { label: 'About', icon: 'book-open', route: '/footer/about' },
+    { label: 'Team', icon: 'book-open', route: '/footer/team' },
+    { label: 'Legal', icon: 'book-open', route: '/footer/legal' },
   ],
   design: ['bibliophile', 'book-lover', 'bookmark'],
 })
