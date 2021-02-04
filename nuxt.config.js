@@ -59,7 +59,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/css/app', '~/assets/css/tooltip', '~/assets/css/markdown'],
+  css: ['~/assets/css/app', '~/assets/css/markdown'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   loading: {
@@ -68,32 +68,23 @@ export default {
   },
 
   plugins: [
-    '~/plugins/icons-loader',
-    {
-      src: '~/plugins/vue-tailwind-screens',
-      ssr: false,
-    },
     // https://github.com/ndelvalle/v-click-outside
     '~/plugins/v-click-outside',
-    '~/plugins/v-tooltip',
-    '~/plugins/helper',
+    // https://github.com/eddiemf/vue-scrollactive
     '~/plugins/vue-scrollactive',
-    '~/plugins/autocomplete',
+    // https://github.com/trevoreyre/autocomplete
+    '~/plugins/autocomplete-vue',
+    // https://github.com/surmon-china/vue-awesome-swiper
     '~/plugins/vue-awesome-swiper',
+    // https://github.com/hilongjw/vue-lazyload
     '~/plugins/vue-lazyload',
+    // load SVG from assets/icons
+    '~/plugins/icons-loader',
+    // global helper methods
+    '~/plugins/helper',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
-  // components: [
-  //   '~/components/global',
-  //   {
-  //     path: '~/components/global',
-  //     global: true,
-  //     prefix: 'global',
-  //     extensions: ['vue'],
-  //   },
-  // ],
-  // components: ['~/components/common/', { path: '~/components/common/' }],
   components: [{ path: '~/components/common', global: true }],
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
@@ -102,6 +93,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     // Doc: https://github.com/nuxt-community/router-module
     '@nuxtjs/router',
@@ -120,7 +112,7 @@ export default {
     //   },
     // ],
     // https://image.nuxtjs.org
-    '@nuxt/image',
+    // '@nuxt/image',
   ],
 
   tailwindcss: {
@@ -141,9 +133,7 @@ export default {
     },
   },
 
-  image: {
-    // Options
-  },
+  // image: {},
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -161,21 +151,17 @@ export default {
     '@nuxt/http',
     // https://sitemap.nuxtjs.org/guide/setup
     '@nuxtjs/sitemap',
+    // https://www.npmjs.com/package/@nuxtjs/robots
+    '@nuxtjs/robots',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: process.env.API_URL,
   },
-
   sitemap: {
     // options
   },
-
-  // router: {
-  //   middleware: ['auth'],
-  // },
-
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {
     markdown: {
@@ -184,9 +170,11 @@ export default {
       },
     },
   },
-
   http: {
     // proxyHeaders: false
+  },
+  robots: {
+    /* module options */
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
