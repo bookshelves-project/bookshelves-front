@@ -1,9 +1,7 @@
 <template>
   <main class="container mt-5 max-w-7xl">
     <div>
-      <div
-        class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7"
-      >
+      <div class="display-grid">
         <entity-card
           v-for="book in books.data"
           :key="book.id"

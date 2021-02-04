@@ -1,58 +1,53 @@
 <template>
   <main class="container mt-5 max-w-7xl">
     <div>
-      <!-- <search /> -->
-      <div>
-        <div
-          class="grid grid-cols-1 gap-4 2xl:grid-cols-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7"
+      <div class="display-grid">
+        <entity-card
+          v-for="(author, authorId) in authors.data"
+          :key="authorId"
+          :cover="author.picture"
+          :route="{
+            name: 'authors-slug',
+            params: { slug: author.slug },
+          }"
+          :shadow="false"
         >
-          <entity-card
-            v-for="(author, authorId) in authors.data"
-            :key="authorId"
-            :cover="author.picture"
-            :route="{
-              name: 'authors-slug',
-              params: { slug: author.slug },
-            }"
-            :shadow="false"
-          >
-            <template #image>
-              <v-lazy-image
-                :alt="author.name"
-                :src="author.picture"
-                src-placeholder="/images/author-no-picture.png"
-                class="object-cover object-top w-32 h-32 rounded-full"
-              />
-            </template>
-            <template #title>
-              {{ $overflow(author.name) }}
-            </template>
-            <template #hover>
-              <div>
-                <div class="font-semibold">Available here &#8212;</div>
-                <div>{{ author.books_number }} books</div>
-              </div>
-            </template>
-            <template #title-responsive>
-              <div class="font-semibold">
-                {{ author.name }}
-              </div>
+          <template #image>
+            <v-lazy-image
+              :alt="author.name"
+              :src="author.picture"
+              src-placeholder="/images/author-no-picture.png"
+              class="object-cover object-top w-32 h-32 rounded-full"
+            />
+          </template>
+          <template #title>
+            {{ $overflow(author.name) }}
+          </template>
+          <template #hover>
+            <div>
+              <div class="font-semibold">Available here &#8212;</div>
               <div>{{ author.books_number }} books</div>
-            </template>
-          </entity-card>
-        </div>
+            </div>
+          </template>
+          <template #title-responsive>
+            <div class="font-semibold">
+              {{ author.name }}
+            </div>
+            <div>{{ author.books_number }} books</div>
+          </template>
+        </entity-card>
       </div>
-      <div class="mt-6 mb-5">
-        <pagination
-          :link-gen="linkGen"
-          :pages="pages"
-          :current-page="currentPage"
-          :limit="5"
-          class="flex justify-center"
-          @event="event"
-        >
-        </pagination>
-      </div>
+    </div>
+    <div class="mt-6 mb-5">
+      <pagination
+        :link-gen="linkGen"
+        :pages="pages"
+        :current-page="currentPage"
+        :limit="5"
+        class="flex justify-center"
+        @event="event"
+      >
+      </pagination>
     </div>
   </main>
 </template>

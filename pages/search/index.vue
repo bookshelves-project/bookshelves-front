@@ -12,11 +12,7 @@
       </div>
     </div>
     <transition name="fade">
-      <div
-        v-if="search.length > 0"
-        :key="componentKey"
-        class="grid grid-cols-1 gap-4 2xl:grid-cols-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7"
-      >
+      <div v-if="search.length > 0" :key="componentKey" class="display-grid">
         <entity-card
           v-for="book in search"
           :key="book.id"
