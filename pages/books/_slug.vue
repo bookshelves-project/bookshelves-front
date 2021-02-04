@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto">
+  <div class="mx-auto mt-5">
     <main>
       <!-- Page header -->
       <book-header :book="book" />

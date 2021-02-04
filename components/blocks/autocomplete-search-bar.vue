@@ -39,7 +39,7 @@
                 v-if="result.cover.thumbnail"
                 v-lazy="result.cover.thumbnail"
                 :alt="result.title"
-                class="w-16 h-16 rounded-md"
+                class="w-16 h-full rounded-md"
               />
               <img
                 v-else
@@ -49,9 +49,11 @@
               />
             </div>
             <div class="ml-2">
-              <div class="font-semibold wiki-title">{{ result.title }}</div>
-              <div class="flex">
-                <div v-if="result.author">by {{ result.author.name }}</div>
+              <div class="font-semibold wiki-title">
+                {{ result.title }}
+                <span v-if="result.author">by {{ result.author.name }}</span>
+              </div>
+              <div class="">
                 <div v-if="result.serie" class="ml-1">
                   in {{ result.serie.title }}, vol. {{ result.serie.number }}
                 </div>

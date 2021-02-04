@@ -52,3 +52,25 @@ button {
 .display-grid {
   @apply grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7;
 }
+
+img[lazy='loading'] {
+  filter: blur(4px);
+}
+img[lazy='error'] {
+  /*your style here*/
+}
+img[lazy='loaded'] {
+  /*your style here*/
+}
+/*
+  or background-image
+  */
+.yourclass[lazy='loading'] {
+  /*your style here*/
+}
+.yourclass[lazy='error'] {
+  /*your style here*/
+}
+.yourclass[lazy='loaded'] {
+  /*your style here*/
+}

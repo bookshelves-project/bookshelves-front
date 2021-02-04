@@ -80,7 +80,7 @@ export default {
     '~/plugins/vue-scrollactive',
     '~/plugins/autocomplete',
     '~/plugins/vue-awesome-swiper',
-    '~/vue-lazyload',
+    '~/plugins/vue-lazyload',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
