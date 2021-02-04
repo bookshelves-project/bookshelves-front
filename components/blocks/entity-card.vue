@@ -10,12 +10,13 @@
             <slot name="image" />
           </span>
           <span v-else class="w-full mx-auto">
-            <nuxt-picture
+            <!-- <nuxt-picture
               :src="cover"
               alt="Book cover"
               class="cover"
               placeholder="/images/no-cover.webp"
-            />
+            /> -->
+            <img v-lazy="cover" alt="Book cover" class="cover" />
           </span>
         </div>
         <div

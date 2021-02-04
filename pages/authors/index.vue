@@ -13,11 +13,16 @@
           :shadow="false"
         >
           <template #image>
-            <nuxt-picture
+            <!-- <nuxt-picture
               :src="author.picture"
               :alt="author.name"
               class="object-cover object-top w-32 h-32 rounded-full"
               placeholder="/images/author-no-cover.png"
+            /> -->
+            <img
+              v-lazy="author.picture"
+              :alt="author.name"
+              class="object-cover object-top w-32 h-32 rounded-full"
             />
           </template>
           <template #title>

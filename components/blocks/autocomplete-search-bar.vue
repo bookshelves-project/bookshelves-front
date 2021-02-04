@@ -21,19 +21,31 @@
             class="flex items-center autocomplete-result wiki-result"
           >
             <div class="w-16 h-full">
-              <nuxt-image
+              <!-- <nuxt-picture
                 v-if="result.cover.thumbnail"
                 :alt="result.title"
                 :src="result.cover.thumbnail"
                 class="w-16 h-16 rounded-md"
                 placeholder
               />
-              <nuxt-image
+              <nuxt-picture
                 v-else
                 src="/images/no-cover.webp"
                 alt="bookshelves-default"
                 class="w-16 h-16 rounded-md"
                 placeholder
+              /> -->
+              <img
+                v-if="result.cover.thumbnail"
+                v-lazy="result.cover.thumbnail"
+                :alt="result.title"
+                class="w-16 h-16 rounded-md"
+              />
+              <img
+                v-else
+                src="/images/bookshelves.png"
+                alt="bookshelves-default"
+                class="w-16 h-16 rounded-md"
               />
             </div>
             <div class="ml-2">

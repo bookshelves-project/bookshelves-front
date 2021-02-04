@@ -2,11 +2,16 @@
   <main class="container mt-5 max-w-7xl">
     <div>
       <div class="mx-auto mb-8">
-        <nuxt-picture
+        <!-- <nuxt-picture
           :src="authorPicture"
           :alt="author.name"
           class="object-cover object-center w-32 h-32 mx-auto rounded-full"
           placeholder="/images/author-no-cover.png"
+        /> -->
+        <img
+          v-lazy="authorPicture"
+          :alt="author.name"
+          class="object-cover object-center w-32 h-32 mx-auto rounded-full"
         />
         <div class="text-3xl font-semibold text-center">
           {{ author.name }}
