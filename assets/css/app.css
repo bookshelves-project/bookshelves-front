@@ -33,7 +33,7 @@ body {
 
 @variants group-hover, hover, focus {
   .zoom {
-    transform: scale(1.025);
+    transform: scale(1.25);
   }
 }
 

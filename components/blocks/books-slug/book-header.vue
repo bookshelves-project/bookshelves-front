@@ -9,7 +9,7 @@
             :src="book.cover.thumbnail"
             alt="Book cover"
             class="object-cover w-16 h-16 rounded-full"
-            placeholder
+            placeholder="/images/no-cover.webp"
           />
           <span
             class="absolute inset-0 rounded-full shadow-inner"

@@ -14,7 +14,7 @@
           :href="logo.link"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex justify-center col-span-1 md:col-span-2 lg:col-span-1"
+          class="flex justify-center col-span-1 transition-all duration-300 md:col-span-2 lg:col-span-1 hover:zoom"
         >
           <icon :name="logo.icon" :size="100" class="text-gray-400" />
         </a>
@@ -30,7 +30,7 @@
             href="https://calibre-ebook.com"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex justify-center col-span-1 md:col-span-2 lg:col-span-1"
+            class="flex justify-center col-span-1 mx-auto transition-all duration-300 md:col-span-2 lg:col-span-1 hover:zoom w-max"
           >
             <icon name="calibre" :size="80" class="text-gray-400" />
           </a>

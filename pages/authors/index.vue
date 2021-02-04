@@ -17,7 +17,7 @@
               :src="author.picture"
               :alt="author.name"
               class="object-cover object-top w-32 h-32 rounded-full"
-              placeholder
+              placeholder="/images/author-no-cover.png"
             />
           </template>
           <template #title>

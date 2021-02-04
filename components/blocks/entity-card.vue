@@ -14,7 +14,7 @@
               :src="cover"
               alt="Book cover"
               class="cover"
-              placeholder
+              placeholder="/images/no-cover.webp"
             />
           </span>
         </div>

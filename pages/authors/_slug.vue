@@ -6,7 +6,7 @@
           :src="authorPicture"
           :alt="author.name"
           class="object-cover object-center w-32 h-32 mx-auto rounded-full"
-          placeholder
+          placeholder="/images/author-no-cover.png"
         />
         <div class="text-3xl font-semibold text-center">
           {{ author.name }}

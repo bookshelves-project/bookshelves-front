@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container max-w-4xl bg-white">
-      <div class="pt-12 sm:pt-16 lg:pt-24">
+      <div class="pt-8 sm:pt-12 lg:pt-16">
         <div class="px-4 mx-auto text-center max-w-7xl sm:px-6 lg:px-8">
           <div class="max-w-3xl mx-auto space-y-2 lg:max-w-none">
             <h2
@@ -138,7 +138,7 @@
         class="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:py-24 lg:px-8 lg:flex lg:items-center lg:justify-between"
       >
         <h2
-          class="text-3xl font-extrabold tracking-tight text-gray-900 md:text-4xl"
+          class="text-3xl font-extrabold tracking-tight text-gray-900 font-handlee md:text-4xl"
         >
           <span class="block">Ready to dive in?</span>
           <span class="block text-indigo-600">
