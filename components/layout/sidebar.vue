@@ -36,7 +36,11 @@
           </button>
         </div>
         <div class="flex items-center flex-shrink-0 px-4">
-          <nuxt-link to="/" class="inline-flex items-center w-auto h-8">
+          <nuxt-link
+            to="/"
+            class="inline-flex items-center w-auto h-8"
+            @click.native="closeSidebar"
+          >
             <img
               class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
               src="/images/bookshelves.svg"
@@ -54,6 +58,7 @@
                 :key="booksNavId"
                 :to="{ name: booksNav.route }"
                 class="flex items-center px-2 py-2 text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 group"
+                @click.native="closeSidebar"
               >
                 <span class="font-semibold">
                   {{ booksNav.label }}

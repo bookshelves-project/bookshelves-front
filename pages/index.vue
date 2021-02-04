@@ -1,6 +1,8 @@
 <template>
   <div>
     <hero />
+    <features />
+    <pricing />
     <statistics
       :authors="authorsCount"
       :books="booksCount"
@@ -10,7 +12,9 @@
 </template>
 
 <script>
+import Features from '~/components/blocks/features.vue'
 import Hero from '~/components/blocks/hero.vue'
+import Pricing from '~/components/blocks/pricing.vue'
 import Statistics from '~/components/blocks/statistics.vue'
 
 export default {
@@ -18,6 +22,8 @@ export default {
   components: {
     Hero,
     Statistics,
+    Pricing,
+    Features,
   },
   auth: 'auth',
   layout: 'auth',

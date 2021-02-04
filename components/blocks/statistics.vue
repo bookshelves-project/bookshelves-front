@@ -29,7 +29,9 @@
           orci in quis amet. Sit in et vitae tortor, massa. Dapibus laoreet amet
           lacus nibh integer quis. Eu vulputate diam sit tellus quis at.
         </p>
-        <div class="grid grid-cols-1 mt-12 gap-y-12 gap-x-6 sm:grid-cols-3">
+        <div
+          class="grid grid-cols-1 mt-12 gap-y-12 gap-x-6 md:grid-cols-2 lg:grid-cols-3"
+        >
           <p
             v-for="metric in metrics"
             :key="metric.id"
