@@ -5,11 +5,11 @@
     <div class="flex items-center space-x-5">
       <div class="flex-shrink-0">
         <div class="relative">
-          <v-lazy-image
-            alt="Book cover"
+          <nuxt-picture
             :src="book.cover.thumbnail"
-            src-placeholder="/images/no-cover.webp"
+            alt="Book cover"
             class="object-cover w-16 h-16 rounded-full"
+            placeholder
           />
           <span
             class="absolute inset-0 rounded-full shadow-inner"

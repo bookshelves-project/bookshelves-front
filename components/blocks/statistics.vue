@@ -20,7 +20,7 @@
         >
           A quick tour
         </h2>
-        <p class="mt-3 text-3xl font-extrabold text-gray-700">
+        <p class="mt-3 text-3xl font-extrabold text-gray-700 font-handlee">
           Lots of ebooks for ever more insatiable readers
         </p>
         <p class="mt-5 text-lg text-gray-900">

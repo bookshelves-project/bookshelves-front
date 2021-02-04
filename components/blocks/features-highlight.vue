@@ -35,7 +35,9 @@
               </span>
             </div>
             <div class="mt-6">
-              <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
+              <h2
+                class="text-3xl font-extrabold tracking-tight text-gray-900 font-handlee"
+              >
                 Find the book that fits you
               </h2>
               <p class="mt-4 text-lg text-gray-500">
@@ -107,7 +109,9 @@
               </span>
             </div>
             <div class="mt-6">
-              <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
+              <h2
+                class="text-3xl font-extrabold tracking-tight text-gray-900 font-handlee"
+              >
                 Want to know your eReader?
               </h2>
               <p class="mt-4 text-lg text-gray-500">

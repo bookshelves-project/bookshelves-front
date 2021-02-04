@@ -6,21 +6,15 @@
           :class="{ 'cover-shadow': shadow }"
           class="flex overflow-hidden group-hover:img-hover-zoom"
         >
-          <!-- <nuxt-image
-            :src="cover
-            alt="Book cover"
-            class="cover"
-            placeholder
-          /> -->
           <span v-if="hasImageSlot" class="mx-auto">
             <slot name="image" />
           </span>
           <span v-else class="w-full mx-auto">
-            <v-lazy-image
-              alt="Book cover"
+            <nuxt-picture
               :src="cover"
-              src-placeholder="/images/no-cover.webp"
+              alt="Book cover"
               class="cover"
+              placeholder
             />
           </span>
         </div>

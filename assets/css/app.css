@@ -49,14 +49,6 @@ button {
   @apply text-gray-900 border-indigo-500;
 }
 
-.v-lazy-image {
-  filter: blur(10px);
-  transition: filter 0.7s;
-}
-.v-lazy-image-loaded {
-  filter: blur(0);
-}
-
 .display-grid {
   @apply grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7;
 }

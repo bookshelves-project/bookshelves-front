@@ -10,7 +10,7 @@
           >
             <div class="lg:py-24">
               <h1
-                class="mt-4 text-4xl font-extrabold tracking-tight text-gray-800 sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
+                class="mt-4 text-3xl font-extrabold text-gray-700 font-handlee lg:text-4xl"
               >
                 <span class="block">Reading in complete</span>
                 <span class="block text-indigo-600">

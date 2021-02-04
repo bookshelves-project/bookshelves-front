@@ -77,11 +77,8 @@ export default {
     '~/plugins/v-click-outside',
     '~/plugins/v-tooltip',
     '~/plugins/helper',
-    // '~/plugins/global-loader',
     '~/plugins/vue-scrollactive',
-    // '~/plugins/vue-lazyload',
     '~/plugins/autocomplete',
-    '~/plugins/v-lazy-image',
     '~/plugins/vue-awesome-swiper',
   ],
 
@@ -121,6 +118,8 @@ export default {
     //     disabled: false,
     //   },
     // ],
+    // https://image.nuxtjs.org
+    '@nuxt/image',
   ],
 
   tailwindcss: {
@@ -139,6 +138,10 @@ export default {
       Quicksand: true,
       Handlee: true,
     },
+  },
+
+  image: {
+    // Options
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
