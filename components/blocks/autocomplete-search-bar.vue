@@ -52,7 +52,7 @@
     </autocomplete>
     <icon
       name="magnify-glass"
-      class="absolute transform -translate-y-1/2 right-5 top-1/2"
+      class="absolute text-gray-400 transform -translate-y-1/2 left-3 top-1/2"
     />
   </div>
 </template>

@@ -1,193 +1,193 @@
 <template>
-  <header class="relative">
-    <div
-      :class="{ shadow: displayIfScrolled }"
-      class="fixed z-50 w-full py-3 transition-shadow duration-100 bg-white bg-opacity-95"
-    >
-      <nav
-        class="relative flex items-center justify-between px-4 mx-auto max-w-7xl sm:px-6"
-        aria-label="Global"
-      >
-        <div class="flex items-center flex-1">
-          <div class="flex items-center justify-between w-full md:w-auto">
-            <nuxt-link
-              to="/"
-              active-class="no-active"
-              exact-active-class="no-exact-active"
-              class="group"
+  <nav class="fixed z-30 w-full bg-white shadow">
+    <div class="px-2 mx-auto max-w-7xl sm:px-4 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex px-2 lg:px-0">
+          <div class="flex items-center flex-shrink-0">
+            <button
+              class="inline-flex items-center w-auto h-8 lg:hidden"
+              @click="openSidebar"
             >
-              <span class="sr-only">Bookshelves</span>
+              <svg
+                class="w-6 h-6 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
               <img
                 class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
                 src="/images/bookshelves.svg"
                 alt="Bookshelves logo"
               />
+            </button>
+            <nuxt-link
+              to="/"
+              class="items-center hidden w-auto h-8 lg:inline-flex"
+            >
+              <img
+                class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
+                src="/images/bookshelves.svg"
+                alt="Bookshelves logo"
+              />
+              <div class="mt-2 ml-3 text-2xl font-handlee">Bookshelves</div>
             </nuxt-link>
-            <div class="flex items-center -mr-2 md:hidden">
-              <button
-                id="main-menu"
-                type="button"
-                class="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-900 rounded-md hover:bg-gray-800"
-                aria-haspopup="true"
-              >
-                <span class="sr-only">Open main menu</span>
-                <!-- Heroicon name: menu -->
-                <svg
-                  class="w-6 h-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-            </div>
           </div>
-          <div class="items-center hidden h-10 md:flex md:ml-5">
+          <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
             <nuxt-link
               v-for="(booksNav, booksNavId) in $store.state.navigation"
               :key="booksNavId"
               :to="{ name: booksNav.route }"
-              class="flex items-center h-full px-3 mx-1 transition-colors duration-300 rounded-md hover:bg-gray-300 focus:outline-none focus:ring focus:border-purple-200"
+              class="inline-flex items-center px-1 pt-1 text-sm font-semibold text-gray-400 transition-colors duration-100 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700"
             >
-              <!-- <icon
-                :name="booksNav.icon"
-                stroke
-                class="text-gray-400"
-                :size="24"
-              /> -->
               <span class="font-semibold">
                 {{ booksNav.label }}
               </span>
             </nuxt-link>
           </div>
         </div>
-        <div class="hidden md:flex md:items-center md:space-x-6">
-          <!-- <a
-            href="#"
-            class="text-base font-medium text-gray-800 hover:text-gray-300"
-          >
-            Log in
-          </a>
-          <a
-            href="#"
-            class="inline-flex items-center px-4 py-2 text-base font-medium text-white bg-gray-600 border border-transparent rounded-md hover:bg-gray-700"
-          >
-            Register
-          </a> -->
-          <autocomplete-search-bar class="w-96" />
-        </div>
-      </nav>
-    </div>
-
-    <!--
-        Mobile menu, show/hide based on menu open state.
-
-        Entering: "duration-150 ease-out"
-          From: "opacity-0 scale-95"
-          To: "opacity-100 scale-100"
-        Leaving: "duration-100 ease-in"
-          From: "opacity-100 scale-100"
-          To: "opacity-0 scale-95"
-      -->
-    <div
-      class="inset-x-0 top-0 hidden p-2 transition origin-top transform md:hidden"
-    >
-      <div
-        class="overflow-hidden bg-white rounded-lg shadow-md ring-1 ring-black ring-opacity-5"
-      >
-        <div class="flex items-center justify-between px-5 pt-4">
-          <div>
-            <img
-              class="w-auto h-8"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              alt=""
-            />
-          </div>
-          <div class="-mr-2">
-            <button
-              type="button"
-              class="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600"
-            >
-              <span class="sr-only">Close menu</span>
-              <!-- Heroicon name: x -->
-              <svg
-                class="w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
         <div
-          class="pt-5 pb-6"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby="main-menu"
+          class="flex items-center justify-center flex-1 px-2 lg:ml-6 lg:justify-end"
         >
-          <div class="px-2 space-y-1" role="none">
-            <a
-              href="#"
-              class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50"
-              role="menuitem"
-              >Product</a
-            >
-
-            <a
-              href="#"
-              class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50"
-              role="menuitem"
-              >Features</a
-            >
-
-            <a
-              href="#"
-              class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50"
-              role="menuitem"
-              >Marketplace</a
-            >
-
-            <a
-              href="#"
-              class="block px-3 py-2 text-base font-medium text-gray-900 rounded-md hover:bg-gray-50"
-              role="menuitem"
-              >Company</a
-            >
+          <div class="w-full max-w-lg lg:max-w-xs">
+            <autocomplete-search-bar />
           </div>
-          <div role="none" class="px-5 mt-6">
-            <a
-              href="#"
-              class="block w-full px-4 py-3 font-medium text-center text-gray-800 bg-indigo-600 rounded-md shadow hover:bg-indigo-700"
-              >Start free trial</a
+        </div>
+        <div v-if="false" class="flex items-center lg:hidden">
+          <!-- Mobile menu button -->
+          <button
+            class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <!-- Icon when menu is closed. -->
+            <!--
+            Heroicon name: outline/menu
+
+            Menu open: "hidden", Menu closed: "block"
+          -->
+            <svg
+              class="block w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
             >
-          </div>
-          <div role="none" class="px-5 mt-6">
-            <p class="text-base font-medium text-center text-gray-500">
-              Existing customer?
-              <a href="#" class="text-gray-900 hover:underline">Login</a>
-            </p>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            <!-- Icon when menu is open. -->
+            <!--
+            Heroicon name: outline/x
+
+            Menu open: "block", Menu closed: "hidden"
+          -->
+            <svg
+              class="hidden w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div v-if="false" class="hidden lg:ml-4 lg:flex lg:items-center">
+          <button
+            class="flex-shrink-0 p-1 text-gray-400 bg-white rounded-full hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            <span class="sr-only">View notifications</span>
+            <!-- Heroicon name: outline/bell -->
+            <svg
+              class="w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+              />
+            </svg>
+          </button>
+
+          <!-- Profile dropdown -->
+          <div class="relative flex-shrink-0 ml-4">
+            <div>
+              <button
+                id="user-menu"
+                class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                aria-haspopup="true"
+              >
+                <span class="sr-only">Open user menu</span>
+                <img
+                  class="w-8 h-8 rounded-full"
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+              </button>
+            </div>
+            <!--
+            Profile dropdown panel, show/hide based on dropdown state.
+
+            Entering: "transition ease-out duration-100"
+              From: "transform opacity-0 scale-95"
+              To: "transform opacity-100 scale-100"
+            Leaving: "transition ease-in duration-75"
+              From: "transform opacity-100 scale-100"
+              To: "transform opacity-0 scale-95"
+          -->
+            <div
+              class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="user-menu"
+            >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                >Your Profile</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                >Settings</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                >Sign out</a
+              >
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </header>
+  </nav>
 </template>
 
 <script>
@@ -221,6 +221,12 @@ export default {
     },
     onClickOutside(event) {
       console.log('Clicked outside. Event: ', event)
+    },
+    openSidebar() {
+      this.$store.commit('setLayer', true)
+      setTimeout(() => {
+        this.$store.commit('setSidebar', true)
+      }, 150)
     },
   },
 }

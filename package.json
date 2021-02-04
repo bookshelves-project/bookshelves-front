@@ -2,6 +2,23 @@
   "name": "bookshelves-front",
   "version": "1.0.0",
   "private": true,
+  "author": {
+    "name": "Ewilan Rivière",
+    "email": "ewilan.riviere@gmail.com",
+    "url": "https://ewilan-riviere.com"
+  },
+  "contributors": [
+    {
+      "name": "Mopi",
+      "email": "mopi@dotslashplay.it"
+    }
+  ],
+  "license": "BSD 2-Clause",
+  "homepage": "https://bookshelves.git-projects.xyz",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/EwieFairy/bookshelves-front"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

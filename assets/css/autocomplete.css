@@ -1,25 +1,8 @@
 .autocomplete-input {
-  @apply bg-gray-200 transition-colors duration-300 text-black placeholder-gray-800;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  width: 100%;
-  padding: 12px;
-  box-sizing: border-box;
-  position: relative;
-  font-size: 16px;
-  line-height: 1.5;
-  flex: 1;
-  /* background-color: #eee; */
-  /* background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+'); */
-  background-repeat: no-repeat;
-  background-position: 12px;
+  @apply border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pl-10 pr-3 py-2 block w-full;
 }
 .autocomplete-input:focus,
 .autocomplete-input[aria-expanded='true'] {
-  border-color: rgba(0, 0, 0, 0.12);
-  background-color: #fff;
-  outline: none;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.16);
 }
 [data-position='below'] .autocomplete-input[aria-expanded='true'] {
   border-bottom-color: transparent;

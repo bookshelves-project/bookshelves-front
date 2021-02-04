@@ -10,10 +10,8 @@ export const state = () => ({
     { label: 'Authors', icon: 'annotation', route: 'authors' },
     { label: 'Guides', icon: 'annotation', route: 'guides' },
   ],
-  booksNavigation: [
-    { label: 'Books', icon: 'home', route: 'books' },
-    { label: 'Series', icon: 'book-open', route: 'series' },
-    { label: 'Authors', icon: 'annotation', route: 'authors' },
+  footerNavigation: [
+    { label: 'About', icon: 'book-open', route: '/footer/about' },
   ],
   design: ['bibliophile', 'book-lover', 'bookmark'],
 })

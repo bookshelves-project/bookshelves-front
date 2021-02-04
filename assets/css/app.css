@@ -46,7 +46,7 @@ button {
   /* @apply bg-gray-200; */
 }
 .nuxt-link-active {
-  @apply bg-gray-300 bg-opacity-40;
+  @apply text-gray-900 border-indigo-500;
 }
 
 .v-lazy-image {

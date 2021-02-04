@@ -1,6 +1,8 @@
 <template>
   <div :class="dev ? 'debug-screens' : ''">
+    <layer />
     <navbar />
+    <sidebar />
     <div class="pt-20"></div>
     <Nuxt class="min-height-content" />
     <default-footer />
@@ -30,7 +32,9 @@
 
 <script>
 import DefaultFooter from '~/components/layout/default-footer.vue'
+import Layer from '~/components/layout/layer.vue'
 import Navbar from '~/components/layout/navbar.vue'
+import Sidebar from '~/components/layout/sidebar.vue'
 // import BackToTop from '~/components/layout/back-to-top.vue'
 // import HeaderResponsive from '~/components/layout/header-responsive.vue'
 // import Sidebar from '~/components/layout/sidebar.vue'
@@ -41,6 +45,8 @@ export default {
   components: {
     Navbar,
     DefaultFooter,
+    Sidebar,
+    Layer,
     // StaticSidebar,
     // Sidebar,
     // HeaderResponsive,
