@@ -67,7 +67,7 @@ export default {
           icon: 'code',
           label: 'Metadata',
           text:
-            'All this information that allows you to sort and find your books by author or series is integrated into each eBook',
+            'All these informations that allows you to sort and find your books by author or series are integrated into each eBook',
         },
         {
           icon: 'scale',

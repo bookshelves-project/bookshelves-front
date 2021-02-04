@@ -23,9 +23,7 @@
 
 ## TODO
 
-- remove one entity for grid
-- review footer
-- finish home
+- add last books added
 
 ## **I. Setup**
 
