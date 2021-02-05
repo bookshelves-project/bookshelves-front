@@ -10,16 +10,25 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
-        hid: 'description',
         name: 'description',
         content:
-          'Reading in complete tranquility and freedom, your digital library that goes everywhere with you.',
+          'For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you. Get eBooks (EPUB format), add it to your eReader and read!',
       },
       // Open Graph
       {
         hid: 'og:site_name',
         property: 'og:site_name',
         content: 'Bookshelves',
+      },
+      {
+        hid: 'og:type',
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://bookshelves.git-projects.xyz/',
       },
       {
         hid: 'og:title',
@@ -30,14 +39,39 @@ export default {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'Reading in complete tranquility and freedom, your digital library that goes everywhere with you.',
+          'For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you. Get eBooks (EPUB format), add it to your eReader and read!',
       },
       {
         hid: 'og:image',
         property: 'og:image',
         content: `${process.env.BASE_URL}/open-graph.png`,
       },
+      {
+        hid: 'og:image:secure_url',
+        property: 'og:image:secure_url',
+        content: `${process.env.BASE_URL}/open-graph.png`,
+      },
+      {
+        hid: 'og:image:alt',
+        property: 'og:image:alt',
+        content: 'Bookshelves',
+      },
       // Twitter Card
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        hid: 'twitter:domain',
+        property: 'twitter:domain',
+        content: 'bookshelves.git-projects.xyz',
+      },
+      {
+        hid: 'twitter:url',
+        property: 'twitter:title',
+        content: 'https://bookshelves.git-projects.xyz/',
+      },
       {
         hid: 'twitter:title',
         name: 'twitter:title',
@@ -47,12 +81,17 @@ export default {
         hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          'Reading in complete tranquility and freedom, your digital library that goes everywhere with you.',
+          'For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you. Get eBooks (EPUB format), add it to your eReader and read!',
       },
       {
         hid: 'twitter:image',
         property: 'twitter:image',
         content: `${process.env.BASE_URL}/open-graph.png`,
+      },
+      {
+        hid: 'twitter:image:alt',
+        name: 'twitter:image:alt',
+        content: 'Bookshelves',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
