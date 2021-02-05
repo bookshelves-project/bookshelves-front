@@ -88,6 +88,7 @@ export default {
       this.book.serie ? ` in ${this.book.serie.title}` : ''
     } - Books`
     const description = this.book.summary
+    console.log(description)
     const image = this.book.cover.basic
     return {
       title,

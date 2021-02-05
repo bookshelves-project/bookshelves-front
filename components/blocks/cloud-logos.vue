@@ -69,7 +69,7 @@ export default {
         },
         {
           label: 'Vivlio',
-          link: 'https://www.vivlio.com/en/home',
+          link: 'https://www.vivlio.com',
           icon: 'vivlio',
         },
         {
@@ -96,7 +96,7 @@ export default {
         },
         {
           label: 'Team AlexandriZ',
-          link: 'https://twitter.com/teamalexandriz?lang=en',
+          link: 'https://twitter.com/teamalexandriz',
           icon: 'team-alexandriz',
           iconConfig: {
             stroke: true,
