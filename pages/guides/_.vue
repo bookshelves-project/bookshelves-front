@@ -14,18 +14,18 @@
                 style="top: 50%; left: 50%; transform: translate(-50%, -50%)"
               >
                 <div class="mx-auto text-lg max-w-prose">
-                  <h1>
-                    <span
+                  <div>
+                    <h2
                       class="block text-base font-semibold tracking-wide text-center text-indigo-600 uppercase"
                     >
                       {{ document.category }}
-                    </span>
-                    <span
+                    </h2>
+                    <h1
                       class="block mt-2 text-3xl font-extrabold leading-8 tracking-tight text-center text-gray-900 sm:text-4xl"
                     >
                       {{ document.title }}
-                    </span>
-                  </h1>
+                    </h1>
+                  </div>
                   <p class="mt-8 text-xl leading-8 text-gray-500">
                     {{ document.description }}
                   </p>

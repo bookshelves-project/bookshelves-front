@@ -2,65 +2,61 @@
   <section aria-labelledby="applicant-information-title">
     <div class="bg-white shadow sm:rounded-lg">
       <div class="px-4 py-5 sm:px-6">
-        <h2
+        <div
           id="applicant-information-title"
           class="text-lg font-medium leading-6 text-gray-900"
         >
           Description
-        </h2>
+        </div>
       </div>
       <div class="px-4 py-5 border-t border-gray-200 sm:px-6">
         <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-          <div class="sm:col-span-1">
+          <div v-if="book.author" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500">Author</dt>
             <dd class="mt-1 text-sm text-gray-900">
-              <span v-if="book.author">
-                {{ book.author.lastname }}, {{ book.author.firstname }}
-              </span>
+              <h2>{{ book.author.lastname }}, {{ book.author.firstname }}</h2>
             </dd>
           </div>
-          <div class="sm:col-span-1">
+          <div v-if="book.serie" class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Serie</dt>
+            <dd class="mt-1 text-sm text-gray-900">
+              <h2>{{ book.serie.title }}, vol. {{ book.serie.number }}</h2>
+            </dd>
+          </div>
+          <div v-if="book.publisher" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500">Publishing</dt>
             <dd class="mt-1 text-sm text-gray-900">
-              <span v-if="book.publisher"
+              <span
                 >{{ book.publisher.name }} ({{
                   $getDate(book.publishDate)
                 }})</span
               >
-              <span v-else class="italic text-gray-400">Undefined</span>
             </dd>
           </div>
-          <div class="sm:col-span-1">
+          <div v-if="book.language" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500">Language</dt>
             <dd class="mt-1 text-sm text-gray-900">
-              <img
-                v-if="book.language"
-                :src="book.language.flag"
-                :alt="book.language.slug"
-              />
+              <img :src="book.language.flag" :alt="book.language.slug" />
             </dd>
           </div>
-          <div class="sm:col-span-1">
+          <div v-if="book.isbn" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500">Identifiers</dt>
             <dd class="mt-1 text-sm text-gray-900">
               <transition name="fade">
-                <span v-if="book.isbn">
-                  <div v-if="!isbnResult">
-                    {{ book.isbn }}
-                  </div>
-                  <div v-else>
-                    <div v-if="isbnResult.identifiers">
-                      <div v-if="isbnResult.identifiers.isbn13">
-                        ISBN 13: {{ isbnResult.identifiers.isbn13.identifier }}
-                      </div>
-                      <div v-if="isbnResult.identifiers.isbn10">
-                        ISBN 10: {{ isbnResult.identifiers.isbn10.identifier }}
-                      </div>
+                <div v-if="!isbnResult">
+                  {{ book.isbn }}
+                </div>
+                <div v-else>
+                  <div v-if="isbnResult.identifiers">
+                    <div v-if="isbnResult.identifiers.isbn13">
+                      ISBN 13: {{ isbnResult.identifiers.isbn13.identifier }}
                     </div>
-                    <span v-else class="italic text-gray-400">Undefined</span>
+                    <div v-if="isbnResult.identifiers.isbn10">
+                      ISBN 10: {{ isbnResult.identifiers.isbn10.identifier }}
+                    </div>
                   </div>
-                </span>
-                <span v-else class="italic text-gray-400">Undefined</span>
+                  <span v-else class="italic text-gray-400">Undefined</span>
+                </div>
               </transition>
             </dd>
           </div>

@@ -13,9 +13,9 @@
           :alt="author.name"
           class="object-cover object-center w-32 h-32 mx-auto rounded-full"
         />
-        <div class="text-3xl font-semibold text-center">
+        <h1 class="text-3xl font-semibold text-center">
           {{ author.name }}
-        </div>
+        </h1>
         <div class="flex justify-center mt-5">
           <a
             :href="author.download"

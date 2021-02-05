@@ -3,12 +3,12 @@
     <div>
       <div class="flex items-center justify-between mb-8">
         <div>
-          <div class="text-3xl font-semibold">
+          <h1 class="text-3xl font-semibold">
             {{ serie.title }}
-          </div>
-          <div class="text-xl">
+          </h1>
+          <h2 class="text-xl">
             {{ serie.author }}
-          </div>
+          </h2>
         </div>
         <div class="flex mt-5">
           <a
