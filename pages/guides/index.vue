@@ -1,5 +1,5 @@
 <template>
-  <main class="container mt-5 space-x-4 max-w-7xl xl:grid xl:grid-cols-3">
+  <main class="container space-x-4 max-w-7xl xl:grid xl:grid-cols-3">
     <div class="col-span-2">
       <ul class="px-2 mx-auto my-5 space-y-3">
         <nuxt-link

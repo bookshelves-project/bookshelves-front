@@ -3,7 +3,7 @@
     <layer />
     <navbar />
     <sidebar />
-    <div class="pt-20"></div>
+    <div class="pt-24"></div>
     <Nuxt class="min-height-content" />
     <default-footer />
     <!-- <client-only>

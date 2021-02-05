@@ -8,41 +8,17 @@
         <div
           class="max-w-xl px-4 mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0"
         >
-          <div>
+          <div class="py-20">
             <div>
-              <span
-                class="flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-md"
-              >
-                <!-- Heroicon name: outline/inbox -->
-                <svg
-                  class="w-6 h-6 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
+              <div class="flex items-center">
+                <icon name="bookshelves-logo" :size="50" class="text-black" />
+                <h2
+                  class="ml-3 text-3xl font-extrabold tracking-tight text-gray-900 font-handlee"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                  />
-                </svg>
-              </span>
-            </div>
-            <div class="mt-6">
-              <h2
-                class="text-3xl font-extrabold tracking-tight text-gray-900 font-handlee"
-              >
-                Find the book that fits you
-              </h2>
+                  Find the book that fits you!
+                </h2>
+              </div>
               <p class="mt-4 text-lg text-gray-500">
-                A selection of more than a hundred works, find the one that will
-                strike a chord with your soul. And come back for ten more.
-                Search by title, author or series then download all the books of
-                an author or series if you wish!
-                <br />
                 A selection of more than a hundred works, find the one that will
                 strike a chord with your soul. And come back for ten more.
                 Search by title, author or series then download all the books of
@@ -72,7 +48,7 @@
             class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full"
           >
             <img
-              class="w-full shadow-xl rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
               src="/images/books.webp"
               alt="Books page"
             />
@@ -87,40 +63,17 @@
         <div
           class="max-w-xl px-4 mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2"
         >
-          <div>
+          <div class="py-20">
             <div>
-              <span
-                class="flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-md"
-              >
-                <!-- Heroicon name: outline/sparkles -->
-                <svg
-                  class="w-6 h-6 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
+              <div class="flex items-center">
+                <icon name="ereader" :size="50" class="text-black" />
+                <h2
+                  class="ml-3 text-3xl font-extrabold tracking-tight text-gray-900 font-handlee"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                  />
-                </svg>
-              </span>
-            </div>
-            <div class="mt-6">
-              <h2
-                class="text-3xl font-extrabold tracking-tight text-gray-900 font-handlee"
-              >
-                Want to know your eReader?
-              </h2>
+                  Want to know your eReader?
+                </h2>
+              </div>
               <p class="mt-4 text-lg text-gray-500">
-                Detailed guides are there to explain how to best manage your
-                eReader but also to get to know the eBooks better in order to
-                modify them if you wish.
-                <br />
                 Detailed guides are there to explain how to best manage your
                 eReader but also to get to know the eBooks better in order to
                 modify them if you wish.
@@ -133,7 +86,7 @@
             class="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full"
           >
             <img
-              class="w-full shadow-xl rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
+              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
               src="/images/guides.webp"
               alt="Guides page"
             />

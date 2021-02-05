@@ -1,5 +1,5 @@
 <template>
-  <main class="container mt-5 mb-5 max-w-7xl">
+  <main class="container mb-5 max-w-7xl">
     <div class="relative mb-8">
       <div class="absolute inset-0 flex items-center" aria-hidden="true">
         <div class="w-full border-t border-gray-300"></div>

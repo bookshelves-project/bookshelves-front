@@ -1,5 +1,5 @@
 <template>
-  <main class="container mt-5 max-w-7xl">
+  <main class="container max-w-7xl">
     <div>
       <div class="display-grid">
         <entity-card
