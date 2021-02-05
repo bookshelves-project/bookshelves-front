@@ -2,7 +2,7 @@
   <transition name="fade">
     <div
       v-if="displayBackToTop"
-      class="fixed bottom-0 right-0 p-2 mb-5 mr-5 transition-colors duration-300 bg-gray-200 bg-opacity-50 rounded-md shadow-md cursor-pointer md:p-3 hover:bg-gray-300 group"
+      class="p-1 transition-colors duration-100 bg-opacity-50 cursor-pointer md:p-3 hover:bg-gray-100 group"
       @click="scrollToTop"
     >
       <span class="icon">
@@ -47,6 +47,6 @@ export default {
 
 <style lang="postcss" scoped>
 /deep/ .icon svg {
-  @apply w-8 h-8 text-gray-700 transition-colors duration-300 fill-current group-hover:text-gray-700;
+  @apply w-6 h-6 text-gray-500 transition-colors duration-300 fill-current group-hover:text-gray-600;
 }
 </style>

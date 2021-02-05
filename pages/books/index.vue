@@ -1,5 +1,9 @@
 <template>
   <main class="container max-w-7xl">
+    <section-heading
+      title="Books"
+      subtitle="Discover all available books sorted by title and serie's title"
+    />
     <div>
       <div class="display-grid">
         <entity-card
@@ -63,12 +67,14 @@ import qs from 'qs'
 
 import Pagination from '~/components/special/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
+import SectionHeading from '~/components/blocks/section-heading.vue'
 
 export default {
   name: 'Books',
   components: {
     Pagination,
     EntityCard,
+    SectionHeading,
   },
   auth: 'auth',
   layout: 'auth',

@@ -49,7 +49,7 @@ export default {
           icon: 'epub',
           label: 'EPUB files',
           text:
-            'EPUB files, a free DRM format that can be exchanged and edited at will, you can edit any eBook with Calibre',
+            'EPUB files format to be lightest as possible, a free DRM format that can be shared and edited at will, you can edit any eBook with Calibre',
         },
         {
           icon: 'ereader',
@@ -58,8 +58,8 @@ export default {
             'Kobo, Bookeen, Vivlio or even Kindle (with Calibre), you can use eBooks in EPUB format on many eReaders',
         },
         {
-          icon: 'rocket',
-          label: 'Easy',
+          icon: 'download',
+          label: 'Download & read',
           text:
             'Download an eBook and/or a serie of eBooks, add eBooks to your reader and read!',
         },
@@ -70,10 +70,10 @@ export default {
             'All these informations that allows you to sort and find your books by author or series are integrated into each eBook',
         },
         {
-          icon: 'scale',
-          label: 'Lightweight',
+          icon: 'locale',
+          label: 'Multi languages',
           text:
-            'EPUB files have been modified to be as light as possible, by removing superfluous images, fonts and reworking the text if necessary.',
+            'eBooks in several languages according to your preferences in order to reach a maximum number of readers.',
         },
         {
           icon: 'user-group',

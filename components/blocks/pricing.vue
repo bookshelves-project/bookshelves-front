@@ -7,7 +7,7 @@
             <h2
               class="text-lg font-semibold leading-6 tracking-wider text-indigo-600 uppercase"
             >
-              Your choice
+              Use it as you wish
             </h2>
             <p class="max-w-3xl mx-auto text-xl text-gray-900">
               On the fly or customized as you wish, Bookshelves can be used the

@@ -18,7 +18,7 @@
         <h2
           class="text-sm font-semibold tracking-wide text-indigo-700 uppercase"
         >
-          A quick tour
+          A quick tour of eBooks count
         </h2>
         <p class="mt-3 text-3xl font-extrabold text-gray-700 font-handlee">
           Lots of ebooks for ever more insatiable readers

@@ -24,6 +24,7 @@
 ## TODO
 
 - add last books added
+- check h1, h2, h3
 
 ## **I. Setup**
 

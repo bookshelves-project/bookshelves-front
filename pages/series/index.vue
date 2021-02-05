@@ -1,5 +1,9 @@
 <template>
   <main class="container max-w-7xl">
+    <section-heading
+      title="Series"
+      subtitle="Discover books grouped by their serie's name"
+    />
     <div>
       <div class="display-grid">
         <entity-card
@@ -56,10 +60,11 @@
 import qs from 'qs'
 import Pagination from '~/components/special/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
+import SectionHeading from '~/components/blocks/section-heading.vue'
 
 export default {
   name: 'SeriesIndex',
-  components: { Pagination, EntityCard },
+  components: { Pagination, EntityCard, SectionHeading },
   async asyncData({ app, query, error, $content, store }) {
     try {
       const page = query.page

@@ -7,7 +7,7 @@
           <div class="ml-3 text-xl text-gray-500 font-handlee">Bookshelves</div>
         </nuxt-link>
         <nav
-          class="justify-center mt-5 -mx-5 -my-2 text-center md:flex-wrap md:flex md:mt-0"
+          class="items-center justify-center mt-5 -mx-5 -my-2 text-center md:flex-wrap md:flex md:mt-0"
           aria-label="Footer"
         >
           <nuxt-link
@@ -20,6 +20,7 @@
               {{ link.label }}
             </span>
           </nuxt-link>
+          <back-to-top />
         </nav>
       </div>
       <div class="mt-5 md:flex md:items-center md:justify-between">
@@ -103,9 +104,11 @@
 
 <script>
 import packageJson from '@/package.json'
+import backToTop from './back-to-top.vue'
 
 export default {
   name: 'DefaultFooter',
+  components: { backToTop },
   data() {
     return {
       packageJson,
