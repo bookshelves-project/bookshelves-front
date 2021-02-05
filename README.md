@@ -23,6 +23,7 @@
 
 ## TODO
 
+- author sort by serie with divider
 - add last books added
 - check h1, h2, h3
 

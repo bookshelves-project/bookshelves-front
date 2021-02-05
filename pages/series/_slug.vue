@@ -147,7 +147,7 @@ export default {
           content: image,
         },
       ],
-      links: [
+      link: [
         {
           rel: 'canonical',
           href: `${process.env.BASE_URL}/series/${this.serie.slug}`,
