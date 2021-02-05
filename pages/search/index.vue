@@ -129,6 +129,12 @@ export default {
           content: image,
         },
       ],
+      links: [
+        {
+          rel: 'canonical',
+          href: `${process.env.BASE_URL}/search?terms${this.$route.query.terms}`,
+        },
+      ],
     }
   },
 }

@@ -98,6 +98,12 @@ export default {
     return {
       title: 'Bookshelves',
       titleTemplate: '%s : your digital library',
+      links: [
+        {
+          rel: 'canonical',
+          href: `${process.env.BASE_URL}`,
+        },
+      ],
     }
   },
 }

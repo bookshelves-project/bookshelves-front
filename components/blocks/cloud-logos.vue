@@ -38,7 +38,12 @@
             :title="logo.label"
             class="flex justify-center mx-auto mt-5 transition-all duration-300 sm:mx-0 hover:zoom w-max"
           >
-            <icon :name="logo.icon" :size="80" class="text-gray-400" />
+            <icon
+              :name="logo.icon"
+              :size="80"
+              class="text-gray-400"
+              :stroke="logo.iconConfig ? logo.iconConfig.stroke : false"
+            />
           </a>
         </div>
       </div>
@@ -89,10 +94,16 @@ export default {
           link: 'https://pandoc.org',
           icon: 'pandoc',
         },
+        {
+          label: 'Team AlexandriZ',
+          link: 'https://twitter.com/teamalexandriz?lang=en',
+          icon: 'team-alexandriz',
+          iconConfig: {
+            stroke: true,
+          },
+        },
       ],
     }
   },
 }
 </script>
-
-<style lang="postcss" scoped></style>

@@ -160,6 +160,12 @@ export default {
           content: image,
         },
       ],
+      links: [
+        {
+          rel: 'canonical',
+          href: `${process.env.BASE_URL}/guides`,
+        },
+      ],
     }
   },
 }
