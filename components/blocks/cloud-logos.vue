@@ -7,13 +7,16 @@
         These companies do not support us (and do not know us) but without their
         work, ours would not be possible.
       </p>
-      <div class="grid grid-cols-2 gap-8 mt-6 md:grid-cols-6 lg:grid-cols-5">
+      <div
+        class="grid grid-cols-1 gap-8 mt-6 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-5"
+      >
         <a
           v-for="logo in logos"
           :key="logo.id"
           :href="logo.link"
           target="_blank"
           rel="noopener noreferrer"
+          :title="logo.label"
           class="flex justify-center col-span-1 transition-all duration-300 md:col-span-2 lg:col-span-1 hover:zoom"
         >
           <icon :name="logo.icon" :size="100" class="text-gray-400" />
@@ -25,14 +28,17 @@
         >
           Special thanks to
         </p>
-        <div class="mt-6">
+        <div class="justify-center mt-6 space-x-16 sm:flex">
           <a
-            href="https://calibre-ebook.com"
+            v-for="logo in specialThanksLogos"
+            :key="logo.id"
+            :href="logo.link"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex justify-center col-span-1 mx-auto transition-all duration-300 md:col-span-2 lg:col-span-1 hover:zoom w-max"
+            :title="logo.label"
+            class="flex justify-center mx-auto mt-5 transition-all duration-300 sm:mx-0 hover:zoom w-max"
           >
-            <icon name="calibre" :size="80" class="text-gray-400" />
+            <icon :name="logo.icon" :size="80" class="text-gray-400" />
           </a>
         </div>
       </div>
@@ -70,6 +76,18 @@ export default {
           label: 'Chapitre.com',
           link: 'https://www.chapitre.com',
           icon: 'chapitre-com',
+        },
+      ],
+      specialThanksLogos: [
+        {
+          label: 'Calibre',
+          link: 'https://calibre-ebook.com',
+          icon: 'calibre',
+        },
+        {
+          label: 'Pandoc',
+          link: 'https://pandoc.org',
+          icon: 'pandoc',
         },
       ],
     }

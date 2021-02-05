@@ -2,7 +2,7 @@
   <footer class="bg-white">
     <div class="px-4 pt-12 pb-8 mx-auto max-w-7xl sm:px-6 md:px-8">
       <div class="items-center justify-between w-full md:inline-flex">
-        <nuxt-link to="/" class="flex items-center mx-auto md:mx-0 sm:w-max">
+        <nuxt-link to="/" class="flex items-center mx-auto md:mx-0 w-max">
           <icon name="bookshelves-logo" :size="40" class="text-gray-500" />
           <div class="ml-3 text-xl text-gray-500 font-handlee">Bookshelves</div>
         </nuxt-link>

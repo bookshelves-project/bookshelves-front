@@ -1,9 +1,6 @@
 <template>
-  <div class="relative pt-16 pb-32 lg:overflow-hidden">
-    <div
-      aria-hidden="true"
-      class="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-gray-100"
-    ></div>
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <div class="relative pt-16 pb-32 overflow-hidden bg-white">
     <div class="relative">
       <div
         class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24"
@@ -14,7 +11,7 @@
           <div>
             <div>
               <span
-                class="flex items-center justify-center w-12 h-12 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600"
+                class="flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-md"
               >
                 <!-- Heroicon name: outline/inbox -->
                 <svg
@@ -35,12 +32,15 @@
               </span>
             </div>
             <div class="mt-6">
-              <h2
-                class="text-3xl font-extrabold tracking-tight text-gray-900 font-handlee"
-              >
+              <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
                 Find the book that fits you
               </h2>
               <p class="mt-4 text-lg text-gray-500">
+                A selection of more than a hundred works, find the one that will
+                strike a chord with your soul. And come back for ten more.
+                Search by title, author or series then download all the books of
+                an author or series if you wish!
+                <br />
                 A selection of more than a hundred works, find the one that will
                 strike a chord with your soul. And come back for ten more.
                 Search by title, author or series then download all the books of
@@ -65,14 +65,14 @@
             </blockquote>
           </div>
         </div>
-        <div class="mt-12 overflow-hidden sm:mt-16 lg:mt-0">
+        <div class="mt-12 sm:mt-16 lg:mt-0">
           <div
             class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full"
           >
             <img
-              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+              class="w-full shadow-xl rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
               src="/images/books.webp"
-              alt="Inbox user interface"
+              alt="Books page"
             />
           </div>
         </div>
@@ -88,7 +88,7 @@
           <div>
             <div>
               <span
-                class="flex items-center justify-center w-12 h-12 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600"
+                class="flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-md"
               >
                 <!-- Heroicon name: outline/sparkles -->
                 <svg
@@ -109,12 +109,14 @@
               </span>
             </div>
             <div class="mt-6">
-              <h2
-                class="text-3xl font-extrabold tracking-tight text-gray-900 font-handlee"
-              >
+              <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">
                 Want to know your eReader?
               </h2>
               <p class="mt-4 text-lg text-gray-500">
+                Detailed guides are there to explain how to best manage your
+                eReader but also to get to know the eBooks better in order to
+                modify them if you wish.
+                <br />
                 Detailed guides are there to explain how to best manage your
                 eReader but also to get to know the eBooks better in order to
                 modify them if you wish.
@@ -127,9 +129,9 @@
             class="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full"
           >
             <img
-              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
+              class="w-full shadow-xl rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
               src="/images/guides.webp"
-              alt="Customer profile user interface"
+              alt="Guides page"
             />
           </div>
         </div>
