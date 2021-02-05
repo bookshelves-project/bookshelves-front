@@ -2,7 +2,7 @@
   <transition name="fade">
     <div
       v-if="displayBackToTop"
-      class="p-1 transition-colors duration-100 bg-opacity-50 cursor-pointer md:p-3 hover:bg-gray-100 group"
+      class="p-2 transition-colors duration-100 bg-opacity-50 cursor-pointer hover:bg-gray-100 group"
       @click="scrollToTop"
     >
       <span class="icon">

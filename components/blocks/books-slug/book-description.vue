@@ -38,12 +38,15 @@
                     {{ book.isbn }}
                   </div>
                   <div v-else>
-                    <div>
-                      ISBN 13: {{ isbnResult.identifiers.isbn13.identifier }}
+                    <div v-if="isbnResult.identifiers">
+                      <div v-if="isbnResult.identifiers.isbn13">
+                        ISBN 13: {{ isbnResult.identifiers.isbn13.identifier }}
+                      </div>
+                      <div v-if="isbnResult.identifiers.isbn10">
+                        ISBN 10: {{ isbnResult.identifiers.isbn10.identifier }}
+                      </div>
                     </div>
-                    <div>
-                      ISBN 10: {{ isbnResult.identifiers.isbn10.identifier }}
-                    </div>
+                    <span v-else class="italic text-gray-400">Undefined</span>
                   </div>
                 </span>
                 <span v-else class="italic text-gray-400">Undefined</span>
