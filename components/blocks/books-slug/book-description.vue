@@ -14,19 +14,30 @@
           <div class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500">Author</dt>
             <dd class="mt-1 text-sm text-gray-900">
-              {{ book.author.lastname }}, {{ book.author.firstname }}
+              <span v-if="book.author">
+                {{ book.author.lastname }}, {{ book.author.firstname }}
+              </span>
             </dd>
           </div>
           <div class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500">Publishing</dt>
             <dd class="mt-1 text-sm text-gray-900">
-              {{ book.publisher.name }} ({{ $getDate(book.publishDate) }})
+              <span v-if="book.publisher"
+                >{{ book.publisher.name }} ({{
+                  $getDate(book.publishDate)
+                }})</span
+              >
+              <span v-else class="italic text-gray-400">Undefined</span>
             </dd>
           </div>
           <div class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500">Language</dt>
             <dd class="mt-1 text-sm text-gray-900">
-              <img :src="book.language.flag" :alt="book.language.slug" />
+              <img
+                v-if="book.language"
+                :src="book.language.flag"
+                :alt="book.language.slug"
+              />
             </dd>
           </div>
           <div class="sm:col-span-1">
