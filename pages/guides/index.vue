@@ -97,7 +97,7 @@
           </nuxt-link>
         </ul>
       </div>
-      <div class="xl:col-span-1">extra guides content</div>
+      <div class="xl:col-span-1"></div>
     </div>
   </main>
 </template>

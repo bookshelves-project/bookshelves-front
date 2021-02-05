@@ -1,16 +1,9 @@
 <template>
   <main class="container mb-5 max-w-7xl">
-    <div class="relative mb-8">
-      <div class="absolute inset-0 flex items-center" aria-hidden="true">
-        <div class="w-full border-t border-gray-300"></div>
-      </div>
-      <div v-if="search.length > 0" class="relative flex justify-center">
-        <span class="px-3 text-lg font-medium text-gray-900 bg-white">
-          Results for &ldquo;<i>{{ $route.query['terms'] }}</i
-          >&rdquo; : {{ search.length }} Books
-        </span>
-      </div>
-    </div>
+    <section-heading
+      :title="`Results for &ldquo;${$route.query['terms']}&rdquo;`"
+      :subtitle="`${search.length} eBooks`"
+    />
     <transition name="fade">
       <div v-if="search.length > 0" :key="componentKey" class="display-grid">
         <entity-card
@@ -61,10 +54,11 @@
 <script>
 import qs from 'qs'
 import entityCard from '~/components/blocks/entity-card.vue'
+import SectionHeading from '~/components/blocks/section-heading.vue'
 
 export default {
   name: 'SearchIndex',
-  components: { entityCard },
+  components: { entityCard, SectionHeading },
   data() {
     return {
       search: {},

@@ -15,6 +15,11 @@ export default {
         content:
           'For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you. Get eBooks (EPUB format), add it to your eReader and read!',
       },
+      {
+        hid: 'author',
+        name: 'author',
+        content: 'Bookshelves Team',
+      },
       // Open Graph
       {
         hid: 'og:site_name',

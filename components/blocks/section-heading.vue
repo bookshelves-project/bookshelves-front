@@ -2,12 +2,15 @@
   <div class="pb-6 mb-10 border-b border-gray-200">
     <div class="sm:flex sm:justify-between sm:items-baseline">
       <div class="sm:w-0 sm:flex-1">
-        <h1 id="message-heading" class="text-2xl font-medium text-gray-900">
-          {{ title }}
-        </h1>
-        <p class="mt-1 overflow-hidden text-sm text-gray-500 overflow-ellipsis">
-          {{ subtitle }}
-        </p>
+        <h1
+          id="message-heading"
+          class="text-2xl font-medium text-gray-900"
+          v-html="title"
+        ></h1>
+        <h2
+          class="mt-1 overflow-hidden text-sm text-gray-500 overflow-ellipsis"
+          v-html="subtitle"
+        ></h2>
       </div>
     </div>
   </div>
