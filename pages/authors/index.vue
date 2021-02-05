@@ -83,31 +83,6 @@ export default {
         ),
       ])
 
-      await Promise.all(
-        authors.data.map(async (author) => {
-          const pictureDefault = `${process.env.BASE_URL}/images/author-no-picture.png`
-          let picture = ''
-          let authorName = author.name
-          const regex = /\s/g
-          authorName = authorName.replace(regex, '%20')
-          const url = `https://en.wikipedia.org/w/api.php?action=query&origin=*&titles=${authorName}&prop=pageimages&format=json&pithumbsize=512`
-          try {
-            const result = await app.$http.$get(url)
-            const source =
-              result.query.pages[Object.keys(result.query.pages)[0]]
-
-            try {
-              picture = source.thumbnail.source
-            } catch (error) {
-              picture = pictureDefault
-            }
-          } catch (error) {
-            picture = pictureDefault
-          }
-          author.picture = picture
-        })
-      )
-
       return {
         authors,
         pages: authors.meta.last_page,

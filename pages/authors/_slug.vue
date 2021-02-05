@@ -3,13 +3,13 @@
     <div>
       <div class="mx-auto mb-8">
         <!-- <nuxt-picture
-          :src="authorPicture"
+          :src="author.picture"
           :alt="author.name"
           class="object-cover object-center w-32 h-32 mx-auto rounded-full"
           placeholder="/images/author-no-cover.png"
         /> -->
         <img
-          v-lazy="authorPicture"
+          v-lazy="author.picture"
           :alt="author.name"
           class="object-cover object-center w-32 h-32 mx-auto rounded-full"
         />
@@ -98,7 +98,6 @@ export default {
         app.$axios.$get(`/authors/${params.slug}`),
       ])
 
-      console.log(author)
       return {
         author: author.data,
       }
@@ -112,30 +111,8 @@ export default {
   },
   data() {
     return {
-      authorPicture: '/images/author-no-picture.png',
       componentKey: 0,
     }
-  },
-  created() {
-    this.getAuthorPicture()
-  },
-  methods: {
-    async getAuthorPicture() {
-      let authorName = this.author.name
-      authorName = authorName.replaceAll(' ', '%20')
-      const url = `https://en.wikipedia.org/w/api.php?action=query&origin=*&titles=${authorName}&prop=pageimages&format=json&pithumbsize=512`
-
-      console.log(url)
-      const result = await this.$http.$get(url)
-      const source = result.query.pages[Object.keys(result.query.pages)[0]]
-      let picture = `${process.env.BASE_URL}/images/author-no-picture.png`
-      try {
-        picture = source.thumbnail.source
-      } catch (error) {}
-      console.log(picture)
-      this.authorPicture = picture
-      // return picture
-    },
   },
   head() {
     const title = `${this.author.name} - Authors`
