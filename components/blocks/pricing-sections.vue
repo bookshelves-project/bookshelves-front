@@ -30,17 +30,6 @@
                 :value="feature"
               />
             </ul>
-            <div class="mt-8">
-              <div class="rounded-lg shadow-md">
-                <button
-                  class="block w-full px-6 py-3 text-base font-medium text-center text-indigo-600 bg-white border border-transparent rounded-lg hover:bg-gray-50"
-                  aria-describedby="tier-leave"
-                  @click="pricings.leave.ctaAction"
-                >
-                  {{ pricings.leave.cta }}
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>

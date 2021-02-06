@@ -45,10 +45,6 @@ export default {
           description:
             "You disagree with what Bookshelves offers and think it's shameful.",
           features: ['Leave this website now'],
-          cta: 'Leave now!',
-          ctaAction: () => {
-            window.close()
-          },
         },
         free: {
           title: 'Freedom',

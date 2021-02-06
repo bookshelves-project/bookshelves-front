@@ -13,8 +13,9 @@ export const state = () => ({
   footerNavigation: [
     { label: 'About', icon: 'book-open', route: '/footer/about' },
     { label: 'Team', icon: 'book-open', route: '/footer/team' },
+    { label: 'More eBooks', icon: 'book-open', route: '/footer/more-ebooks' },
     { label: 'Legal', icon: 'book-open', route: '/footer/legal' },
-    { label: 'Contact', icon: 'book-open', route: 'contact' },
+    { label: 'Contact', icon: 'book-open', route: '/contact' },
   ],
   design: ['bibliophile', 'book-lover', 'bookmark'],
   showAlert: false,
