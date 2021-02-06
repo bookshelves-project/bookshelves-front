@@ -63,7 +63,7 @@ export default {
           icon: 'download',
           label: 'Download & read',
           text:
-            'Download an eBook and/or a serie of eBooks, add eBooks to your reader and read!',
+            'Download an eBook and/or a serie of eBook, add them to your Ereader and start reading!',
         },
         {
           icon: 'code',

@@ -16,7 +16,7 @@
                 >
               </h1>
               <p
-                class="mt-3 text-base text-gray-600 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl"
+                class="mt-3 text-base text-gray-600 dark:text-gray-400 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl"
               >
                 If you have an eReader and are looking for plenty of eBooks to
                 take everywhere with you, you've come to the right place, hours

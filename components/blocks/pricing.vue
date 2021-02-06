@@ -56,7 +56,7 @@ export default {
             "Download an eBook, a complete series or even all of an author's books",
             'Read the guides with coffee/tea/chocolate (not included) to learn more',
           ],
-          cta: 'Discover all eBooks!',
+          cta: 'Discover all eBooks',
           ctaAction: () => {
             this.$router.push('books')
           },
@@ -71,7 +71,7 @@ export default {
             'Leave ratings and comments',
             'Propose your eBooks',
           ],
-          cta: 'Sign up!',
+          cta: 'Sign up',
           ctaAction: () => {
             // this.$router.push('register')
             this.$store.commit('setAlertMessage', {

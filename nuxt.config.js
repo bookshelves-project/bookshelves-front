@@ -144,8 +144,6 @@ export default {
     '@nuxtjs/router',
     // https://google-fonts.nuxtjs.org/
     '@nuxtjs/google-fonts',
-    // https://color-mode.nuxtjs.org/
-    '@nuxtjs/color-mode',
     // https://github.com/nuxt-community/web-vitals-module
     // [
     //   'nuxt-vitals',

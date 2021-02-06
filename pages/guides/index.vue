@@ -26,7 +26,9 @@
                   class="flex-1 min-w-0 px-4 md:grid md:grid-cols-2 md:gap-4"
                 >
                   <div>
-                    <p class="flex items-center mt-2 text-sm text-gray-500">
+                    <p
+                      class="flex items-center mt-2 text-sm text-gray-500 dark:text-gray-300"
+                    >
                       <svg
                         class="w-6 h-6"
                         fill="currentColor"
@@ -49,7 +51,7 @@
                   </div>
                   <div class="hidden md:block">
                     <div>
-                      <p class="text-sm text-gray-900">
+                      <p class="text-sm text-gray-900 dark:text-gray-100">
                         Updated at
                         <time :datetime="guide.updatedAt">{{
                           $getDate(guide.updatedAt)

@@ -2,7 +2,7 @@
   <main class="container max-w-7xl">
     <section-heading
       title="Authors"
-      subtitle="Want to find all books wrote by specific author?"
+      subtitle="Want to find all books written by specific author?"
     />
     <div>
       <div class="display-grid">

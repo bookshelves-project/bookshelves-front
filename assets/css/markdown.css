@@ -13,12 +13,30 @@
     @apply text-white;
   }
   & a {
-    @apply text-gray-100 !important;
+    @apply text-gray-100;
   }
 }
 
-.warning {
-  @apply dark:bg-yellow-900;
+.nuxt-content a {
+  @apply dark:text-white !important;
+}
+.nuxt-content .alert-warning {
+  @apply dark:bg-yellow-900 dark:bg-opacity-50 dark:text-gray-200;
+}
+.nuxt-content .alert-tip {
+  @apply dark:bg-green-900 dark:bg-opacity-50 dark:text-gray-200;
+}
+.nuxt-content .alert-danger {
+  @apply dark:bg-red-900 dark:bg-opacity-50 dark:text-gray-200;
+}
+.nuxt-content .alert-info {
+  @apply dark:bg-blue-900 dark:bg-opacity-50 dark:text-gray-200;
+}
+.nuxt-content code {
+  @apply dark:bg-gray-800;
+}
+.nuxt-content pre {
+  @apply dark:bg-gray-800;
 }
 .nuxt-content {
   & a {

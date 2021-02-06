@@ -108,7 +108,7 @@ export default {
   },
   head() {
     const title = `${this.serie.title} - Series`
-    const description = `Wrote by ${this.serie.author} with ${this.serie.books_number} books.`
+    const description = `Written by ${this.serie.author} with ${this.serie.books_number} books.`
     const image = this.serie.cover
     return {
       title,

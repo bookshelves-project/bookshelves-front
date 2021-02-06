@@ -27,7 +27,7 @@
           {{ book.title }}
         </h1>
         <p class="text-sm font-medium text-gray-500">
-          Wrote by
+          Written by
           <a href="#" class="text-gray-900">
             {{ book.author.name }}
           </a>

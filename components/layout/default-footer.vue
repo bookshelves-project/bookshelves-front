@@ -18,7 +18,7 @@
           >
             <span
               href="#"
-              class="text-base text-gray-500 group-hover:text-gray-900"
+              class="text-base text-gray-500 transition-colors duration-100 group-hover:text-gray-900 dark:group-hover:text-gray-100"
             >
               {{ link.label }}
             </span>

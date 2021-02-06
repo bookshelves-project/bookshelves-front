@@ -5,7 +5,7 @@
         <div class="flex px-2 lg:px-0">
           <div class="flex items-center flex-shrink-0">
             <button
-              class="inline-flex items-center w-auto h-8 lg:hidden"
+              class="inline-flex items-center w-auto h-8 lg:hidden dark:text-gray-100"
               @click="openSidebar"
             >
               <svg

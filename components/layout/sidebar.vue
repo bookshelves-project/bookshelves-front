@@ -6,7 +6,7 @@
         :class="
           $store.state.sidebarOpened ? 'translate-x-0' : '-translate-x-full'
         "
-        class="relative flex flex-col flex-1 w-full max-w-xs pt-5 pb-4 transition duration-300 ease-in-out transform"
+        class="relative flex flex-col flex-1 w-full max-w-xs pt-5 pb-4 transition duration-300 ease-in-out transform bg-white dark:bg-gray-800"
       >
         <div
           :class="$store.state.sidebarOpened ? 'opacity-100' : 'opacity-0'"
