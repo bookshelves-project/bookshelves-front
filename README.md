@@ -24,7 +24,10 @@
 ## TODO
 
 - author sort by serie with divider
-- add last books added
+- add last books added with random book cta
+- entity card book add lang
+- add dark mode
+- add i18n
 - check h1, h2, h3
 
 ## **I. Setup**

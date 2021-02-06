@@ -1,134 +1,32 @@
 <template>
-  <div>
-    <div class="container max-w-4xl bg-white">
-      <div class="pt-8 sm:pt-12 lg:pt-16">
-        <div class="px-4 mx-auto text-center max-w-7xl sm:px-6 lg:px-8">
-          <div class="max-w-3xl mx-auto space-y-2 lg:max-w-none">
-            <h2
-              class="text-lg font-semibold leading-6 tracking-wider text-indigo-600 uppercase"
-            >
-              Use it as you wish
-            </h2>
-            <p class="max-w-3xl mx-auto text-xl text-gray-900">
-              On the fly or customized as you wish, Bookshelves can be used the
-              way you want, whether it's through a quick switch or with an
-              account.
-            </p>
-          </div>
+  <section>
+    <div class="bg-white">
+      <div class="px-4 pt-12 sm:px-6 lg:px-8 lg:pt-20">
+        <div class="text-center">
+          <h2
+            class="text-lg font-semibold leading-6 tracking-wider text-gray-900 uppercase"
+          >
+            Packages
+          </h2>
+          <p
+            class="text-3xl font-extrabold text-primary-600 font-handlee mt- sm:text-4xl lg:text-5xl"
+          >
+            Your pleasure of reading, your choice of use
+          </p>
+          <p
+            class="max-w-4xl mx-auto mt-3 text-xl text-gray-900 sm:mt-5 sm:text-2xl"
+          >
+            Bookshelves offers three different navigation possibilities, it's up
+            to you to see what suits you best, nothing is definitive
+          </p>
         </div>
       </div>
-      <div
-        class="mt-12 space-y-4 lg:mt-16 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-10 lg:mx-auto xl:max-w-none xl:mx-0"
-      >
-        <div
-          v-for="pricing in pricings"
-          :key="pricing.id"
-          class="border border-gray-200 divide-y divide-gray-200 rounded-lg shadow-sm"
-        >
-          <div class="p-6">
-            <h2 class="text-lg font-medium leading-6 text-gray-900">
-              {{ pricing.title }}
-            </h2>
-            <p class="mt-4 text-sm text-gray-500">
-              All the basics for starting a new business
-            </p>
-          </div>
-          <div class="px-6 pt-6 pb-8">
-            <h3
-              class="text-xs font-medium tracking-wide text-gray-900 uppercase"
-            >
-              What's included
-            </h3>
-            <ul class="mt-6 space-y-4">
-              <li
-                v-for="feature in pricing.features"
-                :key="feature.id"
-                class="flex space-x-3"
-              >
-                <!-- Heroicon name: solid/check -->
-                <svg
-                  class="flex-shrink-0 w-5 h-5 text-green-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="text-sm text-gray-500">
-                  {{ feature }}
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div
-        class="hidden pb-12 mt-8 bg-gray-50 sm:mt-12 sm:pb-16 lg:mt-16 lg:pb-24"
-      >
-        <div class="relative">
-          <div class="absolute inset-0 bg-white h-3/4"></div>
-          <div class="relative z-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div
-              class="max-w-md mx-auto space-y-4 lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0"
-            >
-              <div
-                v-for="pricing in pricings"
-                :key="pricing.id"
-                class="flex flex-col overflow-hidden rounded-lg shadow"
-              >
-                <div class="px-6 py-8 bg-white sm:p-10 sm:pb-6">
-                  <div>
-                    <h3
-                      id="tier-standard"
-                      class="inline-flex px-4 py-1 text-sm font-semibold tracking-wide text-indigo-600 uppercase bg-indigo-100 rounded-full"
-                    >
-                      {{ pricing.title }}
-                    </h3>
-                  </div>
-                  <p class="mt-5 text-lg text-gray-500">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  </p>
-                </div>
-                <div
-                  class="flex flex-col justify-between flex-1 px-6 pt-6 pb-8 space-y-6 bg-gray-50 sm:p-10 sm:pt-6"
-                >
-                  <ul class="space-y-4">
-                    <li
-                      v-for="feature in pricing.features"
-                      :key="feature.id"
-                      class="flex items-start"
-                    >
-                      <div class="flex-shrink-0">
-                        <!-- Heroicon name: outline/check -->
-                        <svg
-                          class="w-6 h-6 text-green-500"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      </div>
-                      <p class="ml-3 text-base text-gray-700">
-                        {{ feature }}
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+
+      <div class="pb-12 mt-16 bg-white lg:mt-20 lg:pb-20">
+        <div class="relative z-0">
+          <div class="absolute inset-0 bg-white h-5/6 lg:h-2/3"></div>
+          <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <pricing-sections :pricings="pricings" />
           </div>
         </div>
       </div>
@@ -151,30 +49,63 @@
               :to="{ name: 'books' }"
               class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700"
             >
-              Get started
+              Discover eBooks
             </nuxt-link>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
+import pricingSections from './pricing-sections.vue'
 export default {
   name: 'Pricing',
+  components: { pricingSections },
   data() {
     return {
-      pricings: [
-        {
-          title: 'Guest',
-          features: ['Feature 1', 'Feature 2'],
+      pricings: {
+        leave: {
+          title: 'Leave',
+          description:
+            "You disagree with what Bookshelves offers and think it's shameful.",
+          features: ['Leave this website now'],
+          cta: 'Leave now!',
+          ctaAction: () => {
+            window.close()
+          },
         },
-        {
-          title: 'Account',
-          features: ['Feature 1', 'Feature 2', 'Feature 3'],
+        free: {
+          title: 'Freedom',
+          description:
+            'You like what we offer and you want to find lots of eBooks.',
+          features: [
+            'Browse the list of eBooks, series and authors',
+            'Search to find the eBook you absolutely want',
+            "Download an eBook, a complete series or even all of an author's books",
+            'Read the guides with coffee/tea/chocolate (not included) to learn more',
+          ],
+          cta: 'Discover all eBooks!',
+          ctaAction: () => {
+            this.$router.push('books')
+          },
         },
-      ],
+        account: {
+          title: 'Free account',
+          description:
+            'You like Bookshelves so much that you want extra features with an account?',
+          features: [
+            'All the features of the "Freedom" package',
+            'Get a list of your favorite eBooks',
+            'Propose your eBooks',
+          ],
+          cta: 'Sign up!',
+          ctaAction: () => {
+            this.$router.push('register')
+          },
+        },
+      },
     }
   },
 }
