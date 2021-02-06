@@ -48,7 +48,7 @@
         :class="
           profileDropdownOpened ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
         "
-        class="absolute left-0 right-0 z-10 mx-3 mt-1 origin-top bg-white divide-y divide-gray-200 rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
+        class="absolute left-0 right-0 z-10 mx-3 mt-1 origin-top  divide-y divide-gray-200 rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="options-menu"

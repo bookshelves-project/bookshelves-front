@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed z-30 w-full bg-white shadow">
+  <nav class="fixed z-30 w-full bg-white shadow dark:bg-black">
     <div class="px-2 mx-auto max-w-7xl sm:px-4 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex px-2 lg:px-0">
@@ -111,7 +111,7 @@
         </div>
         <div v-if="false" class="hidden lg:ml-4 lg:flex lg:items-center">
           <button
-            class="flex-shrink-0 p-1 text-gray-400 bg-white rounded-full hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            class="flex-shrink-0 p-1 text-gray-400 rounded-full hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             <span class="sr-only">View notifications</span>
             <!-- Heroicon name: outline/bell -->
@@ -137,7 +137,7 @@
             <div>
               <button
                 id="user-menu"
-                class="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 aria-haspopup="true"
               >
                 <span class="sr-only">Open user menu</span>
@@ -159,7 +159,7 @@
               To: "transform opacity-0 scale-95"
           -->
             <div
-              class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
+              class="absolute right-0 w-48 py-1 mt-2 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="user-menu"

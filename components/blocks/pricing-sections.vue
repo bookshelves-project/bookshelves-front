@@ -7,7 +7,7 @@
         class="flex flex-col h-full overflow-hidden rounded-lg shadow lg:rounded-none lg:rounded-l-lg"
       >
         <div class="flex flex-col flex-1">
-          <div class="px-6 py-10 bg-white">
+          <div class="px-6 py-10">
             <div>
               <h3
                 id="tier-leave"
@@ -15,13 +15,15 @@
               >
                 {{ pricings.leave.title }}
               </h3>
-              <div class="flex items-center justify-center mt-4">
+              <div
+                class="flex items-center justify-center mt-4 dark:text-white"
+              >
                 {{ pricings.leave.description }}
               </div>
             </div>
           </div>
           <div
-            class="flex flex-col justify-between flex-1 p-6 border-t-2 border-gray-100 bg-gray-50 sm:p-10 lg:p-6 xl:p-10"
+            class="flex flex-col justify-between flex-1 p-6 border-t-2 border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 sm:p-10 lg:p-6 xl:p-10"
           >
             <ul class="space-y-4">
               <pricing-bullet
@@ -51,7 +53,7 @@
             </span>
           </div>
         </div>
-        <div class="px-6 pt-12 pb-10 bg-white rounded-t-lg">
+        <div class="px-6 pt-12 pb-10 rounded-t-lg">
           <div>
             <h3
               id="tier-free"
@@ -59,13 +61,13 @@
             >
               {{ pricings.free.title }}
             </h3>
-            <div class="flex items-center justify-center mt-4">
+            <div class="flex items-center justify-center mt-4 dark:text-white">
               {{ pricings.free.description }}
             </div>
           </div>
         </div>
         <div
-          class="px-6 pt-10 pb-8 border-t-2 border-gray-100 rounded-b-lg bg-gray-50 sm:px-10 sm:py-10"
+          class="px-6 pt-10 pb-8 border-t-2 border-gray-100 rounded-b-lg dark:border-gray-800 bg-gray-50 dark:bg-gray-900 sm:px-10 sm:py-10"
         >
           <ul class="space-y-4">
             <pricing-bullet
@@ -95,7 +97,7 @@
         class="flex flex-col h-full overflow-hidden rounded-lg shadow lg:rounded-none lg:rounded-r-lg"
       >
         <div class="flex flex-col flex-1">
-          <div class="px-6 py-10 bg-white">
+          <div class="px-6 py-10">
             <div>
               <h3
                 id="tier-account"
@@ -103,13 +105,15 @@
               >
                 {{ pricings.account.title }}
               </h3>
-              <div class="flex items-center justify-center mt-4">
+              <div
+                class="flex items-center justify-center mt-4 dark:text-white"
+              >
                 {{ pricings.account.description }}
               </div>
             </div>
           </div>
           <div
-            class="flex flex-col justify-between flex-1 p-6 border-t-2 border-gray-100 bg-gray-50 sm:p-10 lg:p-6 xl:p-10"
+            class="flex flex-col justify-between flex-1 p-6 border-t-2 border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 sm:p-10 lg:p-6 xl:p-10"
           >
             <ul class="space-y-4">
               <pricing-bullet
@@ -121,7 +125,7 @@
             <div class="mt-8">
               <div class="rounded-lg shadow-md">
                 <button
-                  class="block w-full px-6 py-3 text-base font-medium text-center text-indigo-600 bg-white border border-transparent rounded-lg hover:bg-gray-50"
+                  class="block w-full px-6 py-3 text-base font-medium text-center text-indigo-600 border border-transparent rounded-lg hover:bg-gray-50 dark:bg-gray-900"
                   aria-describedby="tier-account"
                   @click="pricings.account.ctaAction"
                 >

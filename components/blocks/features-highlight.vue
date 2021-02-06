@@ -1,6 +1,6 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <div class="relative pt-16 pb-32 overflow-hidden bg-white">
+  <div class="relative pt-16 pb-32 overflow-hidden">
     <div class="relative">
       <div
         class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24"

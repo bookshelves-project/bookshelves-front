@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-white">
+  <section class="">
     <div class="px-4 pt-6 sm:px-6 lg:px-8 lg:pt-10">
       <div class="text-center">
         <h2
@@ -13,7 +13,7 @@
           Your pleasure of reading, your choice of use
         </p>
         <p
-          class="max-w-4xl mx-auto mt-3 text-xl text-gray-900 sm:mt-5 sm:text-2xl"
+          class="max-w-4xl mx-auto mt-3 text-xl text-gray-900 dark:text-gray-100 sm:mt-5 sm:text-2xl"
         >
           Bookshelves offers three different navigation possibilities, it's up
           to you to see what suits you best, nothing is definitive
@@ -21,9 +21,9 @@
       </div>
     </div>
 
-    <div class="pb-6 mt-16 bg-white lg:mt-20 lg:pb-10">
+    <div class="pb-6 mt-16 lg:mt-20 lg:pb-10">
       <div class="relative z-0">
-        <div class="absolute inset-0 bg-white h-5/6 lg:h-2/3"></div>
+        <div class="absolute inset-0 h-5/6 lg:h-2/3"></div>
         <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <pricing-sections :pricings="pricings" />
         </div>

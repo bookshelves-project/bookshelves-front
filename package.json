@@ -45,6 +45,7 @@
     "core-js": "^3.6.5",
     "node-isbn": "^1.6.0",
     "nuxt": "^2.14.6",
+    "nuxt-i18n": "^6.20.0",
     "qs": "^6.9.4",
     "swiper": "^6.4.10",
     "tailwindcss-debug-screens": "^2.0.0",
@@ -57,7 +58,7 @@
   },
   "devDependencies": {
     "@nuxt/image": "^0.3.0",
-    "@nuxtjs/color-mode": "^2.0.2",
+    "@nuxtjs/color-mode": "^2.0.3",
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/google-fonts": "^1.2.0",

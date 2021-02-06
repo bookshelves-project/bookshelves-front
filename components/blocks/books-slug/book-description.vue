@@ -1,10 +1,10 @@
 <template>
   <section aria-labelledby="applicant-information-title">
-    <div class="bg-white shadow sm:rounded-lg">
+    <div class="shadow sm:rounded-lg dark:bg-gray-900">
       <div class="px-4 py-5 sm:px-6">
         <div
           id="applicant-information-title"
-          class="text-lg font-medium leading-6 text-gray-900"
+          class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100"
         >
           Description
         </div>
@@ -12,20 +12,26 @@
       <div class="px-4 py-5 border-t border-gray-200 sm:px-6">
         <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
           <div v-if="book.author" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500">Author</dt>
-            <dd class="mt-1 text-sm text-gray-900">
+            <dt class="text-sm font-medium text-gray-900 dark:text-gray-500">
+              Author
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
               <h2>{{ book.author.lastname }}, {{ book.author.firstname }}</h2>
             </dd>
           </div>
           <div v-if="book.serie" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500">Serie</dt>
-            <dd class="mt-1 text-sm text-gray-900">
+            <dt class="text-sm font-medium text-gray-900 dark:text-gray-500">
+              Serie
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
               <h2>{{ book.serie.title }}, vol. {{ book.serie.number }}</h2>
             </dd>
           </div>
           <div v-if="book.publisher" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500">Publishing</dt>
-            <dd class="mt-1 text-sm text-gray-900">
+            <dt class="text-sm font-medium text-gray-900 dark:text-gray-500">
+              Publishing
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
               <span
                 >{{ book.publisher.name }} ({{
                   $getDate(book.publishDate)
@@ -34,14 +40,18 @@
             </dd>
           </div>
           <div v-if="book.language" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500">Language</dt>
-            <dd class="mt-1 text-sm text-gray-900">
+            <dt class="text-sm font-medium text-gray-900 dark:text-gray-500">
+              Language
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
               <img :src="book.language.flag" :alt="book.language.slug" />
             </dd>
           </div>
           <div v-if="book.isbn" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500">Identifiers</dt>
-            <dd class="mt-1 text-sm text-gray-900">
+            <dt class="text-sm font-medium text-gray-900 dark:text-gray-500">
+              Identifiers
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
               <transition name="fade">
                 <div v-if="!isbnResult">
                   {{ book.isbn }}
@@ -61,21 +71,31 @@
             </dd>
           </div>
           <div v-if="isbnResult" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500">Rating</dt>
-            <dd class="flex items-center mt-1 text-sm text-gray-900">
+            <dt class="text-sm font-medium text-gray-900 dark:text-gray-500">
+              Rating
+            </dt>
+            <dd
+              class="flex items-center mt-1 text-sm text-gray-900 dark:text-gray-100"
+            >
               {{ isbnResult.rating }}
             </dd>
           </div>
           <div v-if="isbnResult" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500">Page count</dt>
-            <dd class="flex items-center mt-1 text-sm text-gray-900">
+            <dt class="text-sm font-medium text-gray-900 dark:text-gray-500">
+              Page count
+            </dt>
+            <dd
+              class="flex items-center mt-1 text-sm text-gray-900 dark:text-gray-100"
+            >
               {{ isbnResult.pageCount }}
             </dd>
           </div>
           <div v-if="book.description" class="sm:col-span-2">
-            <dt class="text-sm font-medium text-gray-500">Abstract</dt>
+            <dt class="text-sm font-medium text-gray-900 dark:text-gray-500">
+              Abstract
+            </dt>
             <dd
-              class="mt-1 text-sm text-gray-900"
+              class="mt-1 text-sm text-gray-900 dark:text-gray-100"
               v-html="book.description"
             ></dd>
           </div>

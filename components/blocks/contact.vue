@@ -1,5 +1,5 @@
 <template>
-  <section class="px-4 py-6 overflow-hidden bg-white sm:px-6 lg:px-8 lg:py-10">
+  <section class="px-4 py-6 overflow-hidden sm:px-6 lg:px-8 lg:py-10">
     <div class="relative max-w-xl mx-auto">
       <svg
         class="absolute transform translate-x-1/2 left-full"

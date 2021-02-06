@@ -1,5 +1,5 @@
 <template>
-  <div class="relative mt-6 bg-white">
+  <div class="relative mt-6">
     <div class="absolute bottom-0 w-full h-80">
       <div class="h-full">
         <img
@@ -9,7 +9,7 @@
         />
         <div
           aria-hidden="true"
-          class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white"
+          class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white dark:from-black"
         ></div>
       </div>
     </div>
@@ -20,10 +20,12 @@
         >
           A quick tour of eBooks count
         </h2>
-        <p class="mt-3 text-3xl font-extrabold text-gray-700 font-handlee">
+        <p
+          class="mt-3 text-3xl font-extrabold text-gray-700 dark:text-gray-300 font-handlee"
+        >
           Lots of ebooks for ever more insatiable readers
         </p>
-        <p class="mt-5 text-lg text-gray-900">
+        <p class="mt-5 text-lg text-gray-900 dark:text-gray-100">
           More and more eBooks for more and more reading, each day brings its
           own novelties (or almost). Don't hesitate to come back from time to
           time to discover the new books.
@@ -37,11 +39,14 @@
             class="transition-colors duration-100 rounded-md hover:bg-gray-300 hover:bg-opacity-50"
           >
             <nuxt-link :to="{ name: metric.route }" class="block p-2">
-              <span class="block text-2xl font-bold text-gray-700">
+              <span
+                class="block text-2xl font-bold text-gray-700 dark:text-gray-300"
+              >
                 {{ metric.data }}
               </span>
-              <span class="block mt-1 text-base text-gray-900"
-                ><span class="font-medium text-gray-700">
+              <span
+                class="block mt-1 text-base text-gray-900 dark:text-gray-100"
+                ><span class="font-medium text-gray-700 dark:text-gray-300">
                   {{ metric.textTitle }}
                 </span>
                 {{ metric.text }}

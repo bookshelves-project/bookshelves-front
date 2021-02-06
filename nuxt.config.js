@@ -158,6 +158,8 @@ export default {
     // ],
     // https://image.nuxtjs.org
     // '@nuxt/image',
+    // https://color-mode.nuxtjs.org/#setup
+    '@nuxtjs/color-mode',
   ],
 
   tailwindcss: {
@@ -180,6 +182,10 @@ export default {
 
   // image: {},
 
+  colorMode: {
+    classSuffix: '',
+  },
+
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
@@ -198,6 +204,8 @@ export default {
     '@nuxtjs/sitemap',
     // https://www.npmjs.com/package/@nuxtjs/robots
     '@nuxtjs/robots',
+    // https://i18n.nuxtjs.org/setup
+    // 'nuxt-i18n',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -221,6 +229,7 @@ export default {
   robots: {
     /* module options */
   },
+  // i18n: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},

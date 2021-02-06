@@ -1,5 +1,5 @@
 <template>
-  <div :class="dev ? 'debug-screens' : ''">
+  <div :class="dev ? 'debug-screens' : ''" class="dark:bg-black">
     <layer />
     <navbar />
     <sidebar />

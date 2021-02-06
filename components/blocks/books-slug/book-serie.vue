@@ -3,7 +3,7 @@
     aria-labelledby="timeline-title"
     class="xl:col-start-2 xl:col-span-1"
   >
-    <div class="px-4 py-5 bg-white shadow sm:rounded-lg sm:px-6">
+    <div class="px-4 py-5 shadow sm:rounded-lg sm:px-6 dark:bg-gray-900">
       <h2 id="timeline-title" class="text-lg font-medium text-gray-900">
         Series
       </h2>

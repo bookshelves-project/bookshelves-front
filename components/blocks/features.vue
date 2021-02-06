@@ -1,5 +1,5 @@
 <template>
-  <div class="relative py-16 bg-white sm:py-24 lg:py-32">
+  <div class="relative py-16 sm:py-24 lg:py-32">
     <div
       class="max-w-md px-4 mx-auto text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
     >
@@ -15,7 +15,9 @@
       <div class="mt-12">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div v-for="feature in features" :key="feature.id" class="pt-6">
-            <div class="flow-root px-6 pb-8 rounded-lg bg-gray-50">
+            <div
+              class="flow-root px-6 pb-8 rounded-lg bg-gray-50 dark:bg-gray-900"
+            >
               <div class="-mt-6">
                 <div
                   class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow"

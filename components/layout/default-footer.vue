@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-white">
+  <footer class="">
     <div class="px-4 pt-12 pb-8 mx-auto max-w-7xl sm:px-6 md:px-8">
       <div class="items-center justify-between w-full md:inline-flex">
         <nuxt-link to="/" class="flex items-center mx-auto md:mx-0 w-max">
@@ -23,6 +23,7 @@
               {{ link.label }}
             </span>
           </nuxt-link>
+          <color-switcher class="mx-2" />
           <back-to-top />
         </nav>
       </div>
@@ -107,11 +108,12 @@
 
 <script>
 import packageJson from '@/package.json'
+import ColorSwitcher from '../special/color-switcher.vue'
 import backToTop from './back-to-top.vue'
 
 export default {
   name: 'DefaultFooter',
-  components: { backToTop },
+  components: { backToTop, ColorSwitcher },
   data() {
     return {
       packageJson,

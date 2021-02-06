@@ -26,7 +26,7 @@
           <div class="w-full border-t border-gray-300"></div>
         </div>
         <div class="relative flex justify-center">
-          <span class="px-3 text-lg font-medium text-gray-900 bg-white">
+          <span class="px-3 text-lg font-medium text-gray-900">
             {{ serie.books_number }} Books
           </span>
         </div>

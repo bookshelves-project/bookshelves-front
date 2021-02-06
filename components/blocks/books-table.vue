@@ -31,7 +31,7 @@
           ></th>
         </tr>
       </thead>
-      <tbody class="bg-white divide-y divide-gray-100">
+      <tbody class="divide-y divide-gray-100">
         <project-row
           v-for="(book, bookId) in books"
           :id="bookId"

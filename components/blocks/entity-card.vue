@@ -26,7 +26,7 @@
         </div>
       </div>
       <div
-        class="flex items-center w-full h-full p-1 pb-3 transition-colors duration-300 bg-white md:h-14 group-hover:bg-opacity-50 rounded-b-md"
+        class="flex items-center w-full h-full p-1 pb-3 transition-colors duration-300 md:h-14 group-hover:bg-opacity-50 rounded-b-md"
       >
         <div class="hidden m-auto font-semibold text-center md:block w-max">
           <slot name="title" />
