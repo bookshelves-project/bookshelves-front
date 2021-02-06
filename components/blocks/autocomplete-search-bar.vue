@@ -48,7 +48,7 @@
                 class="w-16 h-16 rounded-md"
               />
             </div>
-            <div class="ml-2">
+            <div class="ml-2 dark:text-gray-700">
               <div class="font-semibold wiki-title">
                 {{ result.title }}
                 <span v-if="result.author">by {{ result.author.name }}</span>

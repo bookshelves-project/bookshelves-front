@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed z-30 w-full bg-white shadow dark:bg-black">
+  <nav class="fixed z-30 w-full bg-white shadow dark:bg-gray-900">
     <div class="px-2 mx-auto max-w-7xl sm:px-4 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex px-2 lg:px-0">
@@ -57,6 +57,7 @@
           <div class="w-full max-w-lg lg:max-w-xs">
             <autocomplete-search-bar />
           </div>
+          <color-switcher class="mx-3" />
         </div>
         <div v-if="false" class="flex items-center lg:hidden">
           <!-- Mobile menu button -->
@@ -193,10 +194,11 @@
 <script>
 import vClickOutside from 'v-click-outside'
 import autocompleteSearchBar from '../blocks/autocomplete-search-bar.vue'
+import ColorSwitcher from '../special/color-switcher.vue'
 
 export default {
   name: 'Navbar',
-  components: { autocompleteSearchBar },
+  components: { autocompleteSearchBar, ColorSwitcher },
   directives: {
     clickOutside: vClickOutside.directive,
   },

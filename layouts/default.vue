@@ -65,6 +65,6 @@ export default {
 
 <style>
 .min-height-content {
-  min-height: 62vh;
+  min-height: 70vh;
 }
 </style>

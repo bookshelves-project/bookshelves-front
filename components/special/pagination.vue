@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="flex border rounded">
+    <ul class="flex border rounded dark:border-gray-800">
       <li class="item">
         <nuxt-link
           :tag="getTag(1)"
@@ -173,6 +173,10 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+a,
+span {
+  @apply dark:border-gray-800 !important;
+}
 .item {
   & a,
   & span {

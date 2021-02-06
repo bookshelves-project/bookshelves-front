@@ -1,5 +1,5 @@
 .autocomplete-input {
-  @apply border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pl-10 pr-3 py-2 block w-full;
+  @apply border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pl-10 pr-3 py-2 block w-full dark:bg-gray-300 dark:text-gray-700 dark:placeholder-gray-700;
 }
 .autocomplete-input:focus,
 .autocomplete-input[aria-expanded='true'] {
@@ -27,13 +27,13 @@
   animation: rotate 1s linear infinite;
 }
 .autocomplete-result-list {
+  @apply bg-white dark:bg-gray-300;
   margin: 0;
   border: 1px solid rgba(0, 0, 0, 0.12);
   padding: 0;
   box-sizing: border-box;
   max-height: 296px;
   overflow-y: auto;
-  background: #fff;
   list-style: none;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.16);
 }

@@ -23,7 +23,6 @@
               {{ link.label }}
             </span>
           </nuxt-link>
-          <color-switcher class="mx-2" />
           <back-to-top />
         </nav>
       </div>
@@ -108,12 +107,11 @@
 
 <script>
 import packageJson from '@/package.json'
-import ColorSwitcher from '../special/color-switcher.vue'
 import backToTop from './back-to-top.vue'
 
 export default {
   name: 'DefaultFooter',
-  components: { backToTop, ColorSwitcher },
+  components: { backToTop },
   data() {
     return {
       packageJson,

@@ -82,7 +82,8 @@ module.exports = {
   },
   variants: {
     extend: {
-      textColor: ['responsive', 'hover', 'focus', 'group-hover'],
+      display: ['dark'],
+      textColor: ['responsive', 'hover', 'focus', 'group-hover', 'dark'],
       scale: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
       translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
       backgroundColor: ['hover', 'focus', 'group-hover'],
