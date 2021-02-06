@@ -1,42 +1,44 @@
 <template>
   <footer class="">
-    <div class="px-4 pt-12 pb-8 mx-auto max-w-7xl sm:px-6 md:px-8">
-      <div class="items-center justify-between w-full md:inline-flex">
-        <nuxt-link to="/" class="flex items-center mx-auto md:mx-0 w-max">
+    <div class="px-4 pt-12 pb-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="items-center justify-between w-full lg:inline-flex">
+        <nuxt-link to="/" class="flex items-center lg:mx-0 w-max">
           <icon name="bookshelves-logo" :size="40" class="text-gray-500" />
           <div class="ml-3 text-xl text-gray-500 font-handlee">Bookshelves</div>
         </nuxt-link>
         <nav
-          class="items-center justify-center mt-5 -mx-5 -my-2 text-center md:flex-wrap md:flex md:mt-0"
+          class="items-center justify-center mt-5 lg:text-center lg:flex-wrap lg:flex lg:mt-0"
           aria-label="Footer"
         >
-          <nuxt-link
-            v-for="link in $store.state.footerNavigation"
-            :key="link.id"
-            :to="link.route"
-            class="block px-5 py-2 group"
-          >
-            <span
-              href="#"
-              class="text-base text-gray-500 transition-colors duration-100 group-hover:text-gray-900 dark:group-hover:text-gray-100"
+          <div class="grid grid-cols-2 lg:flex lg:grid-cols-none">
+            <nuxt-link
+              v-for="link in $store.state.footerNavigation"
+              :key="link.id"
+              :to="link.route"
+              class="block px-5 py-4 lg:py-2 group"
             >
-              {{ link.label }}
-            </span>
-          </nuxt-link>
-          <back-to-top />
+              <span
+                href="#"
+                class="text-base text-gray-500 transition-colors duration-100 group-hover:text-gray-900 dark:group-hover:text-gray-100"
+              >
+                {{ link.label }}
+              </span>
+            </nuxt-link>
+            <back-to-top class="p-4 lg:p-0" />
+          </div>
         </nav>
       </div>
-      <div class="mt-5 md:flex md:items-center md:justify-between">
-        <div class="flex justify-center space-x-6 md:order-2">
+      <div class="mt-5 lg:flex lg:items-center lg:justify-between">
+        <div class="flex justify-center space-x-6 lg:order-2">
           <div
             class="items-center hidden px-1 text-base leading-6 text-gray-400 transition-colors duration-300 rounded-md lg:flex lg:w-max"
           >
-            <div class="pb-5 text-center md:pb-0">Built with</div>
+            <div class="pb-5 text-center lg:pb-0">Built with</div>
             <a
               href="https://nuxtjs.org"
               target="_blank"
               rel="noopener noreferrer"
-              class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current md:ml-1 hover:nuxt-svg"
+              class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current lg:ml-1 hover:nuxt-svg"
               v-html="nuxtFullSvg"
             ></a
             >,
@@ -58,8 +60,8 @@
             >.
           </div>
         </div>
-        <div class="mt-8 md:mt-0">
-          <div class="items-center text-base text-center text-gray-400 md:flex">
+        <div class="mt-8 lg:mt-0">
+          <div class="items-center text-base text-center text-gray-400 lg:flex">
             <a
               href="https://creativecommons.org"
               target="_blank"
@@ -79,14 +81,14 @@
                 {{ date(2020) }}
               </span>
             </a>
-            <span class="hidden mx-1 md:block"> · </span>
+            <span class="hidden mx-1 lg:block"> · </span>
             <a
               :href="`${packageJson.repository.url}/-/project_members`"
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center justify-center px-1 py-2 text-base leading-6 text-center text-gray-400 transition-colors duration-300 rounded-md hover:text-gray-600"
             >
-              Bookshelves Team<span class="hidden md:block">,</span>
+              Bookshelves Team<span class="hidden lg:block">,</span>
             </a>
             <a
               :href="`${packageJson.repository.url}/-/blob/master/LICENSE`"
@@ -94,7 +96,7 @@
               rel="noopener noreferrer"
               class="flex items-center justify-center px-1 py-2 text-base leading-6 text-center text-gray-400 transition-colors duration-300 rounded-md hover:text-gray-600"
             >
-              {{ packageJson.license }} license<span class="hidden md:block"
+              {{ packageJson.license }} license<span class="hidden lg:block"
                 >.</span
               >
             </a>

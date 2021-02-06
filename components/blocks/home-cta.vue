@@ -15,7 +15,7 @@
         <div class="inline-flex rounded-md shadow">
           <nuxt-link
             :to="{ name: 'books' }"
-            class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700"
+            class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white transition-colors duration-100 border border-transparent rounded-md bg-primary-600 hover:bg-indigo-700"
           >
             Discover eBooks
           </nuxt-link>
