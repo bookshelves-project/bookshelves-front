@@ -1,8 +1,8 @@
 <template>
   <transition name="fade">
-    <div
+    <button
       v-if="displayBackToTop"
-      class="p-2 transition-colors duration-100 bg-opacity-50 cursor-pointer hover:bg-gray-100 group"
+      class="p-2 mr-5 transition-colors duration-100 bg-opacity-50 hover:bg-gray-100 group"
       @click="scrollToTop"
     >
       <span class="icon">
@@ -12,7 +12,7 @@
           />
         </svg>
       </span>
-    </div>
+    </button>
   </transition>
 </template>
 

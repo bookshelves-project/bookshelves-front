@@ -10,8 +10,8 @@
           <div class="px-6 py-10 bg-white">
             <div>
               <h3
-                id="tier-hobby"
-                class="text-2xl font-medium text-center text-gray-900"
+                id="tier-leave"
+                class="text-2xl font-medium text-center text-gray-900 font-handlee"
               >
                 {{ pricings.leave.title }}
               </h3>
@@ -65,8 +65,8 @@
         <div class="px-6 pt-12 pb-10 bg-white rounded-t-lg">
           <div>
             <h3
-              id="tier-growth"
-              class="text-3xl font-semibold text-center text-gray-900 sm:-mx-6"
+              id="tier-free"
+              class="text-3xl font-semibold text-center text-gray-900 font-handlee sm:-mx-6"
             >
               {{ pricings.free.title }}
             </h3>
@@ -109,8 +109,8 @@
           <div class="px-6 py-10 bg-white">
             <div>
               <h3
-                id="tier-scale"
-                class="text-2xl font-medium text-center text-gray-900"
+                id="tier-account"
+                class="text-2xl font-medium text-center text-gray-900 font-handlee"
               >
                 {{ pricings.account.title }}
               </h3>
@@ -154,8 +154,8 @@ export default {
   components: { pricingBullet },
   props: {
     pricings: {
-      type: Array,
-      default: () => [],
+      type: Object,
+      default: () => {},
     },
   },
 }

@@ -11,6 +11,7 @@ import AuthorsIndex from '~/pages/authors/index'
 import AuthorsSlug from '~/pages/authors/_slug'
 import SearchIndex from '~/pages/search/index'
 import Guides from '~/pages/guides/index'
+import Contact from '~/pages/contact/index'
 import Content from '~/pages/guides/_'
 
 Vue.use(Router)
@@ -81,6 +82,11 @@ const routesList = [
     name: 'guides',
     path: '/guides',
     component: Guides,
+  },
+  {
+    name: 'contact',
+    path: '/contact',
+    component: Contact,
   },
   {
     name: 'all',

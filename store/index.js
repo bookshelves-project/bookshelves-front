@@ -14,8 +14,15 @@ export const state = () => ({
     { label: 'About', icon: 'book-open', route: '/footer/about' },
     { label: 'Team', icon: 'book-open', route: '/footer/team' },
     { label: 'Legal', icon: 'book-open', route: '/footer/legal' },
+    { label: 'Contact', icon: 'book-open', route: 'contact' },
   ],
   design: ['bibliophile', 'book-lover', 'bookmark'],
+  showAlert: false,
+  alert: {
+    type: 'warning',
+    title: 'Oops!',
+    message: 'This action is not possible.',
+  },
 })
 
 export const mutations = {
@@ -39,6 +46,15 @@ export const mutations = {
   },
   setMetaPicture(state, data) {
     state.metaPicture = data
+  },
+  toggleShowAlert(state) {
+    state.showAlert = !state.showAlert
+  },
+  setShowAlert(state, data) {
+    state.showAlert = data
+  },
+  setAlertMessage(state, data) {
+    state.alert = data
   },
   initializeStore() {
     // const bookView = localStorage.getItem('books-view')

@@ -4,7 +4,7 @@
       <div class="sm:w-0 sm:flex-1">
         <h1
           id="message-heading"
-          class="text-2xl font-medium text-gray-900"
+          class="text-2xl font-extrabold font-handlee text-primary-600"
           v-html="title"
         ></h1>
         <h2

@@ -14,9 +14,12 @@
             v-for="link in $store.state.footerNavigation"
             :key="link.id"
             :to="link.route"
-            class="block px-5 py-2"
+            class="block px-5 py-2 group"
           >
-            <span href="#" class="text-base text-gray-500 hover:text-gray-900">
+            <span
+              href="#"
+              class="text-base text-gray-500 group-hover:text-gray-900"
+            >
               {{ link.label }}
             </span>
           </nuxt-link>

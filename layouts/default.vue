@@ -4,6 +4,7 @@
     <navbar />
     <sidebar />
     <div class="pt-24"></div>
+    <alert />
     <Nuxt class="min-height-content" />
     <default-footer />
     <!-- <client-only>
@@ -31,6 +32,7 @@
 </template>
 
 <script>
+import Alert from '~/components/blocks/alert.vue'
 import DefaultFooter from '~/components/layout/default-footer.vue'
 import Layer from '~/components/layout/layer.vue'
 import Navbar from '~/components/layout/navbar.vue'
@@ -47,6 +49,7 @@ export default {
     DefaultFooter,
     Sidebar,
     Layer,
+    Alert,
     // StaticSidebar,
     // Sidebar,
     // HeaderResponsive,

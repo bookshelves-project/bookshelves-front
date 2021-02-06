@@ -1,17 +1,16 @@
 <template>
   <div>
     <hero />
-    <main>
-      <statistics
-        :authors="authorsCount"
-        :books="booksCount"
-        :series="seriesCount"
-      />
-      <cloud-logos />
-      <features />
-      <features-highlight />
-    </main>
+    <statistics
+      :authors="authorsCount"
+      :books="booksCount"
+      :series="seriesCount"
+    />
+    <cloud-logos />
+    <features />
+    <features-highlight />
     <pricing />
+    <home-cta />
   </div>
 </template>
 
@@ -20,6 +19,7 @@ import CloudLogos from '~/components/blocks/cloud-logos.vue'
 import FeaturesHighlight from '~/components/blocks/features-highlight.vue'
 import Features from '~/components/blocks/features.vue'
 import Hero from '~/components/blocks/hero.vue'
+import HomeCta from '~/components/blocks/home-cta.vue'
 import Pricing from '~/components/blocks/pricing.vue'
 import Statistics from '~/components/blocks/statistics.vue'
 
@@ -32,6 +32,7 @@ export default {
     Features,
     CloudLogos,
     FeaturesHighlight,
+    HomeCta,
   },
   auth: 'auth',
   layout: 'auth',
@@ -39,30 +40,11 @@ export default {
     try {
       const welcome = await $content('welcome').fetch()
 
-      // const booksStore = store.state.books
-      // if (booksStore.length < 1) {
-      //   const page = query.page
       const [booksCount, seriesCount, authorsCount] = await Promise.all([
         app.$axios.$get('/books/count'),
         app.$axios.$get('/series/count'),
         app.$axios.$get('/authors/count'),
       ])
-      // } else {
-      //   console.log('detect books in store!')
-      // }
-
-      //   const posts = await app.$axios.$get(
-      //   `/blog/posts?${qs.stringify({
-      //     page: page || 1,
-      //     perPage: 6
-      //   })}`
-      // )
-      // return {
-      // posts: posts.data,
-      // pages: posts.meta.pagination.total_pages,
-      // currentPage: posts.meta.pagination.current_page
-      // }
-
       return {
         welcome,
         booksCount,
