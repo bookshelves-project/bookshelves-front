@@ -17,6 +17,9 @@
   }
 }
 
+.warning {
+  @apply dark:bg-yellow-900;
+}
 .nuxt-content {
   & a {
     text-decoration: none !important;
@@ -100,7 +103,7 @@
     @apply bg-green-100 border-green-300;
   }
   & .warning {
-    @apply bg-yellow-100 border-yellow-300;
+    @apply bg-yellow-100 border-yellow-300 dark:bg-yellow-900;
   }
   & .danger {
     @apply bg-red-100 border-red-300;

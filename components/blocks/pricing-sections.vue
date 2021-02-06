@@ -23,7 +23,7 @@
             </div>
           </div>
           <div
-            class="flex flex-col justify-between flex-1 p-6 border-t-2 border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 sm:p-10 lg:p-6 xl:p-10"
+            class="flex flex-col justify-between flex-1 p-6 border-t-2 border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800 sm:p-10 lg:p-6 xl:p-10"
           >
             <ul class="space-y-4">
               <pricing-bullet
@@ -67,7 +67,7 @@
           </div>
         </div>
         <div
-          class="px-6 pt-10 pb-8 border-t-2 border-gray-100 rounded-b-lg dark:border-gray-800 bg-gray-50 dark:bg-gray-900 sm:px-10 sm:py-10"
+          class="px-6 pt-10 pb-8 border-t-2 border-gray-100 rounded-b-lg dark:border-gray-800 bg-gray-50 dark:bg-gray-800 sm:px-10 sm:py-10"
         >
           <ul class="space-y-4">
             <pricing-bullet
@@ -113,7 +113,7 @@
             </div>
           </div>
           <div
-            class="flex flex-col justify-between flex-1 p-6 border-t-2 border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 sm:p-10 lg:p-6 xl:p-10"
+            class="flex flex-col justify-between flex-1 p-6 border-t-2 border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800 sm:p-10 lg:p-6 xl:p-10"
           >
             <ul class="space-y-4">
               <pricing-bullet
@@ -125,7 +125,7 @@
             <div class="mt-8">
               <div class="rounded-lg shadow-md">
                 <button
-                  class="block w-full px-6 py-3 text-base font-medium text-center text-indigo-600 border border-transparent rounded-lg hover:bg-gray-50 dark:bg-gray-900"
+                  class="block w-full px-6 py-3 text-base font-medium text-center text-indigo-600 border border-transparent rounded-lg hover:bg-gray-50 dark:bg-gray-800"
                   aria-describedby="tier-account"
                   @click="pricings.account.ctaAction"
                 >

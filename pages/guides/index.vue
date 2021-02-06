@@ -11,7 +11,7 @@
             v-for="guide in guides"
             :key="guide.id"
             :to="guide.path"
-            class="block px-6 py-4 overflow-hidden transition-colors duration-100 rounded-md shadow h-36 hover:bg-gray-50"
+            class="block px-6 py-4 overflow-hidden transition-colors duration-100 rounded-md shadow bg-gray-50 h-36 hover:bg-gray-100 dark:bg-gray-800"
           >
             <div class="flex items-center px-4 py-4 sm:px-6">
               <div class="flex items-center flex-1 min-w-0">
@@ -180,3 +180,9 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss">
+.warning {
+  @apply dark:bg-yellow-900;
+}
+</style>

@@ -16,7 +16,7 @@
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div v-for="feature in features" :key="feature.id" class="pt-6">
             <div
-              class="flow-root px-6 pb-8 rounded-lg bg-gray-50 dark:bg-gray-900"
+              class="flow-root px-6 pb-8 rounded-lg bg-gray-50 dark:bg-gray-800"
             >
               <div class="-mt-6">
                 <div

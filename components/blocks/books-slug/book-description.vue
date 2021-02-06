@@ -1,6 +1,6 @@
 <template>
   <section aria-labelledby="applicant-information-title">
-    <div class="shadow sm:rounded-lg dark:bg-gray-900">
+    <div class="shadow sm:rounded-lg dark:bg-gray-800">
       <div class="px-4 py-5 sm:px-6">
         <div
           id="applicant-information-title"

@@ -9,7 +9,7 @@
         />
         <div
           aria-hidden="true"
-          class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white dark:from-black"
+          class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white dark:from-gray-900"
         ></div>
       </div>
     </div>
