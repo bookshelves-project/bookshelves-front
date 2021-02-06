@@ -29,12 +29,14 @@
               class="h-full max-w-md px-4 mx-auto sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0"
             >
               <img
-                class="object-cover object-left w-full dark:hidden lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+                v-if="$colorMode.value === 'light'"
+                class="object-cover object-left w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
                 src="/images/book-lover.svg"
                 alt=""
               />
               <img
-                class="object-cover object-left w-full dark:block lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+                v-else
+                class="object-cover object-left w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
                 src="/images/book-lover-dark.svg"
                 alt=""
               />

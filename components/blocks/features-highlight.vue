@@ -52,12 +52,14 @@
             class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full"
           >
             <img
-              class="w-full shadow dark:hidden rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+              v-if="$colorMode.value === 'light'"
+              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
               src="/images/books.webp"
               alt="Books page"
             />
             <img
-              class="hidden w-full shadow dark:block rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+              v-else
+              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
               src="/images/books-dark.webp"
               alt="Books page"
             />
@@ -95,12 +97,14 @@
             class="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full"
           >
             <img
-              class="w-full shadow dark:hidden rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
+              v-if="$colorMode.value === 'light'"
+              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
               src="/images/guides.webp"
               alt="Guides page"
             />
             <img
-              class="w-full shadow dark:block rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
+              v-else
+              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
               src="/images/guides-dark.webp"
               alt="Guides page"
             />

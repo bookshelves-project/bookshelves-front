@@ -29,6 +29,11 @@
 - add dark mode
 - add i18n
 - check h1, h2, h3
+- skeleton nuxtjs: <https://stackoverflow.com/questions/57178253/how-to-create-skeleton-loading-in-nuxt-js>
+- pagination
+  - <https://medium.com/@rafaelogic/create-a-reusable-pagination-vue-js-component-with-laravel-and-tailwind-css-c2e5c49bd93>
+  - <https://github.com/tailable/pagination>
+- avif format: <https://www.zdnet.com/article/chrome-and-firefox-are-getting-support-for-the-new-avif-image-format/>
 
 ## **I. Setup**
 
@@ -53,6 +58,3 @@ yarn start
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-
-- <https://medium.com/@rafaelogic/create-a-reusable-pagination-vue-js-component-with-laravel-and-tailwind-css-c2e5c49bd93>
-- <https://github.com/tailable/pagination>
