@@ -10,29 +10,6 @@ export const state = () => ({
     { label: 'Authors', icon: 'annotation', route: 'authors' },
     { label: 'Guides', icon: 'annotation', route: 'guides' },
   ],
-  footerNavigation: [
-    {
-      label: 'About',
-      icon: 'book-open',
-      route: { name: 'pages', params: { slug: 'about' } },
-    },
-    {
-      label: 'Team',
-      icon: 'book-open',
-      route: { name: 'pages', params: { slug: 'team' } },
-    },
-    {
-      label: 'More eBooks',
-      icon: 'book-open',
-      route: { name: 'pages', params: { slug: 'more-ebooks' } },
-    },
-    {
-      label: 'Legal',
-      icon: 'book-open',
-      route: { name: 'pages', params: { slug: 'legal' } },
-    },
-    { label: 'Contact', icon: 'book-open', route: { name: 'contact' } },
-  ],
   design: ['bibliophile', 'book-lover', 'bookmark'],
   showAlert: false,
   alert: {
