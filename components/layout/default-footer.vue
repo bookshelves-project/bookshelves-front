@@ -1,6 +1,6 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <footer class="bg-white" aria-labelledby="footerHeading">
+  <footer aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">Footer</h2>
     <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:py-16 lg:px-8">
       <div class="lg:grid lg:grid-cols-3 lg:gap-8">
@@ -19,7 +19,7 @@
               :href="icon.link"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-gray-400 hover:text-gray-500"
+              class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-400"
             >
               <icon :name="icon.icon" :size="30" />
             </a>
@@ -38,7 +38,7 @@
               <li v-for="link in navigationSupport" :key="link.id">
                 <nuxt-link
                   :to="link.route"
-                  class="text-base text-gray-500 hover:text-gray-900"
+                  class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-gray-400"
                 >
                   {{ link.label }}
                 </nuxt-link>
@@ -55,7 +55,7 @@
               <li v-for="link in navigationCompany" :key="link.id">
                 <nuxt-link
                   :to="link.route"
-                  class="text-base text-gray-500 hover:text-gray-900"
+                  class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-gray-400"
                 >
                   {{ link.label }}
                 </nuxt-link>
@@ -72,7 +72,7 @@
               <li v-for="link in navigationLegal" :key="link.id">
                 <nuxt-link
                   :to="link.route"
-                  class="text-base text-gray-500 hover:text-gray-900"
+                  class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-gray-400"
                 >
                   {{ link.label }}
                 </nuxt-link>
