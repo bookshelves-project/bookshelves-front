@@ -1,32 +1,41 @@
 <template>
   <main class="container max-w-7xl">
     <div>
-      <div class="flex items-center justify-between mb-8">
-        <div>
-          <h1 class="text-3xl font-semibold">
-            {{ serie.title }}
-          </h1>
-          <h2 class="text-xl">
-            {{ serie.author }}
-          </h2>
+      <div class="items-center justify-between mb-8 lg:flex">
+        <div class="items-center lg:flex">
+          <img
+            v-lazy="serie.cover"
+            :alt="serie.title"
+            class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
+          />
+          <div class="ml-4">
+            <h1 class="text-3xl font-semibold text-center lg:text-left">
+              {{ serie.title }}
+            </h1>
+            <h2 class="text-xl text-center lg:text-left">
+              {{ serie.author }}
+            </h2>
+          </div>
         </div>
         <div class="flex mt-5">
           <a
             :href="serie.download"
-            class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 md:w-max"
           >
             <icon name="download" />
-            <span class="mx-1">Download {{ serie.title }}</span>
-            <span> ({{ serie.size }}) </span>
+            <div class="items-center ml-2 sm:flex">
+              <div class="mx-1">Download {{ serie.title }}</div>
+              <div>({{ serie.size }})</div>
+            </div>
           </a>
         </div>
       </div>
-      <div class="relative mb-8">
+      <div class="relative mt-5 mb-10">
         <div class="absolute inset-0 flex items-center" aria-hidden="true">
           <div class="w-full border-t border-gray-300"></div>
         </div>
         <div class="relative flex justify-center">
-          <span class="px-3 text-lg font-medium text-gray-900">
+          <span class="px-2 text-gray-500 bg-white">
             {{ serie.books_number }} Books
           </span>
         </div>

@@ -1,38 +1,42 @@
 <template>
   <main class="container max-w-7xl">
     <div>
-      <div class="mx-auto mb-8">
-        <!-- <nuxt-picture
+      <div class="items-center justify-between mb-8 lg:flex">
+        <div class="items-center lg:flex">
+          <!-- <nuxt-picture
           :src="author.picture"
           :alt="author.name"
           class="object-cover object-center w-32 h-32 mx-auto rounded-full"
           placeholder="/images/author-no-cover.png"
         /> -->
-        <img
-          v-lazy="author.picture"
-          :alt="author.name"
-          class="object-cover object-center w-32 h-32 mx-auto rounded-full"
-        />
-        <h1 class="text-3xl font-semibold text-center">
-          {{ author.name }}
-        </h1>
-        <div class="flex justify-center mt-5">
+          <img
+            v-lazy="author.picture"
+            :alt="author.name"
+            class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
+          />
+          <h1 class="ml-4 text-3xl font-semibold text-center lg:text-left">
+            {{ author.name }}
+          </h1>
+        </div>
+        <div class="flex mt-5">
           <a
             :href="author.download"
-            class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 md:w-max"
           >
             <icon name="download" />
-            <span class="mx-1">Download all books of {{ author.name }}</span>
-            <span> ({{ author.size }}) </span>
+            <div class="items-center ml-2 sm:flex">
+              <div class="mx-1">Download {{ author.books_number }} eBooks</div>
+              <div>({{ author.size }})</div>
+            </div>
           </a>
         </div>
       </div>
-      <div class="relative mb-8">
+      <div class="relative mt-5 mb-10">
         <div class="absolute inset-0 flex items-center" aria-hidden="true">
           <div class="w-full border-t border-gray-300"></div>
         </div>
         <div class="relative flex justify-center">
-          <span class="px-3 text-lg font-medium text-gray-900">
+          <span class="px-2 text-gray-500 bg-white">
             {{ author.books_number }} Books
           </span>
         </div>

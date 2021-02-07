@@ -23,7 +23,7 @@
               y="0"
               width="4"
               height="4"
-              class="text-gray-200"
+              class="text-gray-200 dark:text-gray-700"
               fill="currentColor"
             />
           </pattern>
@@ -56,7 +56,7 @@
               y="0"
               width="4"
               height="4"
-              class="text-gray-200"
+              class="text-gray-200 dark:text-gray-700"
               fill="currentColor"
             />
           </pattern>
@@ -93,7 +93,10 @@
           @submit.prevent="notAvailable"
         >
           <div class="sm:col-span-2">
-            <label for="name" class="block text-sm font-medium text-gray-700">
+            <label
+              for="name"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Name
             </label>
             <div class="mt-1">
@@ -102,12 +105,14 @@
                 type="text"
                 name="name"
                 autocomplete="name"
-                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-300 dark:border-gray-300"
               />
             </div>
           </div>
           <div class="sm:col-span-2">
-            <label for="email" class="block text-sm font-medium text-gray-700"
+            <label
+              for="email"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >Email</label
             >
             <div class="mt-1">
@@ -116,12 +121,14 @@
                 name="email"
                 type="email"
                 autocomplete="email"
-                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm dark:bg-gray-300 dark:border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
           </div>
           <div class="sm:col-span-2">
-            <label for="message" class="block text-sm font-medium text-gray-700"
+            <label
+              for="message"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >Message</label
             >
             <div class="mt-1">
@@ -129,7 +136,7 @@
                 id="message"
                 name="message"
                 rows="4"
-                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-300 dark:border-gray-300"
               ></textarea>
             </div>
           </div>
