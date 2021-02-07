@@ -1,5 +1,5 @@
 .autocomplete-input {
-  @apply border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pl-10 pr-3 py-2 block w-full dark:bg-gray-300 dark:text-gray-700 dark:placeholder-gray-700;
+  @apply border border-gray-300 rounded-l-md  leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pl-10 pr-3 py-2 block w-full dark:bg-gray-300 dark:text-gray-700 dark:placeholder-gray-700;
 }
 .autocomplete-input:focus,
 .autocomplete-input[aria-expanded='true'] {

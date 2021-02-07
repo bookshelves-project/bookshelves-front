@@ -1,27 +1,30 @@
 <template>
-  <div v-click-outside="onClickOutside" class="relative">
-    <autocomplete
-      ref="search"
-      :search="search"
-      placeholder="Search for a book, a series or an author"
-      aria-label="Search for a book, a series or an author"
-      :get-result-value="getResultValue"
-      @submit="handleSubmit"
-      @update="handleUpdate"
-    >
-      <template #result="{ result, props }">
-        <nuxt-link
-          :to="{
-            name: 'books-slug',
-            params: { author: result.author.slug, slug: result.slug },
-          }"
+  <div v-click-outside="onClickOutside">
+    <div class="relative flex items-center justify-end mr-10">
+      <div class="relative w-max">
+        <autocomplete
+          ref="search"
+          :search="search"
+          placeholder="Search for a book, a series or an author"
+          aria-label="Search for a book, a series or an author"
+          :get-result-value="getResultValue"
+          class="w-32 sm:w-40 md:w-96 lg:w-64"
+          @submit="handleSubmit"
+          @update="handleUpdate"
         >
-          <div
-            v-bind="props"
-            class="flex items-center autocomplete-result wiki-result"
-          >
-            <div class="w-16 h-full">
-              <!-- <nuxt-picture
+          <template #result="{ result, props }">
+            <nuxt-link
+              :to="{
+                name: 'books-slug',
+                params: { author: result.author.slug, slug: result.slug },
+              }"
+            >
+              <div
+                v-bind="props"
+                class="flex items-center autocomplete-result wiki-result"
+              >
+                <div class="w-16 h-full">
+                  <!-- <nuxt-picture
                 v-if="result.cover.thumbnail"
                 :alt="result.title"
                 :src="result.cover.thumbnail"
@@ -35,39 +38,51 @@
                 class="w-16 h-16 rounded-md"
                 placeholder
               /> -->
-              <img
-                v-if="result.cover.thumbnail"
-                v-lazy="result.cover.thumbnail"
-                :alt="result.title"
-                class="w-16 h-full rounded-md"
-              />
-              <img
-                v-else
-                src="/images/bookshelves.png"
-                alt="bookshelves-default"
-                class="w-16 h-16 rounded-md"
-              />
-            </div>
-            <div class="ml-2 dark:text-gray-700">
-              <div class="font-semibold wiki-title">
-                {{ result.title }}
-                <span v-if="result.author">by {{ result.author.name }}</span>
-              </div>
-              <div class="">
-                <div v-if="result.serie" class="ml-1">
-                  in {{ result.serie.title }}, vol. {{ result.serie.number }}
+                  <img
+                    v-if="result.cover.thumbnail"
+                    v-lazy="result.cover.thumbnail"
+                    :alt="result.title"
+                    class="w-16 h-full rounded-md"
+                  />
+                  <img
+                    v-else
+                    src="/images/bookshelves.png"
+                    alt="bookshelves-default"
+                    class="w-16 h-16 rounded-md"
+                  />
+                </div>
+                <div class="ml-2 dark:text-gray-700">
+                  <div class="font-semibold wiki-title">
+                    {{ result.title }}
+                    <span v-if="result.author"
+                      >by {{ result.author.name }}</span
+                    >
+                  </div>
+                  <div class="">
+                    <div v-if="result.serie" class="ml-1">
+                      in {{ result.serie.title }}, vol.
+                      {{ result.serie.number }}
+                    </div>
+                  </div>
+                  <div class="wiki-snippet" v-html="result.snippet" />
                 </div>
               </div>
-              <div class="wiki-snippet" v-html="result.snippet" />
-            </div>
-          </div>
-        </nuxt-link>
-      </template>
-    </autocomplete>
-    <icon
-      name="magnify-glass"
-      class="absolute text-gray-400 transform -translate-y-1/2 left-3 top-1/2"
-    />
+            </nuxt-link>
+          </template>
+        </autocomplete>
+        <icon
+          name="magnify-glass"
+          class="absolute text-gray-400 transform -translate-y-1/2 left-3 top-1/2"
+        />
+        <button
+          class="absolute px-2 mx-2 font-semibold text-white transform -translate-y-1/2 rounded-r-md -right-12 top-1/2 bg-primary-600"
+          style="padding-top: 0.45rem; padding-bottom: 0.45rem"
+          @click="searchWithButton"
+        >
+          <icon name="magnify-glass" />
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -99,6 +114,13 @@ export default {
     }
   },
   methods: {
+    searchWithButton() {
+      const querySearch = this.$refs.search.value
+      this.$router.push({
+        name: 'search',
+        query: { terms: querySearch },
+      })
+    },
     search(input) {
       const method = this.searchMethod[this.method]
       const url = `${process.env.API_URL}${method}?${qs.stringify({

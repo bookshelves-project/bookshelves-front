@@ -54,7 +54,7 @@
         <div
           class="flex items-center justify-center flex-1 px-2 lg:ml-6 lg:justify-end"
         >
-          <div class="w-full max-w-lg lg:max-w-xs">
+          <div class="w-full max-w-lg lg:max-w-md">
             <autocomplete-search-bar />
           </div>
           <color-switcher class="mx-3" />
