@@ -28,7 +28,7 @@
         <div
           class="grid grid-cols-4 gap-8 mt-12 ml-auto md:grid-cols-3 lg:mt-0 lg:col-span-2"
         >
-          <div class="w-48 col-span-2 md:col-span-1">
+          <div class="col-span-2 sm:w-48 md:col-span-1">
             <h3
               class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
             >
@@ -45,7 +45,7 @@
               </li>
             </ul>
           </div>
-          <div class="w-48 col-span-2 md:col-span-1">
+          <div class="col-span-2 sm:w-48 md:col-span-1">
             <h3
               class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
             >
@@ -62,7 +62,7 @@
               </li>
             </ul>
           </div>
-          <div class="w-48 col-span-2 md:col-span-1">
+          <div class="col-span-2 sm:w-48 md:col-span-1">
             <h3
               class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
             >
