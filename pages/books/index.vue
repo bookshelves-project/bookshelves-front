@@ -81,11 +81,13 @@ export default {
   async asyncData({ app, query, error, $content, store }) {
     try {
       const page = query.page
+      const lang = query.lang
       const [books] = await Promise.all([
         app.$axios.$get(
           `/books?${qs.stringify({
             page: page || 1,
             perPage: 32,
+            lang,
           })}`
         ),
       ])
@@ -117,9 +119,10 @@ export default {
   },
   methods: {
     linkGen(pageNum) {
+      const lang = this.$route.query.lang
       return {
         name: this.$route.name,
-        query: pageNum === 1 ? {} : { page: pageNum },
+        query: pageNum === 1 ? { lang } : { page: pageNum, lang },
       }
     },
     event(data) {
@@ -129,7 +132,7 @@ export default {
       console.log(this.$store.state.searching)
     },
   },
-  watchQuery: ['page'],
+  watchQuery: ['page', 'lang'],
   head() {
     const title = 'Books on Bookshelves'
     const description = 'All books available on Bookshelves.'

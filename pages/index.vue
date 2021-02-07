@@ -5,6 +5,7 @@
       :authors="authorsCount"
       :books="booksCount"
       :series="seriesCount"
+      :langs="countLangs"
     />
     <cloud-logos />
     <features />
@@ -40,16 +41,23 @@ export default {
     try {
       const welcome = await $content('welcome').fetch()
 
-      const [booksCount, seriesCount, authorsCount] = await Promise.all([
+      const [
+        booksCount,
+        seriesCount,
+        authorsCount,
+        countLangs,
+      ] = await Promise.all([
         app.$axios.$get('/books/count'),
         app.$axios.$get('/series/count'),
         app.$axios.$get('/authors/count'),
+        app.$axios.$get('/books/count-langs'),
       ])
       return {
         welcome,
         booksCount,
         seriesCount,
         authorsCount,
+        countLangs,
       }
     } catch (error) {
       console.error(error)

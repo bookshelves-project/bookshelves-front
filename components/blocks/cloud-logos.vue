@@ -28,7 +28,7 @@
         >
           Special thanks to
         </p>
-        <div class="justify-center mt-6 space-x-16 sm:flex">
+        <div class="justify-center mt-6 md:space-x-16 md:flex">
           <a
             v-for="logo in specialThanksLogos"
             :key="logo.id"
@@ -36,7 +36,7 @@
             target="_blank"
             rel="noopener noreferrer"
             :title="logo.label"
-            class="flex justify-center mx-auto mt-5 transition-all duration-300 sm:mx-0 hover:zoom w-max"
+            class="flex justify-center mx-auto mt-5 transition-all duration-300 md:mx-0 hover:zoom w-max"
           >
             <icon
               :name="logo.icon"

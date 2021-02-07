@@ -53,6 +53,29 @@
               </span>
             </nuxt-link>
           </p>
+          <p
+            v-for="metric in metricsLangs"
+            :key="metric.id"
+            class="transition-colors duration-100 rounded-md hover:bg-gray-300 hover:bg-opacity-50"
+          >
+            <nuxt-link
+              :to="{ name: metric.route, query: { lang: metric.id } }"
+              class="block p-2"
+            >
+              <span
+                class="flex items-center text-2xl font-bold text-gray-700 dark:text-gray-300"
+              >
+                {{ metric.count }}
+                <img :src="metric.flag" :alt="metric.lang" class="ml-2" />
+              </span>
+              <span
+                class="block mt-1 text-base text-gray-900 dark:text-gray-100"
+                ><span class="font-medium text-gray-700 dark:text-gray-300">
+                  eBooks in {{ metric.lang }}
+                </span>
+              </span>
+            </nuxt-link>
+          </p>
         </div>
       </div>
     </div>
@@ -74,6 +97,10 @@ export default {
     authors: {
       type: Number,
       default: 0,
+    },
+    langs: {
+      type: Array,
+      default: () => [],
     },
   },
   data() {
@@ -98,7 +125,33 @@ export default {
           text: 'who wrote these eBooks',
         },
       ],
+      metricsLangs: [],
     }
+  },
+  mounted() {
+    this.langsFormat()
+  },
+  methods: {
+    langsFormat() {
+      const langsValue = {
+        en: {
+          value: 'English',
+        },
+        fr: {
+          value: 'French',
+        },
+      }
+      this.langs.forEach((lang) => {
+        lang.data = lang.count
+        if (lang.id in langsValue) {
+          lang.lang = langsValue[lang.id].value
+        } else {
+          lang.lang = 'undefined'
+        }
+        lang.route = 'books'
+      })
+      this.metricsLangs = this.langs
+    },
   },
 }
 </script>
