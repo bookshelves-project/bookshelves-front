@@ -219,6 +219,11 @@ export default {
           icon: 'book-open',
           route: { name: 'pages', params: { slug: 'legal' } },
         },
+        {
+          label: 'Cookies',
+          icon: 'book-open',
+          route: { name: 'pages', params: { slug: 'cookies' } },
+        },
       ],
       packageJson,
       licenses: [

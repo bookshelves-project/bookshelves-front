@@ -28,7 +28,7 @@
                 <div class="font-semibold">Serie &#8212;</div>
                 <div>{{ serie.booksNumber }} books</div>
               </div>
-              <div class="mt-5">
+              <div v-if="serie.language" class="mt-5">
                 <div class="font-semibold">Language &#8212;</div>
                 <img :src="serie.language.flag" :alt="serie.language.slug" />
               </div>

@@ -42,6 +42,7 @@
             </div>
           </a>
           <div
+            v-if="serie.language"
             class="flex mx-auto lg:ml-auto lg:mx-0 md:items-center lg:flex md:justify-end lg:mt-5 md:mx-0 w-max"
           >
             <span class="font-semibold">Language : </span>
