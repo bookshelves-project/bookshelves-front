@@ -24,7 +24,7 @@
             </nuxt-link>
           </div>
         </div>
-        <div class="flex">
+        <div class="">
           <a
             :href="serie.download"
             class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 md:w-max"
@@ -35,6 +35,14 @@
               <div>({{ serie.size }})</div>
             </div>
           </a>
+          <div class="flex items-center justify-end mt-5">
+            <span class="font-semibold">Language : </span>
+            <img
+              :src="serie.language.flag"
+              :alt="serie.language.slug"
+              class="ml-2"
+            />
+          </div>
         </div>
       </div>
       <div class="relative mt-5 mb-10">
@@ -124,7 +132,7 @@ export default {
   },
   head() {
     const title = `${this.serie.title} - Series`
-    const description = `Written by ${this.serie.author} with ${this.serie.books_number} books.`
+    const description = `Written by ${this.serie.author.name} with ${this.serie.books_number} books.`
     const image = this.serie.cover
     return {
       title,
