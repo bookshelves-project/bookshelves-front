@@ -91,7 +91,7 @@
             href="https://creativecommons.org"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center justify-center px-1 py-2 text-base leading-6 text-center text-gray-400 transition-colors duration-300 rounded-md group"
+            class="flex items-center justify-center px-1 py-2 text-base leading-6 text-center text-gray-400 transition-colors duration-300 rounded-md group w-max"
           >
             <span
               v-for="license in licenses"
@@ -125,10 +125,12 @@
                 >.</span
               >
             </a> -->
-          Bookshelves Team<span class="hidden lg:mr-1 lg:block">,</span>
-          {{ packageJson.license }} license<span class="hidden lg:block"
-            >.</span
-          >
+          <div class="flex items-center">
+            Bookshelves Team<span class="hidden lg:mr-1 lg:block">,</span>
+            {{ packageJson.license }} license<span class="hidden lg:block"
+              >.</span
+            >
+          </div>
         </div>
         <div
           class="items-center hidden px-1 text-base leading-6 text-gray-400 transition-colors duration-300 rounded-md lg:flex lg:w-max"
