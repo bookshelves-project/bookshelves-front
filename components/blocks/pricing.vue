@@ -41,13 +41,13 @@ export default {
     return {
       pricings: {
         leave: {
-          title: 'Leave',
+          title: 'Let me go!',
           description:
             "You disagree with what Bookshelves offers and think it's shameful.",
           features: ['Leave this website now'],
         },
         free: {
-          title: 'Freedom',
+          title: 'Free to read',
           description:
             'You like what we offer and you want to find lots of eBooks.',
           features: [
@@ -62,11 +62,10 @@ export default {
           },
         },
         account: {
-          title: 'Free account',
+          title: 'Community',
           description:
             'You like Bookshelves so much that you want extra features with an account?',
           features: [
-            'All the features of the "Freedom" package',
             'Get a list of your favorite eBooks',
             'Leave ratings and comments',
             'Propose your eBooks',

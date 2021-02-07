@@ -186,7 +186,7 @@ export default {
         {
           icon: 'swagger',
           label: 'Swagger: API documentation',
-          link: 'https://bookshelves.git-projects.xyz/api/documentation',
+          link: `${process.env.API_URL}documentation`,
         },
         {
           icon: 'calibre',
@@ -217,6 +217,11 @@ export default {
           label: 'Documentation API',
           icon: 'book-open',
           route: { name: 'pages', params: { slug: 'api-documentation' } },
+        },
+        {
+          label: 'FAQ',
+          icon: 'book-open',
+          route: { name: 'pages', params: { slug: 'faq' } },
         },
       ],
       navigationLegal: [

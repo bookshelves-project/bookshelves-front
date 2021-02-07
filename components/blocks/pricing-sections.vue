@@ -11,9 +11,9 @@
             <div>
               <h3
                 id="tier-leave"
-                class="text-2xl font-medium text-center text-gray-900 font-handlee"
+                class="text-2xl italic font-medium text-center text-gray-900 font-handlee"
               >
-                {{ pricings.leave.title }}
+                &#8220; {{ pricings.leave.title }} &#8221;
               </h3>
               <div
                 class="flex items-center justify-center mt-4 dark:text-white"
@@ -57,9 +57,9 @@
           <div>
             <h3
               id="tier-free"
-              class="text-3xl font-semibold text-center text-gray-900 font-handlee sm:-mx-6"
+              class="text-3xl italic font-semibold text-center text-gray-900 font-handlee sm:-mx-6"
             >
-              {{ pricings.free.title }}
+              &#8220; {{ pricings.free.title }} &#8221;
             </h3>
             <div class="flex items-center justify-center mt-4 dark:text-white">
               {{ pricings.free.description }}
@@ -101,9 +101,9 @@
             <div>
               <h3
                 id="tier-account"
-                class="text-2xl font-medium text-center text-gray-900 font-handlee"
+                class="text-2xl italic font-medium text-center text-gray-900 font-handlee"
               >
-                {{ pricings.account.title }}
+                &#8220; {{ pricings.account.title }} &#8221;
               </h3>
               <div
                 class="flex items-center justify-center mt-4 dark:text-white"
