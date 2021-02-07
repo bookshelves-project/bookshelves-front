@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-3xl px-4 mx-auto sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 xl:max-w-7xl xl:px-8"
+    class="max-w-3xl px-4 mx-auto sm:px-6 xl:flex xl:items-center xl:justify-between xl:space-x-5 xl:max-w-7xl xl:px-8"
   >
     <div class="flex items-center space-x-5">
       <div class="flex-shrink-0">
@@ -28,21 +28,27 @@
         </h1>
         <p class="text-sm font-medium text-gray-500">
           Written by
-          <a href="#" class="text-gray-900">
+          <nuxt-link
+            :to="{ name: 'authors-slug', params: { slug: book.author.slug } }"
+            class="text-gray-900"
+          >
             {{ book.author.name }}
-          </a>
+          </nuxt-link>
           <span v-if="book.serie !== null">
             in
-            <a href="#" class="text-gray-900">
+            <nuxt-link
+              :to="{ name: 'series-slug', params: { slug: book.serie.slug } }"
+              class="text-gray-900"
+            >
               {{ book.serie.title }}
-            </a>
+            </nuxt-link>
             (vol. {{ book.serie.number }})
           </span>
         </p>
       </div>
     </div>
     <div
-      class="flex flex-col-reverse mt-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3"
+      class="flex flex-col-reverse mt-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 xl:mt-0 xl:flex-row xl:space-x-3"
     >
       <component
         :is="buyLink ? 'a' : 'span'"

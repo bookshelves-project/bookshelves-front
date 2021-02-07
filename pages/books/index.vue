@@ -29,9 +29,12 @@
             <div v-if="book.serie" class="mt-5">
               <div class="font-semibold">Serie &#8212;</div>
               <div class="italic break-all">
-                {{ book.serie.title }}
+                {{ book.serie.title }}, vol. {{ book.serie.number }}
               </div>
-              <div>Vol. {{ book.serie.number }}</div>
+            </div>
+            <div v-if="book.language" class="mt-5">
+              <div class="font-semibold">Language &#8212;</div>
+              <img :src="book.language.flag" :alt="book.language.slug" />
             </div>
           </template>
           <template #title-responsive>
@@ -43,6 +46,9 @@
             </div>
             <div v-if="book.serie">
               {{ book.serie.title }}, vol. {{ book.serie.number }}
+            </div>
+            <div v-if="book.language" class="mt-5">
+              <img :src="book.language.flag" :alt="book.language.slug" />
             </div>
           </template>
         </entity-card>

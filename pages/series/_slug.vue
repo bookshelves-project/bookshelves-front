@@ -12,9 +12,16 @@
             <h1 class="text-3xl font-semibold text-center lg:text-left">
               {{ serie.title }}
             </h1>
-            <h2 class="text-xl text-center lg:text-left">
-              {{ serie.author }}
-            </h2>
+            <nuxt-link
+              :to="{
+                name: 'authors-slug',
+                params: { slug: serie.author.slug },
+              }"
+            >
+              <h2 class="text-xl text-center lg:text-left">
+                {{ serie.author.name }}
+              </h2>
+            </nuxt-link>
           </div>
         </div>
         <div class="flex">
