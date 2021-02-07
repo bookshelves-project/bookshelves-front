@@ -30,7 +30,7 @@
           Written by
           <nuxt-link
             :to="{ name: 'authors-slug', params: { slug: book.author.slug } }"
-            class="text-gray-900"
+            class="text-gray-900 hover:text-gray-500"
           >
             {{ book.author.name }}
           </nuxt-link>
@@ -38,7 +38,7 @@
             in
             <nuxt-link
               :to="{ name: 'series-slug', params: { slug: book.serie.slug } }"
-              class="text-gray-900"
+              class="text-gray-900 hover:text-gray-500"
             >
               {{ book.serie.title }}
             </nuxt-link>

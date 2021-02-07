@@ -17,6 +17,7 @@
                 name: 'authors-slug',
                 params: { slug: serie.author.slug },
               }"
+              class="text-gray-900 hover:text-gray-500"
             >
               <h2 class="text-xl text-center lg:text-left">
                 {{ serie.author.name }}
@@ -24,18 +25,25 @@
             </nuxt-link>
           </div>
         </div>
-        <div class="">
+        <div
+          class="block mt-5 lg:block md:items-center md:justify-between md:flex lg:mt-0"
+        >
           <a
             :href="serie.download"
-            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 md:w-max"
+            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm md:mx-0 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 md:w-max"
           >
             <icon name="download" />
-            <div class="items-center ml-2 sm:flex">
-              <div class="mx-1">Download {{ serie.title }}</div>
+            <div class="flex items-center ml-2">
+              <div class="mx-1">Download</div>
+              <div class="hidden md:mr-1 md:block">
+                {{ serie.title }}
+              </div>
               <div>({{ serie.size }})</div>
             </div>
           </a>
-          <div class="flex items-center justify-end mt-5">
+          <div
+            class="flex mx-auto lg:ml-auto lg:mx-0 md:items-center lg:flex md:justify-end lg:mt-5 md:mx-0 w-max"
+          >
             <span class="font-semibold">Language : </span>
             <img
               :src="serie.language.flag"

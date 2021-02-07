@@ -18,7 +18,7 @@
             {{ author.name }}
           </h1>
         </div>
-        <div class="flex">
+        <div class="flex mt-5 lg:mt-0">
           <a
             :href="author.download"
             class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 md:w-max"
