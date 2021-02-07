@@ -19,6 +19,7 @@
               :href="icon.link"
               target="_blank"
               rel="noopener noreferrer"
+              :title="icon.label"
               class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-400"
             >
               <icon :name="icon.icon" :size="30" />
@@ -179,14 +180,17 @@ export default {
       socialIcons: [
         {
           icon: 'gitlab',
+          label: 'Repository of Bookshelves',
           link: 'https://gitlab.com/EwieFairy/bookshelves-front',
         },
         {
           icon: 'swagger',
+          label: 'Swagger: API documentation',
           link: 'https://bookshelves.git-projects.xyz/api/documentation',
         },
         {
           icon: 'calibre',
+          label: 'Calibre: manage your eBooks',
           link: 'https://calibre-ebook.com',
         },
       ],
