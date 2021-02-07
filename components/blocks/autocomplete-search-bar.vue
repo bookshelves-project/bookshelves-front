@@ -8,7 +8,7 @@
           placeholder="Search for a book, a series or an author"
           aria-label="Search for a book, a series or an author"
           :get-result-value="getResultValue"
-          class="w-32 sm:w-40 md:w-96 lg:w-64"
+          class="w-32 sm:w-40 md:w-96 lg:w-64 xl:w-96"
           @submit="handleSubmit"
           @update="handleUpdate"
         >
