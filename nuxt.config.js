@@ -1,7 +1,9 @@
+const dev = process.env.NODE_ENV !== 'production'
+
 export default {
   server: {
     port: 3000,
-    host: 'app.bookshelves.test',
+    host: dev ? 'app.bookshelves.test' : 'localhost',
   },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
