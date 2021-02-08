@@ -16,6 +16,10 @@ import Content from '~/pages/guides/_'
 import ContentPage from '~/pages/content/slug'
 import Contact from '~/pages/contact/index'
 
+import SignIn from '~/pages/sign-in'
+import SignUp from '~/pages/sign-up'
+import Dashboard from '~/pages/dashboard'
+
 Vue.use(Router)
 
 // export function createRouter(ssrContext, routerOptions) {
@@ -94,6 +98,21 @@ const routesList = [
     name: 'pages',
     path: '/pages/:slug',
     component: ContentPage,
+  },
+  {
+    name: 'sign-in',
+    path: '/sign-in',
+    component: SignIn,
+  },
+  {
+    name: 'sign-up',
+    path: '/sign-up',
+    component: SignUp,
+  },
+  {
+    name: 'dashboard',
+    path: '/dashboard',
+    component: Dashboard,
   },
   {
     name: 'all',

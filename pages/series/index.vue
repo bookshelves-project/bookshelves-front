@@ -74,7 +74,7 @@ export default {
       const page = query.page
       const [series] = await Promise.all([
         app.$axios.$get(
-          `/series?${qs.stringify({
+          `/api/series?${qs.stringify({
             page: page || 1,
             perPage: 32,
           })}`

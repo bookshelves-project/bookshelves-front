@@ -13,7 +13,7 @@
 
           <!-- Comments-->
           <!-- <section aria-labelledby="notes-title">
-            <div class=" shadow sm:rounded-lg sm:overflow-hidden">
+            <div class="shadow  sm:rounded-lg sm:overflow-hidden">
               <div class="divide-y divide-gray-200">
                 <div class="px-4 py-5 sm:px-6">
                   <h2
@@ -53,7 +53,7 @@ export default {
   async asyncData({ app, query, params, error, $content, store }) {
     try {
       const [book] = await Promise.all([
-        app.$axios.$get(`books/${params.author}/${params.slug}`),
+        app.$axios.$get(`/api/books/${params.author}/${params.slug}`),
       ])
 
       return {

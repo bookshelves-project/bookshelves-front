@@ -1,4 +1,8 @@
 export default {
+  server: {
+    port: 3000,
+    host: 'app.bookshelves.test',
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'Bookshelves',
@@ -204,12 +208,51 @@ export default {
     '@nuxtjs/robots',
     // https://i18n.nuxtjs.org/setup
     // 'nuxt-i18n',
+    // https://auth.nuxtjs.org/guide/setup
+    '@nuxtjs/auth-next',
+    // https://github.com/microcipcip/cookie-universal/tree/master/packages/cookie-universal-nuxt
+    'cookie-universal-nuxt',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: process.env.API_URL,
+    prefix: '/api',
+    credentials: true,
+    https: false,
+    // proxy: true,
+    headers: {
+      common: {
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+      // delete: {},
+      // get: {},
+      // head: {},
+      // post: {},
+      // put: {},
+      // patch: {},
+    },
   },
+
+  // proxy: {
+  //   '/api/': { target: 'http://api.example.com', pathRewrite: {'^/api/': ''} }
+  // },
+
+  auth: {
+    strategies: {
+      laravelSanctum: {
+        provider: 'laravel/sanctum',
+        url: process.env.API_URL,
+      },
+    },
+    redirect: {
+      login: '/sign-in',
+      logout: '/sign-in',
+      callback: '/',
+      home: '/dashboard',
+    },
+  },
+
   sitemap: {
     // options
   },

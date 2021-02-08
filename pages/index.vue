@@ -47,10 +47,10 @@ export default {
         authorsCount,
         countLangs,
       ] = await Promise.all([
-        app.$axios.$get('/books/count'),
-        app.$axios.$get('/series/count'),
-        app.$axios.$get('/authors/count'),
-        app.$axios.$get('/books/count-langs'),
+        app.$axios.$get('/api/books/count'),
+        app.$axios.$get('/api/series/count'),
+        app.$axios.$get('/api/authors/count'),
+        app.$axios.$get('/api/books/count-langs'),
       ])
       return {
         welcome,

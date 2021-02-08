@@ -71,7 +71,7 @@ export default {
   methods: {
     async getSearchResults(query) {
       const search = await this.$axios.$get(
-        `search?${qs.stringify({
+        `/api/search?${qs.stringify({
           terms: query,
         })}`
       )
