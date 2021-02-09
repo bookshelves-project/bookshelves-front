@@ -17,7 +17,7 @@
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
               <span v-for="(author, authorId) in book.authors" :key="authorId">
-                <h2>{{ author.lastname }}, {{ author.firstname }}</h2>
+                <h2>{{ author.name }}</h2>
               </span>
             </dd>
           </div>
@@ -59,7 +59,11 @@
                   {{ book.isbn }}
                 </div>
                 <div v-else>
-                  <div v-if="isbnResult.identifiers">
+                  <div
+                    v-if="
+                      isbnResult.identifiers && isbnResult.identifiers.isbn13
+                    "
+                  >
                     <div v-if="isbnResult.identifiers.isbn13">
                       ISBN 13: {{ isbnResult.identifiers.isbn13.identifier }}
                     </div>
@@ -67,12 +71,17 @@
                       ISBN 10: {{ isbnResult.identifiers.isbn10.identifier }}
                     </div>
                   </div>
-                  <span v-else class="italic text-gray-400">Undefined</span>
+                  <span v-else>
+                    <span v-if="book.isbn">
+                      {{ book.isbn }}
+                    </span>
+                    <span v-else class="italic text-gray-400">Undefined</span>
+                  </span>
                 </div>
               </transition>
             </dd>
           </div>
-          <div v-if="isbnResult" class="sm:col-span-1">
+          <div v-if="isbnResult && isbnResult.rating" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
               Rating
             </dt>
@@ -82,7 +91,7 @@
               {{ isbnResult.rating }}
             </dd>
           </div>
-          <div v-if="isbnResult" class="sm:col-span-1">
+          <div v-if="isbnResult && isbnResult.pageCount" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
               Page count
             </dt>
