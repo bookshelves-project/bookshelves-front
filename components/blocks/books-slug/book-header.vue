@@ -26,14 +26,27 @@
         <h1 class="text-2xl font-bold text-gray-900">
           {{ book.title }}
         </h1>
-        <p class="text-sm font-medium text-gray-500">
+        <div class="flex flex-wrap text-sm font-medium text-gray-500">
           Written by
-          <nuxt-link
-            :to="{ name: 'authors-slug', params: { slug: book.author.slug } }"
-            class="text-gray-900 hover:text-gray-500"
+          <div
+            v-for="(author, authorId) in book.authors"
+            :key="authorId"
+            class="mx-1"
           >
-            {{ book.author.name }}
-          </nuxt-link>
+            <nuxt-link
+              :to="{ name: 'authors-slug', params: { slug: author.slug } }"
+              class="text-gray-900 hover:text-gray-500"
+            >
+              {{ author.name }}
+            </nuxt-link>
+            <span
+              v-if="
+                book.authors.length > 1 && authorId !== book.authors.length - 1
+              "
+            >
+              &
+            </span>
+          </div>
           <span v-if="book.serie !== null">
             in
             <nuxt-link
@@ -44,7 +57,7 @@
             </nuxt-link>
             (vol. {{ book.serie.number }})
           </span>
-        </p>
+        </div>
       </div>
     </div>
     <div

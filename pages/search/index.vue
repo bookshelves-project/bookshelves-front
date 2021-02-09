@@ -13,7 +13,7 @@
           :cover="book.cover.thumbnail"
           :route="{
             name: 'books-slug',
-            params: { author: book.author.slug, slug: book.slug },
+            params: { author: book.authorSlug, slug: book.slug },
           }"
         >
           <template #title>
@@ -23,7 +23,20 @@
             <div>
               <div class="font-semibold">Author &#8212;</div>
               <div class="italic">
-                {{ book.author.name }}
+                <span
+                  v-for="(author, authorId) in book.authors"
+                  :key="authorId"
+                >
+                  <span>{{ author.name }}</span>
+                  <span
+                    v-if="
+                      book.authors.length > 1 &&
+                      authorId !== book.authors.length - 1
+                    "
+                  >
+                    ,
+                  </span>
+                </span>
               </div>
             </div>
             <div v-if="book.serie" class="mt-5">
@@ -39,7 +52,17 @@
               {{ book.title }}
             </div>
             <div class="italic">
-              {{ book.author.name }}
+              <span v-for="(author, authorId) in book.authors" :key="authorId">
+                <span>{{ author.name }}</span>
+                <span
+                  v-if="
+                    book.authors.length > 1 &&
+                    authorId !== book.authors.length - 1
+                  "
+                >
+                  ,
+                </span>
+              </span>
             </div>
             <div v-if="book.serie">
               {{ book.serie.title }}, vol. {{ book.serie.number }}

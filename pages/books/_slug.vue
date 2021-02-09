@@ -13,7 +13,7 @@
 
           <!-- Comments-->
           <!-- <section aria-labelledby="notes-title">
-            <div class="shadow  sm:rounded-lg sm:overflow-hidden">
+            <div class="shadow sm:rounded-lg sm:overflow-hidden">
               <div class="divide-y divide-gray-200">
                 <div class="px-4 py-5 sm:px-6">
                   <h2
@@ -84,11 +84,10 @@ export default {
     },
   },
   head() {
-    const title = `${this.book.title} by ${this.book.author.name}${
+    const title = `${this.book.title} by ${this.book.authors[0].name}${
       this.book.serie ? ` in ${this.book.serie.title}` : ''
     } - Books`
     const description = this.book.summary
-    console.log(description)
     const image = this.book.cover.basic
     return {
       title,

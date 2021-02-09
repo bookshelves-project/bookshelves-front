@@ -11,12 +11,14 @@
       </div>
       <div class="px-4 py-5 border-t border-gray-200 sm:px-6">
         <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-          <div v-if="book.author" class="sm:col-span-1">
+          <div v-if="book.authors" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
               Author
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
-              <h2>{{ book.author.lastname }}, {{ book.author.firstname }}</h2>
+              <span v-for="(author, authorId) in book.authors" :key="authorId">
+                <h2>{{ author.lastname }}, {{ author.firstname }}</h2>
+              </span>
             </dd>
           </div>
           <div v-if="book.serie" class="sm:col-span-1">
@@ -88,6 +90,21 @@
               class="flex items-center mt-1 text-sm text-gray-900 dark:text-gray-100"
             >
               {{ isbnResult.pageCount }}
+            </dd>
+          </div>
+          <div v-if="book.tags.length >= 1" class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
+              Tags
+            </dt>
+            <dd
+              class="flex flex-wrap mt-1 text-sm text-gray-900 dark:text-gray-100"
+            >
+              <span v-for="(tag, tagId) in book.tags" :key="tagId">
+                {{ tag.name
+                }}<span v-if="tagId !== book.tags.length - 1" class="mr-1"
+                  >,</span
+                >
+              </span>
             </dd>
           </div>
           <div v-if="book.description" class="sm:col-span-2">

@@ -26,7 +26,7 @@
                 :route="{
                   name: 'books-slug',
                   params: {
-                    author: bookSerie.author.slug,
+                    author: bookSerie.authors[0].slug,
                     slug: bookSerie.slug,
                   },
                 }"
@@ -46,7 +46,7 @@
                   <div>
                     <div class="font-semibold">Author &#8212;</div>
                     <div class="italic">
-                      {{ bookSerie.author.name }}
+                      {{ bookSerie.authors[0].name }}
                     </div>
                   </div>
                   <div v-if="bookSerie.serie" class="mt-5">
@@ -62,7 +62,7 @@
                     {{ bookSerie.title }}
                   </div>
                   <div class="italic">
-                    {{ bookSerie.author.name }}
+                    {{ bookSerie.authors[0].name }}
                   </div>
                   <div v-if="bookSerie.serie">
                     {{ bookSerie.serie.title }}, vol.

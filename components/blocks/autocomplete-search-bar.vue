@@ -16,7 +16,7 @@
             <nuxt-link
               :to="{
                 name: 'books-slug',
-                params: { author: result.author.slug, slug: result.slug },
+                params: { author: result.authorSlug, slug: result.slug },
               }"
             >
               <div
@@ -54,9 +54,23 @@
                 <div class="ml-2 dark:text-gray-700">
                   <div class="font-semibold wiki-title">
                     {{ result.title }}
-                    <span v-if="result.author"
-                      >by {{ result.author.name }}</span
-                    >
+                    <span v-if="result.authors">
+                      by
+                      <span
+                        v-for="(author, authorId) in result.authors"
+                        :key="authorId"
+                      >
+                        {{ author.name }}
+                        <span
+                          v-if="
+                            result.authors.length > 1 &&
+                            authorId !== result.authors.length - 1
+                          "
+                        >
+                          &
+                        </span>
+                      </span>
+                    </span>
                   </div>
                   <div class="">
                     <div v-if="result.serie" class="ml-1">
@@ -79,7 +93,18 @@
           style="padding-top: 0.45rem; padding-bottom: 0.45rem"
           @click="searchWithButton"
         >
-          <icon name="magnify-glass" />
+          <svg
+            class="w-6 h-6"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
         </button>
       </div>
     </div>
@@ -123,7 +148,7 @@ export default {
     },
     search(input) {
       const method = this.searchMethod[this.method]
-      const url = `${process.env.API_URL}${method}?${qs.stringify({
+      const url = `${process.env.API_URL}/api/${method}?${qs.stringify({
         terms: input,
       })}`
 
@@ -156,7 +181,7 @@ export default {
       } else {
         this.$router.push({
           name: 'books-slug',
-          params: { author: result.author.slug, slug: result.slug },
+          params: { author: result.authorSlug, slug: result.slug },
         })
       }
     },

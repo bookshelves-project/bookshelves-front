@@ -222,7 +222,7 @@ export default {
       }
     },
     onClickOutside(event) {
-      console.log('Clicked outside. Event: ', event)
+      // console.log('Clicked outside. Event: ', event)
     },
     openSidebar() {
       this.$store.commit('setLayer', true)
