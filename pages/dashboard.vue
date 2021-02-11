@@ -1,17 +1,40 @@
 <template>
-  <div>
-    <div>Dashboard</div>
-    <div v-for="book in booksUpdate" :key="book.id">
-      <pre>{{ book.title }}</pre>
+  <div class="container max-w-7xl">
+    <section-heading
+      title="Dashboard"
+      :subtitle="`Welcome ${this.$auth.user.name}`"
+    />
+    <div class="flex justify-between">
+      <button
+        class="px-5 py-2 font-semibold text-white transition-colors duration-100 rounded-md bg-primary-600 hover:bg-primary-700"
+        @click="getData"
+      >
+        Test API
+      </button>
+      <button
+        class="px-5 py-2 font-semibold text-white transition-colors duration-100 rounded-md bg-primary-600 hover:bg-primary-700"
+        @click="logout"
+      >
+        Sign out
+      </button>
     </div>
-    <button @click="getData">getData</button>
-    <button @click="logout">logout</button>
+
+    <div
+      v-if="booksUpdate.length > 0"
+      class="max-w-lg p-3 mt-5 bg-gray-300 rounded-md"
+    >
+      <div v-for="book in booksUpdate" :key="book.id">
+        <pre>{{ book.title }}</pre>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import sectionHeading from '~/components/blocks/section-heading.vue'
 export default {
   name: 'Dashboard',
+  components: { sectionHeading },
   middleware: 'auth',
   data() {
     return {

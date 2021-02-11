@@ -62,8 +62,9 @@
             <div>
               <button
                 id="user-menu"
-                class="flex text-sm text-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                class="flex text-sm rounded-full text-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 aria-haspopup="true"
+                title="Account"
                 @click="accountDropdownOpened = !accountDropdownOpened"
               >
                 <span class="sr-only">Open user menu</span>
