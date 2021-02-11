@@ -257,6 +257,11 @@ export default {
       callback: '/',
       home: '/dashboard',
     },
+    cookie: {
+      options: {
+        sameSite: 'lax',
+      },
+    },
   },
 
   sitemap: {
