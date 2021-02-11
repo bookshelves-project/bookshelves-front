@@ -10,6 +10,13 @@ export const state = () => ({
     { label: 'Authors', icon: 'annotation', route: 'authors' },
     { label: 'Guides', icon: 'annotation', route: 'guides' },
   ],
+  authNavigationTrue: [
+    { label: 'Dashboard', icon: 'book-open', route: 'dashboard' },
+  ],
+  authNavigationFalse: [
+    { label: 'Sign in', icon: 'book-open', route: 'sign-in' },
+    { label: 'Sign up', icon: 'book-open', route: 'sign-up' },
+  ],
   design: ['bibliophile', 'book-lover', 'bookmark'],
   showAlert: false,
   alert: {

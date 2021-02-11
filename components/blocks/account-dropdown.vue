@@ -36,22 +36,24 @@
     <transition name="fade">
       <div
         v-if="accountDropdownOpened"
-        class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
+        class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-900 ring-1 ring-black ring-opacity-5"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="user-menu"
       >
-        <div v-if="this.$auth.$state.loggedIn">
+        <div v-if="$auth.$state.loggedIn">
           <nuxt-link
-            :to="{ name: 'dashboard' }"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            v-for="link in $store.state.authNavigationTrue"
+            :key="link.id"
+            :to="{ name: link.route }"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
             role="menuitem"
             @click.native="closeAccountDropdown"
           >
-            Dashboard
+            {{ link.label }}
           </nuxt-link>
           <button
-            class="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
+            class="block w-full px-4 py-2 text-sm text-left text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
             role="menuitem"
             @click="logout"
           >
@@ -60,20 +62,14 @@
         </div>
         <div v-else>
           <nuxt-link
-            :to="{ name: 'sign-in' }"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            v-for="link in $store.state.authNavigationFalse"
+            :key="link.id"
+            :to="{ name: link.route }"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
             role="menuitem"
             @click.native="closeAccountDropdown"
           >
-            Sign in
-          </nuxt-link>
-          <nuxt-link
-            :to="{ name: 'sign-up' }"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            role="menuitem"
-            @click.native="closeAccountDropdown"
-          >
-            Sign up
+            {{ link.label }}
           </nuxt-link>
         </div>
       </div>

@@ -64,65 +64,62 @@
                   {{ booksNav.label }}
                 </span>
               </nuxt-link>
-              <nuxt-link
-                :to="{ name: 'sign-in' }"
-                class="flex items-center px-2 py-5 text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 group"
-                @click.native="closeSidebar"
-              >
-                <span class="font-semibold"> Sign in </span>
-              </nuxt-link>
-              <nuxt-link
-                :to="{ name: 'sign-up' }"
-                class="flex items-center px-2 py-5 text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 group"
-                @click.native="closeSidebar"
-              >
-                <span class="font-semibold"> Sign up </span>
-              </nuxt-link>
             </div>
-            <div class="hidden mt-8">
+            <div class="mt-8">
               <h3
                 id="teams-headline"
                 class="px-3 text-xs font-semibold tracking-wider text-gray-500 uppercase"
               >
-                Teams
+                Authentification
               </h3>
               <div
-                class="mt-1 space-y-1"
+                class="mt-3 space-y-1"
                 role="group"
                 aria-labelledby="teams-headline"
               >
-                <a
-                  href="#"
-                  class="flex items-center px-3 py-2 text-base font-medium leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
-                >
-                  <span
-                    class="w-2.5 h-2.5 mr-4 bg-primary-500 rounded-full"
-                    aria-hidden="true"
-                  ></span>
-                  <span class="truncate"> Engineering </span>
-                </a>
-
-                <a
-                  href="#"
-                  class="flex items-center px-3 py-2 text-base font-medium leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
-                >
-                  <span
-                    class="w-2.5 h-2.5 mr-4 bg-green-500 rounded-full"
-                    aria-hidden="true"
-                  ></span>
-                  <span class="truncate"> Human Resources </span>
-                </a>
-
-                <a
-                  href="#"
-                  class="flex items-center px-3 py-2 text-base font-medium leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
-                >
-                  <span
-                    class="w-2.5 h-2.5 mr-4 bg-yellow-500 rounded-full"
-                    aria-hidden="true"
-                  ></span>
-                  <span class="truncate"> Customer Success </span>
-                </a>
+                <div v-if="$auth.$state.loggedIn" class="space-y-2">
+                  <nuxt-link
+                    v-for="link in $store.state.authNavigationTrue"
+                    :key="link.id"
+                    :to="{ name: link.route }"
+                    class="flex items-center w-full px-3 py-5 text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50 dark:hover:text-gray-900"
+                    role="menuitem"
+                    @click.native="closeSidebar"
+                  >
+                    <span
+                      class="w-2.5 h-2.5 mr-4 bg-primary-500 rounded-full"
+                      aria-hidden="true"
+                    ></span>
+                    <span> {{ link.label }} </span>
+                  </nuxt-link>
+                  <button
+                    class="flex items-center w-full px-3 py-5 text-base font-semibold leading-5 text-gray-100 rounded-md group hover:text-gray-900 hover:bg-gray-50 dark:hover:text-gray-900"
+                    role="menuitem"
+                    @click="logout"
+                  >
+                    <span
+                      class="w-2.5 h-2.5 mr-4 bg-primary-500 rounded-full"
+                      aria-hidden="true"
+                    ></span>
+                    <span> Sign out </span>
+                  </button>
+                </div>
+                <div v-else class="space-y-2">
+                  <nuxt-link
+                    v-for="link in $store.state.authNavigationFalse"
+                    :key="link.id"
+                    :to="{ name: link.route }"
+                    class="flex items-center w-full px-3 py-5 text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50 dark:hover:text-gray-900"
+                    role="menuitem"
+                    @click.native="closeSidebar"
+                  >
+                    <span
+                      class="w-2.5 h-2.5 mr-4 bg-primary-500 rounded-full"
+                      aria-hidden="true"
+                    ></span>
+                    <span> {{ link.label }} </span>
+                  </nuxt-link>
+                </div>
               </div>
             </div>
           </nav>
@@ -143,6 +140,14 @@ export default {
     clickOutside: vClickOutside.directive,
   },
   methods: {
+    async logout() {
+      try {
+        this.closeSidebar()
+        await this.$auth.logout()
+      } catch (error) {
+        console.error(error)
+      }
+    },
     closeSidebar() {
       this.$store.commit('setSidebar', false)
       setTimeout(() => {

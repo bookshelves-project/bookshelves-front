@@ -57,8 +57,7 @@
           <div class="w-full max-w-lg lg:max-w-md">
             <autocomplete-search-bar />
           </div>
-          <color-switcher class="block mx-3 lg:hidden" />
-          <account-dropdown class="hidden md:block" />
+          <account-dropdown class="hidden lg:block" />
         </div>
         <div v-if="false" class="flex items-center lg:hidden">
           <!-- Mobile menu button -->
@@ -194,12 +193,11 @@
 
 <script>
 import autocompleteSearchBar from '../blocks/autocomplete-search-bar.vue'
-import ColorSwitcher from '../special/color-switcher.vue'
 import AccountDropdown from '../blocks/account-dropdown.vue'
 
 export default {
   name: 'Navbar',
-  components: { autocompleteSearchBar, ColorSwitcher, AccountDropdown },
+  components: { autocompleteSearchBar, AccountDropdown },
   data() {
     return {
       displayIfScrolled: false,

@@ -1,14 +1,14 @@
 <template>
   <div v-click-outside="onClickOutside">
     <div class="relative flex items-center justify-end mr-10">
-      <div class="relative w-max">
+      <div class="relative w-full lg:w-max">
         <autocomplete
           ref="search"
           :search="search"
           placeholder="Search for a book, a series or an author"
           aria-label="Search for a book, a series or an author"
           :get-result-value="getResultValue"
-          class="w-32 sm:w-40 md:w-96 lg:w-64 xl:w-96"
+          class="w-full lg:w-64 xl:w-96"
           @submit="handleSubmit"
           @update="handleUpdate"
         >
