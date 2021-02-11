@@ -1,19 +1,14 @@
 <template>
   <div>
-    <div class="grid min-h-screen bg-white lg:grid-cols-2">
-      <div class="hidden lg:block">
-        <img
-          class="inset-0 object-cover w-full h-full"
-          src="/images/sign-up.webp"
-          alt="sign-in"
-        />
-      </div>
+    <div class="min-h-screen">
       <div
         class="flex flex-col justify-center flex-1 px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24"
       >
         <div class="w-full max-w-sm mx-auto lg:w-96">
           <div>
-            <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Register</h2>
+            <h2 class="mt-6 text-3xl font-extrabold text-gray-900 font-handlee">
+              Register to Bookshelves
+            </h2>
           </div>
           <div>
             <div class="mt-6">
@@ -26,7 +21,7 @@
                   <div class="w-full border-t border-gray-300"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                  <span class="px-2 text-gray-500 bg-white">
+                  <span class="px-2 text-gray-500 bg-white dark:bg-gray-900">
                     You've already an account ?
                   </span>
                 </div>

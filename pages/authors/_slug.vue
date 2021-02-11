@@ -36,7 +36,7 @@
           <div class="w-full border-t border-gray-300"></div>
         </div>
         <div class="relative flex justify-center">
-          <span class="px-2 text-gray-500 bg-white">
+          <span class="px-2 text-gray-500 bg-white dark:bg-gray-900">
             {{ author.books_number }} Books
           </span>
         </div>

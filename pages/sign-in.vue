@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="grid min-h-screen bg-white">
+    <div class="grid min-h-screen">
       <div
         class="flex justify-center flex-1 px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24"
       >
         <div class="w-full max-w-sm mx-auto lg:w-96">
           <div>
-            <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
-              Sign in to your account
+            <h2 class="mt-6 text-3xl font-extrabold text-gray-900 font-handlee">
+              Sign in to Bookshelves
             </h2>
           </div>
           <div>
@@ -21,7 +21,9 @@
                   <div class="w-full border-t border-gray-300"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                  <span class="px-2 text-gray-500 bg-white"> Or sign up </span>
+                  <span class="px-2 text-gray-500 bg-white dark:bg-gray-900">
+                    Or sign up
+                  </span>
                 </div>
               </div>
               <div>

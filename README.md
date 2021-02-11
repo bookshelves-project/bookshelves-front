@@ -34,6 +34,14 @@
   - <https://medium.com/@rafaelogic/create-a-reusable-pagination-vue-js-component-with-laravel-and-tailwind-css-c2e5c49bd93>
   - <https://github.com/tailable/pagination>
 - avif format: <https://www.zdnet.com/article/chrome-and-firefox-are-getting-support-for-the-new-avif-image-format/>
+- jest:
+  - <https://vue-test-utils.vuejs.org/>
+  - <https://dev.to/bawa_geek/how-to-setup-jest-testing-in-nuxt-js-project-5c84>
+  - <https://medium.com/@brandonaaskov/how-to-test-nuxt-stores-with-jest-9a5d55d54b28>
+  - <https://dev.to/alousilva/how-to-mock-nuxt-client-only-component-with-jest-47da>
+  - <https://stackoverflow.com/questions/41458736/how-to-write-test-that-mocks-the-route-object-in-vue-components>
+  - For global variables check test of Nuxt modules
+    - <https://github.com/nuxt-community/color-mode-module>
 
 ## **I. Setup**
 

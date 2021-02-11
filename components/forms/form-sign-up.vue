@@ -2,7 +2,35 @@
   <form class="space-y-6" @submit.prevent="submit">
     <div>
       <div class="flex justify-between">
-        <label for="email" class="block text-sm font-medium text-gray-700">
+        <label
+          for="email"
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
+          Name
+        </label>
+        <span v-if="errors.name" class="text-sm text-red-600">
+          {{ errors.name[0] }}
+        </span>
+      </div>
+      <div class="mt-1">
+        <input
+          id="name"
+          v-model="form.name"
+          name="name"
+          type="text"
+          autocomplete="name"
+          required
+          class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+    </div>
+
+    <div>
+      <div class="flex justify-between">
+        <label
+          for="email"
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Email address
         </label>
         <span v-if="errors.email" class="text-sm text-red-600">
@@ -24,7 +52,10 @@
 
     <div class="space-y-1">
       <div class="flex">
-        <label for="password" class="block text-sm font-medium text-gray-700">
+        <label
+          for="password"
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Password
         </label>
         <span v-if="errors.password" class="text-sm text-red-600">
@@ -46,17 +77,20 @@
 
     <div class="space-y-1">
       <div class="flex">
-        <label for="password" class="block text-sm font-medium text-gray-700">
+        <label
+          for="password"
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Confirm password
         </label>
-        <span v-if="errors.passwordConfirm" class="text-sm text-red-600">
+        <span v-if="errors.password_confirmation" class="text-sm text-red-600">
           {{ errors.password[0] }}
         </span>
       </div>
       <div class="mt-1">
         <input
           id="passwordConfirm"
-          v-model="form.passwordConfirm"
+          v-model="form.password_confirmation"
           name="passwordConfirm"
           type="password"
           autocomplete="current-password-confirm"
@@ -106,9 +140,10 @@ export default {
   data() {
     return {
       form: {
-        email: 'ewilan@mail.com',
-        password: 'password',
-        passwordConfirm: 'password',
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
         remember: false,
       },
       errors: {},
@@ -126,10 +161,11 @@ export default {
     async submit() {
       this.isLoading = true
       try {
+        await this.$axios.$post('/register', this.form)
         const manual = false
         if (manual) {
-          await this.$axios.$get('/sanctum/csrf-cookie')
-          await this.$axios.$post('/api/login', this.form)
+          // await this.$axios.$get('/sanctum/csrf-cookie')
+          await this.$axios.$post('/register', this.form)
         } else {
           await this.$auth.loginWith('laravelSanctum', {
             data: this.form,

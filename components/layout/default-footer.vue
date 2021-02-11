@@ -2,113 +2,116 @@
   <!-- This example requires Tailwind CSS v2.0+ -->
   <footer aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">Footer</h2>
-    <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:py-16 lg:px-8">
-      <div class="lg:grid lg:grid-cols-3 lg:gap-8">
-        <div class="space-y-8 lg:col-span-1">
-          <nuxt-link to="/" class="flex items-center lg:mx-0 w-max">
-            <icon name="bookshelves-logo" :size="40" class="text-gray-300" />
-          </nuxt-link>
-          <p class="text-base text-gray-500">
-            Download and read eBooks on your own or learn more about your
-            eReader.
-          </p>
-          <div class="flex space-x-6">
-            <a
-              v-for="icon in socialIcons"
-              :key="icon.id"
-              :href="icon.link"
-              target="_blank"
-              rel="noopener noreferrer"
-              :title="icon.label"
-              class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-400"
-            >
-              <icon :name="icon.icon" :size="30" />
-            </a>
+    <div class="container px-4 py-12 max-w-7xl sm:px-6 lg:py-16 lg:px-8">
+      <div class="grid grid-cols-6 mx-auto">
+        <div class="col-start-1 col-end-4">
+          <div class="max-w-md space-y-8">
+            <nuxt-link to="/" class="flex items-center lg:mx-0 w-max">
+              <icon name="bookshelves-logo" :size="40" class="text-gray-300" />
+              <div class="mt-2 ml-3 text-2xl text-gray-300 font-handlee">
+                Bookshelves
+              </div>
+            </nuxt-link>
+            <p class="text-base text-gray-500">
+              Download and read eBooks on your own or learn more about your
+              eReader.
+            </p>
+            <div class="flex space-x-6">
+              <a
+                v-for="icon in socialIcons"
+                :key="icon.id"
+                :href="icon.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                :title="icon.label"
+                class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-400"
+              >
+                <icon :name="icon.icon" :size="30" />
+              </a>
+              <color-switcher-toggle />
+            </div>
           </div>
         </div>
-        <div
-          class="grid grid-cols-4 gap-8 mt-12 ml-auto md:grid-cols-3 lg:mt-0 lg:col-span-2"
-        >
-          <div class="col-span-2 sm:w-48 md:col-span-1">
-            <h3
-              class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
-            >
-              Bookshelves
-            </h3>
-            <ul class="mt-4 space-y-4">
-              <li v-for="link in navigationSupport" :key="link.id">
-                <nuxt-link
-                  :to="link.route"
-                  class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-gray-400"
-                >
-                  {{ link.label }}
-                </nuxt-link>
-              </li>
-            </ul>
-          </div>
-          <div class="col-span-2 sm:w-48 md:col-span-1">
-            <h3
-              class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
-            >
-              Project
-            </h3>
-            <ul class="mt-4 space-y-4">
-              <li v-for="link in navigationCompany" :key="link.id">
-                <nuxt-link
-                  :to="link.route"
-                  class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-gray-400"
-                >
-                  {{ link.label }}
-                </nuxt-link>
-              </li>
-            </ul>
-          </div>
-          <div class="col-span-2 sm:w-48 md:col-span-1">
-            <h3
-              class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
-            >
-              Legal
-            </h3>
-            <ul class="mt-4 space-y-4">
-              <li v-for="link in navigationLegal" :key="link.id">
-                <nuxt-link
-                  :to="link.route"
-                  class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-gray-400"
-                >
-                  {{ link.label }}
-                </nuxt-link>
-              </li>
-            </ul>
-          </div>
+        <div class="col-span-1">
+          <h3
+            class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
+          >
+            Bookshelves
+          </h3>
+          <ul class="mt-4 space-y-4">
+            <li v-for="link in navigationSupport" :key="link.id">
+              <nuxt-link
+                :to="link.route"
+                class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-gray-400"
+              >
+                {{ link.label }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
+        <div class="col-span-1">
+          <h3
+            class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
+          >
+            Project
+          </h3>
+          <ul class="mt-4 space-y-4">
+            <li v-for="link in navigationCompany" :key="link.id">
+              <nuxt-link
+                :to="link.route"
+                class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-gray-400"
+              >
+                {{ link.label }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
+        <div class="col-span-1">
+          <h3
+            class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
+          >
+            Legal
+          </h3>
+          <ul class="mt-4 space-y-4">
+            <li v-for="link in navigationLegal" :key="link.id">
+              <nuxt-link
+                :to="link.route"
+                class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-gray-400"
+              >
+                {{ link.label }}
+              </nuxt-link>
+            </li>
+          </ul>
         </div>
       </div>
-      <div
-        class="flex items-center justify-between pt-8 mt-12 border-t border-gray-200"
-      >
+      <div>
         <div
-          class="text-base text-left text-gray-400 md:items-center md:flex lg:text-center"
+          class="flex items-center justify-between pt-8 mt-12 border-t border-gray-200"
         >
-          <a
-            href="https://creativecommons.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-center px-1 py-2 text-base leading-6 text-center text-gray-400 transition-colors duration-300 rounded-md group w-max"
+          <div
+            class="text-base text-left text-gray-400 md:items-center md:flex lg:text-center"
           >
-            <span
-              v-for="license in licenses"
-              :key="license.id"
-              :alt="license.label"
-              class="w-5 h-5 mr-1 text-gray-400 transition-colors duration-300 fill-current group-hover:text-gray-700"
-              v-html="license.svg"
-            ></span>
-            <span
-              class="ml-1 text-gray-400 transition-colors duration-300 group-hover:text-gray-700"
+            <a
+              href="https://creativecommons.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-center px-1 py-2 text-base leading-6 text-center text-gray-400 transition-colors duration-300 rounded-md group w-max"
             >
-              {{ date(2020) }}
-            </span>
-          </a>
-          <span class="hidden mx-1 lg:block"> · </span>
-          <!-- <a
+              <span
+                v-for="license in licenses"
+                :key="license.id"
+                :alt="license.label"
+                class="w-5 h-5 mr-1 text-gray-400 transition-colors duration-300 fill-current group-hover:text-gray-700"
+                v-html="license.svg"
+              ></span>
+              <span
+                class="ml-1 text-gray-400 transition-colors duration-300 group-hover:text-gray-700"
+              >
+                {{ date(2020) }}
+              </span>
+            </a>
+            <span class="hidden mx-1 lg:block"> · </span>
+            <!-- <a
               :href="`${packageJson.repository.url}/-/project_members`"
               target="_blank"
               rel="noopener noreferrer"
@@ -116,7 +119,7 @@
             >
               Bookshelves Team<span class="hidden lg:block">,</span>
             </a> -->
-          <!-- <a
+            <!-- <a
               :href="`${packageJson.repository.url}/-/blob/master/LICENSE`"
               target="_blank"
               rel="noopener noreferrer"
@@ -126,41 +129,42 @@
                 >.</span
               >
             </a> -->
-          <div class="flex items-center">
-            Bookshelves Team<span class="hidden lg:mr-1 lg:block">,</span>
-            {{ packageJson.license }} license<span class="hidden lg:block"
-              >.</span
-            >
+            <div class="flex items-center">
+              Bookshelves Team<span class="hidden lg:mr-1 lg:block">,</span>
+              {{ packageJson.license }} license<span class="hidden lg:block"
+                >.</span
+              >
+            </div>
           </div>
-        </div>
-        <div
-          class="items-center hidden px-1 text-base leading-6 text-gray-400 transition-colors duration-300 rounded-md lg:flex lg:w-max"
-        >
-          <div class="pb-5 text-center lg:pb-0">Built with</div>
-          <a
-            href="https://nuxtjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current lg:ml-1 hover:nuxt-svg"
-            v-html="nuxtFullSvg"
-          ></a
-          >,
-          <a
-            href="https://tailwindcss.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current hover:tailwind-svg"
-            v-html="tailwindFullSvg"
-          ></a
-          ><span class="mx-1">&</span
-          ><a
-            href="https://laravel.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current hover:laravel-svg"
-            v-html="laravelFullSvg"
-          ></a
-          >.
+          <div
+            class="items-center hidden px-1 text-base leading-6 text-gray-400 transition-colors duration-300 rounded-md lg:flex lg:w-max"
+          >
+            <div class="pb-5 text-center lg:pb-0">Built with</div>
+            <a
+              href="https://nuxtjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current lg:ml-1 hover:nuxt-svg"
+              v-html="nuxtFullSvg"
+            ></a
+            >,
+            <a
+              href="https://tailwindcss.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current hover:tailwind-svg"
+              v-html="tailwindFullSvg"
+            ></a
+            ><span class="mx-1">&</span
+            ><a
+              href="https://laravel.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current hover:laravel-svg"
+              v-html="laravelFullSvg"
+            ></a
+            >.
+          </div>
         </div>
       </div>
     </div>
@@ -169,12 +173,13 @@
 
 <script>
 import packageJson from '@/package.json'
+import ColorSwitcherToggle from '../special/color-switcher-toggle.vue'
 import backToTop from './back-to-top.vue'
 
 export default {
   name: 'DefaultFooter',
   // eslint-disable-next-line vue/no-unused-components
-  components: { backToTop },
+  components: { backToTop, ColorSwitcherToggle },
   data() {
     return {
       socialIcons: [

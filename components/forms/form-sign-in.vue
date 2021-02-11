@@ -2,7 +2,10 @@
   <form class="space-y-6" @submit.prevent="submit">
     <div>
       <div class="flex justify-between">
-        <label for="email" class="block text-sm font-medium text-gray-700">
+        <label
+          for="email"
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Email address
         </label>
         <span v-if="errors.email" class="text-sm text-red-600">
@@ -24,7 +27,10 @@
 
     <div class="space-y-1">
       <div class="flex">
-        <label for="password" class="block text-sm font-medium text-gray-700">
+        <label
+          for="password"
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Password
         </label>
         <span v-if="errors.password" class="text-sm text-red-600">
@@ -52,7 +58,10 @@
           type="checkbox"
           class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
         />
-        <label for="remember_me" class="block ml-2 text-sm text-gray-900">
+        <label
+          for="remember_me"
+          class="block ml-2 text-sm text-gray-900 dark:text-gray-100"
+        >
           Remember me
         </label>
       </div>
@@ -104,8 +113,8 @@ export default {
   data() {
     return {
       form: {
-        email: 'ewilan@dotslashplay.it',
-        password: 'password',
+        email: '',
+        password: '',
         remember: false,
       },
       errors: {},

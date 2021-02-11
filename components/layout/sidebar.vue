@@ -64,6 +64,20 @@
                   {{ booksNav.label }}
                 </span>
               </nuxt-link>
+              <nuxt-link
+                :to="{ name: 'sign-in' }"
+                class="flex items-center px-2 py-5 text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 group"
+                @click.native="closeSidebar"
+              >
+                <span class="font-semibold"> Sign in </span>
+              </nuxt-link>
+              <nuxt-link
+                :to="{ name: 'sign-up' }"
+                class="flex items-center px-2 py-5 text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 group"
+                @click.native="closeSidebar"
+              >
+                <span class="font-semibold"> Sign up </span>
+              </nuxt-link>
             </div>
             <div class="hidden mt-8">
               <h3
