@@ -105,7 +105,7 @@
                 type="text"
                 name="name"
                 autocomplete="name"
-                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-300 dark:border-gray-300"
+                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-300 dark:border-gray-300"
               />
             </div>
           </div>
@@ -121,7 +121,7 @@
                 name="email"
                 type="email"
                 autocomplete="email"
-                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm dark:bg-gray-300 dark:border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm dark:bg-gray-300 dark:border-gray-300 focus:ring-primary-500 focus:border-primary-500"
               />
             </div>
           </div>
@@ -136,14 +136,14 @@
                 id="message"
                 name="message"
                 rows="4"
-                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-300 dark:border-gray-300"
+                class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-300 dark:border-gray-300"
               ></textarea>
             </div>
           </div>
           <div class="sm:col-span-2">
             <button
               type="submit"
-              class="inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              class="inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white bg-primary-600 border border-transparent rounded-md shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
             >
               Let's talk
             </button>

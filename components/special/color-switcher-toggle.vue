@@ -5,8 +5,8 @@
     <button
       type="button"
       aria-pressed="false"
-      :class="colorMode === 'dark' ? 'bg-indigo-600' : 'bg-gray-200'"
-      class="relative inline-flex flex-shrink-0 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer toggle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      :class="colorMode === 'dark' ? 'bg-primary-600' : 'bg-gray-200'"
+      class="relative inline-flex flex-shrink-0 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer toggle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
       @click="switchColorMode()"
     >
       <span class="sr-only">Use setting</span>
@@ -27,7 +27,7 @@
         >
           <svg
             v-if="colorMode === 'light'"
-            class="text-gray-400 transition-colors duration-300 icon-color group-hover:text-indigo-600"
+            class="text-gray-400 transition-colors duration-300 icon-color group-hover:text-primary-600"
             fill="none"
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -51,7 +51,7 @@
           aria-hidden="true"
         >
           <svg
-            class="text-indigo-600 icon-color"
+            class="text-primary-600 icon-color"
             fill="none"
             stroke-linecap="round"
             stroke-linejoin="round"

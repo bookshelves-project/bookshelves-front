@@ -11,9 +11,11 @@
             v-for="guide in guides"
             :key="guide.id"
             :to="guide.path"
-            class="block px-6 py-4 overflow-hidden transition-colors duration-100 bg-white rounded-md shadow h-36 hover:bg-gray-50 dark:bg-gray-800"
+            class="block px-3 py-2 overflow-hidden transition-colors duration-100 bg-white rounded-md shadow lg:px-6 lg:py-4 h-36 hover:bg-gray-50 dark:bg-gray-800"
           >
-            <div class="flex items-center px-4 py-4 sm:px-6">
+            <div
+              class="flex items-center h-full px-2 py-2 lg:px-4 lg:py-4 lg:h-auto sm:px-6"
+            >
               <div class="flex items-center flex-1 min-w-0">
                 <div class="flex-shrink-0">
                   <img
@@ -45,7 +47,7 @@
                         {{ guide.category }}
                       </span>
                     </p>
-                    <h2 class="text-xl font-medium text-indigo-600 truncate">
+                    <h2 class="text-xl font-medium text-primary-600 truncate">
                       {{ guide.title }}
                     </h2>
                   </div>

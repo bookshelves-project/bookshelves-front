@@ -58,95 +58,12 @@
             <autocomplete-search-bar />
           </div>
           <color-switcher class="block mx-3 lg:hidden" />
-          <div v-click-outside="closeAccountDropdown" class="relative ml-3">
-            <div>
-              <button
-                id="user-menu"
-                class="flex text-sm rounded-full text-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                aria-haspopup="true"
-                title="Account"
-                @click="accountDropdownOpened = !accountDropdownOpened"
-              >
-                <span class="sr-only">Open user menu</span>
-                <!-- <img
-                  class="w-8 h-8 rounded-full"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixqx=UbJG7I0AnK&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                /> -->
-                <svg
-                  class="w-8 h-8"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-            </div>
-            <!--
-            Profile dropdown panel, show/hide based on dropdown state.
-
-            Entering: "transition ease-out duration-100"
-              From: "transform opacity-0 scale-95"
-              To: "transform opacity-100 scale-100"
-            Leaving: "transition ease-in duration-75"
-              From: "transform opacity-100 scale-100"
-              To: "transform opacity-0 scale-95"
-          -->
-            <transition name="fade">
-              <div
-                v-if="accountDropdownOpened"
-                class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="user-menu"
-              >
-                <nuxt-link
-                  :to="{ name: 'sign-in' }"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  role="menuitem"
-                  @click.native="closeAccountDropdown"
-                >
-                  Sign in
-                </nuxt-link>
-                <nuxt-link
-                  :to="{ name: 'sign-up' }"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  role="menuitem"
-                  @click.native="closeAccountDropdown"
-                >
-                  Sign up
-                </nuxt-link>
-                <!-- <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  role="menuitem"
-                  >Your Profile</a
-                >
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  role="menuitem"
-                  >Settings</a
-                >
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  role="menuitem"
-                  >Sign out</a
-                > -->
-              </div>
-            </transition>
-          </div>
+          <account-dropdown class="hidden md:block" />
         </div>
         <div v-if="false" class="flex items-center lg:hidden">
           <!-- Mobile menu button -->
           <button
-            class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
             aria-expanded="false"
           >
             <span class="sr-only">Open main menu</span>
@@ -196,7 +113,7 @@
         </div>
         <div v-if="false" class="hidden lg:ml-4 lg:flex lg:items-center">
           <button
-            class="flex-shrink-0 p-1 text-gray-400 rounded-full hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            class="flex-shrink-0 p-1 text-gray-400 rounded-full hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
           >
             <span class="sr-only">View notifications</span>
             <!-- Heroicon name: outline/bell -->
@@ -222,7 +139,7 @@
             <div>
               <button
                 id="user-menu"
-                class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                class="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                 aria-haspopup="true"
               >
                 <span class="sr-only">Open user menu</span>
@@ -276,20 +193,16 @@
 </template>
 
 <script>
-import vClickOutside from 'v-click-outside'
 import autocompleteSearchBar from '../blocks/autocomplete-search-bar.vue'
 import ColorSwitcher from '../special/color-switcher.vue'
+import AccountDropdown from '../blocks/account-dropdown.vue'
 
 export default {
   name: 'Navbar',
-  components: { autocompleteSearchBar, ColorSwitcher },
-  directives: {
-    clickOutside: vClickOutside.directive,
-  },
+  components: { autocompleteSearchBar, ColorSwitcher, AccountDropdown },
   data() {
     return {
       displayIfScrolled: false,
-      accountDropdownOpened: false,
     }
   },
   beforeMount() {
@@ -299,9 +212,6 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
-    closeAccountDropdown() {
-      this.accountDropdownOpened = false
-    },
     handleScroll() {
       if (window.scrollY > 50) {
         this.displayIfScrolled = true

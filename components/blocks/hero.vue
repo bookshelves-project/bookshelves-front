@@ -11,7 +11,7 @@
                 class="mt-4 text-3xl font-extrabold text-gray-700 font-handlee lg:text-4xl"
               >
                 <span class="block">Bookshelves, reading in complete</span>
-                <span class="block text-indigo-600">
+                <span class="block text-primary-600">
                   tranquility and freedom</span
                 >
               </h1>

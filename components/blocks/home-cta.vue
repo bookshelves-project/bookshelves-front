@@ -7,7 +7,7 @@
         class="text-3xl font-extrabold tracking-tight text-gray-900 font-handlee md:text-4xl"
       >
         <span class="block">Ready to dive in?</span>
-        <span class="block text-indigo-600">
+        <span class="block text-primary-600">
           Discover your next universe.
         </span>
       </h2>
@@ -15,7 +15,7 @@
         <div class="inline-flex rounded-md shadow">
           <nuxt-link
             :to="{ name: 'books' }"
-            class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white transition-colors duration-100 border border-transparent rounded-md bg-primary-600 hover:bg-indigo-700"
+            class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white transition-colors duration-100 border border-transparent rounded-md bg-primary-600 hover:bg-primary-700"
           >
             Discover eBooks
           </nuxt-link>

@@ -41,13 +41,13 @@
     >
       <div class="relative z-10 rounded-lg shadow-lg">
         <div
-          class="absolute inset-0 border-2 border-indigo-600 rounded-lg pointer-events-none"
+          class="absolute inset-0 border-2 border-primary-600 rounded-lg pointer-events-none"
           aria-hidden="true"
         ></div>
         <div class="absolute inset-x-0 top-0 transform translate-y-px">
           <div class="flex justify-center transform -translate-y-1/2">
             <span
-              class="inline-flex px-4 py-1 text-sm font-semibold tracking-wider text-white uppercase bg-indigo-600 rounded-full"
+              class="inline-flex px-4 py-1 text-sm font-semibold tracking-wider text-white uppercase bg-primary-600 rounded-full"
             >
               Most popular
             </span>

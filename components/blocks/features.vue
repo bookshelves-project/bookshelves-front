@@ -4,7 +4,7 @@
       class="max-w-md px-4 mx-auto text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
     >
       <h2
-        class="text-base font-semibold tracking-wider text-indigo-600 uppercase"
+        class="text-base font-semibold tracking-wider text-primary-600 uppercase"
       >
         How to use Bookshelves
       </h2>
@@ -20,7 +20,7 @@
             >
               <div class="-mt-6">
                 <div
-                  class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow"
+                  class="inline-flex items-center justify-center p-3 bg-primary-500 rounded-md shadow"
                 >
                   <icon :name="feature.icon" :size="40" class="text-white" />
                 </div>

@@ -217,10 +217,10 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: process.env.API_URL,
-    prefix: '/api',
+    // prefix: '/api',
     credentials: true,
     https: false,
-    // proxy: true,
+    proxy: true,
     headers: {
       common: {
         'X-Requested-With': 'XMLHttpRequest',
@@ -237,6 +237,12 @@ export default {
   // proxy: {
   //   '/api/': { target: 'http://api.example.com', pathRewrite: {'^/api/': ''} }
   // },
+  proxy: {
+    '/api': {
+      target: `${process.env.API_URL}/api`,
+      pathRewrite: { '^/api': '/' },
+    },
+  },
 
   auth: {
     strategies: {

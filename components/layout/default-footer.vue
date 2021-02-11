@@ -3,12 +3,14 @@
   <footer aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">Footer</h2>
     <div class="container px-4 py-12 max-w-7xl sm:px-6 lg:py-16 lg:px-8">
-      <div class="grid grid-cols-6 mx-auto">
-        <div class="col-start-1 col-end-4">
+      <div class="grid grid-cols-6 mx-auto space-y-12 xl:space-y-0">
+        <div class="col-span-6 xl:col-start-1 xl:col-end-4">
           <div class="max-w-md space-y-8">
             <nuxt-link to="/" class="flex items-center lg:mx-0 w-max">
               <icon name="bookshelves-logo" :size="40" class="text-gray-300" />
-              <div class="mt-2 ml-3 text-2xl text-gray-300 font-handlee">
+              <div
+                class="mt-2 ml-3 text-2xl text-gray-300 md:text-xl font-handlee"
+              >
                 Bookshelves
               </div>
             </nuxt-link>
@@ -16,7 +18,7 @@
               Download and read eBooks on your own or learn more about your
               eReader.
             </p>
-            <div class="flex space-x-6">
+            <div class="space-y-6 sm:space-y-0 sm:space-x-6 sm:flex">
               <a
                 v-for="icon in socialIcons"
                 :key="icon.id"
@@ -24,7 +26,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 :title="icon.label"
-                class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-400"
+                class="block text-gray-400 hover:text-gray-500 dark:hover:text-gray-400"
               >
                 <icon :name="icon.icon" :size="30" />
               </a>
@@ -32,7 +34,7 @@
             </div>
           </div>
         </div>
-        <div class="col-span-1">
+        <div class="col-span-6 sm:col-span-3 md:col-span-2 xl:col-span-1">
           <h3
             class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
           >
@@ -49,7 +51,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-span-1">
+        <div class="col-span-6 sm:col-span-3 md:col-span-2 xl:col-span-1">
           <h3
             class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
           >
@@ -66,7 +68,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-span-1">
+        <div class="col-span-6 sm:col-span-3 md:col-span-2 xl:col-span-1">
           <h3
             class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
           >

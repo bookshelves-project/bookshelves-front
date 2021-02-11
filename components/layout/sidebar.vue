@@ -96,7 +96,7 @@
                   class="flex items-center px-3 py-2 text-base font-medium leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50"
                 >
                   <span
-                    class="w-2.5 h-2.5 mr-4 bg-indigo-500 rounded-full"
+                    class="w-2.5 h-2.5 mr-4 bg-primary-500 rounded-full"
                     aria-hidden="true"
                   ></span>
                   <span class="truncate"> Engineering </span>

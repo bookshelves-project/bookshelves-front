@@ -14,7 +14,7 @@
             <div class="mx-auto text-lg max-w-prose">
               <div>
                 <h2
-                  class="block text-base font-semibold tracking-wide text-center text-indigo-600 uppercase"
+                  class="block text-base font-semibold tracking-wide text-center text-primary-600 uppercase"
                 >
                   {{ document.category }}
                 </h2>
