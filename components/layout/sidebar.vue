@@ -93,7 +93,7 @@
                     <span> {{ link.label }} </span>
                   </nuxt-link>
                   <button
-                    class="flex items-center w-full px-3 py-5 text-base font-semibold leading-5 text-gray-100 rounded-md group hover:text-gray-900 hover:bg-gray-50 dark:hover:text-gray-900"
+                    class="flex items-center w-full px-3 py-5 text-base font-semibold leading-5 text-gray-600 rounded-md dark:text-gray-100 group hover:text-gray-900 hover:bg-gray-50 dark:hover:text-gray-900"
                     role="menuitem"
                     @click="logout"
                   >

@@ -6,10 +6,14 @@
       <div class="grid grid-cols-6 mx-auto space-y-12 xl:space-y-0">
         <div class="col-span-6 xl:col-start-1 xl:col-end-4">
           <div class="max-w-md space-y-8">
-            <nuxt-link to="/" class="flex items-center lg:mx-0 w-max">
-              <icon name="bookshelves-logo" :size="40" class="text-gray-300" />
+            <nuxt-link to="/" class="flex items-center lg:mx-0 w-max group">
+              <icon
+                name="bookshelves-logo"
+                :size="40"
+                class="text-gray-300 transition-colors duration-100 group-hover:text-gray-400"
+              />
               <div
-                class="mt-2 ml-3 text-2xl text-gray-300 md:text-xl font-handlee"
+                class="mt-2 ml-3 text-2xl text-gray-300 transition-colors duration-100 md:text-xl font-handlee group-hover:text-gray-400"
               >
                 Bookshelves
               </div>

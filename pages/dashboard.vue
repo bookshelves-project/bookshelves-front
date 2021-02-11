@@ -21,7 +21,7 @@
 
     <div
       v-if="booksUpdate.length > 0"
-      class="max-w-lg p-3 mt-5 bg-gray-300 rounded-md"
+      class="h-64 max-w-lg p-3 mt-5 overflow-scroll bg-gray-300 rounded-md"
     >
       <div v-for="book in booksUpdate" :key="book.id">
         <pre>{{ book.title }}</pre>
