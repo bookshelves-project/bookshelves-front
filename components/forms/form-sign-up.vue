@@ -200,15 +200,9 @@ export default {
       this.isLoading = true
       try {
         await this.$axios.$post('/register', this.form)
-        const manual = false
-        if (manual) {
-          // await this.$axios.$get('/sanctum/csrf-cookie')
-          await this.$axios.$post('/register', this.form)
-        } else {
-          await this.$auth.loginWith('laravelSanctum', {
-            data: this.form,
-          })
-        }
+        await this.$auth.loginWith('laravelSanctum', {
+          data: this.form,
+        })
       } catch (error) {
         console.error(error)
         this.errors = error.response.data.errors

@@ -220,7 +220,7 @@ export default {
     // prefix: '/api',
     credentials: true,
     https: false,
-    proxy: true,
+    // proxy: true,
     headers: {
       common: {
         'X-Requested-With': 'XMLHttpRequest',
