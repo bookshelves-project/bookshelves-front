@@ -40,9 +40,17 @@
                       />
                     </div>
                     <div
-                      class="mt-1 text-sm text-gray-700 dark:text-gray-300"
-                      v-html="comment.text"
+                      :ref="comment.id"
+                      class="mt-1 text-sm text-gray-700 dark:text-gray-300 light-md"
+                      v-html="$overflow(comment.text, 300)"
                     ></div>
+                    <button
+                      v-if="comment.text.length > 300"
+                      class="mt-2 font-semibold text-primary-600"
+                      @click="displayCommentText(comment.id, comment.text)"
+                    >
+                      See more
+                    </button>
                     <div class="flex items-center mt-2 space-x-2 text-sm">
                       <span class="font-medium text-gray-500"
                         >{{
@@ -88,9 +96,13 @@
                     v-model="form.text"
                     name="text"
                     rows="3"
+                    maxlength="1500"
                     class="block w-full border-gray-300 rounded-md shadow-sm dark:bg-gray-200 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     placeholder="Add a comment*"
                   ></textarea>
+                  <div class="ml-1 text-sm text-gray-400">
+                    {{ form.text.length }}/1500
+                  </div>
                 </div>
                 <div class="mt-3 mb-5">
                   <div class="mt-1">
@@ -198,6 +210,11 @@ export default {
     this.commentsList = this.book.comments
   },
   methods: {
+    displayCommentText(refId, originalText) {
+      console.log(originalText)
+      console.log(this.$refs[refId][0].innerHTML)
+      this.$refs[refId][0].innerHTML = originalText
+    },
     getDate(createdDate, updatedDate) {
       // the param is raw DateTime from API like 2020-10-16T08:18:49.000000Z
       // convert date to JS Date
@@ -286,9 +303,8 @@ export default {
       )
       this.commentsList = comments
 
-      const slug = this.$route.params.slug
       try {
-        await this.$axios.$post(`/api/comments/destroy/${slug}`)
+        await this.$axios.$post(`/api/comments/destroy/${idOfCommentToDelete}`)
       } catch (error) {
         console.error(error)
       }
@@ -297,4 +313,10 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss" scoped>
+.light-md {
+  & /deep/ p {
+    @apply my-4;
+  }
+}
+</style>

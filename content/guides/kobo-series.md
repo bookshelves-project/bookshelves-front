@@ -4,6 +4,7 @@ description: 'Series can not work on the fly with your Kobo, this guide explain 
 position: 3
 category: 'Kobo'
 draft: false
+created_at: 03-02-2021
 ---
 
 ## About series
