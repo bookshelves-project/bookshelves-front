@@ -259,6 +259,8 @@ export default {
       const book = this.$route.params.slug
       try {
         await this.$axios.$post(`/api/comments/store/${book}`, this.form)
+        this.form.text = ''
+        this.form.rating = 0
       } catch (error) {
         this.error = error.response.data
         this.$store.commit('setAlertMessage', {
