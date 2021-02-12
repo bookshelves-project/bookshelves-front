@@ -1,0 +1,242 @@
+<template>
+  <section aria-labelledby="notes-title">
+    <div
+      class="bg-white shadow dark:bg-gray-800 sm:rounded-lg sm:overflow-hidden"
+    >
+      <div class="divide-y divide-gray-200 dark:divide-gray-700">
+        <div class="px-4 py-5 sm:px-6">
+          <h2
+            id="notes-title"
+            class="text-lg font-medium text-gray-900 dark:text-gray-100"
+          >
+            Comments
+          </h2>
+        </div>
+        <div class="px-4 py-6 sm:px-6">
+          <transition name="fade">
+            <ul v-if="book.comments.length > 0" class="space-y-8">
+              <li v-for="comment in book.comments" :key="comment.id">
+                <div class="flex space-x-3">
+                  <div class="flex-shrink-0">
+                    <img
+                      class="w-10 h-10 rounded-full"
+                      :src="comment.user.picture"
+                      :alt="comment.user.name"
+                    />
+                  </div>
+                  <div>
+                    <div class="text-sm">
+                      <span class="font-medium text-gray-900">
+                        {{ comment.user.name }}
+                      </span>
+                    </div>
+                    <div class="flex items-center mt-1">
+                      <icon-star
+                        v-for="i in comment.rating"
+                        :key="i.id"
+                        class="text-yellow-400"
+                      />
+                    </div>
+                    <div
+                      class="mt-1 text-sm text-gray-700 dark:text-gray-300"
+                      v-html="comment.text"
+                    ></div>
+                    <div class="mt-2 space-x-2 text-sm">
+                      <span class="font-medium text-gray-500"
+                        >{{
+                          getDate(comment.createdAt, comment.updatedAt)
+                            .daysDiff
+                        }}d ago</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div v-else class="italic text-gray-400">No comments available</div>
+          </transition>
+        </div>
+      </div>
+      <div class="px-4 py-6 bg-gray-50 dark:bg-gray-700 sm:px-6">
+        <div class="flex space-x-3">
+          <div class="flex-shrink-0">
+            <img
+              class="w-10 h-10 rounded-full"
+              :src="$auth.$state.user.profile_photo_url"
+              alt=""
+            />
+          </div>
+          <div class="flex-1 min-w-0">
+            <form @submit.prevent="submit">
+              <div>
+                <label for="comment" class="sr-only">About</label>
+                <textarea
+                  id="comment"
+                  v-model="form.comment"
+                  name="comment"
+                  rows="3"
+                  class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="Add a comment"
+                ></textarea>
+              </div>
+              <div class="mt-3 mb-5">
+                <div class="mt-1">
+                  <select
+                    id="rating"
+                    v-model="form.rating"
+                    name="rating"
+                    autocomplete="rating"
+                    :class="
+                      form.rating === null
+                        ? 'italic text-gray-400'
+                        : 'not-italic text-gray-900'
+                    "
+                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  >
+                    <option
+                      disabled
+                      hidden
+                      value="null"
+                      class="italic text-gray-400"
+                    >
+                      Select a rating (optional)
+                    </option>
+                    <option
+                      v-for="i in 5"
+                      :key="i.id"
+                      class="not-italic text-gray-900"
+                    >
+                      {{ i }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <a
+                  href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-start space-x-2 text-sm text-gray-500 group hover:text-gray-900"
+                >
+                  <!-- Heroicon name: solid/question-mark-circle -->
+                  <svg
+                    class="flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span> You can use Markdown. </span>
+                </a>
+                <button
+                  type="submit"
+                  class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                >
+                  Comment
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+import iconStar from '~/components/icons/icon-star.vue'
+export default {
+  name: 'BookComments',
+  components: { iconStar },
+  props: {
+    book: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  data() {
+    return {
+      form: {
+        comment: '',
+        rating: null,
+      },
+    }
+  },
+  methods: {
+    getDate(createdDate, updatedDate) {
+      // the param is raw DateTime from API like 2020-10-16T08:18:49.000000Z
+      // convert date to JS Date
+      // example here date param is '2020-10-16T08:18:49.000000Z'
+      createdDate = new Date(createdDate)
+      updatedDate = new Date(updatedDate)
+      let dateOfUpdate = new Date()
+      const today = new Date()
+      const date = createdDate
+      const differenceBetweenCreatedUpdated = createdDate - updatedDate
+      if (isNaN(differenceBetweenCreatedUpdated)) {
+        dateOfUpdate = createdDate
+      } else {
+        dateOfUpdate = updatedDate
+      }
+      const difference = today - dateOfUpdate
+      let diffD = 0
+      if (!isNaN(difference)) {
+        diffD = Math.floor((today - dateOfUpdate) / (1000 * 60 * 60 * 24))
+        console.log('Day Diff: ' + diffD)
+        diffD = diffD.toString()
+        diffD = diffD.replace('-', '')
+      }
+
+      // define options
+      let userLang = 'en'
+      // for Nuxt
+      if (process.client) {
+        userLang = navigator.language || navigator.userLanguage
+      }
+
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+      const dateOptions = {
+        year: 'numeric',
+        // weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+      }
+      // eslint-disable-next-line no-unused-vars
+      const hoursOptions = {
+        // timeZone: 'UTC',
+        timeZone,
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+      }
+
+      const dateToStringLocale = date.toLocaleString(userLang, dateOptions)
+      const timeToStringLocale = date.toLocaleTimeString()
+
+      const dateTime = {
+        date: dateToStringLocale,
+        time: timeToStringLocale,
+      }
+
+      return { daysDiff: diffD, dateTime }
+    },
+    async submit() {
+      const book = this.$route.params.slug
+      try {
+        await this.$axios.$post(`/api/comments/store/${book}`, this.form)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+  },
+}
+</script>
+
+<style lang="postcss" scoped></style>

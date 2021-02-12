@@ -12,21 +12,7 @@
           <book-description :book="book" />
 
           <!-- Comments-->
-          <!-- <section aria-labelledby="notes-title">
-            <div class="shadow sm:rounded-lg sm:overflow-hidden">
-              <div class="divide-y divide-gray-200">
-                <div class="px-4 py-5 sm:px-6">
-                  <h2
-                    id="notes-title"
-                    class="text-lg font-medium text-gray-900"
-                  >
-                    Notes
-                  </h2>
-                </div>
-                <div class="px-4 py-6 sm:px-6">Content</div>
-              </div>
-            </div>
-          </section> -->
+          <book-comments :book="book" />
         </div>
 
         <book-serie v-if="book.serie !== null" :serie="serie" :book="book" />
@@ -36,6 +22,7 @@
 </template>
 
 <script>
+import BookComments from '~/components/blocks/books-slug/book-comments.vue'
 import BookDescription from '~/components/blocks/books-slug/book-description.vue'
 import bookHeader from '~/components/blocks/books-slug/book-header.vue'
 import BookInformation from '~/components/blocks/books-slug/book-information.vue'
@@ -49,6 +36,7 @@ export default {
     BookInformation,
     BookSerie,
     BookDescription,
+    BookComments,
   },
   async asyncData({ app, query, params, error, $content, store }) {
     try {
