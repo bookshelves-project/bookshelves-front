@@ -14,8 +14,8 @@
         </div>
         <div class="px-4 py-6 sm:px-6">
           <transition name="fade">
-            <ul v-if="book.comments.length > 0" class="space-y-8">
-              <li v-for="comment in book.comments" :key="comment.id">
+            <ul v-if="commentsList.length > 0" class="space-y-8">
+              <li v-for="comment in commentsList" :key="comment.id">
                 <div class="flex space-x-3">
                   <div class="flex-shrink-0">
                     <img
@@ -26,11 +26,13 @@
                   </div>
                   <div>
                     <div class="text-sm">
-                      <span class="font-medium text-gray-900">
+                      <span
+                        class="font-medium text-gray-900 dark:text-gray-100"
+                      >
                         {{ comment.user.name }}
                       </span>
                     </div>
-                    <div class="flex items-center mt-1">
+                    <div v-if="comment.rating" class="flex items-center mt-1">
                       <icon-star
                         v-for="i in comment.rating"
                         :key="i.id"
@@ -41,13 +43,21 @@
                       class="mt-1 text-sm text-gray-700 dark:text-gray-300"
                       v-html="comment.text"
                     ></div>
-                    <div class="mt-2 space-x-2 text-sm">
+                    <div class="flex items-center mt-2 space-x-2 text-sm">
                       <span class="font-medium text-gray-500"
                         >{{
                           getDate(comment.createdAt, comment.updatedAt)
                             .daysDiff
                         }}d ago</span
                       >
+                      <button
+                        v-if="comment.user.id === $auth.$state.user.id"
+                        class="text-gray-400 dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-300"
+                        title="Delete"
+                        @click="deleteComment(comment.id)"
+                      >
+                        <icon-trash />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -57,93 +67,106 @@
           </transition>
         </div>
       </div>
-      <div class="px-4 py-6 bg-gray-50 dark:bg-gray-700 sm:px-6">
-        <div class="flex space-x-3">
-          <div class="flex-shrink-0">
-            <img
-              class="w-10 h-10 rounded-full"
-              :src="$auth.$state.user.profile_photo_url"
-              alt=""
-            />
-          </div>
-          <div class="flex-1 min-w-0">
-            <form @submit.prevent="submit">
-              <div>
-                <label for="comment" class="sr-only">About</label>
-                <textarea
-                  id="comment"
-                  v-model="form.comment"
-                  name="comment"
-                  rows="3"
-                  class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  placeholder="Add a comment"
-                ></textarea>
-              </div>
-              <div class="mt-3 mb-5">
-                <div class="mt-1">
-                  <select
-                    id="rating"
-                    v-model="form.rating"
-                    name="rating"
-                    autocomplete="rating"
-                    :class="
-                      form.rating === null
-                        ? 'italic text-gray-400'
-                        : 'not-italic text-gray-900'
-                    "
-                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  >
-                    <option
-                      disabled
-                      hidden
-                      value="null"
-                      class="italic text-gray-400"
-                    >
-                      Select a rating (optional)
-                    </option>
-                    <option
-                      v-for="i in 5"
-                      :key="i.id"
-                      class="not-italic text-gray-900"
-                    >
-                      {{ i }}
-                    </option>
-                  </select>
+      <div
+        class="px-4 py-6 border-t border-transparent bg-gray-50 dark:bg-gray-800 dark:border-gray-700 sm:px-6"
+      >
+        <transition name="fade">
+          <div v-if="$auth.$state.loggedIn" class="flex space-x-3">
+            <div class="flex-shrink-0">
+              <img
+                class="w-10 h-10 rounded-full"
+                :src="$auth.$state.user.profile_photo_url"
+                alt=""
+              />
+            </div>
+            <div class="flex-1 min-w-0">
+              <form @submit.prevent="submit">
+                <div>
+                  <label for="text" class="sr-only">About</label>
+                  <textarea
+                    id="text"
+                    v-model="form.text"
+                    name="text"
+                    rows="3"
+                    class="block w-full border-gray-300 rounded-md shadow-sm dark:bg-gray-200 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    placeholder="Add a comment*"
+                  ></textarea>
                 </div>
-              </div>
-              <div class="flex items-center justify-between mt-3">
-                <a
-                  href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-start space-x-2 text-sm text-gray-500 group hover:text-gray-900"
-                >
-                  <!-- Heroicon name: solid/question-mark-circle -->
-                  <svg
-                    class="flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-500"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
+                <div class="mt-3 mb-5">
+                  <div class="mt-1">
+                    <select
+                      id="rating"
+                      v-model="form.rating"
+                      name="rating"
+                      autocomplete="rating"
+                      :class="
+                        form.rating === null
+                          ? 'italic text-gray-400'
+                          : 'not-italic text-gray-900'
+                      "
+                      class="block w-full border-gray-300 rounded-md shadow-sm dark:bg-gray-200 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    >
+                      <option
+                        disabled
+                        hidden
+                        value="null"
+                        class="italic text-gray-400"
+                      >
+                        Select a rating (optional)
+                      </option>
+                      <option
+                        v-for="i in 5"
+                        :key="i.id"
+                        class="not-italic text-gray-900"
+                      >
+                        {{ i }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between mt-3">
+                  <a
+                    href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-start space-x-2 text-sm text-gray-500 group hover:text-gray-900 dark:hover:text-gray-100"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span> You can use Markdown. </span>
-                </a>
-                <button
-                  type="submit"
-                  class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  Comment
-                </button>
-              </div>
-            </form>
+                    <!-- Heroicon name: solid/question-mark-circle -->
+                    <svg
+                      class="flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <span> You can use GitHub flavored Markdown. </span>
+                  </a>
+                  <button
+                    type="submit"
+                    :class="
+                      form.text === ''
+                        ? 'bg-blue-400 text-gray-300 cursor-not-allowed'
+                        : 'hover:bg-blue-700 bg-blue-600 text-white'
+                    "
+                    class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    :disabled="form.text === ''"
+                  >
+                    Comment
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
+          <div v-else class="text-gray-400">
+            You must be logged in to post a comment
+          </div>
+        </transition>
       </div>
     </div>
   </section>
@@ -151,9 +174,10 @@
 
 <script>
 import iconStar from '~/components/icons/icon-star.vue'
+import IconTrash from '~/components/icons/icon-trash.vue'
 export default {
   name: 'BookComments',
-  components: { iconStar },
+  components: { iconStar, IconTrash },
   props: {
     book: {
       type: Object,
@@ -162,11 +186,16 @@ export default {
   },
   data() {
     return {
+      commentsList: [],
       form: {
-        comment: '',
+        text: '',
         rating: null,
       },
+      error: null,
     }
+  },
+  mounted() {
+    this.commentsList = this.book.comments
   },
   methods: {
     getDate(createdDate, updatedDate) {
@@ -188,7 +217,6 @@ export default {
       let diffD = 0
       if (!isNaN(difference)) {
         diffD = Math.floor((today - dateOfUpdate) / (1000 * 60 * 60 * 24))
-        console.log('Day Diff: ' + diffD)
         diffD = diffD.toString()
         diffD = diffD.replace('-', '')
       }
@@ -231,6 +259,34 @@ export default {
       const book = this.$route.params.slug
       try {
         await this.$axios.$post(`/api/comments/store/${book}`, this.form)
+      } catch (error) {
+        this.error = error.response.data
+        this.$store.commit('setAlertMessage', {
+          type: 'warning',
+          title: error.response.data.error,
+          message: 'Delete or edit previous comment.',
+        })
+        this.$store.commit('toggleShowAlert')
+        setTimeout(() => {
+          this.$store.commit('setShowAlert', false)
+        }, 3000)
+      }
+      try {
+        const comments = await this.$axios.$get(`/api/comments/${book}`)
+        this.commentsList = comments.data
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteComment(idOfCommentToDelete) {
+      const comments = this.commentsList.filter(
+        (comment) => comment.id !== idOfCommentToDelete
+      )
+      this.commentsList = comments
+
+      const slug = this.$route.params.slug
+      try {
+        await this.$axios.$post(`/api/comments/destroy/${slug}`)
       } catch (error) {
         console.error(error)
       }
