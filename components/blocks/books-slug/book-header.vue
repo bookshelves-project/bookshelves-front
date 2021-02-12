@@ -12,6 +12,7 @@
             placeholder="/images/no-cover.webp"
           /> -->
           <img
+            v-if="book.cover"
             v-lazy="book.cover.thumbnail"
             alt="Book cover"
             class="object-cover w-16 h-16 rounded-full"
