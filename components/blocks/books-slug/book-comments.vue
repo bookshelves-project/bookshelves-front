@@ -260,7 +260,7 @@ export default {
       try {
         await this.$axios.$post(`/api/comments/store/${book}`, this.form)
         this.form.text = ''
-        this.form.rating = 0
+        this.form.rating = null
       } catch (error) {
         this.error = error.response.data
         this.$store.commit('setAlertMessage', {
