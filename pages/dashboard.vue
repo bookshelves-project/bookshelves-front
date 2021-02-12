@@ -3,28 +3,102 @@
     <section-heading
       title="Dashboard"
       :subtitle="`Welcome ${this.$auth.user.name}`"
+      :image="$auth.$state.user.profile_photo_url"
     />
-    <div class="flex justify-between">
-      <button
-        class="px-5 py-2 font-semibold text-white transition-colors duration-100 rounded-md bg-primary-600 hover:bg-primary-700"
-        @click="getData"
-      >
-        Test API
-      </button>
-      <button
-        class="px-5 py-2 font-semibold text-white transition-colors duration-100 rounded-md bg-primary-600 hover:bg-primary-700"
-        @click="logout"
-      >
-        Sign out
-      </button>
-    </div>
-
-    <div
-      v-if="booksUpdate.length > 0"
-      class="h-64 max-w-lg p-3 mt-5 overflow-scroll bg-gray-300 rounded-md"
-    >
-      <div v-for="book in booksUpdate" :key="book.id">
-        <pre>{{ book.title }}</pre>
+    <div class="grid grid-cols-1 lg:grid-cols-2">
+      <div class="bg-white rounded-md shadow dark:bg-gray-800">
+        <div
+          class="px-4 py-5 border-b border-gray-200 dark:border-gray-700 sm:px-6 rounded-t-md"
+        >
+          <h3
+            class="flex items-center text-lg font-medium leading-6 text-gray-900"
+          >
+            <icon-heart class="text-red-600" :is-full="true" />
+            <div class="ml-2">Favorite list</div>
+          </h3>
+          <p class="mt-1 text-sm text-gray-500">
+            All your favorite books will be here.
+          </p>
+        </div>
+        <div class="p-3 lg:p-5">
+          <transition name="fade">
+            <div v-if="favoriteList.length > 0">
+              <div
+                v-for="book in favoriteList"
+                :key="book.id"
+                class="relative flex items-center justify-between p-2 text-gray-900 transition-colors duration-100 rounded-md dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50"
+              >
+                <nuxt-link
+                  :to="{
+                    name: 'books-slug',
+                    params: { author: book.authorSlug, slug: book.slug },
+                  }"
+                  class="relative flex items-center"
+                >
+                  <div class="absolute left-0 w-10">
+                    <img
+                      v-lazy="book.cover.basic"
+                      alt="Book cover"
+                      class="object-cover object-center w-full h-12 rounded-sm shadow"
+                    />
+                  </div>
+                  <div class="flex flex-wrap items-center ml-12">
+                    <div class="block transition-colors duration-100 w-max">
+                      <span class="hidden md:block">
+                        {{ book.title }}
+                      </span>
+                      <span class="hidden sm:block md:hidden">
+                        {{ $overflow(book.title, 20) }}
+                      </span>
+                      <span class="block sm:hidden">
+                        {{ $overflow(book.title, 16) }}
+                      </span>
+                    </div>
+                    <div class="flex-wrap hidden md:flex">
+                      <span class="ml-1">by</span>
+                      <div
+                        v-for="(author, authorId) in book.authors"
+                        :key="authorId"
+                        class="mx-1"
+                      >
+                        <span>
+                          {{ author.name }}
+                        </span>
+                        <span
+                          v-if="
+                            book.authors.length > 1 &&
+                            authorId !== book.authors.length - 1
+                          "
+                        >
+                          &
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      v-if="book.serie"
+                      class="flex-wrap items-center hidden md:flex"
+                    >
+                      <span class="mr-1">in</span>
+                      <div class="block transition-colors duration-100 w-max">
+                        {{ book.serie.title }}
+                      </div>
+                    </div>
+                  </div>
+                </nuxt-link>
+                <button
+                  class="p-4 text-gray-400 hover:text-gray-500"
+                  @click="deleteFavorite('book', book.slug)"
+                >
+                  <icon-trash />
+                </button>
+              </div>
+            </div>
+            <div v-else class="flex flex-wrap items-center text-gray-400">
+              Your favorite list is empty, try to favorite any book with
+              <icon-heart class="ml-1" :is-full="true" />
+            </div>
+          </transition>
+        </div>
       </div>
     </div>
   </div>
@@ -32,29 +106,41 @@
 
 <script>
 import sectionHeading from '~/components/blocks/section-heading.vue'
+import IconHeart from '~/components/icons/icon-heart.vue'
+import IconTrash from '~/components/icons/icon-trash.vue'
 export default {
   name: 'Dashboard',
-  components: { sectionHeading },
+  components: { sectionHeading, IconHeart, IconTrash },
   middleware: 'auth',
-  data() {
-    return {
-      booksUpdate: [],
+  async asyncData({ app, query, error, params, $content, store }) {
+    try {
+      const [books] = await Promise.all([app.$axios.$get(`/api/favorite/book`)])
+
+      return {
+        books: books.data,
+      }
+    } catch (error) {
+      console.error(error)
+
+      return {
+        books: {},
+      }
     }
   },
+  data() {
+    return {
+      favoriteList: [],
+    }
+  },
+  mounted() {
+    this.favoriteList = this.books
+  },
   methods: {
-    async getData() {
+    async deleteFavorite(model, slug) {
+      const books = this.favoriteList.filter((book) => book.slug !== slug)
+      this.favoriteList = books
       try {
-        const [booksUpdate] = await Promise.all([
-          this.$axios.$get('/api/books/update'),
-        ])
-        this.booksUpdate = booksUpdate
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async logout() {
-      try {
-        await this.$auth.logout()
+        await this.$axios.$post(`/api/favorite/${model}/${slug}`)
       } catch (error) {
         console.error(error)
       }

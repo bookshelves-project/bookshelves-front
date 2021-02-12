@@ -9,18 +9,20 @@
         @click="accountDropdownOpened = !accountDropdownOpened"
       >
         <span class="sr-only">Open user menu</span>
-        <img
-          v-if="this.$auth.$state.loggedIn"
-          class="w-8 h-8 rounded-full"
-          :src="this.$auth.$state.user.profile_photo_url"
-          :alt="this.$auth.$state.user.name"
-        />
-        <img
-          v-else
-          src="/images/user.svg"
-          class="w-8 h-8 rounded-full"
-          alt="avatar"
-        />
+        <transition name="fade">
+          <img
+            v-if="this.$auth.$state.loggedIn"
+            class="w-8 h-8 rounded-full"
+            :src="this.$auth.$state.user.profile_photo_url"
+            :alt="this.$auth.$state.user.name"
+          />
+          <img
+            v-else
+            src="/images/user.svg"
+            class="w-8 h-8 rounded-full"
+            alt="avatar"
+          />
+        </transition>
       </button>
     </div>
     <!--

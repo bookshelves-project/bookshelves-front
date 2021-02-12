@@ -22,46 +22,58 @@
           ></span>
         </div>
       </div>
-      <div>
-        <h1 class="text-2xl font-bold text-gray-900">
-          {{ book.title }}
-        </h1>
-        <div class="flex flex-wrap text-sm font-medium text-gray-500">
-          Written by
-          <div
-            v-for="(author, authorId) in book.authors"
-            :key="authorId"
-            class="mx-1"
-          >
-            <nuxt-link
-              :to="{ name: 'authors-slug', params: { slug: author.slug } }"
-              class="text-gray-900 hover:text-gray-500"
+      <div class="flex items-center">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">
+            {{ book.title }}
+          </h1>
+          <div class="flex flex-wrap text-sm font-medium text-gray-500">
+            Written by
+            <div
+              v-for="(author, authorId) in book.authors"
+              :key="authorId"
+              class="mx-1"
             >
-              {{ author.name }}
-            </nuxt-link>
-            <span
-              v-if="
-                book.authors.length > 1 && authorId !== book.authors.length - 1
-              "
-            >
-              &
+              <nuxt-link
+                :to="{ name: 'authors-slug', params: { slug: author.slug } }"
+                class="text-gray-900 hover:text-gray-500"
+              >
+                {{ author.name }}
+              </nuxt-link>
+              <span
+                v-if="
+                  book.authors.length > 1 &&
+                  authorId !== book.authors.length - 1
+                "
+              >
+                &
+              </span>
+            </div>
+            <span v-if="book.serie !== null">
+              in
+              <nuxt-link
+                :to="{ name: 'series-slug', params: { slug: book.serie.slug } }"
+                class="text-gray-900 hover:text-gray-500"
+              >
+                {{ book.serie.title }}
+              </nuxt-link>
+              (vol. {{ book.serie.number }})
             </span>
           </div>
-          <span v-if="book.serie !== null">
-            in
-            <nuxt-link
-              :to="{ name: 'series-slug', params: { slug: book.serie.slug } }"
-              class="text-gray-900 hover:text-gray-500"
-            >
-              {{ book.serie.title }}
-            </nuxt-link>
-            (vol. {{ book.serie.number }})
-          </span>
+        </div>
+        <div v-if="$auth.$state.loggedIn" class="ml-5">
+          <button @click="toggleFavorite">
+            <icon-heart
+              title="Favorite"
+              class="text-red-600"
+              :is-full="isFavorite"
+            />
+          </button>
         </div>
       </div>
     </div>
     <div
-      class="flex flex-col-reverse mt-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 xl:mt-0 xl:flex-row xl:space-x-3"
+      class="flex flex-col-reverse items-center mt-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 xl:mt-0 xl:flex-row xl:space-x-3"
     >
       <component
         :is="buyLink ? 'a' : 'span'"
@@ -94,8 +106,10 @@
 </template>
 
 <script>
+import iconHeart from '~/components/icons/icon-heart.vue'
 export default {
   name: 'BookHeader',
+  components: { iconHeart },
   props: {
     book: {
       type: Object,
@@ -105,7 +119,23 @@ export default {
   data() {
     return {
       buyLink: false,
+      isFavorite: false,
     }
+  },
+  mounted() {
+    this.isFavorite = this.book.isFavorite
+  },
+  methods: {
+    async toggleFavorite() {
+      this.isFavorite = !this.isFavorite
+      const model = 'book'
+      const slug = this.$route.params.slug
+      try {
+        await this.$axios.$post(`/api/favorite/${model}/${slug}`)
+      } catch (error) {
+        console.error(error)
+      }
+    },
   },
 }
 </script>
