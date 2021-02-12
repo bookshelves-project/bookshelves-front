@@ -55,7 +55,6 @@ export default {
     const image = `${process.env.BASE_URL}/open-graph.png`
     return {
       title,
-      titleTemplate: '',
       meta: [
         {
           hid: 'description',

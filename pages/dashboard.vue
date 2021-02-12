@@ -87,6 +87,7 @@
                 </nuxt-link>
                 <button
                   class="p-4 text-gray-400 hover:text-gray-500"
+                  title="Delete"
                   @click="deleteFavorite('book', book.slug)"
                 >
                   <icon-trash />
@@ -152,7 +153,6 @@ export default {
     const image = `${process.env.BASE_URL}/open-graph.png`
     return {
       title,
-      titleTemplate: '',
       meta: [
         {
           hid: 'description',
