@@ -211,8 +211,6 @@ export default {
   },
   methods: {
     displayCommentText(refId, originalText) {
-      console.log(originalText)
-      console.log(this.$refs[refId][0].innerHTML)
       this.$refs[refId][0].innerHTML = originalText
     },
     getDate(createdDate, updatedDate) {

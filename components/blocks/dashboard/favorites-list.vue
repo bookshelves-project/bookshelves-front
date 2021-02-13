@@ -15,53 +15,55 @@
       <transition name="fade">
         <div v-if="favoritesList.length > 0">
           <div
-            v-for="book in favoritesList"
-            :key="book.id"
-            class="relative flex items-center justify-between p-2 text-gray-900 transition-colors duration-100 rounded-md dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50"
+            v-for="favorite in favoritesList"
+            :key="favorite.id"
+            class="flex items-center justify-between"
           >
             <nuxt-link
               :to="{
                 name: 'books-slug',
-                params: { author: book.authorSlug, slug: book.slug },
+                params: { author: favorite.authorSlug, slug: favorite.slug },
               }"
-              class="relative flex items-center"
+              class="relative flex items-center justify-between w-full py-5 my-1 text-gray-900 transition-colors duration-100 rounded-md dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50"
             >
-              <div class="absolute left-0 w-10">
-                <img
-                  v-lazy="book.cover.basic"
-                  alt="Book cover"
-                  class="object-cover object-center w-full h-12 rounded-sm shadow"
-                />
-              </div>
-              <div class="flex flex-wrap items-center ml-12">
-                <div
-                  class="block font-semibold transition-colors duration-100 w-max"
-                >
-                  <span class="hidden md:block">
-                    {{ book.title }}
-                  </span>
-                  <span class="hidden sm:block md:hidden">
-                    {{ $overflow(book.title, 20) }}
-                  </span>
-                  <span class="block sm:hidden">
-                    {{ $overflow(book.title, 16) }}
-                  </span>
+              <div class="relative flex items-center">
+                <div class="absolute left-0 w-10">
+                  <img
+                    v-lazy="favorite.cover.basic"
+                    alt="Book cover"
+                    class="object-cover object-center w-full h-full rounded-sm shadow"
+                  />
                 </div>
-                <div
-                  v-if="book.serie"
-                  class="flex-wrap items-center hidden md:flex"
-                >
-                  <span class="mx-1">in</span>
-                  <div class="block transition-colors duration-100 w-max">
-                    {{ book.serie.title }}
+                <div class="flex flex-wrap items-center ml-12">
+                  <div
+                    class="block font-semibold transition-colors duration-100 w-max"
+                  >
+                    <span class="hidden md:block">
+                      {{ favorite.title }}
+                    </span>
+                    <span class="hidden sm:block md:hidden">
+                      {{ $overflow(favorite.title, 20) }}
+                    </span>
+                    <span class="block sm:hidden">
+                      {{ $overflow(favorite.title, 16) }}
+                    </span>
+                  </div>
+                  <div
+                    v-if="favorite.serie"
+                    class="flex-wrap items-center hidden md:flex"
+                  >
+                    <span class="mx-1">in</span>
+                    <div class="block transition-colors duration-100 w-max">
+                      {{ favorite.serie.title }}
+                    </div>
                   </div>
                 </div>
               </div>
             </nuxt-link>
             <button
-              class="p-4 text-gray-400 hover:text-gray-500"
+              class="p-5 text-gray-400 hover:text-gray-500 hover:bg-gray-50"
               title="Delete"
-              @click="deleteFavorite('book', book.slug)"
+              @click="deleteFavorite('book', favorite.slug)"
             >
               <icon-trash />
             </button>
@@ -81,32 +83,16 @@
 <script>
 import iconHeart from '~/components/icons/icon-heart.vue'
 import IconTrash from '~/components/icons/icon-trash.vue'
+import favorites from '~/mixins/favorites'
+
 export default {
   name: 'FavoritesList',
   components: { iconHeart, IconTrash },
+  mixins: [favorites],
   props: {
-    books: {
+    favorites: {
       type: Array,
       default: () => [],
-    },
-  },
-  data() {
-    return {
-      favoritesList: [],
-    }
-  },
-  mounted() {
-    this.favoritesList = this.books
-  },
-  methods: {
-    async deleteFavorite(model, slug) {
-      const books = this.favoritesList.filter((book) => book.slug !== slug)
-      this.favoritesList = books
-      try {
-        await this.$axios.$post(`/api/favorite/${model}/${slug}`)
-      } catch (error) {
-        console.error(error)
-      }
     },
   },
 }

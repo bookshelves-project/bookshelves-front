@@ -108,9 +108,11 @@
 
 <script>
 import iconHeart from '~/components/icons/icon-heart.vue'
+import favorites from '~/mixins/favorites'
 export default {
   name: 'BookHeader',
   components: { iconHeart },
+  mixins: [favorites],
   props: {
     book: {
       type: Object,
@@ -120,23 +122,7 @@ export default {
   data() {
     return {
       buyLink: false,
-      isFavorite: false,
     }
-  },
-  mounted() {
-    this.isFavorite = this.book.isFavorite
-  },
-  methods: {
-    async toggleFavorite() {
-      this.isFavorite = !this.isFavorite
-      const model = 'book'
-      const slug = this.$route.params.slug
-      try {
-        await this.$axios.$post(`/api/favorite/${model}/${slug}`)
-      } catch (error) {
-        console.error(error)
-      }
-    },
   },
 }
 </script>
