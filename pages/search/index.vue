@@ -12,22 +12,28 @@
           :data="book"
           :cover="book.image"
           :route="{
-            name: 'books-slug',
-            params: { author: book.authorSlug, slug: book.slug },
+            name: `${book.meta.entity}s-slug`,
+            params: { author: book.meta.author, slug: book.meta.slug },
           }"
         >
           <template #title>
-            {{ $overflow(book.title) }}
+            <div>
+              {{ $overflow(book.title, 15) }}
+            </div>
+            <div class="italic">
+              {{ $capitalize(book.meta.entity) }}
+            </div>
           </template>
           <template #hover>
             <div>
               <div class="font-semibold">Author &#8212;</div>
               <div class="italic">
-                <span
+                {{ book.author }}
+                <!-- <span
                   v-for="(author, authorId) in book.authors"
                   :key="authorId"
                 >
-                  <span>{{ author.name }}</span>
+                  <span>{{ book.author.name }}</span>
                   <span
                     v-if="
                       book.authors.length > 1 &&
@@ -36,7 +42,7 @@
                   >
                     ,
                   </span>
-                </span>
+                </span> -->
               </div>
             </div>
             <div v-if="book.serie" class="mt-5">
@@ -48,8 +54,13 @@
             </div>
           </template>
           <template #title-responsive>
-            <div class="font-semibold">
-              {{ book.title }}
+            <div>
+              <div class="font-semibold">
+                {{ book.title }}
+              </div>
+              <div>
+                {{ $capitalize(book.meta.entity) }}
+              </div>
             </div>
             <div class="italic">
               <span v-for="(author, authorId) in book.authors" :key="authorId">

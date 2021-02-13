@@ -38,25 +38,13 @@
                   />
                 </div>
                 <div class="ml-2 dark:text-gray-700">
-                  <div class="font-semibold wiki-title">
-                    {{ result.title }}
-                    <span v-if="result.authors">
-                      by
-                      <span
-                        v-for="(author, authorId) in result.authors"
-                        :key="authorId"
-                      >
-                        {{ author.name }}
-                        <span
-                          v-if="
-                            result.authors.length > 1 &&
-                            authorId !== result.authors.length - 1
-                          "
-                        >
-                          &
-                        </span>
-                      </span>
-                    </span>
+                  <div class="wiki-title">
+                    <div class="font-semibold">
+                      {{ result.title }}
+                    </div>
+                    <div class="italic">
+                      {{ $capitalize(result.meta.entity) }}
+                    </div>
                   </div>
                   <div class="">
                     <div v-if="result.serie" class="ml-1">
@@ -159,15 +147,16 @@ export default {
     },
     handleSubmit(result) {
       if (result === undefined) {
-        this.$refs.search.setValue({ result: '', code: '' })
+        this.$refs.search.setValue('')
         this.$router.push({
           name: 'search',
           query: { terms: this.searchTerm },
         })
       } else {
+        this.$refs.search.setValue('')
         this.$router.push({
-          name: 'books-slug',
-          params: { author: result.authorSlug, slug: result.slug },
+          name: `${result.meta.entity}s-slug`,
+          params: { author: result.meta.author, slug: result.meta.slug },
         })
       }
     },
