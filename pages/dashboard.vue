@@ -141,8 +141,20 @@ export default {
   },
   methods: {
     deleted(data) {
-      console.log(data)
-      this.deleteFavorite(data.model, data.slug)
+      data = data.data
+      switch (data.type.entity) {
+        case 'favorite':
+          this.deleteFavorite(data.type.morph, data.slug)
+          break
+
+        case 'comment':
+          this.deleteComment(data.id)
+          break
+
+        default:
+          console.error('no type entity')
+          break
+      }
     },
   },
   head() {

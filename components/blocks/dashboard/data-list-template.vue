@@ -22,7 +22,7 @@
           >
             <nuxt-link
               :to="{
-                name: `${data.type}-slug`,
+                name: `${data.type.morph}s-slug`,
                 params: {
                   author: data.authorSlug ? data.authorSlug : null,
                   slug: data.slug,
@@ -46,7 +46,7 @@
             <button
               class="h-full p-5 text-gray-400 hover:text-gray-500 hover:bg-gray-50"
               title="Delete"
-              @click="deleted('book', data.slug)"
+              @click="deleted(data)"
             >
               <icon-trash />
             </button>
@@ -84,11 +84,10 @@ export default {
     this.list = this.dataList
   },
   methods: {
-    deleted(model, slug) {
-      const list = this.list.filter((data) => data.slug !== slug)
+    deleted(data) {
+      const list = this.list.filter((item) => item.slug !== data.slug)
       this.list = list
-      console.log(this.list)
-      this.$emit('deleted', { model, slug })
+      this.$emit('deleted', { data })
     },
   },
 }

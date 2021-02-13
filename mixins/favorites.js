@@ -21,8 +21,6 @@ export default {
       }
     },
     async deleteFavorite(model, slug) {
-      const favorites = this.favoritesList.filter((book) => book.slug !== slug)
-      this.favoritesList = favorites
       try {
         await this.$axios.$post(`/api/favorites/toggle/${model}/${slug}`)
       } catch (error) {
