@@ -23,6 +23,7 @@
 
 ## TODO
 
+- book grid: add full title on hover
 - author sort by serie with divider
 - add last books added with random book cta
 - entity card book add lang
