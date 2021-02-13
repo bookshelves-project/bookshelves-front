@@ -10,7 +10,7 @@
           placeholder="/images/author-no-cover.png"
         /> -->
           <img
-            v-lazy="author.picture"
+            v-lazy="author.image"
             :alt="author.name"
             class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
           />
@@ -48,7 +48,7 @@
           v-for="book in author.books"
           :key="book.id"
           :data="book"
-          :cover="book.cover.thumbnail"
+          :cover="book.image"
           :route="{
             name: 'books-slug',
             params: { author: book.authorSlug, slug: book.slug },

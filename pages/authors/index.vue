@@ -9,26 +9,12 @@
         <entity-card
           v-for="(author, authorId) in authors.data"
           :key="authorId"
-          :cover="author.picture"
+          :cover="author.image"
           :route="{
             name: 'authors-slug',
             params: { slug: author.slug },
           }"
-          :shadow="false"
         >
-          <template #image>
-            <!-- <nuxt-picture
-              :src="author.picture"
-              :alt="author.name"
-              class="object-cover object-top w-32 h-32 rounded-full"
-              placeholder="/images/author-no-cover.png"
-            /> -->
-            <img
-              v-lazy="author.picture"
-              :alt="author.name"
-              class="object-cover object-top w-32 h-32 rounded-full"
-            />
-          </template>
           <template #title>
             {{ $overflow(author.name) }}
           </template>

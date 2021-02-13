@@ -22,7 +22,7 @@
             >
               <entity-card
                 :data="bookSerie"
-                :cover="bookSerie.cover.basic"
+                :cover="bookSerie.image"
                 :route="{
                   name: 'books-slug',
                   params: {

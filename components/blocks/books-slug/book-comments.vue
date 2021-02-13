@@ -32,13 +32,13 @@
                         {{ comment.user.name }}
                       </span>
                     </div>
-                    <div v-if="comment.rating" class="flex items-center mt-1">
+                    <!-- <div v-if="comment.rating" class="flex items-center mt-1">
                       <icon-star
                         v-for="i in comment.rating"
                         :key="i.id"
                         class="text-yellow-400"
                       />
-                    </div>
+                    </div> -->
                     <div
                       :ref="comment.id"
                       class="mt-1 text-sm text-gray-700 dark:text-gray-300 light-md"
@@ -104,7 +104,7 @@
                     {{ form.text.length }}/1500
                   </div>
                 </div>
-                <div class="mt-3 mb-5">
+                <!-- <div class="mt-3 mb-5">
                   <div class="mt-1">
                     <select
                       id="rating"
@@ -135,7 +135,7 @@
                       </option>
                     </select>
                   </div>
-                </div>
+                </div> -->
                 <div class="flex items-center justify-between mt-3">
                   <a
                     href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf"
@@ -185,11 +185,10 @@
 </template>
 
 <script>
-import iconStar from '~/components/icons/icon-star.vue'
 import IconTrash from '~/components/icons/icon-trash.vue'
 export default {
   name: 'BookComments',
-  components: { iconStar, IconTrash },
+  components: { IconTrash },
   props: {
     book: {
       type: Object,
@@ -206,7 +205,7 @@ export default {
       error: null,
     }
   },
-  mounted() {
+  created() {
     this.commentsList = this.book.comments
   },
   methods: {
@@ -271,9 +270,9 @@ export default {
       return { daysDiff: diffD, dateTime }
     },
     async submit() {
-      const book = this.$route.params.slug
+      const slug = this.$route.params.slug
       try {
-        await this.$axios.$post(`/api/comments/store/${book}`, this.form)
+        await this.$axios.$post(`/api/comments/store/book/${slug}`, this.form)
         this.form.text = ''
         this.form.rating = null
       } catch (error) {
@@ -289,7 +288,7 @@ export default {
         }, 3000)
       }
       try {
-        const comments = await this.$axios.$get(`/api/comments/${book}`)
+        const comments = await this.$axios.$get(`/api/comments/book/${slug}`)
         this.commentsList = comments.data
       } catch (error) {
         console.error(error)

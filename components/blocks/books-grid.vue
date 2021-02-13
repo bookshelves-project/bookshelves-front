@@ -8,7 +8,7 @@
       :id="bookId"
       :key="bookId"
       :data="book"
-      :cover="book.cover.basic"
+      :cover="book.image"
       :route="route"
     >
       <template #title>

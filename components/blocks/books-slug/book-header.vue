@@ -6,14 +6,14 @@
       <div class="flex-shrink-0">
         <div class="relative">
           <!-- <nuxt-picture
-            :src="book.cover.thumbnail"
+            :src="book.image"
             alt="Book cover"
             class="object-cover w-16 h-16 rounded-full"
             placeholder="/images/no-cover.webp"
           /> -->
           <img
-            v-if="book.cover"
-            v-lazy="book.cover.thumbnail"
+            v-if="book.image"
+            v-lazy="book.image"
             alt="Book cover"
             class="object-cover w-16 h-16 rounded-full"
           />

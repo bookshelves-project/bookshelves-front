@@ -15,20 +15,16 @@
     <div class="p-3 lg:p-5">
       <transition name="fade">
         <div v-if="list.length > 0">
-          <div
-            v-for="data in list"
-            :key="data.id"
-            class="flex items-center justify-center"
-          >
+          <div v-for="data in list" :key="data.id" class="grid grid-cols-6">
             <nuxt-link
               :to="{
-                name: `${data.type.morph}s-slug`,
+                name: `${data.meta.for}s-slug`,
                 params: {
-                  author: data.authorSlug ? data.authorSlug : null,
-                  slug: data.slug,
+                  author: data.meta.author,
+                  slug: data.meta.slug,
                 },
               }"
-              class="relative flex items-center justify-between w-full py-0 my-1 text-gray-900 transition-colors duration-100 rounded-md dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50"
+              class="relative flex items-center justify-between w-full col-span-5 py-0 my-1 text-gray-900 transition-colors duration-100 rounded-md dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50"
             >
               <div class="relative flex items-center w-full">
                 <div v-if="withImage" class="h-20">
@@ -43,13 +39,15 @@
                 </div>
               </div>
             </nuxt-link>
-            <button
-              class="h-full p-5 text-gray-400 hover:text-gray-500 hover:bg-gray-50"
-              title="Delete"
-              @click="deleted(data)"
-            >
-              <icon-trash />
-            </button>
+            <div class="flex justify-center">
+              <button
+                class="flex w-full h-full text-gray-400 md:p-5 hover:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                title="Delete"
+                @click="deleted(data)"
+              >
+                <icon-trash class="m-auto" />
+              </button>
+            </div>
           </div>
         </div>
         <div v-else class="flex flex-wrap items-center py-4 text-gray-400">
@@ -85,7 +83,7 @@ export default {
   },
   methods: {
     deleted(data) {
-      const list = this.list.filter((item) => item.slug !== data.slug)
+      const list = this.list.filter((item) => item.meta.slug !== data.meta.slug)
       this.list = list
       this.$emit('deleted', { data })
     },

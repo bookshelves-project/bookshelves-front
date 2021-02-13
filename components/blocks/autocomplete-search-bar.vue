@@ -13,34 +13,15 @@
           @update="handleUpdate"
         >
           <template #result="{ result, props }">
-            <nuxt-link
-              :to="{
-                name: 'books-slug',
-                params: { author: result.authorSlug, slug: result.slug },
-              }"
-            >
+            <nuxt-link to="/">
               <div
                 v-bind="props"
                 class="flex items-center autocomplete-result wiki-result"
               >
                 <div class="w-16 h-full">
-                  <!-- <nuxt-picture
-                v-if="result.cover.thumbnail"
-                :alt="result.title"
-                :src="result.cover.thumbnail"
-                class="w-16 h-16 rounded-md"
-                placeholder
-              />
-              <nuxt-picture
-                v-else
-                src="/images/no-cover.webp"
-                alt="bookshelves-default"
-                class="w-16 h-16 rounded-md"
-                placeholder
-              /> -->
                   <img
-                    v-if="result.cover.thumbnail"
-                    v-lazy="result.cover.thumbnail"
+                    v-if="result.image"
+                    v-lazy="result.image"
                     :alt="result.title"
                     class="w-16 h-full rounded-md"
                   />
@@ -169,7 +150,7 @@ export default {
       return searchingResults
     },
     getResultValue(result) {
-      return result.title
+      return result
     },
     handleSubmit(result) {
       if (result === undefined) {

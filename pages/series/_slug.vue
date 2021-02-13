@@ -71,7 +71,7 @@
           v-for="book in serie.books"
           :key="book.id"
           :data="book"
-          :cover="book.cover.thumbnail"
+          :cover="book.image"
           :route="{
             name: 'books-slug',
             params: { author: book.authorSlug, slug: book.slug },

@@ -35,15 +35,6 @@
                 {{ $overflow(data.title, 16) }}
               </span>
             </div>
-            <div
-              v-if="data.serie"
-              class="flex-wrap items-center hidden md:flex"
-            >
-              <span class="mx-1">in</span>
-              <div class="block transition-colors duration-100 w-max">
-                {{ data.serie.title }}
-              </div>
-            </div>
           </template>
         </data-list-template>
       </div>
@@ -69,18 +60,18 @@
                 class="object-cover object-center w-16 h-16 rounded-sm shadow"
               />
               <div class="ml-3 font-semibold">
-                {{ data.book.title }}
+                {{ data.title }}
               </div>
             </div>
-            <div class="flex mt-2">
+            <!-- <div class="flex mt-2">
               <icon-star
                 v-for="i in data.rating"
                 :key="i.id"
                 class="text-yellow-500"
               />
-            </div>
+            </div> -->
             <div
-              class="flex w-full overflow-hidden italic text-gray-700 transition-colors duration-100"
+              class="flex w-full overflow-hidden italic text-gray-700 transition-colors duration-100 dark:text-gray-300"
             >
               <span
                 class="w-full"
@@ -99,7 +90,6 @@
           </div>
         </template>
       </data-list-template>
-      <!-- <comments-list :comments="comments" /> -->
     </div>
     <div
       class="grid grid-cols-1 space-y-4 lg:space-y-0 lg:space-x-4 lg:grid-cols-2"
@@ -114,23 +104,22 @@ import IconHeart from '~/components/icons/icon-heart.vue'
 
 import favorites from '~/mixins/favorites'
 import comments from '~/mixins/comments'
-import IconStar from '~/components/icons/icon-star.vue'
 export default {
   name: 'Dashboard',
   components: {
     sectionHeading,
     IconHeart,
     DataListTemplate,
-    IconStar,
   },
   mixins: [favorites, comments],
   middleware: 'auth',
   async asyncData({ app, query, error, params, $content, $auth, store }) {
     try {
       const [favorites, comments] = await Promise.all([
-        app.$axios.$get(`/api/favorites/book`),
+        app.$axios.$get(`/api/favorites/by-user/${$auth.$state.user.id}`),
         app.$axios.$get(`/api/comments/by-user/${$auth.$state.user.id}`),
       ])
+
       return {
         favorites: favorites.data,
         comments: comments.data,
@@ -142,9 +131,9 @@ export default {
   methods: {
     deleted(data) {
       data = data.data
-      switch (data.type.entity) {
+      switch (data.meta.type) {
         case 'favorite':
-          this.deleteFavorite(data.type.morph, data.slug)
+          this.deleteFavorite(data.meta.for, data.meta.slug)
           break
 
         case 'comment':
