@@ -43,30 +43,7 @@ const getDate = (date) => {
     second: 'numeric',
   }
 
-  // get Date Time
-  // 16/10/2020 à 10:18:49
-  // const dateTimeLocale = date.toLocaleString()
-  // console.log(dateTimeLocale)
-
-  // Fri Oct 16 2020 10:18:49 GMT+0200 (heure d’été d’Europe centrale)
-  // const dateTimeToStringFullLocale = date.toString()
-  // console.log(dateTimeToStringFullLocale)
-
-  // Fri, 16 Oct 2020 08:18:49 GMT
-  // const dateTimeToStringFull = date.toUTCString()
-  // console.log(dateTimeToStringFull)
-
-  // vendredi 16 octobre 2020
   const dateToStringLocale = date.toLocaleString(userLang, dateOptions)
-  // console.log(dateToStringLocale)
-
-  // 08:18:49
-  // const timeToString = date.toLocaleString(userLang, hoursOptions)
-  // console.log(timeToString)
-
-  // 10:18:49
-  // const timeToStringLocale = date.toLocaleTimeString()
-  // console.log(timeToStringLocale)
 
   return dateToStringLocale
 }

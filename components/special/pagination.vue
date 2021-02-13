@@ -165,7 +165,6 @@ export default {
       return this.isActive(pageNum) ? 'span' : 'a'
     },
     forceRerender() {
-      // console.log(this.$parent)
       this.$emit('event', 'data value')
     },
   },

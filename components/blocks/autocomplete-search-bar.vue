@@ -13,7 +13,12 @@
           @update="handleUpdate"
         >
           <template #result="{ result, props }">
-            <nuxt-link to="/">
+            <nuxt-link
+              :to="{
+                name: `${result.meta.entity}s-slug`,
+                params: { author: result.meta.author, slug: result.meta.slug },
+              }"
+            >
               <div
                 v-bind="props"
                 class="flex items-center autocomplete-result wiki-result"
@@ -154,7 +159,7 @@ export default {
     },
     handleSubmit(result) {
       if (result === undefined) {
-        this.$refs.search.setValue({ name: '', code: '' })
+        this.$refs.search.setValue({ result: '', code: '' })
         this.$router.push({
           name: 'search',
           query: { terms: this.searchTerm },
@@ -171,7 +176,7 @@ export default {
     },
     onClickOutside(event) {
       // console.log('Clicked utside. Event: ', event)
-      this.$refs.search.setValue({ name: '', code: '' })
+      this.$refs.search.setValue('')
     },
   },
 }
