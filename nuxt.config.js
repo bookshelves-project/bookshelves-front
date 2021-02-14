@@ -212,6 +212,8 @@ export default {
     '@nuxtjs/auth-next',
     // https://github.com/microcipcip/cookie-universal/tree/master/packages/cookie-universal-nuxt
     'cookie-universal-nuxt',
+    // https://github.com/nuxt-community/recaptcha-module
+    '@nuxtjs/recaptcha',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -282,6 +284,13 @@ export default {
     /* module options */
   },
   // i18n: {},
+  recaptcha: {
+    hideBadge: true,
+    // language: '',
+    siteKey: process.env.RECAPTCHA_SITE_KEY,
+    version: 3,
+    size: 'invisible',
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},

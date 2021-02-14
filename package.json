@@ -35,6 +35,7 @@
     "@nuxtjs/axios": "^5.13.0",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.0.2",
+    "@nuxtjs/recaptcha": "^1.0.0",
     "@nuxtjs/robots": "^2.4.2",
     "@nuxtjs/router": "^1.5.0",
     "@nuxtjs/sitemap": "^2.4.0",

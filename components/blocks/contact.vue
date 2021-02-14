@@ -109,24 +109,9 @@
           </button>
         </div>
         <form
-          v-if="!isBot"
-          method="POST"
           class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
           @submit.prevent="sumbit"
         >
-          <div class="sm:col-span-2">
-            <div class="hidden">
-              <label class="sr-only">
-                Don’t fill this out if you're human:
-              </label>
-              <input
-                v-model="form.bot"
-                name="bot-field"
-                placeholder="This field is only for the robots."
-                class="block w-full px-4 py-3 placeholder-gray-500 transition duration-150 ease-in-out form-input"
-              />
-            </div>
-          </div>
           <div class="sm:col-span-2">
             <label
               for="name"
@@ -227,14 +212,12 @@ export default {
     return {
       loading: false,
       success: false,
-      errored: false,
-      isBot: false,
+      errors: false,
       isDev: process.env.NODE_ENV !== 'production',
       form: {
         name: '',
         email: '',
         message: '',
-        bot: false,
       },
       formTesting: {
         name: 'Ewilan',
@@ -244,18 +227,17 @@ export default {
       },
     }
   },
+  async mounted() {
+    try {
+      await this.$recaptcha.init()
+    } catch (e) {
+      console.error(e)
+    }
+  },
+  beforeDestroy() {
+    this.$recaptcha.destroy()
+  },
   methods: {
-    notAvailable() {
-      this.$store.commit('setAlertMessage', {
-        type: 'warning',
-        title: 'Sorry!',
-        message: 'Contact is not available yet!',
-      })
-      this.$store.commit('toggleShowAlert')
-      setTimeout(() => {
-        this.$store.commit('setShowAlert', false)
-      }, 3000)
-    },
     fillForm() {
       for (const [key] of Object.entries(this.form)) {
         this.form[key] = this.formTesting[key]
@@ -264,43 +246,42 @@ export default {
     async sumbit() {
       this.loading = true
 
-      if (this.form.bot != null) {
-        this.isBot = true
-      } else {
-        try {
-          await this.$axios.post('/api/contact', this.form)
+      try {
+        const token = await this.$recaptcha.execute('login')
+        this.form['g-recaptcha-response'] = token
 
-          this.success = true
-          this.errored = false
-          this.form = {
-            name: '',
-            email: '',
-            message: '',
-          }
+        await this.$axios.post('/api/contact', this.form)
 
-          this.$store.commit('setAlertMessage', {
-            type: 'success',
-            title: 'Message sended!',
-            message: 'Thanks you for your message.',
-          })
-          this.$store.commit('toggleShowAlert')
-          setTimeout(() => {
-            this.$store.commit('setShowAlert', false)
-          }, 5000)
-        } catch (e) {
-          console.error(e)
-          this.errored = true
-          this.$store.commit('setAlertMessage', {
-            type: 'danger',
-            title: 'Error!',
-            message:
-              "We are sorry but your message can't be send, try in some time.",
-          })
-          this.$store.commit('toggleShowAlert')
-          setTimeout(() => {
-            this.$store.commit('setShowAlert', false)
-          }, 5000)
+        this.success = true
+        this.errors = false
+        this.form = {
+          name: '',
+          email: '',
+          message: '',
         }
+
+        this.$store.commit('setAlertMessage', {
+          type: 'success',
+          title: 'Message sended!',
+          message: 'Thanks you for your message.',
+        })
+        this.$store.commit('toggleShowAlert')
+        setTimeout(() => {
+          this.$store.commit('setShowAlert', false)
+        }, 5000)
+      } catch (e) {
+        // console.error(e)
+        this.errors = true
+        this.$store.commit('setAlertMessage', {
+          type: 'danger',
+          title: 'Error!',
+          message:
+            "We are sorry but your message can't be send, try in some time.",
+        })
+        this.$store.commit('toggleShowAlert')
+        setTimeout(() => {
+          this.$store.commit('setShowAlert', false)
+        }, 5000)
       }
       this.loading = false
     },
