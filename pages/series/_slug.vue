@@ -4,7 +4,7 @@
       <div class="items-center justify-between mb-8 lg:flex">
         <div class="items-center lg:flex">
           <img
-            v-lazy="serie.cover"
+            v-lazy="serie.image"
             :alt="serie.title"
             class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
           />
