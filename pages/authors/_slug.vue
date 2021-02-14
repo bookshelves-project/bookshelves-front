@@ -51,33 +51,14 @@
           :cover="book.image"
           :route="{
             name: 'books-slug',
-            params: { author: book.authorSlug, slug: book.slug },
+            params: { author: book.author, slug: book.slug },
           }"
         >
           <template #title>
             {{ $overflow(book.title) }}
           </template>
           <template #hover>
-            <div>
-              <div class="font-semibold">Author &#8212;</div>
-              <div class="italic">
-                <span
-                  v-for="(author, authorId) in book.authors"
-                  :key="authorId"
-                >
-                  <span>{{ author.name }}</span>
-                  <span
-                    v-if="
-                      book.authors.length > 1 &&
-                      authorId !== book.authors.length - 1
-                    "
-                  >
-                    ,
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div v-if="book.serie" class="mt-5">
+            <div v-if="book.serie">
               <div class="font-semibold">Serie &#8212;</div>
               <div class="italic break-all">
                 {{ book.serie.title }}

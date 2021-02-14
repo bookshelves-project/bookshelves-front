@@ -55,7 +55,7 @@
           <div>
             <div class="flex items-center">
               <img
-                v-lazy="data.cover"
+                v-lazy="data.image"
                 alt="Book cover"
                 class="object-cover object-center w-16 h-16 rounded-sm shadow"
               />
@@ -63,13 +63,6 @@
                 {{ data.title }}
               </div>
             </div>
-            <!-- <div class="flex mt-2">
-              <icon-star
-                v-for="i in data.rating"
-                :key="i.id"
-                class="text-yellow-500"
-              />
-            </div> -->
             <div
               class="flex w-full overflow-hidden italic text-gray-700 transition-colors duration-100 dark:text-gray-300"
             >

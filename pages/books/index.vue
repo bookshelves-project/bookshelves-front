@@ -13,7 +13,7 @@
           :cover="book.image"
           :route="{
             name: 'books-slug',
-            params: { author: book.authorSlug, slug: book.slug },
+            params: { author: book.author, slug: book.slug },
           }"
         >
           <template #title>

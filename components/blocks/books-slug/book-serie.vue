@@ -26,7 +26,7 @@
                 :route="{
                   name: 'books-slug',
                   params: {
-                    author: bookSerie.authors[0].slug,
+                    author: bookSerie.author,
                     slug: bookSerie.slug,
                   },
                 }"

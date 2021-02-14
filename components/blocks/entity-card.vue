@@ -10,12 +10,6 @@
             <slot name="image" />
           </span>
           <span v-else class="w-full mx-auto">
-            <!-- <nuxt-picture
-              :src="cover"
-              alt="Book cover"
-              class="cover"
-              placeholder="/images/no-cover.webp"
-            /> -->
             <img v-lazy="cover" alt="Book cover" class="cover" />
           </span>
         </div>
@@ -26,10 +20,16 @@
         </div>
       </div>
       <div
-        class="flex items-center w-full h-full p-1 pb-3 transition-colors duration-300 md:h-14 group-hover:bg-opacity-50 rounded-b-md"
+        :class="{ 'md:h-14': limitedHeight }"
+        class="flex items-center w-full h-full p-1 pb-3 transition-colors duration-300 group-hover:bg-opacity-50 rounded-b-md"
       >
-        <div class="hidden m-auto font-semibold text-center md:block w-max">
-          <slot name="title" />
+        <div class="hidden m-auto text-center md:block w-max">
+          <div class="font-semibold">
+            <slot name="title" />
+          </div>
+          <div>
+            <slot name="subtitle" />
+          </div>
         </div>
         <div class="block mt-2 space-y-2 md:hidden">
           <slot name="title-responsive" />
@@ -52,6 +52,10 @@ export default {
       default: () => '/',
     },
     shadow: {
+      type: Boolean,
+      default: true,
+    },
+    limitedHeight: {
       type: Boolean,
       default: true,
     },

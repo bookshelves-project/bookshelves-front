@@ -29,7 +29,7 @@
               <div class="relative flex items-center w-full">
                 <div v-if="withImage" class="h-20">
                   <img
-                    v-lazy="data.cover"
+                    v-lazy="data.image"
                     alt="Book cover"
                     class="object-cover object-center w-12 h-full rounded-sm shadow"
                   />

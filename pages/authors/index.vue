@@ -16,7 +16,7 @@
           }"
         >
           <template #title>
-            {{ $overflow(author.name) }}
+            {{ $overflow(`${author.lastname} ${author.firstname}`) }}
           </template>
           <template #hover>
             <div>
@@ -26,7 +26,7 @@
           </template>
           <template #title-responsive>
             <div class="font-semibold">
-              {{ author.name }}
+              {{ `${author.lastname} ${author.firstname}` }}
             </div>
             <div>{{ author.books_number }} books</div>
           </template>
