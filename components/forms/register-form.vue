@@ -21,7 +21,7 @@
         <span class="ml-2"> Fill form </span>
       </button>
     </div>
-    <div>
+    <!-- <div>
       <div class="flex justify-between">
         <label
           for="email"
@@ -44,7 +44,7 @@
           class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
         />
       </div>
-    </div>
+    </div> -->
 
     <div>
       <div class="flex justify-between">
@@ -157,7 +157,7 @@
 
 <script>
 export default {
-  name: 'FormSignUp',
+  name: 'RegisterForm',
   data() {
     return {
       form: {
@@ -197,6 +197,8 @@ export default {
       }
     },
     async submit() {
+      const name = this.form.email.split('@')
+      this.form.name = name[0]
       this.isLoading = true
       try {
         await this.$axios.$post('/register', this.form)

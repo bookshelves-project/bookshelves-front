@@ -12,7 +12,7 @@
           </div>
           <div>
             <div class="mt-6">
-              <form-sign-in></form-sign-in>
+              <login-form></login-form>
               <div class="relative mt-6 mb-6">
                 <div
                   class="absolute inset-0 flex items-center"
@@ -28,7 +28,7 @@
               </div>
               <div>
                 <nuxt-link
-                  :to="{ name: 'sign-up' }"
+                  :to="{ name: 'register' }"
                   class="flex justify-center w-full px-4 py-2 text-sm font-semibold text-white border border-transparent rounded-md shadow-sm bg-primary-800 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                 >
                   Sign up now
@@ -43,10 +43,10 @@
 </template>
 
 <script>
-import formSignIn from '~/components/forms/form-sign-in.vue'
+import loginForm from '~/components/forms/login-form.vue'
 export default {
   name: 'PageSignIn',
-  components: { formSignIn },
+  components: { loginForm },
   auth: 'guest',
   head() {
     const title = 'Sign in'

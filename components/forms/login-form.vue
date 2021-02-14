@@ -131,7 +131,7 @@
 
 <script>
 export default {
-  name: 'FormSignIn',
+  name: 'LoginForm',
   data() {
     return {
       form: {

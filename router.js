@@ -16,8 +16,8 @@ import Content from '~/pages/guides/_'
 import ContentPage from '~/pages/content/slug'
 import Contact from '~/pages/contact'
 
-import SignIn from '~/pages/sign-in'
-import SignUp from '~/pages/sign-up'
+import Login from '~/pages/auth/login'
+import Register from '~/pages/auth/register'
 import Dashboard from '~/pages/dashboard'
 
 Vue.use(Router)
@@ -100,14 +100,14 @@ const routesList = [
     component: ContentPage,
   },
   {
-    name: 'sign-in',
+    name: 'login',
     path: '/sign-in',
-    component: SignIn,
+    component: Login,
   },
   {
-    name: 'sign-up',
+    name: 'register',
     path: '/sign-up',
-    component: SignUp,
+    component: Register,
   },
   {
     name: 'dashboard',
