@@ -17,19 +17,16 @@
 
 - [TODO](#todo)
 - [**I. Setup**](#i-setup)
-  - [**I. a. Production**](#i-a-production)
+  - [*I. a. Update API*](#i-a-update-api)
+- [**II. Production**](#ii-production)
 
 ---
 
 ## TODO
 
 - book grid: add full title on hover
-- author sort by serie with divider
 - add last books added with random book cta
-- entity card book add lang
-- add dark mode
 - add i18n
-- check h1, h2, h3
 - skeleton nuxtjs: <https://stackoverflow.com/questions/57178253/how-to-create-skeleton-loading-in-nuxt-js>
 - pagination
   - <https://medium.com/@rafaelogic/create-a-reusable-pagination-vue-js-component-with-laravel-and-tailwind-css-c2e5c49bd93>
@@ -46,13 +43,34 @@
 
 ## **I. Setup**
 
-Setup local on <http://localhost:3000>
+Setup local on <http://localhost:3000> with <https://bookshelves.git-projects.xyz> API
 
 ```bash
 cp .env.example .env ; yarn ; yarn dev
 ```
 
-### **I. a. Production**
+### *I. a. Update API*
+
+Update `dotenv` file `API_URL` to use local API
+
+```yml
+API_URL=http://localhost:8000
+```
+
+---
+
+## **II. Production**
+
+Update `dotenv`
+
+- `PORT` depends to **pm2** and NGINX configuration
+
+```yml
+PORT=3004
+HOST=127.0.0.1
+BASE_URL=https://bookshelves.git-projects.xyz
+API_URL=https://bookshelves.git-projects.xyz
+```
 
 Setup build
 

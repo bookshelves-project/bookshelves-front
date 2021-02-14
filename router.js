@@ -14,7 +14,7 @@ import Guides from '~/pages/guides/index'
 import Content from '~/pages/guides/_'
 
 import ContentPage from '~/pages/content/slug'
-import Contact from '~/pages/contact/index'
+import Contact from '~/pages/contact'
 
 import SignIn from '~/pages/sign-in'
 import SignUp from '~/pages/sign-up'

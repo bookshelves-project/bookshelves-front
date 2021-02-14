@@ -3,7 +3,12 @@
     <transition name="fade">
       <div
         v-if="$store.state.showAlert"
-        class="fixed z-50 p-4 transform -translate-x-1/2 bg-yellow-100 rounded-md shadow left-1/2"
+        :class="[
+          { 'bg-red-100': $store.state.alert.type === 'danger' },
+          { 'bg-yellow-100': $store.state.alert.type === 'warning' },
+          { 'bg-green-100': $store.state.alert.type === 'success' },
+        ]"
+        class="fixed z-50 p-4 transform -translate-x-1/2 rounded-md shadow left-1/2"
       >
         <div class="flex">
           <div class="flex-shrink-0">
@@ -22,13 +27,27 @@
               />
             </svg>
           </div>
-          <div class="ml-3">
-            <h3
-              class="text-sm font-medium text-yellow-800 dark:text-yellow-700"
-            >
+          <div
+            :class="[
+              {
+                'text-red-800 dark:text-red-700':
+                  $store.state.alert.type === 'warning',
+              },
+              {
+                'text-yellow-800 dark:text-yellow-700':
+                  $store.state.alert.type === 'warning',
+              },
+              {
+                'text-green-800 dark:text-green-700':
+                  $store.state.alert.type === 'success',
+              },
+            ]"
+            class="ml-3"
+          >
+            <h3 class="text-sm font-medium">
               {{ $store.state.alert.title }}
             </h3>
-            <div class="mt-2 text-sm text-yellow-700">
+            <div class="mt-2 text-sm">
               <p>
                 {{ $store.state.alert.message }}
               </p>
