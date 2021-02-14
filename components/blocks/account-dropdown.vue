@@ -3,7 +3,7 @@
     <div>
       <button
         id="user-menu"
-        class="flex text-sm rounded-full text-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-800 focus:ring-white"
+        class="flex w-8 h-8 text-sm rounded-full text-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-800 focus:ring-white"
         aria-haspopup="true"
         title="Account"
         @click="accountDropdownOpened = !accountDropdownOpened"
@@ -12,7 +12,7 @@
         <transition name="fade">
           <img
             v-if="this.$auth.$state.loggedIn"
-            class="w-8 h-8 rounded-full"
+            class="w-full h-full rounded-full"
             :src="this.$auth.$state.user.profile_photo_url"
             :alt="this.$auth.$state.user.name"
           />

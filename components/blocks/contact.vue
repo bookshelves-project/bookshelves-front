@@ -268,7 +268,7 @@ export default {
         this.$store.commit('toggleShowAlert')
         setTimeout(() => {
           this.$store.commit('setShowAlert', false)
-        }, 5000)
+        }, 4000)
       } catch (e) {
         // console.error(e)
         this.errors = true
@@ -278,10 +278,12 @@ export default {
           message:
             "We are sorry but your message can't be send, try in some time.",
         })
-        this.$store.commit('toggleShowAlert')
+        setTimeout(() => {
+          this.$store.commit('toggleShowAlert')
+        }, 100)
         setTimeout(() => {
           this.$store.commit('setShowAlert', false)
-        }, 5000)
+        }, 4000)
       }
       this.loading = false
     },
