@@ -133,6 +133,7 @@ export default {
     '~/plugins/helper',
   ],
 
+  // GitHub: https://github.com/nuxt/components
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: [{ path: '~/components/common', global: true }],
 
