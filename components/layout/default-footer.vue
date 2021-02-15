@@ -235,6 +235,11 @@ export default {
           icon: 'book-open',
           route: { name: 'pages', params: { slug: 'faq' } },
         },
+        {
+          label: 'Bug report',
+          icon: 'book-open',
+          route: { name: 'pages', params: { slug: 'bug-report' } },
+        },
       ],
       navigationLegal: [
         {
