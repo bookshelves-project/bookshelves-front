@@ -14,7 +14,7 @@
             <div class="mx-auto text-lg max-w-prose">
               <div>
                 <h2
-                  class="block text-base font-semibold tracking-wide text-center text-primary-600 uppercase"
+                  class="block text-base font-semibold tracking-wide text-center uppercase text-primary-600"
                 >
                   {{ document.category }}
                 </h2>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="pt-4 pb-10 mx-auto prose prose-lg lg:px-5 lg:pt-8">
-      <ul>
+      <!-- <ul>
         <li
           v-for="link of document.toc"
           :key="link.id"
@@ -53,7 +53,7 @@
             >{{ link.text }}</a
           >
         </li>
-      </ul>
+      </ul> -->
       <nuxt-content :document="document" />
     </div>
   </div>
