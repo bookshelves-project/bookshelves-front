@@ -4,79 +4,82 @@
       title="Books"
       subtitle="Discover all available books sorted by title and serie's title"
     />
-    <div>
-      <div class="display-grid">
-        <entity-card
-          v-for="book in books.data"
-          :key="book.id"
-          :data="book"
-          :cover="book.image"
-          :route="{
-            name: 'books-slug',
-            params: { author: book.author, slug: book.slug },
-          }"
-        >
-          <template #title>
-            {{ $overflow(book.title) }}
-          </template>
-          <template #hover>
-            <div>
-              <div class="font-semibold">Author &#8212;</div>
-              <div class="italic">
-                <div v-for="author in book.authors" :key="author.id">
-                  {{ author.name }}
+    <section v-if="!apiError">
+      <div>
+        <div class="display-grid">
+          <entity-card
+            v-for="book in books.data"
+            :key="book.id"
+            :data="book"
+            :cover="book.image"
+            :route="{
+              name: 'books-slug',
+              params: { author: book.author, slug: book.slug },
+            }"
+          >
+            <template #title>
+              {{ $overflow(book.title) }}
+            </template>
+            <template #hover>
+              <div>
+                <div class="font-semibold">Author &#8212;</div>
+                <div class="italic">
+                  <div v-for="author in book.authors" :key="author.id">
+                    {{ author.name }}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div v-if="book.serie" class="mt-5">
-              <div class="font-semibold">Serie &#8212;</div>
-              <div class="italic break-all">
+              <div v-if="book.serie" class="mt-5">
+                <div class="font-semibold">Serie &#8212;</div>
+                <div class="italic break-all">
+                  {{ book.serie.title }}, vol. {{ book.serie.number }}
+                </div>
+              </div>
+              <div v-if="book.language" class="mt-5">
+                <div class="font-semibold">Language &#8212;</div>
+                <img :src="book.language.flag" :alt="book.language.slug" />
+              </div>
+            </template>
+            <template #title-responsive>
+              <div class="font-semibold">
+                {{ book.title }}
+              </div>
+              <div class="italic">
+                <div v-for="(author, authorId) in book.authors" :key="authorId">
+                  {{ author.name }}
+                  <span
+                    v-if="
+                      book.authors.length > 1 &&
+                      authorId !== book.authors.length - 1
+                    "
+                  >
+                    &
+                  </span>
+                </div>
+              </div>
+              <div v-if="book.serie">
                 {{ book.serie.title }}, vol. {{ book.serie.number }}
               </div>
-            </div>
-            <div v-if="book.language" class="mt-5">
-              <div class="font-semibold">Language &#8212;</div>
-              <img :src="book.language.flag" :alt="book.language.slug" />
-            </div>
-          </template>
-          <template #title-responsive>
-            <div class="font-semibold">
-              {{ book.title }}
-            </div>
-            <div class="italic">
-              <div v-for="(author, authorId) in book.authors" :key="authorId">
-                {{ author.name }}
-                <span
-                  v-if="
-                    book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
-                  "
-                >
-                  &
-                </span>
+              <div v-if="book.language" class="mt-5">
+                <img :src="book.language.flag" :alt="book.language.slug" />
               </div>
-            </div>
-            <div v-if="book.serie">
-              {{ book.serie.title }}, vol. {{ book.serie.number }}
-            </div>
-            <div v-if="book.language" class="mt-5">
-              <img :src="book.language.flag" :alt="book.language.slug" />
-            </div>
-          </template>
-        </entity-card>
+            </template>
+          </entity-card>
+        </div>
       </div>
-    </div>
-    <div class="mt-6 mb-5">
-      <pagination
-        :link-gen="linkGen"
-        :pages="pages"
-        :current-page="currentPage"
-        :limit="5"
-        class="flex justify-center"
-        @event="event"
-      >
-      </pagination>
-    </div>
+      <div class="mt-6 mb-5">
+        <pagination
+          :link-gen="linkGen"
+          :pages="pages"
+          :current-page="currentPage"
+          :limit="5"
+          class="flex justify-center"
+          @event="event"
+        >
+        </pagination>
+      </div>
+    </section>
+    <api-error-message v-else />
   </main>
 </template>
 
@@ -86,6 +89,7 @@ import qs from 'qs'
 import Pagination from '~/components/special/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
+import ApiErrorMessage from '~/components/special/api-error-message.vue'
 
 export default {
   name: 'Books',
@@ -93,6 +97,7 @@ export default {
     Pagination,
     EntityCard,
     SectionHeading,
+    ApiErrorMessage,
   },
   auth: 'auth',
   layout: 'auth',
@@ -116,14 +121,11 @@ export default {
         currentPage: books.meta.current_page,
         perPage: books.meta.per_page,
         total: books.meta.total,
+        apiError: false,
       }
     } catch (error) {
-      console.error(error)
-
       return {
-        books: [],
-        pages: 0,
-        currentPage: 0,
+        apiError: true,
       }
     }
   },
@@ -135,22 +137,6 @@ export default {
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
     }
   },
-  methods: {
-    linkGen(pageNum) {
-      const lang = this.$route.query.lang
-      return {
-        name: this.$route.name,
-        query: pageNum === 1 ? { lang } : { page: pageNum, lang },
-      }
-    },
-    event(data) {
-      this.componentKey += 1
-    },
-    searching(result) {
-      // console.log(this.$store.state.searching)
-    },
-  },
-  watchQuery: ['page', 'lang'],
   head() {
     const title = 'Books on Bookshelves'
     const description = 'All books available on Bookshelves.'
@@ -200,6 +186,22 @@ export default {
         },
       ],
     }
+  },
+  watchQuery: ['page', 'lang'],
+  methods: {
+    linkGen(pageNum) {
+      const lang = this.$route.query.lang
+      return {
+        name: this.$route.name,
+        query: pageNum === 1 ? { lang } : { page: pageNum, lang },
+      }
+    },
+    event(data) {
+      this.componentKey += 1
+    },
+    searching(result) {
+      // console.log(this.$store.state.searching)
+    },
   },
 }
 </script>

@@ -183,8 +183,7 @@ export default {
         this.$store.commit('setAlertMessage', {
           type: 'danger',
           title: 'Error!',
-          message:
-            "We are sorry but your message can't be send, try in some time.",
+          message: "You can't sign-in currently, try later!",
         })
         setTimeout(() => {
           this.$store.commit('toggleShowAlert')

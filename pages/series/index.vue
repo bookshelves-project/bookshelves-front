@@ -4,59 +4,62 @@
       title="Series"
       subtitle="Discover books grouped by their serie's name"
     />
-    <div>
-      <div class="display-grid">
-        <entity-card
-          v-for="serie in series.data"
-          :key="serie.id"
-          :cover="serie.image"
-          :route="{
-            name: 'series-slug',
-            params: { slug: serie.slug },
-          }"
-        >
-          <template #title>
-            {{ $overflow(serie.title) }}
-          </template>
-          <template #hover>
-            <div>
-              <div class="font-semibold">Author &#8212;</div>
+    <section v-if="!apiError">
+      <div>
+        <div class="display-grid">
+          <entity-card
+            v-for="serie in series.data"
+            :key="serie.id"
+            :cover="serie.image"
+            :route="{
+              name: 'series-slug',
+              params: { slug: serie.slug },
+            }"
+          >
+            <template #title>
+              {{ $overflow(serie.title) }}
+            </template>
+            <template #hover>
+              <div>
+                <div class="font-semibold">Author &#8212;</div>
+                <div class="italic">
+                  {{ serie.author }}
+                </div>
+                <div class="mt-5">
+                  <div class="font-semibold">Serie &#8212;</div>
+                  <div>{{ serie.booksNumber }} books</div>
+                </div>
+                <div v-if="serie.language" class="mt-5">
+                  <div class="font-semibold">Language &#8212;</div>
+                  <img :src="serie.language.flag" :alt="serie.language.slug" />
+                </div>
+              </div>
+            </template>
+            <template #title-responsive>
+              <div class="font-semibold">
+                {{ serie.title }}
+              </div>
               <div class="italic">
                 {{ serie.author }}
               </div>
-              <div class="mt-5">
-                <div class="font-semibold">Serie &#8212;</div>
-                <div>{{ serie.booksNumber }} books</div>
-              </div>
-              <div v-if="serie.language" class="mt-5">
-                <div class="font-semibold">Language &#8212;</div>
-                <img :src="serie.language.flag" :alt="serie.language.slug" />
-              </div>
-            </div>
-          </template>
-          <template #title-responsive>
-            <div class="font-semibold">
-              {{ serie.title }}
-            </div>
-            <div class="italic">
-              {{ serie.author }}
-            </div>
-            <div>{{ serie.booksNumber }} books</div>
-          </template>
-        </entity-card>
+              <div>{{ serie.booksNumber }} books</div>
+            </template>
+          </entity-card>
+        </div>
       </div>
-    </div>
-    <div class="mt-6 mb-5">
-      <pagination
-        :link-gen="linkGen"
-        :pages="pages"
-        :current-page="currentPage"
-        :limit="5"
-        class="flex justify-center"
-        @event="event"
-      >
-      </pagination>
-    </div>
+      <div class="mt-6 mb-5">
+        <pagination
+          :link-gen="linkGen"
+          :pages="pages"
+          :current-page="currentPage"
+          :limit="5"
+          class="flex justify-center"
+          @event="event"
+        >
+        </pagination>
+      </div>
+    </section>
+    <api-error-message v-else />
   </main>
 </template>
 
@@ -65,10 +68,11 @@ import qs from 'qs'
 import Pagination from '~/components/special/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
+import ApiErrorMessage from '~/components/special/api-error-message.vue'
 
 export default {
   name: 'SeriesIndex',
-  components: { Pagination, EntityCard, SectionHeading },
+  components: { Pagination, EntityCard, SectionHeading, ApiErrorMessage },
   async asyncData({ app, query, error, $content, store }) {
     try {
       const page = query.page
@@ -87,14 +91,11 @@ export default {
         currentPage: series.meta.current_page,
         perPage: series.meta.per_page,
         total: series.meta.total,
+        apiError: false,
       }
     } catch (error) {
-      console.error(error)
-
       return {
-        series: [],
-        pages: 0,
-        currentPage: 0,
+        apiError: true,
       }
     }
   },
@@ -104,18 +105,6 @@ export default {
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
     }
   },
-  methods: {
-    linkGen(pageNum) {
-      return {
-        name: this.$route.name,
-        query: pageNum === 1 ? {} : { page: pageNum },
-      }
-    },
-    event(data) {
-      this.componentKey += 1
-    },
-  },
-  watchQuery: ['page'],
   head() {
     const title = 'Series on Bookshelves'
     const description = 'Discover exciting and breathtaking series.'
@@ -165,6 +154,18 @@ export default {
         },
       ],
     }
+  },
+  watchQuery: ['page'],
+  methods: {
+    linkGen(pageNum) {
+      return {
+        name: this.$route.name,
+        query: pageNum === 1 ? {} : { page: pageNum },
+      }
+    },
+    event(data) {
+      this.componentKey += 1
+    },
   },
 }
 </script>

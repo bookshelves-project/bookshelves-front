@@ -4,46 +4,49 @@
       title="Authors"
       subtitle="Want to find all books written by specific author?"
     />
-    <div>
-      <div class="display-grid">
-        <entity-card
-          v-for="(author, authorId) in authors.data"
-          :key="authorId"
-          :cover="author.image"
-          :route="{
-            name: 'authors-slug',
-            params: { slug: author.slug },
-          }"
-        >
-          <template #title>
-            {{ $overflow(`${author.lastname} ${author.firstname}`) }}
-          </template>
-          <template #hover>
-            <div>
-              <div class="font-semibold">Available here &#8212;</div>
+    <section v-if="!apiError">
+      <div>
+        <div class="display-grid">
+          <entity-card
+            v-for="(author, authorId) in authors.data"
+            :key="authorId"
+            :cover="author.image"
+            :route="{
+              name: 'authors-slug',
+              params: { slug: author.slug },
+            }"
+          >
+            <template #title>
+              {{ $overflow(`${author.lastname} ${author.firstname}`) }}
+            </template>
+            <template #hover>
+              <div>
+                <div class="font-semibold">Available here &#8212;</div>
+                <div>{{ author.books_number }} books</div>
+              </div>
+            </template>
+            <template #title-responsive>
+              <div class="font-semibold">
+                {{ `${author.lastname} ${author.firstname}` }}
+              </div>
               <div>{{ author.books_number }} books</div>
-            </div>
-          </template>
-          <template #title-responsive>
-            <div class="font-semibold">
-              {{ `${author.lastname} ${author.firstname}` }}
-            </div>
-            <div>{{ author.books_number }} books</div>
-          </template>
-        </entity-card>
+            </template>
+          </entity-card>
+        </div>
       </div>
-    </div>
-    <div class="mt-6 mb-5">
-      <pagination
-        :link-gen="linkGen"
-        :pages="pages"
-        :current-page="currentPage"
-        :limit="5"
-        class="flex justify-center"
-        @event="event"
-      >
-      </pagination>
-    </div>
+      <div class="mt-6 mb-5">
+        <pagination
+          :link-gen="linkGen"
+          :pages="pages"
+          :current-page="currentPage"
+          :limit="5"
+          class="flex justify-center"
+          @event="event"
+        >
+        </pagination>
+      </div>
+    </section>
+    <api-error-message v-else />
   </main>
 </template>
 
@@ -53,10 +56,11 @@ import qs from 'qs'
 import Pagination from '~/components/special/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
+import ApiErrorMessage from '~/components/special/api-error-message.vue'
 
 export default {
   name: 'AuthorsIndex',
-  components: { Pagination, EntityCard, SectionHeading },
+  components: { Pagination, EntityCard, SectionHeading, ApiErrorMessage },
   async asyncData({ app, query, error, $content, store }) {
     try {
       const page = query.page
@@ -75,15 +79,11 @@ export default {
         currentPage: authors.meta.current_page,
         perPage: authors.meta.per_page,
         total: authors.meta.total,
+        apiError: false,
       }
     } catch (error) {
-      console.error(error)
-
       return {
-        authors: [],
-        pages: 0,
-        currentPage: 0,
-        componentKey: 0,
+        apiError: true,
       }
     }
   },
@@ -93,19 +93,6 @@ export default {
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
     }
   },
-  methods: {
-    linkGen(pageNum) {
-      // this.componentKey += 1
-      return {
-        name: this.$route.name,
-        query: pageNum === 1 ? {} : { page: pageNum },
-      }
-    },
-    event(data) {
-      this.componentKey += 1
-    },
-  },
-  watchQuery: ['page'],
   head() {
     const title = 'Authors on Bookshelves'
     const description = 'Find your favorite author among those.'
@@ -155,6 +142,19 @@ export default {
         },
       ],
     }
+  },
+  watchQuery: ['page'],
+  methods: {
+    linkGen(pageNum) {
+      // this.componentKey += 1
+      return {
+        name: this.$route.name,
+        query: pageNum === 1 ? {} : { page: pageNum },
+      }
+    },
+    event(data) {
+      this.componentKey += 1
+    },
   },
 }
 </script>
