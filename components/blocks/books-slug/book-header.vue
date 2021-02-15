@@ -76,14 +76,14 @@
     <div
       class="flex flex-col-reverse items-center mt-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 xl:mt-0 xl:flex-row xl:space-x-3"
     >
-      <component
+      <!-- <component
         :is="buyLink ? 'a' : 'span'"
         href="#"
         :class="buyLink ? 'hover:bg-gray-50 ' : 'bg-gray-300'"
         class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
       >
         <svg
-          class="w-6 h-6"
+          class="w-5 h-5"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -93,25 +93,60 @@
           ></path>
         </svg>
         <span class="mx-1">Buy</span>
-      </component>
+      </component> -->
+      <button
+        class="inline-flex items-center justify-center px-4 py-2 space-x-2 text-sm font-semibold text-white transition-colors duration-100 bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+        @click="displayCover"
+      >
+        <icon-picture class="w-5 h-5" />
+        <div>See cover</div>
+      </button>
       <a
         :href="book.epub.download"
-        class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+        class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white transition-colors duration-100 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
       >
         <icon name="download" />
         <span class="mx-1">Download</span>
         <span> ({{ book.epub.size }}) </span>
       </a>
     </div>
+    <div
+      v-if="modalCoverDisplay"
+      v-click-outside="closeModalCover"
+      class="fixed z-50 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow top-1/2 left-1/2"
+    >
+      <div class="relative">
+        <img
+          v-if="book.imageOriginal"
+          :src="book.imageOriginal"
+          alt="Book cover"
+          class="h-full w-96"
+        />
+      </div>
+      <div
+        class="absolute flex w-6 h-6 transition-colors duration-100 rounded-md top-2 right-2 bg-gray-50 bg-opacity-60 hover:bg-gray-100"
+      >
+        <button class="m-auto" @click="closeModalCover">
+          <icon-cross />
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import vClickOutside from 'v-click-outside'
+
 import iconHeart from '~/components/icons/icon-heart.vue'
+import IconPicture from '~/components/icons/icon-picture.vue'
 import favorites from '~/mixins/favorites'
+import IconCross from '~/components/icons/icon-cross.vue'
 export default {
   name: 'BookHeader',
-  components: { iconHeart },
+  components: { iconHeart, IconPicture, IconCross },
+  directives: {
+    clickOutside: vClickOutside.directive,
+  },
   mixins: [favorites],
   props: {
     book: {
@@ -122,7 +157,26 @@ export default {
   data() {
     return {
       buyLink: false,
+      modalCoverDisplay: false,
     }
+  },
+  methods: {
+    displayCover() {
+      this.$store.commit('setLayer', true)
+
+      setTimeout(() => {
+        this.modalCoverDisplay = true
+        this.$store.commit('setLayerOpacity', true)
+      }, 150)
+    },
+    closeModalCover() {
+      this.modalCoverDisplay = false
+      this.$store.commit('setLayerOpacity', false)
+
+      setTimeout(() => {
+        this.$store.commit('setLayer', false)
+      }, 150)
+    },
   },
 }
 </script>

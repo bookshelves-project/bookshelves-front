@@ -150,6 +150,8 @@ export default {
     },
     closeSidebar() {
       this.$store.commit('setSidebar', false)
+      this.$store.commit('setLayerOpacity', false)
+
       setTimeout(() => {
         this.$store.commit('setLayer', false)
       }, 150)

@@ -175,12 +175,25 @@ export default {
           await this.$auth.loginWith('laravelSanctum', {
             data: this.form,
           })
+          this.isLoading = false
         }
       } catch (error) {
         console.error(error)
         // this.errors = error.response.data.errors
+        this.$store.commit('setAlertMessage', {
+          type: 'danger',
+          title: 'Error!',
+          message:
+            "We are sorry but your message can't be send, try in some time.",
+        })
+        setTimeout(() => {
+          this.$store.commit('toggleShowAlert')
+        }, 100)
+        setTimeout(() => {
+          this.$store.commit('setShowAlert', false)
+        }, 4000)
+        this.isLoading = false
       }
-      this.isLoading = false
     },
   },
 }

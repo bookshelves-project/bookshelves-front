@@ -222,8 +222,10 @@ export default {
     },
     openSidebar() {
       this.$store.commit('setLayer', true)
+
       setTimeout(() => {
         this.$store.commit('setSidebar', true)
+        this.$store.commit('setLayerOpacity', true)
       }, 150)
     },
   },

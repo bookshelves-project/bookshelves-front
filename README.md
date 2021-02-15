@@ -40,6 +40,8 @@
   - <https://stackoverflow.com/questions/41458736/how-to-write-test-that-mocks-the-route-object-in-vue-components>
   - For global variables check test of Nuxt modules
     - <https://github.com/nuxt-community/color-mode-module>
+- sign-in errors for user
+- books slug: display original cover
 
 ## **I. Setup**
 

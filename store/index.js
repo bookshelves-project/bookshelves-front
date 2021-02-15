@@ -1,6 +1,7 @@
 export const state = () => ({
   sidebarOpened: false,
   layerVisible: false,
+  layerOpacity: false,
   books: [],
   booksView: 'grid',
   navigation: [
@@ -37,6 +38,9 @@ export const mutations = {
   },
   setLayer(state, data) {
     state.layerVisible = data
+  },
+  setLayerOpacity(state, data) {
+    state.layerOpacity = data
   },
   setBooks(state, data) {
     state.books = data
