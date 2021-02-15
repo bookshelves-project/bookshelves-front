@@ -206,6 +206,7 @@ export default {
         },
       ],
       navigationSupport: [
+        { label: 'Recherche', icon: 'annotation', route: 'search' },
         {
           label: 'About',
           icon: 'book-open',

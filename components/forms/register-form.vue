@@ -52,7 +52,7 @@
           for="email"
           class="block text-sm font-medium text-gray-700 dark:text-gray-300"
         >
-          Email address
+          Email address<span class="text-red-600">*</span>
         </label>
         <span v-if="errors.email" class="text-sm text-red-600">
           {{ errors.email[0] }}
@@ -77,7 +77,7 @@
           for="password"
           class="block text-sm font-medium text-gray-700 dark:text-gray-300"
         >
-          Password
+          Password<span class="text-red-600">*</span>
         </label>
         <span v-if="errors.password" class="text-sm text-red-600">
           {{ errors.password[0] }}
@@ -102,7 +102,7 @@
           for="password"
           class="block text-sm font-medium text-gray-700 dark:text-gray-300"
         >
-          Confirm password
+          Confirm password<span class="text-red-600">*</span>
         </label>
         <span v-if="errors.password_confirmation" class="text-sm text-red-600">
           {{ errors.password[0] }}

@@ -30,7 +30,7 @@
           for="name"
           class="block text-sm font-medium text-gray-700 dark:text-gray-300"
         >
-          Name
+          Name<span class="text-red-600">*</span>
         </label>
         <div class="mt-1">
           <input
@@ -48,8 +48,9 @@
         <label
           for="email"
           class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >Email</label
         >
+          Email<span class="text-red-600">*</span>
+        </label>
         <div class="mt-1">
           <input
             id="email"
@@ -66,8 +67,9 @@
         <label
           for="message"
           class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >Message</label
         >
+          Message<span class="text-red-600">*</span>
+        </label>
         <div class="mt-1">
           <textarea
             id="message"
@@ -82,10 +84,13 @@
       <div class="sm:col-span-2">
         <button
           type="submit"
-          class="inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          class="inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
         >
           <transition name="fade">
-            <span v-if="!loading"> Let's talk</span>
+            <span v-if="!loading" class="flex items-center">
+              <icon-airplane class="w-4 h-4 text-white" />
+              <div class="ml-2">Let's talk</div>
+            </span>
             <span v-else class="flex items-center">
               <svg
                 class="w-5 h-5 mr-3 -ml-1 text-white animate-spin"
@@ -117,8 +122,10 @@
 </template>
 
 <script>
+import iconAirplane from '../icons/icon-airplane.vue'
 export default {
   name: 'ContactForm',
+  components: { iconAirplane },
   data() {
     return {
       loading: false,
@@ -144,6 +151,10 @@ export default {
     } catch (e) {
       console.error(e)
     }
+    if (this.$auth.$state.loggedIn) {
+      this.form.name = this.$auth.$state.user.name
+      this.form.email = this.$auth.$state.user.email
+    }
   },
   beforeDestroy() {
     this.$recaptcha.destroy()
@@ -161,7 +172,7 @@ export default {
         const token = await this.$recaptcha.execute('login')
         this.form['g-recaptcha-response'] = token
 
-        await this.$axios.post('/api/contact', this.form)
+        await this.$axios.post('/api/submission', this.form)
 
         this.success = true
         this.errors = false
