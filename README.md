@@ -9,7 +9,7 @@
 - 📀 [**bookshelves-back**](https://gitlab.com/EwieFairy/bookshelves-back) : back-end of Bookshelves
 - 🎨 [**bookshelves-front**](https://gitlab.com/EwieFairy/bookshelves-front) : front-end of Bookshelves (current repository)
 - 💻 [**bookshelves.git-projects.xyz**](https://bookshelves.git-projects.xyz) : preprod
-- 📚 [**Documentation**](https://bookshelves.git-projects.xyz/api/documentation)
+- 📚 [**Documentation API**](https://bookshelves.git-projects.xyz/api/documentation)
 
 ---
 

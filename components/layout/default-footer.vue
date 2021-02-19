@@ -117,24 +117,6 @@
               </span>
             </a>
             <span class="hidden mx-1 lg:block"> · </span>
-            <!-- <a
-              :href="`${packageJson.repository.url}/-/project_members`"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center justify-center px-1 py-2 text-base leading-6 text-center text-gray-400 transition-colors duration-300 rounded-md hover:text-gray-600"
-            >
-              Bookshelves Team<span class="hidden lg:block">,</span>
-            </a> -->
-            <!-- <a
-              :href="`${packageJson.repository.url}/-/blob/master/LICENSE`"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center justify-center px-1 py-2 text-base leading-6 text-center text-gray-400 transition-colors duration-300 rounded-md hover:text-gray-600"
-            >
-              {{ packageJson.license }} license<span class="hidden lg:block"
-                >.</span
-              >
-            </a> -->
             <div class="flex items-center">
               Bookshelves Team<span class="hidden lg:mr-1 lg:block">,</span>
               {{ packageJson.license }} license<span class="hidden lg:block"
@@ -206,17 +188,17 @@ export default {
         },
       ],
       navigationSupport: [
-        { label: 'Recherche', icon: 'annotation', route: 'search' },
+        { label: 'Recherche', icon: 'annotation', route: { name: 'search' } },
         {
           label: 'About',
           icon: 'book-open',
           route: { name: 'pages', params: { slug: 'about' } },
         },
-        {
-          label: 'Team',
-          icon: 'book-open',
-          route: { name: 'pages', params: { slug: 'team' } },
-        },
+        // {
+        //   label: 'Team',
+        //   icon: 'book-open',
+        //   route: { name: 'pages', params: { slug: 'team' } },
+        // },
         { label: 'Contact', icon: 'book-open', route: { name: 'contact' } },
       ],
       navigationCompany: [
@@ -234,11 +216,6 @@ export default {
           label: 'FAQ',
           icon: 'book-open',
           route: { name: 'pages', params: { slug: 'faq' } },
-        },
-        {
-          label: 'Bug report',
-          icon: 'book-open',
-          route: { name: 'pages', params: { slug: 'bug-report' } },
         },
       ],
       navigationLegal: [
