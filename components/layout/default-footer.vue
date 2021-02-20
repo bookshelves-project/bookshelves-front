@@ -209,42 +209,37 @@ export default {
         {
           label: 'About',
           icon: 'book-open',
-          route: { name: 'pages', params: { slug: 'about' } },
+          route: '/pages/about',
         },
-        // {
-        //   label: 'Team',
-        //   icon: 'book-open',
-        //   route: { name: 'pages', params: { slug: 'team' } },
-        // },
         { label: 'Contact', icon: 'book-open', route: { name: 'contact' } },
       ],
       navigationCompany: [
         {
           label: 'More eBooks',
           icon: 'book-open',
-          route: { name: 'pages', params: { slug: 'more-ebooks' } },
+          route: '/pages/more-ebooks',
         },
         {
           label: 'Documentation API',
           icon: 'book-open',
-          route: { name: 'pages', params: { slug: 'api-documentation' } },
+          route: '/pages/api-documentation',
         },
         {
           label: 'FAQ',
           icon: 'book-open',
-          route: { name: 'pages', params: { slug: 'faq' } },
+          route: '/pages/faq',
         },
       ],
       navigationLegal: [
         {
           label: 'Legal',
           icon: 'book-open',
-          route: { name: 'pages', params: { slug: 'legal' } },
+          route: '/pages/legal',
         },
         {
           label: 'Cookies',
           icon: 'book-open',
-          route: { name: 'pages', params: { slug: 'cookies' } },
+          route: '/pages/cookies',
         },
       ],
       packageJson,

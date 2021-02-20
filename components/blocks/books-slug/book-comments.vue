@@ -59,7 +59,10 @@
                         }}d ago</span
                       >
                       <button
-                        v-if="comment.user.id === $auth.$state.user.id"
+                        v-if="
+                          $auth.$state.loggedIn &&
+                          comment.user.id === $auth.$state.user.id
+                        "
                         class="text-gray-400 dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-300"
                         title="Delete"
                         @click="deleteComment(comment.id)"
