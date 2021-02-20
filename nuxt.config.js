@@ -135,7 +135,11 @@ export default {
 
   // GitHub: https://github.com/nuxt/components
   // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: [{ path: '~/components/common', global: true }],
+  components: [
+    { path: '~/components/common', pathPrefix: false },
+    { path: '~/components/common/content', pathPrefix: false },
+    { path: '~/components/common/icons', pathPrefix: false },
+  ],
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
@@ -220,26 +224,15 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: process.env.API_URL,
-    // prefix: '/api',
     credentials: true,
     https: false,
-    // proxy: true,
     headers: {
       common: {
         'X-Requested-With': 'XMLHttpRequest',
       },
-      // delete: {},
-      // get: {},
-      // head: {},
-      // post: {},
-      // put: {},
-      // patch: {},
     },
   },
 
-  // proxy: {
-  //   '/api/': { target: 'http://api.example.com', pathRewrite: {'^/api/': ''} }
-  // },
   proxy: {
     '/api': {
       target: `${process.env.API_URL}/api`,
@@ -272,9 +265,13 @@ export default {
   },
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {
+    liveEdit: false,
+    // https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins
+    // https://github.com/rehypejs/rehype/blob/main/doc/plugins.md#list-of-plugins
     markdown: {
+      remarkPlugins: ['remark-directive'],
       prism: {
-        theme: '~/assets/css/prism-vsc-dark-plus.css',
+        theme: 'prism-themes/themes/prism-vsc-dark-plus.css',
       },
     },
   },
@@ -291,6 +288,17 @@ export default {
     siteKey: process.env.RECAPTCHA_SITE_KEY,
     version: 3,
     size: 'invisible',
+  },
+
+  hooks: {
+    'content:file:beforeInsert': (document) => {
+      if (document.extension === '.md') {
+        const readingTime = require('reading-time')
+        const stats = readingTime(document.text)
+
+        document.readingTime = stats
+      }
+    },
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

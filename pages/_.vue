@@ -16,7 +16,7 @@
                 <div class="mx-auto text-lg max-w-prose">
                   <div>
                     <h2
-                      class="block text-base font-semibold tracking-wide text-center text-primary-600 uppercase"
+                      class="block text-base font-semibold tracking-wide text-center uppercase text-primary-600"
                     >
                       {{ document.category }}
                     </h2>
@@ -48,8 +48,15 @@
 </template>
 
 <script>
+import TableOfContent from '~/components/common/content/TableOfContent.vue'
 export default {
   name: 'ContentSlugShort',
+  components: { TableOfContent },
+  // middleware({ app, params, redirect }) {
+  //   if (params.pathMatch === 'index') {
+  //     redirect(app.localePath('/'))
+  //   }
+  // },
   async asyncData({ $content, store, app, params, error }) {
     const path = `/${params.pathMatch || 'index'}`
     const [document] = await $content({ deep: true }).where({ path }).fetch()
@@ -59,11 +66,6 @@ export default {
 
     return {
       document,
-    }
-  },
-  middleware({ app, params, redirect }) {
-    if (params.pathMatch === 'index') {
-      redirect(app.localePath('/'))
     }
   },
   head() {

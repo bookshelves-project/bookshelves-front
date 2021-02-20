@@ -53,11 +53,11 @@
   }
   /* links  */
   & a {
-    @apply text-black transition-colors duration-300 border-b-2 border-primary-500;
+    @apply transition-colors duration-300 border-b-2 border-primary-500;
     --border-opacity: 0.25;
   }
   & a:hover {
-    @apply bg-primary-500 border-primary-500;
+    @apply bg-primary-500 border-primary-500 text-white;
     --bg-opacity: 0.25;
     --border-opacity: 0.25;
   }
