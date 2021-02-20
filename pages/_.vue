@@ -52,11 +52,11 @@ import TableOfContent from '~/components/common/content/TableOfContent.vue'
 export default {
   name: 'ContentSlugShort',
   components: { TableOfContent },
-  // middleware({ app, params, redirect }) {
-  //   if (params.pathMatch === 'index') {
-  //     redirect(app.localePath('/'))
-  //   }
-  // },
+  middleware({ app, params, redirect }) {
+    if (params.pathMatch === 'index') {
+      redirect(app.localePath('/'))
+    }
+  },
   async asyncData({ $content, store, app, params, error }) {
     const path = `/${params.pathMatch || 'index'}`
     const [document] = await $content({ deep: true }).where({ path }).fetch()
@@ -108,12 +108,6 @@ export default {
           hid: 'twitter:image',
           property: 'twitter:image',
           content: image,
-        },
-      ],
-      link: [
-        {
-          rel: 'canonical',
-          href: `${process.env.BASE_URL}/guides/${this.document.slug}`,
         },
       ],
     }
