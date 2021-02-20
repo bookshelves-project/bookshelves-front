@@ -16,7 +16,7 @@
     <div class="px-4 mx-auto sm:px-6 max-w-7xl">
       <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64">
         <h2
-          class="text-sm font-semibold tracking-wide text-primary-700 uppercase"
+          class="text-sm font-semibold tracking-wide uppercase text-primary-700"
         >
           A quick tour of eBooks count
         </h2>
@@ -85,54 +85,62 @@
 <script>
 export default {
   name: 'Statistics',
-  props: {
-    books: {
-      type: Number,
-      default: 0,
-    },
-    series: {
-      type: Number,
-      default: 0,
-    },
-    authors: {
-      type: Number,
-      default: 0,
-    },
-    langs: {
-      type: Array,
-      default: () => [],
-    },
-  },
   data() {
     return {
-      metrics: [
-        {
+      metrics: {
+        books: {
           route: 'books',
-          data: this.books,
+          data: 0,
           textTitle: 'eBooks',
           text: 'available on Bookshelves',
         },
-        {
+        series: {
           route: 'series',
-          data: this.series,
+          data: 0,
           textTitle: 'Series',
           text: 'of eBooks',
         },
-        {
+        authors: {
           route: 'authors',
-          data: this.authors,
+          data: 0,
           textTitle: 'Authors',
           text: 'who wrote these eBooks',
         },
-      ],
+      },
       metricsLangs: [],
     }
   },
-  mounted() {
-    this.langsFormat()
+  async created() {
+    await this.getStats()
   },
   methods: {
-    langsFormat() {
+    async getStats() {
+      const [
+        booksCount,
+        seriesCount,
+        authorsCount,
+        countLangs,
+      ] = await Promise.all([
+        this.$axios.$get('/api/books/count'),
+        this.$axios.$get('/api/series/count'),
+        this.$axios.$get('/api/authors/count'),
+        this.$axios.$get('/api/books/count-langs'),
+      ])
+
+      const data = {
+        books: booksCount,
+        series: seriesCount,
+        authors: authorsCount,
+        langs: countLangs,
+      }
+
+      for (const [key, value] of Object.entries(this.metrics)) {
+        value.data = data[key]
+      }
+
+      this.langsFormat(data.langs)
+    },
+    langsFormat(langs) {
       const langsValue = {
         en: {
           value: 'English',
@@ -141,7 +149,7 @@ export default {
           value: 'French',
         },
       }
-      this.langs.forEach((lang) => {
+      langs.forEach((lang) => {
         lang.data = lang.count
         if (lang.id in langsValue) {
           lang.lang = langsValue[lang.id].value
@@ -150,7 +158,7 @@ export default {
         }
         lang.route = 'books'
       })
-      this.metricsLangs = this.langs
+      this.metricsLangs = langs
     },
   },
 }

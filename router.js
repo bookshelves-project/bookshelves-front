@@ -11,7 +11,7 @@ import AuthorsIndex from '~/pages/authors/index'
 import AuthorsSlug from '~/pages/authors/_slug'
 import SearchIndex from '~/pages/search/index'
 import Guides from '~/pages/guides/index'
-import Content from '~/pages/guides/_'
+import Content from '~/pages/_'
 
 import ContentPage from '~/pages/content/slug'
 import Contact from '~/pages/contact'

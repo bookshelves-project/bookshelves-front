@@ -14,6 +14,8 @@ You need to install [**Calibre**](https://calibre-ebook.com) to follow this guid
 
 </alert>
 
+<!--more-->
+
 ## Technical words
 
 In this guide, I use some words from eBook world.

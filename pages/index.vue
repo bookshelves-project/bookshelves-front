@@ -1,12 +1,7 @@
 <template>
   <div>
     <hero />
-    <statistics
-      :authors="authorsCount"
-      :books="booksCount"
-      :series="seriesCount"
-      :langs="countLangs"
-    />
+    <statistics />
     <cloud-logos />
     <features />
     <features-highlight />
@@ -37,52 +32,11 @@ export default {
   },
   auth: 'auth',
   layout: 'auth',
-  async asyncData({ app, query, error, $content, store }) {
-    try {
-      const welcome = await $content('welcome').fetch()
-
-      const [
-        booksCount,
-        seriesCount,
-        authorsCount,
-        countLangs,
-      ] = await Promise.all([
-        app.$axios.$get('/api/books/count'),
-        app.$axios.$get('/api/series/count'),
-        app.$axios.$get('/api/authors/count'),
-        app.$axios.$get('/api/books/count-langs'),
-      ])
-      return {
-        welcome,
-        booksCount,
-        seriesCount,
-        authorsCount,
-        countLangs,
-      }
-    } catch (error) {
-      console.error(error)
-
-      return {
-        welcome: {},
-      }
-    }
-  },
   data() {
     return {
       pinnedProjectDropdownOpened: false,
       projectDropdownOpened: false,
-      // old
-      isLoading: false,
-      apiData: null,
-      menuIsOpen: false,
-      profileDropdownIsOpen: false,
-      layerMenuIsDisplayed: false,
     }
-  },
-  methods: {
-    async logout() {
-      await this.$auth.logout()
-    },
   },
   head() {
     return {
@@ -95,6 +49,11 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    async logout() {
+      await this.$auth.logout()
+    },
   },
 }
 </script>
