@@ -60,6 +60,7 @@ export default {
   async asyncData({ $content, store, app, params, error }) {
     const path = `/${params.pathMatch || 'index'}`
     const [document] = await $content({ deep: true }).where({ path }).fetch()
+    console.log(document)
     if (!document) {
       return error({ statusCode: 404, message: 'Page not found' })
     }
