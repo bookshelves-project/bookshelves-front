@@ -107,7 +107,7 @@
       >
         <icon name="download" />
         <span class="mx-1">Download</span>
-        <span> ({{ book.epub.size }}) </span>
+        <span> (EPUB {{ book.epub.size }}) </span>
       </a>
     </div>
     <div

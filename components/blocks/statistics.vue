@@ -38,7 +38,7 @@
             :key="metric.id"
             class="transition-colors duration-100 rounded-md hover:bg-gray-300 hover:bg-opacity-50"
           >
-            <nuxt-link :to="{ name: metric.route }" class="block p-2">
+            <nuxt-link :to="metric.route" class="block p-2">
               <span
                 class="block text-2xl font-bold text-gray-700 dark:text-gray-300"
               >
@@ -49,30 +49,7 @@
                 ><span class="font-medium text-gray-700 dark:text-gray-300">
                   {{ metric.textTitle }}
                 </span>
-                {{ metric.text }}
-              </span>
-            </nuxt-link>
-          </p>
-          <p
-            v-for="metric in metricsLangs"
-            :key="metric.id"
-            class="transition-colors duration-100 rounded-md hover:bg-gray-300 hover:bg-opacity-50"
-          >
-            <nuxt-link
-              :to="{ name: metric.route, query: { lang: metric.id } }"
-              class="block p-2"
-            >
-              <span
-                class="flex items-center text-2xl font-bold text-gray-700 dark:text-gray-300"
-              >
-                {{ metric.count }}
-                <img :src="metric.flag" :alt="metric.lang" class="ml-2" />
-              </span>
-              <span
-                class="block mt-1 text-base text-gray-900 dark:text-gray-100"
-                ><span class="font-medium text-gray-700 dark:text-gray-300">
-                  eBooks in {{ metric.lang }}
-                </span>
+                <span v-html="metric.text"></span>
               </span>
             </nuxt-link>
           </p>
@@ -89,29 +66,41 @@ export default {
     return {
       metrics: {
         books: {
-          route: 'books',
+          route: { name: 'books' },
           data: 0,
           textTitle: 'eBooks',
           text: 'available on Bookshelves',
         },
         series: {
-          route: 'series',
+          route: { name: 'series' },
           data: 0,
           textTitle: 'Series',
           text: 'of eBooks',
         },
         authors: {
-          route: 'authors',
+          route: { name: 'authors' },
           data: 0,
           textTitle: 'Authors',
           text: 'who wrote these eBooks',
+        },
+        frenchEbooks: {
+          route: { name: 'books', query: { lang: 'fr' } },
+          data: 0,
+          textTitle: '',
+          text: 'eBooks in french',
+        },
+        englishEbooks: {
+          route: { name: 'books', query: { lang: 'en' } },
+          data: 0,
+          textTitle: '',
+          text: 'eBooks in english',
         },
       },
       metricsLangs: [],
     }
   },
-  async created() {
-    await this.getStats()
+  created() {
+    this.getStats()
   },
   methods: {
     async getStats() {
@@ -138,40 +127,50 @@ export default {
         responseError = true
       }
 
+      const langsValue = this.langsFormat(countLangs)
+
       if (!responseError) {
         const data = {
           books: booksCount,
           series: seriesCount,
           authors: authorsCount,
+          frenchEbooks: langsValue.fr.data,
+          englishEbooks: langsValue.en.data,
           langs: countLangs,
         }
 
         for (const [key, value] of Object.entries(this.metrics)) {
           value.data = data[key]
         }
-
-        this.langsFormat(data.langs)
       }
     },
     langsFormat(langs) {
       const langsValue = {
         en: {
           value: 'English',
+          data: 0,
+          img: '',
         },
         fr: {
           value: 'French',
+          data: 0,
+          img: '',
         },
       }
+
       langs.forEach((lang) => {
         lang.data = lang.count
         if (lang.id in langsValue) {
           lang.lang = langsValue[lang.id].value
+          langsValue[lang.id].data = lang.data
         } else {
           lang.lang = 'undefined'
         }
         lang.route = 'books'
       })
       this.metricsLangs = langs
+
+      return langsValue
     },
   },
 }

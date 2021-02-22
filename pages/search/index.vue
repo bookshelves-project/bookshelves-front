@@ -154,35 +154,6 @@ export default {
       advancedSearchInput: '',
     }
   },
-  async mounted() {
-    this.search = await this.getSearchResults(this.$route.query.terms)
-  },
-  methods: {
-    advancedSearch() {
-      this.$router.push({
-        name: 'search',
-        query: { terms: this.advancedSearchInput },
-      })
-    },
-    async getSearchResults(query) {
-      if (query) {
-        const search = await this.$axios.$get(
-          `/api/search?${qs.stringify({
-            terms: query,
-          })}`
-        )
-
-        return search.data
-      } else {
-        return null
-      }
-    },
-  },
-  async watchQuery(newQuery, oldQuery) {
-    if (this) {
-      this.search = await this.getSearchResults(newQuery.terms)
-    }
-  },
   head() {
     const title = `Search for ${
       this.$route.query.terms ? this.$route.query.terms : ''
@@ -233,6 +204,35 @@ export default {
         },
       ],
     }
+  },
+  async watchQuery(newQuery, oldQuery) {
+    if (this) {
+      this.search = await this.getSearchResults(newQuery.terms)
+    }
+  },
+  async mounted() {
+    this.search = await this.getSearchResults(this.$route.query.terms)
+  },
+  methods: {
+    advancedSearch() {
+      this.$router.push({
+        name: 'search',
+        query: { terms: this.advancedSearchInput },
+      })
+    },
+    async getSearchResults(query) {
+      if (query) {
+        const search = await this.$axios.$get(
+          `/api/search?${qs.stringify({
+            terms: query,
+          })}`
+        )
+
+        return search.data
+      } else {
+        return null
+      }
+    },
   },
 }
 </script>

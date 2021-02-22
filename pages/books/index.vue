@@ -1,5 +1,6 @@
 <template>
-  <main class="container max-w-7xl">
+  <main class="container relative max-w-7xl">
+    <entities-filter class="absolute top-5 right-5" @filter="filter" />
     <section-heading
       title="Books"
       subtitle="Discover all available books sorted by title and serie's title"
@@ -90,6 +91,7 @@ import Pagination from '~/components/special/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
+import EntitiesFilter from '~/components/blocks/entities-filter.vue'
 
 export default {
   name: 'Books',
@@ -98,6 +100,7 @@ export default {
     EntityCard,
     SectionHeading,
     ApiErrorMessage,
+    EntitiesFilter,
   },
   auth: 'auth',
   layout: 'auth',
@@ -201,6 +204,13 @@ export default {
     },
     searching(result) {
       // console.log(this.$store.state.searching)
+    },
+    filter(lang) {
+      if (lang) {
+        this.$router.push({ name: 'books', query: { lang } })
+      } else {
+        this.$router.push({ name: 'books' })
+      }
     },
   },
 }

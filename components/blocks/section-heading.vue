@@ -1,7 +1,7 @@
 <template>
   <div class="pb-6 mb-10 border-b border-gray-200">
-    <div class="sm:flex sm:justify-between sm:items-baseline">
-      <div :class="{ 'flex items-center': image }" class="sm:w-0 sm:flex-1">
+    <div class="sm:items-center sm:flex sm:justify-between">
+      <div :class="{ 'flex items-center': image }">
         <img
           v-if="image"
           :src="image"
