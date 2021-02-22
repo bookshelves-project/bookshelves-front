@@ -1269,7 +1269,7 @@
     std-env "^2.3.0"
     ufo "^0.6.6"
 
-"@nuxt/content@^1.13.1":
+"@nuxt/content@^1.11.1":
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/@nuxt/content/-/content-1.13.1.tgz#a65a919feb08bcd9503faa2ffeb526c89c8abcdb"
   integrity sha512-nBq9ezdPIpFsOh8rNfMsLsVV8eDw4Ha77JWj//xCEL8ZmUc2wBPge+Vt2jp0dSYArHgBg2lWBTUUnn6n6q7noQ==
@@ -9107,7 +9107,7 @@ nuxt-vitals@^1.1.0:
   dependencies:
     web-vitals "^0.2.1"
 
-nuxt@^2.15.1:
+nuxt@^2.14.12:
   version "2.15.1"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-2.15.1.tgz#b7ee2f9defb96716649d80d4841ec6b59f62628c"
   integrity sha512-SJhJXDxI0ZdCKY2pixYFyNHTzswKsDg0lv3C2V4OpPubMq6nXqbRifOb8+qDXeUxAui3V+AMcz/fctUgcFvnnQ==
