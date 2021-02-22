@@ -47,7 +47,7 @@
                         {{ guide.category }}
                       </span>
                     </p>
-                    <h2 class="text-xl font-medium text-primary-600 truncate">
+                    <h2 class="text-xl font-medium truncate text-primary-600">
                       {{ guide.title }}
                     </h2>
                   </div>
