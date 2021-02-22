@@ -1269,7 +1269,7 @@
     std-env "^2.3.0"
     ufo "^0.6.6"
 
-"@nuxt/content@^1.11.1":
+"@nuxt/content@^1.13.0":
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/@nuxt/content/-/content-1.13.1.tgz#a65a919feb08bcd9503faa2ffeb526c89c8abcdb"
   integrity sha512-nBq9ezdPIpFsOh8rNfMsLsVV8eDw4Ha77JWj//xCEL8ZmUc2wBPge+Vt2jp0dSYArHgBg2lWBTUUnn6n6q7noQ==
@@ -3609,9 +3609,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001181, caniuse-lite@^1.0.30001189:
-  version "1.0.30001190"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001190.tgz#acc6d4a53c68be16cfc314d55c9cab637e558cba"
-  integrity sha512-62KVw474IK8E+bACBYhRS0/L6o/1oeAVkpF2WetjV58S5vkzNh0/Rz3lD8D4YCbOTqi0/aD4X3LtoP7V5xnuAg==
+  version "1.0.30001191"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001191.tgz#bacb432b6701f690c8c5f7c680166b9a9f0843d9"
+  integrity sha512-xJJqzyd+7GCJXkcoBiQ1GuxEiOBCLQ0aVW9HMekifZsAVGdj5eJ4mFB9fEhSHipq9IOk/QXFJUiIr9lZT+EsGw==
 
 capital-case@^1.0.4:
   version "1.0.4"
@@ -8883,9 +8883,9 @@ node-forge@^0.10.0:
   integrity sha512-PPmu8eEeG9saEUvI97fm4OYxXVB6bFvyNTyiUOBichBpFG8A1Ljw3bY62+5oOjDEMHRnd0Y7HQ+x7uzxOzC6JA==
 
 node-html-parser@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/node-html-parser/-/node-html-parser-2.1.0.tgz#36345804d743a5a1f672d4821a53f6b0e60629a9"
-  integrity sha512-kbCNfqjrwHAbG+mevL8aqjwVtF0Qv66XurWHoGLOc5G9rPR1L3k602jfeczAUUBldLNnCrdsDmO5G5nqAoMW+g==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/node-html-parser/-/node-html-parser-2.2.0.tgz#b0bc98e64ed2cda61d03aa6a95fc5cdb2ecaafa5"
+  integrity sha512-7lI3tO9Rr12XXPKdtdGIJtGDVGgpJHCfdQT+IZVAClldL4c4HQeaqtnYdMneQ7i/PtsI+xI9H768cYk4/qbiXQ==
   dependencies:
     he "1.2.0"
 
@@ -9107,7 +9107,7 @@ nuxt-vitals@^1.1.0:
   dependencies:
     web-vitals "^0.2.1"
 
-nuxt@^2.14.12:
+nuxt@^2.15.1:
   version "2.15.1"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-2.15.1.tgz#b7ee2f9defb96716649d80d4841ec6b59f62628c"
   integrity sha512-SJhJXDxI0ZdCKY2pixYFyNHTzswKsDg0lv3C2V4OpPubMq6nXqbRifOb8+qDXeUxAui3V+AMcz/fctUgcFvnnQ==
@@ -10458,9 +10458,9 @@ prettier@^2.1.2:
   integrity sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
 
 pretty-bytes@^5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-5.5.0.tgz#0cecda50a74a941589498011cf23275aa82b339e"
-  integrity sha512-p+T744ZyjjiaFlMUZZv6YPC5JrkNj8maRmPaQCWFJFplUAzpIUTRaTcS+7wmZtUoFXHtESJb23ISliaWyz3SHA==
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-5.6.0.tgz#356256f643804773c82f64723fe78c92c62beaeb"
+  integrity sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==
 
 pretty-error@^2.1.1:
   version "2.1.2"
