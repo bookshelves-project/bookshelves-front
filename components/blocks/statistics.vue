@@ -115,30 +115,43 @@ export default {
   },
   methods: {
     async getStats() {
-      const [
-        booksCount,
-        seriesCount,
-        authorsCount,
-        countLangs,
-      ] = await Promise.all([
-        this.$axios.$get('/api/books/count'),
-        this.$axios.$get('/api/series/count'),
-        this.$axios.$get('/api/authors/count'),
-        this.$axios.$get('/api/books/count-langs'),
-      ])
+      let booksCount = 0
+      let seriesCount = 0
+      let authorsCount = 0
+      let countLangs = 0
 
-      const data = {
-        books: booksCount,
-        series: seriesCount,
-        authors: authorsCount,
-        langs: countLangs,
+      let responseError = false
+
+      try {
+        ;[
+          booksCount,
+          seriesCount,
+          authorsCount,
+          countLangs,
+        ] = await Promise.all([
+          this.$axios.$get('/api/books/count'),
+          this.$axios.$get('/api/series/count'),
+          this.$axios.$get('/api/authors/count'),
+          this.$axios.$get('/api/books/count-langs'),
+        ])
+      } catch (error) {
+        responseError = true
       }
 
-      for (const [key, value] of Object.entries(this.metrics)) {
-        value.data = data[key]
-      }
+      if (!responseError) {
+        const data = {
+          books: booksCount,
+          series: seriesCount,
+          authors: authorsCount,
+          langs: countLangs,
+        }
 
-      this.langsFormat(data.langs)
+        for (const [key, value] of Object.entries(this.metrics)) {
+          value.data = data[key]
+        }
+
+        this.langsFormat(data.langs)
+      }
     },
     langsFormat(langs) {
       const langsValue = {
