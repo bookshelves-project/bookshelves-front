@@ -38,7 +38,7 @@
               <div class="hidden md:mr-1 md:block">
                 {{ serie.title }}
               </div>
-              <div>({{ serie.size }})</div>
+              <div>(ZIP {{ serie.size }})</div>
             </div>
           </a>
           <div

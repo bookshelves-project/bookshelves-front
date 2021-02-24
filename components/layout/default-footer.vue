@@ -62,9 +62,9 @@
               API Status:
               <span class="font-semibold">
                 <span v-if="apiStatusBoolean" class="text-green-600">
-                  Available
+                  available
                 </span>
-                <span v-else class="text-red-600"> Unavailable </span>
+                <span v-else class="text-red-600"> unavailable </span>
               </span>
             </a>
           </ul>
@@ -205,7 +205,7 @@ export default {
         },
       ],
       navigationSupport: [
-        { label: 'Recherche', icon: 'annotation', route: { name: 'search' } },
+        { label: 'Search', icon: 'annotation', route: { name: 'search' } },
         {
           label: 'About',
           icon: 'book-open',

@@ -25,57 +25,45 @@
         </transition>
       </button>
     </div>
-    <!--
-            Profile dropdown panel, show/hide based on dropdown state.
-
-            Entering: "transition ease-out duration-100"
-              From: "transform opacity-0 scale-95"
-              To: "transform opacity-100 scale-100"
-            Leaving: "transition ease-in duration-75"
-              From: "transform opacity-100 scale-100"
-              To: "transform opacity-0 scale-95"
-          -->
-    <transition name="fade">
-      <div
-        v-if="accountDropdownOpened"
-        class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-900 ring-1 ring-black ring-opacity-5"
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="user-menu"
-      >
-        <div v-if="$auth.$state.loggedIn">
-          <nuxt-link
-            v-for="link in $store.state.authNavigationTrue"
-            :key="link.id"
-            :to="{ name: link.route }"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
-            role="menuitem"
-            @click.native="closeAccountDropdown"
-          >
-            {{ link.label }}
-          </nuxt-link>
-          <button
-            class="block w-full px-4 py-2 text-sm text-left text-gray-600 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
-            role="menuitem"
-            @click="logout"
-          >
-            Sign out
-          </button>
-        </div>
-        <div v-else>
-          <nuxt-link
-            v-for="link in $store.state.authNavigationFalse"
-            :key="link.id"
-            :to="{ name: link.route }"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
-            role="menuitem"
-            @click.native="closeAccountDropdown"
-          >
-            {{ link.label }}
-          </nuxt-link>
-        </div>
+    <div
+      v-if="accountDropdownOpened"
+      class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-900 ring-1 ring-black ring-opacity-5"
+      role="menu"
+      aria-orientation="vertical"
+      aria-labelledby="user-menu"
+    >
+      <div v-if="$auth.$state.loggedIn">
+        <nuxt-link
+          v-for="link in $store.state.authNavigationTrue"
+          :key="link.id"
+          :to="{ name: link.route }"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
+          role="menuitem"
+          @click.native="closeAccountDropdown"
+        >
+          {{ link.label }}
+        </nuxt-link>
+        <button
+          class="block w-full px-4 py-2 text-sm text-left text-gray-600 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
+          role="menuitem"
+          @click="logout"
+        >
+          Sign out
+        </button>
       </div>
-    </transition>
+      <div v-else>
+        <nuxt-link
+          v-for="link in $store.state.authNavigationFalse"
+          :key="link.id"
+          :to="{ name: link.route }"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
+          role="menuitem"
+          @click.native="closeAccountDropdown"
+        >
+          {{ link.label }}
+        </nuxt-link>
+      </div>
+    </div>
   </div>
 </template>
 

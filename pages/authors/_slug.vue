@@ -26,7 +26,7 @@
             <icon name="download" />
             <div class="items-center ml-2 sm:flex">
               <div class="mx-1">Download {{ author.books_number }} eBooks</div>
-              <div>({{ author.size }})</div>
+              <div>(ZIP {{ author.size }})</div>
             </div>
           </a>
         </div>
