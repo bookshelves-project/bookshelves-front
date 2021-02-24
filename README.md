@@ -42,6 +42,13 @@
     - <https://github.com/nuxt-community/color-mode-module>
 - sign-in errors for user
 - books slug: display original cover
+- footer back to top
+- covers:
+  - books slug, use thumbnail
+  - books fix *jump* on webkit
+  - optimize:
+    - <https://image.nuxtjs.org>
+    - <https://github.com/juliomrqz/nuxt-optimized-images>
 
 ## **I. Setup**
 

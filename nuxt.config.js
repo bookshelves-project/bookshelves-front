@@ -279,7 +279,7 @@ export default {
     // proxyHeaders: false
   },
   robots: {
-    /* module options */
+    UserAgent: '*',
   },
   // i18n: {},
   recaptcha: {
