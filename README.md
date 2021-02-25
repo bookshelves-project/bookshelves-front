@@ -55,7 +55,13 @@
 Setup local on <http://localhost:3000> with <https://bookshelves.git-projects.xyz> API
 
 ```bash
-cp .env.example .env ; yarn ; yarn dev
+cp .env.example .env ; yarn
+```
+
+Local serve
+
+```bash
+yarn dev
 ```
 
 ### *I. a. Update API*
