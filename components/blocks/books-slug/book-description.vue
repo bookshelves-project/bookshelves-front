@@ -58,7 +58,7 @@
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
               <transition name="fade">
                 <div v-if="!isbnResult">
-                  {{ book.isbn }}
+                  {{ book.isbn.isbn || book.isbn.isbn13 }}
                 </div>
                 <div v-else>
                   <div
@@ -75,7 +75,7 @@
                   </div>
                   <span v-else>
                     <span v-if="book.isbn">
-                      {{ book.isbn }}
+                      {{ book.isbn.isbn || book.isbn.isbn13 }}
                     </span>
                     <span v-else class="italic text-gray-400">Undefined</span>
                   </span>
@@ -155,7 +155,8 @@ export default {
   methods: {
     async checkIsbn() {
       if (this.book.isbn) {
-        let isbnFormat = this.book.isbn
+        let isbnFormat = this.book.isbn.isbn13 || this.book.isbn.isbn
+        console.log(isbnFormat)
         isbnFormat = isbnFormat.replaceAll('-', '')
 
         const isbnResult = await isbnTool
@@ -167,6 +168,7 @@ export default {
             console.error('Book not found', err)
             return null
           })
+        console.log(isbnResult)
         let isbnObject = null
 
         if (isbnResult !== null) {

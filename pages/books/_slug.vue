@@ -60,17 +60,6 @@ export default {
       serie: [],
     }
   },
-  async mounted() {
-    await this.loadSerie()
-  },
-  methods: {
-    async loadSerie() {
-      if (this.book.serie !== null) {
-        const serie = await this.$axios.$get(this.book.serie.show)
-        this.serie = serie.data.books
-      }
-    },
-  },
   head() {
     const title = `${this.book.title} by ${this.book.authors[0].name}${
       this.book.serie ? ` in ${this.book.serie.title}` : ''
@@ -121,6 +110,17 @@ export default {
         },
       ],
     }
+  },
+  async mounted() {
+    await this.loadSerie()
+  },
+  methods: {
+    async loadSerie() {
+      if (this.book.serie !== null) {
+        const serie = await this.$axios.$get(this.book.serie.show)
+        this.serie = serie.data.books
+      }
+    },
   },
 }
 </script>

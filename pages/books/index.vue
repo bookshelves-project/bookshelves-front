@@ -1,10 +1,10 @@
 <template>
   <main class="container relative max-w-7xl">
-    <entities-filter class="absolute top-5 right-5" @filter="filter" />
     <section-heading
       title="Books"
       subtitle="Discover all available books sorted by title and serie's title"
     />
+    <entities-filter @filter="filter" />
     <section v-if="!apiError">
       <div>
         <div class="display-grid">
