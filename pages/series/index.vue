@@ -13,7 +13,7 @@
             :cover="serie.image"
             :route="{
               name: 'series-slug',
-              params: { slug: serie.slug },
+              params: { author: serie.author, slug: serie.slug },
             }"
           >
             <template #title>

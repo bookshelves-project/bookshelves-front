@@ -42,13 +42,26 @@
     - <https://github.com/nuxt-community/color-mode-module>
 - sign-in errors for user
 - books slug: display original cover
+- footer back to top
+- covers:
+  - books slug, use thumbnail
+  - books fix *jump* on webkit
+  - optimize:
+    - <https://image.nuxtjs.org>
+    - <https://github.com/juliomrqz/nuxt-optimized-images>
 
 ## **I. Setup**
 
 Setup local on <http://localhost:3000> with <https://bookshelves.git-projects.xyz> API
 
 ```bash
-cp .env.example .env ; yarn ; yarn dev
+cp .env.example .env ; yarn
+```
+
+Local serve
+
+```bash
+yarn dev
 ```
 
 ### *I. a. Update API*

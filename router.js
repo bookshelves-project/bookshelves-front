@@ -66,7 +66,7 @@ const routesList = [
   },
   {
     name: 'series-slug',
-    path: '/series/:slug',
+    path: '/series/:author/:slug',
     component: SeriesSlug,
   },
   {

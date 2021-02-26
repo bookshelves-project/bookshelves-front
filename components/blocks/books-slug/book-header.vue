@@ -53,7 +53,10 @@
             <span v-if="book.serie !== null">
               in
               <nuxt-link
-                :to="{ name: 'series-slug', params: { slug: book.serie.slug } }"
+                :to="{
+                  name: 'series-slug',
+                  params: { author: serie.author, slug: book.serie.slug },
+                }"
                 class="text-gray-900 hover:text-gray-500"
               >
                 {{ book.serie.title }}

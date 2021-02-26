@@ -12,17 +12,24 @@
             <h1 class="text-3xl font-semibold text-center lg:text-left">
               {{ serie.title }}
             </h1>
-            <nuxt-link
-              :to="{
-                name: 'authors-slug',
-                params: { slug: serie.author.slug },
-              }"
-              class="text-gray-900 hover:text-gray-500"
+            <span
+              v-for="(author, authorId) in serie.authors"
+              :key="authorId"
+              class="mr-1"
             >
-              <h2 class="text-xl text-center lg:text-left">
-                {{ serie.author.name }}
-              </h2>
-            </nuxt-link>
+              <nuxt-link
+                :to="{ name: 'authors-slug', params: { slug: author.slug } }"
+                class="text-gray-900 hover:text-gray-500"
+                >{{ author.name }}</nuxt-link
+              >
+              <span
+                v-if="
+                  serie.authors.length > 1 &&
+                  authorId !== serie.authors.length - 1
+                "
+                >&</span
+              >
+            </span>
           </div>
         </div>
         <div
@@ -163,8 +170,18 @@ export default {
     }
   },
   head() {
+    let authors = ''
+    this.serie.authors.forEach((author, authorId) => {
+      authors += `${author.name}`
+      if (
+        this.serie.authors.length > 1 &&
+        authorId !== this.serie.authors.length - 1
+      ) {
+        authors += ' & '
+      }
+    })
     const title = `${this.serie.title} - Series`
-    const description = `Written by ${this.serie.author.name} with ${this.serie.books_number} books.`
+    const description = `Written by ${authors} with ${this.serie.books_number} books.`
     const image = this.serie.cover
     return {
       title,

@@ -6,9 +6,9 @@
       :image="$auth.$state.user.profile_photo_url"
     />
     <div
-      class="grid max-w-3xl grid-cols-1 gap-6 mx-auto mt-8 xl:max-w-7xl xl:grid-flow-col-dense xl:grid-cols-2"
+      class="grid max-w-3xl grid-cols-1 gap-6 mx-auto mt-8 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2"
     >
-      <div class="space-y-6 xl:col-start-1 xl:col-span-1">
+      <div class="space-y-6 lg:col-start-1 lg:col-span-1">
         <data-list-template :data-list="favorites" @deleted="deleted">
           <template #title>
             <icon-heart class="text-red-600" :is-full="true" />
@@ -121,24 +121,6 @@ export default {
       console.error(error)
     }
   },
-  methods: {
-    deleted(data) {
-      data = data.data
-      switch (data.meta.type) {
-        case 'favorite':
-          this.deleteFavorite(data.meta.for, data.meta.slug)
-          break
-
-        case 'comment':
-          this.deleteComment(data.id)
-          break
-
-        default:
-          console.error('no type entity')
-          break
-      }
-    },
-  },
   head() {
     const title = 'Dashboard'
     const description = 'An overview of all your activities on Bookshelves.'
@@ -187,6 +169,24 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    deleted(data) {
+      data = data.data
+      switch (data.meta.type) {
+        case 'favorite':
+          this.deleteFavorite(data.meta.for, data.meta.slug)
+          break
+
+        case 'comment':
+          this.deleteComment(data.id)
+          break
+
+        default:
+          console.error('no type entity')
+          break
+      }
+    },
   },
 }
 </script>

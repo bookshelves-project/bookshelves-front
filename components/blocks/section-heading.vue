@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-6 mb-10 border-b border-gray-200">
+  <div class="pb-6 mb-3 border-b border-gray-200 md:mb-10">
     <div class="sm:items-center sm:flex sm:justify-between">
       <div :class="{ 'flex items-center': image }">
         <img

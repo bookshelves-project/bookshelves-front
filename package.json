@@ -46,6 +46,7 @@
     "@trevoreyre/autocomplete-vue": "^2.2.0",
     "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.9.0",
+    "isomorphic-fetch": "^3.0.0",
     "node-isbn": "^1.6.0",
     "nuxt": "^2.15.1",
     "nuxt-i18n": "^6.20.2",
