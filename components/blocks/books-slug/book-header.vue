@@ -55,7 +55,7 @@
               <nuxt-link
                 :to="{
                   name: 'series-slug',
-                  params: { author: serie.author, slug: book.serie.slug },
+                  params: { author: book.serie.author, slug: book.serie.slug },
                 }"
                 class="text-gray-900 hover:text-gray-500"
               >
