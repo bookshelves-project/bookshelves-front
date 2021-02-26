@@ -51,7 +51,7 @@
               <img :src="book.language.flag" :alt="book.language.slug" />
             </dd>
           </div>
-          <div v-if="book.isbn" class="sm:col-span-1">
+          <!-- <div v-if="book.isbn" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
               Identifiers
             </dt>
@@ -82,8 +82,8 @@
                 </div>
               </transition>
             </dd>
-          </div>
-          <div v-if="isbnResult && isbnResult.rating" class="sm:col-span-1">
+          </div> -->
+          <!-- <div v-if="isbnResult && isbnResult.rating" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
               Rating
             </dt>
@@ -102,7 +102,7 @@
             >
               {{ isbnResult.pageCount }}
             </dd>
-          </div>
+          </div> -->
           <div v-if="book.tags.length >= 1" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
               Tags
@@ -134,69 +134,12 @@
 </template>
 
 <script>
-import isbnTool from 'node-isbn'
-
 export default {
   name: 'BookDescription',
   props: {
     book: {
       type: Object,
       default: () => {},
-    },
-  },
-  data() {
-    return {
-      isbnResult: null,
-    }
-  },
-  mounted() {
-    this.checkIsbn()
-  },
-  methods: {
-    async checkIsbn() {
-      if (this.book.isbn) {
-        let isbnFormat = this.book.isbn.isbn13 || this.book.isbn.isbn
-        console.log(isbnFormat)
-        isbnFormat = isbnFormat.replaceAll('-', '')
-
-        const isbnResult = await isbnTool
-          .resolve(isbnFormat)
-          .then(function (book) {
-            return book
-          })
-          .catch(function (err) {
-            console.error('Book not found', err)
-            return null
-          })
-        console.log(isbnResult)
-        let isbnObject = null
-
-        if (isbnResult !== null) {
-          isbnObject = {
-            thumbnail: isbnResult.imageLinks
-              ? isbnResult.imageLinks.thumbnail
-              : null,
-            identifiers: {
-              isbn13: isbnResult.industryIdentifiers[0]
-                ? isbnResult.industryIdentifiers[0]
-                : null,
-              isbn10: isbnResult.industryIdentifiers[1]
-                ? isbnResult.industryIdentifiers[1]
-                : null,
-            },
-            link: isbnResult.infoLink ? isbnResult.infoLink : null,
-            rating: isbnResult.maturityRating
-              ? isbnResult.maturityRating
-              : null,
-            pageCount: isbnResult.pageCount ? isbnResult.pageCount : null,
-            publishedDate: isbnResult.publishedDate
-              ? isbnResult.publishedDate
-              : null,
-            publisher: isbnResult.publisher ? isbnResult.publisher : null,
-          }
-        }
-        this.isbnResult = isbnObject
-      }
     },
   },
 }
