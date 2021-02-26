@@ -1,3 +1,11 @@
+import {
+  getRoutes,
+  getBooksRoutes,
+  getSeriesRoutes,
+  getAuthorsRoutes,
+  getGuidesRoutes,
+} from './helpers/sitemap'
+
 export default {
   // server: {
   //   port: 3000,
@@ -207,8 +215,6 @@ export default {
     '@nuxt/image',
     // https://http.nuxtjs.org
     '@nuxt/http',
-    // https://sitemap.nuxtjs.org/guide/setup
-    '@nuxtjs/sitemap',
     // https://www.npmjs.com/package/@nuxtjs/robots
     '@nuxtjs/robots',
     // https://i18n.nuxtjs.org/setup
@@ -219,6 +225,8 @@ export default {
     'cookie-universal-nuxt',
     // https://github.com/nuxt-community/recaptcha-module
     '@nuxtjs/recaptcha',
+    // https://sitemap.nuxtjs.org/guide/setup
+    '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -260,9 +268,6 @@ export default {
     },
   },
 
-  sitemap: {
-    // options
-  },
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {
     liveEdit: false,
@@ -275,11 +280,59 @@ export default {
       },
     },
   },
-  http: {
-    // proxyHeaders: false
-  },
   robots: {
-    UserAgent: '*',
+    Disallow: ['/sign-in', '/dashboard'],
+    Sitemap: `${process.env.BASE_URL}/sitemap.xml`,
+  },
+  sitemap: {
+    path: '/sitemap.xml', // L'emplacement de votre fichier sitemap.
+    hostname: process.env.BASE_URL, // L'adresse de votre site, que vous pouvez placer comme ici dans une variable d'environnement.
+    cacheTime: 1000 * 60 * 15, // La durée avant que le sitemap soit regénéré. Ici 15mn.
+    gzip: true,
+    generate: false, // Génère une version statique du sitemap quand activé. À utiliser avec nuxt generate.
+    exclude: [
+      // Les pages qu'on a pas trop envie de voir atterrir sur Google.
+      '**',
+    ],
+
+    sitemaps: [
+      {
+        path: '/sitemaps/sitemap.xml',
+        exclude: ['**'],
+        routes() {
+          // Nous allons utiliser une fonction personnalisée pour charger nos routes dynamiques dans le sitemap.
+          return getRoutes()
+        },
+      },
+      {
+        path: '/sitemaps/books.xml',
+        exclude: ['**'],
+        routes: () => {
+          return getBooksRoutes()
+        },
+      },
+      {
+        path: '/sitemaps/series.xml',
+        exclude: ['**'],
+        routes: () => {
+          return getSeriesRoutes()
+        },
+      },
+      {
+        path: '/sitemaps/authors.xml',
+        exclude: ['**'],
+        routes: () => {
+          return getAuthorsRoutes()
+        },
+      },
+      {
+        path: '/sitemaps/guides.xml',
+        exclude: ['**'],
+        routes: () => {
+          return getGuidesRoutes()
+        },
+      },
+    ],
   },
   // i18n: {},
   recaptcha: {
