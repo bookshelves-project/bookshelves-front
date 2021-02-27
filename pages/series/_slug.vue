@@ -182,7 +182,8 @@ export default {
     })
     const title = `${this.serie.title} - Series`
     const description = `Written by ${authors} with ${this.serie.books_number} books.`
-    const image = this.serie.cover
+    const image = this.serie.imageStandard
+    const url = `${process.env.BASE_URL}/series/${this.serie.slug}`
     return {
       title,
       meta: [
@@ -202,6 +203,11 @@ export default {
           hid: 'og:image',
           property: 'og:image',
           content: image,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: url,
         },
         // Twitter Card
         {
@@ -223,7 +229,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE_URL}/series/${this.serie.slug}`,
+          href: url,
         },
       ],
     }

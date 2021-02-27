@@ -93,6 +93,11 @@ export default {
           property: 'og:image',
           content: image,
         },
+        // {
+        //   hid: 'og:url',
+        //   property: 'og:url',
+        //   content: url,
+        // },
         // Twitter Card
         {
           hid: 'twitter:title',

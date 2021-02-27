@@ -15,7 +15,13 @@
           <book-comments :book="book" />
         </div>
 
-        <book-serie v-if="book.serie !== null" :serie="serie" :book="book" />
+        <transition name="fade">
+          <book-serie
+            v-if="serieLoaded && book.serie !== null"
+            :serie="serie"
+            :book="book"
+          />
+        </transition>
       </div>
     </main>
   </div>
@@ -58,14 +64,27 @@ export default {
   data() {
     return {
       serie: [],
+      serieLoaded: false,
     }
   },
   head() {
+    let authors = ''
+    this.book.authors.forEach((author, authorId) => {
+      authors += `${author.name}`
+      if (
+        this.book.authors.length > 1 &&
+        authorId !== this.book.authors.length - 1
+      ) {
+        authors += ' & '
+      }
+    })
     const title = `${this.book.title} by ${this.book.authors[0].name}${
       this.book.serie ? ` in ${this.book.serie.title}` : ''
     } - Books`
     const description = this.book.summary
-    const image = this.book.image
+    const image = this.book.imageStandard
+    const isbn = this.book.identifier.isbn13 || this.book.identifier.isbn
+    const url = `${process.env.BASE_URL}/books/${this.book.slug}`
     return {
       title,
       meta: [
@@ -85,6 +104,22 @@ export default {
           hid: 'og:image',
           property: 'og:image',
           content: image,
+        },
+        // og book
+        {
+          hid: 'book:isbn',
+          property: 'book:isbn',
+          content: isbn,
+        },
+        {
+          hid: 'books:author',
+          property: 'books:author',
+          content: authors,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: url,
         },
         // Twitter Card
         {
@@ -106,7 +141,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE_URL}/books/${this.book.slug}`,
+          href: url,
         },
       ],
     }
@@ -119,6 +154,7 @@ export default {
       if (this.book.serie !== null) {
         const serie = await this.$axios.$get(this.book.serie.show)
         this.serie = serie.data.books
+        this.serieLoaded = true
       }
     },
   },

@@ -109,6 +109,7 @@ export default {
     const title = 'Series on Bookshelves'
     const description = 'Discover exciting and breathtaking series.'
     const image = `${process.env.BASE_URL}/open-graph.png`
+    const url = `${process.env.BASE_URL}/series`
     return {
       title,
       titleTemplate: '',
@@ -130,6 +131,11 @@ export default {
           property: 'og:image',
           content: image,
         },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: url,
+        },
         // Twitter Card
         {
           hid: 'twitter:title',
@@ -150,7 +156,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE_URL}/series`,
+          href: url,
         },
       ],
     }

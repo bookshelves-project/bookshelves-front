@@ -136,6 +136,7 @@ export default {
     const title = 'Guides on Bookshelves'
     const description = 'How to use your eReader or softwares to manage EPUB.'
     const image = `${process.env.BASE_URL}/open-graph.png`
+    const url = `${process.env.BASE_URL}/guides`
     return {
       title,
       titleTemplate: '',
@@ -157,6 +158,11 @@ export default {
           property: 'og:image',
           content: image,
         },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: url,
+        },
         // Twitter Card
         {
           hid: 'twitter:title',
@@ -177,7 +183,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE_URL}/guides`,
+          href: url,
         },
       ],
     }
