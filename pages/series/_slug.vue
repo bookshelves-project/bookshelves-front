@@ -150,7 +150,7 @@ export default {
   async asyncData({ app, query, error, params, $content, store }) {
     try {
       const [serie] = await Promise.all([
-        app.$axios.$get(`/api/series/${params.slug}`),
+        app.$axios.$get(`/api/series/${params.author}/${params.slug}`),
       ])
 
       return {
