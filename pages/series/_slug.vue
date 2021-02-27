@@ -200,6 +200,11 @@ export default {
           content: description,
         },
         {
+          hid: 'og:image:type',
+          property: 'og:image:type',
+          content: 'image/jpg',
+        },
+        {
           hid: 'og:image',
           property: 'og:image',
           content: image,

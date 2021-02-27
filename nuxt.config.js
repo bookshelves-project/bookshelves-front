@@ -70,11 +70,6 @@ export default {
         content: `${process.env.BASE_URL}/open-graph.png`,
       },
       {
-        hid: 'og:image:secure_url',
-        property: 'og:image:secure_url',
-        content: `${process.env.BASE_URL}/open-graph.png`,
-      },
-      {
         hid: 'og:image:alt',
         property: 'og:image:alt',
         content: 'Bookshelves',
@@ -94,7 +89,7 @@ export default {
         property: 'og:image:height',
         content: '1200',
       },
-      { hid: 'og:locale', name: 'og:locale', content: 'en' },
+      { hid: 'og:locale', name: 'og:locale', content: 'en_US' },
       // Twitter Card
       {
         hid: 'twitter:card',
