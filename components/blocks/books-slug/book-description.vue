@@ -18,9 +18,29 @@
               Author
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
-              <span v-for="(author, authorId) in book.authors" :key="authorId">
-                <h2>{{ author.name }}</h2>
-              </span>
+              <h2>
+                <span
+                  v-for="(author, authorId) in book.authors"
+                  :key="authorId"
+                  class="mr-1"
+                >
+                  <nuxt-link
+                    :to="{
+                      name: 'authors-slug',
+                      params: { slug: author.slug },
+                    }"
+                    class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
+                    >{{ author.name }}</nuxt-link
+                  >
+                  <span
+                    v-if="
+                      book.authors.length > 1 &&
+                      authorId !== book.authors.length - 1
+                    "
+                    >&</span
+                  >
+                </span>
+              </h2>
             </dd>
           </div>
           <div v-if="book.serie" class="sm:col-span-1">
@@ -28,7 +48,20 @@
               Serie
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
-              <h2>{{ book.serie.title }}, vol. {{ book.serie.number }}</h2>
+              <h2>
+                <nuxt-link
+                  :to="{
+                    name: 'series-slug',
+                    params: {
+                      author: book.serie.author,
+                      slug: book.serie.slug,
+                    },
+                  }"
+                  class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
+                  >{{ book.serie.title }}</nuxt-link
+                >
+                (vol. {{ book.serie.number }})
+              </h2>
             </dd>
           </div>
           <div v-if="book.publisher" class="sm:col-span-1">
@@ -51,58 +84,31 @@
               <img :src="book.language.flag" :alt="book.language.slug" />
             </dd>
           </div>
-          <!-- <div v-if="book.isbn" class="sm:col-span-1">
+          <div v-if="book.identifier" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
               Identifiers
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
-              <transition name="fade">
-                <div v-if="!isbnResult">
-                  {{ book.isbn.isbn || book.isbn.isbn13 }}
-                </div>
-                <div v-else>
-                  <div
-                    v-if="
-                      isbnResult.identifiers && isbnResult.identifiers.isbn13
-                    "
-                  >
-                    <div v-if="isbnResult.identifiers.isbn13">
-                      ISBN 13: {{ isbnResult.identifiers.isbn13.identifier }}
-                    </div>
-                    <div v-if="isbnResult.identifiers.isbn10">
-                      ISBN 10: {{ isbnResult.identifiers.isbn10.identifier }}
-                    </div>
-                  </div>
-                  <span v-else>
-                    <span v-if="book.isbn">
-                      {{ book.isbn.isbn || book.isbn.isbn13 }}
-                    </span>
-                    <span v-else class="italic text-gray-400">Undefined</span>
-                  </span>
-                </div>
-              </transition>
-            </dd>
-          </div> -->
-          <!-- <div v-if="isbnResult && isbnResult.rating" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
-              Rating
-            </dt>
-            <dd
-              class="flex items-center mt-1 text-sm text-gray-900 dark:text-gray-100"
-            >
-              {{ isbnResult.rating }}
+              <ul>
+                <li v-if="book.identifier.isbn">
+                  ISBN: {{ book.identifier.isbn }}
+                </li>
+                <li v-if="book.identifier.isbn13">
+                  ISBN13: {{ book.identifier.isbn13 }}
+                </li>
+              </ul>
             </dd>
           </div>
-          <div v-if="isbnResult && isbnResult.pageCount" class="sm:col-span-1">
+          <div v-if="book.pageCount" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
               Page count
             </dt>
             <dd
               class="flex items-center mt-1 text-sm text-gray-900 dark:text-gray-100"
             >
-              {{ isbnResult.pageCount }}
+              {{ book.pageCount }}
             </dd>
-          </div> -->
+          </div>
           <div v-if="book.tags.length >= 1" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
               Tags

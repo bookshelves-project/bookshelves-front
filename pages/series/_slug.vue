@@ -9,7 +9,9 @@
             class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
           />
           <div class="ml-4">
-            <h1 class="text-3xl font-semibold text-center lg:text-left">
+            <h1
+              class="text-3xl font-semibold text-center font-handlee lg:text-left"
+            >
               {{ serie.title }}
             </h1>
             <span

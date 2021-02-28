@@ -78,9 +78,7 @@ export default {
         authors += ' & '
       }
     })
-    const title = `${this.book.title} by ${this.book.authors[0].name}${
-      this.book.serie ? ` in ${this.book.serie.title}` : ''
-    } - Books`
+    const title = `${this.book.title} by ${this.book.authors[0].name}`
     const description = this.book.summary
     const image = this.book.imageStandard
     const isbn = this.book.identifier.isbn13 || this.book.identifier.isbn
