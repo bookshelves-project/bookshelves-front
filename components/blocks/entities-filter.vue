@@ -71,9 +71,9 @@
 </template>
 
 <script>
+import Dropdown from '@/components/special/dropdown-template.vue'
 import iconFilter from '../icons/icon-filter.vue'
 import IconTrash from '../icons/icon-trash.vue'
-import Dropdown from '../special/Dropdown.vue'
 export default {
   name: 'EntitiesFilter',
   // eslint-disable-next-line vue/no-unused-components
