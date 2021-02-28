@@ -125,6 +125,7 @@ export default {
     const title = 'Dashboard'
     const description = 'An overview of all your activities on Bookshelves.'
     const image = `${process.env.BASE_URL}/open-graph.png`
+    const url = `${process.env.BASE_URL}/dashboard`
     return {
       title,
       meta: [
@@ -144,6 +145,11 @@ export default {
           hid: 'og:image',
           property: 'og:image',
           content: image,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: url,
         },
         // Twitter Card
         {
@@ -165,7 +171,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE_URL}/dashboard`,
+          href: url,
         },
       ],
     }

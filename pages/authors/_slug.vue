@@ -14,7 +14,9 @@
             :alt="author.name"
             class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
           />
-          <h1 class="ml-4 text-3xl font-semibold text-center lg:text-left">
+          <h1
+            class="ml-4 text-3xl font-semibold text-center font-handlee lg:text-left"
+          >
             {{ author.name }}
           </h1>
         </div>
@@ -125,7 +127,8 @@ export default {
   head() {
     const title = `${this.author.name} - Authors`
     const description = `${this.author.name} author on Bookshelves with ${this.author.books_number} books available.`
-    const image = this.authorPicture
+    const image = this.author.imageStandard
+    const url = `${process.env.BASE_URL}/authors/${this.author.slug}`
     return {
       title,
       meta: [
@@ -142,9 +145,25 @@ export default {
           content: description,
         },
         {
+          hid: 'og:image:type',
+          property: 'og:image:type',
+          content: 'image/jpg',
+        },
+        {
           hid: 'og:image',
           property: 'og:image',
           content: image,
+        },
+        // og author
+        {
+          hid: 'book:type',
+          property: 'book:type',
+          content: 'books.author',
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: url,
         },
         // Twitter Card
         {
@@ -166,7 +185,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE_URL}/authors/${this.author.slug}`,
+          href: url,
         },
       ],
     }

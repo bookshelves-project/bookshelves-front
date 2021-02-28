@@ -12,8 +12,8 @@
             placeholder="/images/no-cover.webp"
           /> -->
           <img
-            v-if="book.image"
-            v-lazy="book.image"
+            v-if="book.imageStandard"
+            v-lazy="book.imageStandard"
             alt="Book cover"
             class="object-cover w-16 h-16 rounded-full"
           />
@@ -24,56 +24,20 @@
         </div>
       </div>
       <div class="flex items-center">
-        <div>
-          <h1 class="text-2xl font-bold text-gray-900">
-            {{ book.title }}
-          </h1>
-          <div class="flex flex-wrap text-sm font-medium text-gray-500">
-            Written by
-            <div
-              v-for="(author, authorId) in book.authors"
-              :key="authorId"
-              class="mx-1"
-            >
-              <nuxt-link
-                :to="{ name: 'authors-slug', params: { slug: author.slug } }"
-                class="text-gray-900 hover:text-gray-500"
-              >
-                {{ author.name }}
-              </nuxt-link>
-              <span
-                v-if="
-                  book.authors.length > 1 &&
-                  authorId !== book.authors.length - 1
-                "
-              >
-                &
-              </span>
-            </div>
-            <span v-if="book.serie !== null">
-              in
-              <nuxt-link
-                :to="{
-                  name: 'series-slug',
-                  params: { author: book.serie.author, slug: book.serie.slug },
-                }"
-                class="text-gray-900 hover:text-gray-500"
-              >
-                {{ book.serie.title }}
-              </nuxt-link>
-              (vol. {{ book.serie.number }})
-            </span>
-          </div>
-        </div>
-        <div v-if="$auth.$state.loggedIn" class="ml-5">
-          <button @click="toggleFavorite">
-            <icon-heart
-              title="Favorite"
-              class="text-red-600"
-              :is-full="isFavorite"
-            />
-          </button>
-        </div>
+        <h1 class="text-2xl font-bold text-gray-900 font-handlee">
+          {{ book.title }}
+        </h1>
+        <button
+          v-if="$auth.$state.loggedIn"
+          class="ml-3"
+          @click="toggleFavorite"
+        >
+          <icon-heart
+            title="Favorite"
+            class="text-red-600"
+            :is-full="isFavorite"
+          />
+        </button>
       </div>
     </div>
     <div

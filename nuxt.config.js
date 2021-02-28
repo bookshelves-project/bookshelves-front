@@ -32,6 +32,11 @@ export default {
         name: 'author',
         content: 'Bookshelves Team',
       },
+      {
+        hid: 'robots',
+        name: 'robots',
+        content: 'index, follow',
+      },
       // Open Graph
       {
         hid: 'og:site_name',
@@ -46,7 +51,7 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://bookshelves.git-projects.xyz/',
+        content: process.env.BASE_URL,
       },
       {
         hid: 'og:title',
@@ -65,15 +70,26 @@ export default {
         content: `${process.env.BASE_URL}/open-graph.png`,
       },
       {
-        hid: 'og:image:secure_url',
-        property: 'og:image:secure_url',
-        content: `${process.env.BASE_URL}/open-graph.png`,
-      },
-      {
         hid: 'og:image:alt',
         property: 'og:image:alt',
         content: 'Bookshelves',
       },
+      {
+        hid: 'og:image:type',
+        property: 'og:image:type',
+        content: 'image/png',
+      },
+      {
+        hid: 'og:image:width',
+        property: 'og:image:width',
+        content: '1200',
+      },
+      {
+        hid: 'og:image:height',
+        property: 'og:image:height',
+        content: '1200',
+      },
+      { hid: 'og:locale', name: 'og:locale', content: 'en_US' },
       // Twitter Card
       {
         hid: 'twitter:card',
@@ -86,14 +102,14 @@ export default {
         content: 'bookshelves.git-projects.xyz',
       },
       {
-        hid: 'twitter:url',
-        property: 'twitter:title',
-        content: 'https://bookshelves.git-projects.xyz/',
-      },
-      {
         hid: 'twitter:title',
         name: 'twitter:title',
         content: 'Bookshelves : your digital library',
+      },
+      {
+        hid: 'twitter:creator',
+        name: 'twitter:creator',
+        content: 'Team Bookshelves',
       },
       {
         hid: 'twitter:description',
@@ -102,15 +118,32 @@ export default {
           'For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you. Get eBooks (EPUB format), add it to your eReader and read!',
       },
       {
-        hid: 'twitter:image',
-        property: 'twitter:image',
+        hid: 'twitter:image:src',
+        property: 'twitter:image:src',
         content: `${process.env.BASE_URL}/open-graph.png`,
+      },
+      {
+        hid: 'twitter:image:width',
+        name: 'twitter:image:width',
+        content: '1200',
+      },
+      {
+        hid: 'twitter:image:height',
+        name: 'twitter:image:height',
+        content: '1200',
       },
       {
         hid: 'twitter:image:alt',
         name: 'twitter:image:alt',
         content: 'Bookshelves',
       },
+      {
+        hid: 'google-site-verification',
+        name: 'google-site-verification',
+        content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
+      },
+      { name: 'msapplication-TileColor', content: '#6C63FF' },
+      { name: 'theme-color', content: '#554bcf' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -281,7 +314,7 @@ export default {
     },
   },
   robots: {
-    Disallow: ['/sign-in', '/dashboard'],
+    Disallow: ['/sign-in', '/dashboard', '/admin'],
     Sitemap: `${process.env.BASE_URL}/sitemap.xml`,
   },
   sitemap: {
