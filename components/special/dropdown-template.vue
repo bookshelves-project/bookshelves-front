@@ -28,6 +28,7 @@
 <script>
 import vClickOutside from 'v-click-outside'
 export default {
+  name: 'DropdownTemplate',
   directives: {
     clickOutside: vClickOutside.directive,
   },
