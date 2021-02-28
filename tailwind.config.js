@@ -64,6 +64,7 @@ module.exports = {
       backgroundColor: ['hover', 'focus', 'group-hover', 'dark'],
       backgroundOpacity: ['dark'],
       borderColor: ['hover', 'focus', 'group-hover'],
+      borderRadius: ['dark'],
     },
   },
   plugins: [

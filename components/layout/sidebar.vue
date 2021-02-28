@@ -57,7 +57,7 @@
                 v-for="(booksNav, booksNavId) in $store.state.navigation"
                 :key="booksNavId"
                 :to="{ name: booksNav.route }"
-                class="flex items-center px-2 py-5 text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 group"
+                class="flex items-center px-2 py-4 text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 group"
                 @click.native="closeSidebar"
               >
                 <span class="font-semibold">
@@ -82,7 +82,7 @@
                     v-for="link in $store.state.authNavigationTrue"
                     :key="link.id"
                     :to="{ name: link.route }"
-                    class="flex items-center w-full px-3 py-5 text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50 dark:hover:text-gray-900"
+                    class="flex items-center w-full px-3 py-4 text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
                     role="menuitem"
                     @click.native="closeSidebar"
                   >
@@ -93,7 +93,7 @@
                     <span> {{ link.label }} </span>
                   </nuxt-link>
                   <button
-                    class="flex items-center w-full px-3 py-5 text-base font-semibold leading-5 text-gray-600 rounded-md dark:text-gray-100 group hover:text-gray-900 hover:bg-gray-50 dark:hover:text-gray-900"
+                    class="flex items-center w-full px-3 py-4 text-base font-semibold leading-5 text-gray-600 rounded-md dark:text-gray-100 group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
                     role="menuitem"
                     @click="logout"
                   >
@@ -109,7 +109,7 @@
                     v-for="link in $store.state.authNavigationFalse"
                     :key="link.id"
                     :to="{ name: link.route }"
-                    class="flex items-center w-full px-3 py-5 text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50 dark:hover:text-gray-900"
+                    class="flex items-center w-full px-3 py-4 text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
                     role="menuitem"
                     @click.native="closeSidebar"
                   >

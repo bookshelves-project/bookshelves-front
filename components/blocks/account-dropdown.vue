@@ -1,79 +1,84 @@
 <template>
-  <div v-click-outside="closeAccountDropdown" class="relative ml-3">
-    <div>
-      <button
-        id="user-menu"
-        class="flex w-8 h-8 text-sm rounded-full text-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-800 focus:ring-white"
-        aria-haspopup="true"
-        title="Account"
-        @click="accountDropdownOpened = !accountDropdownOpened"
-      >
-        <span class="sr-only">Open user menu</span>
-        <transition name="fade">
-          <img
-            v-if="this.$auth.$state.loggedIn"
-            class="w-full h-full rounded-full"
-            :src="this.$auth.$state.user.profile_photo_url"
-            :alt="this.$auth.$state.user.name"
-          />
-          <img
-            v-else
-            src="/images/user.svg"
-            class="w-8 h-8 rounded-full"
-            alt="avatar"
-          />
-        </transition>
-      </button>
-    </div>
-    <div
-      v-if="accountDropdownOpened"
-      class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-900 ring-1 ring-black ring-opacity-5"
-      role="menu"
-      aria-orientation="vertical"
-      aria-labelledby="user-menu"
-    >
-      <div v-if="$auth.$state.loggedIn">
-        <nuxt-link
-          v-for="link in $store.state.authNavigationTrue"
-          :key="link.id"
-          :to="{ name: link.route }"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
-          role="menuitem"
-          @click.native="closeAccountDropdown"
-        >
-          {{ link.label }}
-        </nuxt-link>
-        <button
-          class="block w-full px-4 py-2 text-sm text-left text-gray-600 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
-          role="menuitem"
-          @click="logout"
-        >
-          Sign out
-        </button>
-      </div>
-      <div v-else>
-        <nuxt-link
-          v-for="link in $store.state.authNavigationFalse"
-          :key="link.id"
-          :to="{ name: link.route }"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
-          role="menuitem"
-          @click.native="closeAccountDropdown"
-        >
-          {{ link.label }}
-        </nuxt-link>
-      </div>
-    </div>
+  <div class="ml-3">
+    <dropdown align="right" :width="48">
+      <template #trigger>
+        <span class="flex">
+          <button
+            type="button"
+            class="flex items-center text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out border border-transparent rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 dark:focus:bg-gray-700 hover:text-gray-800 focus:outline-none focus:bg-gray-50 active:bg-gray-50"
+          >
+            <span class="sr-only">Open user menu</span>
+            <transition name="fade">
+              <img
+                v-if="$auth.$state.loggedIn"
+                class="w-8 h-8 rounded-full"
+                :src="$auth.$state.user.profile_photo_url"
+                :alt="$auth.$state.user.name"
+              />
+              <img
+                v-else
+                src="/images/user.svg"
+                class="w-8 h-8 rounded-full"
+                alt="avatar"
+              />
+            </transition>
+            <svg
+              class="w-4 h-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </span>
+      </template>
+      <template #content>
+        <div v-if="$auth.$state.loggedIn">
+          <nuxt-link
+            v-for="link in $store.state.authNavigationTrue"
+            :key="link.id"
+            :to="{ name: link.route }"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
+            role="menuitem"
+            @click.native="closeAccountDropdown"
+          >
+            {{ link.label }}
+          </nuxt-link>
+          <button
+            class="block w-full px-4 py-2 text-sm text-left text-gray-600 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800"
+            role="menuitem"
+            @click="logout"
+          >
+            Sign out
+          </button>
+        </div>
+        <div v-else>
+          <nuxt-link
+            v-for="link in $store.state.authNavigationFalse"
+            :key="link.id"
+            :to="{ name: link.route }"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-800"
+            role="menuitem"
+            @click.native="closeAccountDropdown"
+          >
+            {{ link.label }}
+          </nuxt-link>
+        </div>
+      </template>
+    </dropdown>
   </div>
 </template>
 
 <script>
-import vClickOutside from 'v-click-outside'
+import Dropdown from '../special/Dropdown.vue'
 export default {
   name: 'AccountDropdown',
-  directives: {
-    clickOutside: vClickOutside.directive,
-  },
+  components: { Dropdown },
   data() {
     return {
       accountDropdownOpened: false,

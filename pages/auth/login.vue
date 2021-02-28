@@ -1,43 +1,43 @@
 <template>
-  <div>
-    <div class="grid min-h-screen">
-      <div
-        class="flex justify-center flex-1 px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24"
-      >
-        <div class="w-full max-w-sm mx-auto lg:w-96">
-          <div>
-            <h2 class="mt-6 text-3xl font-extrabold text-gray-900 font-handlee">
-              Sign in to Bookshelves
-            </h2>
-          </div>
-          <div>
-            <div class="mt-6">
-              <login-form></login-form>
-              <div class="relative mt-6 mb-6">
-                <div
-                  class="absolute inset-0 flex items-center"
-                  aria-hidden="true"
-                >
-                  <div class="w-full border-t border-gray-300"></div>
-                </div>
-                <div class="relative flex justify-center text-sm">
-                  <span class="px-2 text-gray-500 bg-white dark:bg-gray-900">
-                    Or sign up
-                  </span>
-                </div>
-              </div>
-              <div>
-                <nuxt-link
-                  :to="{ name: 'register' }"
-                  class="flex justify-center w-full px-4 py-2 text-sm font-semibold text-white border border-transparent rounded-md shadow-sm bg-primary-800 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                >
-                  Sign up now
-                </nuxt-link>
-              </div>
+  <div class="flex min-h-screen mx-auto bg-white dark:bg-gray-900 max-w-7xl">
+    <div
+      class="flex flex-col justify-center flex-1 px-4 py-12 sm:pr-6 lg:flex-none lg:pr-20 xl:pr-24"
+    >
+      <div class="w-full max-w-sm mx-auto lg:w-96">
+        <div>
+          <h2 class="mt-6 text-3xl font-extrabold text-gray-900 font-handlee">
+            Sign in to your account
+          </h2>
+        </div>
+        <div>
+          <div class="relative mt-6">
+            <div class="absolute inset-0 flex items-center" aria-hidden="true">
+              <div class="w-full border-t border-gray-300"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <nuxt-link
+                :to="{ name: 'register' }"
+                class="px-2 text-gray-500 bg-white dark:bg-gray-900 hover:text-gray-800"
+              >
+                Do you want to register?
+              </nuxt-link>
             </div>
           </div>
         </div>
+
+        <div class="mt-8">
+          <div class="mt-6">
+            <login-form />
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="relative flex-1 hidden w-0 lg:block">
+      <img
+        class="absolute inset-0 object-cover object-left w-full h-full"
+        src="/images/bibliophile.svg"
+        alt=""
+      />
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@
 <script>
 import loginForm from '~/components/forms/login-form.vue'
 export default {
-  name: 'PageSignIn',
+  name: 'PageLogin',
   components: { loginForm },
   auth: 'guest',
   head() {
@@ -91,8 +91,8 @@ export default {
           content: description,
         },
         {
-          hid: 'twitter:image',
-          property: 'twitter:image',
+          hid: 'twitter:image:src',
+          property: 'twitter:image:src',
           content: image,
         },
       ],

@@ -8,12 +8,12 @@
         Series
       </h2>
       <p class="max-w-2xl mt-1 text-sm text-gray-500">
-        Current volume {{ book.serie.number }}
+        Current: vol. {{ book.serie.number }}
       </p>
 
       <!-- Activity Feed -->
       <div>
-        <div v-swiper:mySwiper="swiperOption" class="max-w-2xl">
+        <div v-cloak v-swiper:mySwiper="swiperOption" class="max-w-2xl">
           <div class="swiper-wrapper">
             <div
               v-for="bookSerie in serie"
@@ -23,6 +23,7 @@
               <entity-card
                 :data="bookSerie"
                 :cover="bookSerie.image"
+                :image-alt="bookSerie.tilte"
                 :route="{
                   name: 'books-slug',
                   params: {

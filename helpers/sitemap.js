@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import { $content } from '@nuxt/content'
 require('dotenv').config()
 
 export const getRoutes = () => {
@@ -109,10 +110,13 @@ export const getAuthorsRoutes = () => {
 export const getGuidesRoutes = () => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
-    const guides = await this.$content('guides', { deep: true })
-      .without(['toc', 'body'])
+    const guides = await $content('guides', { deep: true })
+      .only(['path', 'slug', 'created_at'])
       .where({ draft: false })
       .sortBy('created_at')
+      .fetch()
+    const pages = await $content('pages', { deep: true })
+      .only(['path', 'slug', 'created_at'])
       .fetch()
     const routes = []
 
@@ -120,6 +124,14 @@ export const getGuidesRoutes = () => {
       const route = {
         url: `/guides/${guide.slug}`,
         lastmodISO: guide.created_at,
+        priority: 0.8,
+      }
+      routes.push(route)
+    }
+    for (const page of pages) {
+      const route = {
+        url: `/pages/${page.slug}`,
+        lastmodISO: page.created_at,
         priority: 0.8,
       }
       routes.push(route)

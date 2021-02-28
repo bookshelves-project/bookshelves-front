@@ -10,7 +10,7 @@
             <slot name="image" />
           </span>
           <span v-else class="w-full mx-auto">
-            <img v-lazy="cover" alt="Book cover" class="cover" />
+            <img v-lazy="cover" :alt="imageAlt" class="cover" />
           </span>
         </div>
         <div
@@ -59,6 +59,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    imageAlt: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
     hasDefaultSlot() {
@@ -74,7 +78,7 @@ export default {
 <style lang="postcss" scoped>
 .cover {
   @apply object-cover object-top h-64 w-full rounded-sm;
-  transition: transform 0.5s ease, filter 0.3s;
+  /* transition: transform 0.5s ease, filter 0.3s; */
 }
 .cover-shadow {
   @apply rounded-sm;
