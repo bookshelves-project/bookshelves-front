@@ -138,34 +138,37 @@
               >
             </div>
           </div>
-          <div
-            class="items-center hidden px-1 text-base leading-6 text-gray-400 transition-colors duration-300 rounded-md lg:flex lg:w-max"
-          >
-            <div class="pb-5 text-center lg:pb-0">Built with</div>
-            <a
-              href="https://nuxtjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current lg:ml-1 hover:nuxt-svg"
-              v-html="nuxtFullSvg"
-            ></a
-            >,
-            <a
-              href="https://tailwindcss.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current hover:tailwind-svg"
-              v-html="tailwindFullSvg"
-            ></a
-            ><span class="mx-1">&</span
-            ><a
-              href="https://laravel.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current hover:laravel-svg"
-              v-html="laravelFullSvg"
-            ></a
-            >.
+          <div class="flex items-center">
+            <div
+              class="items-center hidden px-1 text-base leading-6 text-gray-400 transition-colors duration-300 rounded-md xl:flex xl:w-max"
+            >
+              <div class="pb-5 text-center lg:pb-0">Built with</div>
+              <a
+                href="https://nuxtjs.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current lg:ml-1 hover:nuxt-svg"
+                v-html="nuxtFullSvg"
+              ></a
+              >,
+              <a
+                href="https://tailwindcss.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current hover:tailwind-svg"
+                v-html="tailwindFullSvg"
+              ></a
+              ><span class="mx-1">&</span
+              ><a
+                href="https://laravel.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current hover:laravel-svg"
+                v-html="laravelFullSvg"
+              ></a
+              >.
+            </div>
+            <back-to-top />
           </div>
         </div>
       </div>

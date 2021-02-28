@@ -5,12 +5,6 @@
     <div class="flex items-center space-x-5">
       <div class="flex-shrink-0">
         <div class="relative">
-          <!-- <nuxt-picture
-            :src="book.image"
-            alt="Book cover"
-            class="object-cover w-16 h-16 rounded-full"
-            placeholder="/images/no-cover.webp"
-          /> -->
           <img
             v-if="book.imageStandard"
             v-lazy="book.imageStandard"
@@ -129,20 +123,14 @@ export default {
   },
   methods: {
     displayCover() {
-      this.$store.commit('setLayer', true)
-
       setTimeout(() => {
+        this.$store.commit('overlay/setIsVisible', true)
         this.modalCoverDisplay = true
-        this.$store.commit('setLayerOpacity', true)
       }, 150)
     },
     closeModalCover() {
+      this.$store.commit('overlay/setIsVisible', false)
       this.modalCoverDisplay = false
-      this.$store.commit('setLayerOpacity', false)
-
-      setTimeout(() => {
-        this.$store.commit('setLayer', false)
-      }, 150)
     },
   },
 }

@@ -17,7 +17,9 @@ export default {
   },
   watch: {
     '$store.state.overlay.isVisible'(newValue) {
-      this.isVisible = newValue
+      setTimeout(() => {
+        this.isVisible = newValue
+      }, 150)
     },
   },
 }
