@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import Dropdown from '../special/Dropdown.vue'
+import Dropdown from '@/components/special/dropdown-template.vue'
 export default {
   name: 'AccountDropdown',
   components: { Dropdown },
