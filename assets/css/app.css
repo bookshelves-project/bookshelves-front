@@ -63,15 +63,3 @@ img[lazy='error'] {
 img[lazy='loaded'] {
   /*your style here*/
 }
-/*
-  or background-image
-  */
-.yourclass[lazy='loading'] {
-  /*your style here*/
-}
-.yourclass[lazy='error'] {
-  /*your style here*/
-}
-.yourclass[lazy='loaded'] {
-  /*your style here*/
-}

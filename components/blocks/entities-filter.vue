@@ -7,7 +7,7 @@
           v-if="filterEnabled"
           id="options-menu"
           type="button"
-          class="inline-flex justify-center w-full px-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 group"
+          class="inline-flex justify-center w-full px-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 group dark:bg-gray-800 dark:border-gray-700"
           aria-haspopup="true"
           aria-expanded="true"
           @click="clearFilter"
@@ -19,15 +19,12 @@
       </transition>
     </div>
     <div class="absolute top-0 right-0 md:top-5 md:right-5">
-      <div
-        v-click-outside="closeOpenedFilter"
-        class="relative inline-block text-left"
-      >
-        <div>
+      <dropdown align="right" :width="48">
+        <template #trigger>
           <button
             id="options-menu"
             type="button"
-            class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+            class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-700"
             aria-haspopup="true"
             aria-expanded="true"
             @click="openedFilter = !openedFilter"
@@ -48,49 +45,39 @@
               />
             </svg>
           </button>
-        </div>
-        <transition name="fade">
-          <div
-            v-if="openedFilter"
-            class="absolute right-0 z-20 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg md:w-56 ring-1 ring-black ring-opacity-5"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="options-menu"
-          >
-            <div class="py-1">
-              <div
-                class="block w-full px-4 py-2 text-sm font-semibold text-left text-gray-800"
-              >
-                Languages filter
-              </div>
-              <button
-                v-for="lang in langs"
-                :key="lang.id"
-                :class="{ 'bg-gray-100': $route.query.lang === lang.id }"
-                class="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                role="menuitem"
-                @click="filterByLang(lang.id)"
-              >
-                {{ lang.label }}
-              </button>
+        </template>
+        <template #content>
+          <div class="py-1">
+            <div
+              class="block w-full px-4 py-2 text-sm font-semibold text-left text-gray-800 dark:text-gray-200"
+            >
+              Languages filter
             </div>
+            <button
+              v-for="lang in langs"
+              :key="lang.id"
+              :class="{ 'bg-gray-100': $route.query.lang === lang.id }"
+              class="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-100 dark:hover:bg-gray-800"
+              role="menuitem"
+              @click="filterByLang(lang.id)"
+            >
+              {{ lang.label }}
+            </button>
           </div>
-        </transition>
-      </div>
+        </template>
+      </dropdown>
     </div>
   </div>
 </template>
 
 <script>
-import vClickOutside from 'v-click-outside'
 import iconFilter from '../icons/icon-filter.vue'
 import IconTrash from '../icons/icon-trash.vue'
+import Dropdown from '../special/Dropdown.vue'
 export default {
   name: 'EntitiesFilter',
-  components: { iconFilter, IconTrash },
-  directives: {
-    clickOutside: vClickOutside.directive,
-  },
+  // eslint-disable-next-line vue/no-unused-components
+  components: { iconFilter, IconTrash, Dropdown },
   data() {
     return {
       openedFilter: false,

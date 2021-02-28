@@ -208,6 +208,8 @@ export default {
     // '@nuxt/image',
     // https://color-mode.nuxtjs.org/#setup
     '@nuxtjs/color-mode',
+    // https://github.com/nuxt-community/svg-module
+    // '@nuxtjs/svg',
   ],
 
   tailwindcss: {
@@ -228,7 +230,17 @@ export default {
     },
   },
 
-  // image: {},
+  // image: {
+  //   domains: [process.env.API_URL],
+  //   screens: {
+  //     sm: 360,
+  //     md: 600,
+  //     lg: 900,
+  //     xl: 1300,
+  //     '2xl': 1536,
+  //     '3xl': 1920,
+  //   },
+  // },
 
   colorMode: {
     classSuffix: '',

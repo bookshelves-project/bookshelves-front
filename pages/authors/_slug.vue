@@ -97,11 +97,9 @@
 
 <script>
 import entityCard from '~/components/blocks/entity-card.vue'
-// import booksGrid from '~/components/blocks/books-grid.vue'
 export default {
   name: 'AuthorsSlug',
   components: { entityCard },
-  // components: { booksGrid },
   async asyncData({ app, query, error, params, $content, store }) {
     try {
       const [author] = await Promise.all([
@@ -177,8 +175,8 @@ export default {
           content: description,
         },
         {
-          hid: 'twitter:image',
-          property: 'twitter:image',
+          hid: 'twitter:image:src',
+          property: 'twitter:image:src',
           content: image,
         },
       ],

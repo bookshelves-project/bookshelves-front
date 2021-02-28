@@ -45,7 +45,7 @@
                 title="Delete"
                 @click="deleted(data)"
               >
-                <icon-trash class="m-auto" />
+                <icon-trash class="w-6 h-6 m-auto" />
               </button>
             </div>
           </div>

@@ -11,6 +11,7 @@
             v-for="(author, authorId) in authors.data"
             :key="authorId"
             :cover="author.image"
+            :image-alt="author.name"
             :route="{
               name: 'authors-slug',
               params: { slug: author.slug },
@@ -136,8 +137,8 @@ export default {
           content: description,
         },
         {
-          hid: 'twitter:image',
-          property: 'twitter:image',
+          hid: 'twitter:image:src',
+          property: 'twitter:image:src',
           content: image,
         },
       ],

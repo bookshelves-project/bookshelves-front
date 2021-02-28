@@ -67,7 +67,7 @@
                         title="Delete"
                         @click="deleteComment(comment.id)"
                       >
-                        <icon-trash />
+                        <icon-trash class="w-6 h-6" />
                       </button>
                     </div>
                   </div>

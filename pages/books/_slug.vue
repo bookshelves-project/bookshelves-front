@@ -136,8 +136,8 @@ export default {
           content: description,
         },
         {
-          hid: 'twitter:image',
-          property: 'twitter:image',
+          hid: 'twitter:image:src',
+          property: 'twitter:image:src',
           content: image,
         },
       ],

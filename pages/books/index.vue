@@ -11,8 +11,8 @@
           <entity-card
             v-for="book in books.data"
             :key="book.id"
-            :data="book"
             :cover="book.image"
+            :image-alt="book.title"
             :route="{
               name: 'books-slug',
               params: { author: book.author, slug: book.slug },
@@ -183,8 +183,8 @@ export default {
           content: description,
         },
         {
-          hid: 'twitter:image',
-          property: 'twitter:image',
+          hid: 'twitter:image:src',
+          property: 'twitter:image:src',
           content: image,
         },
       ],

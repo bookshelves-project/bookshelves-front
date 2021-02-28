@@ -3,6 +3,7 @@
     :class="dev ? 'debug-screens' : ''"
     class="bg-fixed bg-no-repeat bg-cover bg-library dark:bg-blue-600"
   >
+    <overlay />
     <div
       class="inset-0 bg-white dark:border-gray-900 dark:bg-gray-900 bg-opacity-60 dark:bg-opacity-70"
     >
@@ -16,7 +17,7 @@
         ></div>
         <sidebar />
         <div class="pt-24"></div>
-        <alert />
+        <modal />
         <Nuxt class="min-height-content" />
         <default-footer />
       </div>
@@ -25,11 +26,12 @@
 </template>
 
 <script>
-import Alert from '~/components/blocks/alert.vue'
 import DefaultFooter from '~/components/layout/default-footer.vue'
 import Layer from '~/components/layout/layer.vue'
 import Navbar from '~/components/layout/navbar.vue'
 import Sidebar from '~/components/layout/sidebar.vue'
+import Modal from '~/components/special/modal.vue'
+import Overlay from '~/components/special/overlay.vue'
 
 export default {
   name: 'LayoutDefault',
@@ -38,7 +40,8 @@ export default {
     DefaultFooter,
     Sidebar,
     Layer,
-    Alert,
+    Modal,
+    Overlay,
   },
   data() {
     return {
