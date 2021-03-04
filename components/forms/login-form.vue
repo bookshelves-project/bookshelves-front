@@ -80,12 +80,7 @@
         type="submit"
       >
         <transition name="fade">
-          <span v-if="!isLoading">
-            <span class="flex items-center space-x-1">
-              <icon-unlock class="w-5 h-5 text-white" />
-              <div>Sign in</div>
-            </span>
-          </span>
+          <span v-if="!isLoading"> Sign in </span>
           <span v-else class="flex items-center space-x-1">
             <icon-load class="w-5 h-5 text-white" />
             <div>Processing</div>
@@ -107,10 +102,9 @@
 <script>
 import IconLoad from '../icons/icon-load.vue'
 import iconTest from '../icons/icon-test.vue'
-import IconUnlock from '../icons/icon-unlock.vue'
 export default {
   name: 'LoginForm',
-  components: { iconTest, IconLoad, IconUnlock },
+  components: { iconTest, IconLoad },
   data() {
     return {
       form: {

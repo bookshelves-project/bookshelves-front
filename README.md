@@ -46,6 +46,7 @@
   - optimize:
     - <https://image.nuxtjs.org>
     - <https://github.com/juliomrqz/nuxt-optimized-images>
+- review dimensions for open graph
 
 ## **I. Setup**
 
