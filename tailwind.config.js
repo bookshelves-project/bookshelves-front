@@ -41,6 +41,9 @@ module.exports = {
         quicksand: ['Quicksand'],
         handlee: ['Handlee'],
       },
+      height: {
+        hero: '32rem',
+      },
       maxWidth: {
         extra: '120rem',
       },

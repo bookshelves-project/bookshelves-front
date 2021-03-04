@@ -33,6 +33,22 @@
       </div>
     </div>
     <div class="pt-4 pb-10 mx-auto prose prose-lg lg:px-5 lg:pt-8">
+      <div v-if="$route.params.slug === 'api-documentation'">
+        <a
+          :href="`${apiUrl}/api`"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block text-base text-gray-500 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-400"
+        >
+          API Status:
+          <span class="font-semibold">
+            <span v-if="apiStatusBoolean" class="text-green-600">
+              available
+            </span>
+            <span v-else class="text-red-600"> unavailable </span>
+          </span>
+        </a>
+      </div>
       <!-- <ul>
         <li
           v-for="link of document.toc"
@@ -73,11 +89,18 @@ export default {
       document,
     }
   },
+  data() {
+    return {
+      apiUrl: process.env.API_URL,
+      apiStatusBoolean: false,
+      interval: 600000,
+    }
+  },
   head() {
     const title = `${this.document.title}`
     const description = this.document.description
     const image = `${process.env.BASE_URL}/images/no-cover.webp`
-    const url = `${process.env.BASE_URL}/guides/${this.document.slug}`
+    const url = `${process.env.BASE_URL}/pages/${this.document.slug}`
     return {
       title,
       meta: [
@@ -127,6 +150,27 @@ export default {
         },
       ],
     }
+  },
+  created() {
+    this.apiStatus()
+    setInterval(() => {
+      this.apiStatus()
+    }, this.interval)
+  },
+  methods: {
+    async apiStatus() {
+      let res = null
+      try {
+        res = await this.$http.head(`${process.env.API_URL}/api`)
+        if (res.status === 200) {
+          this.apiStatusBoolean = true
+        } else {
+          this.apiStatusBoolean = false
+        }
+      } catch (error) {
+        this.apiStatusBoolean = false
+      }
+    },
   },
 }
 </script>

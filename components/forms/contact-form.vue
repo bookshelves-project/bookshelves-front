@@ -1,26 +1,5 @@
 <template>
   <div class="mt-6">
-    <div v-if="isDev" class="mb-5">
-      <button
-        type="button"
-        class="flex items-center px-3 py-2 font-semibold text-white transition-colors duration-100 rounded-md bg-primary-600 hover:bg-primary-700"
-        @click="fillForm"
-      >
-        <svg
-          class="w-6 h-6"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M7 2a1 1 0 00-.707 1.707L7 4.414v3.758a1 1 0 01-.293.707l-4 4C.817 14.769 2.156 18 4.828 18h10.343c2.673 0 4.012-3.231 2.122-5.121l-4-4A1 1 0 0113 8.172V4.414l.707-.707A1 1 0 0013 2H7zm2 6.172V4h2v4.172a3 3 0 00.879 2.12l1.027 1.028a4 4 0 00-2.171.102l-.47.156a4 4 0 01-2.53 0l-.563-.187a1.993 1.993 0 00-.114-.035l1.063-1.063A3 3 0 009 8.172z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-        <span class="ml-2"> Fill form </span>
-      </button>
-    </div>
     <form
       class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
       @submit.prevent="sumbit"
@@ -82,40 +61,31 @@
         </div>
       </div>
       <div class="sm:col-span-2">
-        <button
-          type="submit"
-          class="inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-        >
-          <transition name="fade">
-            <span v-if="!loading" class="flex items-center">
-              <icon-airplane class="w-4 h-4 text-white" />
-              <div class="ml-2">Let's talk</div>
-            </span>
-            <span v-else class="flex items-center">
-              <svg
-                class="w-5 h-5 mr-3 -ml-1 text-white animate-spin"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  class="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  stroke-width="4"
-                ></circle>
-                <path
-                  class="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Processing
-            </span>
-          </transition>
-        </button>
+        <div class="flex items-center space-x-2">
+          <button
+            class="flex justify-center w-full px-4 py-2 text-sm font-semibold text-white border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+            type="submit"
+          >
+            <transition name="fade">
+              <div v-if="!loading" class="flex items-center space-x-2">
+                <icon-airplane class="w-5 h-5" />
+                <div>Let's talk</div>
+              </div>
+              <div v-else class="flex items-center space-x-1">
+                <icon-load class="w-5 h-5 text-white" />
+                <div>Processing</div>
+              </div>
+            </transition>
+          </button>
+          <button
+            v-if="isDev"
+            type="button"
+            class="flex items-center px-3 py-2 font-semibold text-white transition-colors duration-100 rounded-md bg-primary-600 hover:bg-primary-700"
+            @click="fillForm"
+          >
+            <icon-test class="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </form>
   </div>
@@ -123,9 +93,11 @@
 
 <script>
 import iconAirplane from '../icons/icon-airplane.vue'
+import IconLoad from '../icons/icon-load.vue'
+import IconTest from '../icons/icon-test.vue'
 export default {
   name: 'ContactForm',
-  components: { iconAirplane },
+  components: { iconAirplane, IconTest, IconLoad },
   data() {
     return {
       loading: false,
@@ -182,30 +154,36 @@ export default {
           message: '',
         }
 
+        const title = 'Message sended!'
+        const message = 'Thanks you for your message.'
         this.$store.commit('setAlertMessage', {
           type: 'success',
-          title: 'Message sended!',
-          message: 'Thanks you for your message.',
+          title,
+          message,
         })
-        this.$store.commit('toggleShowAlert')
+        this.$store.commit('overlay/setIsVisible', true)
+        this.$store.commit('modal/setIsVisible', true)
         setTimeout(() => {
-          this.$store.commit('setShowAlert', false)
-        }, 4000)
+          this.$store.commit('overlay/setIsVisible', false)
+          this.$store.commit('modal/setIsVisible', false)
+        }, 2500)
       } catch (e) {
         // console.error(e)
         this.errors = true
+        const title = 'Error!'
+        const message =
+          "We are sorry but your message can't be send, try in some time."
         this.$store.commit('setAlertMessage', {
           type: 'danger',
-          title: 'Error!',
-          message:
-            "We are sorry but your message can't be send, try in some time.",
+          title,
+          message,
         })
+        this.$store.commit('overlay/setIsVisible', true)
+        this.$store.commit('modal/setIsVisible', true)
         setTimeout(() => {
-          this.$store.commit('toggleShowAlert')
-        }, 100)
-        setTimeout(() => {
-          this.$store.commit('setShowAlert', false)
-        }, 4000)
+          this.$store.commit('overlay/setIsVisible', false)
+          this.$store.commit('modal/setIsVisible', false)
+        }, 2500)
       }
       this.loading = false
     },
