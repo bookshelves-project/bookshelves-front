@@ -1,10 +1,6 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  future: {
-    // removeDeprecatedGapUtilities: true,
-    // purgeLayersByDefault: true,
-  },
   darkMode: 'class',
   purge: [
     'components/**/*.vue',
@@ -44,6 +40,9 @@ module.exports = {
       fontFamily: {
         quicksand: ['Quicksand'],
         handlee: ['Handlee'],
+      },
+      height: {
+        hero: '32rem',
       },
       maxWidth: {
         extra: '120rem',
