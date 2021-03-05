@@ -1,3 +1,4 @@
+import settings from './static/settings.json'
 import {
   getRoutes,
   getBooksRoutes,
@@ -13,10 +14,10 @@ export default {
   // },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'Home',
-    titleTemplate: '%s · Bookshelves',
+    title: settings.title,
+    titleTemplate: settings.titleTemplate,
     htmlAttrs: {
-      lang: 'en-US',
+      lang: settings.locale,
     },
     meta: [
       { charset: 'utf-8' },
@@ -24,13 +25,12 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content:
-          'For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you. Get eBooks (EPUB format), add it to your eReader and read!',
+        content: settings.description,
       },
       {
         hid: 'author',
         name: 'author',
-        content: 'Bookshelves Team',
+        content: settings.author,
       },
       {
         hid: 'robots',
@@ -41,7 +41,7 @@ export default {
       {
         hid: 'og:site_name',
         property: 'og:site_name',
-        content: 'Bookshelves',
+        content: settings.projectName,
       },
       {
         hid: 'og:type',
@@ -56,23 +56,22 @@ export default {
       {
         hid: 'og:title',
         property: 'og:title',
-        content: 'Bookshelves : your digital library',
+        content: settings.title,
       },
       {
         hid: 'og:description',
         property: 'og:description',
-        content:
-          'For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you. Get eBooks (EPUB format), add it to your eReader and read!',
+        content: settings.description,
       },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: `${process.env.BASE_URL}/open-graph.png`,
+        content: `${process.env.BASE_URL}/${settings.defaultOpenGraph}`,
       },
       {
         hid: 'og:image:alt',
         property: 'og:image:alt',
-        content: 'Bookshelves',
+        content: settings.projectName,
       },
       {
         hid: 'og:image:type',
@@ -89,7 +88,7 @@ export default {
         property: 'og:image:height',
         content: '1200',
       },
-      { hid: 'og:locale', name: 'og:locale', content: 'en_US' },
+      { hid: 'og:locale', name: 'og:locale', content: settings.locale },
       // Twitter Card
       {
         hid: 'twitter:card',
@@ -97,30 +96,24 @@ export default {
         content: 'summary_large_image',
       },
       {
-        hid: 'twitter:domain',
-        property: 'twitter:domain',
-        content: 'bookshelves.git-projects.xyz',
-      },
-      {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: 'Bookshelves : your digital library',
+        content: settings.title,
       },
       {
         hid: 'twitter:creator',
         name: 'twitter:creator',
-        content: 'Team Bookshelves',
+        content: settings.author,
       },
       {
         hid: 'twitter:description',
         name: 'twitter:description',
-        content:
-          'For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you. Get eBooks (EPUB format), add it to your eReader and read!',
+        content: settings.description,
       },
       {
         hid: 'twitter:image:src',
         property: 'twitter:image:src',
-        content: `${process.env.BASE_URL}/open-graph.png`,
+        content: `${process.env.BASE_URL}/${settings.defaultOpenGraph}`,
       },
       {
         hid: 'twitter:image:width',
@@ -135,15 +128,15 @@ export default {
       {
         hid: 'twitter:image:alt',
         name: 'twitter:image:alt',
-        content: 'Bookshelves',
+        content: settings.projectName,
       },
       {
         hid: 'google-site-verification',
         name: 'google-site-verification',
         content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
       },
-      { name: 'msapplication-TileColor', content: '#6C63FF' },
-      { name: 'theme-color', content: '#554bcf' },
+      { name: 'msapplication-TileColor', content: settings.color },
+      { name: 'theme-color', content: settings.color },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -153,7 +146,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   loading: {
-    color: '#800080',
+    color: settings.color,
     height: '2px',
   },
 
@@ -283,6 +276,15 @@ export default {
       common: {
         'X-Requested-With': 'XMLHttpRequest',
       },
+    },
+  },
+
+  pwa: {
+    meta: {
+      name: settings.name,
+      author: settings.author,
+      description: settings.description,
+      theme_color: settings.color,
     },
   },
 

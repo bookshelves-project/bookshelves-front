@@ -152,6 +152,11 @@ export default {
       this.$store.commit('setSidebar', false)
       this.$store.commit('setLayerOpacity', false)
 
+      if (process.client) {
+        const body = document.getElementsByTagName('body')[0]
+        body.classList.remove('scroll-prevent')
+      }
+
       setTimeout(() => {
         this.$store.commit('setLayer', false)
       }, 150)

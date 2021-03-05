@@ -15,7 +15,7 @@
             class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
           />
           <h1
-            class="ml-4 text-3xl font-semibold text-center font-handlee lg:text-left"
+            class="mt-2 ml-4 text-3xl font-semibold text-center lg:mt-0 font-handlee lg:text-left"
           >
             {{ author.name }}
           </h1>
@@ -23,11 +23,16 @@
         <div class="flex mt-5 lg:mt-0">
           <a
             :href="author.download"
-            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 md:w-max"
+            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 sm:w-max"
           >
             <icon name="download" />
-            <div class="items-center ml-2 sm:flex">
-              <div class="mx-1">Download {{ author.books_number }} eBooks</div>
+            <div class="flex items-center ml-2">
+              <div class="flex mx-1">
+                Download
+                <span class="hidden md:block"
+                  >{{ author.books_number }} eBooks</span
+                >
+              </div>
               <div>(ZIP {{ author.size }})</div>
             </div>
           </a>
@@ -60,7 +65,11 @@
             {{ $overflow(book.title) }}
           </template>
           <template #hover>
-            <div v-if="book.serie">
+            <div v-if="book.language">
+              <div class="font-semibold">Language &#8212;</div>
+              <img :src="book.language.flag" :alt="book.language.slug" />
+            </div>
+            <div v-if="book.serie" class="mt-5">
               <div class="font-semibold">Serie &#8212;</div>
               <div class="italic break-all">
                 {{ book.serie.title }}
@@ -72,20 +81,11 @@
             <div class="font-semibold">
               {{ book.title }}
             </div>
-            <div class="italic">
-              <span v-for="(author, authorId) in book.authors" :key="authorId">
-                <span>{{ author.name }}</span>
-                <span
-                  v-if="
-                    book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
-                  "
-                >
-                  ,
-                </span>
-              </span>
+            <div v-if="book.language" class="mt-5">
+              <div class="font-semibold">Language &#8212;</div>
+              <img :src="book.language.flag" :alt="book.language.slug" />
             </div>
-            <div v-if="book.serie">
+            <div v-if="book.serie" class="mt-5">
               {{ book.serie.title }}, vol. {{ book.serie.number }}
             </div>
           </template>

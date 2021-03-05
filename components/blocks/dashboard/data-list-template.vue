@@ -24,7 +24,7 @@
                   slug: data.meta.slug,
                 },
               }"
-              class="relative flex items-center justify-between w-full col-span-5 py-0 my-1 text-gray-900 transition-colors duration-100 rounded-md dark:text-white dark:hover:bg-gray-700 hover:bg-gray-50"
+              class="relative flex items-center justify-between w-full col-span-5 py-0 my-1 text-gray-900 transition-colors duration-100 rounded-md dark:text-white dark:hover:bg-gray-700 hover:bg-gray-100"
             >
               <div class="relative flex items-center w-full">
                 <div v-if="withImage" class="h-20">
@@ -41,7 +41,7 @@
             </nuxt-link>
             <div class="flex justify-center">
               <button
-                class="flex w-full h-full text-gray-400 md:p-5 hover:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                class="flex w-full h-full text-gray-400 md:p-5 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300"
                 title="Delete"
                 @click="deleted(data)"
               >

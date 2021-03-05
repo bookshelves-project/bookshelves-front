@@ -50,6 +50,7 @@ button {
   @apply text-gray-900 border-indigo-500 dark:text-white;
 }
 
+/* Grid Auto Flow */
 .display-grid {
   @apply grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7;
 }
@@ -62,4 +63,9 @@ img[lazy='error'] {
 }
 img[lazy='loaded'] {
   /*your style here*/
+}
+
+.scroll-prevent {
+  position: fixed;
+  overflow-y: scroll;
 }

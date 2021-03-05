@@ -31,6 +31,7 @@
                     slug: bookSerie.slug,
                   },
                 }"
+                class="mx-2"
               >
                 <template #title>
                   <div>
@@ -66,7 +67,7 @@
                     {{ bookSerie.authors[0].name }}
                   </div>
                   <div v-if="bookSerie.serie">
-                    {{ bookSerie.serie.title }}, vol.
+                    {{ book.serie.title }}, vol.
                     {{ bookSerie.serie.number }}
                   </div>
                 </template>

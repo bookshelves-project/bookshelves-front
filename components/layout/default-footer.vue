@@ -107,18 +107,21 @@
                 v-for="license in licenses"
                 :key="license.id"
                 :alt="license.label"
-                class="w-5 h-5 mr-1 text-gray-400 transition-colors duration-300 fill-current group-hover:text-gray-700"
+                class="w-5 h-5 mr-1 text-gray-400 transition-colors duration-300 fill-current group-hover:text-gray-700 dark:group-hover:text-gray-100"
                 v-html="license.svg"
               ></span>
               <span
-                class="ml-1 text-gray-400 transition-colors duration-300 group-hover:text-gray-700"
+                class="ml-1 text-gray-400 transition-colors duration-300 dark:group-hover:text-gray-100"
               >
                 {{ date(2020) }}
               </span>
             </a>
             <span class="hidden mx-1 lg:block"> · </span>
-            <nuxt-link :to="`/pages/about`" class="flex items-center">
-              Bookshelves Team </nuxt-link
+            <nuxt-link
+              :to="`/pages/about`"
+              class="flex items-center text-gray-400 transition-colors duration-100 dark:text-gray-400 hover:text-gray-500 dark:hover:text-gray-100"
+            >
+              {{ team }} </nuxt-link
             ><span class="hidden lg:mr-1 lg:block">,</span>
             {{ packageJson.license }} license<span class="hidden lg:block"
               >.</span
@@ -164,6 +167,7 @@
 
 <script>
 import packageJson from '@/package.json'
+import settings from '@/static/settings.json'
 import ColorSwitcherToggle from '../special/color-switcher-toggle.vue'
 import backToTop from './back-to-top.vue'
 
@@ -173,16 +177,17 @@ export default {
   components: { backToTop, ColorSwitcherToggle },
   data() {
     return {
+      team: settings.author,
       socialIcons: [
-        {
-          icon: 'gitlab',
-          label: 'Repository of Bookshelves',
-          link: 'https://gitlab.com/EwieFairy/bookshelves-front',
-        },
+        // {
+        //   icon: 'gitlab',
+        //   label: 'Repository of Bookshelves',
+        //   link: 'https://gitlab.com/ewilan-riviere/bookshelves-front',
+        // },
         {
           icon: 'swagger',
           label: 'Swagger: API documentation',
-          link: `${process.env.API_URL}documentation`,
+          link: `${process.env.API_URL}/documentation`,
         },
         {
           icon: 'calibre',
