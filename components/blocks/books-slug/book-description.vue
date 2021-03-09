@@ -12,7 +12,9 @@
       <div
         class="px-4 py-5 border-t border-gray-200 dark:border-gray-700 sm:px-6"
       >
-        <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+        <dl
+          class="space-y-8 md:grid md:gap-x-4 md:gap-y-8 md:space-y-0 md:grid-cols-2"
+        >
           <div v-if="book.authors" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
               Author
@@ -84,7 +86,10 @@
               <img :src="book.language.flag" :alt="book.language.slug" />
             </dd>
           </div>
-          <div v-if="book.identifier" class="sm:col-span-1">
+          <div
+            v-if="book.identifier.isbn || book.identifier.isbn13"
+            class="sm:col-span-1"
+          >
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
               Identifiers
             </dt>
@@ -129,7 +134,7 @@
               Abstract
             </dt>
             <dd
-              class="mt-1 text-sm text-gray-900 dark:text-gray-100"
+              class="mt-1 text-sm text-gray-900 dark:text-gray-100 word-wraping"
               v-html="book.description"
             ></dd>
           </div>

@@ -93,7 +93,7 @@ export default {
   },
 
   methods: {
-    closeDropdown() {
+    closeDropdown(event) {
       this.open = false
     },
   },

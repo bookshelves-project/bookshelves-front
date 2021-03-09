@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-3xl px-4 mx-auto sm:px-6 xl:flex xl:items-center xl:justify-between xl:space-x-5 xl:max-w-7xl xl:px-8"
+    class="max-w-3xl px-4 mx-auto md:px-6 xl:flex xl:items-center xl:justify-between xl:space-x-5 xl:max-w-7xl xl:px-8"
   >
     <div class="flex items-center space-x-5">
       <div class="flex-shrink-0">
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div
-      class="flex flex-col-reverse items-center mt-6 space-y-4 space-y-reverse justify-stretch sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 xl:mt-0 xl:flex-row xl:space-x-3"
+      class="flex flex-col-reverse items-center mt-6 space-y-4 space-y-reverse justify-stretch md:flex-row-reverse md:justify-end md:space-x-reverse md:space-y-0 md:space-x-3 xl:mt-0 xl:flex-row xl:space-x-3"
     >
       <!-- <component
         :is="buyLink ? 'a' : 'span'"

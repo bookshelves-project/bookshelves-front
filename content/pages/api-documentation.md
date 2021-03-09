@@ -4,4 +4,4 @@ subtitle: ''
 description: 'Documentation of Bookshelves API'
 ---
 
-If you want to get data from Bookshelves, you can use public API: [**API documentation**](https://bookshelves.git-projects.xyz/api/documentation).
+If you want to get data from Bookshelves, you can use public API: <api-link></api-link>.

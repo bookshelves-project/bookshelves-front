@@ -1,14 +1,14 @@
 <template>
   <div v-click-outside="onClickOutside">
     <div class="relative flex items-center justify-end mr-10">
-      <div class="relative w-full lg:w-max">
+      <div class="relative w-full">
         <autocomplete
           ref="search"
           :search="search"
           placeholder="Search for a book, a series or an author"
           aria-label="Search for a book, a series or an author"
           :get-result-value="getResultValue"
-          class="w-full lg:w-64 xl:w-96"
+          class="searchbar-navbar"
           @submit="handleSubmit"
           @update="handleUpdate"
         >
@@ -23,36 +23,32 @@
                 v-bind="props"
                 class="flex items-center autocomplete-result wiki-result"
               >
-                <div class="w-16 h-full">
-                  <img
-                    v-if="result.image"
-                    v-lazy="result.image"
-                    :alt="result.title"
-                    class="w-16 h-full rounded-md"
-                  />
-                  <img
-                    v-else
-                    src="/images/bookshelves.png"
-                    alt="bookshelves-default"
-                    class="w-16 h-16 rounded-md"
-                  />
-                </div>
-                <div class="ml-2 dark:text-gray-700">
-                  <div class="wiki-title">
-                    <div class="font-semibold">
-                      {{ result.title }}
-                    </div>
-                    <div class="italic">
-                      {{ $capitalize(result.meta.entity) }}
-                    </div>
+                <div class="grid grid-cols-3 gap-4">
+                  <div class="col-span-1">
+                    <img
+                      v-if="result.image"
+                      v-lazy="result.image"
+                      :alt="result.title"
+                      class="inline-block object-cover rounded-full h-14 w-14"
+                    />
                   </div>
-                  <div class="">
-                    <div v-if="result.serie" class="ml-1">
-                      in {{ result.serie.title }}, vol.
-                      {{ result.serie.number }}
+                  <div class="col-span-2 dark:text-gray-700">
+                    <div class="wiki-title">
+                      <div class="font-semibold">
+                        {{ result.title }}
+                      </div>
+                      <div class="italic">
+                        {{ $capitalize(result.meta.entity) }}
+                      </div>
                     </div>
+                    <div class="">
+                      <div v-if="result.serie" class="ml-1">
+                        in {{ result.serie.title }}, vol.
+                        {{ result.serie.number }}
+                      </div>
+                    </div>
+                    <div class="wiki-snippet" v-html="result.snippet" />
                   </div>
-                  <div class="wiki-snippet" v-html="result.snippet" />
                 </div>
               </div>
             </nuxt-link>
@@ -111,6 +107,10 @@ export default {
         serie: 'search-serie',
       },
     }
+  },
+  mounted() {
+    this.$refs.search.$refs.input.name = 'search'
+    this.$refs.search.$refs.input.type = 'search'
   },
   methods: {
     searchWithButton() {
@@ -171,4 +171,10 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss">
+.searchbar-navbar {
+  & input {
+    @apply w-40 sm:w-48 md:w-64 ml-auto transition-all duration-300 focus:w-full !important;
+  }
+}
+</style>

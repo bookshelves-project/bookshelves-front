@@ -14,52 +14,59 @@
             >
               {{ serie.title }}
             </h1>
-            <span
-              v-for="(author, authorId) in serie.authors"
-              :key="authorId"
-              class="mr-1"
-            >
-              <nuxt-link
-                :to="{ name: 'authors-slug', params: { slug: author.slug } }"
-                class="text-gray-900 hover:text-gray-500"
-                >{{ author.name }}</nuxt-link
-              >
+            <div class="mt-2 text-center lg:text-left lg:mt-0">
               <span
-                v-if="
-                  serie.authors.length > 1 &&
-                  authorId !== serie.authors.length - 1
-                "
-                >&</span
+                v-for="(author, authorId) in serie.authors"
+                :key="authorId"
+                class="mr-1"
               >
-            </span>
+                <nuxt-link
+                  :to="{ name: 'authors-slug', params: { slug: author.slug } }"
+                  class="text-gray-900 border-b border-gray-600 dark:border-gray-100 hover:text-gray-500 hover:border-gray-500"
+                  >{{ author.name }}</nuxt-link
+                >
+                <span
+                  v-if="
+                    serie.authors.length > 1 &&
+                    authorId !== serie.authors.length - 1
+                  "
+                  class="text-gray-900 dark:text-gray-100"
+                  >&</span
+                >
+              </span>
+            </div>
           </div>
         </div>
-        <div
-          class="block mt-5 lg:block md:items-center md:justify-between md:flex lg:mt-0"
-        >
-          <a
-            :href="serie.download"
-            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm md:mx-0 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 md:w-max"
-          >
-            <icon name="download" />
-            <div class="flex items-center ml-2">
-              <div class="mx-1">Download</div>
-              <div class="hidden md:mr-1 md:block">
-                {{ serie.title }}
+        <div class="block mt-5 lg:block lg:mt-0">
+          <div class="flex">
+            <a
+              :href="serie.download"
+              class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm lg:mx-0 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 sm:w-max"
+            >
+              <icon name="download" />
+              <div class="flex items-center ml-2">
+                <div class="mx-1">Download</div>
+                <div class="hidden lg:mr-1 lg:block">
+                  {{ serie.title }}
+                </div>
+                <div>(ZIP {{ serie.size }})</div>
               </div>
-              <div>(ZIP {{ serie.size }})</div>
+            </a>
+          </div>
+          <div class="flex mx-auto w-max">
+            <div
+              v-if="serie.language"
+              class="flex mt-2 w-max lg:ml-auto lg:mx-0 md:items-center lg:flex md:justify-end md:mx-0"
+            >
+              <span class="font-semibold text-gray-900 dark:text-gray-100"
+                >Language :
+              </span>
+              <img
+                :src="serie.language.flag"
+                :alt="serie.language.slug"
+                class="ml-2"
+              />
             </div>
-          </a>
-          <div
-            v-if="serie.language"
-            class="flex mx-auto lg:ml-auto lg:mx-0 md:items-center lg:flex md:justify-end lg:mt-5 md:mx-0 w-max"
-          >
-            <span class="font-semibold">Language : </span>
-            <img
-              :src="serie.language.flag"
-              :alt="serie.language.slug"
-              class="ml-2"
-            />
           </div>
         </div>
       </div>
@@ -134,9 +141,7 @@
                 </span>
               </span>
             </div>
-            <div v-if="book.serie">
-              {{ book.serie.title }}, vol. {{ book.serie.number }}
-            </div>
+            <div v-if="book.serie">Vol. {{ book.serie.number }}</div>
           </template>
         </entity-card>
       </div>

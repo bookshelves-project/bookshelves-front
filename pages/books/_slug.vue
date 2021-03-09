@@ -5,7 +5,7 @@
       <book-header :book="book" />
 
       <div
-        class="grid max-w-3xl grid-cols-1 gap-6 mx-auto mt-8 sm:px-6 xl:max-w-7xl xl:grid-flow-col-dense xl:grid-cols-2"
+        class="grid max-w-3xl grid-cols-1 gap-6 px-3 mx-auto mt-8 sm:px-6 xl:max-w-7xl xl:grid-flow-col-dense xl:grid-cols-2"
       >
         <div class="space-y-6 xl:col-start-1 xl:col-span-1">
           <!-- Description list-->

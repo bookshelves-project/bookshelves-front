@@ -56,6 +56,7 @@ module.exports = {
     extend: {
       display: ['dark'],
       opacity: ['dark'],
+      width: ['hover', 'focus'],
       textColor: ['responsive', 'hover', 'focus', 'group-hover', 'dark'],
       scale: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
       boxShadow: ['dark'],
