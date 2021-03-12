@@ -1,4 +1,4 @@
-import settings from './static/settings.metadata.json'
+import settings from './static/settings.json'
 import {
   getRoutes,
   getBooksRoutes,
