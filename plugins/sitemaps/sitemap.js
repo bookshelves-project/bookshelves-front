@@ -115,9 +115,6 @@ export const getGuidesRoutes = () => {
       .where({ draft: false })
       .sortBy('created_at')
       .fetch()
-    const pages = await $content('pages', { deep: true })
-      .only(['path', 'slug', 'created_at'])
-      .fetch()
     const routes = []
 
     for (const guide of guides) {
@@ -128,6 +125,18 @@ export const getGuidesRoutes = () => {
       }
       routes.push(route)
     }
+    resolve(routes)
+  })
+}
+
+export const getPagesRoutes = () => {
+  // eslint-disable-next-line no-async-promise-executor
+  return new Promise(async (resolve, reject) => {
+    const pages = await $content('pages', { deep: true })
+      .only(['path', 'slug', 'created_at'])
+      .fetch()
+    const routes = []
+
     for (const page of pages) {
       const route = {
         url: `/pages/${page.slug}`,

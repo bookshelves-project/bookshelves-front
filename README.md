@@ -53,7 +53,7 @@
 Setup local on <http://localhost:3000> with <https://bookshelves.git-projects.xyz> API
 
 ```bash
-cp .env.example .env ; yarn
+cp .env.example .env ; cp static/settings-example.json static/settings.json ; yarn
 ```
 
 Local serve

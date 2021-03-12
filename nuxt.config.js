@@ -5,7 +5,8 @@ import {
   getSeriesRoutes,
   getAuthorsRoutes,
   getGuidesRoutes,
-} from './helpers/sitemap'
+  getPagesRoutes,
+} from './plugins/sitemaps/sitemap'
 
 export default {
   // server: {
@@ -14,10 +15,10 @@ export default {
   // },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: settings.title,
-    titleTemplate: settings.titleTemplate,
+    title: settings.metadata.title,
+    titleTemplate: settings.metadata.titleTemplate,
     htmlAttrs: {
-      lang: settings.locale,
+      lang: settings.metadata.locale,
     },
     meta: [
       { charset: 'utf-8' },
@@ -25,12 +26,12 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: settings.description,
+        content: settings.metadata.description,
       },
       {
         hid: 'author',
         name: 'author',
-        content: settings.author,
+        content: settings.metadata.author,
       },
       {
         hid: 'robots',
@@ -41,7 +42,7 @@ export default {
       {
         hid: 'og:site_name',
         property: 'og:site_name',
-        content: settings.projectName,
+        content: settings.metadata.projectName,
       },
       {
         hid: 'og:type',
@@ -56,22 +57,22 @@ export default {
       {
         hid: 'og:title',
         property: 'og:title',
-        content: settings.title,
+        content: settings.metadata.title,
       },
       {
         hid: 'og:description',
         property: 'og:description',
-        content: settings.description,
+        content: settings.metadata.description,
       },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: `${process.env.BASE_URL}/${settings.defaultOpenGraph}`,
+        content: `${process.env.BASE_URL}/${settings.metadata.defaultOpenGraph}`,
       },
       {
         hid: 'og:image:alt',
         property: 'og:image:alt',
-        content: settings.projectName,
+        content: settings.metadata.projectName,
       },
       {
         hid: 'og:image:type',
@@ -88,7 +89,11 @@ export default {
         property: 'og:image:height',
         content: '1200',
       },
-      { hid: 'og:locale', name: 'og:locale', content: settings.locale },
+      {
+        hid: 'og:locale',
+        name: 'og:locale',
+        content: settings.metadata.locale,
+      },
       // Twitter Card
       {
         hid: 'twitter:card',
@@ -98,22 +103,22 @@ export default {
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: settings.title,
+        content: settings.metadata.title,
       },
       {
         hid: 'twitter:creator',
         name: 'twitter:creator',
-        content: settings.author,
+        content: settings.metadata.author,
       },
       {
         hid: 'twitter:description',
         name: 'twitter:description',
-        content: settings.description,
+        content: settings.metadata.description,
       },
       {
         hid: 'twitter:image:src',
         property: 'twitter:image:src',
-        content: `${process.env.BASE_URL}/${settings.defaultOpenGraph}`,
+        content: `${process.env.BASE_URL}/${settings.metadata.defaultOpenGraph}`,
       },
       {
         hid: 'twitter:image:width',
@@ -128,15 +133,15 @@ export default {
       {
         hid: 'twitter:image:alt',
         name: 'twitter:image:alt',
-        content: settings.projectName,
+        content: settings.metadata.projectName,
       },
       {
         hid: 'google-site-verification',
         name: 'google-site-verification',
         content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
       },
-      { name: 'msapplication-TileColor', content: settings.color },
-      { name: 'theme-color', content: settings.color },
+      { name: 'msapplication-TileColor', content: settings.metadata.color },
+      { name: 'theme-color', content: settings.metadata.color },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -146,7 +151,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   loading: {
-    color: settings.color,
+    color: settings.metadata.color,
     height: '2px',
   },
 
@@ -281,10 +286,10 @@ export default {
 
   pwa: {
     meta: {
-      name: settings.name,
-      author: settings.author,
-      description: settings.description,
-      theme_color: settings.color,
+      name: settings.metadata.name,
+      author: settings.metadata.author,
+      description: settings.metadata.description,
+      theme_color: settings.metadata.color,
     },
   },
 
@@ -328,7 +333,7 @@ export default {
     },
   },
   robots: {
-    Disallow: ['/sign-in', '/dashboard', '/admin'],
+    Disallow: settings.robot.disallow,
     Sitemap: `${process.env.BASE_URL}/sitemap.xml`,
   },
   sitemap: {
@@ -377,6 +382,13 @@ export default {
         exclude: ['**'],
         routes: () => {
           return getGuidesRoutes()
+        },
+      },
+      {
+        path: '/sitemaps/pages.xml',
+        exclude: ['**'],
+        routes: () => {
+          return getPagesRoutes()
         },
       },
     ],
