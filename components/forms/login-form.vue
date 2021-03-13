@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <div class="flex items-center justify-between">
+    <div class="justify-between md:flex md:items-center">
       <div class="flex items-center">
         <input
           id="remember_me"
@@ -67,14 +67,14 @@
         </label>
       </div>
 
-      <div class="text-sm">
+      <div class="mt-6 text-sm md:mt-0">
         <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
           Forgot your password?
         </a>
       </div>
     </div>
 
-    <div class="flex items-center space-x-2">
+    <div class="flex items-center justify-center space-x-2">
       <button
         class="flex justify-center w-full px-4 py-2 text-sm font-semibold text-white border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
         type="submit"

@@ -162,14 +162,14 @@ export default {
     '~/plugins/vue-scrollactive',
     // https://github.com/trevoreyre/autocomplete
     '~/plugins/autocomplete-vue',
-    // https://github.com/surmon-china/vue-awesome-swiper
-    '~/plugins/vue-awesome-swiper',
     // https://github.com/hilongjw/vue-lazyload
     '~/plugins/vue-lazyload',
     // load SVG from assets/icons
     '~/plugins/icons-loader',
     // global helper methods
     '~/plugins/helper',
+    // https://github.com/lukaszflorczak/vue-agile
+    '~/plugins/vue-agile',
   ],
 
   // GitHub: https://github.com/nuxt/components
@@ -414,5 +414,7 @@ export default {
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    transpile: ['vue-agile'],
+  },
 }

@@ -77,7 +77,7 @@ export default {
 
 <style lang="postcss" scoped>
 .cover {
-  @apply object-cover object-top h-64 w-full rounded-sm;
+  @apply object-cover object-top h-64 w-full rounded-sm transition-all duration-150;
   /* transition: transform 0.5s ease, filter 0.3s; */
 }
 .cover-shadow {

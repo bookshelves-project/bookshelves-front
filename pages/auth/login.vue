@@ -1,43 +1,32 @@
 <template>
-  <div class="flex min-h-screen mx-auto bg-white dark:bg-gray-900 max-w-7xl">
-    <div
-      class="flex flex-col justify-center flex-1 px-4 py-12 sm:pr-6 lg:flex-none lg:pr-20 xl:pr-24"
-    >
-      <div class="w-full max-w-sm mx-auto lg:w-96">
-        <div>
-          <h2 class="mt-6 text-3xl font-extrabold text-gray-900 font-handlee">
-            Sign in to your account
-          </h2>
-        </div>
-        <div>
-          <div class="relative mt-6">
-            <div class="absolute inset-0 flex items-center" aria-hidden="true">
-              <div class="w-full border-t border-gray-300"></div>
-            </div>
-            <div class="relative flex justify-center text-sm">
-              <nuxt-link
-                :to="{ name: 'register' }"
-                class="px-2 text-gray-500 bg-white dark:bg-gray-900 hover:text-gray-800"
-              >
-                Do you want to register?
-              </nuxt-link>
-            </div>
+  <div class="gap-10 px-8 mx-auto xl:grid xl:grid-cols-3 max-w-7xl">
+    <div class="flex col-span-1">
+      <div class="w-full m-auto mx-auto space-y-6 sm:w-96">
+        <h2
+          class="mt-6 text-3xl font-extrabold text-center text-gray-900 font-handlee"
+        >
+          Sign in to your account
+        </h2>
+        <div class="relative mt-6">
+          <div class="absolute inset-0 flex items-center" aria-hidden="true">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <nuxt-link
+              :to="{ name: 'register' }"
+              class="px-2 text-gray-500 bg-white dark:bg-gray-900 hover:text-gray-800"
+            >
+              Do you want to register?
+            </nuxt-link>
           </div>
         </div>
-
         <div class="mt-8">
-          <div class="mt-6">
-            <login-form />
-          </div>
+          <login-form />
         </div>
       </div>
     </div>
-    <div class="relative flex-1 hidden w-0 lg:block">
-      <img
-        class="absolute inset-0 object-cover object-left w-full h-full"
-        src="/images/bibliophile.svg"
-        alt=""
-      />
+    <div class="flex col-span-2 mt-10 xl:mt-0">
+      <img src="/images/bibliophile.svg" class="m-auto" alt="bibliophile" />
     </div>
   </div>
 </template>

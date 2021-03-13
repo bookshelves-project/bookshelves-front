@@ -8,8 +8,8 @@
 
 - 📀 [**bookshelves-back**](https://gitlab.com/ewilan-riviere/bookshelves-back) : back-end of Bookshelves
 - 🎨 [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front) : front-end of Bookshelves (current repository)
-- 💻 [**bookshelves.git-projects.xyz**](https://bookshelves.git-projects.xyz) : front demo
-- 📚 [**Documentation API**](https://bookshelves.git-projects.xyz/api/documentation)
+- 💻 [**bookshelves.ink**](https://bookshelves.ink) : front demo
+- 📚 [**Documentation API**](https://bookshelves.ink/api/documentation)
 
 ---
 
@@ -50,7 +50,7 @@
 
 ## **I. Setup**
 
-Setup local on <http://localhost:3000> with <https://bookshelves.git-projects.xyz> API
+Setup local on <http://localhost:3000> with <https://bookshelves.ink> API
 
 ```bash
 cp .env.example .env ; cp static/settings-example.json static/settings.json ; yarn
@@ -81,8 +81,8 @@ Update `dotenv`
 ```yml
 PORT=3004
 HOST=127.0.0.1
-BASE_URL=https://bookshelves.git-projects.xyz
-API_URL=https://bookshelves.git-projects.xyz
+BASE_URL=https://bookshelves.ink
+API_URL=https://bookshelves.ink
 ```
 
 Setup build

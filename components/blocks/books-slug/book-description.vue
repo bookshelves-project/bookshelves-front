@@ -17,7 +17,7 @@
         >
           <div v-if="book.authors" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
-              Author
+              Authors
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
               <h2>

@@ -1,7 +1,7 @@
 <template>
   <section
     aria-labelledby="timeline-title"
-    class="xl:col-start-2 xl:col-span-1"
+    class="xl:col-start-2 xl:col-span-1 book-serie"
   >
     <div class="px-4 py-5 shadow sm:rounded-lg sm:px-6 dark:bg-gray-800">
       <h2 id="timeline-title" class="text-lg font-medium text-gray-900">
@@ -12,70 +12,153 @@
       </p>
 
       <!-- Activity Feed -->
-      <div>
-        <div v-cloak v-swiper:mySwiper="swiperOption" class="max-w-2xl">
-          <div class="swiper-wrapper">
-            <div
-              v-for="bookSerie in serie"
-              :key="bookSerie.id"
-              class="relative swiper-slide"
-            >
-              <entity-card
-                :data="bookSerie"
-                :cover="bookSerie.image"
-                :image-alt="bookSerie.tilte"
-                :route="{
-                  name: 'books-slug',
-                  params: {
-                    author: bookSerie.author,
-                    slug: bookSerie.slug,
-                  },
-                }"
-                class="mx-2"
-              >
-                <template #title>
-                  <div>
-                    <div
-                      :class="{
-                        'absolute top-0 left-0 right-0 bottom-14 rounded-sm bg-purple-200 bg-opacity-50':
-                          bookSerie.serie.number === book.serie.number,
-                      }"
-                    ></div>
-                    {{ $overflow(bookSerie.title) }}
-                  </div>
-                </template>
-                <template #hover>
-                  <div>
-                    <div class="font-semibold">Author &#8212;</div>
-                    <div class="italic">
-                      {{ bookSerie.authors[0].name }}
-                    </div>
-                  </div>
-                  <div v-if="bookSerie.serie" class="mt-5">
-                    <div class="font-semibold">Serie &#8212;</div>
-                    <div class="italic break-all">
-                      {{ bookSerie.serie.title }}
-                    </div>
-                    <div>Vol. {{ bookSerie.serie.number }}</div>
-                  </div>
-                </template>
-                <template #title-responsive>
-                  <div class="font-semibold">
+      <!-- <agile :initial-slide="3">
+          <img
+            v-for="bookSerie in serie"
+            :key="bookSerie.id"
+            :src="bookSerie.image"
+            class="slide"
+          />
+          <template slot="prevButton"
+            ><i class="fas fa-chevron-left"></i
+          ></template>
+          <template slot="nextButton"
+            ><i class="fas fa-chevron-right"></i
+          ></template>
+        </agile> -->
+      <div class="mt-5">
+        <agile
+          ref="main"
+          class="main"
+          :options="options1"
+          :as-nav-for="asNavFor1"
+        >
+          <div
+            v-for="(bookSerie, index) in serie"
+            :key="index"
+            class="slide"
+            :class="`slide--${index}`"
+          >
+            <div class="w-full h-full text-black lg:flex">
+              <img
+                :src="bookSerie.image"
+                class="object-cover w-16 h-16 rounded-sm rounded-full shadow lg:h-full lg:w-64 lg:rounded-none"
+              />
+              <div class="mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
+                <div>
+                  <span
+                    class="text-sm font-medium text-gray-500 dark:text-gray-500"
+                    >Title
+                  </span>
+                  <h3 class="font-semibold">
                     {{ bookSerie.title }}
+                  </h3>
+                </div>
+                <div>
+                  <div>
+                    <span
+                      class="text-sm font-medium text-gray-500 dark:text-gray-500"
+                      >Authors
+                    </span>
+                    <h3 class="font-semibold">
+                      <span
+                        v-for="(author, authorId) in bookSerie.authors"
+                        :key="authorId"
+                        class="mr-1"
+                      >
+                        <nuxt-link
+                          :to="{
+                            name: 'authors-slug',
+                            params: { slug: bookSerie.author },
+                          }"
+                          class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
+                          >{{ author.name }}</nuxt-link
+                        >
+                        <span
+                          v-if="
+                            book.authors.length > 1 &&
+                            authorId !== book.authors.length - 1
+                          "
+                          >&</span
+                        >
+                      </span>
+                    </h3>
                   </div>
-                  <div class="italic">
-                    {{ bookSerie.authors[0].name }}
+                </div>
+                <div v-if="book.serie">
+                  <span
+                    class="text-sm font-medium text-gray-500 dark:text-gray-500"
+                    >Serie
+                  </span>
+                  <h2 class="font-semibold">
+                    <nuxt-link
+                      :to="{
+                        name: 'series-slug',
+                        params: {
+                          author: book.serie.author,
+                          slug: book.serie.slug,
+                        },
+                      }"
+                      class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
+                      >{{ book.serie.title }}</nuxt-link
+                    >
+                    (vol. {{ bookSerie.serie.number
+                    }}<span v-if="bookSerie.serie.number === book.serie.number"
+                      >, current</span
+                    >)
+                  </h2>
+                </div>
+                <div>
+                  <span
+                    class="text-sm font-medium text-gray-500 dark:text-gray-500"
+                    >Language
+                  </span>
+                  <div class="text-sm text-gray-900 dark:text-gray-100">
+                    <img
+                      :src="bookSerie.language.flag"
+                      :alt="bookSerie.language.slug"
+                    />
                   </div>
-                  <div v-if="bookSerie.serie">
-                    {{ book.serie.title }}, vol.
-                    {{ bookSerie.serie.number }}
-                  </div>
-                </template>
-              </entity-card>
+                </div>
+                <nuxt-link
+                  :to="{
+                    name: 'series-slug',
+                    params: {
+                      author: bookSerie.author,
+                      slug: bookSerie.slug,
+                    },
+                  }"
+                  class="inline-flex items-center justify-center px-4 py-2 mx-auto text-sm font-medium font-semibold text-white transition-colors duration-100 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 md:w-max"
+                >
+                  <icon-bookmark class="w-6 h-6" />
+                  <span class="mx-1"> {{ bookSerie.title }} </span>
+                </nuxt-link>
+              </div>
             </div>
           </div>
-          <div class="swiper-pagination"></div>
-        </div>
+          <template slot="prevButton">
+            <icon-chevron-left class="w-8 h-8 m-auto text-gray-900" />
+          </template>
+          <template slot="nextButton">
+            <icon-chevron-right class="w-8 h-8 m-auto text-gray-900" />
+          </template>
+        </agile>
+        <agile
+          ref="thumbnails"
+          class="thumbnails"
+          :options="options2"
+          :as-nav-for="asNavFor2"
+        >
+          <div
+            v-for="(bookSerie, index) in serie"
+            :key="index"
+            class="slide slide--thumbniail"
+            :class="`slide--${index}`"
+            @click="$refs.thumbnails.goTo(index)"
+          >
+            <img :src="bookSerie.image" />
+          </div>
+        </agile>
       </div>
       <div class="flex flex-col mt-6 justify-stretch">
         <nuxt-link
@@ -86,7 +169,7 @@
           class="inline-flex items-center justify-center px-4 py-2 mx-auto text-sm font-medium font-semibold text-white transition-colors duration-100 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 md:w-max"
         >
           <icon-collection />
-          <span class="mx-1"> See series </span>
+          <span class="mx-1"> {{ book.serie.title }} </span>
         </nuxt-link>
       </div>
     </div>
@@ -94,11 +177,18 @@
 </template>
 
 <script>
-import entityCard from '../entity-card.vue'
 import IconCollection from '~/components/icons/icon-collection.vue'
+import IconChevronLeft from '~/components/icons/icon-chevron-left.vue'
+import IconChevronRight from '~/components/icons/icon-chevron-right.vue'
+import IconBookmark from '~/components/icons/icon-bookmark.vue'
 export default {
   name: 'BookSerie',
-  components: { entityCard, IconCollection },
+  components: {
+    IconCollection,
+    IconChevronLeft,
+    IconChevronRight,
+    IconBookmark,
+  },
   props: {
     serie: {
       type: Array,
@@ -111,67 +201,126 @@ export default {
   },
   data() {
     return {
-      banners: ['/bookshelves.png', '/bookshelves.png', '/bookshelves.png'],
-      swiperOption: {
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        slidesPerView: 1,
-        slidesPerGroup: 1,
-        spaceBetween: 10,
-        breakpoints: {
-          '@0.75': {
-            slidesPerView: 2,
-            slidesPerGroup: 2,
-            spaceBetween: 20,
+      asNavFor1: [],
+      asNavFor2: [],
+      options1: {
+        dots: false,
+        fade: true,
+        navButtons: true,
+        infinite: false,
+      },
+
+      options2: {
+        autoplay: false,
+        centerMode: true,
+        dots: true,
+        navButtons: false,
+        infinite: true,
+        slidesToShow: 3,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 5,
+            },
           },
-          '@1.00': {
-            slidesPerView: 2,
-            slidesPerGroup: 2,
-            spaceBetween: 40,
+
+          {
+            breakpoint: 900,
+            settings: {
+              navButtons: false,
+            },
           },
-          '@1.25': {
-            slidesPerView: 3,
-            slidesPerGroup: 3,
-            spaceBetween: 40,
-          },
-          '@1.75': {
-            slidesPerView: 3,
-            slidesPerGroup: 3,
-            spaceBetween: 50,
-          },
-        },
-        lazy: {
-          loadPrevNext: true,
-        },
-        flipEffect: {
-          slideShadows: false,
-        },
+        ],
       },
     }
   },
   mounted() {
-    // console.log('Current Swiper instance object', this.mySwiper)
+    this.asNavFor1.push(this.$refs.thumbnails)
+    this.asNavFor2.push(this.$refs.main)
   },
 }
 </script>
 
-<style lang="postcss" scoped>
-.swiper-container {
-  @apply pb-10 pt-8 !important;
-  cursor: grab;
+<style lang="postcss">
+.slide--thumbniail {
+  transition: opacity 0.3s !important;
 }
+.book-serie {
+  & .thumbnails {
+    @apply mt-5;
+    & .agile__nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    & .agile__nav-button:hover {
+      color: #888;
+    }
+    & .agile__nav-button--prev {
+      left: -45px;
+    }
+    & .agile__nav-button--next {
+      right: -45px;
+    }
+    & .slide--thumbniail {
+      cursor: pointer;
+      height: 100px;
+      padding: 0 5px;
+      & :hover {
+        opacity: 0.75;
+      }
+    }
+    & .agile__actions {
+      @apply w-full mt-6;
+    }
+  }
+  & .agile__nav-button {
+    background: transparent;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 24px;
+    transition-duration: 0.3s;
+  }
+  & .agile__dots {
+    @apply w-full flex-wrap justify-center;
+  }
+  & .agile__dot {
+    & button {
+      @apply border mx-2 my-1 border-solid border-primary-600 rounded-full bg-transparent cursor-pointer block h-3 w-3 duration-300;
+    }
+  }
+  & .agile__dot--current button,
+  & .agile__dot:hover button {
+    @apply bg-primary-600;
+  }
 
-.swiper-pagination {
-  @apply bottom-2.5;
-}
-
-/deep/ .swiper-pagination-bullet {
-  @apply bg-black bg-opacity-50 !important;
-}
-
-/deep/ .swiper-pagination-bullet-active {
-  @apply bg-black bg-opacity-25 !important;
+  & .main {
+    & .agile__actions {
+      @apply w-full;
+    }
+    & .agile__nav-button {
+      @apply h-16 w-16 duration-300 bg-transparent border-none cursor-pointer text-2xl relative lg:bottom-0 lg:absolute;
+    }
+    & .slide {
+      @apply h-96;
+      align-items: center;
+      box-sizing: border-box;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+    }
+    & .agile__nav-button:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+      opacity: 1;
+    }
+    & .agile__nav-button--prev {
+      @apply right-0 lg:right-20;
+    }
+    & .agile__nav-button--next {
+      right: 0;
+    }
+  }
 }
 </style>

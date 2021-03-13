@@ -1,54 +1,52 @@
 <template>
-  <div class="mx-auto max-w-7xl">
-    <div class="justify-between w-full pr-20 xl:flex">
-      <div class="relative hidden xl:block">
-        <img class="object-cover" src="/images/bookmark.svg" alt="Bookmark" />
-        <alert-register
-          class="absolute transform -translate-x-1/2 -translate-y-1/2 shadow top-1/2 left-1/2"
-        />
-      </div>
-      <div class="mx-auto my-auto w-96">
-        <div>
-          <h2 class="mt-6 text-3xl font-extrabold text-gray-900 font-handlee">
-            Create your account
-          </h2>
+  <div class="gap-10 px-8 mx-auto xl:grid xl:grid-cols-3 max-w-7xl">
+    <div class="relative hidden col-span-2 xl:flex">
+      <img src="/images/bookmark.svg" class="m-auto" alt="bookmark" />
+    </div>
+    <div class="flex col-span-1">
+      <div class="w-full mx-auto space-y-6 sm:w-96">
+        <h2
+          class="mt-6 text-3xl font-extrabold text-center text-gray-900 font-handlee"
+        >
+          Create your account
+        </h2>
+        <p
+          class="p-5 mt-5 text-yellow-600 bg-yellow-200 border-2 border-yellow-300 rounded-md word-wraping"
+        >
+          Bookshelves is in development, if you create an account it will
+          probably be deleted in a few days. Features once logged in are quite
+          limited and are only useful for testing purposes. Come back later for
+          the final version.
+        </p>
+        <div class="relative mt-6">
+          <div class="absolute inset-0 flex items-center" aria-hidden="true">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <nuxt-link
+              :to="{ name: 'login' }"
+              class="px-2 text-gray-500 bg-white dark:bg-gray-900 hover:text-gray-800"
+            >
+              Do you have an account?
+            </nuxt-link>
+          </div>
         </div>
-
         <div class="mt-8">
-          <div>
-            <div class="relative mt-6">
-              <div
-                class="absolute inset-0 flex items-center"
-                aria-hidden="true"
-              >
-                <div class="w-full border-t border-gray-300"></div>
-              </div>
-              <div class="relative flex justify-center text-sm">
-                <nuxt-link
-                  :to="{ name: 'login' }"
-                  class="px-2 text-gray-500 bg-white dark:bg-gray-900 hover:text-gray-800"
-                >
-                  Do you have an account?
-                </nuxt-link>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6">
-            <register-form />
-          </div>
+          <register-form />
         </div>
       </div>
+    </div>
+    <div class="relative flex col-span-2 mt-10 xl:hidden">
+      <img src="/images/bookmark.svg" class="m-auto" alt="bookmark" />
     </div>
   </div>
 </template>
 
 <script>
-import AlertRegister from '~/components/blocks/alert-register.vue'
 import registerForm from '~/components/forms/register-form.vue'
 export default {
   name: 'PageRegister',
-  components: { registerForm, AlertRegister },
+  components: { registerForm },
   auth: 'guest',
   head() {
     const title = 'Sign up'
