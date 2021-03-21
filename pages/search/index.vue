@@ -54,7 +54,7 @@
       <div
         v-if="search && search.length > 0"
         :key="componentKey"
-        class="display-grid"
+        class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7"
       >
         <entity-card
           v-for="book in search"

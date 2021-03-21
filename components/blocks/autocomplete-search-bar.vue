@@ -172,9 +172,9 @@ export default {
 </script>
 
 <style lang="postcss">
-.searchbar-navbar {
+/* .searchbar-navbar {
   & input {
     @apply w-40 sm:w-48 md:w-64 ml-auto transition-all duration-300 focus:w-full !important;
   }
-}
+} */
 </style>

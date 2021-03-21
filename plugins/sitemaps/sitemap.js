@@ -11,7 +11,7 @@ export const getRoutes = () => {
       {
         url: '',
         changefreq: 'weekly',
-        priority: 0.6,
+        priority: 1,
       },
       {
         url: 'books',
@@ -21,17 +21,17 @@ export const getRoutes = () => {
       {
         url: 'series',
         changefreq: 'weekly',
-        priority: 0.8,
+        priority: 1,
       },
       {
         url: 'authors',
         changefreq: 'weekly',
-        priority: 0.8,
+        priority: 0.9,
       },
       {
         url: 'search',
         changefreq: 'weekly',
-        priority: 0.5,
+        priority: 0.8,
       },
       {
         url: 'guides',
@@ -62,7 +62,7 @@ export const getBooksRoutes = () => {
       const route = {
         url: `/books/${book.author}/${book.slug}`,
         lastmodISO: book.meta.updatedAt,
-        priority: 1,
+        priority: 0.6,
       }
       routes.push(route)
     }
@@ -81,7 +81,7 @@ export const getSeriesRoutes = () => {
       const route = {
         url: `/series/${serie.author}/${serie.slug}`,
         // lastmodISO: serie.meta.updatedAt,
-        priority: 0.9,
+        priority: 0.6,
       }
       routes.push(route)
     }
@@ -121,7 +121,7 @@ export const getGuidesRoutes = () => {
       const route = {
         url: `/guides/${guide.slug}`,
         lastmodISO: guide.created_at,
-        priority: 0.8,
+        priority: 0.6,
       }
       routes.push(route)
     }
@@ -141,7 +141,7 @@ export const getPagesRoutes = () => {
       const route = {
         url: `/pages/${page.slug}`,
         lastmodISO: page.created_at,
-        priority: 0.8,
+        priority: 0.6,
       }
       routes.push(route)
     }

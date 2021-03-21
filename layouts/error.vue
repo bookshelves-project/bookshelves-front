@@ -3,14 +3,17 @@
     <div
       class="absolute text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
     >
-      <h1 class="text-3xl">
+      <h1 class="text-3xl font-semibold">
         An error occurred ({{ `code ${error.statusCode}` }})
       </h1>
-      <div class="mt-2">
-        <nuxt-link
-          to="/"
-          class="p-2 transition-colors duration-100 rounded-md hover:bg-gray-50"
-          >Go to home page</nuxt-link
+      <p class="max-w-xl mt-5 prose-xl">
+        We are sorry but something went wrong. If this is something that has
+        happened too often on certain features, please contact us.
+      </p>
+      <div class="flex justify-between mt-5">
+        <nuxt-link exact to="/" class="error-link">Back to home page</nuxt-link>
+        <nuxt-link exact :to="{ name: 'contact' }" class="error-link"
+          >Contact us</nuxt-link
         >
       </div>
     </div>
@@ -27,3 +30,9 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss" scoped>
+.error-link {
+  @apply transition-colors duration-100 border-b border-gray-600 hover:bg-gray-50 text-black font-semibold;
+}
+</style>

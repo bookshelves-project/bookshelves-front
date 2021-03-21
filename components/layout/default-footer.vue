@@ -111,7 +111,7 @@
                 v-html="license.svg"
               ></span>
               <span
-                class="ml-1 text-gray-400 transition-colors duration-300 dark:group-hover:text-gray-100"
+                class="ml-1 text-gray-400 transition-colors duration-300 group-hover:text-gray-700 dark:group-hover:text-gray-100"
               >
                 {{ date(2020) }}
               </span>
@@ -177,7 +177,7 @@ export default {
   components: { backToTop, ColorSwitcherToggle },
   data() {
     return {
-      team: settings.author,
+      team: settings.metadata.author,
       socialIcons: [
         // {
         //   icon: 'gitlab',

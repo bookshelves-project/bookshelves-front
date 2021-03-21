@@ -11,9 +11,10 @@
     },
     "robot": {
         "disallow": [
-            "'/sign-in'",
-            "'/dashboard'",
-            "'/admin'"
+            "/sign-in",
+            "/sign-up",
+            "/dashboard",
+            "/admin"
         ]
     }
 }

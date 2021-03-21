@@ -1,17 +1,21 @@
 <template>
-  <div>
-    <ul class="flex border rounded dark:border-gray-800">
-      <li class="item">
-        <nuxt-link
-          :tag="getTag(1)"
-          :to="linkGen(1)"
-          active-class="pagination-active"
-          exact-active-class="pagination-exact-active"
-        >
-          «
-        </nuxt-link>
-      </li>
-      <li class="item">
+  <nav
+    class="flex items-center justify-between px-4 border-t border-gray-200 sm:px-0"
+  >
+    <div class="flex flex-1 w-0 -mt-px">
+      <nuxt-link
+        :tag="getTag(1)"
+        :to="linkGen(1)"
+        active-class="pagination-active"
+        exact-active-class="pagination-exact-active"
+        class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+      >
+        <icon-arrow-narrow-left class="w-5 h-5 mr-3 text-gray-400" />
+        First
+      </nuxt-link>
+    </div>
+    <div class="hidden md:-mt-px md:flex">
+      <div class="item">
         <nuxt-link
           :tag="getTag(1)"
           :to="linkGen(currentPage - 1)"
@@ -20,11 +24,11 @@
         >
           ‹
         </nuxt-link>
-      </li>
-      <li v-if="showFirstDots" class="item">
+      </div>
+      <div v-if="showFirstDots" class="item">
         <span>...</span>
-      </li>
-      <li
+      </div>
+      <div
         v-for="pageNum in numberOfLinks"
         :key="pageNum + startNumber - 1"
         :class="{ active: isActive(pageNum + startNumber - 1) }"
@@ -39,11 +43,11 @@
         >
           {{ pageNum + startNumber - 1 }}
         </nuxt-link>
-      </li>
-      <li v-if="showLastDots" class="item">
+      </div>
+      <div v-if="showLastDots" class="item">
         <span>...</span>
-      </li>
-      <li class="item">
+      </div>
+      <div class="item">
         <nuxt-link
           :tag="getTag(pages)"
           :to="linkGen(currentPage + 1)"
@@ -52,23 +56,28 @@
         >
           ›
         </nuxt-link>
-      </li>
-      <li class="item">
-        <nuxt-link
-          :tag="getTag(pages)"
-          :to="linkGen(pages)"
-          active-class="pagination-active"
-          exact-active-class="pagination-exact-active"
-        >
-          »
-        </nuxt-link>
-      </li>
-    </ul>
-  </div>
+      </div>
+    </div>
+    <div class="flex justify-end flex-1 w-0 -mt-px item">
+      <nuxt-link
+        :tag="getTag(pages)"
+        :to="linkGen(pages)"
+        active-class="pagination-active"
+        exact-active-class="pagination-exact-active"
+        class="inline-flex items-center pt-4 pl-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300"
+      >
+        Last
+        <icon-arrow-narrow-right class="w-5 h-5 ml-3 text-gray-400" />
+      </nuxt-link>
+    </div>
+  </nav>
 </template>
 
 <script>
+import IconArrowNarrowLeft from '../icons/icon-arrow-narrow-left.vue'
+import iconArrowNarrowRight from '../icons/icon-arrow-narrow-right.vue'
 export default {
+  components: { iconArrowNarrowRight, IconArrowNarrowLeft },
   props: {
     pages: {
       type: Number,
@@ -172,38 +181,35 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-a,
-span {
-  @apply dark:border-gray-800 !important;
-}
 .item {
   & a,
   & span {
-    @apply block w-10 text-center border-r py-2;
+    /* @apply block w-10 text-center border-r py-2; */
+    @apply inline-flex items-center px-4 pt-4 text-sm font-medium text-gray-500 border-t-2 hover:text-gray-700 hover:border-gray-300 border-transparent dark:text-gray-100;
   }
 
   & a:hover {
-    @apply text-white bg-gray-500;
+    /* @apply text-white bg-gray-500; */
   }
 
   &:first-child {
     & a,
     & span {
-      @apply rounded-l;
+      /* @apply rounded-l; */
     }
   }
 
   &:last-child {
     & a,
     & span {
-      @apply border-r-0 rounded-r;
+      /* @apply border-r-0 rounded-r; */
     }
   }
 
   &.active {
     & a,
     & span {
-      @apply text-white bg-purple-600;
+      @apply text-indigo-600 border-indigo-500 dark:text-indigo-300 dark:border-indigo-300;
     }
   }
 }

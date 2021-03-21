@@ -128,7 +128,7 @@
                       slug: bookSerie.slug,
                     },
                   }"
-                  class="inline-flex items-center justify-center px-4 py-2 mx-auto text-sm font-medium font-semibold text-white transition-colors duration-100 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 md:w-max"
+                  class="inline-flex items-center justify-center px-4 py-2 mx-auto mt-16 text-sm font-medium font-semibold text-white transition-colors duration-100 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 md:w-max"
                 >
                   <icon-bookmark class="w-6 h-6" />
                   <span class="mx-1"> {{ bookSerie.title }} </span>
@@ -207,7 +207,7 @@ export default {
         dots: false,
         fade: true,
         navButtons: true,
-        infinite: false,
+        infinite: true,
       },
 
       options2: {
