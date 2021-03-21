@@ -47,6 +47,8 @@
     - <https://image.nuxtjs.org>
     - <https://github.com/juliomrqz/nuxt-optimized-images>
 - review dimensions for open graph
+- grid: add aspect ratio for better design
+  - `aspect-w-3 aspect-h2 sm:aspect-w-1 sm:aspect-h-1 ...`
 
 ## **I. Setup**
 
