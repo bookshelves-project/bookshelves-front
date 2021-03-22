@@ -87,7 +87,7 @@ export default {
       {
         hid: 'og:image:height',
         property: 'og:image:height',
-        content: '1200',
+        content: '630',
       },
       {
         hid: 'og:locale',
@@ -118,7 +118,7 @@ export default {
       {
         hid: 'twitter:image:src',
         property: 'twitter:image:src',
-        content: `${process.env.BASE_URL}/${settings.metadata.defaultOpenGraph}`,
+        content: `${process.env.BASE_URL}/open-graph.jpg`,
       },
       {
         hid: 'twitter:image:width',
@@ -128,7 +128,7 @@ export default {
       {
         hid: 'twitter:image:height',
         name: 'twitter:image:height',
-        content: '1200',
+        content: '630',
       },
       {
         hid: 'twitter:image:alt',

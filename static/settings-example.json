@@ -5,9 +5,8 @@
         "titleTemplate": "%s · Bookshelves",
         "locale": "en-US",
         "author": "Bookshelves Team",
-        "description": "For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you. Get eBooks (EPUB format), add it to your eReader and read!",
-        "color": "#6C63FF",
-        "defaultOpenGraph": "open-graph.png"
+        "description": "For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you.",
+        "color": "#6C63FF"
     },
     "robot": {
         "disallow": [
