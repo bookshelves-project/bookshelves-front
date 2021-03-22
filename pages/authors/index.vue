@@ -99,7 +99,7 @@ export default {
   head() {
     const title = 'Authors on Bookshelves'
     const description = 'Find your favorite author among those.'
-    const image = `${process.env.BASE_URL}/open-graph.png`
+    const image = `${process.env.BASE_URL}/open-graph.jpg`
     const url = `${process.env.BASE_URL}/authors`
     return {
       title,

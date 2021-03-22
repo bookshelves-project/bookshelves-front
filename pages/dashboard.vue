@@ -124,7 +124,7 @@ export default {
   head() {
     const title = 'Dashboard'
     const description = 'An overview of all your activities on Bookshelves.'
-    const image = `${process.env.BASE_URL}/open-graph.png`
+    const image = `${process.env.BASE_URL}/open-graph.jpg`
     const url = `${process.env.BASE_URL}/dashboard`
     return {
       title,

@@ -135,7 +135,7 @@ export default {
   head() {
     const title = 'Guides on Bookshelves'
     const description = 'How to use your eReader or softwares to manage EPUB.'
-    const image = `${process.env.BASE_URL}/open-graph.png`
+    const image = `${process.env.BASE_URL}/open-graph.jpg`
     const url = `${process.env.BASE_URL}/guides`
     return {
       title,

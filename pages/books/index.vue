@@ -145,7 +145,7 @@ export default {
   head() {
     const title = 'Books on Bookshelves'
     const description = 'All books available on Bookshelves.'
-    const image = `${process.env.BASE_URL}/open-graph.png`
+    const image = `${process.env.BASE_URL}/open-graph.jpg`
     const url = `${process.env.BASE_URL}/books`
     return {
       title,

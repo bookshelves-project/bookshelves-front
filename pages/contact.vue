@@ -99,7 +99,7 @@ export default {
   head() {
     const title = 'Contact us'
     const description = 'Leave us a short note'
-    const image = `${process.env.BASE_URL}/open-graph.png`
+    const image = `${process.env.BASE_URL}/open-graph.jpg`
     const url = `${process.env.BASE_URL}/contact`
     return {
       title,

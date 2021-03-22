@@ -1,7 +1,7 @@
 <template>
   <div class="gap-10 px-8 mx-auto xl:grid xl:grid-cols-3 max-w-7xl">
     <div class="flex col-span-1">
-      <div class="w-full m-auto mx-auto space-y-6 sm:w-96">
+      <div class="w-full m-auto space-y-6 sm:w-96">
         <h2
           class="mt-6 text-3xl font-extrabold text-center text-gray-900 font-handlee"
         >
@@ -41,7 +41,7 @@ export default {
     const title = 'Sign in'
     const description =
       'Sign in to get access to account features with favorite list, comments on eBooks...'
-    const image = `${process.env.BASE_URL}/open-graph.png`
+    const image = `${process.env.BASE_URL}/open-graph.jpg`
     const url = `${process.env.BASE_URL}/sign-in`
     return {
       title,

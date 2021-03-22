@@ -124,7 +124,7 @@ export default {
   head() {
     const title = 'Series on Bookshelves'
     const description = 'Discover exciting and breathtaking series.'
-    const image = `${process.env.BASE_URL}/open-graph.png`
+    const image = `${process.env.BASE_URL}/open-graph.jpg`
     const url = `${process.env.BASE_URL}/series`
     return {
       title,

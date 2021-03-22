@@ -4,7 +4,7 @@
       <img src="/images/bookmark.svg" class="m-auto" alt="bookmark" />
     </div>
     <div class="flex col-span-1">
-      <div class="w-full mx-auto space-y-6 sm:w-96">
+      <div class="w-full m-auto space-y-6 sm:w-96">
         <h2
           class="mt-6 text-3xl font-extrabold text-center text-gray-900 font-handlee"
         >
@@ -51,7 +51,7 @@ export default {
   head() {
     const title = 'Sign up'
     const description = 'Create an account on Bookshelves.'
-    const image = `${process.env.BASE_URL}/open-graph.png`
+    const image = `${process.env.BASE_URL}/open-graph.jpg`
     const url = `${process.env.BASE_URL}/sign-up`
     return {
       title,

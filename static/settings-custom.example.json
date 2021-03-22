@@ -1,5 +1,6 @@
 {
     "metadata": {
+        "author": "Bookshelves Team",
         "twitter": {
             "creator": "@ewilanriviere",
             "site": "@bookshelves_ink"
@@ -8,6 +9,7 @@
     "robot": {
         "disallow": [
             "/sign-in",
+            "/sign-up",
             "/dashboard",
             "/admin"
         ]

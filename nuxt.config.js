@@ -1,4 +1,5 @@
 import settings from './static/settings.json'
+import settingsCustom from './static/settings-custom.json'
 import {
   getRoutes,
   getBooksRoutes,
@@ -31,7 +32,7 @@ export default {
       {
         hid: 'author',
         name: 'author',
-        content: settings.metadata.author,
+        content: settingsCustom.metadata.author,
       },
       {
         hid: 'google-site-verification',
@@ -89,12 +90,12 @@ export default {
       {
         hid: 'og:image:width',
         property: 'og:image:width',
-        content: '1200',
+        content: 1200,
       },
       {
         hid: 'og:image:height',
         property: 'og:image:height',
-        content: '600',
+        content: 600,
       },
       {
         hid: 'og:locale',
@@ -120,12 +121,12 @@ export default {
       {
         hid: 'twitter:creator',
         name: 'twitter:creator',
-        content: settings.metadata.twitter.creator,
+        content: settingsCustom.metadata.twitter.creator,
       },
       {
         hid: 'twitter:creator',
         name: 'twitter:creator',
-        content: settings.metadata.author,
+        content: settingsCustom.metadata.author,
       },
       {
         hid: 'twitter:description',
@@ -140,12 +141,12 @@ export default {
       {
         hid: 'twitter:image:width',
         name: 'twitter:image:width',
-        content: '1200',
+        content: 1200,
       },
       {
         hid: 'twitter:image:height',
         name: 'twitter:image:height',
-        content: '600',
+        content: 600,
       },
       {
         hid: 'twitter:image:alt',
@@ -298,7 +299,7 @@ export default {
   pwa: {
     meta: {
       name: settings.metadata.name,
-      author: settings.metadata.author,
+      author: settingsCustom.metadata.author,
       description: settings.metadata.description,
       theme_color: settings.metadata.color,
     },
@@ -344,7 +345,7 @@ export default {
     },
   },
   robots: {
-    Disallow: settings.robot.disallow,
+    Disallow: settingsCustom.robot.disallow,
     Sitemap: `${process.env.BASE_URL}/sitemap.xml`,
   },
   sitemap: {

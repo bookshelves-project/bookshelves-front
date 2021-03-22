@@ -159,7 +159,7 @@ export default {
       this.$route.query.terms ? this.$route.query.terms : ''
     }`
     const description = 'Find all books you want to read.'
-    const image = `${process.env.BASE_URL}/open-graph.png`
+    const image = `${process.env.BASE_URL}/open-graph.jpg`
     return {
       title,
       meta: [
