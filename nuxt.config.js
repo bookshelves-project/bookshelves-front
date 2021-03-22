@@ -116,7 +116,7 @@ export default {
       {
         hid: 'twitter:site',
         name: 'twitter:site',
-        content: settings.metadata.twitter.site,
+        content: settingsCustom.metadata.twitter.site,
       },
       {
         hid: 'twitter:creator',
