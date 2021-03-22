@@ -32,7 +32,8 @@ export default {
       {
         hid: 'author',
         name: 'author',
-        content: settingsCustom.metadata.author,
+        content:
+          settingsCustom.metadata.author || settings.custom.metadata.author,
       },
       {
         hid: 'google-site-verification',
@@ -116,17 +117,23 @@ export default {
       {
         hid: 'twitter:site',
         name: 'twitter:site',
-        content: settingsCustom.metadata.twitter.site,
+        content:
+          settingsCustom.metadata.twitter.site ||
+          settings.custom.metadata.twitter.site,
       },
       {
         hid: 'twitter:creator',
         name: 'twitter:creator',
-        content: settingsCustom.metadata.twitter.creator,
+        content:
+          settingsCustom.metadata.twitter.creator ||
+          settings.custom.metadata.twitter.creator,
       },
       {
         hid: 'twitter:creator',
         name: 'twitter:creator',
-        content: settingsCustom.metadata.author,
+        content:
+          settingsCustom.metadata.author ||
+          settings.custom.metadata.twitter.author,
       },
       {
         hid: 'twitter:description',
@@ -299,7 +306,7 @@ export default {
   pwa: {
     meta: {
       name: settings.metadata.name,
-      author: settingsCustom.metadata.author,
+      author: settingsCustom.metadata.author || settings.custom.metadata.author,
       description: settings.metadata.description,
       theme_color: settings.metadata.color,
     },
@@ -345,7 +352,7 @@ export default {
     },
   },
   robots: {
-    Disallow: settingsCustom.robot.disallow,
+    Disallow: settingsCustom.robot.disallow || settings.custom.robot.disallow,
     Sitemap: `${process.env.BASE_URL}/sitemap.xml`,
   },
   sitemap: {
