@@ -221,6 +221,11 @@ export default {
           property: 'og:url',
           content: url,
         },
+        {
+          hid: 'book:author',
+          property: 'books:author',
+          content: authors,
+        },
         // Twitter Card
         {
           hid: 'twitter:title',
@@ -248,5 +253,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped></style>

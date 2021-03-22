@@ -82,6 +82,8 @@ export default {
     const description = this.book.summary
     const image = this.book.imageStandard
     const isbn = this.book.identifier.isbn13 || this.book.identifier.isbn
+    const date = this.book.publishDate
+    const tags = this.book.tags
     const url = `${process.env.BASE_URL}/books/${this.book.slug}`
     return {
       title,
@@ -115,9 +117,19 @@ export default {
           content: isbn,
         },
         {
-          hid: 'books:author',
+          hid: 'book:author',
           property: 'books:author',
           content: authors,
+        },
+        {
+          hid: 'book:release_date',
+          property: 'books:release_date',
+          content: date,
+        },
+        {
+          hid: 'book:tag',
+          property: 'books:tag',
+          content: tags,
         },
         {
           hid: 'og:url',
@@ -163,5 +175,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped></style>

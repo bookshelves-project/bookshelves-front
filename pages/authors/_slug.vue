@@ -126,6 +126,7 @@ export default {
     const title = `${this.author.name} - Authors`
     const description = `${this.author.name} author on Bookshelves with ${this.author.books_number} books available.`
     const image = this.author.imageStandard
+    const author = this.author.name
     const url = `${process.env.BASE_URL}/authors/${this.author.slug}`
     return {
       title,
@@ -154,9 +155,9 @@ export default {
         },
         // og author
         {
-          hid: 'book:type',
-          property: 'book:type',
-          content: 'books.author',
+          hid: 'book:author',
+          property: 'book:author',
+          content: author,
         },
         {
           hid: 'og:url',
@@ -190,5 +191,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped></style>
