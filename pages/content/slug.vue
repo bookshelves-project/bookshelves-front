@@ -99,6 +99,8 @@ export default {
   head() {
     const title = `${this.document.title}`
     const description = this.document.description
+    const date = this.document.createdAt
+    const author = 'Bookshelves'
     const image = `${process.env.BASE_URL}/images/no-cover.webp`
     const url = `${process.env.BASE_URL}/pages/${this.document.slug}`
     return {
@@ -120,6 +122,16 @@ export default {
           hid: 'og:image',
           property: 'og:image',
           content: image,
+        },
+        {
+          hid: 'article:published_time',
+          property: 'article:published_time',
+          content: date,
+        },
+        {
+          hid: 'article:author',
+          property: 'article:author',
+          content: author,
         },
         {
           hid: 'og:url',

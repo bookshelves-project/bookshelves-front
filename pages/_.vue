@@ -72,7 +72,10 @@ export default {
   head() {
     const title = `${this.document.title} in ${this.document.category} - Guides`
     const description = this.document.description
+    const date = this.document.createdAt
+    const author = 'Bookshelves'
     const image = `${process.env.BASE_URL}/images/no-cover.webp`
+    const url = `${process.env.BASE_URL}/pages/${this.document.slug}`
     return {
       title,
       meta: [
@@ -93,11 +96,21 @@ export default {
           property: 'og:image',
           content: image,
         },
-        // {
-        //   hid: 'og:url',
-        //   property: 'og:url',
-        //   content: url,
-        // },
+        {
+          hid: 'article:published_time',
+          property: 'article:published_time',
+          content: date,
+        },
+        {
+          hid: 'article:author',
+          property: 'article:author',
+          content: author,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: url,
+        },
         // Twitter Card
         {
           hid: 'twitter:title',

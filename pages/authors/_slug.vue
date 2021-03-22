@@ -127,6 +127,9 @@ export default {
     const description = `${this.author.name} author on Bookshelves with ${this.author.books_number} books available.`
     const image = this.author.imageStandard
     const author = this.author.name
+    const authorFirstname = this.author.firstname
+    const authorLastname = this.author.lastname
+    const authorUsername = this.author.slug
     const url = `${process.env.BASE_URL}/authors/${this.author.slug}`
     return {
       title,
@@ -158,6 +161,21 @@ export default {
           hid: 'book:author',
           property: 'book:author',
           content: author,
+        },
+        {
+          hid: 'profile:first_name',
+          property: 'profile:first_name',
+          content: authorFirstname,
+        },
+        {
+          hid: 'profile:last_name',
+          property: 'profile:last_name',
+          content: authorLastname,
+        },
+        {
+          hid: 'profile:username',
+          property: 'profile:username',
+          content: authorUsername,
         },
         {
           hid: 'og:url',
