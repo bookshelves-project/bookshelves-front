@@ -26,7 +26,20 @@
               <div>
                 <div class="font-semibold">Author &#8212;</div>
                 <div class="italic">
-                  {{ serie.author }}
+                  <div
+                    v-for="(author, authorId) in book.authors"
+                    :key="authorId"
+                  >
+                    {{ author.name }}
+                    <span
+                      v-if="
+                        book.authors.length > 1 &&
+                        authorId !== book.authors.length - 1
+                      "
+                    >
+                      &
+                    </span>
+                  </div>
                 </div>
                 <div class="mt-5">
                   <div class="font-semibold">Serie &#8212;</div>
@@ -128,6 +141,11 @@ export default {
           hid: 'og:description',
           property: 'og:description',
           content: description,
+        },
+        {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'book.series',
         },
         {
           hid: 'og:image',

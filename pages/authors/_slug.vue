@@ -158,6 +158,11 @@ export default {
         },
         // og author
         {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'book.author',
+        },
+        {
           hid: 'book:author',
           property: 'book:author',
           content: author,

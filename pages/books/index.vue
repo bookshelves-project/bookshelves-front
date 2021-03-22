@@ -164,6 +164,11 @@ export default {
           content: description,
         },
         {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'book',
+        },
+        {
           hid: 'og:image',
           property: 'og:image',
           content: image,

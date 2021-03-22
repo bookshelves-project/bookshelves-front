@@ -124,6 +124,11 @@ export default {
           content: image,
         },
         {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'article',
+        },
+        {
           hid: 'article:published_time',
           property: 'article:published_time',
           content: date,
