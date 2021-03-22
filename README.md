@@ -54,7 +54,7 @@
 Setup local on <http://localhost:3000> with <https://bookshelves.ink> API
 
 ```bash
-cp .env.example .env ; cp static/settings-example.json static/settings.json ; yarn
+cp .env.example .env ; cp static/settings-custom.example.json static/settings-custom.json ; yarn
 ```
 
 Local serve

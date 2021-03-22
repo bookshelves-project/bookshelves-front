@@ -1,0 +1,15 @@
+{
+    "metadata": {
+        "twitter": {
+            "creator": "@ewilanriviere",
+            "site": "@bookshelves_ink"
+        }
+    },
+    "robot": {
+        "disallow": [
+            "/sign-in",
+            "/dashboard",
+            "/admin"
+        ]
+    }
+}
