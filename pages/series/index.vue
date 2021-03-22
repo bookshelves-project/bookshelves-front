@@ -27,14 +27,14 @@
                 <div class="font-semibold">Author &#8212;</div>
                 <div class="italic">
                   <div
-                    v-for="(author, authorId) in book.authors"
+                    v-for="(author, authorId) in serie.authors"
                     :key="authorId"
                   >
                     {{ author.name }}
                     <span
                       v-if="
-                        book.authors.length > 1 &&
-                        authorId !== book.authors.length - 1
+                        serie.authors.length > 1 &&
+                        authorId !== serie.authors.length - 1
                       "
                     >
                       &

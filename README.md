@@ -45,6 +45,7 @@
 
 - [**I. Setup**](#i-setup)
   - [*I. a. Update API*](#i-a-update-api)
+  - [*I. b. Custom metadata*](#i-b-custom-metadata)
 - [**II. Production**](#ii-production)
 
 ---
@@ -54,7 +55,7 @@
 Setup local on <http://localhost:3000> with <https://bookshelves.ink> API
 
 ```bash
-cp .env.example .env ; cp static/settings-custom.example.json static/settings-custom.json ; yarn
+cp .env.example .env ; yarn
 ```
 
 Local serve
@@ -69,6 +70,14 @@ Update `dotenv` file `API_URL` to use local API
 
 ```yml
 API_URL=http://localhost:8000
+```
+
+### *I. b. Custom metadata*
+
+If you want to custom some metadata, if you don't create `settings-custom.json`, this is default values from `settings.json`
+
+```bash
+cp static/settings-custom.example.json static/settings-custom.json
 ```
 
 ---

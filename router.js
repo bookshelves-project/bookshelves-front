@@ -16,8 +16,8 @@ import Content from '~/pages/_'
 import ContentPage from '~/pages/content/slug'
 import Contact from '~/pages/contact'
 
-import Login from '~/pages/auth/login'
-import Register from '~/pages/auth/register'
+import Login from '~/pages/sign-in'
+import Register from '~/pages/sign-up'
 import Dashboard from '~/pages/dashboard'
 
 Vue.use(Router)

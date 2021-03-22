@@ -8,6 +8,7 @@
         "color": "#6C63FF"
     },
     "custom": {
+        "production": "server",
         "metadata": {
             "author": "Bookshelves Team",
             "twitter": {

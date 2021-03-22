@@ -14,6 +14,8 @@ export default {
   //   port: 3000,
   //   host: 'app.bookshelves.test',
   // },
+  target: settingsCustom.production || settings.custom.production,
+  generate: {},
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: settings.metadata.title,

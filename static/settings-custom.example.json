@@ -1,4 +1,5 @@
 {
+    "production": "server",
     "metadata": {
         "author": "Bookshelves Team",
         "twitter": {
