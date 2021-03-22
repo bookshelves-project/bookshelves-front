@@ -34,6 +34,13 @@ export default {
         content: settings.metadata.author,
       },
       {
+        hid: 'google-site-verification',
+        name: 'google-site-verification',
+        content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
+      },
+      { name: 'msapplication-TileColor', content: settings.metadata.color },
+      { name: 'theme-color', content: settings.metadata.color },
+      {
         hid: 'robots',
         name: 'robots',
         content: 'index, follow',
@@ -87,7 +94,7 @@ export default {
       {
         hid: 'og:image:height',
         property: 'og:image:height',
-        content: '630',
+        content: '600',
       },
       {
         hid: 'og:locale',
@@ -128,20 +135,13 @@ export default {
       {
         hid: 'twitter:image:height',
         name: 'twitter:image:height',
-        content: '630',
+        content: '600',
       },
       {
         hid: 'twitter:image:alt',
         name: 'twitter:image:alt',
         content: settings.metadata.projectName,
       },
-      {
-        hid: 'google-site-verification',
-        name: 'google-site-verification',
-        content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
-      },
-      { name: 'msapplication-TileColor', content: settings.metadata.color },
-      { name: 'theme-color', content: settings.metadata.color },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
