@@ -41,7 +41,7 @@
           <div class="flex">
             <a
               :href="serie.download"
-              class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm lg:mx-0 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 sm:w-max"
+              class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-primary-600 border border-transparent rounded-md shadow-sm lg:mx-0 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-500 sm:w-max"
             >
               <icon name="download" />
               <div class="flex items-center ml-2">
@@ -189,7 +189,7 @@ export default {
     })
     const title = `${this.serie.title} - Series`
     const description = `Written by ${authors} with ${this.serie.books_number} books.`
-    const image = this.serie.imageStandard
+    const image = this.serie.imageOpenGraph
     const url = `${process.env.BASE_URL}/series/${this.serie.slug}`
     return {
       title,

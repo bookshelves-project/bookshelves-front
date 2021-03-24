@@ -6,9 +6,7 @@
     />
     <section v-if="!apiError">
       <div>
-        <div
-          class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7"
-        >
+        <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
             v-for="serie in series.data"
             :key="serie.id"
@@ -20,27 +18,33 @@
             }"
           >
             <template #title>
-              {{ $overflow(serie.title) }}
+              <h2 class="font-semibold">
+                {{ serie.title }}
+              </h2>
+              <div class="italic">
+                <div
+                  v-for="(author, authorId) in serie.authors"
+                  :key="authorId"
+                >
+                  <h3>{{ author.name }}</h3>
+                  <span
+                    v-if="
+                      serie.authors.length > 1 &&
+                      authorId !== serie.authors.length - 1
+                    "
+                  >
+                    &
+                  </span>
+                </div>
+              </div>
+              <div class="mt-3 font-semibold">
+                {{ serie.booksNumber }} books
+              </div>
             </template>
             <template #hover>
               <div>
                 <div class="font-semibold">Author &#8212;</div>
-                <div class="italic">
-                  <div
-                    v-for="(author, authorId) in serie.authors"
-                    :key="authorId"
-                  >
-                    {{ author.name }}
-                    <span
-                      v-if="
-                        serie.authors.length > 1 &&
-                        authorId !== serie.authors.length - 1
-                      "
-                    >
-                      &
-                    </span>
-                  </div>
-                </div>
+
                 <div class="mt-5">
                   <div class="font-semibold">Serie &#8212;</div>
                   <div>{{ serie.booksNumber }} books</div>

@@ -13,7 +13,7 @@
       @submit.prevent="advancedSearch"
     >
       <label for="search" class="sr-only">Advanced search</label>
-      <div class="relative text-light-blue-100 focus-within:text-gray-400">
+      <div class="relative text-light-primary-100 focus-within:text-gray-400">
         <div
           class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
         >
@@ -36,7 +36,7 @@
           id="search"
           v-model="advancedSearchInput"
           name="search"
-          class="block w-full py-4 pl-10 pr-3 text-lg leading-5 bg-gray-200 bg-opacity-50 border border-transparent rounded-md focus:border-gray-100 focus:bg-gray-100 focus:ring-0 bg-light-blue-700 placeholder-light-blue-100 focus:outline-none focus:ring-white focus:placeholder-gray-500 focus:text-gray-900 sm:text-sm"
+          class="block w-full py-4 pl-10 pr-3 text-lg leading-5 bg-gray-200 bg-opacity-50 border border-transparent rounded-md focus:border-gray-100 focus:bg-gray-100 focus:ring-0 bg-light-primary-700 placeholder-light-primary-100 focus:outline-none focus:ring-white focus:placeholder-gray-500 focus:text-gray-900 sm:text-sm"
           placeholder="Advanced search"
           type="search"
         />
@@ -155,8 +155,8 @@ export default {
     }
   },
   head() {
-    const title = `Search for ${
-      this.$route.query.terms ? this.$route.query.terms : ''
+    const title = `Search${
+      this.$route.query.terms ? ` for ${this.$route.query.terms}` : ''
     }`
     const description = 'Find all books you want to read.'
     const image = `${process.env.BASE_URL}/open-graph.jpg`

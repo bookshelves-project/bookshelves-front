@@ -1,39 +1,17 @@
 <template>
   <nuxt-link :to="route" class="block group">
-    <article class="relative">
-      <div class="relative">
-        <div
-          :class="{ 'cover-shadow': shadow }"
-          class="flex overflow-hidden group-hover:img-hover-zoom"
-        >
-          <span v-if="hasImageSlot" class="mx-auto">
-            <slot name="image" />
-          </span>
-          <span v-else class="w-full mx-auto">
-            <img v-lazy="cover" :alt="imageAlt" class="cover" />
-          </span>
-        </div>
-        <div
-          class="absolute top-0 bottom-0 left-0 right-0 hidden p-3 text-white transition-all duration-300 bg-black bg-opacity-50 rounded-sm opacity-0 lg:block group-hover:opacity-75 group-hover:bg-black"
-        >
-          <slot name="hover" />
-        </div>
+    <article
+      class="relative transition-colors duration-100 rounded-md sm:grid sm:grid-cols-2 sm:gap-3 group-hover:bg-gray-100"
+    >
+      <div class="aspect-w-1 aspect-h-1 sm:aspect-w-2 sm:aspect-h-3">
+        <img
+          v-lazy="cover"
+          :alt="imageAlt"
+          class="object-cover object-top cover-shadow"
+        />
       </div>
-      <div
-        :class="{ 'lg:h-14': limitedHeight }"
-        class="flex items-center w-full h-full p-1 pb-3 transition-colors duration-300 group-hover:bg-opacity-50 rounded-b-md"
-      >
-        <div class="hidden m-auto text-center lg:block w-max">
-          <div class="font-semibold">
-            <slot name="title" />
-          </div>
-          <div>
-            <slot name="subtitle" />
-          </div>
-        </div>
-        <div class="block mt-2 space-y-2 lg:hidden">
-          <slot name="title-responsive" />
-        </div>
+      <div class="mt-2">
+        <slot name="title" />
       </div>
     </article>
   </nuxt-link>

@@ -6,9 +6,7 @@
     />
     <section v-if="!apiError">
       <div>
-        <div
-          class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7"
-        >
+        <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
             v-for="(author, authorId) in authors.data"
             :key="authorId"
@@ -20,12 +18,16 @@
             }"
           >
             <template #title>
-              {{ $overflow(`${author.lastname} ${author.firstname}`) }}
+              <h2 class="font-semibold">
+                {{ author.lastname }} {{ author.firstname }}
+              </h2>
+              <div class="mt-2 font-semibold">
+                {{ author.books_number }} books
+              </div>
             </template>
             <template #hover>
               <div>
                 <div class="font-semibold">Available here &#8212;</div>
-                <div>{{ author.books_number }} books</div>
               </div>
             </template>
             <template #title-responsive>

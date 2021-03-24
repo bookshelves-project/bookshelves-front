@@ -23,7 +23,7 @@
         <div class="flex mt-5 lg:mt-0">
           <a
             :href="author.download"
-            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 sm:w-max"
+            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-primary-600 border border-transparent rounded-md shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-500 sm:w-max"
           >
             <icon name="download" />
             <div class="flex items-center ml-2">
@@ -125,7 +125,7 @@ export default {
   head() {
     const title = `${this.author.name} - Authors`
     const description = `${this.author.name} author on Bookshelves with ${this.author.books_number} books available.`
-    const image = this.author.imageStandard
+    const image = this.author.imageOpenGraph
     const author = this.author.name
     const authorFirstname = this.author.firstname
     const authorLastname = this.author.lastname
