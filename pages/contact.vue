@@ -1,6 +1,6 @@
 <template>
   <section class="px-4 py-6 overflow-hidden sm:px-6 lg:px-8 lg:py-10">
-    <div class="relative max-w-xl mx-auto">
+    <div class="container relative mx-auto max-w-7xl">
       <svg
         class="absolute transform translate-x-1/2 left-full"
         width="404"
@@ -67,26 +67,33 @@
           fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)"
         />
       </svg>
-      <div class="text-center">
-        <h1
-          class="text-3xl font-extrabold tracking-tight font-handlee text-primary-600 sm:text-4xl"
-        >
-          Leave us a short note
-        </h1>
-        <div class="mt-4 text-lg leading-6 text-left text-gray-500">
-          <div>
-            Do you like what we offer or do you hate our work? Do not hesitate
-            to let us know with this nice form!
+      <div class="lg:grid lg:grid-cols-2 lg:gap-32">
+        <div>
+          <div class="text-center">
+            <h1
+              class="text-3xl font-extrabold tracking-tight font-handlee text-primary-600 sm:text-4xl"
+            >
+              Leave us a short note
+            </h1>
+            <div class="mt-4 text-lg leading-6 text-left text-gray-500">
+              <div>
+                Do you like what we offer or do you hate our work? Do not
+                hesitate to let us know with this nice form!
+              </div>
+              <div class="mt-2">
+                <small>
+                  Just kidding, if you hate what we do, you can leave, that
+                  would be cool!
+                </small>
+              </div>
+            </div>
           </div>
-          <div class="mt-2">
-            <small>
-              Just kidding, if you hate what we do, you can leave, that would be
-              cool!
-            </small>
-          </div>
+          <contact-form />
+        </div>
+        <div class="hidden lg:block">
+          <img src="/images/pages/contact.webp" alt="Mail sent" />
         </div>
       </div>
-      <contact-form />
     </div>
   </section>
 </template>

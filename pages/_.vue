@@ -1,14 +1,14 @@
 <template>
   <div class="container max-w-7xl">
-    <div class="flex flex-wrap-reverse w-full px-5 xl:col-span-3 md:px-10">
+    <div class="flex flex-wrap-reverse w-full xl:col-span-3">
       <div class="w-full ml-auto lg:w-3/4">
         <div class="text-on-img-tailwind">
           <div class="relative w-full">
             <div class="source" style="z-index: -1">
-              <img
-                src="/images/no-cover.webp"
-                class="h-40 mx-auto opacity-25 object-container"
-              />
+              <component
+                :is="`icon-${getPicture}`"
+                class="h-40 mx-auto opacity-25 fill-current text-opacity-60 text-primary-600 object-container"
+              ></component>
               <div
                 class="absolute z-10 w-full text-2xl italic text-center text-white"
                 style="top: 50%; left: 50%; transform: translate(-50%, -50%)"
@@ -38,9 +38,13 @@
           <nuxt-content :document="document" />
         </div>
       </div>
-      <div class="relative block w-full lg:w-1/4">
+      <div class="relative block w-full lg:mx-auto lg:w-1/4 lg:max-w-prose">
         <div class="lg:sticky lg:top-16 h-full lg:h-auto lg:max-h-(screen-5)">
           <table-of-content :toc="document.toc"></table-of-content>
+          <component
+            :is="`icon-${getPicture}`"
+            class="fill-current text-opacity-60 text-primary-600"
+          ></component>
         </div>
       </div>
     </div>
@@ -49,9 +53,11 @@
 
 <script>
 import TableOfContent from '~/components/common/content/TableOfContent.vue'
+import IconCalibre from '~/components/icons/icon-calibre.vue'
+import IconKobo from '~/components/icons/icon-kobo.vue'
 export default {
   name: 'ContentSlugShort',
-  components: { TableOfContent },
+  components: { TableOfContent, IconCalibre, IconKobo },
   middleware({ app, params, redirect }) {
     if (params.pathMatch === 'index') {
       redirect(app.localePath('/'))
@@ -60,7 +66,6 @@ export default {
   async asyncData({ $content, store, app, params, error }) {
     const path = `/${params.pathMatch || 'index'}`
     const [document] = await $content({ deep: true }).where({ path }).fetch()
-    console.log(document)
     if (!document) {
       return error({ statusCode: 404, message: 'Page not found' })
     }
@@ -134,6 +139,11 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    getPicture() {
+      return this.document.category ? this.$slugify(this.document.category) : ''
+    },
   },
 }
 </script>

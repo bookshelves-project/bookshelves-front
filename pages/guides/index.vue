@@ -18,50 +18,49 @@
             >
               <div class="flex items-center flex-1 min-w-0">
                 <div class="flex-shrink-0">
-                  <img
-                    class="object-cover w-12 h-12 rounded-full"
-                    src="/images/no-cover.webp"
-                    alt=""
-                  />
+                  <component
+                    :is="`icon-${getPicture(guide)}`"
+                    class="object-cover w-12 h-12 text-opacity-50 rounded-full fill-current text-primary-600"
+                  ></component>
                 </div>
                 <div
                   class="flex-1 min-w-0 px-4 md:grid md:grid-cols-2 md:gap-4"
                 >
                   <div>
-                    <p
+                    <div
                       class="flex items-center mt-2 text-sm text-gray-500 dark:text-gray-300"
                     >
-                      <svg
-                        class="w-6 h-6"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
+                      <div class="text-gray-500 text-opacity-25">
+                        <svg
+                          class="w-6 h-6"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
                       <span class="ml-1 truncate">
                         {{ guide.category }}
                       </span>
-                    </p>
+                    </div>
                     <h2 class="text-xl font-medium truncate text-primary-600">
                       {{ guide.title }}
                     </h2>
                   </div>
                   <div class="hidden md:block">
                     <div>
-                      <p class="text-sm text-gray-900 dark:text-gray-100">
-                        Updated at
+                      <p class="text-sm text-gray-500 dark:text-gray-100">
+                        Created at {{ $getDate(guide.createdAt) }}, update at
                         <time :datetime="guide.updatedAt">{{
                           $getDate(guide.updatedAt)
                         }}</time>
                       </p>
-                      <div>
-                        {{ $getDate(guide.createdAt) }}
-                      </div>
+                      <div></div>
                       <p class="flex items-start mt-2 text-sm text-gray-500">
                         <svg
                           class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
@@ -187,6 +186,11 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    getPicture(guide) {
+      return guide.category ? this.$slugify(guide.category) : ''
+    },
   },
 }
 </script>

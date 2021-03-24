@@ -5,6 +5,7 @@ position: 3
 category: 'Kobo'
 draft: false
 created_at: 03-02-2021
+picture: 'kobo'
 ---
 
 ## About series
