@@ -26,7 +26,7 @@
             <div class="w-full h-full text-black lg:flex">
               <img
                 v-lazy="bookSerie.image"
-                class="object-cover w-16 h-16 rounded-sm rounded-full shadow lg:h-full lg:w-64 lg:rounded-none"
+                class="object-cover object-top w-16 h-16 rounded-full shadow lg:h-full lg:w-64 lg:rounded-none"
               />
               <div class="mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
                 <div>
