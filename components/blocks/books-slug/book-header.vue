@@ -6,8 +6,8 @@
       <div class="flex-shrink-0">
         <div class="relative">
           <img
-            v-if="book.imageStandard"
-            v-lazy="book.imageStandard"
+            v-if="book.imageOpenGraph"
+            v-lazy="book.imageOpenGraph"
             alt="Book cover"
             class="object-cover w-16 h-16 rounded-full"
           />
@@ -37,26 +37,8 @@
     <div
       class="flex flex-col-reverse items-center mt-6 space-y-4 space-y-reverse justify-stretch md:flex-row-reverse md:justify-end md:space-x-reverse md:space-y-0 md:space-x-3 xl:mt-0 xl:flex-row xl:space-x-3"
     >
-      <!-- <component
-        :is="buyLink ? 'a' : 'span'"
-        href="#"
-        :class="buyLink ? 'hover:bg-gray-50 ' : 'bg-gray-300'"
-        class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
-      >
-        <svg
-          class="w-5 h-5"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
-          ></path>
-        </svg>
-        <span class="mx-1">Buy</span>
-      </component> -->
       <button
-        class="inline-flex items-center justify-center px-4 py-2 space-x-2 text-sm font-semibold text-white transition-colors duration-100 bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+        class="inline-flex items-center justify-center px-4 py-2 space-x-2 text-sm font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
         @click="displayCover"
       >
         <icon-picture class="w-5 h-5" />
@@ -64,7 +46,7 @@
       </button>
       <a
         :href="book.epub.download"
-        class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white transition-colors duration-100 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+        class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-500"
       >
         <icon name="download" />
         <span class="mx-1">Download</span>

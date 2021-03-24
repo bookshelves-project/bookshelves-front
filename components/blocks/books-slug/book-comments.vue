@@ -100,7 +100,7 @@
                     name="text"
                     rows="3"
                     maxlength="1500"
-                    class="block w-full border-gray-300 rounded-md shadow-sm dark:bg-gray-200 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    class="block w-full border-gray-300 rounded-md shadow-sm dark:bg-gray-200 focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                     placeholder="Add a comment*"
                   ></textarea>
                   <div class="ml-1 text-sm text-gray-400">
@@ -166,10 +166,10 @@
                     type="submit"
                     :class="
                       form.text === ''
-                        ? 'bg-blue-400 text-gray-300 cursor-not-allowed'
-                        : 'hover:bg-blue-700 bg-blue-600 text-white'
+                        ? 'bg-primary-400 text-gray-300 cursor-not-allowed'
+                        : 'hover:bg-primary-700 bg-primary-600 text-white'
                     "
-                    class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                     :disabled="form.text === ''"
                   >
                     Comment

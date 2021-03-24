@@ -10,22 +10,6 @@
       <p class="max-w-2xl mt-1 text-sm text-gray-500">
         Current: vol. {{ book.serie.number }}
       </p>
-
-      <!-- Activity Feed -->
-      <!-- <agile :initial-slide="3">
-          <img
-            v-for="bookSerie in serie"
-            :key="bookSerie.id"
-            :src="bookSerie.image"
-            class="slide"
-          />
-          <template slot="prevButton"
-            ><i class="fas fa-chevron-left"></i
-          ></template>
-          <template slot="nextButton"
-            ><i class="fas fa-chevron-right"></i
-          ></template>
-        </agile> -->
       <div class="mt-5">
         <agile
           ref="main"
@@ -41,7 +25,7 @@
           >
             <div class="w-full h-full text-black lg:flex">
               <img
-                :src="bookSerie.image"
+                v-lazy="bookSerie.image"
                 class="object-cover w-16 h-16 rounded-sm rounded-full shadow lg:h-full lg:w-64 lg:rounded-none"
               />
               <div class="mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
@@ -128,10 +112,10 @@
                       slug: bookSerie.slug,
                     },
                   }"
-                  class="inline-flex items-center justify-center px-4 py-2 mx-auto mt-16 text-sm font-medium font-semibold text-white transition-colors duration-100 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 md:w-max"
+                  class="inline-flex items-center justify-center px-4 py-2 mx-auto mt-16 text-sm font-medium font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 md:w-max"
                 >
                   <icon-bookmark class="w-6 h-6" />
-                  <span class="mx-1"> {{ bookSerie.title }} </span>
+                  <span class="mx-1"> Refer to book page </span>
                 </nuxt-link>
               </div>
             </div>
@@ -156,7 +140,7 @@
             :class="`slide--${index}`"
             @click="$refs.thumbnails.goTo(index)"
           >
-            <img :src="bookSerie.image" />
+            <img v-lazy="bookSerie.image" />
           </div>
         </agile>
       </div>
@@ -166,10 +150,10 @@
             name: 'series-slug',
             params: { author: book.serie.author, slug: book.serie.slug },
           }"
-          class="inline-flex items-center justify-center px-4 py-2 mx-auto text-sm font-medium font-semibold text-white transition-colors duration-100 bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 md:w-max"
+          class="inline-flex items-center justify-center px-4 py-2 mx-auto text-sm font-medium font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 md:w-max"
         >
           <icon-collection />
-          <span class="mx-1"> {{ book.serie.title }} </span>
+          <span class="mx-1"> Refer to series page </span>
         </nuxt-link>
       </div>
     </div>
@@ -310,6 +294,7 @@ export default {
       color: #fff;
       display: flex;
       justify-content: center;
+      padding: 0 5px;
     }
     & .agile__nav-button:hover {
       background-color: rgba(0, 0, 0, 0.3);
