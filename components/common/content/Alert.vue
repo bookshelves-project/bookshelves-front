@@ -72,25 +72,25 @@ export default {
 /* Info */
 
 .alert-info {
-  @apply bg-blue-100 border-blue-400;
+  @apply bg-primary-100 border-primary-400;
 }
 .alert-info code {
-  @apply bg-blue-200 shadow-none border-0 text-current;
+  @apply bg-primary-200 shadow-none border-0 text-current;
 }
 .alert-info .alert-icon {
-  @apply text-blue-400;
+  @apply text-primary-400;
 }
 .alert-info .alert-content {
-  @apply text-blue-700;
+  @apply text-primary-700;
 }
 .dark-mode .alert-info {
-  @apply bg-blue-900 border-blue-700;
+  @apply bg-primary-900 border-primary-700;
 }
 .dark-mode .alert-info code {
-  @apply bg-blue-800;
+  @apply bg-primary-800;
 }
 .dark-mode .alert-info .alert-content {
-  @apply text-blue-300;
+  @apply text-primary-300;
 }
 
 /* Success */

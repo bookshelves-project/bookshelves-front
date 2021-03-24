@@ -54,7 +54,7 @@ export default {
 }
 /* Info */
 .list-info {
-  @apply text-blue-500;
+  @apply text-primary-500;
 }
 /* Success */
 .list-success {

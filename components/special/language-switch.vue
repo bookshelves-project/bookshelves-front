@@ -33,7 +33,10 @@
 <script>
 export default {
   name: 'LanguageSwitch',
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales
+    },
+  },
 }
 </script>
-
-<style lang="postcss" scoped></style>

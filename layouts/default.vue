@@ -1,7 +1,7 @@
 <template>
   <div
     :class="dev ? 'debug-screens' : ''"
-    class="bg-fixed bg-no-repeat bg-cover bg-library dark:bg-blue-600"
+    class="bg-fixed bg-no-repeat bg-cover bg-library dark:bg-primary-600"
   >
     <overlay />
     <div

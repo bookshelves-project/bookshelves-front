@@ -187,7 +187,7 @@ export default {
         {
           icon: 'swagger',
           label: 'Swagger: API documentation',
-          link: `${process.env.API_URL}/documentation`,
+          link: `${process.env.API_URL}/api/documentation`,
         },
         {
           icon: 'calibre',
