@@ -131,13 +131,6 @@ export default {
           settings.custom.metadata.twitter.creator,
       },
       {
-        hid: 'twitter:creator',
-        name: 'twitter:creator',
-        content:
-          settingsCustom.metadata.author ||
-          settings.custom.metadata.twitter.author,
-      },
-      {
         hid: 'twitter:description',
         name: 'twitter:description',
         content: settings.metadata.description,
@@ -282,7 +275,7 @@ export default {
     // https://www.npmjs.com/package/@nuxtjs/robots
     '@nuxtjs/robots',
     // https://i18n.nuxtjs.org/setup
-    // 'nuxt-i18n',
+    'nuxt-i18n',
     // https://auth.nuxtjs.org/guide/setup
     '@nuxtjs/auth-next',
     // https://github.com/microcipcip/cookie-universal/tree/master/packages/cookie-universal-nuxt
@@ -414,7 +407,30 @@ export default {
       },
     ],
   },
-  // i18n: {},
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+      },
+      {
+        code: 'fr',
+        name: 'Français',
+      },
+    ],
+    defaultLocale: 'en',
+    vueI18n: {
+      fallbackLocale: 'en',
+      messages: {
+        en: {
+          welcome: 'Welcome',
+        },
+        fr: {
+          welcome: 'Bienvenue',
+        },
+      },
+    },
+  },
   recaptcha: {
     hideBadge: true,
     // language: '',
