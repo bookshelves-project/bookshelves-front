@@ -19,20 +19,18 @@
                 params: { author: result.meta.author, slug: result.meta.slug },
               }"
             >
-              <div
-                v-bind="props"
-                class="flex items-center autocomplete-result wiki-result"
-              >
-                <div class="grid grid-cols-3 gap-4">
+              <div v-bind="props" class="autocomplete-result wiki-result">
+                <div class="grid grid-cols-5 gap-4">
                   <div class="col-span-1">
-                    <img
-                      v-if="result.image"
-                      v-lazy="result.image"
-                      :alt="result.title"
-                      class="inline-block object-cover rounded-full h-14 w-14"
-                    />
+                    <div class="overflow-hidden">
+                      <img
+                        v-lazy="result.picture"
+                        :alt="result.title"
+                        class="object-cover rounded-full h-14 w-14"
+                      />
+                    </div>
                   </div>
-                  <div class="col-span-2 dark:text-gray-700">
+                  <div class="col-span-4 overflow-hidden dark:text-gray-700">
                     <div class="wiki-title">
                       <div class="font-semibold">
                         {{ result.title }}

@@ -54,68 +54,27 @@
       <div
         v-if="search && search.length > 0"
         :key="componentKey"
-        class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7"
+        class="space-y-6 display-grid sm:space-y-0"
       >
         <entity-card
           v-for="book in search"
           :key="book.id"
           :data="book"
-          :cover="book.image"
+          :cover="book.picture"
           :limited-height="false"
           :route="{
             name: `${book.meta.entity}s-slug`,
             params: { author: book.meta.author, slug: book.meta.slug },
           }"
         >
-          <template #title>
-            <div>
-              {{ $overflow(book.title, 25) }}
-            </div>
+          <template #primary>
+            {{ $overflow(book.title, 50) }}
           </template>
-          <template #subtitle>
-            <div class="italic">
-              {{ $capitalize(book.meta.entity) }}
-            </div>
+          <template #secondary>
+            {{ $capitalize(book.meta.entity) }}
           </template>
-          <template #hover>
+          <template #tertiary>
             <div>
-              <div class="font-semibold">Author &#8212;</div>
-              <div class="italic">
-                {{ book.author }}
-                <!-- <span
-                  v-for="(author, authorId) in book.authors"
-                  :key="authorId"
-                >
-                  <span>{{ book.author.name }}</span>
-                  <span
-                    v-if="
-                      book.authors.length > 1 &&
-                      authorId !== book.authors.length - 1
-                    "
-                  >
-                    ,
-                  </span>
-                </span> -->
-              </div>
-            </div>
-            <div v-if="book.serie" class="mt-5">
-              <div class="font-semibold">Serie &#8212;</div>
-              <div class="italic break-all">
-                {{ book.serie.title }}
-              </div>
-              <div>Vol. {{ book.serie.number }}</div>
-            </div>
-          </template>
-          <template #title-responsive>
-            <div>
-              <div class="font-semibold">
-                {{ book.title }}
-              </div>
-              <div>
-                {{ $capitalize(book.meta.entity) }}
-              </div>
-            </div>
-            <div class="italic">
               <span v-for="(author, authorId) in book.authors" :key="authorId">
                 <span>{{ author.name }}</span>
                 <span
@@ -128,8 +87,12 @@
                 </span>
               </span>
             </div>
-            <div v-if="book.serie">
-              {{ book.serie.title }}, vol. {{ book.serie.number }}
+            <div v-if="book.serie" class="mt-5">
+              <div class="font-semibold">Serie &#8212;</div>
+              <div class="italic break-all">
+                {{ book.serie.title }}
+              </div>
+              <div>Vol. {{ book.serie.number }}</div>
             </div>
           </template>
         </entity-card>
