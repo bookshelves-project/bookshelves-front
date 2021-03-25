@@ -52,7 +52,13 @@
         <div class="flex-1 h-0 mt-5 overflow-y-auto">
           <nav class="px-2">
             <div class="space-y-1">
-              <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:text-gray-900 hover:bg-gray-50" -->
+              <nuxt-link
+                :to="{ name: 'home' }"
+                class="flex items-center px-2 py-4 text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 group"
+                @click.native="closeSidebar"
+              >
+                <span class="font-semibold"> Home </span>
+              </nuxt-link>
               <nuxt-link
                 v-for="(booksNav, booksNavId) in $store.state.navigation"
                 :key="booksNavId"

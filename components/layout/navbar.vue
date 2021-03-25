@@ -5,11 +5,11 @@
         <div class="flex px-2 lg:px-0">
           <div class="flex items-center flex-shrink-0">
             <button
-              class="inline-flex items-center w-auto h-8 lg:hidden dark:text-gray-100"
+              class="flex items-center w-auto h-8 lg:hidden dark:text-gray-100"
               @click="openSidebar"
             >
               <svg
-                class="w-6 h-6 mr-2"
+                class="w-8 h-8 mr-2"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"

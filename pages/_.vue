@@ -43,7 +43,7 @@
           <table-of-content :toc="document.toc"></table-of-content>
           <component
             :is="`icon-${getPicture}`"
-            class="fill-current text-opacity-60 text-primary-600"
+            class="hidden fill-current lg:block text-opacity-60 text-primary-600"
           ></component>
         </div>
       </div>
