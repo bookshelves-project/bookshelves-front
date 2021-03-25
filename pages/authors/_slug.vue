@@ -10,7 +10,7 @@
           placeholder="/images/author-no-cover.png"
         /> -->
           <img
-            v-lazy="author.image"
+            v-lazy="author.picture.base"
             :alt="author.name"
             class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
           />
@@ -23,12 +23,12 @@
         <div class="flex mt-5 lg:mt-0">
           <a
             :href="author.download"
-            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-primary-600 border border-transparent rounded-md shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-500 sm:w-max"
+            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-500 sm:w-max"
           >
             <icon name="download" />
             <div class="flex items-center ml-2">
               <div class="flex mx-1">
-                Download
+                <span class="lg:mr-1">Download</span>
                 <span class="hidden md:block"
                   >{{ author.books_number }} eBooks</span
                 >
@@ -48,46 +48,26 @@
           </span>
         </div>
       </div>
-      <div
-        class="grid grid-cols-1 gap-4 2xl:grid-cols-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7"
-      >
+      <div class="space-y-6 display-grid sm:space-y-0">
         <entity-card
           v-for="book in author.books"
           :key="book.id"
           :data="book"
-          :cover="book.image"
+          :cover="book.picture"
           :route="{
             name: 'books-slug',
             params: { author: book.author, slug: book.slug },
           }"
         >
-          <template #title>
-            {{ $overflow(book.title) }}
+          <template #primary>
+            {{ $overflow(book.title, 50) }}
           </template>
-          <template #hover>
-            <div v-if="book.language">
-              <div class="font-semibold">Language &#8212;</div>
-              <img :src="book.language.flag" :alt="book.language.slug" />
-            </div>
-            <div v-if="book.serie" class="mt-5">
-              <div class="font-semibold">Serie &#8212;</div>
-              <div class="italic break-all">
-                {{ book.serie.title }}
-              </div>
-              <div>Vol. {{ book.serie.number }}</div>
-            </div>
+          <template v-if="book.serie" #secondary>
+            {{ book.serie.title }}, vol. {{ book.serie.number }}
           </template>
-          <template #title-responsive>
-            <div class="font-semibold">
-              {{ book.title }}
-            </div>
-            <div v-if="book.language" class="mt-5">
-              <div class="font-semibold">Language &#8212;</div>
-              <img :src="book.language.flag" :alt="book.language.slug" />
-            </div>
-            <div v-if="book.serie" class="mt-5">
-              {{ book.serie.title }}, vol. {{ book.serie.number }}
-            </div>
+          <template v-if="book.language" #tertiary>
+            <div class="font-semibold">Language &#8212;</div>
+            <img :src="book.language.flag" :alt="book.language.slug" />
           </template>
         </entity-card>
       </div>
@@ -125,7 +105,7 @@ export default {
   head() {
     const title = `${this.author.name} - Authors`
     const description = `${this.author.name} author on Bookshelves with ${this.author.books_number} books available.`
-    const image = this.author.imageOpenGraph
+    const image = this.author.picture.openGraph
     const author = this.author.name
     const authorFirstname = this.author.firstname
     const authorLastname = this.author.lastname

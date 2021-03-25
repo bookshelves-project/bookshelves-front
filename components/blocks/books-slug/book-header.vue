@@ -6,8 +6,8 @@
       <div class="flex-shrink-0">
         <div class="relative">
           <img
-            v-if="book.imageOpenGraph"
-            v-lazy="book.imageOpenGraph"
+            v-if="book.picture.base"
+            v-lazy="book.picture.base"
             alt="Book cover"
             class="object-cover w-16 h-16 rounded-full"
           />

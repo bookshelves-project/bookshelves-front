@@ -23,18 +23,20 @@
             class="slide"
             :class="`slide--${index}`"
           >
-            <div class="w-full h-full text-black lg:flex">
-              <img
-                v-lazy="bookSerie.image"
-                class="object-cover object-top w-16 h-16 rounded-full shadow lg:h-full lg:w-64 lg:rounded-none"
-              />
-              <div class="mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
+            <div class="grid w-full h-full grid-cols-2">
+              <div class="col-span-1 aspect-w-1 aspect-h-3">
+                <img
+                  v-lazy="bookSerie.picture.original"
+                  class="object-contain object-top"
+                />
+              </div>
+              <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
                 <div>
                   <span
                     class="text-sm font-medium text-gray-500 dark:text-gray-500"
                     >Title
                   </span>
-                  <h3 class="font-semibold">
+                  <h3 class="font-semibold text-black">
                     {{ bookSerie.title }}
                   </h3>
                 </div>
@@ -140,7 +142,7 @@
             :class="`slide--${index}`"
             @click="$refs.thumbnails.goTo(index)"
           >
-            <img v-lazy="bookSerie.image" />
+            <img v-lazy="bookSerie.picture.base" />
           </div>
         </agile>
       </div>

@@ -80,7 +80,7 @@ export default {
     })
     const title = `${this.book.title} by ${this.book.authors[0].name}`
     const description = this.book.summary
-    const image = this.book.imageOpenGraph
+    const image = this.book.picture.openGraph
     const isbn = this.book.identifier.isbn13 || this.book.identifier.isbn
     const date = this.book.publishDate
     const tags = this.book.tags

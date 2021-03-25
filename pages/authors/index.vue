@@ -10,32 +10,17 @@
           <entity-card
             v-for="(author, authorId) in authors.data"
             :key="authorId"
-            :cover="author.image"
+            :cover="author.picture"
             :image-alt="author.name"
             :route="{
               name: 'authors-slug',
               params: { slug: author.slug },
             }"
           >
-            <template #title>
-              <h2 class="font-semibold">
-                {{ author.lastname }} {{ author.firstname }}
-              </h2>
-              <div class="mt-2 font-semibold">
-                {{ author.books_number }} books
-              </div>
+            <template #primary>
+              {{ author.lastname }} {{ author.firstname }}
             </template>
-            <template #hover>
-              <div>
-                <div class="font-semibold">Available here &#8212;</div>
-              </div>
-            </template>
-            <template #title-responsive>
-              <div class="font-semibold">
-                {{ `${author.lastname} ${author.firstname}` }}
-              </div>
-              <div>{{ author.books_number }} books</div>
-            </template>
+            <template #secondary> {{ author.books_number }} books </template>
           </entity-card>
         </div>
       </div>

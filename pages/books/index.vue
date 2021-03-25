@@ -11,64 +11,33 @@
           <entity-card
             v-for="book in books.data"
             :key="book.id"
-            :cover="book.image"
+            :cover="book.picture"
             :image-alt="book.title"
             :route="{
               name: 'books-slug',
               params: { author: book.author, slug: book.slug },
             }"
           >
-            <template #title>
-              <!-- {{ $overflow(book.title) }} -->
-              <h2 class="font-semibold">
-                {{ book.title }}
-              </h2>
+            <template #primary>
+              {{ $overflow(book.title, 50) }}
+            </template>
+            <template #secondary>
+              <div v-for="(author, authorId) in book.authors" :key="authorId">
+                {{ author.name }}
+                <span
+                  v-if="
+                    book.authors.length > 1 &&
+                    authorId !== book.authors.length - 1
+                  "
+                >
+                  &
+                </span>
+              </div>
+            </template>
+            <template v-if="book.serie" #tertiary>
+              <div class="hidden font-semibold sm:block">Serie &#8212;</div>
               <div class="italic">
-                <div v-for="(author, authorId) in book.authors" :key="authorId">
-                  <h3>{{ author.name }}</h3>
-                  <span
-                    v-if="
-                      book.authors.length > 1 &&
-                      authorId !== book.authors.length - 1
-                    "
-                  >
-                    &
-                  </span>
-                </div>
-              </div>
-              <div v-if="book.serie" class="mt-1 text-sm sm:mt-3">
-                <div class="hidden font-semibold sm:block">Serie &#8212;</div>
-                <h3 class="italic">
-                  {{ book.serie.title }}, vol. {{ book.serie.number }}
-                </h3>
-              </div>
-              <!-- <div v-if="book.language" class="mt-5">
-                <div class="font-semibold">Language &#8212;</div>
-                <img :src="book.language.flag" :alt="book.language.slug" />
-              </div> -->
-              <!-- <h3 v-if="book.serie" class="break-all">
                 {{ book.serie.title }}, vol. {{ book.serie.number }}
-              </h3> -->
-            </template>
-            <template #hover>
-              <div>
-                <div class="font-semibold">Author &#8212;</div>
-                <div class="italic">
-                  <div v-for="author in book.authors" :key="author.id">
-                    {{ author.name }}
-                  </div>
-                </div>
-              </div>
-            </template>
-            <template #title-responsive>
-              <div class="font-semibold">
-                {{ book.title }}
-              </div>
-              <div v-if="book.serie">
-                {{ book.serie.title }}, vol. {{ book.serie.number }}
-              </div>
-              <div v-if="book.language" class="mt-5">
-                <img :src="book.language.flag" :alt="book.language.slug" />
               </div>
             </template>
           </entity-card>

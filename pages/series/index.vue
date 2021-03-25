@@ -10,60 +10,30 @@
           <entity-card
             v-for="serie in series.data"
             :key="serie.id"
-            :cover="serie.image"
+            :cover="serie.picture"
             :image-alt="serie.title"
             :route="{
               name: 'series-slug',
               params: { author: serie.author, slug: serie.slug },
             }"
           >
-            <template #title>
-              <h2 class="font-semibold">
-                {{ serie.title }}
-              </h2>
-              <div class="italic">
-                <div
-                  v-for="(author, authorId) in serie.authors"
-                  :key="authorId"
+            <template #primary>
+              {{ serie.title }}
+            </template>
+            <template #secondary>
+              <div v-for="(author, authorId) in serie.authors" :key="authorId">
+                {{ author.name }}
+                <span
+                  v-if="
+                    serie.authors.length > 1 &&
+                    authorId !== serie.authors.length - 1
+                  "
                 >
-                  <h3>{{ author.name }}</h3>
-                  <span
-                    v-if="
-                      serie.authors.length > 1 &&
-                      authorId !== serie.authors.length - 1
-                    "
-                  >
-                    &
-                  </span>
-                </div>
-              </div>
-              <div class="mt-3 font-semibold">
-                {{ serie.booksNumber }} books
+                  &
+                </span>
               </div>
             </template>
-            <template #hover>
-              <div>
-                <div class="font-semibold">Author &#8212;</div>
-
-                <div class="mt-5">
-                  <div class="font-semibold">Serie &#8212;</div>
-                  <div>{{ serie.booksNumber }} books</div>
-                </div>
-                <div v-if="serie.language" class="mt-5">
-                  <div class="font-semibold">Language &#8212;</div>
-                  <img :src="serie.language.flag" :alt="serie.language.slug" />
-                </div>
-              </div>
-            </template>
-            <template #title-responsive>
-              <div class="font-semibold">
-                {{ serie.title }}
-              </div>
-              <div class="italic">
-                {{ serie.author }}
-              </div>
-              <div>{{ serie.booksNumber }} books</div>
-            </template>
+            <template #tertiary> {{ serie.booksNumber }} books </template>
           </entity-card>
         </div>
       </div>

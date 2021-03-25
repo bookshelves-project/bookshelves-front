@@ -4,7 +4,7 @@
       <div class="items-center justify-between mb-8 lg:flex">
         <div class="items-center lg:flex">
           <img
-            v-lazy="serie.image"
+            v-lazy="serie.picture.base"
             :alt="serie.title"
             class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
           />
@@ -41,7 +41,7 @@
           <div class="flex">
             <a
               :href="serie.download"
-              class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 bg-primary-600 border border-transparent rounded-md shadow-sm lg:mx-0 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-500 sm:w-max"
+              class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 border border-transparent rounded-md shadow-sm bg-primary-600 lg:mx-0 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-500 sm:w-max"
             >
               <icon name="download" />
               <div class="flex items-center ml-2">
@@ -53,7 +53,7 @@
               </div>
             </a>
           </div>
-          <div class="flex mx-auto w-max">
+          <div class="flex mx-auto lg:ml-auto lg:mr-0 w-max">
             <div
               v-if="serie.language"
               class="flex mt-2 w-max lg:ml-auto lg:mx-0 md:items-center lg:flex md:justify-end md:mx-0"
@@ -80,69 +80,34 @@
           </span>
         </div>
       </div>
-      <div
-        class="grid grid-cols-1 gap-4 2xl:grid-cols-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7"
-      >
+      <div class="space-y-6 display-grid sm:space-y-0">
         <entity-card
           v-for="book in serie.books"
           :key="book.id"
           :data="book"
-          :cover="book.image"
+          :cover="book.picture.base"
           :route="{
             name: 'books-slug',
             params: { author: book.author, slug: book.slug },
           }"
         >
-          <template #title>
-            {{ $overflow(book.title) }}
+          <template #primary>
+            {{ $overflow(book.title, 50) }}
           </template>
-          <template #hover>
-            <div>
-              <div class="font-semibold">Author &#8212;</div>
-              <div class="italic">
-                <span
-                  v-for="(author, authorId) in book.authors"
-                  :key="authorId"
-                >
-                  <span>{{ author.name }}</span>
-                  <span
-                    v-if="
-                      book.authors.length > 1 &&
-                      authorId !== book.authors.length - 1
-                    "
-                  >
-                    ,
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div v-if="book.serie" class="mt-5">
-              <div class="font-semibold">Serie &#8212;</div>
-              <div class="italic break-all">
-                {{ book.serie.title }}
-              </div>
-              <div>Vol. {{ book.serie.number }}</div>
-            </div>
-          </template>
-          <template #title-responsive>
-            <div class="font-semibold">
-              {{ book.title }}
-            </div>
-            <div class="italic">
-              <span v-for="(author, authorId) in book.authors" :key="authorId">
-                <span>{{ author.name }}</span>
-                <span
-                  v-if="
-                    book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
-                  "
-                >
-                  ,
-                </span>
+          <template #secondary>
+            <span v-for="(author, authorId) in book.authors" :key="authorId">
+              {{ author.name }}
+              <span
+                v-if="
+                  book.authors.length > 1 &&
+                  authorId !== book.authors.length - 1
+                "
+              >
+                ,
               </span>
-            </div>
-            <div v-if="book.serie">Vol. {{ book.serie.number }}</div>
+            </span>
           </template>
+          <template #tertiary> Vol. {{ book.serie.number }} </template>
         </entity-card>
       </div>
     </div>
@@ -189,7 +154,7 @@ export default {
     })
     const title = `${this.serie.title} - Series`
     const description = `Written by ${authors} with ${this.serie.books_number} books.`
-    const image = this.serie.imageOpenGraph
+    const image = this.serie.picture.openGraph
     const url = `${process.env.BASE_URL}/series/${this.serie.slug}`
     return {
       title,

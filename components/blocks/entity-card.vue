@@ -11,7 +11,15 @@
         />
       </div>
       <div class="mt-2">
-        <slot name="title" />
+        <h2 class="font-semibold">
+          <slot name="primary" />
+        </h2>
+        <h3 class="italic">
+          <slot name="secondary" />
+        </h3>
+        <div class="mt-1 text-sm sm:mt-3">
+          <slot name="tertiary" />
+        </div>
       </div>
     </article>
   </nuxt-link>
