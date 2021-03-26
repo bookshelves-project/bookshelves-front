@@ -12,8 +12,8 @@
               <img
                 v-if="$auth.$state.loggedIn"
                 class="w-8 h-8 rounded-full"
-                :src="$auth.$state.user.profile_photo_url"
-                :alt="$auth.$state.user.name"
+                :src="$auth.$state.user.data.profile_photo_url"
+                :alt="$auth.$state.user.data.name"
               />
               <img
                 v-else
@@ -39,16 +39,16 @@
       </template>
       <template #content>
         <div v-if="$auth.$state.loggedIn">
-          <nuxt-link
-            v-for="link in $store.state.authNavigationTrue"
-            :key="link.id"
-            :to="{ name: link.route }"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
-            role="menuitem"
-            @click.native="closeAccountDropdown"
-          >
-            {{ link.label }}
-          </nuxt-link>
+          <span v-for="link in authNav" :key="link.id">
+            <nuxt-link
+              :to="{ name: link.route }"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
+              role="menuitem"
+              @click.native="closeAccountDropdown"
+            >
+              {{ link.label }}
+            </nuxt-link>
+          </span>
           <button
             class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800"
             role="menuitem"
@@ -83,6 +83,16 @@ export default {
     return {
       accountDropdownOpened: false,
     }
+  },
+  computed: {
+    authNav() {
+      const nav = this.$store.state.authNavigationTrue
+      if (this.$auth.$state.user.isAdmin) {
+        return nav
+      } else {
+        return nav.filter((item) => !item.isAdmin)
+      }
+    },
   },
   methods: {
     async logout() {

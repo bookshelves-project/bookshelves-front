@@ -168,6 +168,7 @@
 <script>
 import packageJson from '@/package.json'
 import settings from '@/static/settings.json'
+import settingsCustom from '@/static/settings-custom.json'
 import ColorSwitcherToggle from '../special/color-switcher-toggle.vue'
 import backToTop from './back-to-top.vue'
 
@@ -177,7 +178,7 @@ export default {
   components: { backToTop, ColorSwitcherToggle },
   data() {
     return {
-      team: settings.metadata.author,
+      team: settingsCustom.metadata.author || settings.custom.metadata.author,
       socialIcons: [
         // {
         //   icon: 'gitlab',

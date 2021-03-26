@@ -124,8 +124,8 @@ export default {
       console.error(e)
     }
     if (this.$auth.$state.loggedIn) {
-      this.form.name = this.$auth.$state.user.name
-      this.form.email = this.$auth.$state.user.email
+      this.form.name = this.$auth.$state.user.data.name
+      this.form.email = this.$auth.$state.user.data.email
     }
   },
   beforeDestroy() {

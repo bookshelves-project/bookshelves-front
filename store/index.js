@@ -11,7 +11,13 @@ export const state = () => ({
     { label: 'Guides', icon: 'annotation', route: 'guides' },
   ],
   authNavigationTrue: [
-    { label: 'Dashboard', icon: 'book-open', route: 'dashboard' },
+    {
+      label: 'Dashboard',
+      icon: 'book-open',
+      route: 'dashboard',
+      isAdmin: false,
+    },
+    { label: 'Admin', icon: 'book-open', route: 'dashboard', isAdmin: true },
   ],
   authNavigationFalse: [
     { label: 'Sign in', icon: 'book-open', route: 'login' },

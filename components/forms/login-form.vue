@@ -142,6 +142,7 @@ export default {
           data: this.form,
         })
       } catch (error) {
+        console.error(error)
         let title = 'Something unexpected happened'
         let message =
           "Seems you can't sign-in currently, we work on it, please try later"
@@ -156,7 +157,7 @@ export default {
               break
           }
         } catch (error) {
-          console.log(error)
+          console.error(error)
         }
         this.$store.commit('setAlertMessage', {
           type: 'danger',
