@@ -115,13 +115,13 @@ export default {
       const querySearch = this.$refs.search.value
       this.$router.push({
         name: 'search',
-        query: { terms: querySearch },
+        query: { q: querySearch },
       })
     },
     search(input) {
       const method = this.searchMethod[this.method]
       const url = `${process.env.API_URL}/api/${method}?${qs.stringify({
-        terms: input,
+        q: input,
       })}`
 
       this.searchTerm = input
@@ -148,7 +148,7 @@ export default {
         this.$refs.search.setValue('')
         this.$router.push({
           name: 'search',
-          query: { terms: this.searchTerm },
+          query: { q: this.searchTerm },
         })
       } else {
         this.$refs.search.setValue('')
