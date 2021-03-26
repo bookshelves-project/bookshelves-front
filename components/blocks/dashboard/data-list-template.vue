@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="pb-2 bg-white rounded-md shadow dark:bg-gray-800">
     <div
-      class="px-4 py-5 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 sm:px-6 rounded-t-md"
+      class="px-4 py-5 border-b border-gray-200 dark:border-gray-700 sm:px-6"
     >
       <h3 class="flex items-center text-lg font-medium leading-6 text-gray-900">
         <slot name="icon" />
@@ -13,20 +13,25 @@
         {{ subtitle }}
       </div>
     </div>
-    <ul v-if="list.length" class="divide-y divide-gray-200">
-      <nuxt-link
+    <ul
+      v-if="list.length"
+      class="divide-y divide-gray-200 dark:divide-gray-700"
+    >
+      <div
         v-for="data in list"
         :key="data.id"
-        :to="{
-          name: `${data.meta.for}s-slug`,
-          params: {
-            author: data.meta.author,
-            slug: data.meta.slug,
-          },
-        }"
-        class="relative flex items-center justify-between px-4 py-5 space-x-6 bg-white dark:bg-gray-800 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600"
+        class="relative grid grid-cols-6 bg-white dark:bg-gray-800"
       >
-        <div class="flex items-center space-x-6">
+        <nuxt-link
+          :to="{
+            name: `${data.meta.for}s-slug`,
+            params: {
+              author: data.meta.author,
+              slug: data.meta.slug,
+            },
+          }"
+          class="flex items-center w-full col-span-5 py-5 pl-4 space-x-6 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600"
+        >
           <div class="flex-shrink-0">
             <img
               v-lazy="data.picture"
@@ -38,7 +43,6 @@
             <div class="flex justify-between space-x-3">
               <div class="flex-1 min-w-0">
                 <div class="block focus:outline-none">
-                  <!-- <span class="absolute inset-0" aria-hidden="true"></span> -->
                   <p
                     class="text-base font-semibold text-gray-900 truncate dark:text-gray-100"
                   >
@@ -70,17 +74,17 @@
               </p>
             </div>
           </div>
-        </div>
-        <div class="flex justify-center">
+        </nuxt-link>
+        <div class="col-span-1">
           <button
-            class="flex w-full h-full text-gray-400 md:p-5 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+            class="flex w-full h-full px-4 py-4 text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300"
             title="Delete"
             @click="deleted(data)"
           >
             <icon-trash class="w-6 h-6 m-auto" />
           </button>
         </div>
-      </nuxt-link>
+      </div>
     </ul>
     <div v-else class="flex flex-wrap items-center py-4 text-gray-400">
       {{ emptyList }}

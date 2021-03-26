@@ -4,16 +4,6 @@ body {
   overflow-x: hidden;
 }
 
-@responsive {
-  .word-wraping {
-    text-align: justify !important;
-    -webkit-hyphens: auto !important;
-    -moz-hyphens: auto !important;
-    -ms-hyphens: auto !important;
-    hyphens: auto !important;
-  }
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
@@ -53,6 +43,14 @@ button {
 /* Grid Auto Flow */
 .display-grid {
   @apply grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+.word-wraping {
+  text-align: justify !important;
+  -webkit-hyphens: auto !important;
+  -moz-hyphens: auto !important;
+  -ms-hyphens: auto !important;
+  hyphens: auto !important;
 }
 
 img[lazy='loading'] {

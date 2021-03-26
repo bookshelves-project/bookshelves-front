@@ -2,8 +2,8 @@
   <div class="container max-w-7xl">
     <section-heading
       title="Dashboard"
-      :subtitle="`Welcome ${$auth.user.name}`"
-      :image="$auth.$state.user.profile_photo_url"
+      :subtitle="`Welcome ${$auth.user.data.name}`"
+      :image="$auth.$state.user.data.profile_photo_url"
     />
     <div
       class="grid max-w-3xl grid-cols-1 gap-6 mx-auto mt-8 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2"
@@ -58,8 +58,8 @@ export default {
   async asyncData({ app, query, error, params, $content, $auth, store }) {
     try {
       const [favorites, comments] = await Promise.all([
-        app.$axios.$get(`/api/favorites/by-user/${$auth.$state.user.id}`),
-        app.$axios.$get(`/api/comments/by-user/${$auth.$state.user.id}`),
+        app.$axios.$get(`/api/favorites/by-user/${$auth.$state.user.data.id}`),
+        app.$axios.$get(`/api/comments/by-user/${$auth.$state.user.data.id}`),
       ])
 
       return {

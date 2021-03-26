@@ -35,9 +35,12 @@
               </div>
             </template>
             <template v-if="book.serie" #tertiary>
-              <div class="hidden font-semibold sm:block">Serie &#8212;</div>
               <div class="italic">
-                {{ book.serie.title }}, vol. {{ book.serie.number }}
+                {{ book.serie.title }},<br />
+                vol. {{ book.serie.number }}
+              </div>
+              <div class="mt-1">
+                {{ $getLanguage(book.language.slug) }}
               </div>
             </template>
           </entity-card>

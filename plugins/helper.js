@@ -104,3 +104,21 @@ const randomstring = (L) => {
 }
 
 Vue.prototype.$randomString = randomstring
+
+const getLanguage = (slug) => {
+  const available = [
+    {
+      slug: 'fr',
+      label: 'French',
+    },
+    {
+      slug: 'en',
+      label: 'English',
+    },
+  ]
+
+  const language = available.find((lang) => lang.slug === slug)
+  return language.label
+}
+
+Vue.prototype.$getLanguage = getLanguage

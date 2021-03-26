@@ -38,16 +38,27 @@
           </a>
         </div>
       </div>
-      <div class="relative mt-5 mb-10">
-        <div class="absolute inset-0 flex items-center" aria-hidden="true">
-          <div class="w-full border-t border-gray-300"></div>
-        </div>
-        <div class="relative flex justify-center">
-          <span class="px-2 text-gray-500 bg-white dark:bg-gray-900">
-            {{ author.books_number }} Books
-          </span>
-        </div>
+      <divider> {{ author.series.length }} Series </divider>
+      <div class="space-y-6 display-grid sm:space-y-0">
+        <entity-card
+          v-for="serie in author.series"
+          :key="serie.id"
+          :data="serie"
+          :cover="serie.picture"
+          :route="{
+            name: 'series-slug',
+            params: { author: author.slug, slug: serie.slug },
+          }"
+        >
+          <template #primary>
+            {{ $overflow(serie.title, 50) }}
+          </template>
+          <template v-if="serie.bookNumber" #secondary>
+            {{ serie.bookNumber }} books
+          </template>
+        </entity-card>
       </div>
+      <divider class="mt-16"> {{ author.books_number }} Books </divider>
       <div class="space-y-6 display-grid sm:space-y-0">
         <entity-card
           v-for="book in author.books"
@@ -63,11 +74,11 @@
             {{ $overflow(book.title, 50) }}
           </template>
           <template v-if="book.serie" #secondary>
-            {{ book.serie.title }}, vol. {{ book.serie.number }}
+            {{ book.serie.title }},<br />
+            vol. {{ book.serie.number }}
           </template>
           <template v-if="book.language" #tertiary>
-            <div class="font-semibold">Language &#8212;</div>
-            <img :src="book.language.flag" :alt="book.language.slug" />
+            {{ $getLanguage(book.language.slug) }}
           </template>
         </entity-card>
       </div>
@@ -77,9 +88,10 @@
 
 <script>
 import entityCard from '~/components/blocks/entity-card.vue'
+import Divider from '~/components/special/divider.vue'
 export default {
   name: 'AuthorsSlug',
-  components: { entityCard },
+  components: { entityCard, Divider },
   async asyncData({ app, query, error, params, $content, store }) {
     try {
       const [author] = await Promise.all([

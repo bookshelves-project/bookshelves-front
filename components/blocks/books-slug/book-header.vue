@@ -60,8 +60,8 @@
     >
       <div class="relative">
         <img
-          v-if="book.imageOriginal"
-          :src="book.imageOriginal"
+          v-if="book.picture.original"
+          :src="book.picture.original"
           alt="Book cover"
           class="h-full w-96"
         />

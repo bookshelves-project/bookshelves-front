@@ -61,7 +61,7 @@
                       <button
                         v-if="
                           $auth.$state.loggedIn &&
-                          comment.user.id === $auth.$state.user.id
+                          comment.user.id === $auth.$state.user.data.id
                         "
                         class="text-gray-400 dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-300"
                         title="Delete"
@@ -86,7 +86,7 @@
             <div class="flex-shrink-0">
               <img
                 class="w-10 h-10 rounded-full"
-                :src="$auth.$state.user.profile_photo_url"
+                :src="$auth.$state.user.data.profile_photo_url"
                 alt=""
               />
             </div>

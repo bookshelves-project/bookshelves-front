@@ -2,7 +2,7 @@
   <main class="container mb-5 max-w-7xl">
     <section-heading
       :title="
-        search ? `Results for &ldquo;${$route.query['terms']}&rdquo;` : 'Search'
+        search ? `Results for &ldquo;${$route.query['q']}&rdquo;` : 'Search'
       "
       :subtitle="
         search ? `${search.length} results` : `Try to search what you want`
@@ -42,60 +42,23 @@
         />
       </div>
     </form>
-    <div class="relative mb-8">
-      <div class="absolute inset-0 flex items-center" aria-hidden="true">
-        <div class="w-full border-t border-gray-300"></div>
-      </div>
-      <div class="relative flex justify-center">
-        <span class="px-2 text-sm text-gray-500 bg-white"> Results </span>
-      </div>
-    </div>
     <transition name="fade">
-      <div
-        v-if="search && search.length > 0"
-        :key="componentKey"
-        class="space-y-6 display-grid sm:space-y-0"
-      >
-        <entity-card
-          v-for="book in search"
-          :key="book.id"
-          :data="book"
-          :cover="book.picture"
-          :limited-height="false"
-          :route="{
-            name: `${book.meta.entity}s-slug`,
-            params: { author: book.meta.author, slug: book.meta.slug },
-          }"
-        >
-          <template #primary>
-            {{ $overflow(book.title, 50) }}
-          </template>
-          <template #secondary>
-            {{ $capitalize(book.meta.entity) }}
-          </template>
-          <template #tertiary>
-            <div>
-              <span v-for="(author, authorId) in book.authors" :key="authorId">
-                <span>{{ author.name }}</span>
-                <span
-                  v-if="
-                    book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
-                  "
-                >
-                  ,
-                </span>
-              </span>
-            </div>
-            <div v-if="book.serie" class="mt-5">
-              <div class="font-semibold">Serie &#8212;</div>
-              <div class="italic break-all">
-                {{ book.serie.title }}
-              </div>
-              <div>Vol. {{ book.serie.number }}</div>
-            </div>
-          </template>
-        </entity-card>
+      <div v-if="search && search.length > 0" :key="componentKey">
+        <search-results
+          v-if="authors.length"
+          :entity-type="`author`"
+          :entities="authors"
+        />
+        <search-results
+          v-if="series.length"
+          :entity-type="`serie`"
+          :entities="series"
+        />
+        <search-results
+          v-if="books.length"
+          :entity-type="`book`"
+          :entities="books"
+        />
       </div>
       <div v-else class="italic text-gray-500">No result</div>
     </transition>
@@ -104,12 +67,15 @@
 
 <script>
 import qs from 'qs'
-import entityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
+import SearchResults from '~/components/blocks/search-results.vue'
 
 export default {
   name: 'SearchIndex',
-  components: { entityCard, SectionHeading },
+  components: {
+    SectionHeading,
+    SearchResults,
+  },
   data() {
     return {
       search: [],
@@ -119,7 +85,7 @@ export default {
   },
   head() {
     const title = `Search${
-      this.$route.query.terms ? ` for ${this.$route.query.terms}` : ''
+      this.$route.query.q ? ` for ${this.$route.query.q}` : ''
     }`
     const description = 'Find all books you want to read.'
     const image = `${process.env.BASE_URL}/open-graph.jpg`
@@ -163,31 +129,48 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE_URL}/search?terms${this.$route.query.terms}`,
+          href: `${process.env.BASE_URL}/search?q${this.$route.query.q}`,
         },
       ],
     }
   },
+  computed: {
+    authors() {
+      let search = this.search
+      search = search.filter((entity) => entity.meta.entity === 'author')
+      return search
+    },
+    series() {
+      let search = this.search
+      search = search.filter((entity) => entity.meta.entity === 'serie')
+      return search
+    },
+    books() {
+      let search = this.search
+      search = search.filter((entity) => entity.meta.entity === 'book')
+      return search
+    },
+  },
   async watchQuery(newQuery, oldQuery) {
     if (this) {
-      this.search = await this.getSearchResults(newQuery.terms)
+      this.search = await this.getSearchResults(newQuery.q)
     }
   },
   async mounted() {
-    this.search = await this.getSearchResults(this.$route.query.terms)
+    this.search = await this.getSearchResults(this.$route.query.q)
   },
   methods: {
     advancedSearch() {
       this.$router.push({
         name: 'search',
-        query: { terms: this.advancedSearchInput },
+        query: { q: this.advancedSearchInput },
       })
     },
     async getSearchResults(query) {
       if (query) {
         const search = await this.$axios.$get(
           `/api/search?${qs.stringify({
-            terms: query,
+            q: query,
           })}`
         )
 

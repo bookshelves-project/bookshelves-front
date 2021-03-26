@@ -24,13 +24,26 @@
             :class="`slide--${index}`"
           >
             <div class="grid w-full h-full grid-cols-2">
-              <div class="col-span-1 aspect-w-1 aspect-h-3">
+              <div class="col-span-1">
                 <img
                   v-lazy="bookSerie.picture.original"
-                  class="object-contain object-top"
+                  class="object-cover object-top w-full h-full"
                 />
               </div>
               <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
+                <nuxt-link
+                  :to="{
+                    name: 'series-slug',
+                    params: {
+                      author: bookSerie.author,
+                      slug: bookSerie.slug,
+                    },
+                  }"
+                  class="inline-flex items-center justify-center px-4 py-2 mx-auto mt-5 font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 md:w-max"
+                >
+                  <icon-bookmark class="w-6 h-6" />
+                  <span class="mx-1"> Refer to book page </span>
+                </nuxt-link>
                 <div>
                   <span
                     class="text-sm font-medium text-gray-500 dark:text-gray-500"
@@ -76,7 +89,7 @@
                     class="text-sm font-medium text-gray-500 dark:text-gray-500"
                     >Serie
                   </span>
-                  <h2 class="font-semibold">
+                  <h2 class="font-semibold text-black">
                     <nuxt-link
                       :to="{
                         name: 'series-slug',
@@ -106,19 +119,6 @@
                     />
                   </div>
                 </div>
-                <nuxt-link
-                  :to="{
-                    name: 'series-slug',
-                    params: {
-                      author: bookSerie.author,
-                      slug: bookSerie.slug,
-                    },
-                  }"
-                  class="inline-flex items-center justify-center px-4 py-2 mx-auto mt-16 text-sm font-medium font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 md:w-max"
-                >
-                  <icon-bookmark class="w-6 h-6" />
-                  <span class="mx-1"> Refer to book page </span>
-                </nuxt-link>
               </div>
             </div>
           </div>
@@ -222,8 +222,11 @@ export default {
     }
   },
   mounted() {
-    this.asNavFor1.push(this.$refs.thumbnails)
-    this.asNavFor2.push(this.$refs.main)
+    if (this.book.serie) {
+      this.$refs.main.goTo(this.book.serie.number - 1)
+      this.asNavFor1.push(this.$refs.thumbnails)
+      this.asNavFor2.push(this.$refs.main)
+    }
   },
 }
 </script>
