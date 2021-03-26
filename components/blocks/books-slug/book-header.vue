@@ -24,7 +24,7 @@
         <button
           v-if="$auth.$state.loggedIn"
           class="ml-3"
-          @click="toggleFavorite"
+          @click="toggleFavorite('book')"
         >
           <icon-heart
             title="Favorite"

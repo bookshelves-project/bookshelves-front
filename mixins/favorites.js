@@ -5,17 +5,21 @@ export default {
       favoritesList: [],
     }
   },
-  created() {
-    this.isFavorite = this.book ? this.book.isFavorite : null
+  mounted() {
+    this.isFavoriteCheck()
     this.favoritesList = this.favorites
   },
   methods: {
-    async toggleFavorite() {
+    isFavoriteCheck() {
+      let entity = this.$route.name
+      entity = entity.replace('s-slug', '')
+      this.isFavorite = this[entity] ? this[entity].isFavorite : null
+    },
+    async toggleFavorite(entity) {
       this.isFavorite = !this.isFavorite
-      const model = 'book'
       const slug = this.$route.params.slug
       try {
-        await this.$axios.$post(`/api/favorites/toggle/${model}/${slug}`)
+        await this.$axios.$post(`/api/favorites/toggle/${entity}/${slug}`)
       } catch (error) {
         console.error(error)
       }

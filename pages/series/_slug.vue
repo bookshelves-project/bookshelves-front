@@ -9,11 +9,24 @@
             class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
           />
           <div class="ml-4">
-            <h1
-              class="text-3xl font-semibold text-center font-handlee lg:text-left"
-            >
-              {{ serie.title }}
-            </h1>
+            <div class="flex items-center">
+              <h1
+                class="text-3xl font-semibold text-center font-handlee lg:text-left"
+              >
+                {{ serie.title }}
+              </h1>
+              <button
+                v-if="$auth.$state.loggedIn"
+                class="ml-3"
+                @click="toggleFavorite('serie')"
+              >
+                <icon-heart
+                  title="Favorite"
+                  class="text-red-600"
+                  :is-full="isFavorite"
+                />
+              </button>
+            </div>
             <div class="mt-2 text-center lg:text-left lg:mt-0">
               <span
                 v-for="(author, authorId) in serie.authors"
@@ -116,9 +129,12 @@
 
 <script>
 import entityCard from '~/components/blocks/entity-card.vue'
+import IconHeart from '~/components/icons/icon-heart.vue'
+import favorites from '~/mixins/favorites'
 export default {
   name: 'SeriesSlug',
-  components: { entityCard },
+  components: { entityCard, IconHeart },
+  mixins: [favorites],
   async asyncData({ app, query, error, params, $content, store }) {
     try {
       const [serie] = await Promise.all([
