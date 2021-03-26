@@ -33,16 +33,16 @@
               <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
                 <nuxt-link
                   :to="{
-                    name: 'series-slug',
+                    name: 'books-slug',
                     params: {
                       author: bookSerie.author,
                       slug: bookSerie.slug,
                     },
                   }"
-                  class="inline-flex items-center justify-center px-4 py-2 mx-auto mt-5 font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 md:w-max"
+                  class="inline-flex items-center justify-center px-3 py-2 mx-auto mt-3 text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm font-base bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 md:w-max"
                 >
-                  <icon-bookmark class="w-6 h-6" />
-                  <span class="mx-1"> Refer to book page </span>
+                  <icon-bookmark class="w-5 h-5 text-white" />
+                  <span class="mx-1 text-white"> Refer to book page </span>
                 </nuxt-link>
                 <div>
                   <span
