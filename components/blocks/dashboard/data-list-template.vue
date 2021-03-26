@@ -30,7 +30,7 @@
               slug: data.meta.slug,
             },
           }"
-          class="flex items-center w-full col-span-5 py-5 pl-4 space-x-6 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600"
+          class="flex items-center w-full col-span-5 py-5 pl-4 pr-1 space-x-6 hover:bg-gray-50 dark:hover:bg-gray-700 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600"
         >
           <div class="flex-shrink-0">
             <img
