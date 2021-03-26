@@ -78,7 +78,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: `${process.env.BASE_URL}/${settings.metadata.defaultOpenGraph}`,
+        content: `${process.env.BASE_URL}/open-graph.jpg`,
       },
       {
         hid: 'og:image:alt',
