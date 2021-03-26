@@ -319,6 +319,19 @@ export default {
       laravelSanctum: {
         provider: 'laravel/sanctum',
         url: process.env.API_URL,
+        endpoints: {
+          login: {
+            url: '/login',
+            method: 'post',
+            propertyName: 'access_token',
+          },
+          logout: { url: '/logout', method: 'post' },
+          user: { url: '/api/user', method: 'get', propertyName: false },
+        },
+        tokenRequired: true,
+        tokenType: 'Bearer',
+        globalToken: true,
+        // autoFetchUser: true
       },
     },
     redirect: {
