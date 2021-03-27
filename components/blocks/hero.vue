@@ -5,10 +5,10 @@
         <h1
           class="text-4xl font-extrabold tracking-tight text-gray-900 font-handlee sm:text-5xl md:text-6xl"
         >
-          <span class="block xl:inline"
-            >Reading in complete tranquility on</span
-          >
           <span class="block text-indigo-600 xl:inline">Bookshelves</span>
+          <span class="block xl:inline"
+            >, reading in complete tranquility...</span
+          >
         </h1>
         <p
           class="mx-auto mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl md:mt-5 md:text-xl lg:mx-0"
