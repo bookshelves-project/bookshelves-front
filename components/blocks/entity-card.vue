@@ -1,7 +1,7 @@
 <template>
   <nuxt-link :to="route" class="block group">
     <article
-      class="relative transition-colors duration-100 rounded-md sm:grid sm:grid-cols-2 sm:gap-3 group-hover:bg-gray-100"
+      class="relative transition-colors duration-100 rounded-md sm:grid sm:grid-cols-2 sm:gap-3 group-hover:bg-gray-100 dark:group-hover:bg-gray-800"
     >
       <div class="aspect-w-1 aspect-h-1 sm:aspect-w-2 sm:aspect-h-3">
         <img

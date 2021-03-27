@@ -300,7 +300,7 @@ export default {
 
   pwa: {
     meta: {
-      name: settings.metadata.name,
+      name: settings.metadata.title,
       author: settingsCustom.metadata.author || settings.custom.metadata.author,
       description: settings.metadata.description,
       theme_color: settings.metadata.color,
