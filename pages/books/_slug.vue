@@ -1,17 +1,12 @@
 <template>
   <div class="mx-auto">
     <main>
-      <!-- Page header -->
       <book-header :book="book" />
-
       <div
         class="grid max-w-3xl grid-cols-1 gap-6 px-3 mx-auto mt-8 sm:px-6 xl:max-w-7xl xl:grid-flow-col-dense xl:grid-cols-2"
       >
         <div class="space-y-6 xl:col-start-1 xl:col-span-1">
-          <!-- Description list-->
           <book-description :book="book" />
-
-          <!-- Comments-->
           <book-comments :book="book" />
         </div>
 
@@ -31,15 +26,12 @@
 import BookComments from '~/components/blocks/books-slug/book-comments.vue'
 import BookDescription from '~/components/blocks/books-slug/book-description.vue'
 import bookHeader from '~/components/blocks/books-slug/book-header.vue'
-import BookInformation from '~/components/blocks/books-slug/book-information.vue'
 import BookSerie from '~/components/blocks/books-slug/book-serie.vue'
 
-/* eslint-disable vue/no-unused-components */
 export default {
   name: 'BooksSlug',
   components: {
     bookHeader,
-    BookInformation,
     BookSerie,
     BookDescription,
     BookComments,
@@ -49,6 +41,7 @@ export default {
       const [book] = await Promise.all([
         app.$axios.$get(`/api/books/${params.author}/${params.slug}`),
       ])
+      console.log(book)
 
       return {
         book: book.data,
@@ -167,9 +160,13 @@ export default {
   methods: {
     async loadSerie() {
       if (this.book.serie !== null) {
-        const serie = await this.$axios.$get(this.book.serie.show)
-        this.serie = serie.data.books
-        this.serieLoaded = true
+        try {
+          const serie = await this.$axios.$get(this.book.serie.meta.show)
+          this.serie = serie.data.books
+          this.serieLoaded = true
+        } catch (error) {
+          console.error(error)
+        }
       }
     },
   },

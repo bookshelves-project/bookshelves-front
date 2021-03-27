@@ -120,7 +120,7 @@
               </span>
             </span>
           </template>
-          <template #tertiary> Vol. {{ book.serie.number }} </template>
+          <template #tertiary> Vol. {{ book.serieVolume }} </template>
         </entity-card>
       </div>
     </div>

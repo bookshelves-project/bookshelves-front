@@ -62,7 +62,7 @@
                   class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
                   >{{ book.serie.title }}</nuxt-link
                 >
-                (vol. {{ book.serie.number }})
+                (vol. {{ book.serieVolume }})
               </h2>
             </dd>
           </div>
@@ -83,7 +83,8 @@
               Language
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
-              <img :src="book.language.flag" :alt="book.language.slug" />
+              <!-- <img :src="book.language.flag" :alt="book.language.slug" /> -->
+              {{ $getLanguage(book.language) }}
             </dd>
           </div>
           <div
@@ -155,5 +156,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped></style>

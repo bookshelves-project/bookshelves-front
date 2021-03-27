@@ -57,7 +57,7 @@
           v-for="serie in author.series"
           :key="serie.id"
           :data="serie"
-          :cover="serie.picture"
+          :cover="serie.picture.base"
           :route="{
             name: 'series-slug',
             params: { author: author.slug, slug: serie.slug },
@@ -66,8 +66,8 @@
           <template #primary>
             {{ $overflow(serie.title, 50) }}
           </template>
-          <template v-if="serie.bookNumber" #secondary>
-            {{ serie.bookNumber }} books
+          <template v-if="serie.booksNumber" #secondary>
+            {{ serie.booksNumber }} books
           </template>
         </entity-card>
       </div>
@@ -77,7 +77,7 @@
           v-for="book in author.books"
           :key="book.id"
           :data="book"
-          :cover="book.picture"
+          :cover="book.picture.base"
           :route="{
             name: 'books-slug',
             params: { author: book.author, slug: book.slug },
@@ -88,10 +88,10 @@
           </template>
           <template v-if="book.serie" #secondary>
             {{ book.serie.title }},<br />
-            vol. {{ book.serie.number }}
+            vol. {{ book.serieVolume }}
           </template>
           <template v-if="book.language" #tertiary>
-            {{ $getLanguage(book.language.slug) }}
+            {{ $getLanguage(book.language) }}
           </template>
         </entity-card>
       </div>

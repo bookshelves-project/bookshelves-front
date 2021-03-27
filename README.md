@@ -27,6 +27,22 @@
   - optimize:
     - <https://image.nuxtjs.org>
     - <https://github.com/juliomrqz/nuxt-optimized-images>
+- [ ] design
+  - buttons on book details stealth
+  - review agile book selection (with vol 0)
+  - agile language flag to text
+  - review blocks order book detail (masonry or tailwind)
+  - book detail agile same page refer change
+  - book detail current vol remove
+  - book list filter remove (refresh page not appear)
+  - book list hover dark
+  - content custom component for zoom on img
+  - last books, book selection on home
+  - list min height
+  - search improve with options, add text to explain, change no result text
+  - paginate design color for not available page
+  - settings, update website name for vivacia
+  - review title by og
 
 ---
 

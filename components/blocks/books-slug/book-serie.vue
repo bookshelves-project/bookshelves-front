@@ -84,41 +84,6 @@
                     </h3>
                   </div>
                 </div>
-                <div v-if="book.serie">
-                  <span
-                    class="text-sm font-medium text-gray-500 dark:text-gray-500"
-                    >Serie
-                  </span>
-                  <h2 class="font-semibold text-black">
-                    <nuxt-link
-                      :to="{
-                        name: 'series-slug',
-                        params: {
-                          author: book.serie.author,
-                          slug: book.serie.slug,
-                        },
-                      }"
-                      class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
-                      >{{ book.serie.title }}</nuxt-link
-                    >
-                    (vol. {{ bookSerie.serie.number
-                    }}<span v-if="bookSerie.serie.number === book.serie.number"
-                      >, current</span
-                    >)
-                  </h2>
-                </div>
-                <div>
-                  <span
-                    class="text-sm font-medium text-gray-500 dark:text-gray-500"
-                    >Language
-                  </span>
-                  <div class="text-sm text-gray-900 dark:text-gray-100">
-                    <img
-                      :src="bookSerie.language.flag"
-                      :alt="bookSerie.language.slug"
-                    />
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -142,7 +107,10 @@
             :class="`slide--${index}`"
             @click="$refs.thumbnails.goTo(index)"
           >
-            <img v-lazy="bookSerie.picture.base" />
+            <img
+              v-lazy="bookSerie.picture.base"
+              class="object-cover object-center w-full h-full"
+            />
           </div>
         </agile>
       </div>
@@ -193,7 +161,7 @@ export default {
         dots: false,
         fade: true,
         navButtons: true,
-        infinite: true,
+        infinite: false,
       },
 
       options2: {
@@ -201,7 +169,7 @@ export default {
         centerMode: true,
         dots: true,
         navButtons: false,
-        infinite: true,
+        infinite: false,
         slidesToShow: 3,
         responsive: [
           {
@@ -223,7 +191,7 @@ export default {
   },
   mounted() {
     if (this.book.serie) {
-      this.$refs.main.goTo(this.book.serie.number - 1)
+      this.$refs.main.goTo(this.book.serieVolume - 1)
       this.asNavFor1.push(this.$refs.thumbnails)
       this.asNavFor2.push(this.$refs.main)
     }

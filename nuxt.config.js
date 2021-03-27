@@ -331,7 +331,6 @@ export default {
         tokenRequired: true,
         tokenType: 'Bearer',
         globalToken: true,
-        // autoFetchUser: true
       },
     },
     redirect: {

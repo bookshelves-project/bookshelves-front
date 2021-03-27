@@ -10,7 +10,7 @@
           <entity-card
             v-for="(author, authorId) in authors.data"
             :key="authorId"
-            :cover="author.picture"
+            :cover="author.picture.base"
             :image-alt="author.name"
             :route="{
               name: 'authors-slug',
@@ -20,7 +20,7 @@
             <template #primary>
               {{ author.lastname }} {{ author.firstname }}
             </template>
-            <template #secondary> {{ author.books_number }} books </template>
+            <template #secondary> {{ author.booksNumber }} books </template>
           </entity-card>
         </div>
       </div>

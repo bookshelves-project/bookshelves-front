@@ -10,7 +10,7 @@
           <entity-card
             v-for="serie in series.data"
             :key="serie.id"
-            :cover="serie.picture"
+            :cover="serie.picture.base"
             :image-alt="serie.title"
             :route="{
               name: 'series-slug',

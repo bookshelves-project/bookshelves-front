@@ -11,7 +11,7 @@
           <entity-card
             v-for="book in books.data"
             :key="book.id"
-            :cover="book.picture"
+            :cover="book.picture.base"
             :image-alt="book.title"
             :route="{
               name: 'books-slug',
@@ -37,10 +37,10 @@
             <template v-if="book.serie" #tertiary>
               <div class="italic">
                 {{ book.serie.title }},<br />
-                vol. {{ book.serie.number }}
+                vol. {{ book.serieVolume }}
               </div>
               <div class="mt-1">
-                {{ $getLanguage(book.language.slug) }}
+                {{ $getLanguage(book.language) }}
               </div>
             </template>
           </entity-card>
