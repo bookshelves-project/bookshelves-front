@@ -41,7 +41,6 @@ export default {
       const [book] = await Promise.all([
         app.$axios.$get(`/api/books/${params.author}/${params.slug}`),
       ])
-      console.log(book)
 
       return {
         book: book.data,
