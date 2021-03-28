@@ -1,7 +1,7 @@
 <template>
   <main class="container max-w-7xl">
     <div>
-      <div class="items-center justify-between mb-8 lg:flex">
+      <div class="items-center justify-between mb-3 lg:flex">
         <div class="items-center lg:flex">
           <!-- <nuxt-picture
           :src="author.picture"
@@ -10,7 +10,7 @@
           placeholder="/images/author-no-cover.png"
         /> -->
           <img
-            v-lazy="author.picture.base"
+            v-lazy="author.picture ? author.picture.base : null"
             :alt="author.name"
             class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
           />
@@ -43,7 +43,7 @@
               <div class="flex mx-1">
                 <span class="lg:mr-1">Download</span>
                 <span class="hidden md:block"
-                  >{{ author.books_number }} eBooks</span
+                  >{{ author.booksNumber }} eBooks</span
                 >
               </div>
               <div>(ZIP {{ author.size }})</div>
@@ -51,13 +51,32 @@
           </a>
         </div>
       </div>
-      <divider> {{ author.series.length }} Series </divider>
-      <div class="space-y-6 display-grid sm:space-y-0">
+      <div
+        v-if="author.description"
+        class="max-w-full pt-2 mb-8 prose word-wraping"
+      >
+        <p class="italic">
+          {{ author.description }}
+        </p>
+        <div v-if="author.wikipediaLink" class="pt-1 text-right">
+          To have more informations:
+          <a
+            :href="author.wikipediaLink"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Wikipedia</a
+          >
+        </div>
+      </div>
+      <divider>
+        {{ author.series ? author.series.length : null }} Series
+      </divider>
+      <div v-if="author.series" class="space-y-6 display-grid sm:space-y-0">
         <entity-card
           v-for="serie in author.series"
           :key="serie.id"
           :data="serie"
-          :cover="serie.picture.base"
+          :cover="serie.picture ? serie.picture.base : null"
           :route="{
             name: 'series-slug',
             params: { author: author.slug, slug: serie.slug },
@@ -133,7 +152,7 @@ export default {
   head() {
     const title = `${this.author.name} - Authors`
     const description = `${this.author.name} author on Bookshelves with ${this.author.books_number} books available.`
-    const image = this.author.picture.openGraph
+    const image = this.author.picture ? this.author.picture.openGraph : null
     const author = this.author.name
     const authorFirstname = this.author.firstname
     const authorLastname = this.author.lastname
