@@ -5,8 +5,8 @@
         <h1
           class="text-4xl font-extrabold tracking-tight text-gray-900 font-handlee sm:text-5xl md:text-6xl"
         >
-          <span class="block text-indigo-600 xl:inline">Bookshelves</span>
-          <span class="block xl:inline"
+          <span class="block text-indigo-600 xl:inline">Bookshelves</span
+          ><span class="block xl:inline"
             >, reading in complete tranquility...</span
           >
         </h1>
