@@ -238,7 +238,7 @@ export default {
     async apiStatus() {
       let res = null
       try {
-        res = await this.$http.head(`${process.env.API_URL}/api`)
+        res = await this.$axios.head(`${process.env.API_URL}/api`)
         if (res.status === 200) {
           this.apiStatusBoolean = true
         } else {

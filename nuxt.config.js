@@ -269,17 +269,13 @@ export default {
     // https://github.com/nuxt-community/svg-module
     '@nuxtjs/svg',
     // https://image.nuxtjs.org/
-    '@nuxt/image',
-    // https://http.nuxtjs.org
-    '@nuxt/http',
+    // '@nuxt/image',
     // https://www.npmjs.com/package/@nuxtjs/robots
     '@nuxtjs/robots',
     // https://i18n.nuxtjs.org/setup
-    'nuxt-i18n',
+    // 'nuxt-i18n',
     // https://auth.nuxtjs.org/guide/setup
     '@nuxtjs/auth-next',
-    // https://github.com/microcipcip/cookie-universal/tree/master/packages/cookie-universal-nuxt
-    'cookie-universal-nuxt',
     // https://github.com/nuxt-community/recaptcha-module
     '@nuxtjs/recaptcha',
     // https://sitemap.nuxtjs.org/guide/setup
@@ -419,30 +415,30 @@ export default {
       },
     ],
   },
-  i18n: {
-    locales: [
-      {
-        code: 'en',
-        name: 'English',
-      },
-      {
-        code: 'fr',
-        name: 'Français',
-      },
-    ],
-    defaultLocale: 'en',
-    vueI18n: {
-      fallbackLocale: 'en',
-      messages: {
-        en: {
-          welcome: 'Welcome',
-        },
-        fr: {
-          welcome: 'Bienvenue',
-        },
-      },
-    },
-  },
+  // i18n: {
+  //   locales: [
+  //     {
+  //       code: 'en',
+  //       name: 'English',
+  //     },
+  //     {
+  //       code: 'fr',
+  //       name: 'Français',
+  //     },
+  //   ],
+  //   defaultLocale: 'en',
+  //   vueI18n: {
+  //     fallbackLocale: 'en',
+  //     messages: {
+  //       en: {
+  //         welcome: 'Welcome',
+  //       },
+  //       fr: {
+  //         welcome: 'Bienvenue',
+  //       },
+  //     },
+  //   },
+  // },
   recaptcha: {
     hideBadge: true,
     // language: '',
@@ -464,6 +460,7 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    analyze: true,
     transpile: ['vue-agile'],
   },
 }
