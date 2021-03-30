@@ -17,7 +17,7 @@ export const state = () => ({
       route: 'dashboard',
       isAdmin: false,
     },
-    { label: 'Admin', icon: 'book-open', route: 'dashboard', isAdmin: true },
+    { label: 'Admin', icon: 'book-open', route: 'admin', isAdmin: true },
   ],
   authNavigationFalse: [
     { label: 'Sign in', icon: 'book-open', route: 'login' },

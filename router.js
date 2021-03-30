@@ -16,32 +16,13 @@ import Content from '~/pages/_'
 import ContentPage from '~/pages/content/slug'
 import Contact from '~/pages/contact'
 
+// Auth
 import Login from '~/pages/sign-in'
 import Register from '~/pages/sign-up'
 import Dashboard from '~/pages/dashboard'
+import Admin from '~/pages/admin'
 
 Vue.use(Router)
-
-// export function createRouter(ssrContext, routerOptions) {
-//   const routes =
-//   const options = routerOptions
-
-//   // eslint-disable-next-line no-unused-vars
-//   const router = new Router({
-//     ...options,
-//     scrollToTop: true,
-//     parseQuery(query) {
-//       return qs.parse(query)
-//     },
-//     stringifyQuery(query) {
-//       const result = qs.stringify(query)
-
-//       return result ? '?' + result : ''
-//     },
-//     routes,
-//   })
-//   return router
-// }
 
 const routesList = [
   {
@@ -113,6 +94,11 @@ const routesList = [
     name: 'dashboard',
     path: '/dashboard',
     component: Dashboard,
+  },
+  {
+    name: 'admin',
+    path: '/admin',
+    component: Admin,
   },
   {
     name: 'all',

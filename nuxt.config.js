@@ -280,6 +280,8 @@ export default {
     '@nuxtjs/recaptcha',
     // https://sitemap.nuxtjs.org/guide/setup
     '@nuxtjs/sitemap',
+    // https://github.com/avil13/vue-sweetalert2
+    'vue-sweetalert2/nuxt',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -290,6 +292,7 @@ export default {
     headers: {
       common: {
         'X-Requested-With': 'XMLHttpRequest',
+        'Access-Control-Allow-Origin': '*',
       },
     },
   },
