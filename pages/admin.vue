@@ -43,6 +43,7 @@ import VButton from '~/components/special/v-button.vue'
 export default {
   name: 'PageAdmin',
   components: { sectionHeading, VButton, IconLoad },
+  middleware: 'admin',
   data() {
     return {
       loading: false,
