@@ -105,7 +105,7 @@
           <div class="pt-4 pb-10 mx-auto prose prose-lg lg:px-5 lg:pt-8">
             <div v-if="$route.params.slug === 'api-documentation'">
               <a
-                :href="`${apiUrl}/api`"
+                :href="`${apiUrl}`"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="block text-base text-gray-500 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-400"

@@ -46,9 +46,6 @@ module.exports = {
       maxWidth: {
         extra: '120rem',
       },
-      backgroundImage: (theme) => ({
-        library: "url('/images/background.jpg')",
-      }),
     },
   },
   variants: {

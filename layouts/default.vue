@@ -1,26 +1,22 @@
 <template>
   <div
     :class="dev ? 'debug-screens' : ''"
-    class="bg-fixed bg-no-repeat bg-cover bg-library dark:bg-primary-600"
+    class="bg-fixed bg-no-repeat bg-cover bg-primary-300 dark:bg-primary-600"
   >
     <overlay />
-    <div
-      class="inset-0 bg-white dark:border-gray-900 dark:bg-gray-900 bg-opacity-60 dark:bg-opacity-70"
-    >
-      <div class="mx-auto bg-white max-w-extra dark:bg-gray-900">
-        <layer />
-        <navbar
-          class="transform -translate-x-1/2 border-gray-800 max-w-7xl left-1/2 border-opacity-5"
-        />
-        <div
-          class="fixed z-20 w-full h-16 bg-white border-gray-800 dark:border-gray-800 dark:bg-gray-800 shadow-navbar dark:shadow-none max-w-extra border-opacity-5"
-        ></div>
-        <sidebar />
-        <div class="pt-24"></div>
-        <modal />
-        <Nuxt class="min-height-content" />
-        <default-footer />
-      </div>
+    <div class="mx-auto bg-white max-w-extra dark:bg-gray-900">
+      <layer />
+      <navbar
+        class="transform -translate-x-1/2 border-gray-800 max-w-7xl left-1/2 border-opacity-5"
+      />
+      <div
+        class="fixed z-20 w-full h-16 bg-white border-gray-800 dark:border-gray-800 dark:bg-gray-800 shadow-navbar dark:shadow-none max-w-extra border-opacity-5"
+      ></div>
+      <sidebar />
+      <div class="pt-24"></div>
+      <modal />
+      <Nuxt class="min-height-content" />
+      <default-footer />
     </div>
   </div>
 </template>

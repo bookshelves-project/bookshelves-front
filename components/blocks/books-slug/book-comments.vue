@@ -275,7 +275,7 @@ export default {
     async submit() {
       const slug = this.$route.params.slug
       try {
-        await this.$axios.$post(`/api/comments/store/book/${slug}`, this.form)
+        await this.$axios.$post(`/comments/store/book/${slug}`, this.form)
         this.form.text = ''
         this.form.rating = null
       } catch (error) {
@@ -291,7 +291,7 @@ export default {
         }, 3000)
       }
       try {
-        const comments = await this.$axios.$get(`/api/comments/book/${slug}`)
+        const comments = await this.$axios.$get(`/comments/book/${slug}`)
         this.commentsList = comments.data
       } catch (error) {
         console.error(error)
@@ -304,7 +304,7 @@ export default {
       this.commentsList = comments
 
       try {
-        await this.$axios.$post(`/api/comments/destroy/${idOfCommentToDelete}`)
+        await this.$axios.$post(`/comments/destroy/${idOfCommentToDelete}`)
       } catch (error) {
         console.error(error)
       }

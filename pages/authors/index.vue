@@ -56,7 +56,7 @@ export default {
       const page = query.page
       const [authors] = await Promise.all([
         app.$axios.$get(
-          `/api/authors?${qs.stringify({
+          `/authors?${qs.stringify({
             page: page || 1,
             perPage: 32,
           })}`

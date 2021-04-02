@@ -139,7 +139,7 @@ export default {
     },
     async logout() {
       try {
-        await this.$axios.$post('/api/logout')
+        await this.$axios.$post('/logout')
       } catch (error) {
         console.error(error)
       }

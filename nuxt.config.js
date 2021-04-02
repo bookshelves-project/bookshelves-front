@@ -308,8 +308,8 @@ export default {
 
   proxy: {
     '/api': {
-      target: `${process.env.API_URL}/api`,
-      pathRewrite: { '^/api': '/' },
+      target: `${process.env.API_URL}`,
+      pathRewrite: { '^/': '/' },
     },
   },
 
@@ -325,7 +325,7 @@ export default {
             propertyName: 'access_token',
           },
           logout: { url: '/logout', method: 'post' },
-          user: { url: '/api/user', method: 'get', propertyName: false },
+          user: { url: '/user', method: 'get', propertyName: false },
         },
         tokenRequired: true,
         tokenType: 'Bearer',

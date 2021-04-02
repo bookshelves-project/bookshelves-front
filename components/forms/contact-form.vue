@@ -144,7 +144,7 @@ export default {
         const token = await this.$recaptcha.execute('login')
         this.form['g-recaptcha-response'] = token
 
-        await this.$axios.post('/api/submission', this.form)
+        await this.$axios.post('/submission', this.form)
 
         this.success = true
         this.errors = false

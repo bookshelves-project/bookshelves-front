@@ -88,7 +88,7 @@ export default {
       const lang = query.lang
       const [books] = await Promise.all([
         app.$axios.$get(
-          `/api/books?${qs.stringify({
+          `/books?${qs.stringify({
             page: page || 1,
             perPage: 32,
             lang,

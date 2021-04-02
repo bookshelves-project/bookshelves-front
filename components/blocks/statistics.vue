@@ -118,10 +118,10 @@ export default {
           authorsCount,
           countLangs,
         ] = await Promise.all([
-          this.$axios.$get('/api/books/count'),
-          this.$axios.$get('/api/series/count'),
-          this.$axios.$get('/api/authors/count'),
-          this.$axios.$get('/api/books/count-langs'),
+          this.$axios.$get('/books/count'),
+          this.$axios.$get('/series/count'),
+          this.$axios.$get('/authors/count'),
+          this.$axios.$get('/books/count-langs'),
         ])
       } catch (error) {
         responseError = true

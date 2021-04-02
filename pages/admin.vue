@@ -107,7 +107,7 @@ export default {
     async updateNewEbooks() {
       this.loading = true
       try {
-        const res = await this.$axios.$get('/api/commands/update-books')
+        const res = await this.$axios.$get('/commands/update-books')
         if (res.books > 0) {
           this.$swal({
             title: 'Update success',

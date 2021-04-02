@@ -90,7 +90,7 @@
           </template>
         </entity-card>
       </div>
-      <divider class="mt-16"> {{ author.books_number }} Books </divider>
+      <divider class="mt-16"> {{ author.booksNumber }} Books </divider>
       <div class="space-y-6 display-grid sm:space-y-0">
         <entity-card
           v-for="book in author.books"
@@ -130,7 +130,7 @@ export default {
   async asyncData({ app, query, error, params, $content, store }) {
     try {
       const [author] = await Promise.all([
-        app.$axios.$get(`/api/authors/${params.slug}`),
+        app.$axios.$get(`/authors/${params.slug}`),
       ])
 
       return {

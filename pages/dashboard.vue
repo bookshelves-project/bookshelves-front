@@ -58,8 +58,8 @@ export default {
   async asyncData({ app, query, error, params, $content, $auth, store }) {
     try {
       const [favorites, comments] = await Promise.all([
-        app.$axios.$get(`/api/favorites/by-user/${$auth.$state.user.data.id}`),
-        app.$axios.$get(`/api/comments/by-user/${$auth.$state.user.data.id}`),
+        app.$axios.$get(`/favorites/by-user/${$auth.$state.user.data.id}`),
+        app.$axios.$get(`/comments/by-user/${$auth.$state.user.data.id}`),
       ])
 
       return {

@@ -19,14 +19,14 @@ export default {
       this.isFavorite = !this.isFavorite
       const slug = this.$route.params.slug
       try {
-        await this.$axios.$post(`/api/favorites/toggle/${entity}/${slug}`)
+        await this.$axios.$post(`/favorites/toggle/${entity}/${slug}`)
       } catch (error) {
         console.error(error)
       }
     },
     async deleteFavorite(model, slug) {
       try {
-        await this.$axios.$post(`/api/favorites/toggle/${model}/${slug}`)
+        await this.$axios.$post(`/favorites/toggle/${model}/${slug}`)
       } catch (error) {
         console.error(error)
       }
