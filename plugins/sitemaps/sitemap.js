@@ -149,30 +149,30 @@ export const getPagesRoutes = () => {
   })
 }
 
-const fetchBooks = () => {
+const fetchBooks = async () => {
   try {
-    const result = axios.get(`${process.env.API_URL}/books?limit=all`)
-    return result
+    const result = await axios.get(`${process.env.API_URL}/books?limit=all`)
+    return result.data
   } catch (error) {
     console.error('Unable to catch API')
     return []
   }
 }
 
-const fetchSeries = () => {
+const fetchSeries = async () => {
   try {
-    const result = axios.get(`${process.env.API_URL}/series?limit=all`)
-    return result
+    const result = await axios.get(`${process.env.API_URL}/series?limit=all`)
+    return result.data
   } catch (error) {
     console.error('Unable to catch API')
     return []
   }
 }
 
-const fetchAuthors = () => {
+const fetchAuthors = async () => {
   try {
-    const result = axios.get(`${process.env.API_URL}/authors?limit=all`)
-    return result
+    const result = await axios.get(`${process.env.API_URL}/authors?limit=all`)
+    return result.data
   } catch (error) {
     console.error('Unable to catch API')
     return []
