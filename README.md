@@ -74,12 +74,12 @@ yarn dev
 Update `dotenv` file `API_URL` to use local API
 
 ```yml
-API_URL=http://localhost:8000
+API_URL=http://localhost:8000/api
 ```
 
 ### *I. b. Custom metadata*
 
-If you want to custom some metadata, if you don't create `settings-custom.json`, this is default values from `settings.json`
+If you want to custom some metadata, if you don't create `settings-custom.json`, this is default values from `settings-custom.example.json`
 
 ```bash
 cp static/settings-custom.example.json static/settings-custom.json
@@ -97,7 +97,7 @@ Update `dotenv`
 PORT=3004
 HOST=127.0.0.1
 BASE_URL=https://bookshelves.ink
-API_URL=https://bookshelves.ink
+API_URL=https://bookshelves.ink/api
 ```
 
 Setup build

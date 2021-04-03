@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import axios from 'axios'
 import { $content } from '@nuxt/content'
 require('dotenv').config()
 
@@ -151,9 +151,7 @@ export const getPagesRoutes = () => {
 
 const fetchBooks = () => {
   try {
-    const result = fetch(
-      `${process.env.API_URL}/books?limit=all`
-    ).then((response) => response.json())
+    const result = axios.get(`${process.env.API_URL}/books?limit=all`)
     return result
   } catch (error) {
     console.error('Unable to catch API')
@@ -163,9 +161,7 @@ const fetchBooks = () => {
 
 const fetchSeries = () => {
   try {
-    const result = fetch(
-      `${process.env.API_URL}/series?limit=all`
-    ).then((response) => response.json())
+    const result = axios.get(`${process.env.API_URL}/series?limit=all`)
     return result
   } catch (error) {
     console.error('Unable to catch API')
@@ -175,9 +171,7 @@ const fetchSeries = () => {
 
 const fetchAuthors = () => {
   try {
-    const result = fetch(
-      `${process.env.API_URL}/authors?limit=all`
-    ).then((response) => response.json())
+    const result = axios.get(`${process.env.API_URL}/authors?limit=all`)
     return result
   } catch (error) {
     console.error('Unable to catch API')
