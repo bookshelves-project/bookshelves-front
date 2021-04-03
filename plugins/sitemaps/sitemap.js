@@ -150,19 +150,34 @@ export const getPagesRoutes = () => {
 }
 
 const fetchBooks = () => {
-  return fetch(`${process.env.API_URL}/books?limit=all`).then((response) =>
-    response.json()
-  )
+  try {
+    const result = fetch(
+      `${process.env.API_URL}/books?limit=all`
+    ).then((response) => response.json())
+    return result
+  } catch (error) {
+    return 'Unable to catch API'
+  }
 }
 
 const fetchSeries = () => {
-  return fetch(`${process.env.API_URL}/series?limit=all`).then((response) =>
-    response.json()
-  )
+  try {
+    const result = fetch(
+      `${process.env.API_URL}/series?limit=all`
+    ).then((response) => response.json())
+    return result
+  } catch (error) {
+    return 'Unable to catch API'
+  }
 }
 
 const fetchAuthors = () => {
-  return fetch(`${process.env.API_URL}/authors?limit=all`).then((response) =>
-    response.json()
-  )
+  try {
+    const result = fetch(
+      `${process.env.API_URL}/authors?limit=all`
+    ).then((response) => response.json())
+    return result
+  } catch (error) {
+    return 'Unable to catch API'
+  }
 }
