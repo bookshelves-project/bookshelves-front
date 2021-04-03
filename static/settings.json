@@ -6,23 +6,5 @@
         "locale": "en_US",
         "description": "For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you.",
         "color": "#6C63FF"
-    },
-    "custom": {
-        "production": "server",
-        "metadata": {
-            "author": "Bookshelves Team",
-            "twitter": {
-                "creator": "@ewilanriviere",
-                "site": "@bookshelves_ink"
-            }
-        },
-        "robot": {
-            "disallow": [
-                "/sign-in",
-                "/sign-up",
-                "/dashboard",
-                "/admin"
-            ]
-        }
     }
 }

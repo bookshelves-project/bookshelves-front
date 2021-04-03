@@ -150,19 +150,19 @@ export const getPagesRoutes = () => {
 }
 
 const fetchBooks = () => {
-  return fetch(`${process.env.API_URL}/books?all=true`).then((response) =>
+  return fetch(`${process.env.API_URL}/books?limit=all`).then((response) =>
     response.json()
   )
 }
 
 const fetchSeries = () => {
-  return fetch(`${process.env.API_URL}/series?all=true`).then((response) =>
+  return fetch(`${process.env.API_URL}/series?limit=all`).then((response) =>
     response.json()
   )
 }
 
 const fetchAuthors = () => {
-  return fetch(`${process.env.API_URL}/authors?all=true`).then((response) =>
+  return fetch(`${process.env.API_URL}/authors?limit=all`).then((response) =>
     response.json()
   )
 }

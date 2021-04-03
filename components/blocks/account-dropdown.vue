@@ -90,7 +90,8 @@ export default {
       if (this.$auth.$state.user.isAdmin) {
         return nav
       } else {
-        return nav.filter((item) => !item.isAdmin)
+        // return nav.filter((item) => (item !== null ? !item.isAdmin : null))
+        return nav
       }
     },
   },

@@ -1,5 +1,6 @@
 import settings from './static/settings.json'
 import settingsCustom from './static/settings-custom.json'
+import settingsCustomExample from './static/settings-custom.example.json'
 import {
   getRoutes,
   getBooksRoutes,
@@ -14,8 +15,7 @@ export default {
   //   port: 3000,
   //   host: 'app.bookshelves.test',
   // },
-  target: settingsCustom.production || settings.custom.production,
-  generate: {},
+  target: settingsCustom.production || settingsCustomExample.production,
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: settings.metadata.title,
@@ -35,7 +35,50 @@ export default {
         hid: 'author',
         name: 'author',
         content:
-          settingsCustom.metadata.author || settings.custom.metadata.author,
+          settingsCustom.metadata.author ||
+          settingsCustomExample.metadata.author,
+      },
+      {
+        hid: 'language',
+        name: 'language',
+        content:
+          settingsCustom.metadata.language ||
+          settingsCustomExample.metadata.language,
+      },
+      {
+        hid: 'designer',
+        name: 'designer',
+        content:
+          settingsCustom.metadata.designer ||
+          settingsCustomExample.metadata.designer,
+      },
+      {
+        hid: 'publisher',
+        name: 'publisher',
+        content:
+          settingsCustom.metadata.publisher ||
+          settingsCustomExample.metadata.publisher,
+      },
+      {
+        hid: 'copyright',
+        name: 'copyright',
+        content:
+          settingsCustom.metadata.copyright ||
+          settingsCustomExample.metadata.copyright,
+      },
+      {
+        hid: 'rating',
+        name: 'rating',
+        content:
+          settingsCustom.metadata.rating ||
+          settingsCustomExample.metadata.rating,
+      },
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content:
+          settingsCustom.metadata.keywords.join(',') ||
+          settingsCustomExample.metadata.keywords.join(','),
       },
       {
         hid: 'google-site-verification',
@@ -47,7 +90,9 @@ export default {
       {
         hid: 'robots',
         name: 'robots',
-        content: 'index, follow',
+        content:
+          settingsCustom.metadata.robots ||
+          settingsCustomExample.metadata.robots,
       },
       // Open Graph
       {
@@ -121,14 +166,14 @@ export default {
         name: 'twitter:site',
         content:
           settingsCustom.metadata.twitter.site ||
-          settings.custom.metadata.twitter.site,
+          settingsCustomExample.metadata.twitter.site,
       },
       {
         hid: 'twitter:creator',
         name: 'twitter:creator',
         content:
           settingsCustom.metadata.twitter.creator ||
-          settings.custom.metadata.twitter.creator,
+          settingsCustomExample.metadata.twitter.creator,
       },
       {
         hid: 'twitter:description',
@@ -300,7 +345,8 @@ export default {
   pwa: {
     meta: {
       name: settings.metadata.title,
-      author: settingsCustom.metadata.author || settings.custom.metadata.author,
+      author:
+        settingsCustom.metadata.author || settingsCustomExample.metadata.author,
       description: settings.metadata.description,
       theme_color: settings.metadata.color,
     },
@@ -358,7 +404,8 @@ export default {
     },
   },
   robots: {
-    Disallow: settingsCustom.robot.disallow || settings.custom.robot.disallow,
+    Disallow:
+      settingsCustom.robot.disallow || settingsCustomExample.robot.disallow,
     Sitemap: `${process.env.BASE_URL}/sitemap.xml`,
   },
   sitemap: {
@@ -463,7 +510,7 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    analyze: true,
+    // analyze: true,
     transpile: ['vue-agile'],
   },
 }
