@@ -76,9 +76,9 @@ export default {
       {
         hid: 'keywords',
         name: 'keywords',
-        content:
-          settingsCustom.metadata.keywords.join(',') ||
-          settingsCustomExample.metadata.keywords.join(','),
+        content: settingsCustom.metadata.keywords
+          ? settingsCustom.metadata.keywords.join(',')
+          : settingsCustomExample.metadata.keywords.join(','),
       },
       {
         hid: 'google-site-verification',
