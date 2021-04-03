@@ -167,7 +167,7 @@
 
 <script>
 import packageJson from '@/package.json'
-import settingsExample from '@/static/settings-example.json'
+import settingsExample from '@/static/settings-custom.example.json'
 import settingsCustom from '@/static/settings-custom.json'
 import ColorSwitcherToggle from '../special/color-switcher-toggle.vue'
 import backToTop from './back-to-top.vue'
