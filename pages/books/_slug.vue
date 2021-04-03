@@ -36,7 +36,7 @@ export default {
     BookDescription,
     BookComments,
   },
-  async asyncData({ app, query, params, error, $content, store }) {
+  async asyncData({ app, params }) {
     try {
       const [book] = await Promise.all([
         app.$axios.$get(`/books/${params.author}/${params.slug}`),
@@ -76,7 +76,7 @@ export default {
     const isbn = this.book.identifier.isbn13 || this.book.identifier.isbn
     const date = this.book.publishDate
     const tags = this.book.tags
-    const url = `${process.env.BASE_URL}/books/${this.book.slug}`
+    const url = `${process.env.BASE_URL}/books/${this.book.author}/${this.book.slug}`
     return {
       title,
       meta: [

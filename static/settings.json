@@ -3,7 +3,7 @@
         "projectName": "Bookshelves",
         "title": "Bookshelves : your digital library",
         "titleTemplate": "%s · Bookshelves",
-        "locale": "en-US",
+        "locale": "en_US",
         "description": "For people with eReaders, reading in complete tranquility and freedom, your digital library that goes everywhere with you.",
         "color": "#6C63FF"
     },
