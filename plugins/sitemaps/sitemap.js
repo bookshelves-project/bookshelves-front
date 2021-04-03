@@ -156,7 +156,8 @@ const fetchBooks = () => {
     ).then((response) => response.json())
     return result
   } catch (error) {
-    return 'Unable to catch API'
+    console.error('Unable to catch API')
+    return []
   }
 }
 
@@ -167,7 +168,8 @@ const fetchSeries = () => {
     ).then((response) => response.json())
     return result
   } catch (error) {
-    return 'Unable to catch API'
+    console.error('Unable to catch API')
+    return []
   }
 }
 
@@ -178,6 +180,7 @@ const fetchAuthors = () => {
     ).then((response) => response.json())
     return result
   } catch (error) {
-    return 'Unable to catch API'
+    console.error('Unable to catch API')
+    return []
   }
 }
