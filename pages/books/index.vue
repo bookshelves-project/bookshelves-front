@@ -82,7 +82,7 @@ export default {
   },
   auth: 'auth',
   layout: 'auth',
-  async asyncData({ app, query, error, $content, store }) {
+  async asyncData({ app, query }) {
     try {
       const page = query.page
       const lang = query.lang

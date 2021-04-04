@@ -51,7 +51,7 @@ import ApiErrorMessage from '~/components/special/api-error-message.vue'
 export default {
   name: 'AuthorsIndex',
   components: { Pagination, EntityCard, SectionHeading, ApiErrorMessage },
-  async asyncData({ app, query, error, $content, store }) {
+  async asyncData({ app, query }) {
     try {
       const page = query.page
       const [authors] = await Promise.all([

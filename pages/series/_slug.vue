@@ -135,7 +135,7 @@ export default {
   name: 'SeriesSlug',
   components: { entityCard, IconHeart },
   mixins: [favorites],
-  async asyncData({ app, query, error, params, $content, store }) {
+  async asyncData({ app, params }) {
     try {
       const [serie] = await Promise.all([
         app.$axios.$get(`/series/${params.author}/${params.slug}`),

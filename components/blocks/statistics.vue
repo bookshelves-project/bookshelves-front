@@ -83,20 +83,19 @@ export default {
           textTitle: 'Authors',
           text: 'who wrote these eBooks',
         },
-        frenchEbooks: {
+        booksFr: {
           route: { name: 'books', query: { lang: 'fr' } },
           data: 0,
           textTitle: '',
           text: 'eBooks in french',
         },
-        englishEbooks: {
+        booksEn: {
           route: { name: 'books', query: { lang: 'en' } },
           data: 0,
           textTitle: '',
           text: 'eBooks in english',
         },
       },
-      metricsLangs: [],
     }
   },
   created() {
@@ -104,73 +103,30 @@ export default {
   },
   methods: {
     async getStats() {
-      let booksCount = 0
-      let seriesCount = 0
-      let authorsCount = 0
-      let countLangs = 0
-
-      let responseError = false
-
       try {
-        ;[
+        const [
           booksCount,
           seriesCount,
           authorsCount,
-          countLangs,
+          countBooksFr,
+          countBooksEn,
         ] = await Promise.all([
-          this.$axios.$get('/books/count'),
-          this.$axios.$get('/series/count'),
-          this.$axios.$get('/authors/count'),
-          this.$axios.$get('/books/count-langs'),
+          this.$axios.$get('/count?entity=book'),
+          this.$axios.$get('/count?entity=serie'),
+          this.$axios.$get('/count?entity=author'),
+          this.$axios.$get('/count?entity=book&lang=fr'),
+          this.$axios.$get('/count?entity=book&lang=en'),
         ])
+
+        console.log(countBooksFr)
+        this.metrics.books.data = booksCount
+        this.metrics.series.data = seriesCount
+        this.metrics.authors.data = authorsCount
+        this.metrics.booksFr.data = countBooksFr
+        this.metrics.booksEn.data = countBooksEn
       } catch (error) {
-        responseError = true
+        console.error(error)
       }
-
-      const langsValue = this.langsFormat(countLangs)
-
-      if (!responseError) {
-        const data = {
-          books: booksCount,
-          series: seriesCount,
-          authors: authorsCount,
-          frenchEbooks: langsValue.fr.data,
-          englishEbooks: langsValue.en.data,
-          langs: countLangs,
-        }
-
-        for (const [key, value] of Object.entries(this.metrics)) {
-          value.data = data[key]
-        }
-      }
-    },
-    langsFormat(langs) {
-      const langsValue = {
-        en: {
-          value: 'English',
-          data: 0,
-          img: '',
-        },
-        fr: {
-          value: 'French',
-          data: 0,
-          img: '',
-        },
-      }
-
-      langs.forEach((lang) => {
-        lang.data = lang.count
-        if (lang.id in langsValue) {
-          lang.lang = langsValue[lang.id].value
-          langsValue[lang.id].data = lang.data
-        } else {
-          lang.lang = 'undefined'
-        }
-        lang.route = 'books'
-      })
-      this.metricsLangs = langs
-
-      return langsValue
     },
   },
 }

@@ -12,7 +12,7 @@
               <img
                 v-if="$auth.$state.loggedIn"
                 class="w-8 h-8 rounded-full"
-                :src="$auth.$state.user.data.picture"
+                :src="$auth.$state.user.data.avatar"
                 :alt="$auth.$state.user.data.name"
               />
               <img

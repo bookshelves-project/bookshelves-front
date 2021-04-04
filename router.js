@@ -20,6 +20,7 @@ import Contact from '~/pages/contact'
 import Login from '~/pages/sign-in'
 import Register from '~/pages/sign-up'
 import Dashboard from '~/pages/dashboard'
+import Profile from '~/pages/profile'
 import Admin from '~/pages/admin'
 
 Vue.use(Router)
@@ -94,6 +95,11 @@ const routesList = [
     name: 'dashboard',
     path: '/dashboard',
     component: Dashboard,
+  },
+  {
+    name: 'profile',
+    path: '/profile',
+    component: Profile,
   },
   {
     name: 'admin',

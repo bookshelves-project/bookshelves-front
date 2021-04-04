@@ -151,7 +151,7 @@ export default {
       return search
     },
   },
-  async watchQuery(newQuery, oldQuery) {
+  async watchQuery(newQuery) {
     if (this) {
       this.search = await this.getSearchResults(newQuery.q)
     }
