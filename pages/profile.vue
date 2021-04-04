@@ -87,6 +87,16 @@
                       >
                         Change
                       </button>
+                      <button
+                        type="button"
+                        class="px-3 py-2 ml-2 text-sm font-medium leading-4 text-red-700 bg-white border border-red-300 rounded-md shadow-sm hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                        @click="deletePhoto"
+                      >
+                        Delete
+                      </button>
+                      <div v-if="isLoading" class="ml-3 italic text-gray-500">
+                        {{ progress }}%
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -94,7 +104,13 @@
 
               <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
                 <v-button type="submit" color="primary">
-                  Update profile
+                  <transition name="fade">
+                    <span v-if="!isLoading">Update profile</span>
+                    <span v-else class="flex items-center space-x-1">
+                      <icon-load class="w-5 h-5 text-white" />
+                      <div>Processing</div>
+                    </span>
+                  </transition>
                 </v-button>
               </div>
             </div>
@@ -203,10 +219,11 @@
 </template>
 
 <script>
+import IconLoad from '~/components/icons/icon-load.vue'
 import vButton from '~/components/special/v-button.vue'
 export default {
   name: 'PageProfile',
-  components: { vButton },
+  components: { vButton, IconLoad },
   async asyncData({ app }) {
     const user = await app.$axios.$get(`/user`)
     return { user }
@@ -223,6 +240,8 @@ export default {
         password: '',
         password_confirmation: '',
       },
+      isLoading: false,
+      progress: 0,
       photoPreview: null,
       passwordUpdate: false,
       passwordsMatch: false,
@@ -243,6 +262,7 @@ export default {
   },
   methods: {
     async submit() {
+      this.isLoading = true
       const data = new FormData()
       if (this.$refs.photo.files[0]) {
         this.form.photo = this.$refs.photo.files[0]
@@ -258,13 +278,13 @@ export default {
             (progressEvent.loaded * 100) / progressEvent.total
           )),
       }
-      console.log(this.form)
       try {
-        await this.$axios.$post('/user/update', data, config)
-        const user = await this.$axios.$get('/user')
+        const user = await this.$axios.$post('/user/update', data, config)
         this.$auth.setUser(user)
+        this.isLoading = false
       } catch (error) {
         console.error(error)
+        this.isLoading = false
       }
     },
     async submitPassword() {
@@ -303,11 +323,13 @@ export default {
 
       reader.readAsDataURL(this.$refs.photo.files[0])
     },
-    deletePhoto() {
-      // this.$inertia.delete(route('current-user-photo.destroy'), {
-      //   preserveScroll: true,
-      //   onSuccess: () => (this.photoPreview = null),
-      // })
+    async deletePhoto() {
+      try {
+        const user = await this.$axios.$get('/user/delete/avatar')
+        this.photoPreview = null
+        this.form.photo = null
+        this.$auth.setUser(user)
+      } catch (error) {}
     },
     checkPasswords() {
       if (
