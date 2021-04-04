@@ -60,7 +60,7 @@
 Setup local on <http://localhost:3000> with <https://bookshelves.ink> API
 
 ```bash
-cp .env.example .env ; yarn
+cp .env.example .env ; cp static/settings-custom.example.json static/settings-custom.json ; yarn
 ```
 
 Local serve
@@ -80,10 +80,6 @@ API_URL=http://localhost:8000/api
 ### *I. b. Custom metadata*
 
 If you want to custom some metadata, if you don't create `settings-custom.json`, this is default values from `settings-custom.example.json`
-
-```bash
-cp static/settings-custom.example.json static/settings-custom.json
-```
 
 ---
 

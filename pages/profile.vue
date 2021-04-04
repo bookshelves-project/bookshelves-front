@@ -49,53 +49,82 @@
                     />
                   </div>
 
-                  <div class="col-span-6 sm:col-span-4">
-                    <label class="block text-sm font-medium text-gray-700">
-                      Photo
-                    </label>
-                    <div class="flex items-center mt-1">
-                      <div v-show="!photoPreview">
-                        <img
-                          :src="user.data.avatar"
-                          :alt="user.data.name"
-                          class="object-cover w-12 h-12 rounded-full"
-                        />
-                      </div>
-                      <div v-show="photoPreview">
-                        <span
-                          class="block w-12 h-12 rounded-full"
-                          :style="
-                            'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
-                            photoPreview +
-                            '\');'
-                          "
-                        >
-                        </span>
-                      </div>
+                  <transition name="fade">
+                    <div v-if="!form.gravatar" class="col-span-6 sm:col-span-4">
+                      <label class="block text-sm font-medium text-gray-700">
+                        Photo
+                      </label>
+                      <div class="flex items-center mt-1">
+                        <div v-show="!photoPreview">
+                          <img
+                            :src="user.data.avatar"
+                            :alt="user.data.name"
+                            class="object-cover w-12 h-12 rounded-full"
+                          />
+                        </div>
+                        <div v-show="photoPreview">
+                          <span
+                            class="block w-12 h-12 rounded-full"
+                            :style="
+                              'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
+                              photoPreview +
+                              '\');'
+                            "
+                          >
+                          </span>
+                        </div>
 
-                      <input
-                        ref="photo"
-                        type="file"
-                        style="display: none"
-                        accept="image/jpeg, image/png, image/webp"
-                        @change="updatePhotoPreview"
-                      />
-                      <button
-                        type="button"
-                        class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                        @click="selectNewPhoto"
-                      >
-                        Change
-                      </button>
-                      <button
-                        type="button"
-                        class="px-3 py-2 ml-2 text-sm font-medium leading-4 text-red-700 bg-white border border-red-300 rounded-md shadow-sm hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                        @click="deletePhoto"
-                      >
-                        Delete
-                      </button>
-                      <div v-if="isLoading" class="ml-3 italic text-gray-500">
-                        {{ progress }}%
+                        <input
+                          ref="photo"
+                          type="file"
+                          style="display: none"
+                          accept="image/jpeg, image/png, image/webp"
+                          @change="updatePhotoPreview"
+                        />
+                        <button
+                          type="button"
+                          class="px-3 py-2 ml-3 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                          @click="selectNewPhoto"
+                        >
+                          Change
+                        </button>
+                        <button
+                          type="button"
+                          class="px-3 py-2 ml-2 text-sm font-medium leading-4 text-red-700 bg-white border border-red-300 rounded-md shadow-sm hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                          @click="deletePhoto"
+                        >
+                          Delete
+                        </button>
+                        <div v-if="isLoading" class="ml-3 italic text-gray-500">
+                          {{ progress }}%
+                        </div>
+                      </div>
+                    </div>
+                  </transition>
+                  <div class="col-span-6 sm:col-span-4">
+                    <div class="max-w-lg space-y-4">
+                      <div class="relative flex items-start">
+                        <div class="flex items-center h-5">
+                          <input
+                            id="gravatar"
+                            v-model="form.gravatar"
+                            name="gravatar"
+                            type="checkbox"
+                            class="w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-500"
+                          />
+                        </div>
+                        <div class="ml-3 text-sm">
+                          <label
+                            for="gravatar"
+                            class="font-medium text-gray-700"
+                            >Use Gravatar</label
+                          >
+                          <p class="text-gray-500">
+                            If you want to use Gravatar for your avatar, check
+                            this box. If you want to upload your custom avatar
+                            or default avatar, uncheck this box.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -234,6 +263,7 @@ export default {
         name: '',
         email: '',
         photo: '',
+        gravatar: false,
       },
       formPassword: {
         current_password: '',
@@ -259,18 +289,20 @@ export default {
   created() {
     this.form.name = this.user.data.name
     this.form.email = this.user.data.email
+    this.form.gravatar = this.user.data.gravatar
   },
   methods: {
     async submit() {
       this.isLoading = true
       const data = new FormData()
-      if (this.$refs.photo.files[0]) {
+      if (this.$refs.photo && this.$refs.photo.files[0]) {
         this.form.photo = this.$refs.photo.files[0]
         data.append('photo', this.form.photo)
       }
 
       data.append('name', this.form.name)
       data.append('email', this.form.email)
+      data.append('gravatar', this.form.gravatar)
 
       const config = {
         onUploadProgress: (progressEvent) =>
@@ -289,7 +321,7 @@ export default {
     },
     async submitPassword() {
       try {
-        await this.$axios.$put('/user/password', this.formPassword)
+        await this.$axios.$post('/user/update-password', this.formPassword)
         this.formPassword = {
           current_password: '',
           password: '',
