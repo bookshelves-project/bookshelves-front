@@ -271,9 +271,9 @@ export default {
       '@type': 'WebPage',
       itemListElement: items,
       mainEntity: {
-        '@type': 'Book',
+        '@type': 'BookSeries',
         author: authors,
-        bookFormat: 'http://schema.org/Book',
+        bookFormat: 'http://schema.org/BookSeries',
         image: this.serie.picture.base,
         inLanguage: this.$getLanguage(this.serie.language.slug),
         name: this.serie.title,
