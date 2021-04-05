@@ -139,6 +139,31 @@ export default {
       ],
     }
   },
+  jsonld() {
+    const breadcrumbs = [
+      {
+        url: process.env.BASE_URL,
+        text: 'Home',
+      },
+      {
+        url: `${process.env.BASE_URL}/authors`,
+        text: 'Authors',
+      },
+    ]
+    const items = breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@id': item.url,
+        name: item.text,
+      },
+    }))
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      itemListElement: items,
+    }
+  },
   watchQuery: ['page'],
   methods: {
     linkGen(pageNum) {

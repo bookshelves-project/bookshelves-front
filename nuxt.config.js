@@ -228,6 +228,8 @@ export default {
     '~/plugins/helper',
     // https://github.com/lukaszflorczak/vue-agile
     '~/plugins/vue-agile',
+    // https://github.com/ymmooot/nuxt-jsonld
+    '~/plugins/jsonld',
   ],
 
   // GitHub: https://github.com/nuxt/components

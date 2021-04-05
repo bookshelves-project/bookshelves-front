@@ -57,6 +57,7 @@ export default {
     return {
       serie: [],
       serieLoaded: false,
+      breadcrumbs: [],
     }
   },
   head() {
@@ -98,11 +99,15 @@ export default {
           content: 'image/jpg',
         },
         {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'book',
+        },
+        {
           hid: 'og:image',
           property: 'og:image',
           content: image,
         },
-        // og book
         {
           hid: 'book:isbn',
           property: 'book:isbn',
@@ -151,6 +156,57 @@ export default {
           href: url,
         },
       ],
+    }
+  },
+  created() {
+    this.breadcrumbs = [
+      {
+        url: process.env.BASE_URL,
+        text: 'Home',
+      },
+      {
+        url: `${process.env.BASE_URL}/books`,
+        text: 'Books',
+      },
+      {
+        url: `${process.env.BASE_URL}/books/${this.$route.params.author}/${this.$route.params.slug}`,
+        text: this.book.title,
+      },
+    ]
+  },
+  jsonld() {
+    const authors = this.book.authors.map((author, index) => ({
+      '@type': 'Person',
+      familyName: author.lastname,
+      givenName: author.firstname,
+      name: author.name,
+      url: `${process.env.BASE_URL}/authors/${author.slug}`,
+    }))
+
+    const items = this.breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@id': item.url,
+        name: item.text,
+      },
+    }))
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      itemListElement: items,
+      mainEntity: {
+        '@type': 'BookSeries',
+        author: authors,
+        bookFormat: 'http://schema.org/BookSeries',
+        datePublished: this.book.publishDate,
+        image: this.book.picture.base,
+        inLanguage: this.$getLanguage(this.book.language),
+        isbn: this.book.identifier.isbn || this.book.identifier.isbn13,
+        name: this.book.title,
+        numberOfPages: this.book.pageCount,
+        publisher: this.book.publisher.name,
+      },
     }
   },
   async mounted() {

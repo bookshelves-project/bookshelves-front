@@ -154,6 +154,7 @@ export default {
       apiUrl: process.env.API_URL,
       apiStatusBoolean: false,
       interval: 600000,
+      breadcrumbs: [],
     }
   },
   head() {
@@ -233,12 +234,58 @@ export default {
     setInterval(() => {
       this.apiStatus()
     }, this.interval)
+
+    this.breadcrumbs = [
+      {
+        url: process.env.BASE_URL,
+        text: 'Home',
+      },
+      {
+        url: `${process.env.BASE_URL}/guides`,
+        text: 'Guides',
+      },
+      {
+        url: `${process.env.BASE_URL}/guides/${this.$route.params.slug}`,
+        text: this.document.title,
+      },
+    ]
+  },
+  jsonld() {
+    const items = this.breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@id': item.url,
+        name: item.text,
+      },
+    }))
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      itemListElement: items,
+      mainEntity: {
+        '@type': 'Article',
+        headline: this.document.title,
+        alternativeHeadline: this.document.description,
+        // image: 'http://example.com/image.jpg',
+        // author: 'Patrick Coombe',
+        // award: 'Best article ever written',
+        editor: 'Bookshelves',
+        // genre: 'search engine optimization',
+        // keywords: 'seo sales b2b',
+        // wordcount: '1120',
+        url: `${process.env.BASE_URL}/pages/${this.document.slug}`,
+        dateCreated: this.document.createdAt,
+        dateModified: this.document.updatedAt,
+        description: this.document.description,
+      },
+    }
   },
   methods: {
     async apiStatus() {
       let res = null
       try {
-        res = await this.$axios.head(`${process.env.API_URL}/api`)
+        res = await this.$axios.head(`${process.env.API_URL}`)
         if (res.status === 200) {
           this.apiStatusBoolean = true
         } else {

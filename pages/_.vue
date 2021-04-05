@@ -74,6 +74,11 @@ export default {
       document,
     }
   },
+  data() {
+    return {
+      breadcrumbs: [],
+    }
+  },
   head() {
     const title = `${this.document.title} in ${this.document.category} - Guides`
     const description = this.document.description
@@ -144,6 +149,49 @@ export default {
     getPicture() {
       return this.document.category ? this.$slugify(this.document.category) : ''
     },
+  },
+  created() {
+    this.breadcrumbs = [
+      {
+        url: process.env.BASE_URL,
+        text: 'Home',
+      },
+      {
+        url: `${process.env.BASE_URL}/pages/${this.document.slug}`,
+        text: this.document.title,
+      },
+    ]
+  },
+  jsonld() {
+    const items = this.breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@id': item.url,
+        name: item.text,
+      },
+    }))
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      itemListElement: items,
+      mainEntity: {
+        '@type': 'Article',
+        headline: this.document.title,
+        alternativeHeadline: this.document.description,
+        // image: 'http://example.com/image.jpg',
+        // author: 'Patrick Coombe',
+        // award: 'Best article ever written',
+        editor: 'Bookshelves',
+        // genre: 'search engine optimization',
+        // keywords: 'seo sales b2b',
+        // wordcount: '1120',
+        url: `${process.env.BASE_URL}/pages/${this.document.slug}`,
+        dateCreated: this.document.createdAt,
+        dateModified: this.document.updatedAt,
+        description: this.document.description,
+      },
+    }
   },
 }
 </script>
