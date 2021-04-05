@@ -86,8 +86,8 @@
             <div class="flex-shrink-0">
               <img
                 class="w-10 h-10 rounded-full"
-                :src="$auth.$state.user.data.profile_photo_url"
-                alt=""
+                :src="$auth.$state.user.data.avatar"
+                alt="avatar"
               />
             </div>
             <div class="flex-1 min-w-0">
