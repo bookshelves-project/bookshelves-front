@@ -2,7 +2,55 @@ import axios from 'axios'
 import { $content } from '@nuxt/content'
 require('dotenv').config()
 
-export const getRoutes = () => {
+export default (meta) => {
+  return [
+    {
+      path: '/sitemaps/sitemap.xml',
+      exclude: ['**'],
+      routes() {
+        // Nous allons utiliser une fonction personnalisée pour charger nos routes dynamiques dans le sitemap.
+        return getRoutes()
+      },
+    },
+    {
+      path: '/sitemaps/books.xml',
+      exclude: ['**'],
+      routes: () => {
+        return getBooksRoutes()
+      },
+    },
+    {
+      path: '/sitemaps/series.xml',
+      exclude: ['**'],
+      routes: () => {
+        return getSeriesRoutes()
+      },
+    },
+    {
+      path: '/sitemaps/authors.xml',
+      exclude: ['**'],
+      routes: () => {
+        return getAuthorsRoutes()
+      },
+    },
+    {
+      path: '/sitemaps/guides.xml',
+      exclude: ['**'],
+      routes: () => {
+        return getGuidesRoutes()
+      },
+    },
+    {
+      path: '/sitemaps/pages.xml',
+      exclude: ['**'],
+      routes: () => {
+        return getPagesRoutes()
+      },
+    },
+  ]
+}
+
+const getRoutes = () => {
   // Attention, cette fonction DOIT retourner une Promise.
   return new Promise((resolve, reject) => {
     // Je récupère les événements depuis mon API.
@@ -49,7 +97,7 @@ export const getRoutes = () => {
   })
 }
 
-export const getBooksRoutes = () => {
+const getBooksRoutes = () => {
   // Attention, cette fonction DOIT retourner une Promise.
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
@@ -71,7 +119,7 @@ export const getBooksRoutes = () => {
   })
 }
 
-export const getSeriesRoutes = () => {
+const getSeriesRoutes = () => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
     const series = await fetchSeries()
@@ -89,7 +137,7 @@ export const getSeriesRoutes = () => {
   })
 }
 
-export const getAuthorsRoutes = () => {
+const getAuthorsRoutes = () => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
     const authors = await fetchAuthors()
@@ -107,7 +155,7 @@ export const getAuthorsRoutes = () => {
   })
 }
 
-export const getGuidesRoutes = () => {
+const getGuidesRoutes = () => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
     const guides = await $content('guides', { deep: true })
@@ -129,7 +177,7 @@ export const getGuidesRoutes = () => {
   })
 }
 
-export const getPagesRoutes = () => {
+const getPagesRoutes = () => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
     const pages = await $content('pages', { deep: true })

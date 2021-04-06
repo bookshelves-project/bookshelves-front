@@ -1,21 +1,10 @@
 import metadata from './plugins/utils/metadata.json'
-import {
-  getRoutes,
-  getBooksRoutes,
-  getSeriesRoutes,
-  getAuthorsRoutes,
-  getGuidesRoutes,
-  getPagesRoutes,
-} from './plugins/utils/sitemap'
+import sitemaps from './plugins/utils/sitemaps'
 
 import dynamicMetadata from './plugins/utils/dynamic-metadata'
 import staticMetadata from './plugins/utils/static-metadata'
 
 export default {
-  // server: {
-  //   port: 3000,
-  //   host: 'app.bookshelves.test',
-  // },
   target: process.env.TARGET,
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -76,16 +65,6 @@ export default {
     '@nuxtjs/router',
     // https://google-fonts.nuxtjs.org/
     '@nuxtjs/google-fonts',
-    // https://github.com/nuxt-community/web-vitals-module
-    // [
-    //   'nuxt-vitals',
-    //   {
-    //     trackingID: 'G-ZFLRZXPL97',
-    //     eventCategory: 'Arts',
-    //     debug: 0,
-    //     disabled: false,
-    //   },
-    // ],
     // https://image.nuxtjs.org
     // '@nuxt/image',
     // https://color-mode.nuxtjs.org/#setup
@@ -93,17 +72,13 @@ export default {
     // https://github.com/nuxt-community/svg-module
     // '@nuxtjs/svg',
   ],
-
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
     jit: true,
   },
-
   routerModule: {
-    middleware: ['init-store'],
     keepDefaultRouter: true,
   },
-
   googleFonts: {
     display: 'swap',
     prefetch: true,
@@ -112,7 +87,6 @@ export default {
       Handlee: true,
     },
   },
-
   colorMode: {
     classSuffix: '',
   },
@@ -155,7 +129,6 @@ export default {
       },
     },
   },
-
   pwa: {
     meta: {
       name: metadata.tags.title,
@@ -164,14 +137,12 @@ export default {
       theme_color: metadata.settings.color,
     },
   },
-
   proxy: {
     '/api': {
       target: `${process.env.API_URL}`,
       pathRewrite: { '^/': '/' },
     },
   },
-
   auth: {
     strategies: {
       laravelSanctum: {
@@ -203,7 +174,6 @@ export default {
       },
     },
   },
-
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {
     liveEdit: false,
@@ -230,51 +200,7 @@ export default {
     exclude:
       process.env.META_ROBOT_DISALLOW.split(',') || metadata.settings.disallow,
 
-    sitemaps: [
-      {
-        path: '/sitemaps/sitemap.xml',
-        exclude: ['**'],
-        routes() {
-          // Nous allons utiliser une fonction personnalisée pour charger nos routes dynamiques dans le sitemap.
-          return getRoutes()
-        },
-      },
-      {
-        path: '/sitemaps/books.xml',
-        exclude: ['**'],
-        routes: () => {
-          return getBooksRoutes()
-        },
-      },
-      {
-        path: '/sitemaps/series.xml',
-        exclude: ['**'],
-        routes: () => {
-          return getSeriesRoutes()
-        },
-      },
-      {
-        path: '/sitemaps/authors.xml',
-        exclude: ['**'],
-        routes: () => {
-          return getAuthorsRoutes()
-        },
-      },
-      {
-        path: '/sitemaps/guides.xml',
-        exclude: ['**'],
-        routes: () => {
-          return getGuidesRoutes()
-        },
-      },
-      {
-        path: '/sitemaps/pages.xml',
-        exclude: ['**'],
-        routes: () => {
-          return getPagesRoutes()
-        },
-      },
-    ],
+    sitemaps: sitemaps(),
   },
   // i18n: {
   //   locales: [

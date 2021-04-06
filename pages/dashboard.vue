@@ -1,6 +1,7 @@
 <template>
   <div class="container max-w-7xl">
     <section-heading
+      v-if="$auth.$state.loggedIn"
       title="Dashboard"
       :subtitle="`Welcome ${$auth.user.data.name}`"
       :image="$auth.$state.user.data.profile_photo_url"
