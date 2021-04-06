@@ -5,6 +5,9 @@ import dynamicMetadata from './plugins/utils/dynamic-metadata'
 import staticMetadata from './plugins/utils/static-metadata'
 
 export default {
+  generate: {
+    exclude: [/^\/content/],
+  },
   target: process.env.TARGET,
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {

@@ -44,6 +44,7 @@
   - settings, update website name for vivacia
   - review title by og
   - jsonld, sitelinks
+  - fix route generate
 
 ---
 

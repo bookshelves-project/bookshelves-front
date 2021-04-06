@@ -68,7 +68,7 @@ export default {
         app.$axios.$get(
           `/series?${qs.stringify({
             page: page || 1,
-            perPage: 32,
+            'per-page': 32,
           })}`
         ),
       ])

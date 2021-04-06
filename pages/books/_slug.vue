@@ -153,7 +153,7 @@ export default {
         isbn: this.book.identifier.isbn || this.book.identifier.isbn13,
         name: this.book.title,
         numberOfPages: this.book.pageCount,
-        publisher: this.book.publisher.name,
+        publisher: this.book.publisher ? this.book.publisher.name : '',
       },
     }
   },
