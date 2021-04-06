@@ -1,5 +1,9 @@
 <template>
-  <button
+  <component
+    :is="component"
+    :to="link"
+    :target="{ _blank: component === 'link' }"
+    :rel="{ 'noopener noreferrer': component === 'link' }"
     :type="type"
     :class="[color, { 'primary-disabled': disabled }]"
     class="btn"
@@ -7,7 +11,7 @@
     @click="$emit('click')"
   >
     <slot />
-  </button>
+  </component>
 </template>
 
 <script>
@@ -19,9 +23,14 @@ export default {
       default: 'secondary',
       validator: (val) => ['secondary', 'primary', 'white'].includes(val),
     },
+    component: {
+      type: String,
+      default: 'button',
+      validator: (val) => ['button', 'nuxt-link', 'link'].includes(val),
+    },
     link: {
-      type: Boolean,
-      default: false,
+      type: [String, Object],
+      default: null,
     },
     disabled: {
       type: Boolean,
@@ -47,7 +56,7 @@ export default {
   @apply border-transparent shadow-sm text-white bg-primary-600 hover:bg-primary-700;
 }
 .white {
-  @apply border-gray-300 shadow-sm text-gray-700 bg-white hover:bg-gray-50;
+  @apply border-gray-300 shadow-sm text-gray-700 bg-white hover:bg-primary-100;
 }
 
 .primary-disabled {

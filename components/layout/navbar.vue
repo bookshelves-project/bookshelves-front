@@ -141,9 +141,6 @@ export default {
         this.displayIfScrolled = false
       }
     },
-    onClickOutside(event) {
-      // console.log('Clicked outside. Event: ', event)
-    },
     openSidebar() {
       this.$store.commit('setLayer', true)
       if (process.client) {

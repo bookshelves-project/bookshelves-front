@@ -118,7 +118,6 @@ export default {
           this.$axios.$get('/count?entity=book&lang=en'),
         ])
 
-        console.log(countBooksFr)
         this.metrics.books.data = booksCount
         this.metrics.series.data = seriesCount
         this.metrics.authors.data = authorsCount

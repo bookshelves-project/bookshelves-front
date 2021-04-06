@@ -141,7 +141,7 @@
                 </div> -->
                 <div class="flex items-center justify-between mt-3">
                   <a
-                    href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf"
+                    href="https://devhints.io/markdown"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="inline-flex items-start space-x-2 text-sm text-gray-500 group hover:text-gray-900 dark:hover:text-gray-100"
@@ -160,7 +160,7 @@
                         clip-rule="evenodd"
                       />
                     </svg>
-                    <span> You can use GitHub flavored Markdown. </span>
+                    <span> You can use Markdown. </span>
                   </a>
                   <button
                     type="submit"

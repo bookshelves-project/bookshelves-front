@@ -36,12 +36,12 @@ export default {
     return {
       pinnedProjectDropdownOpened: false,
       projectDropdownOpened: false,
+      title: `Welcome on Bookshelves, your digital library`,
     }
   },
   head() {
     return {
-      title: 'Bookshelves',
-      titleTemplate: '%s : your digital library',
+      title: this.title,
       link: [
         {
           rel: 'canonical',

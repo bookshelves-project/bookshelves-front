@@ -89,7 +89,7 @@
         </div>
         <div class="relative flex justify-center">
           <span class="px-2 text-gray-500 bg-white dark:bg-gray-900">
-            {{ serie.books_number }} Books
+            {{ serie.booksNumber }} Books
           </span>
         </div>
       </div>
@@ -131,6 +131,8 @@
 import entityCard from '~/components/blocks/entity-card.vue'
 import IconHeart from '~/components/icons/icon-heart.vue'
 import favorites from '~/mixins/favorites'
+import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
+
 export default {
   name: 'SeriesSlug',
   components: { entityCard, IconHeart },
@@ -155,76 +157,21 @@ export default {
   data() {
     return {
       componentKey: 0,
-      breadcrumbs: [],
     }
   },
   head() {
-    let authors = ''
-    this.serie.authors.forEach((author, authorId) => {
-      authors += `${author.name}`
-      if (
-        this.serie.authors.length > 1 &&
-        authorId !== this.serie.authors.length - 1
-      ) {
-        authors += ' & '
-      }
+    const title = `${this.serie.title} by ${this.authors}`
+    const url = `${process.env.BASE_URL}/series/${this.serie.author}/${this.serie.slug}`
+    const dynamicMeta = dynamicMetadata({
+      type: 'book',
+      title,
+      description: `Written by ${this.authors} with ${this.serie.booksNumber} books.`,
+      url,
+      image: this.serie.picture.openGraph,
     })
-    const title = `${this.serie.title} - Series`
-    const description = `Written by ${authors} with ${this.serie.books_number} books.`
-    const image = this.serie.picture.openGraph
-    const url = `${process.env.BASE_URL}/series/${this.serie.slug}`
     return {
       title,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        {
-          hid: 'og:image:type',
-          property: 'og:image:type',
-          content: 'image/jpg',
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: image,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: url,
-        },
-        {
-          hid: 'book:author',
-          property: 'books:author',
-          content: authors,
-        },
-        // Twitter Card
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          hid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: image,
-        },
-      ],
+      meta: [...dynamicMeta],
       link: [
         {
           rel: 'canonical',
@@ -233,8 +180,13 @@ export default {
       ],
     }
   },
-  created() {
-    this.breadcrumbs = [
+  computed: {
+    authors() {
+      return this.$getAuthors(this.serie.authors)
+    },
+  },
+  jsonld() {
+    const breadcrumbs = [
       {
         url: process.env.BASE_URL,
         text: 'Home',
@@ -248,8 +200,6 @@ export default {
         text: this.serie.title,
       },
     ]
-  },
-  jsonld() {
     const authors = this.serie.authors.map((author, index) => ({
       '@type': 'Person',
       familyName: author.lastname,
@@ -258,7 +208,7 @@ export default {
       url: `${process.env.BASE_URL}/authors/${author.slug}`,
     }))
 
-    const items = this.breadcrumbs.map((item, index) => ({
+    const items = breadcrumbs.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {

@@ -1,12 +1,8 @@
 <template>
   <main class="container mb-5 max-w-7xl">
     <section-heading
-      :title="
-        search ? `Results for &ldquo;${$route.query['q']}&rdquo;` : 'Search'
-      "
-      :subtitle="
-        search ? `${search.length} results` : `Try to search what you want`
-      "
+      :title="search ? `Results for &ldquo;${$route.query['q']}&rdquo;` : title"
+      :subtitle="search ? `${search.length} results` : description"
     />
     <form
       class="w-full max-w-lg pb-6 m-auto lg:max-w-lg"
@@ -69,6 +65,7 @@
 import qs from 'qs'
 import SectionHeading from '~/components/blocks/section-heading.vue'
 import SearchResults from '~/components/blocks/search-results.vue'
+import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
 
 export default {
   name: 'SearchIndex',
@@ -81,55 +78,25 @@ export default {
       search: [],
       componentKey: 0,
       advancedSearchInput: '',
+      title: `Search`,
+      description: `Try to search what you want`,
     }
   },
   head() {
-    const title = `Search${
-      this.$route.query.q ? ` for ${this.$route.query.q}` : ''
-    }`
-    const description = 'Find all books you want to read.'
-    const image = `${process.env.BASE_URL}/open-graph.jpg`
+    const title = this.title
+    const url = `${process.env.BASE_URL}/search`
+    const dynamicMeta = dynamicMetadata({
+      title: this.title,
+      description: this.description,
+      url,
+    })
     return {
       title,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: image,
-        },
-        // Twitter Card
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          hid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: image,
-        },
-      ],
+      meta: [...dynamicMeta],
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE_URL}/search?q${this.$route.query.q}`,
+          href: url,
         },
       ],
     }

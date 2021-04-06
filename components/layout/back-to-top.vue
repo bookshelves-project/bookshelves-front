@@ -1,19 +1,20 @@
 <template>
   <button
-    class="p-1 ml-1 transition-colors duration-100 bg-opacity-50 hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-100"
+    class="p-1 ml-1 text-gray-400 transition-colors duration-100 bg-opacity-50 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-100"
     @click="scrollToTop"
   >
-    <div class="icon">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 448 512"
-        class="w-4 h-4 fill-current"
-      >
-        <path
-          d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z"
-        />
-      </svg>
-    </div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-8 h-8"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+        clip-rule="evenodd"
+      />
+    </svg>
   </button>
 </template>
 
@@ -45,9 +46,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped>
-/deep/ .icon svg {
-  @apply w-6 h-6 text-gray-500 transition-colors duration-300 fill-current group-hover:text-gray-600;
-}
-</style>

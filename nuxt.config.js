@@ -1,6 +1,4 @@
-import settings from './static/settings.json'
-import settingsCustom from './static/settings-custom.json'
-import settingsCustomExample from './static/settings-custom.example.json'
+import metadata from './plugins/utils/metadata.json'
 import {
   getRoutes,
   getBooksRoutes,
@@ -8,7 +6,10 @@ import {
   getAuthorsRoutes,
   getGuidesRoutes,
   getPagesRoutes,
-} from './plugins/sitemaps/sitemap'
+} from './plugins/utils/sitemap'
+
+import dynamicMetadata from './plugins/utils/dynamic-metadata'
+import staticMetadata from './plugins/utils/static-metadata'
 
 export default {
   // server: {
@@ -18,189 +19,12 @@ export default {
   target: process.env.TARGET,
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: settings.metadata.title,
-    titleTemplate: settings.metadata.titleTemplate,
+    title: metadata.tags.title,
+    titleTemplate: metadata.tags.titleTemplate,
     htmlAttrs: {
-      lang: settings.metadata.locale,
+      lang: metadata.settings.locale,
     },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: settings.metadata.description,
-      },
-      {
-        hid: 'author',
-        name: 'author',
-        content:
-          settingsCustom.metadata.author ||
-          settingsCustomExample.metadata.author,
-      },
-      {
-        hid: 'language',
-        name: 'language',
-        content:
-          settingsCustom.metadata.language ||
-          settingsCustomExample.metadata.language,
-      },
-      {
-        hid: 'designer',
-        name: 'designer',
-        content:
-          settingsCustom.metadata.designer ||
-          settingsCustomExample.metadata.designer,
-      },
-      {
-        hid: 'publisher',
-        name: 'publisher',
-        content:
-          settingsCustom.metadata.publisher ||
-          settingsCustomExample.metadata.publisher,
-      },
-      {
-        hid: 'copyright',
-        name: 'copyright',
-        content:
-          settingsCustom.metadata.copyright ||
-          settingsCustomExample.metadata.copyright,
-      },
-      {
-        hid: 'rating',
-        name: 'rating',
-        content:
-          settingsCustom.metadata.rating ||
-          settingsCustomExample.metadata.rating,
-      },
-      {
-        hid: 'keywords',
-        name: 'keywords',
-        content: settingsCustom.metadata.keywords
-          ? settingsCustom.metadata.keywords.join(',')
-          : settingsCustomExample.metadata.keywords.join(','),
-      },
-      {
-        hid: 'google-site-verification',
-        name: 'google-site-verification',
-        content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
-      },
-      { name: 'msapplication-TileColor', content: settings.metadata.color },
-      { name: 'theme-color', content: settings.metadata.color },
-      {
-        hid: 'robots',
-        name: 'robots',
-        content:
-          settingsCustom.metadata.robots ||
-          settingsCustomExample.metadata.robots,
-      },
-      // Open Graph
-      {
-        hid: 'og:site_name',
-        property: 'og:site_name',
-        content: settings.metadata.projectName,
-      },
-      {
-        hid: 'og:type',
-        property: 'og:type',
-        content: 'website',
-      },
-      {
-        hid: 'og:url',
-        property: 'og:url',
-        content: process.env.BASE_URL,
-      },
-      {
-        hid: 'og:title',
-        property: 'og:title',
-        content: settings.metadata.title,
-      },
-      {
-        hid: 'og:description',
-        property: 'og:description',
-        content: settings.metadata.description,
-      },
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content: `${process.env.BASE_URL}/open-graph.jpg`,
-      },
-      {
-        hid: 'og:image:alt',
-        property: 'og:image:alt',
-        content: settings.metadata.projectName,
-      },
-      {
-        hid: 'og:image:type',
-        property: 'og:image:type',
-        content: 'image/png',
-      },
-      {
-        hid: 'og:image:width',
-        property: 'og:image:width',
-        content: 1200,
-      },
-      {
-        hid: 'og:image:height',
-        property: 'og:image:height',
-        content: 600,
-      },
-      {
-        hid: 'og:locale',
-        name: 'og:locale',
-        content: settings.metadata.locale,
-      },
-      // Twitter Card
-      {
-        hid: 'twitter:card',
-        name: 'twitter:card',
-        content: 'summary_large_image',
-      },
-      {
-        hid: 'twitter:title',
-        name: 'twitter:title',
-        content: settings.metadata.title,
-      },
-      {
-        hid: 'twitter:site',
-        name: 'twitter:site',
-        content:
-          settingsCustom.metadata.twitter.site ||
-          settingsCustomExample.metadata.twitter.site,
-      },
-      {
-        hid: 'twitter:creator',
-        name: 'twitter:creator',
-        content:
-          settingsCustom.metadata.twitter.creator ||
-          settingsCustomExample.metadata.twitter.creator,
-      },
-      {
-        hid: 'twitter:description',
-        name: 'twitter:description',
-        content: settings.metadata.description,
-      },
-      {
-        hid: 'twitter:image:src',
-        property: 'twitter:image:src',
-        content: `${process.env.BASE_URL}/open-graph.jpg`,
-      },
-      {
-        hid: 'twitter:image:width',
-        name: 'twitter:image:width',
-        content: 1200,
-      },
-      {
-        hid: 'twitter:image:height',
-        name: 'twitter:image:height',
-        content: 600,
-      },
-      {
-        hid: 'twitter:image:alt',
-        name: 'twitter:image:alt',
-        content: settings.metadata.projectName,
-      },
-    ],
+    meta: [...staticMetadata(), ...dynamicMetadata()],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
@@ -209,7 +33,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   loading: {
-    color: settings.metadata.color,
+    color: metadata.settings.color,
     height: '2px',
   },
 
@@ -289,18 +113,6 @@ export default {
     },
   },
 
-  // image: {
-  //   domains: [process.env.API_URL],
-  //   screens: {
-  //     sm: 360,
-  //     md: 600,
-  //     lg: 900,
-  //     xl: 1300,
-  //     '2xl': 1536,
-  //     '3xl': 1920,
-  //   },
-  // },
-
   colorMode: {
     classSuffix: '',
   },
@@ -346,11 +158,10 @@ export default {
 
   pwa: {
     meta: {
-      name: settings.metadata.title,
-      author:
-        settingsCustom.metadata.author || settingsCustomExample.metadata.author,
-      description: settings.metadata.description,
-      theme_color: settings.metadata.color,
+      name: metadata.tags.title,
+      author: process.env.META_AUTHOR || metadata.tags.author,
+      description: metadata.tags.description,
+      theme_color: metadata.settings.color,
     },
   },
 
@@ -407,7 +218,7 @@ export default {
   },
   robots: {
     Disallow:
-      settingsCustom.robot.disallow || settingsCustomExample.robot.disallow,
+      process.env.META_ROBOT_DISALLOW.split(',') || metadata.settings.disallow,
     Sitemap: `${process.env.BASE_URL}/sitemap.xml`,
   },
   sitemap: {
@@ -416,10 +227,8 @@ export default {
     cacheTime: 1000 * 60 * 15, // La durée avant que le sitemap soit regénéré. Ici 15mn.
     gzip: true,
     generate: false, // Génère une version statique du sitemap quand activé. À utiliser avec nuxt generate.
-    exclude: [
-      // Les pages qu'on a pas trop envie de voir atterrir sur Google.
-      '**',
-    ],
+    exclude:
+      process.env.META_ROBOT_DISALLOW.split(',') || metadata.settings.disallow,
 
     sitemaps: [
       {

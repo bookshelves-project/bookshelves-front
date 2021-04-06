@@ -3,17 +3,15 @@ import Router from 'vue-router'
 import qs from 'qs'
 
 import Home from '~/pages/index'
+
 import BooksIndex from '~/pages/books/index'
 import BooksSlug from '~/pages/books/_slug'
 import SeriesIndex from '~/pages/series/index'
 import SeriesSlug from '~/pages/series/_slug'
 import AuthorsIndex from '~/pages/authors/index'
 import AuthorsSlug from '~/pages/authors/_slug'
-import SearchIndex from '~/pages/search/index'
-import Guides from '~/pages/guides/index'
-import Content from '~/pages/_'
 
-import ContentPage from '~/pages/content/slug'
+import SearchIndex from '~/pages/search/index'
 import Contact from '~/pages/contact'
 
 // Auth
@@ -22,6 +20,10 @@ import Register from '~/pages/sign-up'
 import Dashboard from '~/pages/dashboard'
 import Profile from '~/pages/profile'
 import Admin from '~/pages/admin'
+
+// Content
+import Guides from '~/pages/guides/index'
+import Content from '~/pages/content'
 
 Vue.use(Router)
 
@@ -40,6 +42,9 @@ const routesList = [
     name: 'books-slug',
     path: '/books/:author/:slug',
     component: BooksSlug,
+    meta: {
+      breadcrumb: [{ route: 'books', label: 'Books' }],
+    },
   },
   {
     name: 'series',
@@ -67,20 +72,11 @@ const routesList = [
     component: SearchIndex,
   },
   {
-    name: 'guides',
-    path: '/guides',
-    component: Guides,
-  },
-  {
     name: 'contact',
     path: '/contact',
     component: Contact,
   },
-  {
-    name: 'pages',
-    path: '/pages/:slug',
-    component: ContentPage,
-  },
+  // Auth
   {
     name: 'login',
     path: '/sign-in',
@@ -106,9 +102,15 @@ const routesList = [
     path: '/admin',
     component: Admin,
   },
+  // Content
   {
-    name: 'all',
-    path: '/*',
+    name: 'guides',
+    path: '/guides',
+    component: Guides,
+  },
+  {
+    name: 'content',
+    path: '/:type/:slug',
     component: Content,
   },
 ]

@@ -1,16 +1,16 @@
 <template>
   <main class="container max-w-7xl">
-    <section-heading
-      title="Guides"
-      subtitle="To know more about eBooks & eReaders"
-    />
+    <section-heading :title="title" :subtitle="description" />
     <div class="space-x-4 xl:grid xl:grid-cols-3">
       <div class="col-span-2">
         <ul class="px-2 mx-auto my-5 space-y-3">
           <nuxt-link
             v-for="guide in guides"
             :key="guide.id"
-            :to="guide.path"
+            :to="{
+              name: 'content',
+              params: { type: 'guides', slug: guide.slug },
+            }"
             class="block px-3 py-2 overflow-hidden transition-colors duration-100 bg-white rounded-md shadow lg:px-6 lg:py-4 h-36 hover:bg-gray-50 dark:bg-gray-800"
           >
             <div
@@ -107,78 +107,39 @@
 
 <script>
 import sectionHeading from '~/components/blocks/section-heading.vue'
-// import DesignXl from '~/components/blocks/design-xl.vue'
-// import pageTitle from '~/components/blocks/page-title.vue'
+import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
+
 export default {
   name: 'GuidesIndex',
   components: { sectionHeading },
-  // components: { pageTitle, DesignXl },
   async asyncData({ $content }) {
     const guides = await $content('guides', { deep: true })
       .without(['toc', 'body'])
       .where({ draft: false })
-      .sortBy('created_at')
+      .sortBy('position')
       .fetch()
-
-    // let guidesSort = guides.sort((a, b) =>
-    //   a.createdAt > b.createdAt ? 1 : b.createdAt > a.createdAt ? -1 : 0
-    // )
-    // guidesSort = guidesSort.reverse()
 
     return {
       guides,
-      // welcome,
-      // pages,
+    }
+  },
+  data() {
+    return {
+      title: `Guides`,
+      description: `To know more about eBooks & eReaders`,
     }
   },
   head() {
-    const title = 'Guides on Bookshelves'
-    const description = 'How to use your eReader or softwares to manage EPUB.'
-    const image = `${process.env.BASE_URL}/open-graph.jpg`
+    const title = this.title
     const url = `${process.env.BASE_URL}/guides`
+    const dynamicMeta = dynamicMetadata({
+      title: this.title,
+      description: this.description,
+      url,
+    })
     return {
       title,
-      titleTemplate: '',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: image,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: url,
-        },
-        // Twitter Card
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          hid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: image,
-        },
-      ],
+      meta: [...dynamicMeta],
       link: [
         {
           rel: 'canonical',
@@ -219,9 +180,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss">
-.warning {
-  @apply dark:bg-yellow-900;
-}
-</style>

@@ -1,9 +1,6 @@
 <template>
   <main class="container relative max-w-7xl">
-    <section-heading
-      title="Books"
-      subtitle="Discover all available books sorted by title and serie's title"
-    />
+    <section-heading :title="title" :subtitle="description" />
     <entities-filter @filter="filter" />
     <section v-if="!apiError">
       <div>
@@ -70,6 +67,7 @@ import EntityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
 import EntitiesFilter from '~/components/blocks/entities-filter.vue'
+import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
 
 export default {
   name: 'Books',
@@ -116,61 +114,21 @@ export default {
       isReloadForPaginate: false,
       componentKey: 0,
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
+      title: `Books`,
+      description: `Discover all available books sorted by title and serie's title`,
     }
   },
   head() {
-    const title = 'Books on Bookshelves'
-    const description = 'All books available on Bookshelves.'
-    const image = `${process.env.BASE_URL}/open-graph.jpg`
+    const title = this.title
     const url = `${process.env.BASE_URL}/books`
+    const dynamicMeta = dynamicMetadata({
+      title: this.title,
+      description: this.description,
+      url,
+    })
     return {
       title,
-      titleTemplate: '',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'book',
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: image,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: url,
-        },
-        // Twitter Card
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          hid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: image,
-        },
-      ],
+      meta: [...dynamicMeta],
       link: [
         {
           rel: 'canonical',
@@ -215,9 +173,6 @@ export default {
     },
     event(data) {
       this.componentKey += 1
-    },
-    searching(result) {
-      // console.log(this.$store.state.searching)
     },
     filter(lang) {
       if (lang) {

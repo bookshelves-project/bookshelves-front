@@ -167,8 +167,7 @@
 
 <script>
 import packageJson from '@/package.json'
-import settingsExample from '@/static/settings-custom.example.json'
-import settingsCustom from '@/static/settings-custom.json'
+import metadata from '@/plugins/utils/metadata.json'
 import ColorSwitcherToggle from '../special/color-switcher-toggle.vue'
 import backToTop from './back-to-top.vue'
 
@@ -178,7 +177,7 @@ export default {
   components: { backToTop, ColorSwitcherToggle },
   data() {
     return {
-      team: settingsCustom.metadata.author || settingsExample.metadata.author,
+      team: process.env.AUTHOR || metadata.tags.author,
       socialIcons: [
         // {
         //   icon: 'gitlab',
@@ -188,7 +187,7 @@ export default {
         {
           icon: 'swagger',
           label: 'Swagger: API documentation',
-          link: `${process.env.API_URL}/api/documentation`,
+          link: `${process.env.API_URL}/documentation`,
         },
         {
           icon: 'calibre',
@@ -200,38 +199,44 @@ export default {
         { label: 'Search', icon: 'annotation', route: { name: 'search' } },
         {
           label: 'About',
-          icon: 'book-open',
-          route: '/pages/about',
+          route: {
+            name: 'content',
+            params: { type: 'pages', slug: 'about' },
+          },
         },
-        { label: 'Contact', icon: 'book-open', route: { name: 'contact' } },
+        { label: 'Contact', route: { name: 'contact' } },
       ],
       navigationCompany: [
         {
           label: 'More eBooks',
-          icon: 'book-open',
-          route: '/pages/more-ebooks',
+          route: {
+            name: 'content',
+            params: { type: 'pages', slug: 'more-ebooks' },
+          },
         },
         {
           label: 'Documentation API',
-          icon: 'book-open',
-          route: '/pages/api-documentation',
+          route: {
+            name: 'content',
+            params: { type: 'pages', slug: 'api-documentation' },
+          },
         },
         {
           label: 'FAQ',
-          icon: 'book-open',
-          route: '/pages/faq',
+          route: { name: 'content', params: { type: 'pages', slug: 'faq' } },
         },
       ],
       navigationLegal: [
         {
           label: 'Legal',
-          icon: 'book-open',
-          route: '/pages/legal',
+          route: { name: 'content', params: { type: 'pages', slug: 'legal' } },
         },
         {
           label: 'Cookies',
-          icon: 'book-open',
-          route: '/pages/cookies',
+          route: {
+            name: 'content',
+            params: { type: 'pages', slug: 'cookies' },
+          },
         },
       ],
       packageJson,

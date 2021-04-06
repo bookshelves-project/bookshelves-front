@@ -162,7 +162,6 @@ export default {
       this.searchResults = result
     },
     onClickOutside(event) {
-      // console.log('Clicked utside. Event: ', event)
       this.$refs.search.setValue('')
     },
   },

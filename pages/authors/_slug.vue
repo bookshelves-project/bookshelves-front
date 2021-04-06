@@ -123,6 +123,8 @@ import entityCard from '~/components/blocks/entity-card.vue'
 import IconHeart from '~/components/icons/icon-heart.vue'
 import Divider from '~/components/special/divider.vue'
 import favorites from '~/mixins/favorites'
+import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
+
 export default {
   name: 'AuthorsSlug',
   components: { entityCard, Divider, IconHeart },
@@ -152,84 +154,27 @@ export default {
   },
   head() {
     const title = `${this.author.name} - Authors`
-    const description = `${this.author.name} author on Bookshelves with ${this.author.books_number} books available.`
-    const image = this.author.picture ? this.author.picture.openGraph : null
-    const author = this.author.name
-    const authorFirstname = this.author.firstname
-    const authorLastname = this.author.lastname
-    const authorUsername = this.author.slug
     const url = `${process.env.BASE_URL}/authors/${this.author.slug}`
+    const dynamicMeta = dynamicMetadata({
+      type: 'profile',
+      title,
+      description: `${this.author.name} author on Bookshelves with ${this.author.booksNumber} books available.`,
+      url,
+      image: this.author.picture.openGraph,
+    })
     return {
       title,
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        {
-          hid: 'og:image:type',
-          property: 'og:image:type',
-          content: 'image/jpg',
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: image,
-        },
-        // og author
-        {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'book.author',
-        },
-        {
-          hid: 'book:author',
-          property: 'book:author',
-          content: author,
-        },
+        ...dynamicMeta,
         {
           hid: 'profile:first_name',
           property: 'profile:first_name',
-          content: authorFirstname,
+          content: this.author.firstname,
         },
         {
           hid: 'profile:last_name',
           property: 'profile:last_name',
-          content: authorLastname,
-        },
-        {
-          hid: 'profile:username',
-          property: 'profile:username',
-          content: authorUsername,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: url,
-        },
-        // Twitter Card
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          hid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: image,
+          content: this.author.firstname,
         },
       ],
       link: [

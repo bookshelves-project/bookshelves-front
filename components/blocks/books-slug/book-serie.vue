@@ -8,7 +8,7 @@
         Series
       </h2>
       <p class="max-w-2xl mt-1 text-sm text-gray-500">
-        Current: vol. {{ book.serie.number }}
+        Current: vol. {{ book.serieVolume }}
       </p>
       <div class="mt-5">
         <agile
@@ -31,19 +31,6 @@
                 />
               </div>
               <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
-                <nuxt-link
-                  :to="{
-                    name: 'books-slug',
-                    params: {
-                      author: bookSerie.author,
-                      slug: bookSerie.slug,
-                    },
-                  }"
-                  class="inline-flex items-center justify-center px-3 py-2 mx-auto mt-3 text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm font-base bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 md:w-max"
-                >
-                  <icon-bookmark class="w-5 h-5 text-white" />
-                  <span class="mx-1 text-white"> Refer to book page </span>
-                </nuxt-link>
                 <div>
                   <span
                     class="text-sm font-medium text-gray-500 dark:text-gray-500"
@@ -83,6 +70,31 @@
                       </span>
                     </h3>
                   </div>
+                </div>
+                <div>
+                  <span
+                    class="text-sm font-medium text-gray-500 dark:text-gray-500"
+                    >Volume
+                  </span>
+                  <h3 class="font-semibold text-black">
+                    {{ bookSerie.serieVolume }}
+                  </h3>
+                </div>
+                <div class="pt-6">
+                  <v-button
+                    v-if="$route.params.slug !== bookSerie.slug"
+                    :color="`white`"
+                    :component="`nuxt-link`"
+                    :link="{
+                      name: 'books-slug',
+                      params: {
+                        author: bookSerie.author,
+                        slug: bookSerie.slug,
+                      },
+                    }"
+                    >Refer to book</v-button
+                  >
+                  <span v-else class="italic text-gray-500">Current page</span>
                 </div>
               </div>
             </div>
@@ -134,14 +146,14 @@
 import IconCollection from '~/components/icons/icon-collection.vue'
 import IconChevronLeft from '~/components/icons/icon-chevron-left.vue'
 import IconChevronRight from '~/components/icons/icon-chevron-right.vue'
-import IconBookmark from '~/components/icons/icon-bookmark.vue'
+import VButton from '~/components/special/v-button.vue'
 export default {
   name: 'BookSerie',
   components: {
     IconCollection,
     IconChevronLeft,
     IconChevronRight,
-    IconBookmark,
+    VButton,
   },
   props: {
     serie: {
@@ -169,7 +181,7 @@ export default {
         centerMode: true,
         dots: true,
         navButtons: false,
-        infinite: false,
+        infinite: true,
         slidesToShow: 3,
         responsive: [
           {

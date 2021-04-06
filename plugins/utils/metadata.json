@@ -1,0 +1,36 @@
+{
+    "settings": {
+        "robots": "index, follow",
+        "disallow": [
+            "/sign-in",
+            "/sign-up",
+            "/dashboard",
+            "/admin"
+        ],
+        "color": "#6C63FF",
+        "locale": "en_US"
+    },
+    "tags": {
+        "title": "Bookshelves : your digital library",
+        "titleTemplate": "%s · Bookshelves",
+        "description": "For people with eReaders, download eBooks and reading in complete tranquility, your digital library that goes everywhere with you.",
+        "rating": "general",
+        "keywords": [
+            "epub",
+            "book",
+            "ebook"
+        ],
+        "author": "Bookshelves Team",
+        "copyright": "BSD 2-Clause license",
+        "language": "english",
+        "designer": "Bookshelves Team"
+    },
+    "og": {
+        "type": "website",
+        "siteName": "Bookshelves"
+    },
+    "twitter": {
+        "creator": "@ewilanriviere",
+        "site": "@bookshelves_ink"
+    }
+}

@@ -1,25 +1,29 @@
 <template>
-  <div class="mx-auto">
-    <main>
+  <main class="container max-w-7xl">
+    <div class="px-3">
+      <!-- <breadcrumb
+        class="px-3 mb-8 lg:px-3"
+        :title="`${book.title} by ${authors}`"
+      /> -->
       <book-header :book="book" />
-      <div
-        class="grid max-w-3xl grid-cols-1 gap-6 px-3 mx-auto mt-8 sm:px-6 xl:max-w-7xl xl:grid-flow-col-dense xl:grid-cols-2"
-      >
-        <div class="space-y-6 xl:col-start-1 xl:col-span-1">
-          <book-description :book="book" />
-          <book-comments :book="book" />
-        </div>
-
-        <transition name="fade">
-          <book-serie
-            v-if="serieLoaded && book.serie !== null"
-            :serie="serie"
-            :book="book"
-          />
-        </transition>
+    </div>
+    <div
+      class="grid grid-cols-1 gap-6 mt-8 xl:max-w-7xl xl:grid-flow-col-dense xl:grid-cols-2"
+    >
+      <div class="space-y-6 xl:col-start-1 xl:col-span-1">
+        <book-description :book="book" />
+        <book-comments :book="book" />
       </div>
-    </main>
-  </div>
+
+      <transition name="fade">
+        <book-serie
+          v-if="serieLoaded && book.serie !== null"
+          :serie="serie"
+          :book="book"
+        />
+      </transition>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -27,6 +31,7 @@ import BookComments from '~/components/blocks/books-slug/book-comments.vue'
 import BookDescription from '~/components/blocks/books-slug/book-description.vue'
 import bookHeader from '~/components/blocks/books-slug/book-header.vue'
 import BookSerie from '~/components/blocks/books-slug/book-serie.vue'
+import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
 
 export default {
   name: 'BooksSlug',
@@ -60,93 +65,38 @@ export default {
     }
   },
   head() {
-    let authors = ''
-    this.book.authors.forEach((author, authorId) => {
-      authors += `${author.name}`
-      if (
-        this.book.authors.length > 1 &&
-        authorId !== this.book.authors.length - 1
-      ) {
-        authors += ' & '
-      }
-    })
-    const title = `${this.book.title} by ${authors}`
-    const description = this.book.summary
-    const image = this.book.picture.openGraph
-    const isbn = this.book.identifier.isbn13 || this.book.identifier.isbn
-    const date = this.book.publishDate
-    const tags = this.book.tags
+    const title = `${this.book.title} by ${this.authors}`
     const url = `${process.env.BASE_URL}/books/${this.book.author}/${this.book.slug}`
+    const dynamicMeta = dynamicMetadata({
+      type: 'book',
+      title,
+      description: this.book.summary,
+      url,
+      image: this.book.picture.openGraph,
+    })
     return {
       title,
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        {
-          hid: 'og:image:type',
-          property: 'og:image:type',
-          content: 'image/jpg',
-        },
-        {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'book',
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: image,
-        },
+        ...dynamicMeta,
         {
           hid: 'book:isbn',
           property: 'book:isbn',
-          content: isbn,
+          content: this.book.identifier.isbn13 || this.book.identifier.isbn,
         },
         {
           hid: 'book:author',
           property: 'books:author',
-          content: authors,
+          content: this.authors,
         },
         {
           hid: 'book:release_date',
           property: 'books:release_date',
-          content: date,
+          content: this.book.publishDate,
         },
         {
           hid: 'book:tag',
           property: 'books:tag',
-          content: tags,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: url,
-        },
-        // Twitter Card
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          hid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: image,
+          content: this.book.tags,
         },
       ],
       link: [
@@ -160,7 +110,7 @@ export default {
   jsonld() {
     const breadcrumbs = [
       {
-        url: process.env.BASE_URL,
+        url: `${process.env.BASE_URL}/`,
         text: 'Home',
       },
       {
@@ -206,6 +156,11 @@ export default {
         publisher: this.book.publisher.name,
       },
     }
+  },
+  computed: {
+    authors() {
+      return this.$getAuthors(this.book.authors)
+    },
   },
   async mounted() {
     await this.loadSerie()

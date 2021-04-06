@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="max-w-3xl px-4 mx-auto md:px-6 xl:flex xl:items-center xl:justify-between xl:space-x-5 xl:max-w-7xl xl:px-8"
-  >
+  <div class="xl:flex xl:items-center xl:justify-between">
     <div class="flex items-center space-x-5">
       <div class="flex-shrink-0">
         <div class="relative">

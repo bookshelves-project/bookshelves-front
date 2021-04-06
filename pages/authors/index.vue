@@ -1,9 +1,6 @@
 <template>
   <main class="container max-w-7xl">
-    <section-heading
-      title="Authors"
-      subtitle="Want to find all books written by specific author?"
-    />
+    <section-heading :title="title" :subtitle="description" />
     <section v-if="!apiError">
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
@@ -47,6 +44,7 @@ import Pagination from '~/components/special/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
+import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
 
 export default {
   name: 'AuthorsIndex',
@@ -81,56 +79,21 @@ export default {
     return {
       componentKey: 0,
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
+      title: `Authors`,
+      description: `Want to find all books written by specific author?`,
     }
   },
   head() {
-    const title = 'Authors on Bookshelves'
-    const description = 'Find your favorite author among those.'
-    const image = `${process.env.BASE_URL}/open-graph.jpg`
+    const title = this.title
     const url = `${process.env.BASE_URL}/authors`
+    const dynamicMeta = dynamicMetadata({
+      title: this.title,
+      description: this.description,
+      url,
+    })
     return {
       title,
-      titleTemplate: '',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: image,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: url,
-        },
-        // Twitter Card
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          hid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: image,
-        },
-      ],
+      meta: [...dynamicMeta],
       link: [
         {
           rel: 'canonical',

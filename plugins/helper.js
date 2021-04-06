@@ -122,3 +122,16 @@ const getLanguage = (slug) => {
 }
 
 Vue.prototype.$getLanguage = getLanguage
+
+const getAuthors = (authors) => {
+  let authorsToString = ''
+  authors.forEach((author, authorId) => {
+    authorsToString += `${author.name}`
+    if (authors.length > 1 && authorId !== authors.length - 1) {
+      authorsToString += ' & '
+    }
+  })
+  return authorsToString
+}
+
+Vue.prototype.$getAuthors = getAuthors
