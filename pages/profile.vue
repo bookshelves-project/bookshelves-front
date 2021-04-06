@@ -57,8 +57,8 @@
                       <div class="flex items-center mt-1">
                         <div v-show="!photoPreview">
                           <img
-                            :src="user.data.avatar"
-                            :alt="user.data.name"
+                            :src="user.data ? user.data.avatar : null"
+                            :alt="user.data ? user.data.name : null"
                             class="object-cover w-12 h-12 rounded-full"
                           />
                         </div>
@@ -254,8 +254,14 @@ export default {
   name: 'PageProfile',
   components: { vButton, IconLoad },
   async asyncData({ app }) {
-    const user = await app.$axios.$get(`/user`)
-    return { user }
+    try {
+      const user = await app.$axios.$get(`/user`)
+      return { user }
+    } catch (error) {
+      console.error(error)
+      const user = {}
+      return { user }
+    }
   },
   data() {
     return {
@@ -287,9 +293,11 @@ export default {
     },
   },
   created() {
-    this.form.name = this.user.data.name
-    this.form.email = this.user.data.email
-    this.form.gravatar = this.user.data.gravatar
+    if (this.user.data) {
+      this.form.name = this.user.data.name
+      this.form.email = this.user.data.email
+      this.form.gravatar = this.user.data.gravatar
+    }
   },
   methods: {
     async submit() {

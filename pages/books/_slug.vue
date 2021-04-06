@@ -57,7 +57,6 @@ export default {
     return {
       serie: [],
       serieLoaded: false,
-      breadcrumbs: [],
     }
   },
   head() {
@@ -71,7 +70,7 @@ export default {
         authors += ' & '
       }
     })
-    const title = `${this.book.title} by ${this.book.authors[0].name}`
+    const title = `${this.book.title} by ${authors}`
     const description = this.book.summary
     const image = this.book.picture.openGraph
     const isbn = this.book.identifier.isbn13 || this.book.identifier.isbn
@@ -158,8 +157,8 @@ export default {
       ],
     }
   },
-  created() {
-    this.breadcrumbs = [
+  jsonld() {
+    const breadcrumbs = [
       {
         url: process.env.BASE_URL,
         text: 'Home',
@@ -173,8 +172,6 @@ export default {
         text: this.book.title,
       },
     ]
-  },
-  jsonld() {
     const authors = this.book.authors.map((author, index) => ({
       '@type': 'Person',
       familyName: author.lastname,
@@ -183,10 +180,11 @@ export default {
       url: `${process.env.BASE_URL}/authors/${author.slug}`,
     }))
 
-    const items = this.breadcrumbs.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
+    const items = breadcrumbs.map((item, index) => ({
+      '@type': 'BreadcrumbList',
       item: {
+        '@type': 'ListItem',
+        position: index + 1,
         '@id': item.url,
         name: item.text,
       },

@@ -43,6 +43,7 @@
   - paginate design color for not available page
   - settings, update website name for vivacia
   - review title by og
+  - jsonld, sitelinks
 
 ---
 
