@@ -253,6 +253,7 @@ import vButton from '~/components/special/v-button.vue'
 export default {
   name: 'PageProfile',
   components: { vButton, IconLoad },
+  middleware: 'auth',
   async asyncData({ app }) {
     try {
       const user = await app.$axios.$get(`/user`)
