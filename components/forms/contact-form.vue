@@ -60,6 +60,28 @@
           ></textarea>
         </div>
       </div>
+      <div class="hidden sm:col-span-2">
+        <div class="relative flex items-start">
+          <div class="flex items-center h-5">
+            <input
+              id="conditions"
+              v-model="form.honeypot"
+              name="conditions"
+              type="checkbox"
+              class="w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-600"
+            />
+          </div>
+          <div class="ml-3 text-sm">
+            <label for="conditions" class="font-medium text-gray-700"
+              >Accept conditions</label
+            >
+            <p class="text-gray-500">
+              Accept conditions about data privacy about Bookshelves to send
+              your message to Bookshelves Team.
+            </p>
+          </div>
+        </div>
+      </div>
       <div class="sm:col-span-2">
         <div class="flex items-center space-x-2">
           <button
@@ -108,28 +130,22 @@ export default {
         name: '',
         email: '',
         message: '',
+        honeypot: false,
       },
       formTesting: {
         name: 'Ewilan',
         email: 'ewilan@dotslashplay.it',
         message:
           'Dolor pariatur exercitation duis dolore eu ut commodo quis incididunt ad voluptate sit. Do est nulla adipisicing ut dolore amet dolore nostrud labore. Magna laborum aliqua duis eiusmod quis aliquip officia veniam adipisicing est magna nostrud culpa. Laborum nisi nisi sit Lorem fugiat aute deserunt ea reprehenderit sint sint nulla ad labore.',
+        honeypot: false,
       },
     }
   },
-  async mounted() {
-    try {
-      await this.$recaptcha.init()
-    } catch (e) {
-      console.error(e)
-    }
+  mounted() {
     if (this.$auth.$state.loggedIn) {
       this.form.name = this.$auth.$state.user.data.name
       this.form.email = this.$auth.$state.user.data.email
     }
-  },
-  beforeDestroy() {
-    this.$recaptcha.destroy()
   },
   methods: {
     fillForm() {
@@ -141,10 +157,9 @@ export default {
       this.loading = true
 
       try {
-        const token = await this.$recaptcha.execute('login')
-        this.form['g-recaptcha-response'] = token
-
-        await this.$axios.post('/submission', this.form)
+        if (!this.form.honeypot) {
+          await this.$axios.post('/submission', this.form)
+        }
 
         this.success = true
         this.errors = false
@@ -152,6 +167,7 @@ export default {
           name: '',
           email: '',
           message: '',
+          honeypot: false,
         }
 
         const title = 'Message sended!'

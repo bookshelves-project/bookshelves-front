@@ -1,8 +1,5 @@
 <template>
-  <a
-    :href="`${apiUrl}/api/documentation`"
-    target="_blank"
-    rel="noopener noreferrer"
+  <a :href="`${apiUrl}/documentation`" target="_blank" rel="noopener noreferrer"
     >API documentation</a
   >
 </template>

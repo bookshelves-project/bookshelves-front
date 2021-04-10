@@ -112,8 +112,6 @@ export default {
     // 'nuxt-i18n',
     // https://auth.nuxtjs.org/guide/setup
     '@nuxtjs/auth-next',
-    // https://github.com/nuxt-community/recaptcha-module
-    '@nuxtjs/recaptcha',
     // https://sitemap.nuxtjs.org/guide/setup
     '@nuxtjs/sitemap',
     // https://github.com/avil13/vue-sweetalert2
@@ -229,13 +227,6 @@ export default {
   //     },
   //   },
   // },
-  recaptcha: {
-    hideBadge: true,
-    // language: '',
-    siteKey: process.env.RECAPTCHA_SITE_KEY,
-    version: 3,
-    size: 'invisible',
-  },
 
   hooks: {
     'content:file:beforeInsert': (document) => {
