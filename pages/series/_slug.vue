@@ -83,7 +83,7 @@
           </div>
         </div>
       </div>
-      <div v-if="serie.tags" class="flex">
+      <div v-if="serie.tags.length" class="flex">
         <h2 class="mr-1">Tags:</h2>
         <ul>
           <li v-for="(tag, id) in serie.tags" :key="id" class="inline-block">
