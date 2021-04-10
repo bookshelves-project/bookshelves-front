@@ -291,7 +291,7 @@ export default {
     fill: #85ea2d;
   }
   /deep/ .icon-portfolio:hover path {
-    @apply text-primary-500;
+    @apply text-primary-600;
   }
   /deep/ .icon-mail:hover path {
     fill: #d14836;

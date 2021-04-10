@@ -44,7 +44,7 @@
       </button>
       <a
         :href="book.epub.download"
-        class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-500"
+        class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-600"
       >
         <icon name="download" />
         <span class="mx-1">Download</span>

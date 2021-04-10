@@ -132,7 +132,7 @@
             name: 'series-slug',
             params: { author: book.serie.author, slug: book.serie.slug },
           }"
-          class="inline-flex items-center justify-center px-4 py-2 mx-auto text-sm font-medium font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 md:w-max"
+          class="inline-flex items-center justify-center px-4 py-2 mx-auto text-sm font-medium font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 md:w-max"
         >
           <icon-collection />
           <span class="mx-1"> Refer to series page </span>

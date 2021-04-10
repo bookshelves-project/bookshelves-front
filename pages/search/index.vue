@@ -32,7 +32,7 @@
           id="search"
           v-model="advancedSearchInput"
           name="search"
-          class="block w-full py-4 pl-10 pr-3 text-lg leading-5 bg-gray-200 bg-opacity-50 border border-transparent rounded-md focus:border-gray-100 focus:bg-gray-100 focus:ring-0 bg-light-primary-700 placeholder-light-primary-100 focus:outline-none focus:ring-white focus:placeholder-gray-500 focus:text-gray-900 sm:text-sm"
+          class="block w-full py-4 pl-10 pr-3 text-lg leading-5 bg-gray-200 bg-opacity-50 border border-transparent rounded-md focus:border-gray-100 focus:bg-gray-100 focus:ring-0 bg-light-primary-600 placeholder-light-primary-100 focus:outline-none focus:ring-white focus:placeholder-gray-500 focus:text-gray-900 sm:text-sm"
           placeholder="Advanced search"
           type="search"
         />

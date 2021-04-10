@@ -73,7 +73,7 @@ button {
 }
 
 .highlight-underline {
-  @apply bg-primary-500 absolute;
+  @apply bg-primary-600 absolute;
   bottom: -2px;
   height: 2px;
   transition: left 150ms, width 150ms;

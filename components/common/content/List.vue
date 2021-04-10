@@ -50,11 +50,11 @@ export default {
 <style lang="postcss">
 /* Primary */
 .list-primary {
-  @apply text-primary-500;
+  @apply text-primary-600;
 }
 /* Info */
 .list-info {
-  @apply text-primary-500;
+  @apply text-primary-600;
 }
 /* Success */
 .list-success {

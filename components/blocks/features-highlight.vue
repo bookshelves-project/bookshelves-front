@@ -14,7 +14,7 @@
                 <icon
                   name="bookshelves-logo"
                   :size="50"
-                  class="text-primary-700"
+                  class="text-primary-600"
                 />
                 <h2
                   class="ml-3 text-3xl font-extrabold tracking-tight text-primary-600 font-handlee"
@@ -77,7 +77,7 @@
           <div class="py-20">
             <div>
               <div class="flex items-center">
-                <icon name="ereader" :size="50" class="text-primary-700" />
+                <icon name="ereader" :size="50" class="text-primary-600" />
                 <h2
                   class="ml-3 text-3xl font-extrabold tracking-tight text-primary-600 font-handlee"
                 >

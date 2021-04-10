@@ -16,7 +16,7 @@
     <div class="px-4 mx-auto sm:px-6 max-w-7xl">
       <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64">
         <h2
-          class="text-sm font-semibold tracking-wide uppercase text-primary-700"
+          class="text-sm font-semibold tracking-wide uppercase text-primary-600"
         >
           A quick tour of eBooks count
         </h2>

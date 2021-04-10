@@ -62,7 +62,7 @@
         <div v-if="false" class="flex items-center lg:hidden">
           <!-- Mobile menu button -->
           <button
-            class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+            class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-600"
             aria-expanded="false"
           >
             <span class="sr-only">Open main menu</span>

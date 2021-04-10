@@ -93,7 +93,7 @@
                     @click.native="closeSidebar"
                   >
                     <span
-                      class="w-2.5 h-2.5 mr-4 bg-primary-500 rounded-full"
+                      class="w-2.5 h-2.5 mr-4 bg-primary-600 rounded-full"
                       aria-hidden="true"
                     ></span>
                     <span> {{ link.label }} </span>
@@ -104,7 +104,7 @@
                     @click="logout"
                   >
                     <span
-                      class="w-2.5 h-2.5 mr-4 bg-primary-500 rounded-full"
+                      class="w-2.5 h-2.5 mr-4 bg-primary-600 rounded-full"
                       aria-hidden="true"
                     ></span>
                     <span> Sign out </span>
@@ -120,7 +120,7 @@
                     @click.native="closeSidebar"
                   >
                     <span
-                      class="w-2.5 h-2.5 mr-4 bg-primary-500 rounded-full"
+                      class="w-2.5 h-2.5 mr-4 bg-primary-600 rounded-full"
                       aria-hidden="true"
                     ></span>
                     <span> {{ link.label }} </span>

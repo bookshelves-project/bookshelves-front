@@ -20,7 +20,7 @@
             >
               <div class="-mt-6">
                 <div
-                  class="inline-flex items-center justify-center p-3 bg-primary-500 rounded-md shadow"
+                  class="inline-flex items-center justify-center p-3 bg-primary-600 rounded-md shadow"
                 >
                   <icon :name="feature.icon" :size="40" class="text-white" />
                 </div>

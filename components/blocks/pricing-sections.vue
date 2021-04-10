@@ -79,7 +79,7 @@
           <div class="mt-10">
             <div class="rounded-lg shadow-md">
               <button
-                class="block w-full px-6 py-4 text-xl font-medium leading-6 text-center text-white transition-colors duration-100 border border-transparent rounded-lg bg-primary-600 hover:bg-primary-700"
+                class="block w-full px-6 py-4 text-xl font-medium leading-6 text-center text-white transition-colors duration-100 border border-transparent rounded-lg bg-primary-600 hover:bg-primary-600"
                 aria-describedby="tier-free"
                 @click="pricings.free.ctaAction"
               >
@@ -125,7 +125,7 @@
             <div class="mt-8">
               <div class="rounded-lg shadow-md">
                 <button
-                  class="block w-full px-6 py-3 text-base font-medium text-center text-white transition-colors duration-100 border border-transparent rounded-lg bg-primary-600 hover:bg-primary-700"
+                  class="block w-full px-6 py-3 text-base font-medium text-center text-white transition-colors duration-100 border border-transparent rounded-lg bg-primary-600 hover:bg-primary-600"
                   aria-describedby="tier-account"
                   @click="pricings.account.ctaAction"
                 >

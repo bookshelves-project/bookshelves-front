@@ -81,10 +81,10 @@ export default {
   @apply text-primary-400;
 }
 .alert-info .alert-content {
-  @apply text-primary-700;
+  @apply text-primary-600;
 }
 .dark-mode .alert-info {
-  @apply bg-primary-900 border-primary-700;
+  @apply bg-primary-900 border-primary-600;
 }
 .dark-mode .alert-info code {
   @apply bg-primary-800;

@@ -29,7 +29,7 @@
                       type="text"
                       name="name"
                       autocomplete="name"
-                      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm"
                     />
                   </div>
 
@@ -45,7 +45,7 @@
                       type="email"
                       name="email"
                       autocomplete="email"
-                      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm"
                     />
                   </div>
 
@@ -83,7 +83,7 @@
                         />
                         <button
                           type="button"
-                          class="px-3 py-2 ml-3 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                          class="px-3 py-2 ml-3 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
                           @click="selectNewPhoto"
                         >
                           Change
@@ -110,7 +110,7 @@
                             v-model="form.gravatar"
                             name="gravatar"
                             type="checkbox"
-                            class="w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-500"
+                            class="w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-600"
                           />
                         </div>
                         <div class="ml-3 text-sm">
@@ -182,7 +182,7 @@
                       required
                       type="password"
                       name="current_password"
-                      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm"
                     />
                   </div>
 
@@ -198,7 +198,7 @@
                       required
                       type="password"
                       name="password"
-                      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm"
                     />
                   </div>
 
@@ -214,7 +214,7 @@
                       required
                       type="password"
                       name="password_confirmation"
-                      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm"
                     />
                   </div>
                 </div>
