@@ -65,7 +65,8 @@ export default {
     }
   },
   head() {
-    const title = `${this.book.title} by ${this.authors}`
+    const serie = `(${this.book.serie.title}, vol. ${this.book.serieVolume}) `
+    const title = `${this.book.title} ${serie}by ${this.authors}`
     const url = `${process.env.BASE_URL}/books/${this.book.author}/${this.book.slug}`
     const dynamicMeta = dynamicMetadata({
       type: 'book',

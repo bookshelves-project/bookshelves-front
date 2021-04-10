@@ -30,7 +30,12 @@
                 </span>
               </div>
             </template>
-            <template #tertiary> {{ serie.booksNumber }} books </template>
+            <template #tertiary>
+              <div>{{ serie.booksNumber }} books</div>
+              <div v-if="serie.language" class="mt-1">
+                {{ $getLanguage(serie.language) }}
+              </div>
+            </template>
           </entity-card>
         </div>
       </div>

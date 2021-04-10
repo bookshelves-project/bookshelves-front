@@ -1,5 +1,3 @@
-const colors = require('tailwindcss/colors')
-
 module.exports = {
   darkMode: 'class',
   purge: [
@@ -35,7 +33,6 @@ module.exports = {
           800: '#2b2866',
           900: '#161433',
         },
-        cyan: colors.cyan,
       },
       fontFamily: {
         quicksand: ['Quicksand'],

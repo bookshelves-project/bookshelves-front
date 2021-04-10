@@ -36,7 +36,7 @@ export default {
     return {
       pinnedProjectDropdownOpened: false,
       projectDropdownOpened: false,
-      title: `Welcome on Bookshelves, your digital library`,
+      title: `Bookshelves, your digital library`,
     }
   },
   head() {

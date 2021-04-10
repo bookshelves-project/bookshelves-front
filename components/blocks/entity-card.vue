@@ -10,7 +10,7 @@
           class="object-cover object-top cover-shadow"
         />
       </div>
-      <div class="mt-2">
+      <div>
         <h2 class="font-semibold">
           <slot name="primary" />
         </h2>

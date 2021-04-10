@@ -1,7 +1,7 @@
 <template>
   <div
     :class="dev ? 'debug-screens' : ''"
-    class="bg-fixed bg-no-repeat bg-cover bg-gray-50 dark:bg-black"
+    class="bg-fixed bg-gray-100 bg-no-repeat bg-cover dark:bg-black"
   >
     <overlay />
     <div class="mx-auto bg-white max-w-extra dark:bg-gray-900">
@@ -10,7 +10,7 @@
         class="transform -translate-x-1/2 border-gray-800 max-w-7xl left-1/2 border-opacity-5"
       />
       <div
-        class="fixed z-20 w-full h-16 bg-white border-gray-800 dark:border-gray-800 dark:bg-gray-800 shadow-navbar dark:shadow-none max-w-extra border-opacity-5"
+        class="fixed z-20 w-full h-16 bg-white border-gray-800 shadow dark:border-gray-800 dark:bg-gray-800 shadow-navbar dark:shadow-none max-w-extra border-opacity-5"
       ></div>
       <sidebar />
       <div class="pt-24"></div>

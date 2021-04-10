@@ -88,6 +88,9 @@
           <template v-if="serie.booksNumber" #secondary>
             {{ serie.booksNumber }} books
           </template>
+          <template v-if="serie.language" #tertiary>
+            {{ $getLanguage(serie.language) }}
+          </template>
         </entity-card>
       </div>
       <divider class="mt-16"> {{ author.booksNumber }} Books </divider>

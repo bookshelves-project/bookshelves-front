@@ -75,12 +75,42 @@
                 >Language :
               </span>
               <img
-                :src="serie.language.flag"
-                :alt="serie.language.slug"
+                :src="$getLanguageFlag(serie.language)"
+                :alt="serie.language"
                 class="ml-2"
               />
             </div>
           </div>
+        </div>
+      </div>
+      <div v-if="serie.tags" class="flex">
+        <h2 class="mr-1">Tags:</h2>
+        <ul>
+          <li v-for="(tag, id) in serie.tags" :key="id" class="inline-block">
+            <span>{{ tag.name }}</span
+            ><span
+              v-if="serie.tags.length > 1 && id !== serie.tags.length - 1"
+              class="mr-1 text-gray-900 dark:text-gray-100"
+              >,</span
+            >
+          </li>
+        </ul>
+      </div>
+      <div
+        v-if="serie.description"
+        class="max-w-full pt-2 mb-8 prose word-wraping"
+      >
+        <p class="italic">
+          {{ serie.description }}
+        </p>
+        <div v-if="serie.wikipediaLink" class="pt-1 text-right">
+          To have more informations:
+          <a
+            :href="serie.wikipediaLink"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Wikipedia</a
+          >
         </div>
       </div>
       <div class="relative mt-5 mb-10">

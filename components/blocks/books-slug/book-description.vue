@@ -83,8 +83,10 @@
               Language
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
-              <!-- <img :src="book.language.flag" :alt="book.language.slug" /> -->
-              {{ $getLanguage(book.language) }}
+              <img
+                :src="$getLanguageFlag(book.language)"
+                :alt="book.language"
+              />
             </dd>
           </div>
           <div

@@ -23,11 +23,11 @@
             class="slide"
             :class="`slide--${index}`"
           >
-            <div class="grid w-full h-full grid-cols-2">
+            <div class="w-full h-full lg:grid lg:grid-cols-2">
               <div class="col-span-1">
                 <img
                   v-lazy="bookSerie.picture.original"
-                  class="object-cover object-top w-full h-full"
+                  class="object-cover object-top w-32 h-32 rounded-full lg:rounded-none lg:w-full lg:h-full"
                 />
               </div>
               <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">

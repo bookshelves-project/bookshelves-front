@@ -118,10 +118,35 @@ const getLanguage = (slug) => {
   ]
 
   const language = available.find((lang) => lang.slug === slug)
-  return language.label
+  if (language) {
+    return language.label
+  }
 }
 
 Vue.prototype.$getLanguage = getLanguage
+
+const getLanguageFlag = (slug) => {
+  const available = [
+    {
+      slug: 'fr',
+      id: 'fr',
+      label: 'French',
+    },
+    {
+      slug: 'en',
+      id: 'gb',
+      label: 'English',
+    },
+  ]
+
+  const language = available.find((lang) => lang.slug === slug)
+  if (language) {
+    const lang = language.id
+    return `https://www.countryflags.io/${lang}/flat/32.png`
+  }
+}
+
+Vue.prototype.$getLanguageFlag = getLanguageFlag
 
 const getAuthors = (authors) => {
   let authorsToString = ''
