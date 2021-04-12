@@ -1,5 +1,5 @@
 <template>
-  <section aria-labelledby="notes-title">
+  <section aria-labelledby="book-comments">
     <div
       class="bg-white shadow dark:bg-gray-800 sm:rounded-lg sm:overflow-hidden"
     >
@@ -14,7 +14,10 @@
         </div>
         <div class="px-4 py-6 sm:px-6">
           <transition name="fade">
-            <ul v-if="commentsList.length > 0" class="space-y-8">
+            <ul
+              v-if="commentsList.length > 0"
+              class="space-y-8 overflow-y-auto max-h-96"
+            >
               <li v-for="comment in commentsList" :key="comment.id">
                 <div class="flex space-x-3">
                   <div class="flex-shrink-0">
@@ -188,10 +191,8 @@
 </template>
 
 <script>
-import IconTrash from '~/components/icons/icon-trash.vue'
 export default {
   name: 'BookComments',
-  components: { IconTrash },
   props: {
     book: {
       type: Object,
@@ -312,11 +313,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped>
-.light-md {
-  & /deep/ p {
-    @apply my-4;
-  }
-}
-</style>

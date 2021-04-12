@@ -101,11 +101,8 @@
 </template>
 
 <script>
-import IconLoad from '../icons/icon-load.vue'
-import iconTest from '../icons/icon-test.vue'
 export default {
   name: 'RegisterForm',
-  components: { iconTest, IconLoad },
   data() {
     return {
       form: {

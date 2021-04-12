@@ -18,7 +18,10 @@
           @deleted="deleted"
         >
           <template #icon>
-            <icon-heart class="text-red-600" :is-full="true" />
+            <svg-icon
+              name="heart"
+              class="w-6 h-6 text-gray-400 dark:text-gray-300"
+            />
           </template>
         </data-list-template>
       </div>
@@ -31,7 +34,10 @@
         @deleted="deleted"
       >
         <template #icon>
-          <icon-comment class="w-6 h-6 text-blue-600" />
+          <svg-icon
+            name="comment"
+            class="w-6 h-6 text-gray-400 dark:text-gray-300"
+          />
         </template>
       </data-list-template>
     </div>
@@ -41,18 +47,14 @@
 <script>
 import DataListTemplate from '~/components/blocks/dashboard/data-list-template.vue'
 import sectionHeading from '~/components/blocks/section-heading.vue'
-import IconHeart from '~/components/icons/icon-heart.vue'
 
 import favorites from '~/mixins/favorites'
 import comments from '~/mixins/comments'
-import IconComment from '~/components/icons/icon-comment.vue'
 export default {
   name: 'Dashboard',
   components: {
     sectionHeading,
-    IconHeart,
     DataListTemplate,
-    IconComment,
   },
   mixins: [favorites, comments],
   middleware: 'auth',

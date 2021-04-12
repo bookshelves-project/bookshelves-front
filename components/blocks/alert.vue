@@ -58,14 +58,8 @@
 </template>
 
 <script>
-import IconCross from '../icons/icon-cross.vue'
-import IconDanger from '../icons/icon-danger.vue'
-import iconInfo from '../icons/icon-info.vue'
-import IconSuccess from '../icons/icon-success.vue'
-import IconWarning from '../icons/icon-warning.vue'
 export default {
   name: 'Alert',
-  components: { iconInfo, IconWarning, IconDanger, IconSuccess, IconCross },
   methods: {
     close() {
       this.$store.commit('setShowAlert', false)

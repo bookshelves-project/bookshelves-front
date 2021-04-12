@@ -13,21 +13,26 @@ export const state = () => ({
   authNavigationTrue: [
     {
       label: 'Dashboard',
-      icon: 'book-open',
+      icon: 'template',
       route: 'dashboard',
       isAdmin: false,
     },
     {
       label: 'Profile',
-      icon: 'book-open',
+      icon: 'cog',
       route: 'profile',
       isAdmin: false,
     },
-    { label: 'Admin', icon: 'book-open', route: 'admin', isAdmin: true },
+    {
+      label: 'Control panel',
+      icon: 'control',
+      route: 'admin',
+      isAdmin: true,
+    },
   ],
   authNavigationFalse: [
-    { label: 'Sign in', icon: 'book-open', route: 'login' },
-    { label: 'Sign up', icon: 'book-open', route: 'register' },
+    { label: 'Sign in', icon: 'login', route: 'login' },
+    { label: 'Sign up', icon: 'register', route: 'register' },
   ],
   design: ['bibliophile', 'book-lover', 'bookmark'],
   showAlert: false,

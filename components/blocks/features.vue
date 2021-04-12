@@ -4,7 +4,7 @@
       class="max-w-md px-4 mx-auto text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
     >
       <h2
-        class="text-base font-semibold tracking-wider text-primary-600 uppercase"
+        class="text-base font-semibold tracking-wider uppercase text-primary-600"
       >
         How to use Bookshelves
       </h2>
@@ -20,9 +20,9 @@
             >
               <div class="-mt-6">
                 <div
-                  class="inline-flex items-center justify-center p-3 bg-primary-600 rounded-md shadow"
+                  class="inline-flex items-center justify-center p-3 rounded-md shadow bg-primary-600"
                 >
-                  <icon :name="feature.icon" :size="40" class="text-white" />
+                  <svg-icon :name="feature.icon" class="w-8 h-8 text-white" />
                 </div>
                 <h3
                   class="mt-5 text-lg font-medium tracking-tight text-gray-900"
@@ -72,7 +72,7 @@ export default {
             'All these informations that allows you to sort and find your books by author or series are integrated into each eBook',
         },
         {
-          icon: 'locale',
+          icon: 'languages',
           label: 'Multi languages',
           text:
             'eBooks in several languages according to your preferences in order to reach a maximum number of readers.',

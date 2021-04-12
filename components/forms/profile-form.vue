@@ -1,10 +1,12 @@
 <template>
   <form enctype="multipart/form-data" @submit.prevent="submit">
     <div class="overflow-hidden shadow sm:rounded-md">
-      <div class="px-4 py-5 bg-white sm:p-6">
+      <div class="px-4 py-5 bg-white dark:bg-gray-800 sm:p-6">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6 sm:col-span-4">
-            <label for="name" class="block text-sm font-medium text-gray-700"
+            <label
+              for="name"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-200"
               >Name</label
             >
             <input
@@ -13,14 +15,14 @@
               type="text"
               name="name"
               autocomplete="name"
-              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm"
+              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm dark:bg-gray-200"
             />
           </div>
 
           <div class="col-span-6 sm:col-span-4">
             <label
               for="email_address"
-              class="block text-sm font-medium text-gray-700"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-200"
               >Email address</label
             >
             <input
@@ -29,13 +31,15 @@
               type="email"
               name="email"
               autocomplete="email"
-              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm"
+              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm dark:bg-gray-200"
             />
           </div>
 
           <transition name="fade">
             <div v-if="!form.gravatar" class="col-span-6 sm:col-span-4">
-              <label class="block text-sm font-medium text-gray-700">
+              <label
+                class="block text-sm font-medium text-gray-700 dark:text-gray-200"
+              >
                 Photo
               </label>
               <div class="flex items-center mt-1">
@@ -67,14 +71,14 @@
                 />
                 <button
                   type="button"
-                  class="px-3 py-2 ml-3 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
+                  class="px-3 py-2 ml-3 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 dark:bg-gray-800 dark:text-gray-200"
                   @click="selectNewPhoto"
                 >
                   Change
                 </button>
                 <button
                   type="button"
-                  class="px-3 py-2 ml-2 text-sm font-medium leading-4 text-red-700 bg-white border border-red-300 rounded-md shadow-sm hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                  class="px-3 py-2 ml-2 text-sm font-medium leading-4 text-red-700 bg-white border border-red-300 rounded-md shadow-sm hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:bg-gray-800 dark:text-red-300"
                   @click="deletePhoto"
                 >
                   Delete
@@ -98,7 +102,9 @@
                   />
                 </div>
                 <div class="ml-3 text-sm">
-                  <label for="gravatar" class="font-medium text-gray-700"
+                  <label
+                    for="gravatar"
+                    class="font-medium text-gray-700 dark:text-gray-200"
                     >Use Gravatar</label
                   >
                   <p class="text-gray-500">
@@ -113,7 +119,7 @@
         </div>
       </div>
 
-      <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
+      <div class="px-4 py-3 text-right bg-gray-50 dark:bg-gray-800 sm:px-6">
         <v-button type="submit" color="primary">
           <transition name="fade">
             <span v-if="!isLoading">Update profile</span>
@@ -129,11 +135,8 @@
 </template>
 
 <script>
-import iconLoad from '../icons/icon-load.vue'
-import VButton from '../special/v-button.vue'
 export default {
   name: 'ProfileForm',
-  components: { iconLoad, VButton },
   props: {
     user: {
       type: Object,

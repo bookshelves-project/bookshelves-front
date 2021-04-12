@@ -39,11 +39,9 @@
 
 <script>
 import sectionHeading from '~/components/blocks/section-heading.vue'
-import IconLoad from '~/components/icons/icon-load.vue'
-import VButton from '~/components/special/v-button.vue'
 export default {
   name: 'PageAdmin',
-  components: { sectionHeading, VButton, IconLoad },
+  components: { sectionHeading },
   middleware: 'admin',
   data() {
     return {

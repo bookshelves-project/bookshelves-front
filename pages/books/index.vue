@@ -31,8 +31,8 @@
                 </span>
               </div>
             </template>
-            <template v-if="book.serie" #tertiary>
-              <div class="italic">
+            <template #tertiary>
+              <div v-if="book.serie" class="italic">
                 {{ book.serie.title }},<br />
                 vol. {{ book.serieVolume }}
               </div>

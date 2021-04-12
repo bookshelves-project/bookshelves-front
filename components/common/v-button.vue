@@ -56,7 +56,7 @@ export default {
   @apply border-transparent shadow-sm text-white bg-primary-600 hover:bg-primary-600;
 }
 .white {
-  @apply border-gray-300 shadow-sm text-gray-700 bg-white hover:bg-primary-100;
+  @apply border-gray-300 shadow-sm text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 hover:bg-primary-100;
 }
 
 .primary-disabled {

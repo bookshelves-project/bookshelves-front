@@ -56,8 +56,8 @@
               :href="serie.download"
               class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 border border-transparent rounded-md shadow-sm bg-primary-600 lg:mx-0 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-600 sm:w-max"
             >
-              <icon name="download" />
-              <div class="flex items-center ml-2">
+              <svg-icon name="download" class="w-5 h-5" />
+              <div class="flex items-center ml-1">
                 <div class="mx-1">Download</div>
                 <div class="hidden lg:mr-1 lg:block">
                   {{ serie.title }}
@@ -119,7 +119,7 @@
         </div>
         <div class="relative flex justify-center">
           <span class="px-2 text-gray-500 bg-white dark:bg-gray-900">
-            {{ serie.booksNumber }} Books
+            {{ serie.books.length }} Books
           </span>
         </div>
       </div>
@@ -159,13 +159,12 @@
 
 <script>
 import entityCard from '~/components/blocks/entity-card.vue'
-import IconHeart from '~/components/icons/icon-heart.vue'
 import favorites from '~/mixins/favorites'
 import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
 
 export default {
   name: 'SeriesSlug',
-  components: { entityCard, IconHeart },
+  components: { entityCard },
   mixins: [favorites],
   async asyncData({ app, params }) {
     try {
@@ -195,7 +194,7 @@ export default {
     const dynamicMeta = dynamicMetadata({
       type: 'book',
       title,
-      description: `Written by ${this.authors} with ${this.serie.booksNumber} books.`,
+      description: `Written by ${this.authors} with ${this.serie.count} books.`,
       url,
       image: this.serie.picture.openGraph,
     })

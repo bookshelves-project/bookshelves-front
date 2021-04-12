@@ -24,6 +24,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
+    "analyze": "nuxt build -a ",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "yarn lint:js",
     "test": "jest"
@@ -38,6 +39,7 @@
     "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/router": "^1.6.1",
     "@nuxtjs/sitemap": "^2.4.0",
+    "@nuxtjs/svg-sprite": "^0.5.2",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/line-clamp": "^0.2.0",
@@ -80,7 +82,7 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.3.1",
     "jest": "^26.5.0",
-    "postcss": "^8.2.9",
+    "postcss": "^8.2.10",
     "prettier": "^2.1.2",
     "vue-jest": "^3.0.4"
   }

@@ -1,14 +1,11 @@
 <template>
-  <section
-    aria-labelledby="timeline-title"
-    class="xl:col-start-2 xl:col-span-1 book-serie"
-  >
+  <section aria-labelledby="timeline-title" class="book-serie">
     <div class="px-4 py-5 shadow sm:rounded-lg sm:px-6 dark:bg-gray-800">
       <h2 id="timeline-title" class="text-lg font-medium text-gray-900">
         Series
       </h2>
       <p class="max-w-2xl mt-1 text-sm text-gray-500">
-        Current: vol. {{ book.serieVolume }}
+        Current: vol. {{ book.volume }}
       </p>
       <div class="mt-5">
         <agile
@@ -33,7 +30,7 @@
               <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
                 <div>
                   <span
-                    class="text-sm font-medium text-gray-500 dark:text-gray-500"
+                    class="text-sm font-medium text-gray-500 dark:text-gray-400"
                     >Title
                   </span>
                   <h3 class="font-semibold text-black">
@@ -43,7 +40,7 @@
                 <div>
                   <div>
                     <span
-                      class="text-sm font-medium text-gray-500 dark:text-gray-500"
+                      class="text-sm font-medium text-gray-500 dark:text-gray-400"
                       >Authors
                     </span>
                     <h3 class="font-semibold">
@@ -73,11 +70,11 @@
                 </div>
                 <div>
                   <span
-                    class="text-sm font-medium text-gray-500 dark:text-gray-500"
+                    class="text-sm font-medium text-gray-500 dark:text-gray-400"
                     >Volume
                   </span>
                   <h3 class="font-semibold text-black">
-                    {{ bookSerie.serieVolume }}
+                    {{ bookSerie.volume }}
                   </h3>
                 </div>
                 <div class="pt-6">
@@ -94,16 +91,24 @@
                     }"
                     >Refer to book</v-button
                   >
-                  <span v-else class="italic text-gray-500">Current page</span>
+                  <span v-else class="italic text-gray-500 dark:text-gray-400"
+                    >Current page</span
+                  >
                 </div>
               </div>
             </div>
           </div>
           <template slot="prevButton">
-            <icon-chevron-left class="w-8 h-8 m-auto text-gray-900" />
+            <svg-icon
+              name="arrow-chevron-right"
+              class="w-8 h-8 m-auto text-gray-900 dark:text-gray-400 arrow-rotate"
+            />
           </template>
           <template slot="nextButton">
-            <icon-chevron-right class="w-8 h-8 m-auto text-gray-900" />
+            <svg-icon
+              name="arrow-chevron-right"
+              class="w-8 h-8 m-auto text-gray-900 dark:text-gray-400"
+            />
           </template>
         </agile>
         <agile
@@ -126,16 +131,15 @@
           </div>
         </agile>
       </div>
-      <div class="flex flex-col mt-6 justify-stretch">
+      <div class="mt-6">
         <nuxt-link
           :to="{
             name: 'series-slug',
             params: { author: book.serie.author, slug: book.serie.slug },
           }"
-          class="inline-flex items-center justify-center px-4 py-2 mx-auto text-sm font-medium font-semibold text-white transition-colors duration-100 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 md:w-max"
+          class="flex items-center justify-center w-full px-4 py-2 text-sm font-semibold text-gray-700 transition-colors duration-100 bg-white border border-gray-300 rounded-md shadow-sm dark:border-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
         >
-          <icon-collection />
-          <span class="mx-1"> Refer to series page </span>
+          View series page
         </nuxt-link>
       </div>
     </div>
@@ -143,18 +147,8 @@
 </template>
 
 <script>
-import IconCollection from '~/components/icons/icon-collection.vue'
-import IconChevronLeft from '~/components/icons/icon-chevron-left.vue'
-import IconChevronRight from '~/components/icons/icon-chevron-right.vue'
-import VButton from '~/components/special/v-button.vue'
 export default {
   name: 'BookSerie',
-  components: {
-    IconCollection,
-    IconChevronLeft,
-    IconChevronRight,
-    VButton,
-  },
   props: {
     serie: {
       type: Array,
@@ -203,7 +197,7 @@ export default {
   },
   mounted() {
     if (this.book.serie) {
-      this.$refs.main.goTo(this.book.serieVolume - 1)
+      this.$refs.main.goTo(this.book.volume - 1)
       this.asNavFor1.push(this.$refs.thumbnails)
       this.asNavFor2.push(this.$refs.main)
     }
@@ -212,6 +206,9 @@ export default {
 </script>
 
 <style lang="postcss">
+.arrow-rotate {
+  transform: rotate(180deg);
+}
 .slide--thumbniail {
   transition: opacity 0.3s !important;
 }
@@ -257,12 +254,12 @@ export default {
   }
   & .agile__dot {
     & button {
-      @apply border mx-2 my-1 border-solid border-primary-600 rounded-full bg-transparent cursor-pointer block h-3 w-3 duration-300;
+      @apply border mx-2 my-1 border-solid border-primary-600 dark:border-primary-300 rounded-full bg-transparent cursor-pointer block h-3 w-3 duration-300;
     }
   }
   & .agile__dot--current button,
   & .agile__dot:hover button {
-    @apply bg-primary-600;
+    @apply bg-primary-600 dark:bg-primary-300;
   }
 
   & .main {

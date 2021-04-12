@@ -19,7 +19,11 @@
           :title="logo.label"
           class="flex justify-center col-span-1 transition-all duration-300 md:col-span-2 lg:col-span-1 hover:zoom"
         >
-          <icon :name="logo.icon" :size="100" class="text-gray-400" />
+          <component
+            :is="`icon-cl-${logo.icon}`"
+            :size="100"
+            class="w-32 h-32 text-gray-400"
+          />
         </a>
       </div>
       <div>
@@ -38,10 +42,11 @@
             :title="logo.label"
             class="flex justify-center mx-auto mt-5 transition-all duration-300 md:mx-0 hover:zoom w-max"
           >
-            <icon
-              :name="logo.icon"
+            <component
+              :is="logo.isImage ? 'img' : `icon-cl-${logo.icon}`"
+              :src="logo.icon"
               :size="80"
-              class="text-gray-400"
+              class="w-32 h-32 text-gray-400"
               :stroke="logo.iconConfig ? logo.iconConfig.stroke : false"
             />
           </a>
@@ -88,19 +93,19 @@ export default {
           label: 'Calibre',
           link: 'https://calibre-ebook.com',
           icon: 'calibre',
+          isImage: false,
         },
         {
           label: 'Pandoc',
           link: 'https://pandoc.org',
           icon: 'pandoc',
+          isImage: false,
         },
         {
           label: 'Team AlexandriZ',
           link: 'https://twitter.com/teamalexandriz',
-          icon: 'team-alexandriz',
-          iconConfig: {
-            stroke: true,
-          },
+          icon: '/images/icons/team-alexandriz.png',
+          isImage: true,
         },
       ],
     }

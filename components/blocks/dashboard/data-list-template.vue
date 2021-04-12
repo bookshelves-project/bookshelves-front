@@ -81,7 +81,10 @@
             title="Delete"
             @click="deleted(data)"
           >
-            <icon-trash class="w-6 h-6 m-auto" />
+            <svg-icon
+              name="trash"
+              class="w-6 h-6 m-auto text-gray-400 dark:text-gray-300"
+            />
           </button>
         </div>
       </div>
@@ -93,10 +96,8 @@
 </template>
 
 <script>
-import iconTrash from '~/components/icons/icon-trash.vue'
 export default {
   name: 'DataListTemplate',
-  components: { iconTrash },
   props: {
     dataList: {
       type: Array,

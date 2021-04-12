@@ -1,9 +1,9 @@
 <template>
-  <section aria-labelledby="applicant-information-title">
+  <section aria-labelledby="book-main">
     <div class="shadow sm:rounded-lg dark:bg-gray-800">
       <div class="px-4 py-5 sm:px-6">
         <div
-          id="applicant-information-title"
+          id="book-main"
           class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100"
         >
           Description
@@ -16,7 +16,7 @@
           class="space-y-8 md:grid md:gap-x-4 md:gap-y-8 md:space-y-0 md:grid-cols-2"
         >
           <div v-if="book.authors" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
               Authors
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
@@ -46,7 +46,7 @@
             </dd>
           </div>
           <div v-if="book.serie" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
               Serie
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
@@ -62,12 +62,12 @@
                   class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
                   >{{ book.serie.title }}</nuxt-link
                 >
-                (vol. {{ book.serieVolume }})
+                (vol. {{ book.volume }})
               </h2>
             </dd>
           </div>
           <div v-if="book.publisher" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
               Publishing
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
@@ -79,7 +79,7 @@
             </dd>
           </div>
           <div v-if="book.language" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
               Language
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
@@ -93,7 +93,7 @@
             v-if="book.identifier.isbn || book.identifier.isbn13"
             class="sm:col-span-1"
           >
-            <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
               Identifiers
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
@@ -108,7 +108,7 @@
             </dd>
           </div>
           <div v-if="book.pageCount" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
               Page count
             </dt>
             <dd
@@ -118,7 +118,7 @@
             </dd>
           </div>
           <div v-if="book.tags.length >= 1" class="sm:col-span-1">
-            <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
               Tags
             </dt>
             <dd
@@ -133,7 +133,7 @@
             </dd>
           </div>
           <div v-if="book.description" class="sm:col-span-2">
-            <dt class="text-sm font-medium text-gray-500 dark:text-gray-500">
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
               Abstract
             </dt>
             <dd
@@ -149,7 +149,7 @@
 
 <script>
 export default {
-  name: 'BookDescription',
+  name: 'BookMain',
   props: {
     book: {
       type: Object,

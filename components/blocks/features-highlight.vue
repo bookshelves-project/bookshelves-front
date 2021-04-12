@@ -11,10 +11,9 @@
           <div class="py-20">
             <div>
               <div class="flex items-center">
-                <icon
-                  name="bookshelves-logo"
-                  :size="50"
-                  class="text-primary-600"
+                <svg-icon
+                  name="bookshelves"
+                  class="w-12 h-12 text-primary-600"
                 />
                 <h2
                   class="ml-3 text-3xl font-extrabold tracking-tight text-primary-600 font-handlee"
@@ -77,7 +76,7 @@
           <div class="py-20">
             <div>
               <div class="flex items-center">
-                <icon name="ereader" :size="50" class="text-primary-600" />
+                <svg-icon name="ereader" class="w-12 h-12 text-primary-600" />
                 <h2
                   class="ml-3 text-3xl font-extrabold tracking-tight text-primary-600 font-handlee"
                 >

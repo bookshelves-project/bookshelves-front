@@ -17,6 +17,7 @@
             v-model="form.name"
             type="text"
             name="name"
+            maxlength="100"
             autocomplete="name"
             class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-300 dark:border-gray-300"
             required
@@ -36,6 +37,7 @@
             v-model="form.email"
             name="email"
             type="email"
+            maxlength="100"
             autocomplete="email"
             class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm dark:bg-gray-300 dark:border-gray-300 focus:ring-primary-600 focus:border-primary-600"
             required
@@ -56,8 +58,14 @@
             name="message"
             rows="4"
             class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-300 dark:border-gray-300"
+            minlength="125"
+            maxlength="1500"
             required
           ></textarea>
+          <div class="flex justify-between ml-1 text-sm text-gray-400">
+            <span>Min. 125 characters</span>
+            <span>Currently {{ form.message.length }}/1500</span>
+          </div>
         </div>
       </div>
       <div class="hidden sm:col-span-2">
@@ -114,12 +122,8 @@
 </template>
 
 <script>
-import iconAirplane from '../icons/icon-airplane.vue'
-import IconLoad from '../icons/icon-load.vue'
-import IconTest from '../icons/icon-test.vue'
 export default {
   name: 'ContactForm',
-  components: { iconAirplane, IconTest, IconLoad },
   data() {
     return {
       loading: false,

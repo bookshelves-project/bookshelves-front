@@ -1,46 +1,43 @@
 <template>
-  <main class="container max-w-7xl">
-    <div class="px-3">
-      <!-- <breadcrumb
-        class="px-3 mb-8 lg:px-3"
-        :title="`${book.title} by ${authors}`"
-      /> -->
-      <book-header :book="book" />
-    </div>
-    <div
-      class="grid grid-cols-1 gap-6 mt-8 xl:max-w-7xl xl:grid-flow-col-dense xl:grid-cols-2"
-    >
-      <div class="space-y-6 xl:col-start-1 xl:col-span-1">
-        <book-description :book="book" />
-        <book-comments :book="book" />
-      </div>
+  <main class="container min-h-screen max-w-7xl">
+    <div class="pb-8">
+      <div class="max-w-3xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
+        <h1 class="sr-only">Profile</h1>
+        <!-- Main 2 column grid -->
+        <div class="grid items-start grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+          <!-- Left column -->
+          <div class="grid grid-cols-1 gap-4 lg:col-span-1">
+            <book-header :book="book" />
+            <book-main :book="book" />
+          </div>
 
-      <transition name="fade">
-        <book-serie
-          v-if="serieLoaded && book.serie !== null"
-          :serie="serie"
-          :book="book"
-        />
-      </transition>
+          <!-- Right column -->
+          <div class="grid grid-cols-1 gap-4 lg:col-span-1">
+            <transition name="fade">
+              <book-serie
+                v-if="serieLoaded && serie !== null"
+                :book="book"
+                :serie="serie"
+              />
+            </transition>
+            <book-comments :book="book" />
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 </template>
 
 <script>
 import BookComments from '~/components/blocks/books-slug/book-comments.vue'
-import BookDescription from '~/components/blocks/books-slug/book-description.vue'
 import bookHeader from '~/components/blocks/books-slug/book-header.vue'
+import BookMain from '~/components/blocks/books-slug/book-main.vue'
 import BookSerie from '~/components/blocks/books-slug/book-serie.vue'
 import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
 
 export default {
   name: 'BooksSlug',
-  components: {
-    bookHeader,
-    BookSerie,
-    BookDescription,
-    BookComments,
-  },
+  components: { bookHeader, BookComments, BookMain, BookSerie },
   async asyncData({ app, params }) {
     try {
       const [book] = await Promise.all([
@@ -65,7 +62,9 @@ export default {
     }
   },
   head() {
-    const serie = `(${this.book.serie.title}, vol. ${this.book.serieVolume}) `
+    const serie = this.book.serie
+      ? `(${this.book.serie.title}, vol. ${this.book.serieVolume})`
+      : ''
     const title = `${this.book.title} ${serie}by ${this.authors}`
     const url = `${process.env.BASE_URL}/books/${this.book.author}/${this.book.slug}`
     const dynamicMeta = dynamicMetadata({

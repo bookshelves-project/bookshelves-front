@@ -8,34 +8,11 @@
               class="flex items-center w-auto h-8 lg:hidden dark:text-gray-100"
               @click="openSidebar"
             >
-              <svg
-                class="w-8 h-8 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              <icon
-                name="bookshelves-logo"
-                :size="40"
-                class="text-primary-600"
-              />
+              <svg-icon name="menu" class="w-8 h-8" />
+              <svg-icon name="bookshelves" class="w-8 h-8 text-primary-600" />
             </button>
-            <nuxt-link
-              to="/"
-              class="items-center hidden w-auto h-8 lg:inline-flex"
-            >
-              <icon
-                name="bookshelves-logo"
-                :size="40"
-                class="text-primary-600"
-              />
-              <!-- <div class="mt-2 ml-3 text-2xl font-handlee">Bookshelves</div> -->
+            <nuxt-link to="/" class="hidden lg:block">
+              <svg-icon name="bookshelves" class="w-8 h-8 text-primary-600" />
             </nuxt-link>
           </div>
           <div class="hidden lg:ml-6 lg:flex lg:space-x-8 navbar">

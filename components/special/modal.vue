@@ -67,20 +67,10 @@
 
 <script>
 import vClickOutside from 'v-click-outside'
-import IconDanger from '../icons/icon-danger.vue'
-import iconInfo from '../icons/icon-info.vue'
-import IconSuccess from '../icons/icon-success.vue'
-import IconWarning from '../icons/icon-warning.vue'
 export default {
   name: 'Modal',
   directives: {
     clickOutside: vClickOutside.directive,
-  },
-  components: {
-    iconInfo,
-    IconWarning,
-    IconDanger,
-    IconSuccess,
   },
   data() {
     return {

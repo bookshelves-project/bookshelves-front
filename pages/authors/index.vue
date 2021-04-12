@@ -17,7 +17,7 @@
             <template #primary>
               {{ author.lastname }} {{ author.firstname }}
             </template>
-            <template #secondary> {{ author.booksNumber }} books </template>
+            <template #tertiary> {{ author.count }} books </template>
           </entity-card>
         </div>
       </div>

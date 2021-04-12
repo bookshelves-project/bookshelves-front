@@ -7,10 +7,9 @@
         <div class="col-span-6 xl:col-start-1 xl:col-end-4">
           <div class="max-w-md space-y-8">
             <nuxt-link to="/" class="flex items-center lg:mx-0 w-max group">
-              <icon
-                name="bookshelves-logo"
-                :size="40"
-                class="text-gray-300 transition-colors duration-100 group-hover:text-gray-400"
+              <svg-icon
+                name="bookshelves"
+                class="w-12 h-12 text-gray-300 transition-colors duration-100 group-hover:text-gray-400"
               />
               <div
                 class="mt-2 ml-3 text-2xl text-gray-300 transition-colors duration-100 md:text-xl font-handlee group-hover:text-gray-400"
@@ -32,7 +31,7 @@
                 :title="icon.label"
                 class="block text-gray-400 hover:text-gray-500 dark:hover:text-gray-400"
               >
-                <icon :name="icon.icon" :size="30" />
+                <component :is="`icon-cl-${icon.icon}`" class="w-8 h-8" />
               </a>
               <color-switcher-toggle />
             </div>

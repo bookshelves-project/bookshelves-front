@@ -31,7 +31,7 @@
               </div>
             </template>
             <template #tertiary>
-              <div>{{ serie.booksNumber }} books</div>
+              <div>{{ serie.count }} books</div>
               <div v-if="serie.language" class="mt-1">
                 {{ $getLanguage(serie.language) }}
               </div>

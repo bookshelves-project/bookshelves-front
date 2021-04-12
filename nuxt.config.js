@@ -30,6 +30,8 @@ export default {
   },
 
   plugins: [
+    // global helper methods
+    '~/plugins/utils/helper',
     // https://github.com/ndelvalle/v-click-outside
     '~/plugins/v-click-outside',
     // https://github.com/eddiemf/vue-scrollactive
@@ -38,10 +40,6 @@ export default {
     '~/plugins/autocomplete-vue',
     // https://github.com/hilongjw/vue-lazyload
     '~/plugins/vue-lazyload',
-    // load SVG from assets/icons
-    '~/plugins/icons-loader',
-    // global helper methods
-    '~/plugins/helper',
     // https://github.com/lukaszflorczak/vue-agile
     '~/plugins/vue-agile',
     // https://github.com/ymmooot/nuxt-jsonld
@@ -54,6 +52,7 @@ export default {
     { path: '~/components/common', pathPrefix: false },
     { path: '~/components/common/content', pathPrefix: false },
     { path: '~/components/common/icons', pathPrefix: false },
+    { path: '~/components/common/icons-md', pathPrefix: false },
   ],
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
@@ -73,7 +72,9 @@ export default {
     // https://color-mode.nuxtjs.org/#setup
     '@nuxtjs/color-mode',
     // https://github.com/nuxt-community/svg-module
-    // '@nuxtjs/svg',
+    '@nuxtjs/svg',
+    // https://github.com/nuxt-community/svg-sprite-module
+    '@nuxtjs/svg-sprite',
   ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
@@ -93,6 +94,7 @@ export default {
   colorMode: {
     classSuffix: '',
   },
+  svgSprite: {},
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -102,8 +104,6 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    // https://github.com/nuxt-community/svg-module
-    '@nuxtjs/svg',
     // https://image.nuxtjs.org/
     // '@nuxt/image',
     // https://www.npmjs.com/package/@nuxtjs/robots

@@ -38,13 +38,11 @@
             :href="author.download"
             class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-600 sm:w-max"
           >
-            <icon name="download" />
-            <div class="flex items-center ml-2">
+            <svg-icon name="download" class="w-5 h-5" />
+            <div class="flex items-center ml-1">
               <div class="flex mx-1">
                 <span class="lg:mr-1">Download</span>
-                <span class="hidden md:block"
-                  >{{ author.booksNumber }} eBooks</span
-                >
+                <span class="hidden md:block">{{ author.count }} eBooks</span>
               </div>
               <div>(ZIP {{ author.size }})</div>
             </div>
@@ -85,15 +83,15 @@
           <template #primary>
             {{ $overflow(serie.title, 50) }}
           </template>
-          <template v-if="serie.booksNumber" #secondary>
-            {{ serie.booksNumber }} books
+          <template v-if="serie.count" #secondary>
+            {{ serie.count }} books
           </template>
           <template v-if="serie.language" #tertiary>
             {{ $getLanguage(serie.language) }}
           </template>
         </entity-card>
       </div>
-      <divider class="mt-16"> {{ author.booksNumber }} Books </divider>
+      <divider class="mt-16"> {{ author.count }} Books </divider>
       <div class="space-y-6 display-grid sm:space-y-0">
         <entity-card
           v-for="book in author.books"
@@ -110,7 +108,7 @@
           </template>
           <template v-if="book.serie" #secondary>
             {{ book.serie.title }},<br />
-            vol. {{ book.serieVolume }}
+            vol. {{ book.volume }}
           </template>
           <template v-if="book.language" #tertiary>
             {{ $getLanguage(book.language) }}
@@ -123,14 +121,13 @@
 
 <script>
 import entityCard from '~/components/blocks/entity-card.vue'
-import IconHeart from '~/components/icons/icon-heart.vue'
 import Divider from '~/components/special/divider.vue'
 import favorites from '~/mixins/favorites'
 import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
 
 export default {
   name: 'AuthorsSlug',
-  components: { entityCard, Divider, IconHeart },
+  components: { entityCard, Divider },
   mixins: [favorites],
   async asyncData({ app, params }) {
     try {
@@ -161,7 +158,7 @@ export default {
     const dynamicMeta = dynamicMetadata({
       type: 'profile',
       title,
-      description: `${this.author.name} author on Bookshelves with ${this.author.booksNumber} books available.`,
+      description: `${this.author.name} author on Bookshelves with ${this.author.count} books available.`,
       url,
       image: this.author.picture.openGraph,
     })

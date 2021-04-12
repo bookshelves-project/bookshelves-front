@@ -42,18 +42,20 @@
           <span v-for="link in authNav" :key="link.id">
             <nuxt-link
               :to="{ name: link.route }"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
+              class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
               role="menuitem"
               @click.native="closeAccountDropdown"
             >
+              <svg-icon :name="link.icon" class="w-5 h-5 mr-1 text-gray-500" />
               {{ link.label }}
             </nuxt-link>
           </span>
           <button
-            class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800"
+            class="flex items-center w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800"
             role="menuitem"
             @click="logout"
           >
+            <svg-icon name="logout" class="w-5 h-5 mr-1 text-gray-500" />
             Sign out
           </button>
         </div>

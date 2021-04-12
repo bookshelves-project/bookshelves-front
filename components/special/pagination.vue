@@ -74,10 +74,7 @@
 </template>
 
 <script>
-import IconArrowNarrowLeft from '../icons/icon-arrow-narrow-left.vue'
-import iconArrowNarrowRight from '../icons/icon-arrow-narrow-right.vue'
 export default {
-  components: { iconArrowNarrowRight, IconArrowNarrowLeft },
   props: {
     pages: {
       type: Number,
