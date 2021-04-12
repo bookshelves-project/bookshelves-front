@@ -12,7 +12,8 @@
           aria-expanded="true"
           @click="clearFilter"
         >
-          <icon-trash
+          <svg-icon
+            name="trash"
             class="w-5 h-5 text-red-600 transition-colors duration-100 group-hover:text-red-700"
           />
         </button>
@@ -29,7 +30,7 @@
             aria-expanded="true"
             @click="openedFilter = !openedFilter"
           >
-            <icon-filter />
+            <svg-icon name="filter" class="w-6 h-6" />
             <!-- Heroicon name: solid/chevron-down -->
             <svg
               class="w-5 h-5 ml-2 -mr-1"

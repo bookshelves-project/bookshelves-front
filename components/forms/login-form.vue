@@ -82,7 +82,7 @@
         <transition name="fade">
           <span v-if="!isLoading"> Sign in </span>
           <span v-else class="flex items-center space-x-1">
-            <icon-load class="w-5 h-5 text-white" />
+            <svg-icon name="load" class="w-5 h-5 text-white" />
             <div>Processing</div>
           </span>
         </transition>
@@ -93,7 +93,7 @@
         class="flex items-center px-3 py-2 font-semibold text-white transition-colors duration-100 rounded-md bg-primary-600 hover:bg-primary-600"
         @click="fillForm"
       >
-        <icon-test class="w-5 h-5" />
+        <svg-icon name="test" class="w-5 h-5" />
       </button>
     </div>
   </form>

@@ -20,10 +20,10 @@
                 class="ml-3"
                 @click="toggleFavorite('serie')"
               >
-                <icon-heart
-                  title="Favorite"
-                  class="text-red-600"
-                  :is-full="isFavorite"
+                <svg-icon
+                  name="heart"
+                  :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
+                  class="w-5 h-5"
                 />
               </button>
             </div>

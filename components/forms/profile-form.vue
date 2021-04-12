@@ -124,7 +124,7 @@
           <transition name="fade">
             <span v-if="!isLoading">Update profile</span>
             <span v-else class="flex items-center space-x-1">
-              <icon-load class="w-5 h-5 text-white" />
+              <svg-icon name="load" class="w-5 h-5 text-white" />
               <div>Processing</div>
             </span>
           </transition>

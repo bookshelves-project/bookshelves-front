@@ -19,8 +19,8 @@
           :title="logo.label"
           class="flex justify-center col-span-1 transition-all duration-300 md:col-span-2 lg:col-span-1 hover:zoom"
         >
-          <component
-            :is="`icon-cl-${logo.icon}`"
+          <span
+            :v-html="logo.icon"
             :size="100"
             class="w-32 h-32 text-gray-400"
           />
@@ -42,12 +42,13 @@
             :title="logo.label"
             class="flex justify-center mx-auto mt-5 transition-all duration-300 md:mx-0 hover:zoom w-max"
           >
-            <component
-              :is="logo.isImage ? 'img' : `icon-cl-${logo.icon}`"
+            <span
+              :is="logo.isImage ? 'img' : 'span'"
               :src="logo.icon"
               :size="80"
               class="w-32 h-32 text-gray-400"
               :stroke="logo.iconConfig ? logo.iconConfig.stroke : false"
+              v-html="logo.icon"
             />
           </a>
         </div>

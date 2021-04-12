@@ -12,7 +12,7 @@
           <v-button @click="updateNewEbooks"> Update for new eBooks </v-button>
           <transition name="fade">
             <span v-if="loading" class="flex items-center space-x-1">
-              <icon-load class="w-5 h-5 text-primary-300" />
+              <svg-icon name="load" class="w-5 h-5 text-gray-300" />
               <div>Processing</div>
             </span>
           </transition>

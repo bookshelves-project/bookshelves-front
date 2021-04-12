@@ -10,7 +10,10 @@
         exact-active-class="pagination-exact-active"
         class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300"
       >
-        <icon-arrow-narrow-left class="w-5 h-5 mr-3 text-gray-400" />
+        <svg-icon
+          name="arrow-narrow-right"
+          class="w-5 h-5 mr-3 text-gray-400 rotate-180"
+        />
         First
       </nuxt-link>
     </div>
@@ -67,7 +70,10 @@
         class="inline-flex items-center pt-4 pl-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300"
       >
         Last
-        <icon-arrow-narrow-right class="w-5 h-5 ml-3 text-gray-400" />
+        <svg-icon
+          name="arrow-narrow-right"
+          class="w-5 h-5 ml-3 text-gray-400"
+        />
       </nuxt-link>
     </div>
   </nav>
@@ -178,6 +184,9 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.rotate-180 {
+  transform: rotate(180deg);
+}
 .item {
   & a,
   & span {

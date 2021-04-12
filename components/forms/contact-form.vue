@@ -98,11 +98,11 @@
           >
             <transition name="fade">
               <div v-if="!loading" class="flex items-center space-x-2">
-                <icon-airplane class="w-5 h-5" />
+                <svg-icon name="airplane" class="w-5 h-5" />
                 <div>Let's talk</div>
               </div>
               <div v-else class="flex items-center space-x-1">
-                <icon-load class="w-5 h-5 text-white" />
+                <svg-icon name="load" class="w-5 h-5 text-white" />
                 <div>Processing</div>
               </div>
             </transition>
@@ -113,7 +113,7 @@
             class="flex items-center px-3 py-2 font-semibold text-white transition-colors duration-100 rounded-md bg-primary-600 hover:bg-primary-600"
             @click="fillForm"
           >
-            <icon-test class="w-5 h-5" />
+            <svg-icon name="test" class="w-5 h-5" />
           </button>
         </div>
       </div>

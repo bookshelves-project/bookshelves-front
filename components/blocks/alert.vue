@@ -16,7 +16,7 @@
           class="absolute text-gray-400 transition-colors duration-100 rounded top-2 right-2 hover:bg-gray-50"
           @click="close"
         >
-          <icon-cross />
+          <svg-icon name="cross" class="w-6 h-6" />
         </button>
         <div
           :class="[

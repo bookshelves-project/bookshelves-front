@@ -73,7 +73,11 @@
           class="header-action header-action_active"
           @click="toggleFavorite('book')"
         >
-          <svg-icon name="heart" class="w-5 h-5" />
+          <svg-icon
+            name="heart"
+            :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
+            class="w-5 h-5"
+          />
           <span>Favorite</span>
         </button>
       </div>
