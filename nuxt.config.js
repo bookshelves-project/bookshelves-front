@@ -52,7 +52,6 @@ export default {
     { path: '~/components/common', pathPrefix: false },
     { path: '~/components/common/content', pathPrefix: false },
     { path: '~/components/common/icons', pathPrefix: false },
-    { path: '~/components/common/icons-md', pathPrefix: false },
   ],
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
@@ -72,7 +71,7 @@ export default {
     // https://color-mode.nuxtjs.org/#setup
     '@nuxtjs/color-mode',
     // https://github.com/nuxt-community/svg-module
-    '@nuxtjs/svg',
+    // '@nuxtjs/svg',
     // https://github.com/nuxt-community/svg-sprite-module
     '@nuxtjs/svg-sprite',
   ],

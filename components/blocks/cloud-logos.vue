@@ -19,9 +19,8 @@
           :title="logo.label"
           class="flex justify-center col-span-1 transition-all duration-300 md:col-span-2 lg:col-span-1 hover:zoom"
         >
-          <span
-            :v-html="logo.icon"
-            :size="100"
+          <component
+            :is="logo.isImage ? 'img' : `icon-${logo.icon}`"
             class="w-32 h-32 text-gray-400"
           />
         </a>
@@ -42,13 +41,12 @@
             :title="logo.label"
             class="flex justify-center mx-auto mt-5 transition-all duration-300 md:mx-0 hover:zoom w-max"
           >
-            <span
-              :is="logo.isImage ? 'img' : 'span'"
+            <component
+              :is="logo.isImage ? 'img' : `icon-${logo.icon}`"
               :src="logo.icon"
               :size="80"
               class="w-32 h-32 text-gray-400"
               :stroke="logo.iconConfig ? logo.iconConfig.stroke : false"
-              v-html="logo.icon"
             />
           </a>
         </div>
@@ -58,8 +56,24 @@
 </template>
 
 <script>
+import IconBookeen from '../icons/icon-bookeen.vue'
+import IconCalibre from '../icons/icon-calibre.vue'
+import IconChapitreCom from '../icons/icon-chapitre-com.vue'
+import IconEpagine from '../icons/icon-epagine.vue'
+import IconKobo from '../icons/icon-kobo.vue'
+import IconPandoc from '../icons/icon-pandoc.vue'
+import IconVivlio from '../icons/icon-vivlio.vue'
 export default {
   name: 'CloudLogos',
+  components: {
+    IconKobo,
+    IconPandoc,
+    IconVivlio,
+    IconCalibre,
+    IconChapitreCom,
+    IconEpagine,
+    IconBookeen,
+  },
   data() {
     return {
       logos: [
