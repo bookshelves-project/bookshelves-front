@@ -7,6 +7,7 @@
       aria-pressed="false"
       :class="colorMode === 'dark' ? 'bg-primary-600' : 'bg-gray-200'"
       class="relative inline-flex flex-shrink-0 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer toggle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
+      aria-label="Color Mode"
       @click="switchColorMode()"
     >
       <span class="sr-only">Use setting</span>

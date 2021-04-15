@@ -15,6 +15,7 @@
           <button
             class="flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             type="button"
+            aria-label="Close side menu"
             @click="closeSidebar()"
           >
             <span class="sr-only">Close sidebar</span>

@@ -10,6 +10,7 @@
         type="button"
         class="px-4 py-3 font-mono font-bold text-gray-400"
         :class="[activeTabIndex === i && 'active']"
+        :aria-label="label"
         @click="updateTabs(i)"
       >
         {{ label }}

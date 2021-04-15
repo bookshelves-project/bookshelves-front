@@ -75,6 +75,7 @@
           v-if="$auth.$state.loggedIn"
           type="button"
           class="header-action header-action_active"
+          aria-label="Favorite"
           @click="toggleFavorite('book')"
         >
           <svg-icon

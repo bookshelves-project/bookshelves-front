@@ -92,6 +92,7 @@
         v-if="isDev"
         type="button"
         class="flex items-center px-3 py-2 font-semibold text-white transition-colors duration-100 rounded-md bg-primary-600 hover:bg-primary-600"
+        aria-label="Fill form"
         @click="fillForm"
       >
         <svg-icon name="test" class="w-5 h-5 text-white" />

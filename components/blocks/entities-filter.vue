@@ -10,6 +10,7 @@
           class="inline-flex justify-center w-full px-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 group dark:bg-gray-800 dark:border-gray-700"
           aria-haspopup="true"
           aria-expanded="true"
+          aria-label="Delete"
           @click="clearFilter"
         >
           <svg-icon
@@ -28,6 +29,7 @@
             class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-700"
             aria-haspopup="true"
             aria-expanded="true"
+            aria-label="Filter"
             @click="openedFilter = !openedFilter"
           >
             <svg-icon name="filter" class="w-6 h-6" />
@@ -61,6 +63,7 @@
               type="button"
               class="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-100 dark:hover:bg-gray-800"
               role="menuitem"
+              :aria-label="`Filter by ${lang.label}`"
               @click="filterByLang(lang.id)"
             >
               {{ lang.label }}

@@ -6,6 +6,7 @@
           <button
             type="button"
             class="flex items-center text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out border border-transparent rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 dark:focus:bg-gray-700 hover:text-gray-800 focus:outline-none focus:bg-gray-50 active:bg-gray-50"
+            aria-label="Open user menu"
           >
             <span class="sr-only">Open user menu</span>
             <transition name="fade">

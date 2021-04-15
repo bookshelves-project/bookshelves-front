@@ -24,6 +24,7 @@
               v-if="$auth.$state.loggedIn"
               class="ml-3"
               type="button"
+              aria-label="Favorite"
               @click="toggleFavorite('author')"
             >
               <svg-icon

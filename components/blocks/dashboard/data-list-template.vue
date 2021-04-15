@@ -80,6 +80,7 @@
             type="button"
             class="flex w-full h-full px-4 py-4 text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300"
             title="Delete"
+            aria-label="Delete"
             @click="deleted(data)"
           >
             <svg-icon

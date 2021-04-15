@@ -70,6 +70,7 @@
                         type="button"
                         class="text-gray-400 dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-300"
                         title="Delete"
+                        aria-label="Delete"
                         @click="deleteComment(comment.id)"
                       >
                         <icon-trash class="w-6 h-6" />
