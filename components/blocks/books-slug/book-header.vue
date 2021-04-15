@@ -19,7 +19,10 @@
               >
                 {{ book.title }}
               </p>
-              <p class="text-sm font-medium text-gray-600 dark:text-gray-300">
+              <p
+                v-if="book.serie"
+                class="text-sm font-medium text-gray-600 dark:text-gray-300"
+              >
                 {{ book.serie.title }}, vol. {{ book.volume }}
               </p>
               <p
