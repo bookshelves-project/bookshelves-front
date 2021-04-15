@@ -6,7 +6,7 @@
       <div class="aspect-w-1 aspect-h-1 sm:aspect-w-2 sm:aspect-h-3">
         <img
           v-lazy="cover"
-          :alt="imageAlt"
+          :alt="title"
           class="object-cover object-top cover-shadow"
         />
       </div>
@@ -45,7 +45,7 @@ export default {
       type: Boolean,
       default: true,
     },
-    imageAlt: {
+    title: {
       type: String,
       default: null,
     },

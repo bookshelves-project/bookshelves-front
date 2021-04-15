@@ -41,13 +41,13 @@
     >
       <div class="relative z-10 rounded-lg shadow-lg">
         <div
-          class="absolute inset-0 border-2 border-primary-600 rounded-lg pointer-events-none"
+          class="absolute inset-0 border-2 rounded-lg pointer-events-none border-primary-600"
           aria-hidden="true"
         ></div>
         <div class="absolute inset-x-0 top-0 transform translate-y-px">
           <div class="flex justify-center transform -translate-y-1/2">
             <span
-              class="inline-flex px-4 py-1 text-sm font-semibold tracking-wider text-white uppercase bg-primary-600 rounded-full"
+              class="inline-flex px-4 py-1 text-sm font-semibold tracking-wider text-white uppercase rounded-full bg-primary-600"
             >
               Most popular
             </span>
@@ -79,6 +79,7 @@
           <div class="mt-10">
             <div class="rounded-lg shadow-md">
               <button
+                type="button"
                 class="block w-full px-6 py-4 text-xl font-medium leading-6 text-center text-white transition-colors duration-100 border border-transparent rounded-lg bg-primary-600 hover:bg-primary-600"
                 aria-describedby="tier-free"
                 @click="pricings.free.ctaAction"

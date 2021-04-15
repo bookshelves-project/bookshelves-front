@@ -18,6 +18,7 @@
               <button
                 v-if="$auth.$state.loggedIn"
                 class="ml-3"
+                type="button"
                 @click="toggleFavorite('serie')"
               >
                 <svg-icon
@@ -129,6 +130,7 @@
           :key="book.id"
           :data="book"
           :cover="book.picture.base"
+          :title="book.title"
           :route="{
             name: 'books-slug',
             params: { author: book.author, slug: book.slug },
@@ -150,7 +152,7 @@
               </span>
             </span>
           </template>
-          <template #tertiary> Vol. {{ book.serieVolume }} </template>
+          <template #tertiary> Vol. {{ book.volume }} </template>
         </entity-card>
       </div>
     </div>

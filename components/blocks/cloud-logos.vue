@@ -22,6 +22,7 @@
           <component
             :is="logo.isImage ? 'img' : `icon-${logo.icon}`"
             class="w-32 h-32 text-gray-400"
+            :alt="logo.icon"
           />
         </a>
       </div>
@@ -47,6 +48,7 @@
               :size="80"
               class="w-32 h-32 text-gray-400"
               :stroke="logo.iconConfig ? logo.iconConfig.stroke : false"
+              :alt="logo.icon"
             />
           </a>
         </div>
@@ -119,7 +121,7 @@ export default {
         {
           label: 'Team AlexandriZ',
           link: 'https://twitter.com/teamalexandriz',
-          icon: '/images/icons/team-alexandriz.png',
+          icon: '/images/icons/team-alexandriz.webp',
           isImage: true,
         },
       ],

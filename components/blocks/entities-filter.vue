@@ -58,6 +58,7 @@
               v-for="lang in langs"
               :key="lang.id"
               :class="{ 'bg-gray-100': $route.query.lang === lang.id }"
+              type="button"
               class="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-100 dark:hover:bg-gray-800"
               role="menuitem"
               @click="filterByLang(lang.id)"

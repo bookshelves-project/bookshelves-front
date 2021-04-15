@@ -7,6 +7,7 @@
         :key="entity.id"
         :data="entity"
         :cover="entity.picture"
+        :title="entity.title"
         :limited-height="false"
         :route="{
           name: `${entity.meta.entity}s-slug`,

@@ -24,6 +24,7 @@
               <div class="col-span-1">
                 <img
                   v-lazy="bookSerie.picture.original"
+                  :alt="bookSerie.title"
                   class="object-cover object-top w-32 h-32 rounded-full lg:rounded-none lg:w-full lg:h-full"
                 />
               </div>
@@ -126,6 +127,7 @@
           >
             <img
               v-lazy="bookSerie.picture.base"
+              :alt="bookSerie.title"
               class="object-cover object-center w-full h-full"
             />
           </div>

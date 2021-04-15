@@ -49,6 +49,7 @@
                     ></div>
                     <button
                       v-if="comment.text.length > 300"
+                      type="button"
                       class="mt-2 font-semibold text-primary-600"
                       @click="displayCommentText(comment.id, comment.text)"
                     >
@@ -66,6 +67,7 @@
                           $auth.$state.loggedIn &&
                           comment.user.id === $auth.$state.user.data.id
                         "
+                        type="button"
                         class="text-gray-400 dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-300"
                         title="Delete"
                         @click="deleteComment(comment.id)"

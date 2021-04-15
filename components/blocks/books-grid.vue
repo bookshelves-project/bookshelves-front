@@ -9,6 +9,7 @@
       :key="bookId"
       :data="book"
       :cover="book.image"
+      :title="book.title"
       :route="route"
     >
       <template #title>

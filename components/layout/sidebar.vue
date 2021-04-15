@@ -14,6 +14,7 @@
         >
           <button
             class="flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            type="button"
             @click="closeSidebar()"
           >
             <span class="sr-only">Close sidebar</span>
@@ -100,6 +101,7 @@
                   </nuxt-link>
                   <button
                     class="flex items-center w-full px-3 py-4 text-base font-semibold leading-5 text-gray-600 rounded-md dark:text-gray-100 group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
+                    type="button"
                     role="menuitem"
                     @click="logout"
                   >

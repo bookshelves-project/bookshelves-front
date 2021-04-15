@@ -23,6 +23,7 @@
             <button
               v-if="$auth.$state.loggedIn"
               class="ml-3"
+              type="button"
               @click="toggleFavorite('author')"
             >
               <svg-icon
@@ -75,6 +76,7 @@
           :key="serie.id"
           :data="serie"
           :cover="serie.picture ? serie.picture.base : null"
+          :title="serie.title"
           :route="{
             name: 'series-slug',
             params: { author: author.slug, slug: serie.slug },
@@ -98,6 +100,7 @@
           :key="book.id"
           :data="book"
           :cover="book.picture.base"
+          :title="book.title"
           :route="{
             name: 'books-slug',
             params: { author: book.author, slug: book.slug },

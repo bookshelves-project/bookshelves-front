@@ -1,13 +1,14 @@
 <template>
   <div class="code-group">
     <div
-      class="rounded-t-md border-b-2 border-gray-700 px-2 bg-gray-800 text-sm text-white relative"
+      class="relative px-2 text-sm text-white bg-gray-800 border-b-2 border-gray-700 rounded-t-md"
     >
       <button
         v-for="({ label }, i) in tabs"
         ref="tabs"
         :key="label"
-        class="px-4 py-3 text-gray-400 font-bold font-mono"
+        type="button"
+        class="px-4 py-3 font-mono font-bold text-gray-400"
         :class="[activeTabIndex === i && 'active']"
         @click="updateTabs(i)"
       >

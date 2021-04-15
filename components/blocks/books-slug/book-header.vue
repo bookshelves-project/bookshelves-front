@@ -73,6 +73,7 @@
         </component>
         <button
           v-if="$auth.$state.loggedIn"
+          type="button"
           class="header-action header-action_active"
           @click="toggleFavorite('book')"
         >

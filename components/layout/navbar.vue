@@ -6,6 +6,7 @@
           <div class="flex items-center flex-shrink-0">
             <button
               class="flex items-center w-auto h-8 lg:hidden dark:text-gray-100"
+              type="button"
               @click="openSidebar"
             >
               <svg-icon name="menu" class="w-8 h-8" />
@@ -40,6 +41,7 @@
           <!-- Mobile menu button -->
           <button
             class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-600"
+            type="button"
             aria-expanded="false"
           >
             <span class="sr-only">Open main menu</span>

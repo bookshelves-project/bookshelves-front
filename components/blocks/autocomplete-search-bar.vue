@@ -53,6 +53,7 @@
           </template>
         </autocomplete>
         <button
+          type="button"
           class="absolute px-2 mx-2 font-semibold text-white transform -translate-y-1/2 rounded-r-md -right-12 top-1/2 bg-primary-600"
           style="padding-top: 0.45rem; padding-bottom: 0.45rem"
           @click="searchWithButton"
