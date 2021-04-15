@@ -34,7 +34,7 @@
             <template #tertiary>
               <div v-if="book.serie" class="italic">
                 {{ book.serie.title }},<br />
-                vol. {{ book.serieVolume }}
+                vol. {{ book.volume }}
               </div>
               <div class="mt-1">
                 {{ $getLanguage(book.language) }}
