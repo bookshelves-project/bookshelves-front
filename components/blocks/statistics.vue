@@ -25,7 +25,7 @@
         >
           Lots of ebooks for ever more insatiable readers
         </p>
-        <p class="mt-5 text-lg text-gray-900 dark:text-gray-100">
+        <p class="max-w-3xl mt-5 text-lg text-gray-900 dark:text-gray-100">
           More and more eBooks for more and more reading, each day brings its
           own novelties (or almost). Don't hesitate to come back from time to
           time to discover the new books.

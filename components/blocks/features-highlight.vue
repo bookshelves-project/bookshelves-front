@@ -28,6 +28,14 @@
                 an author or series if you wish!
               </p>
             </div>
+            <v-button
+              :component="`nuxt-link`"
+              :color="`white`"
+              :link="{ name: 'books' }"
+              class="mt-6"
+            >
+              Discover all books
+            </v-button>
           </div>
           <div class="pt-6 mt-8 border-t border-gray-200">
             <blockquote>
@@ -51,15 +59,8 @@
             class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full"
           >
             <img
-              v-if="$colorMode.value === 'light'"
-              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-              src="/images/books.webp"
-              alt="Books page"
-            />
-            <img
-              v-else
-              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-              src="/images/books-dark.webp"
+              class="w-full rounded-xl lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+              src="/images/book_reading_alt.svg"
               alt="Books page"
             />
           </div>
@@ -89,6 +90,14 @@
                 modify them if you wish.
               </p>
             </div>
+            <v-button
+              class="mt-6"
+              :component="`nuxt-link`"
+              :link="{ name: 'guides' }"
+              :color="`white`"
+            >
+              Discover guides
+            </v-button>
           </div>
         </div>
         <div class="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">
@@ -96,15 +105,8 @@
             class="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full"
           >
             <img
-              v-if="$colorMode.value === 'light'"
-              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
-              src="/images/guides.webp"
-              alt="Guides page"
-            />
-            <img
-              v-else
-              class="w-full shadow rounded-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
-              src="/images/guides-dark.webp"
+              class="w-full rounded-xl lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
+              src="/images/ereaders.svg"
               alt="Guides page"
             />
           </div>
