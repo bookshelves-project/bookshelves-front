@@ -162,6 +162,9 @@ export default {
       description: metadata.tags.description,
       theme_color: metadata.settings.color,
     },
+    manifest: {
+      display: 'browser',
+    },
   },
   proxy: {
     '/api': {
