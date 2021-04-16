@@ -41,9 +41,13 @@ export const state = () => ({
     title: 'Oops!',
     message: 'This action is not possible.',
   },
+  statistics: null,
 })
 
 export const mutations = {
+  setStatistics(state, data) {
+    state.statistics = data
+  },
   toggleSidebar(state, data) {
     state.sidebarOpened = !state.sidebarOpened
   },

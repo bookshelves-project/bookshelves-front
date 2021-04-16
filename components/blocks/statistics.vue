@@ -103,29 +103,52 @@ export default {
   },
   methods: {
     async getStats() {
-      try {
-        const [
-          booksCount,
-          seriesCount,
-          authorsCount,
-          countBooksFr,
-          countBooksEn,
-        ] = await Promise.all([
-          this.$axios.$get('/count?entity=book'),
-          this.$axios.$get('/count?entity=serie'),
-          this.$axios.$get('/count?entity=author'),
-          this.$axios.$get('/count?entity=book&lang=fr'),
-          this.$axios.$get('/count?entity=book&lang=en'),
-        ])
+      let booksCount = 0
+      let seriesCount = 0
+      let authorsCount = 0
+      let countBooksFr = 0
+      let countBooksEn = 0
+      if (!this.$store.state.statistics) {
+        try {
+          ;[
+            booksCount,
+            seriesCount,
+            authorsCount,
+            countBooksFr,
+            countBooksEn,
+          ] = await Promise.all([
+            this.$axios.$get('/count?entity=book'),
+            this.$axios.$get('/count?entity=serie'),
+            this.$axios.$get('/count?entity=author'),
+            this.$axios.$get('/count?entity=book&lang=fr'),
+            this.$axios.$get('/count?entity=book&lang=en'),
+          ])
 
-        this.metrics.books.data = booksCount
-        this.metrics.series.data = seriesCount
-        this.metrics.authors.data = authorsCount
-        this.metrics.booksFr.data = countBooksFr
-        this.metrics.booksEn.data = countBooksEn
-      } catch (error) {
-        console.error(error)
+          this.$store.commit('setStatistics', {
+            booksCount,
+            seriesCount,
+            authorsCount,
+            countBooksFr,
+            countBooksEn,
+          })
+        } catch (error) {
+          console.error(error)
+        }
+      } else {
+        const stats = this.$store.state.statistics
+
+        booksCount = stats.booksCount
+        seriesCount = stats.seriesCount
+        authorsCount = stats.authorsCount
+        countBooksFr = stats.countBooksFr
+        countBooksEn = stats.countBooksEn
       }
+
+      this.metrics.books.data = booksCount
+      this.metrics.series.data = seriesCount
+      this.metrics.authors.data = authorsCount
+      this.metrics.booksFr.data = countBooksFr
+      this.metrics.booksEn.data = countBooksEn
     },
   },
 }
