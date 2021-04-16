@@ -66,12 +66,11 @@
           Remember me
         </label>
       </div>
-
-      <div class="mt-6 text-sm md:mt-0">
+      <!-- <div class="mt-6 text-sm md:mt-0">
         <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
           Forgot your password?
         </a>
-      </div>
+      </div> -->
     </div>
 
     <div class="flex items-center justify-center space-x-2">
@@ -82,7 +81,7 @@
         <transition name="fade">
           <span v-if="!isLoading"> Sign in </span>
           <span v-else class="flex items-center space-x-1">
-            <svg-icon name="load" class="w-5 h-5 text-white" />
+            <loading class="w-5 h-5 text-white" />
             <div>Processing</div>
           </span>
         </transition>
@@ -133,12 +132,22 @@ export default {
         console.error(error)
       }
     },
-    async submit() {
+    submit() {
       this.isLoading = true
       try {
-        await this.$auth.loginWith('laravelSanctum', {
-          data: this.form,
-        })
+        this.$auth
+          .loginWith(this.$auth.options.defaultStrategy, { data: this.form })
+          .then(() => {
+            // if we are remembering the user, we
+            // need to set the remember cookie
+            if (this.form.remember_me) {
+              this.$auth.$storage.setCookie(
+                `_remember.${this.$auth.options.defaultStrategy}`,
+                this.$auth.strategy.token.get(),
+                { maxAge: 2147483647 }
+              )
+            }
+          })
       } catch (error) {
         console.error(error)
         let title = 'Something unexpected happened'

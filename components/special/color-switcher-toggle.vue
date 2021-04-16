@@ -6,7 +6,7 @@
       type="button"
       aria-pressed="false"
       :class="colorMode === 'dark' ? 'bg-primary-600' : 'bg-gray-200'"
-      class="relative inline-flex flex-shrink-0 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer toggle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
+      class="relative inline-flex flex-shrink-0 transition-colors duration-100 ease-in-out border-2 border-transparent rounded-full cursor-pointer toggle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
       aria-label="Color Mode"
       @click="switchColorMode()"
     >
@@ -14,16 +14,14 @@
       <!-- On: "translate-x-5", Off: "translate-x-0" -->
       <span
         :class="colorMode === 'dark' ? 'translate-x-5' : 'translate-x-0'"
-        class="relative inline-block transition duration-200 ease-in-out transform bg-white rounded-full shadow toggle-inner ring-0"
+        class="relative inline-block transition duration-100 ease-in-out transform bg-white rounded-full shadow toggle-inner ring-0"
       >
-        <!-- On: "opacity-0 ease-out duration-100", Off: "opacity-100 ease-in duration-200" -->
+        <!-- On: "opacity-0 ease-out duration-100", Off: "opacity-100 ease-in duration-100" -->
         <span
           :class="
-            colorMode === 'dark'
-              ? 'opacity-0 ease-out duration-100'
-              : 'opacity-100 ease-in duration-200'
+            colorMode === 'dark' ? 'opacity-0 ease-out' : 'opacity-100 ease-in'
           "
-          class="absolute inset-0 flex items-center justify-center w-full h-full transition-opacity duration-200 ease-in opacity-100"
+          class="absolute inset-0 flex items-center justify-center w-full h-full transition-opacity duration-100"
           aria-hidden="true"
         >
           <svg
@@ -41,14 +39,12 @@
             />
           </svg>
         </span>
-        <!-- On: "opacity-100 ease-in duration-200", Off: "opacity-0 ease-out duration-100" -->
+        <!-- On: "opacity-100 ease-in duration-100", Off: "opacity-0 ease-out duration-100" -->
         <span
           :class="
-            colorMode === 'dark'
-              ? 'opacity-100 ease-in duration-200'
-              : 'opacity-0 ease-out duration-100'
+            colorMode === 'dark' ? 'opacity-100 ease-in' : 'opacity-0 ease-out'
           "
-          class="absolute inset-0 flex items-center justify-center w-full h-full transition-opacity duration-100 ease-out opacity-0"
+          class="absolute inset-0 flex items-center justify-center w-full h-full transition-opacity duration-100"
           aria-hidden="true"
         >
           <svg

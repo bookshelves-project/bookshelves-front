@@ -13,13 +13,7 @@
 
           <!-- Right column -->
           <div class="grid grid-cols-1 gap-4 lg:col-span-1">
-            <transition name="fade">
-              <book-serie
-                v-if="serieLoaded && serie !== null"
-                :book="book"
-                :serie="serie"
-              />
-            </transition>
+            <book-serie v-if="book.serie !== null" :book="book" />
             <book-comments :book="book" />
           </div>
         </div>
@@ -53,12 +47,6 @@ export default {
       return {
         book: [],
       }
-    }
-  },
-  data() {
-    return {
-      serie: [],
-      serieLoaded: false,
     }
   },
   head() {
@@ -160,22 +148,6 @@ export default {
   computed: {
     authors() {
       return this.$getAuthors(this.book.authors)
-    },
-  },
-  async mounted() {
-    await this.loadSerie()
-  },
-  methods: {
-    async loadSerie() {
-      if (this.book.serie !== null) {
-        try {
-          const serie = await this.$axios.$get(this.book.serie.meta.show)
-          this.serie = serie.data.books
-          this.serieLoaded = true
-        } catch (error) {
-          console.error(error)
-        }
-      }
     },
   },
 }

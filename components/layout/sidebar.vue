@@ -38,17 +38,15 @@
           </button>
         </div>
         <div class="flex items-center flex-shrink-0 px-4">
-          <nuxt-link
-            to="/"
-            class="inline-flex items-center w-auto h-8"
-            @click.native="closeSidebar"
-          >
-            <img
-              class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
-              src="/images/bookshelves.svg"
-              alt="Bookshelves logo"
-            />
-            <div class="mt-2 ml-3 text-2xl font-handlee">Bookshelves</div>
+          <nuxt-link to="/" class="inline-flex items-center w-auto h-8">
+            <span class="inline-flex items-center" @click="closeSidebar">
+              <img
+                class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
+                src="/images/bookshelves.svg"
+                alt="Bookshelves logo"
+              />
+              <div class="mt-2 ml-3 text-2xl font-handlee">Bookshelves</div>
+            </span>
           </nuxt-link>
         </div>
         <div class="flex-1 h-0 mt-5 overflow-y-auto">
@@ -56,19 +54,25 @@
             <div class="space-y-1">
               <nuxt-link
                 :to="{ name: 'home' }"
-                class="flex items-center px-2 py-4 text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 group"
-                @click.native="closeSidebar"
+                class="flex items-center text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 group"
               >
-                <span class="font-semibold"> Home </span>
+                <span
+                  class="w-full px-2 py-4 font-semibold"
+                  @click="closeSidebar"
+                >
+                  Home
+                </span>
               </nuxt-link>
               <nuxt-link
                 v-for="(booksNav, booksNavId) in $store.state.navigation"
                 :key="booksNavId"
                 :to="{ name: booksNav.route }"
-                class="flex items-center px-2 py-4 text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 group"
-                @click.native="closeSidebar"
+                class="flex items-center text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 group"
               >
-                <span class="font-semibold">
+                <span
+                  class="w-full px-2 py-4 font-semibold"
+                  @click="closeSidebar"
+                >
                   {{ booksNav.label }}
                 </span>
               </nuxt-link>
@@ -90,15 +94,19 @@
                     v-for="link in $store.state.authNavigationTrue"
                     :key="link.id"
                     :to="{ name: link.route }"
-                    class="flex items-center w-full px-3 py-4 text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
+                    class="flex items-center w-full text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
                     role="menuitem"
-                    @click.native="closeSidebar"
                   >
                     <span
-                      class="w-2.5 h-2.5 mr-4 bg-primary-600 rounded-full"
-                      aria-hidden="true"
-                    ></span>
-                    <span> {{ link.label }} </span>
+                      class="flex items-center px-3 py-4"
+                      @click="closeSidebar"
+                    >
+                      <span
+                        class="w-2.5 h-2.5 mr-4 bg-primary-600 rounded-full"
+                        aria-hidden="true"
+                      ></span>
+                      <span> {{ link.label }} </span>
+                    </span>
                   </nuxt-link>
                   <button
                     class="flex items-center w-full px-3 py-4 text-base font-semibold leading-5 text-gray-600 rounded-md dark:text-gray-100 group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
@@ -118,15 +126,19 @@
                     v-for="link in $store.state.authNavigationFalse"
                     :key="link.id"
                     :to="{ name: link.route }"
-                    class="flex items-center w-full px-3 py-4 text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
+                    class="flex items-center w-full text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
                     role="menuitem"
-                    @click.native="closeSidebar"
                   >
                     <span
-                      class="w-2.5 h-2.5 mr-4 bg-primary-600 rounded-full"
-                      aria-hidden="true"
-                    ></span>
-                    <span> {{ link.label }} </span>
+                      class="flex items-center px-3 py-4"
+                      @click="closeSidebar"
+                    >
+                      <span
+                        class="w-2.5 h-2.5 mr-4 bg-primary-600 rounded-full"
+                        aria-hidden="true"
+                      ></span>
+                      <span> {{ link.label }} </span>
+                    </span>
                   </nuxt-link>
                 </div>
               </div>

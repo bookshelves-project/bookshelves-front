@@ -1,13 +1,13 @@
 <template>
-  <section aria-labelledby="timeline-title" class="book-serie">
+  <section aria-labelledby="timeline-title" class="relative book-serie">
     <div class="px-4 py-5 shadow sm:rounded-lg sm:px-6 dark:bg-gray-800">
-      <h2 id="timeline-title" class="text-lg font-medium text-gray-900">
-        Series
+      <h2 id="timeline-title" class="px-2 text-lg font-medium text-gray-900">
+        {{ book.serie.title }}'s series
       </h2>
-      <p class="max-w-2xl mt-1 text-sm text-gray-500">
+      <p class="max-w-2xl px-2 mt-1 text-sm text-gray-500">
         Current: vol. {{ book.volume }}
       </p>
-      <div class="mt-5">
+      <div v-if="serieLoaded" class="mt-5">
         <agile
           ref="main"
           class="main"
@@ -133,6 +133,13 @@
           </div>
         </agile>
       </div>
+      <div v-else class="pt-10 pb-10">
+        <div
+          class="absolute transform -translate-x-1/2 translate-y-1/2 top-1/2 left-1/2"
+        >
+          <loading class="w-6 h-6" />
+        </div>
+      </div>
       <div class="mt-6">
         <nuxt-link
           :to="{
@@ -152,10 +159,6 @@
 export default {
   name: 'BookSerie',
   props: {
-    serie: {
-      type: Array,
-      default: () => [],
-    },
     book: {
       type: Object,
       default: () => {},
@@ -163,6 +166,8 @@ export default {
   },
   data() {
     return {
+      serie: [],
+      serieLoaded: false,
       asNavFor1: [],
       asNavFor2: [],
       options1: {
@@ -197,12 +202,29 @@ export default {
       },
     }
   },
+  async created() {
+    await this.loadSerie()
+  },
   mounted() {
-    if (this.book.serie) {
+    if (this.serieLoaded && this.book.serie) {
       this.$refs.main.goTo(this.book.volume - 1)
       this.asNavFor1.push(this.$refs.thumbnails)
       this.asNavFor2.push(this.$refs.main)
     }
+  },
+  methods: {
+    // eslint-disable-next-line require-await
+    async loadSerie() {
+      if (this.book.serie !== null) {
+        try {
+          const serie = await this.$axios.$get(this.book.serie.meta.show)
+          this.serie = serie.data.books
+          this.serieLoaded = true
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    },
   },
 }
 </script>

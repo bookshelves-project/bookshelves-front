@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="{ name: route }" class="flex m-auto">
+  <nuxt-link to="/" class="flex m-auto" title="Home" aria-label="Home">
     <img
       src="/images/bookshelves-simple.svg"
       alt="bookshelves"
@@ -11,11 +11,5 @@
 <script>
 export default {
   name: 'Logo',
-  props: {
-    route: {
-      type: String,
-      default: 'home',
-    },
-  },
 }
 </script>

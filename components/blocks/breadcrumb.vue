@@ -3,7 +3,12 @@
     <ol class="flex items-center space-x-4">
       <li>
         <div>
-          <nuxt-link to="/" class="text-gray-400 hover:text-gray-500">
+          <nuxt-link
+            to="/"
+            class="text-gray-400 hover:text-gray-500"
+            title="Home"
+            aria-label="Home"
+          >
             <!-- Heroicon name: solid/home -->
             <svg
               class="flex-shrink-0 w-5 h-5 text-gray-400 hover:text-gray-500"

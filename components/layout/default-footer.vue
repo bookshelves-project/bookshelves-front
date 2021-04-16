@@ -29,6 +29,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 :title="socialIcon.label"
+                :aria-label="socialIcon.label"
                 class="block text-gray-400 hover:text-gray-500 dark:hover:text-gray-400"
               >
                 <component :is="`icon-${socialIcon.icon}`" class="w-8 h-8" />
@@ -100,6 +101,8 @@
               href="https://creativecommons.org"
               target="_blank"
               rel="noopener noreferrer"
+              title="Creative commons"
+              aria-label="Creative commons"
               class="flex items-center justify-center px-1 py-2 text-base leading-6 text-center text-gray-400 transition-colors duration-300 rounded-md group w-max"
             >
               <span
@@ -135,6 +138,8 @@
                 href="https://nuxtjs.org"
                 target="_blank"
                 rel="noopener noreferrer"
+                title="Nuxt"
+                aria-label="Nuxt"
                 class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current lg:ml-1 hover:nuxt-svg"
                 v-html="nuxtFullSvg"
               ></a
@@ -143,6 +148,8 @@
                 href="https://tailwindcss.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                title="Tailwindcss"
+                aria-label="Tailwindcss"
                 class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current hover:tailwind-svg"
                 v-html="tailwindFullSvg"
               ></a
@@ -150,6 +157,8 @@
               ><a
                 href="https://laravel.com"
                 target="_blank"
+                title="Laravel"
+                aria-label="Laravel"
                 rel="noopener noreferrer"
                 class="block w-20 py-2 mx-auto ml-1 text-gray-400 fill-current hover:laravel-svg"
                 v-html="laravelFullSvg"
@@ -168,14 +177,11 @@
 import packageJson from '@/package.json'
 import metadata from '@/plugins/utils/metadata.json'
 import ColorSwitcherToggle from '../special/color-switcher-toggle.vue'
-import IconCalibre from '../icons/icon-calibre.vue'
-import IconSwagger from '../icons/icon-swagger.vue'
 import backToTop from './back-to-top.vue'
 
 export default {
   name: 'DefaultFooter',
-  // eslint-disable-next-line vue/no-unused-components
-  components: { backToTop, ColorSwitcherToggle, IconCalibre, IconSwagger },
+  components: { backToTop, ColorSwitcherToggle },
   data() {
     return {
       team: process.env.AUTHOR || metadata.tags.author,

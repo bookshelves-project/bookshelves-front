@@ -52,6 +52,7 @@ export default {
     { path: '~/components/common', pathPrefix: false },
     { path: '~/components/common/content', pathPrefix: false },
     { path: '~/components/common/icons', pathPrefix: false },
+    { path: '~/components/common/icons-md', pathPrefix: false },
   ],
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
@@ -74,6 +75,8 @@ export default {
     // '@nuxtjs/svg',
     // https://github.com/nuxt-community/svg-sprite-module
     '@nuxtjs/svg-sprite',
+    // https://html-validator.nuxtjs.org/
+    '@nuxtjs/html-validator',
   ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
@@ -94,6 +97,29 @@ export default {
     classSuffix: '',
   },
   svgSprite: {},
+  htmlValidator: {
+    usePrettier: false,
+    options: {
+      extends: [
+        'html-validate:document',
+        'html-validate:recommended',
+        'html-validate:standard',
+      ],
+      rules: {
+        'svg-focusable': 'off',
+        'no-unknown-elements': 'error',
+        // Conflicts or not needed as we use prettier formatting
+        'void-style': 'off',
+        'no-trailing-whitespace': 'off',
+        // Conflict with Nuxt defaults
+        'require-sri': 'off',
+        'attribute-boolean-style': 'off',
+        'doctype-style': 'off',
+        // Unreasonable rule
+        'no-inline-style': 'off',
+      },
+    },
+  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -171,8 +197,10 @@ export default {
     cookie: {
       options: {
         sameSite: 'lax',
+        maxAge: 86400, // 24 hours
       },
     },
+    plugins: ['~/plugins/auth.js'],
   },
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {

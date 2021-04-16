@@ -83,7 +83,7 @@
         <transition name="fade">
           <span v-if="!isLoading"> Sign up </span>
           <span v-else class="flex items-center space-x-1">
-            <svg-icon name="load" class="w-5 h-5 text-white" />
+            <loading class="w-5 h-5 text-white" />
             <div>Processing</div>
           </span>
         </transition>
@@ -135,20 +135,13 @@ export default {
         password_confirmation: password,
       }
     },
-    async logout() {
-      try {
-        await this.$axios.$post('/logout')
-      } catch (error) {
-        console.error(error)
-      }
-    },
     async submit() {
       const name = this.form.email.split('@')
       this.form.name = name[0]
       this.isLoading = true
       try {
         await this.$axios.$post('/register', this.form)
-        await this.$auth.loginWith('laravelSanctum', {
+        this.$auth.loginWith(this.$auth.options.defaultStrategy, {
           data: this.form,
         })
       } catch (error) {

@@ -16,6 +16,12 @@
           >Contact us</nuxt-link
         >
       </div>
+      <img
+        src="/images/warning.svg"
+        alt="Warning"
+        title="Warning"
+        class="pb-16"
+      />
     </div>
   </div>
 </template>

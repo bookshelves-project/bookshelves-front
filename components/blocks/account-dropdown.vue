@@ -45,15 +45,20 @@
               :to="{ name: link.route }"
               class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
               role="menuitem"
-              @click.native="closeAccountDropdown"
             >
-              <svg-icon :name="link.icon" class="w-5 h-5 mr-1 text-gray-500" />
-              {{ link.label }}
+              <span class="flex items-center" @click="closeAccountDropdown">
+                <svg-icon
+                  :name="link.icon"
+                  class="w-5 h-5 mr-1 text-gray-500"
+                />
+                {{ link.label }}
+              </span>
             </nuxt-link>
           </span>
           <button
             class="flex items-center w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800"
             role="menuitem"
+            type="button"
             @click="logout"
           >
             <svg-icon name="logout" class="w-5 h-5 mr-1 text-gray-500" />
@@ -67,9 +72,8 @@
             :to="{ name: link.route }"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-800"
             role="menuitem"
-            @click.native="closeAccountDropdown"
           >
-            {{ link.label }}
+            <span @click="closeAccountDropdown">{{ link.label }}</span>
           </nuxt-link>
         </div>
       </template>

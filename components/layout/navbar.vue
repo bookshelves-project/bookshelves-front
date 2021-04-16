@@ -13,7 +13,12 @@
               <svg-icon name="menu" class="w-8 h-8" />
               <svg-icon name="bookshelves" class="w-8 h-8 text-primary-600" />
             </button>
-            <nuxt-link to="/" class="hidden lg:block">
+            <nuxt-link
+              to="/"
+              class="hidden lg:block"
+              title="Home"
+              aria-label="Home"
+            >
               <svg-icon name="bookshelves" class="w-8 h-8 text-primary-600" />
             </nuxt-link>
           </div>

@@ -30,6 +30,8 @@
               slug: data.meta.slug,
             },
           }"
+          :title="data.title"
+          :aria-label="data.title"
           class="flex items-center w-full col-span-5 py-5 pl-4 pr-1 space-x-6 hover:bg-gray-50 dark:hover:bg-gray-700 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600"
         >
           <div class="flex-shrink-0">
@@ -91,7 +93,7 @@
         </div>
       </div>
     </ul>
-    <div v-else class="flex flex-wrap items-center py-4 text-gray-400">
+    <div v-else class="flex flex-wrap items-center p-4 text-gray-400">
       {{ emptyList }}
     </div>
   </div>

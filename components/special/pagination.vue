@@ -24,6 +24,8 @@
           :to="linkGen(currentPage - 1)"
           active-class="pagination-active"
           exact-active-class="pagination-exact-active"
+          title="Previous"
+          aria-label="Previous"
         >
           ‹
         </nuxt-link>
@@ -42,9 +44,8 @@
           :to="linkGen(pageNum + startNumber - 1)"
           active-class="pagination-active"
           exact-active-class="pagination-exact-active"
-          @click.native="forceRerender"
         >
-          {{ pageNum + startNumber - 1 }}
+          <span @click="forceRerender">{{ pageNum + startNumber - 1 }}</span>
         </nuxt-link>
       </div>
       <div v-if="showLastDots" class="item">
@@ -56,6 +57,8 @@
           :to="linkGen(currentPage + 1)"
           active-class="pagination-active"
           exact-active-class="pagination-exact-active"
+          title="Next"
+          aria-label="Next"
         >
           ›
         </nuxt-link>

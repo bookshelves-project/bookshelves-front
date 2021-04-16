@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="route" class="block group">
+  <nuxt-link :to="route" class="block group" :title="title" :aria-label="title">
     <article
       class="relative transition-colors duration-100 rounded-md sm:grid sm:grid-cols-2 sm:gap-3 group-hover:bg-gray-100 dark:group-hover:bg-gray-800"
     >
@@ -36,6 +36,7 @@ export default {
     route: {
       type: [Object, String],
       default: () => '/',
+      required: true,
     },
     shadow: {
       type: Boolean,
@@ -48,6 +49,7 @@ export default {
     title: {
       type: String,
       default: null,
+      required: true,
     },
   },
   computed: {

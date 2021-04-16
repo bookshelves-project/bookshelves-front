@@ -6,10 +6,10 @@
       :subtitle="`Welcome ${$auth.user.data.name}`"
       :image="$auth.$state.user.data.profile_photo_url"
     />
-    <div
-      class="grid max-w-3xl grid-cols-1 gap-6 mx-auto mt-8 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2"
-    >
-      <div class="space-y-6 lg:col-start-1 lg:col-span-1">
+    <!-- Main 2 column grid -->
+    <div class="grid items-start grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+      <!-- Left column -->
+      <div class="grid grid-cols-1 gap-4 lg:col-span-1">
         <data-list-template
           :data-list="favorites"
           title="Favorites list"
@@ -25,21 +25,25 @@
           </template>
         </data-list-template>
       </div>
-      <data-list-template
-        :data-list="comments"
-        :with-image="false"
-        title="Comments list"
-        subtitle="All your comments will be here."
-        empty-list="Your comments list is empty, try to comment any book."
-        @deleted="deleted"
-      >
-        <template #icon>
-          <svg-icon
-            name="comment"
-            class="w-6 h-6 text-gray-400 dark:text-gray-300"
-          />
-        </template>
-      </data-list-template>
+
+      <!-- Right column -->
+      <div class="grid grid-cols-1 gap-4 lg:col-span-1">
+        <data-list-template
+          :data-list="comments"
+          :with-image="false"
+          title="Comments list"
+          subtitle="All your comments will be here."
+          empty-list="Your comments list is empty, try to comment any book."
+          @deleted="deleted"
+        >
+          <template #icon>
+            <svg-icon
+              name="comment"
+              class="w-6 h-6 text-gray-400 dark:text-gray-300"
+            />
+          </template>
+        </data-list-template>
+      </div>
     </div>
   </div>
 </template>

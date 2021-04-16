@@ -9,6 +9,7 @@
           aria-label="Search for a book, a series or an author"
           :get-result-value="getResultValue"
           class="searchbar-navbar"
+          type="search"
           @submit="handleSubmit"
           @update="handleUpdate"
         >
@@ -18,6 +19,8 @@
                 name: `${result.meta.entity}s-slug`,
                 params: { author: result.meta.author, slug: result.meta.slug },
               }"
+              title="Search"
+              aria-label="Search"
             >
               <div v-bind="props" class="autocomplete-result wiki-result">
                 <div class="grid grid-cols-5 gap-4">

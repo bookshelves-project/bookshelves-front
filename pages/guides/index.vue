@@ -11,6 +11,8 @@
               name: 'content',
               params: { type: 'guides', slug: guide.slug },
             }"
+            :title="guide.title"
+            :aria-label="guide.title"
             class="block px-3 py-2 overflow-hidden transition-colors duration-100 bg-white rounded-md shadow lg:px-6 lg:py-4 h-36 hover:bg-gray-50 dark:bg-gray-800"
           >
             <div
