@@ -110,7 +110,7 @@ export default {
         remember: false,
       },
       formTesting: {
-        email: 'ewilan@dotslashplay.it',
+        email: 'admin@mail.com',
         password: 'password',
         remember: true,
       },
