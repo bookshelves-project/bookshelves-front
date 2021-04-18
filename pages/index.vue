@@ -3,7 +3,7 @@
     <hero />
     <statistics />
     <cloud-logos />
-    <highlight-books />
+    <highlight-books class="hidden" />
     <features />
     <features-highlight />
     <pricing />
