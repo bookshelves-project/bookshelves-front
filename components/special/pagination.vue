@@ -45,7 +45,9 @@
           active-class="pagination-active"
           exact-active-class="pagination-exact-active"
         >
-          <span @click="forceRerender">{{ pageNum + startNumber - 1 }}</span>
+          <span class="border-none" style="padding: 0" @click="forceRerender">{{
+            pageNum + startNumber - 1
+          }}</span>
         </nuxt-link>
       </div>
       <div v-if="showLastDots" class="item">

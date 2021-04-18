@@ -23,6 +23,7 @@
       </div>
       <div class="mt-6 mb-5">
         <pagination
+          v-if="pages > 1"
           :link-gen="linkGen"
           :pages="pages"
           :current-page="currentPage"
