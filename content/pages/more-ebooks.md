@@ -12,6 +12,7 @@ description: 'About more eBooks projects'
 - [**Feedbooks**](https://fr.feedbooks.com/publicdomain)
 - [**Gallica**](https://gallica.bnf.fr/accueil/fr/content/accueil-fr?mode=desktop)
 - [**openlibrary**](https://openlibrary.org)
+- [**manybooks.net**](https://manybooks.net)
 
 ### Applications
 
@@ -27,3 +28,12 @@ description: 'About more eBooks projects'
 - [**ePagine**](https://www.epagine.fr)
 - [**chapitre.com**](https://www.chapitre.com)
 - [**Kobo**](https://www.kobo.com/fr/fr)
+- [**Hall du livre**](https://halldulivre.com)
+
+## Others
+
+- [**goodreads**](https://www.goodreads.com/ebooks)
+- [**digilibraries**](https://digilibraries.com)
+- [**getfreeebooks**](https://www.getfreeebooks.com)
+- [**bookyards**](https://www.bookyards.com/en/welcome)
+- [**e-booksdirectory**](http://www.e-booksdirectory.com)

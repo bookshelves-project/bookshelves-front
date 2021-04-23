@@ -9,7 +9,9 @@ created_at: 06-04-2021
 
 ## Display cover instead fnac logo
 
-Connect your Kobo to your computer and navigate to Kobo disk to find this
+Connect your Kobo to your computer and navigate to Kobo disk to find this `.kobo/affiliate.conf`
+
+![affiliate](/images/guides/kobo-tips/affiliate.webp)
 
 ```diff[.kobo/affiliate.conf]
 [General]
@@ -17,9 +19,13 @@ Connect your Kobo to your computer and navigate to Kobo disk to find this
 + affiliate=Kobo
 ```
 
-## More
+## Energy saving
 
-- energy saving
-- display cover instead of fnac logo
-- <https://blog.slucas.fr/blog/kobo-ereader-touch-5/>
-- <https://www.epubor.com/kobo-tips-and-tricks-you-must-know.html>
+Go to **More->Settings->Energy saving and privacy**
+
+![affiliate](/images/guides/kobo-tips/energy-saving-and-privacy.webp)
+
+## Sources
+
+- [**blog.slucas.fr**](https://blog.slucas.fr/blog/kobo-ereader-touch-5)
+- [**epubor.com**](https://www.epubor.com/kobo-tips-and-tricks-you-must-know.html)
