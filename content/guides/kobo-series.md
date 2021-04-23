@@ -65,6 +65,4 @@ To display correctly series on your eReader, Calibre have to list all ebooks whi
 
 Today, there is not magic solution about this problem but Calibre offer a simple solution. If you want to know more about EPUB metadata, you can check [**Dublin Core Metadata initiative**](https://www.dublincore.org/specifications/dublin-core/dcmi-terms).
 
----
-
 [^1]: today most eReader can't read EPUB 3, so EPUB 2 is the common format for lot of EPUB, to know what differences exists, you can check [W3C guide](https://www.w3.org/AudioVideo/ebook)
