@@ -12,7 +12,7 @@ When you want to add an eBook to your eReader, you can plug it into your compute
 
 Of course this has some limitations:
 
-- you will **not be able to have the series associated with an eBook** with this method because of the limitations of the EPUB format used. The only solution is to add the series with the Calibre software, as explained in this guide [**Get series on your Kobo**](/guides/kobo-series) for Kobo eReaders, with a file added on your eReader. You may have noticed that the store allows you to display the series of the books you add from it but this is because as an internal program of your eReader, the store can modify the information related to an eBook and thus add the series, which Calibre can do more manually.
+- you will **not be able to have the series associated with an eBook** with this method because of the limitations of the EPUB format used. The only solution is to add the series with the Calibre software, as explained in this guide [**Get series on your Kobo**](/guides/ereader-series) for Kobo eReaders, with a file added on your eReader. You may have noticed that the store allows you to display the series of the books you add from it but this is because as an internal program of your eReader, the store can modify the information related to an eBook and thus add the series, which Calibre can do more manually.
 - you will **not be able to download a whole series or all the eBooks of an author** because it is a .zip format that is proposed and your eReader only reads the formats linked to the eBooks.
   
 Apart from these limitations, this feature allows you to quickly retrieve an eBook with an Internet connection only.

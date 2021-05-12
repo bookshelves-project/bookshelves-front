@@ -5,6 +5,7 @@ position: 5
 category: 'eReader'
 draft: false
 created_at: 12-05-2021
+picture: 'ereader'
 ---
 
 <alert tpye="info" title="About">
@@ -43,4 +44,4 @@ A popup will appear when you tap on "Download", if you continue, your browser wi
 
 ![brower-download](/images/guides/ereader-download-ebook-from-ereader/brower-download.webp)
 
-When you have eBook downloaded, you will find it in your books. If the book is associaté with series, you can't display it with this method because .epub files have some limitations about series, to add series informations you will need a computer with Calibre, check [**Set series guide**](/guides/kobo-series) for more informations.
+When you have eBook downloaded, you will find it in your books. If the book is associaté with series, you can't display it with this method because .epub files have some limitations about series, to add series informations you will need a computer with Calibre, check [**Set series guide**](/guides/ereader-series) for more informations.

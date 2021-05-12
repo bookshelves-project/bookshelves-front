@@ -101,7 +101,7 @@ When you update metadata or edit books, don't hesitate to execute a bulk book co
 
 </alert>
 
-When conversion is finish, you can get EPUB files from Calibre directory or just connect your Kobo to your computer and Calibre will detect it automatically and you will be able to transfer eBooks from Calibre, don't hesitate to check [**Series on Kobo**](kobo-series) to know how to display **series** on Kobo.
+When conversion is finish, you can get EPUB files from Calibre directory or just connect your Kobo to your computer and Calibre will detect it automatically and you will be able to transfer eBooks from Calibre, don't hesitate to check [**Series on Kobo**](ereader-series) to know how to display **series** on Kobo.
 
 ## About EPUB size
 
