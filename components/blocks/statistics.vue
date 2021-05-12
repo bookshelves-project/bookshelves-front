@@ -6,6 +6,7 @@
           class="object-cover w-full h-full opacity-25"
           src="/images/library.webp"
           alt="Library"
+          loading="lazy"
         />
         <div
           aria-hidden="true"

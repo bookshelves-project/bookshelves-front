@@ -25,6 +25,7 @@
                       v-lazy="comment.user.picture"
                       class="w-10 h-10 rounded-full"
                       :alt="comment.user.name"
+                      loading="lazy"
                     />
                   </div>
                   <div>
@@ -94,6 +95,7 @@
                 v-lazy="$auth.$state.user.data.avatar"
                 class="w-10 h-10 rounded-full"
                 alt="avatar"
+                loading="lazy"
               />
             </div>
             <div class="flex-1 min-w-0">

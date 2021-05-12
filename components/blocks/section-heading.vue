@@ -7,6 +7,7 @@
           v-lazy="image"
           alt="user picture"
           class="object-cover w-16 h-16 rounded-full"
+          loading="lazy"
         />
         <div :class="{ 'ml-5': image }">
           <h1

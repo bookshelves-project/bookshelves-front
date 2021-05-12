@@ -14,6 +14,7 @@
                 v-if="$route.params.type === 'pages'"
                 :src="`/images/pages/${$nuxt.$route.params.slug}.webp`"
                 :alt="`${$nuxt.$route.params.slug} picture`"
+                loading="lazy"
                 class="h-40 mx-auto opacity-25 object-container"
               />
               <div
@@ -75,6 +76,7 @@
             v-if="$route.params.type === 'pages'"
             :src="`/images/pages/${$nuxt.$route.params.slug}.webp`"
             :alt="`${$nuxt.$route.params.slug} picture`"
+            loading="lazy"
           />
         </div>
       </div>

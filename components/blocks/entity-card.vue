@@ -9,6 +9,7 @@
           :alt="title"
           :title="title"
           class="object-cover object-top cover-shadow"
+          loading="lazy"
         />
       </div>
       <div>

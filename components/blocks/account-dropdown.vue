@@ -15,12 +15,14 @@
                 class="w-8 h-8 rounded-full"
                 :src="$auth.$state.user.data.avatar"
                 :alt="$auth.$state.user.data.name"
+                loading="lazy"
               />
               <img
                 v-else
                 src="/images/user.svg"
                 class="w-8 h-8 rounded-full"
                 alt="avatar"
+                loading="lazy"
               />
             </transition>
             <svg

@@ -19,6 +19,7 @@
         alt="Warning"
         title="Warning"
         class="pb-16"
+        loading="lazy"
       />
     </div>
   </div>

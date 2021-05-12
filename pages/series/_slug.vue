@@ -6,6 +6,7 @@
           <img
             v-lazy="serie.picture.base"
             :alt="serie.title"
+            loading="lazy"
             class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
           />
           <div class="ml-4">
@@ -79,6 +80,7 @@
               <img
                 :src="$getLanguageFlag(serie.language)"
                 :alt="serie.language"
+                loading="lazy"
                 class="ml-2"
               />
             </div>

@@ -39,6 +39,7 @@
               v-lazy="data.picture"
               class="object-cover w-16 h-16 rounded-full"
               :alt="data.title"
+              loading="lazy"
             />
           </div>
           <div>

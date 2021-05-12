@@ -91,7 +91,11 @@
           <contact-form />
         </div>
         <div class="hidden lg:block">
-          <img src="/images/pages/contact.webp" alt="Mail sent" />
+          <img
+            src="/images/pages/contact.webp"
+            alt="Mail sent"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>

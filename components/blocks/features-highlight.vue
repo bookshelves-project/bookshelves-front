@@ -62,6 +62,7 @@
               class="w-full rounded-xl lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
               src="/images/book_reading_alt.svg"
               alt="Books page"
+              loading="lazy"
             />
           </div>
         </div>
@@ -108,6 +109,7 @@
               class="w-full rounded-xl lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
               src="/images/ereaders.svg"
               alt="Guides page"
+              loading="lazy"
             />
           </div>
         </div>

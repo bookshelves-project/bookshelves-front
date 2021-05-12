@@ -12,6 +12,7 @@
           <img
             v-lazy="author.picture ? author.picture.base : null"
             :alt="author.name"
+            loading="lazy"
             class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
           />
           <div class="flex items-center">

@@ -11,6 +11,7 @@
                 v-lazy="book.picture.base"
                 :alt="book.title"
                 class="object-cover w-20 h-20 mx-auto rounded-full"
+                loading="lazy"
               />
             </div>
             <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">

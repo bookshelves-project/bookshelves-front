@@ -87,6 +87,7 @@
               <img
                 :src="$getLanguageFlag(book.language)"
                 :alt="book.language"
+                loading="lazy"
               />
             </dd>
           </div>

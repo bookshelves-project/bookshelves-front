@@ -30,6 +30,7 @@
                         v-lazy="result.picture"
                         :alt="result.title"
                         class="object-cover rounded-full h-14 w-14"
+                        loading="lazy"
                       />
                     </div>
                   </div>

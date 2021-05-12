@@ -48,6 +48,7 @@
                     v-lazy="user.data ? user.data.avatar : null"
                     :alt="user.data ? user.data.name : null"
                     class="object-cover w-12 h-12 rounded-full"
+                    loading="lazy"
                   />
                 </div>
                 <div v-show="photoPreview">

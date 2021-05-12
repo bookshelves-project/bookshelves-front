@@ -1,7 +1,12 @@
 <template>
   <div class="gap-10 px-8 mx-auto xl:grid xl:grid-cols-3 max-w-7xl">
     <div class="relative hidden col-span-2 xl:flex">
-      <img src="/images/bookmark.svg" class="m-auto" alt="bookmark" />
+      <img
+        src="/images/bookmark.svg"
+        class="m-auto"
+        alt="bookmark"
+        loading="lazy"
+      />
     </div>
     <div class="flex col-span-1">
       <div class="w-full m-auto space-y-6 sm:w-96">
@@ -37,7 +42,12 @@
       </div>
     </div>
     <div class="relative flex col-span-2 mt-10 xl:hidden">
-      <img src="/images/bookmark.svg" class="m-auto" alt="bookmark" />
+      <img
+        src="/images/bookmark.svg"
+        class="m-auto"
+        alt="bookmark"
+        loading="lazy"
+      />
     </div>
   </div>
 </template>

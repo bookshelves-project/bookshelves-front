@@ -24,6 +24,7 @@
                   v-lazy="person.imageUrl"
                   class="w-16 h-16 rounded-full lg:w-20 lg:h-20"
                   alt=""
+                  loading="lazy"
                 />
                 <div class="space-y-1 text-lg font-medium leading-6">
                   <h3>{{ person.name }}</h3>

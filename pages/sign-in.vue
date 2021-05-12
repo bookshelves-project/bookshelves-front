@@ -26,7 +26,12 @@
       </div>
     </div>
     <div class="flex col-span-2 mt-10 xl:mt-0">
-      <img src="/images/bibliophile.svg" class="m-auto" alt="bibliophile" />
+      <img
+        src="/images/bibliophile.svg"
+        class="m-auto"
+        alt="bibliophile"
+        loading="lazy"
+      />
     </div>
   </div>
 </template>

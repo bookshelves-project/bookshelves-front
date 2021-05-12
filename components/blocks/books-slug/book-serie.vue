@@ -26,6 +26,7 @@
                   v-lazy="bookSerie.picture.original"
                   :alt="bookSerie.title"
                   class="object-cover object-top w-32 h-32 rounded-full lg:rounded-none lg:w-full lg:h-full"
+                  loading="lazy"
                 />
               </div>
               <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
@@ -129,6 +130,7 @@
               v-lazy="bookSerie.picture.base"
               :alt="bookSerie.title"
               class="object-cover object-center w-full h-full"
+              loading="lazy"
             />
           </div>
         </agile>

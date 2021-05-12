@@ -4,6 +4,7 @@
       src="/images/bookshelves-simple.svg"
       alt="bookshelves"
       class="w-10 h-10"
+      loading="lazy"
     />
   </nuxt-link>
 </template>
