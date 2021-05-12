@@ -231,7 +231,6 @@ export default {
     generate: false, // Génère une version statique du sitemap quand activé. À utiliser avec nuxt generate.
     exclude:
       process.env.META_ROBOT_DISALLOW.split(',') || metadata.settings.disallow,
-
     sitemaps: sitemaps(),
   },
   // i18n: {

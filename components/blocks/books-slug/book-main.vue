@@ -91,14 +91,14 @@
               />
             </dd>
           </div>
-          <div
-            v-if="book.identifier.isbn || book.identifier.isbn13"
-            class="sm:col-span-1"
-          >
+          <div v-if="book.identifier" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
               Identifiers
             </dt>
-            <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
+            <dd
+              v-if="book.identifier.isbn || book.identifier.isbn13"
+              class="mt-1 text-sm text-gray-900 dark:text-gray-100"
+            >
               <ul>
                 <li v-if="book.identifier.isbn">
                   ISBN: {{ book.identifier.isbn }}

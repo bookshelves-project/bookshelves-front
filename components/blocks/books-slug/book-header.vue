@@ -6,7 +6,7 @@
       <div class="p-6 bg-white dark:bg-gray-800">
         <div class="sm:flex sm:items-center sm:justify-between">
           <div class="sm:flex sm:space-x-5">
-            <div class="flex-shrink-0">
+            <div v-if="book.picture" class="flex-shrink-0">
               <img
                 v-lazy="book.picture.base"
                 :alt="book.title"
@@ -46,6 +46,7 @@
       >
         <component
           :is="book.picture.original ? 'a' : 'span'"
+          v-if="book.picture"
           :href="book.picture.original"
           target="_blank"
           rel="noopener noreferrer"
@@ -61,6 +62,7 @@
         </component>
         <component
           :is="book.epub ? 'a' : 'span'"
+          v-if="book.epub"
           :href="book.epub.download"
           :class="
             book.epub.download

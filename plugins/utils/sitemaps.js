@@ -109,7 +109,7 @@ const getBooksRoutes = () => {
       // Pour chaque événement, je renseigne les informations indexées à partir des données que j'ai.
       const route = {
         url: `/books/${book.author}/${book.slug}`,
-        lastmodISO: book.meta.updatedAt,
+        // lastmodISO: book.meta.updatedAt,
         priority: 0.6,
       }
       routes.push(route)
@@ -168,7 +168,7 @@ const getGuidesRoutes = () => {
     for (const guide of guides) {
       const route = {
         url: `/guides/${guide.slug}`,
-        lastmodISO: guide.created_at,
+        // lastmodISO: guide.created_at,
         priority: 0.6,
       }
       routes.push(route)
@@ -188,7 +188,7 @@ const getPagesRoutes = () => {
     for (const page of pages) {
       const route = {
         url: `/pages/${page.slug}`,
-        lastmodISO: page.created_at,
+        // lastmodISO: page.created_at,
         priority: 0.6,
       }
       routes.push(route)
