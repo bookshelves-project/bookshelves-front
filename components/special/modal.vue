@@ -32,10 +32,7 @@
             ]"
             class="flex items-center justify-center w-12 h-12 mx-auto rounded-full"
           >
-            <component
-              :is="`icon-${$store.state.alert.type}`"
-              class="w-10 h-10"
-            />
+            <svg-icon :name="`${$store.state.alert.type}`" class="w-10 h-10" />
           </div>
           <div class="mt-3 text-center sm:mt-5">
             <h3

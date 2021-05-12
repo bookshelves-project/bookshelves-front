@@ -7,6 +7,7 @@
         <img
           v-lazy="cover"
           :alt="title"
+          :title="title"
           class="object-cover object-top cover-shadow"
         />
       </div>

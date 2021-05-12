@@ -156,8 +156,14 @@
 </template>
 
 <script>
+// https://github.com/lukaszflorczak/vue-agile
+import { VueAgile } from 'vue-agile'
+
 export default {
   name: 'BookSerie',
+  components: {
+    agile: VueAgile,
+  },
   props: {
     book: {
       type: Object,
@@ -202,11 +208,9 @@ export default {
       },
     }
   },
-  async created() {
+  async mounted() {
     await this.loadSerie()
-  },
-  mounted() {
-    if (this.serieLoaded && this.book.serie) {
+    if (this.$refs.main && this.$refs.thumbnails) {
       this.$refs.main.goTo(this.book.volume - 1)
       this.asNavFor1.push(this.$refs.thumbnails)
       this.asNavFor2.push(this.$refs.main)

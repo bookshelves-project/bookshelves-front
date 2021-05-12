@@ -43,12 +43,8 @@ export default {
     '~/plugins/v-click-outside',
     // https://github.com/eddiemf/vue-scrollactive
     '~/plugins/vue-scrollactive',
-    // https://github.com/trevoreyre/autocomplete
-    '~/plugins/autocomplete-vue',
     // https://github.com/hilongjw/vue-lazyload
     '~/plugins/vue-lazyload',
-    // https://github.com/lukaszflorczak/vue-agile
-    '~/plugins/vue-agile',
     // https://github.com/ymmooot/nuxt-jsonld
     '~/plugins/jsonld',
   ],
@@ -83,7 +79,7 @@ export default {
     // https://github.com/nuxt-community/svg-sprite-module
     '@nuxtjs/svg-sprite',
     // https://html-validator.nuxtjs.org/
-    '@nuxtjs/html-validator',
+    // '@nuxtjs/html-validator',
   ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
@@ -217,7 +213,6 @@ export default {
     // https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins
     // https://github.com/rehypejs/rehype/blob/main/doc/plugins.md#list-of-plugins
     markdown: {
-      remarkPlugins: ['remark-directive'],
       prism: {
         theme: 'prism-themes/themes/prism-vsc-dark-plus.css',
       },

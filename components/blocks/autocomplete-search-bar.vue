@@ -71,12 +71,17 @@
 
 <script>
 import qs from 'qs'
+import Autocomplete from '@trevoreyre/autocomplete-vue'
+import '~/assets/css/autocomplete.css'
 import vClickOutside from 'v-click-outside'
 
 export default {
   name: 'AutocompleteSearchBar',
   directives: {
     clickOutside: vClickOutside.directive,
+  },
+  components: {
+    Autocomplete,
   },
   props: {
     method: {

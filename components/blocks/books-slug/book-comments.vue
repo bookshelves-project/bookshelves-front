@@ -22,8 +22,8 @@
                 <div class="flex space-x-3">
                   <div class="flex-shrink-0">
                     <img
+                      v-lazy="comment.user.picture"
                       class="w-10 h-10 rounded-full"
-                      :src="comment.user.picture"
                       :alt="comment.user.name"
                     />
                   </div>
@@ -91,8 +91,8 @@
           <div v-if="$auth.$state.loggedIn" class="flex space-x-3">
             <div class="flex-shrink-0">
               <img
+                v-lazy="$auth.$state.user.data.avatar"
                 class="w-10 h-10 rounded-full"
-                :src="$auth.$state.user.data.avatar"
                 alt="avatar"
               />
             </div>

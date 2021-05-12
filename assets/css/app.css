@@ -53,14 +53,17 @@ button {
   hyphens: auto !important;
 }
 
+img {
+  transition: filter 0.7s;
+}
 img[lazy='loading'] {
   filter: blur(4px);
 }
 img[lazy='error'] {
-  /*your style here*/
+  filter: blur(0);
 }
 img[lazy='loaded'] {
-  /*your style here*/
+  filter: blur(0);
 }
 
 .scroll-prevent {

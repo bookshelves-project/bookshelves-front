@@ -45,7 +45,7 @@
               <div class="flex items-center mt-1">
                 <div v-show="!photoPreview">
                   <img
-                    :src="user.data ? user.data.avatar : null"
+                    v-lazy="user.data ? user.data.avatar : null"
                     :alt="user.data ? user.data.name : null"
                     class="object-cover w-12 h-12 rounded-full"
                   />

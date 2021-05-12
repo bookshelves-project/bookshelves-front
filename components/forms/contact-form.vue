@@ -58,12 +58,12 @@
             name="message"
             rows="4"
             class="block w-full px-4 py-3 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-300 dark:border-gray-300"
-            minlength="50"
+            minlength="25"
             maxlength="1500"
             required
           ></textarea>
           <div class="flex justify-between ml-1 text-sm text-gray-400">
-            <span>Min. 50 characters</span>
+            <span>Min. 25 characters</span>
             <span>Currently {{ form.message.length }}/1500</span>
           </div>
         </div>
@@ -102,7 +102,7 @@
                 <div>Let's talk</div>
               </div>
               <div v-else class="flex items-center space-x-1">
-                <svg-icon name="load" class="w-5 h-5 text-white" />
+                <icon-load class="w-5 h-5 text-white" />
                 <div>Processing</div>
               </div>
             </transition>

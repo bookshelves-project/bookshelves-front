@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { mount } from '@vue/test-utils'
 import EntityCard from '@/components/blocks/entity-card'
-import { lazyload } from '@/plugins/test/vue-lazyload'
+// import { lazyload } from '@/plugins/test/vue-lazyload'
 import Hero from '@/components/blocks/hero'
 // import Home from '@/pages/index.vue'
 
@@ -22,7 +22,7 @@ describe('EntityCard', () => {
       // propsData: { temp },
       stubs: ['nuxt', 'nuxt-link', 'client-only'],
       directives: {
-        lazyload,
+        // lazyload,
       },
     })
 
