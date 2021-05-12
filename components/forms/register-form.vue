@@ -102,6 +102,7 @@
 </template>
 
 <script>
+import { randomString } from '~/plugins/utils/methods'
 export default {
   name: 'RegisterForm',
   data() {
@@ -113,10 +114,10 @@ export default {
         password_confirmation: '',
       },
       formTesting: {
-        name: this.$randomString(6),
-        email: `${this.$randomString(6)}@mail.com`,
-        password: this.$randomString(10),
-        password_confirmation: this.$randomString(10),
+        name: randomString(6),
+        email: `${randomString(6)}@mail.com`,
+        password: randomString(10),
+        password_confirmation: randomString(10),
       },
       isDev: process.env.NODE_ENV !== 'production',
       errors: {},
@@ -125,9 +126,9 @@ export default {
   },
   methods: {
     fillForm() {
-      const name = this.$randomString(6).toLowerCase()
+      const name = randomString(6).toLowerCase()
       const email = `${name}@mail.com`
-      const password = this.$randomString(10)
+      const password = randomString(10)
       this.form = {
         name,
         email,

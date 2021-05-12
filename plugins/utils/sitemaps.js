@@ -8,7 +8,6 @@ export default (meta) => {
       path: '/sitemaps/sitemap.xml',
       exclude: ['**'],
       routes() {
-        // Nous allons utiliser une fonction personnalisée pour charger nos routes dynamiques dans le sitemap.
         return getRoutes()
       },
     },
@@ -51,9 +50,7 @@ export default (meta) => {
 }
 
 const getRoutes = () => {
-  // Attention, cette fonction DOIT retourner une Promise.
   return new Promise((resolve, reject) => {
-    // Je récupère les événements depuis mon API.
     const routes = []
     const staticRoutes = [
       {
@@ -92,21 +89,17 @@ const getRoutes = () => {
     })
     routes.concat(staticRoutes)
 
-    // Tout se passe bien, je résous ma Promise en renvoyant les routes ajoutées par ma fonction.
     resolve(routes)
   })
 }
 
 const getBooksRoutes = () => {
-  // Attention, cette fonction DOIT retourner une Promise.
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
-    // Je récupère les événements depuis mon API.
     const books = await fetchBooks()
     const routes = []
 
     for (const book of books.data) {
-      // Pour chaque événement, je renseigne les informations indexées à partir des données que j'ai.
       const route = {
         url: `/books/${book.author}/${book.slug}`,
         // lastmodISO: book.meta.updatedAt,
@@ -114,7 +107,6 @@ const getBooksRoutes = () => {
       }
       routes.push(route)
     }
-    // Tout se passe bien, je résous ma Promise en renvoyant les routes ajoutées par ma fonction.
     resolve(routes)
   })
 }

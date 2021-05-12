@@ -45,7 +45,7 @@ import Pagination from '~/components/special/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
-import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
+import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {
   name: 'AuthorsIndex',

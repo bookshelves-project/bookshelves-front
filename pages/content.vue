@@ -86,7 +86,7 @@
 
 <script>
 import TableOfContent from '~/components/common/content/TableOfContent.vue'
-import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
+import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {
   name: 'ContentPage',

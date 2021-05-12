@@ -55,12 +55,12 @@
                   <p class="text-sm text-gray-500 dark:text-gray-100">
                     <span v-if="guide.updatedAt">
                       <time :datetime="guide.updatedAt">{{
-                        $getDate(guide.updatedAt)
+                        $formatDate(guide.updatedAt)
                       }}</time>
                     </span>
                     <span v-else>
                       <time :datetime="guide.createdAt">{{
-                        $getDate(guide.createdAt)
+                        $formatDate(guide.createdAt)
                       }}</time>
                     </span>
                   </p>
@@ -97,7 +97,7 @@
 
 <script>
 import sectionHeading from '~/components/blocks/section-heading.vue'
-import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
+import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {
   name: 'GuidesIndex',

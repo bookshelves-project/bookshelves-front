@@ -27,7 +27,8 @@ import BookComments from '~/components/blocks/books-slug/book-comments.vue'
 import bookHeader from '~/components/blocks/books-slug/book-header.vue'
 import BookMain from '~/components/blocks/books-slug/book-main.vue'
 import BookSerie from '~/components/blocks/books-slug/book-serie.vue'
-import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
+import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
+import { getLanguage, getAuthors } from '~/plugins/utils/methods'
 
 export default {
   name: 'BooksSlug',
@@ -47,6 +48,11 @@ export default {
       return {
         book: [],
       }
+    }
+  },
+  data() {
+    return {
+      getAuthors,
     }
   },
   head() {
@@ -137,7 +143,7 @@ export default {
         bookFormat: 'http://schema.org/Book',
         datePublished: this.book.publishDate,
         image: this.book.picture.base,
-        inLanguage: this.$getLanguage(this.book.language),
+        inLanguage: getLanguage(this.book.language),
         isbn: this.book.identifier.isbn || this.book.identifier.isbn13,
         name: this.book.title,
         numberOfPages: this.book.pageCount,
@@ -147,7 +153,7 @@ export default {
   },
   computed: {
     authors() {
-      return this.$getAuthors(this.book.authors)
+      return getAuthors(this.book.authors)
     },
   },
 }

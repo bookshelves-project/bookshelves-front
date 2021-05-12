@@ -1,8 +1,8 @@
-import metadata from './plugins/utils/metadata.json'
+import metadata from './plugins/metadata/metadata'
 import sitemaps from './plugins/utils/sitemaps'
 
-import dynamicMetadata from './plugins/utils/dynamic-metadata'
-import staticMetadata from './plugins/utils/static-metadata'
+import metadataDynamic from './plugins/metadata/metadata-dynamic'
+import metadataStatic from './plugins/metadata/metadata-static'
 
 export default {
   publicRuntimeConfig: {
@@ -23,7 +23,7 @@ export default {
     htmlAttrs: {
       lang: metadata.settings.locale,
     },
-    meta: [...staticMetadata(), ...dynamicMetadata()],
+    meta: [...metadataStatic(), ...metadataDynamic()],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
@@ -38,7 +38,7 @@ export default {
 
   plugins: [
     // global helper methods
-    '~/plugins/utils/helper',
+    '~/plugins/utils/helpers',
     // https://github.com/ndelvalle/v-click-outside
     '~/plugins/v-click-outside',
     // https://github.com/eddiemf/vue-scrollactive
@@ -163,9 +163,21 @@ export default {
       author: process.env.META_AUTHOR || metadata.tags.author,
       description: metadata.tags.description,
       theme_color: metadata.settings.color,
+      lang: metadata.settings.lang,
+      ogSiteName: metadata.og.siteName,
+      ogTitle: metadata.tags.title,
+      ogDescription: metadata.tags.description,
+      ogImage: `${process.env.BASE_URL}/default.jpg`,
+      ogUrl: process.env.BASE_URL,
+      twitterSite: metadata.twitter.site,
+      twitterCreator: metadata.twitter.creator,
     },
     manifest: {
+      name: metadata.tags.title,
+      short_name: metadata.og.siteName,
+      description: metadata.tags.description,
       display: 'browser',
+      lang: metadata.settings.lang,
     },
   },
   proxy: {
@@ -205,13 +217,12 @@ export default {
         maxAge: 86400, // 24 hours
       },
     },
-    plugins: ['~/plugins/auth.js'],
+    plugins: ['~/plugins/utils/auth.js'],
   },
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {
     liveEdit: false,
     // https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins
-    // https://github.com/rehypejs/rehype/blob/main/doc/plugins.md#list-of-plugins
     markdown: {
       prism: {
         theme: 'prism-themes/themes/prism-vsc-dark-plus.css',
@@ -224,39 +235,14 @@ export default {
     Sitemap: `${process.env.BASE_URL}/sitemap.xml`,
   },
   sitemap: {
-    path: '/sitemap.xml', // L'emplacement de votre fichier sitemap.
-    hostname: process.env.BASE_URL, // L'adresse de votre site, que vous pouvez placer comme ici dans une variable d'environnement.
-    cacheTime: 1000 * 60 * 15, // La durée avant que le sitemap soit regénéré. Ici 15mn.
+    path: '/sitemap.xml',
+    hostname: process.env.BASE_URL,
+    cacheTime: 1000 * 60 * 15,
     gzip: true,
-    generate: false, // Génère une version statique du sitemap quand activé. À utiliser avec nuxt generate.
     exclude:
       process.env.META_ROBOT_DISALLOW.split(',') || metadata.settings.disallow,
     sitemaps: sitemaps(),
   },
-  // i18n: {
-  //   locales: [
-  //     {
-  //       code: 'en',
-  //       name: 'English',
-  //     },
-  //     {
-  //       code: 'fr',
-  //       name: 'Français',
-  //     },
-  //   ],
-  //   defaultLocale: 'en',
-  //   vueI18n: {
-  //     fallbackLocale: 'en',
-  //     messages: {
-  //       en: {
-  //         welcome: 'Welcome',
-  //       },
-  //       fr: {
-  //         welcome: 'Bienvenue',
-  //       },
-  //     },
-  //   },
-  // },
 
   hooks: {
     'content:file:beforeInsert': (document) => {
@@ -271,7 +257,6 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    analyze: false,
     transpile: ['vue-agile'],
   },
 }

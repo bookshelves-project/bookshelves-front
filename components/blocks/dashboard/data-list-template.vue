@@ -61,13 +61,13 @@
                   v-if="data.createdAt && !data.updatedAt"
                   :datetime="data.createdAt"
                   class="flex-shrink-0 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap"
-                  >{{ $getDate(data.createdAt) }}</time
+                  >{{ $formatDate(data.createdAt) }}</time
                 >
                 <time
                   v-if="data.updatedAt"
                   :datetime="data.updatedAt"
                   class="flex-shrink-0 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap"
-                  >{{ $getDate(data.updatedAt) }}</time
+                  >{{ $formatDate(data.updatedAt) }}</time
                 >
               </div>
             </div>

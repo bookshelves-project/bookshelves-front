@@ -78,7 +78,7 @@
                 >Language :
               </span>
               <img
-                :src="$getLanguageFlag(serie.language)"
+                :src="getLanguageFlag(serie.language)"
                 :alt="serie.language"
                 loading="lazy"
                 class="ml-2"
@@ -165,7 +165,13 @@
 <script>
 import entityCard from '~/components/blocks/entity-card.vue'
 import favorites from '~/mixins/favorites'
-import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
+import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
+
+import {
+  getLanguageFlag,
+  getLanguage,
+  getAuthors,
+} from '~/plugins/utils/methods'
 
 export default {
   name: 'SeriesSlug',
@@ -190,7 +196,9 @@ export default {
   },
   data() {
     return {
-      componentKey: 0,
+      getLanguageFlag,
+      getLanguage,
+      getAuthors,
     }
   },
   head() {
@@ -216,7 +224,7 @@ export default {
   },
   computed: {
     authors() {
-      return this.$getAuthors(this.serie.authors)
+      return getAuthors(this.serie.authors)
     },
   },
   jsonld() {
@@ -259,7 +267,7 @@ export default {
         author: authors,
         bookFormat: 'http://schema.org/BookSeries',
         image: this.serie.picture.base,
-        inLanguage: this.$getLanguage(this.serie.language.slug),
+        inLanguage: getLanguage(this.serie.language.slug),
         name: this.serie.title,
       },
     }

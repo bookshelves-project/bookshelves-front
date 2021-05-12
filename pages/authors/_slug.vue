@@ -69,10 +69,13 @@
           >
         </div>
       </div>
-      <divider>
+      <divider v-if="author.series.length">
         {{ author.series ? author.series.length : null }} Series
       </divider>
-      <div v-if="author.series" class="space-y-6 display-grid sm:space-y-0">
+      <div
+        v-if="author.series.length"
+        class="space-y-6 display-grid sm:space-y-0"
+      >
         <entity-card
           v-for="serie in author.series"
           :key="serie.id"
@@ -91,7 +94,7 @@
             {{ serie.count }} books
           </template>
           <template v-if="serie.language" #tertiary>
-            {{ $getLanguage(serie.language) }}
+            {{ getLanguage(serie.language) }}
           </template>
         </entity-card>
       </div>
@@ -116,7 +119,7 @@
             vol. {{ book.volume }}
           </template>
           <template v-if="book.language" #tertiary>
-            {{ $getLanguage(book.language) }}
+            {{ getLanguage(book.language) }}
           </template>
         </entity-card>
       </div>
@@ -128,7 +131,8 @@
 import entityCard from '~/components/blocks/entity-card.vue'
 import Divider from '~/components/special/divider.vue'
 import favorites from '~/mixins/favorites'
-import dynamicMetadata from '~/plugins/utils/dynamic-metadata'
+import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
+import { getLanguage } from '~/plugins/utils/methods'
 
 export default {
   name: 'AuthorsSlug',
@@ -153,7 +157,7 @@ export default {
   },
   data() {
     return {
-      componentKey: 0,
+      getLanguage,
       breadcrumbs: [],
     }
   },

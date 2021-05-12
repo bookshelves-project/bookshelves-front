@@ -175,7 +175,7 @@
 
 <script>
 import packageJson from '@/package.json'
-import metadata from '@/plugins/utils/metadata.json'
+import metadata from '@/plugins/metadata/metadata'
 import ColorSwitcherToggle from '../special/color-switcher-toggle.vue'
 import backToTop from './back-to-top.vue'
 

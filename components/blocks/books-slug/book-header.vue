@@ -33,7 +33,7 @@
                 <svg-icon name="epub" class="w-4 h-4" />
                 <span class="ml-1"
                   >EPUB {{ book.epub.size }} into
-                  {{ $getLanguage(book.language) }}</span
+                  {{ getLanguage(book.language) }}</span
                 >
               </p>
             </div>
@@ -95,6 +95,7 @@
 
 <script>
 import favorites from '~/mixins/favorites'
+import { getLanguage } from '~/plugins/utils/methods'
 
 export default {
   name: 'BookHeader',
@@ -107,6 +108,7 @@ export default {
   },
   data() {
     return {
+      getLanguage,
       isFavorite: false,
     }
   },

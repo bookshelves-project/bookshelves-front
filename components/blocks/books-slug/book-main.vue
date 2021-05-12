@@ -74,7 +74,7 @@
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
               <span
                 >{{ book.publisher.name }} ({{
-                  $getDate(book.publishDate)
+                  $formatDate(book.publishDate)
                 }})</span
               >
             </dd>
@@ -85,7 +85,7 @@
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
               <img
-                :src="$getLanguageFlag(book.language)"
+                :src="getLanguageFlag(book.language)"
                 :alt="book.language"
                 loading="lazy"
               />
@@ -150,6 +150,7 @@
 </template>
 
 <script>
+import { getLanguageFlag } from '~/plugins/utils/methods'
 export default {
   name: 'BookMain',
   props: {
@@ -157,6 +158,11 @@ export default {
       type: Object,
       default: () => {},
     },
+  },
+  data() {
+    return {
+      getLanguageFlag,
+    }
   },
 }
 </script>

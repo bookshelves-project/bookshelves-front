@@ -19,18 +19,6 @@
         </template>
         <template v-if="entityType !== 'author'" #secondary>
           {{ entity.author }}
-          <!-- <span v-for="(author, authorId) in entity.authors" :key="authorId">
-              <span>{{ author.name }}</span>
-              <span
-                v-if="
-                  entity.authors.length > 1 &&
-                  authorId !== entity.authors.length - 1
-                "
-              >
-                ,
-              </span>
-            </span> -->
-          <!-- {{ $capitalize(entity.meta.entity) }} -->
         </template>
         <template #tertiary>
           <div v-if="entity.serie" class="mt-5">
