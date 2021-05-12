@@ -103,7 +103,7 @@ export default {
   },
   head() {
     const title = this.title
-    const url = `${process.env.BASE_URL}/series`
+    const url = `${this.$config.baseURL}/series`
     const dynamicMeta = dynamicMetadata({
       title: this.title,
       description: this.description,
@@ -123,11 +123,11 @@ export default {
   jsonld() {
     const breadcrumbs = [
       {
-        url: process.env.BASE_URL,
+        url: this.$config.baseURL,
         text: 'Home',
       },
       {
-        url: `${process.env.BASE_URL}/series`,
+        url: `${this.$config.baseURL}/series`,
         text: 'Series',
       },
     ]

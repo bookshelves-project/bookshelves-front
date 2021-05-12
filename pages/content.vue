@@ -62,7 +62,9 @@
         </div>
       </div>
       <div class="relative block w-full lg:mx-auto lg:w-1/4 lg:max-w-prose">
-        <div class="lg:sticky lg:top-16 h-full lg:h-auto lg:max-h-(screen-5)">
+        <div
+          class="lg:sticky lg:top-16 h-full lg:h-auto lg:max-h-(screen-5) pt-5"
+        >
           <table-of-content :toc="document.toc"></table-of-content>
           <component
             :is="`icon-${getPicture}`"
@@ -100,19 +102,19 @@ export default {
   },
   data() {
     return {
-      apiUrl: process.env.API_URL,
+      apiUrl: this.$config.apiURL,
       apiStatusBoolean: false,
     }
   },
   head() {
     const title = `${this.document.title}`
-    const url = `${process.env.BASE_URL}/${this.$route.params.type}/${this.document.slug}`
+    const url = `${this.$config.baseURL}/${this.$route.params.type}/${this.document.slug}`
     const dynamicMeta = dynamicMetadata({
       type: 'article',
       title: this.document.title,
       description: this.document.description,
       url,
-      image: `${process.env.BASE_URL}/images/no-cover.webp`,
+      image: `${this.$config.baseURL}/images/no-cover.webp`,
     })
     return {
       title,
@@ -156,7 +158,7 @@ export default {
     async apiStatus() {
       let res = null
       try {
-        res = await this.$axios.head(`${process.env.API_URL}`)
+        res = await this.$axios.head(`${this.$config.apiURL}`)
         if (res.status === 200) {
           this.apiStatusBoolean = true
         } else {

@@ -41,60 +41,10 @@
           <div class="w-full max-w-lg lg:max-w-md">
             <autocomplete-search-bar />
           </div>
-          <account-dropdown class="hidden lg:block" />
-        </div>
-        <div v-if="false" class="flex items-center lg:hidden">
-          <!-- Mobile menu button -->
-          <button
-            class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-600"
-            type="button"
-            aria-label="Open side menu"
-            aria-expanded="false"
-          >
-            <span class="sr-only">Open main menu</span>
-            <!-- Icon when menu is closed. -->
-            <!--
-            Heroicon name: outline/menu
-
-            Menu open: "hidden", Menu closed: "block"
-          -->
-            <svg
-              class="block w-6 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-            <!-- Icon when menu is open. -->
-            <!--
-            Heroicon name: outline/x
-
-            Menu open: "block", Menu closed: "hidden"
-          -->
-            <svg
-              class="hidden w-6 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+          <account-dropdown
+            v-if="$config.moduleSocial"
+            class="hidden lg:block"
+          />
         </div>
       </div>
     </div>

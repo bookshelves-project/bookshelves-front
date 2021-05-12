@@ -51,8 +51,8 @@ export default {
   head() {
     const title = 'Admin'
     const description = 'Admin dashboard.'
-    const image = `${process.env.BASE_URL}/open-graph.jpg`
-    const url = `${process.env.BASE_URL}/dashboard`
+    const image = `${this.$config.baseURL}/open-graph.jpg`
+    const url = `${this.$config.baseURL}/dashboard`
     return {
       title,
       meta: [

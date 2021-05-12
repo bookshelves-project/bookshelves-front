@@ -193,7 +193,7 @@ export default {
   },
   head() {
     const title = `${this.serie.title} by ${this.authors}`
-    const url = `${process.env.BASE_URL}/series/${this.serie.author}/${this.serie.slug}`
+    const url = `${this.$config.baseURL}/series/${this.serie.author}/${this.serie.slug}`
     const dynamicMeta = dynamicMetadata({
       type: 'book',
       title,
@@ -220,15 +220,15 @@ export default {
   jsonld() {
     const breadcrumbs = [
       {
-        url: process.env.BASE_URL,
+        url: this.$config.baseURL,
         text: 'Home',
       },
       {
-        url: `${process.env.BASE_URL}/series`,
+        url: `${this.$config.baseURL}/series`,
         text: 'Series',
       },
       {
-        url: `${process.env.BASE_URL}/series/${this.$route.params.author}/${this.$route.params.slug}`,
+        url: `${this.$config.baseURL}/series/${this.$route.params.author}/${this.$route.params.slug}`,
         text: this.serie.title,
       },
     ]
@@ -237,7 +237,7 @@ export default {
       familyName: author.lastname,
       givenName: author.firstname,
       name: author.name,
-      url: `${process.env.BASE_URL}/authors/${author.slug}`,
+      url: `${this.$config.baseURL}/authors/${author.slug}`,
     }))
 
     const items = breadcrumbs.map((item, index) => ({

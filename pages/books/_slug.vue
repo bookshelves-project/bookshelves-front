@@ -14,7 +14,7 @@
           <!-- Right column -->
           <div class="grid grid-cols-1 gap-4 lg:col-span-1">
             <book-serie v-if="book.serie !== null" :book="book" />
-            <book-comments :book="book" />
+            <book-comments v-if="$config.moduleSocial" :book="book" />
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@ export default {
       ? `(${this.book.serie.title}, vol. ${this.book.serieVolume})`
       : ''
     const title = `${this.book.title} ${serie}by ${this.authors}`
-    const url = `${process.env.BASE_URL}/books/${this.book.author}/${this.book.slug}`
+    const url = `${this.$config.baseURL}/books/${this.book.author}/${this.book.slug}`
     const dynamicMeta = dynamicMetadata({
       type: 'book',
       title,
@@ -98,15 +98,15 @@ export default {
   jsonld() {
     const breadcrumbs = [
       {
-        url: `${process.env.BASE_URL}/`,
+        url: `${this.$config.baseURL}/`,
         text: 'Home',
       },
       {
-        url: `${process.env.BASE_URL}/books`,
+        url: `${this.$config.baseURL}/books`,
         text: 'Books',
       },
       {
-        url: `${process.env.BASE_URL}/books/${this.$route.params.author}/${this.$route.params.slug}`,
+        url: `${this.$config.baseURL}/books/${this.$route.params.author}/${this.$route.params.slug}`,
         text: this.book.title,
       },
     ]
@@ -115,7 +115,7 @@ export default {
       familyName: author.lastname,
       givenName: author.firstname,
       name: author.name,
-      url: `${process.env.BASE_URL}/authors/${author.slug}`,
+      url: `${this.$config.baseURL}/authors/${author.slug}`,
     }))
 
     const items = breadcrumbs.map((item, index) => ({

@@ -51,8 +51,8 @@ export default {
   head() {
     const title = 'Sign up'
     const description = 'Create an account on Bookshelves.'
-    const image = `${process.env.BASE_URL}/open-graph.jpg`
-    const url = `${process.env.BASE_URL}/sign-up`
+    const image = `${this.$config.baseURL}/open-graph.jpg`
+    const url = `${this.$config.baseURL}/sign-up`
     return {
       title,
       meta: [

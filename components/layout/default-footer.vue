@@ -194,7 +194,7 @@ export default {
         {
           icon: 'swagger',
           label: 'Swagger: API documentation',
-          link: `${process.env.API_URL}/documentation`,
+          link: `${this.$config.apiURL}/documentation`,
         },
         {
           icon: 'calibre',
@@ -212,6 +212,13 @@ export default {
           },
         },
         { label: 'Contact', route: { name: 'contact' } },
+        {
+          label: 'eReader OPDS',
+          route: {
+            name: 'content',
+            params: { type: 'pages', slug: 'ereader-opds' },
+          },
+        },
       ],
       navigationCompany: [
         {

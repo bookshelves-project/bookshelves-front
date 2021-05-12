@@ -63,20 +63,9 @@
                         }}</time>
                       </p>
                       <div></div>
-                      <p class="flex items-start mt-2 text-sm text-gray-500">
-                        <svg
-                          class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
+                      <p
+                        class="flex items-start mt-2 text-sm italic text-gray-800 dark:text-gray-300"
+                      >
                         {{ $overflow(guide.description, 80) }}
                       </p>
                     </div>
@@ -133,7 +122,7 @@ export default {
   },
   head() {
     const title = this.title
-    const url = `${process.env.BASE_URL}/guides`
+    const url = `${this.$config.baseURL}/guides`
     const dynamicMeta = dynamicMetadata({
       title: this.title,
       description: this.description,
@@ -153,11 +142,11 @@ export default {
   jsonld() {
     const breadcrumbs = [
       {
-        url: process.env.BASE_URL,
+        url: this.$config.baseURL,
         text: 'Home',
       },
       {
-        url: `${process.env.BASE_URL}/guides`,
+        url: `${this.$config.baseURL}/guides`,
         text: 'Guides',
       },
     ]

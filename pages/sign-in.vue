@@ -41,8 +41,8 @@ export default {
     const title = 'Sign in'
     const description =
       'Sign in to get access to account features with favorite list, comments on eBooks...'
-    const image = `${process.env.BASE_URL}/open-graph.jpg`
-    const url = `${process.env.BASE_URL}/sign-in`
+    const image = `${this.$config.baseURL}/open-graph.jpg`
+    const url = `${this.$config.baseURL}/sign-in`
     return {
       title,
       meta: [

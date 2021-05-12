@@ -117,7 +117,7 @@
               {{ book.pageCount }}
             </dd>
           </div>
-          <div v-if="book.tags.length >= 1" class="sm:col-span-1">
+          <div v-if="book.tags.length >= 1" class="sm:col-span-2">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
               Tags
             </dt>

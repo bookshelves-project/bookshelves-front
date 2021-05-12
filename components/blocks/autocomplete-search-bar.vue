@@ -110,7 +110,7 @@ export default {
     },
     search(input) {
       const method = this.searchMethod[this.method]
-      const url = `${process.env.API_URL}/${method}?${qs.stringify({
+      const url = `${this.$config.apiURL}/${method}?${qs.stringify({
         q: input,
       })}`
 

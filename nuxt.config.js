@@ -5,6 +5,13 @@ import dynamicMetadata from './plugins/utils/dynamic-metadata'
 import staticMetadata from './plugins/utils/static-metadata'
 
 export default {
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL,
+    moduleSocial: process.env.MODULE_SOCIAL,
+    apiURL: process.env.API_URL,
+  },
+  privateRuntimeConfig: {},
+  // For SSG
   generate: {
     exclude: [/^\/content/],
   },
@@ -80,7 +87,6 @@ export default {
   ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
-    jit: true,
   },
   routerModule: {
     keepDefaultRouter: true,

@@ -48,7 +48,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `${process.env.BASE_URL}/`,
+          href: `${this.$config.baseURL}/`,
         },
       ],
     }
@@ -57,10 +57,10 @@ export default {
     return {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      url: `${process.env.BASE_URL}/`,
+      url: `${this.$config.baseURL}/`,
       potentialAction: {
         '@type': 'SearchAction',
-        target: `${process.env.BASE_URL}/search?q={search_term_string}`,
+        target: `${this.$config.baseURL}/search?q={search_term_string}`,
         'query-input': 'required name=search_term_string',
       },
       mainEntity: {
@@ -71,49 +71,49 @@ export default {
             position: 1,
             name: 'Home',
             description: 'Home of Bookshelves',
-            url: `${process.env.BASE_URL}/`,
+            url: `${this.$config.baseURL}/`,
           },
           {
             '@type': 'SiteNavigationElement',
             position: 2,
             name: 'Books',
             description: 'List of all books',
-            url: `${process.env.BASE_URL}/books`,
+            url: `${this.$config.baseURL}/books`,
           },
           {
             '@type': 'SiteNavigationElement',
             position: 3,
             name: 'Series',
             description: 'List of all series',
-            url: `${process.env.BASE_URL}/series`,
+            url: `${this.$config.baseURL}/series`,
           },
           {
             '@type': 'SiteNavigationElement',
             position: 4,
             name: 'Authors',
             description: 'List of all authors',
-            url: `${process.env.BASE_URL}/authors`,
+            url: `${this.$config.baseURL}/authors`,
           },
           {
             '@type': 'SiteNavigationElement',
             position: 5,
             name: 'Guides',
             description: 'List of guides',
-            url: `${process.env.BASE_URL}/guides`,
+            url: `${this.$config.baseURL}/guides`,
           },
           {
             '@type': 'SiteNavigationElement',
             position: 6,
             name: 'Search',
             description: 'Search books, series or authors',
-            url: `${process.env.BASE_URL}/search`,
+            url: `${this.$config.baseURL}/search`,
           },
           {
             '@type': 'SiteNavigationElement',
             position: 7,
             name: 'Contact',
             description: 'Contact us',
-            url: `${process.env.BASE_URL}/contact`,
+            url: `${this.$config.baseURL}/contact`,
           },
         ],
       },

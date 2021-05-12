@@ -1,8 +1,6 @@
 <template>
-  <div class="container">
-    <div
-      class="absolute text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-    >
+  <div class="container flex">
+    <div class="max-w-lg mx-auto text-center">
       <h1 class="text-3xl font-semibold">
         An error occurred ({{ `code ${error.statusCode}` }})
       </h1>

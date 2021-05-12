@@ -16,6 +16,7 @@
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div v-for="feature in features" :key="feature.id" class="pt-6">
             <div
+              v-if="feature.condition"
               class="flow-root px-6 pb-8 rounded-lg bg-gray-50 dark:bg-gray-800"
             >
               <div class="-mt-6">
@@ -50,36 +51,42 @@ export default {
         {
           icon: 'epub',
           label: 'EPUB files',
+          condition: true,
           text:
             'EPUB files format to be lightest as possible, a free DRM format that can be shared and edited at will, you can edit any eBook with Calibre',
         },
         {
           icon: 'ereader',
           label: 'Regardless of eReader',
+          condition: true,
           text:
             'Kobo, Bookeen, Vivlio or even Kindle (with Calibre), you can use eBooks in EPUB format on many eReaders',
         },
         {
           icon: 'download',
           label: 'Download & read',
+          condition: true,
           text:
-            'Download an eBook and/or a serie of eBook, add them to your Ereader and start reading!',
+            'Download an eBook and/or a serie of eBook, from computer or directly from your eReader with internal browser, add them to your eReader and start reading!',
         },
         {
           icon: 'code',
           label: 'Metadata',
+          condition: true,
           text:
             'All these informations that allows you to sort and find your books by author or series are integrated into each eBook',
         },
         {
           icon: 'languages',
           label: 'Multi languages',
+          condition: true,
           text:
             'eBooks in several languages according to your preferences in order to reach a maximum number of readers.',
         },
         {
           icon: 'user-group',
           label: 'Account or guest',
+          condition: this.$config.moduleSocial,
           text:
             "You can use Bookshelves with an free account or as guest, it's up to you.",
         },

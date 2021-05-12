@@ -158,7 +158,7 @@ export default {
   },
   head() {
     const title = `${this.author.name} - Authors`
-    const url = `${process.env.BASE_URL}/authors/${this.author.slug}`
+    const url = `${this.$config.baseURL}/authors/${this.author.slug}`
     const dynamicMeta = dynamicMetadata({
       type: 'profile',
       title,
@@ -192,15 +192,15 @@ export default {
   created() {
     this.breadcrumbs = [
       {
-        url: process.env.BASE_URL,
+        url: this.$config.baseURL,
         text: 'Home',
       },
       {
-        url: `${process.env.BASE_URL}/authors`,
+        url: `${this.$config.baseURL}/authors`,
         text: 'Authors',
       },
       {
-        url: `${process.env.BASE_URL}/authors/${this.$route.params.slug}`,
+        url: `${this.$config.baseURL}/authors/${this.$route.params.slug}`,
         text: this.author.name,
       },
     ]
