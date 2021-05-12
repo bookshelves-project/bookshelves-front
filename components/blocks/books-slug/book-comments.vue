@@ -74,7 +74,7 @@
                         aria-label="Delete"
                         @click="deleteComment(comment.id)"
                       >
-                        <icon-trash class="w-6 h-6" />
+                        <svg-icon name="trash" class="w-6 h-6" />
                       </button>
                     </div>
                   </div>

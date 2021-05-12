@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import TableOfContent from '~/components/common/content/TableOfContent.vue'
+import TableOfContent from '~/components/blocks/content/table-of-content.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {

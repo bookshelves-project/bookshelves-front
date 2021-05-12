@@ -28,14 +28,9 @@
                 an author or series if you wish!
               </p>
             </div>
-            <v-button
-              :component="`nuxt-link`"
-              :color="`white`"
-              :link="{ name: 'books' }"
-              class="mt-6"
-            >
+            <app-button :color="`white`" :to="{ name: 'books' }" class="mt-6">
               Discover all books
-            </v-button>
+            </app-button>
           </div>
           <div class="pt-6 mt-8 border-t border-gray-200">
             <blockquote>
@@ -91,14 +86,9 @@
                 modify them if you wish.
               </p>
             </div>
-            <v-button
-              class="mt-6"
-              :component="`nuxt-link`"
-              :link="{ name: 'guides' }"
-              :color="`white`"
-            >
+            <app-button class="mt-6" :to="{ name: 'guides' }" :color="`white`">
               Discover guides
-            </v-button>
+            </app-button>
           </div>
         </div>
         <div class="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">

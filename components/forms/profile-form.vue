@@ -121,7 +121,7 @@
       </div>
 
       <div class="px-4 py-3 text-right bg-gray-50 dark:bg-gray-800 sm:px-6">
-        <v-button type="submit" color="primary">
+        <app-button btn-type="submit" color="primary">
           <transition name="fade">
             <span v-if="!isLoading">Update profile</span>
             <span v-else class="flex items-center space-x-1">
@@ -129,7 +129,7 @@
               <div>Processing</div>
             </span>
           </transition>
-        </v-button>
+        </app-button>
       </div>
     </div>
   </form>

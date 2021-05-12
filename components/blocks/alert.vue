@@ -38,8 +38,8 @@
           class="flex"
         >
           <div class="flex-shrink-0">
-            <component
-              :is="`icon-${$store.state.alert.type}`"
+            <svg-icon
+              :name="`icon-${$store.state.alert.type}`"
               class="w-10 h-10"
             />
           </div>

@@ -3,7 +3,7 @@
     <div>
       <div class="flex items-center mb-3">
         <div class="flex-shrink-0">
-          <component :is="icon" class="w-6 h-6 mt-px alert-icon" />
+          <svg-icon :name="icon" class="w-6 h-6 mt-px alert-icon" />
         </div>
         <div class="flex-grow ml-2 overflow-auto font-semibold alert-content">
           <span v-if="title">
@@ -39,10 +39,10 @@ export default {
   computed: {
     icon() {
       return {
-        info: 'IconInformationCircle',
-        success: 'IconCheckCircle',
-        warning: 'IconExclamationCircle',
-        danger: 'IconXCircle',
+        info: 'info',
+        success: 'success',
+        warning: 'warning',
+        danger: 'danger',
       }[this.type]
     },
   },

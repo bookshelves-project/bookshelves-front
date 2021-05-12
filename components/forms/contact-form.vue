@@ -102,7 +102,7 @@
                 <div>Let's talk</div>
               </div>
               <div v-else class="flex items-center space-x-1">
-                <icon-load class="w-5 h-5 text-white" />
+                <loading class="w-5 h-5 text-white" />
                 <div>Processing</div>
               </div>
             </transition>

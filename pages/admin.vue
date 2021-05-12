@@ -9,7 +9,9 @@
     <main>
       <div class="py-5">
         <div class="flex items-center space-x-6">
-          <v-button @click="updateNewEbooks"> Update for new eBooks </v-button>
+          <app-button @click="updateNewEbooks">
+            Update for new eBooks
+          </app-button>
           <transition name="fade">
             <span v-if="loading" class="flex items-center space-x-1">
               <svg-icon name="load" class="w-5 h-5 text-gray-300" />
@@ -23,7 +25,7 @@
         </div>
       </div>
       <div class="py-5">
-        <v-button> Regenerate database </v-button>
+        <app-button> Regenerate database </app-button>
         <div class="max-w-md mt-3 ml-1">
           <b class="text-red-600">DANGEROUS METHOD</b><br />
           Regenerate all database from <span class="font-mono">books-raw</span>.

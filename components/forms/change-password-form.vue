@@ -64,13 +64,13 @@
         </div>
       </div>
       <div class="px-4 py-3 text-right bg-gray-50 dark:bg-gray-800 sm:px-6">
-        <v-button
-          type="submit"
+        <app-button
+          btn-type="submit"
           color="primary"
           :disabled="passwordUpdate && !passwordsMatch"
         >
           Change password
-        </v-button>
+        </app-button>
       </div>
     </div>
   </form>

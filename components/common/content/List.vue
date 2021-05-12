@@ -2,7 +2,7 @@
   <div>
     <div v-for="(item, i) in items" :key="i" class="flex mt-3">
       <span :class="`list-${type}`" class="flex-shrink-0 mt-px mr-3">
-        <component :is="iconName" class="w-6 h-6" />
+        <svg-icon :name="iconName" class="w-6 h-6" />
       </span>
       {{ item }}
     </div>
@@ -22,11 +22,9 @@ export default {
     },
     type: {
       type: String,
-      default: 'primary',
+      default: 'success',
       validator(value) {
-        return ['primary', 'info', 'success', 'warning', 'danger'].includes(
-          value
-        )
+        return ['info', 'success', 'warning', 'danger'].includes(value)
       },
     },
   },
@@ -35,11 +33,10 @@ export default {
       return (
         this.icon ||
         {
-          primary: 'IconBadgeCheck',
-          info: 'IconInformationCircle',
-          success: 'IconCheckCircle',
-          warning: 'IconExclamationCircle',
-          danger: 'IconXCircle',
+          info: 'info',
+          success: 'success',
+          warning: 'warning',
+          danger: 'danger',
         }[this.type]
       )
     },

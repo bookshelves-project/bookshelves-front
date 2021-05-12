@@ -80,18 +80,17 @@
                   </h3>
                 </div>
                 <div class="pt-6">
-                  <v-button
+                  <app-button
                     v-if="$route.params.slug !== bookSerie.slug"
                     :color="`white`"
-                    :component="`nuxt-link`"
-                    :link="{
+                    :to="{
                       name: 'books-slug',
                       params: {
                         author: bookSerie.author,
                         slug: bookSerie.slug,
                       },
                     }"
-                    >Refer to book</v-button
+                    >Refer to book</app-button
                   >
                   <span v-else class="italic text-gray-500 dark:text-gray-400"
                     >Current page</span
