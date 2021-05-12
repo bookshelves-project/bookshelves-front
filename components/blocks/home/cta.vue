@@ -27,8 +27,6 @@
 
 <script>
 export default {
-  name: 'HomeCta',
+  name: 'Cta',
 }
 </script>
-
-<style lang="postcss" scoped></style>

@@ -3,7 +3,6 @@
     <hero />
     <statistics />
     <cloud-logos />
-    <highlight-books class="hidden" />
     <features />
     <features-highlight />
     <pricing />
@@ -12,14 +11,13 @@
 </template>
 
 <script>
-import CloudLogos from '~/components/blocks/cloud-logos.vue'
-import FeaturesHighlight from '~/components/blocks/features-highlight.vue'
-import Features from '~/components/blocks/features.vue'
-import Hero from '~/components/blocks/hero.vue'
-import HighlightBooks from '~/components/blocks/highlight-books.vue'
-import HomeCta from '~/components/blocks/home-cta.vue'
-import Pricing from '~/components/blocks/pricing.vue'
-import Statistics from '~/components/blocks/statistics.vue'
+import CloudLogos from '~/components/blocks/home/cloud-logos.vue'
+import FeaturesHighlight from '~/components/blocks/home/features-highlight.vue'
+import Features from '~/components/blocks/home/features.vue'
+import Hero from '~/components/blocks/home/hero.vue'
+import HomeCta from '~/components/blocks/home/cta.vue'
+import Pricing from '~/components/blocks/home/pricing.vue'
+import Statistics from '~/components/blocks/home/statistics.vue'
 
 export default {
   name: 'Home',
@@ -31,7 +29,6 @@ export default {
     CloudLogos,
     FeaturesHighlight,
     HomeCta,
-    HighlightBooks,
   },
   auth: 'auth',
   layout: 'auth',
