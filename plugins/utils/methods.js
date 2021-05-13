@@ -1,5 +1,5 @@
 // Generate random string
-export const randomstring = (L) => {
+export const randomString = (L) => {
   let s = ''
   const randomchar = function () {
     const n = Math.floor(Math.random() * 62)

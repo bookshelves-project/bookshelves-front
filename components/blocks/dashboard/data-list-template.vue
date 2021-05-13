@@ -36,7 +36,7 @@
         >
           <div class="flex-shrink-0">
             <img
-              v-lazy="data.picture"
+              :src="data.picture"
               class="object-cover w-16 h-16 rounded-full"
               :alt="data.title"
               loading="lazy"

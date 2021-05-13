@@ -21,7 +21,7 @@
             <li v-for="person in people" :key="person.name">
               <div class="flex items-center space-x-4 lg:space-x-6">
                 <img
-                  v-lazy="person.imageUrl"
+                  :src="person.imageUrl"
                   class="w-16 h-16 rounded-full lg:w-20 lg:h-20"
                   alt=""
                   loading="lazy"

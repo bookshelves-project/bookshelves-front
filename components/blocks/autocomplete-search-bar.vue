@@ -27,7 +27,7 @@
                   <div class="col-span-1">
                     <div class="overflow-hidden">
                       <img
-                        v-lazy="result.picture"
+                        :src="result.picture"
                         :alt="result.title"
                         class="object-cover rounded-full h-14 w-14"
                         loading="lazy"

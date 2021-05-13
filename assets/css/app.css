@@ -52,19 +52,19 @@ button {
   -ms-hyphens: auto !important;
   hyphens: auto !important;
 }
-
+/* 
 img {
   transition: filter 0.7s;
+  filter: blur(4px);
 }
 img[lazy='loading'] {
-  filter: blur(4px);
 }
 img[lazy='error'] {
   filter: blur(0);
 }
 img[lazy='loaded'] {
   filter: blur(0);
-}
+} */
 
 .scroll-prevent {
   position: fixed;

@@ -11,11 +11,7 @@ export default {
     apiURL: process.env.API_URL,
   },
   privateRuntimeConfig: {},
-  // For SSG
-  generate: {
-    exclude: [/^\/content/],
-  },
-  target: process.env.TARGET,
+  target: 'server',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: metadata.tags.title,
@@ -43,8 +39,6 @@ export default {
     '~/plugins/v-click-outside',
     // https://github.com/eddiemf/vue-scrollactive
     '~/plugins/vue-scrollactive',
-    // https://github.com/hilongjw/vue-lazyload
-    '~/plugins/vue-lazyload',
     // https://github.com/ymmooot/nuxt-jsonld
     '~/plugins/jsonld',
   ],
@@ -55,7 +49,6 @@ export default {
     { path: '~/components/common', pathPrefix: false },
     { path: '~/components/common/content', pathPrefix: false },
     { path: '~/components/common/icons', pathPrefix: false },
-    { path: '~/components/common/icons-md', pathPrefix: false },
   ],
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)

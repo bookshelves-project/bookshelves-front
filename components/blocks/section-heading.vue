@@ -4,7 +4,7 @@
       <div :class="{ 'flex items-center': image }">
         <img
           v-if="image"
-          v-lazy="image"
+          :src="image"
           alt="user picture"
           class="object-cover w-16 h-16 rounded-full"
           loading="lazy"

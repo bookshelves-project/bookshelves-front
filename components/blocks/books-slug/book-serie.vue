@@ -23,7 +23,7 @@
             <div class="w-full h-full lg:grid lg:grid-cols-2">
               <div class="col-span-1">
                 <img
-                  v-lazy="bookSerie.picture.original"
+                  :src="bookSerie.picture.original"
                   :alt="bookSerie.title"
                   class="object-cover object-top w-32 h-32 rounded-full lg:rounded-none lg:w-full lg:h-full"
                   loading="lazy"
@@ -126,7 +126,7 @@
             @click="$refs.thumbnails.goTo(index)"
           >
             <img
-              v-lazy="bookSerie.picture.base"
+              :src="bookSerie.picture.base"
               :alt="bookSerie.title"
               class="object-cover object-center w-full h-full"
               loading="lazy"

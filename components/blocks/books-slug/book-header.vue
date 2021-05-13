@@ -8,7 +8,7 @@
           <div class="sm:flex sm:space-x-5">
             <div v-if="book.picture" class="flex-shrink-0">
               <img
-                v-lazy="book.picture.base"
+                :src="book.picture.base"
                 :alt="book.title"
                 class="object-cover w-20 h-20 mx-auto rounded-full"
                 loading="lazy"

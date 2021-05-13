@@ -9,6 +9,7 @@
             v-for="book in books.data"
             :key="book.id"
             :cover="book.picture.base"
+            :color="book.picture.color"
             :title="book.title"
             :route="{
               name: 'books-slug',
