@@ -8,6 +8,7 @@
             v-for="serie in series.data"
             :key="serie.id"
             :cover="serie.picture.base"
+            :color="serie.picture.color"
             :title="serie.title"
             :route="{
               name: 'series-slug',

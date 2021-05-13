@@ -8,6 +8,7 @@
             v-for="(author, authorId) in authors.data"
             :key="authorId"
             :cover="author.picture.base"
+            :color="author.picture.color"
             :title="author.name"
             :route="{
               name: 'authors-slug',

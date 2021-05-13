@@ -1,10 +1,10 @@
 <template>
   <section aria-labelledby="timeline-title" class="relative book-serie">
     <div class="px-4 py-5 shadow sm:rounded-lg sm:px-6 dark:bg-gray-800">
-      <h2 id="timeline-title" class="px-2 text-lg font-medium text-gray-900">
+      <h2 id="timeline-title" class="px-2 text-lg font-semibold text-gray-900">
         {{ book.serie.title }}'s series
       </h2>
-      <p class="max-w-2xl px-2 mt-1 text-sm text-gray-500">
+      <p class="max-w-2xl px-2 mt-1 text-sm italic text-gray-500">
         Current: vol. {{ book.volume }}
       </p>
       <div v-if="serieLoaded" class="mt-5">
@@ -22,11 +22,11 @@
           >
             <div class="w-full h-full lg:grid lg:grid-cols-2">
               <div class="col-span-1">
-                <img
+                <app-img
                   :src="bookSerie.picture.original"
-                  :alt="bookSerie.title"
+                  :color="bookSerie.picture.color"
+                  :title="bookSerie.title"
                   class="object-cover object-top w-32 h-32 rounded-full lg:rounded-none lg:w-full lg:h-full"
-                  loading="lazy"
                 />
               </div>
               <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
@@ -125,11 +125,11 @@
             :class="`slide--${index}`"
             @click="$refs.thumbnails.goTo(index)"
           >
-            <img
-              :src="bookSerie.picture.base"
-              :alt="bookSerie.title"
+            <app-img
+              :src="bookSerie.picture.original"
+              :color="bookSerie.picture.color"
+              :title="bookSerie.title"
               class="object-cover object-center w-full h-full"
-              loading="lazy"
             />
           </div>
         </agile>

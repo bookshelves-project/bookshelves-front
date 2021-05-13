@@ -42,6 +42,7 @@
     "@nuxtjs/svg-sprite": "^0.5.2",
     "@trevoreyre/autocomplete-vue": "^2.2.0",
     "core-js": "^3.10.2",
+    "lodash": "^4.17.21",
     "nuxt": "^2.15.4",
     "nuxt-i18n": "^6.26.0",
     "nuxt-jsonld": "^1.5.0",

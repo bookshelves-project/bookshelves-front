@@ -45,7 +45,7 @@
           active-class="pagination-active"
           exact-active-class="pagination-exact-active"
         >
-          <span class="border-none" style="padding: 0" @click="forceRerender">{{
+          <span class="border-none" style="padding: 0">{{
             pageNum + startNumber - 1
           }}</span>
         </nuxt-link>
@@ -180,9 +180,6 @@ export default {
     },
     getTag(pageNum) {
       return this.isActive(pageNum) ? 'span' : 'a'
-    },
-    forceRerender() {
-      this.$emit('event', 'data value')
     },
   },
 }

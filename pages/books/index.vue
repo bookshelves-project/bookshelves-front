@@ -52,7 +52,6 @@
           :current-page="currentPage"
           :limit="5"
           class="flex justify-center"
-          @event="event"
         >
         </pagination>
       </div>
@@ -175,9 +174,6 @@ export default {
         name: this.$route.name,
         query: pageNum === 1 ? { lang } : { page: pageNum, lang },
       }
-    },
-    event(data) {
-      this.componentKey += 1
     },
     filter(lang) {
       if (lang) {

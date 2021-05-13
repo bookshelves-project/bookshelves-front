@@ -15,7 +15,11 @@
       <div
         v-show="open"
         class="absolute z-40 mt-2 rounded-md shadow-lg dark:rounded-none ring-1 ring-primary-600 ring-opacity-5"
-        :class="[widthClass, alignmentClasses, contentClasses]"
+        :class="[
+          alignmentClasses,
+          contentClasses,
+          large ? 'w-full' : widthClass,
+        ]"
         style="display: none"
         @click="open = false"
       >
@@ -43,7 +47,11 @@ export default {
     },
     contentClasses: {
       type: Array,
-      default: () => ['py-1', 'bg-gray-100', 'dark:bg-gray-700'],
+      default: () => ['bg-gray-100', 'dark:bg-gray-700'],
+    },
+    large: {
+      type: Boolean,
+      default: false,
     },
   },
 

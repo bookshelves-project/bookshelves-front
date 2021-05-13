@@ -1,5 +1,4 @@
 <template>
-  <!-- Welcome panel -->
   <section aria-labelledby="book-header">
     <div class="overflow-hidden bg-white rounded-lg shadow dark:bg-gray-800">
       <h2 id="profile-overview-title" class="sr-only">Profile Overview</h2>
@@ -7,11 +6,12 @@
         <div class="sm:flex sm:items-center sm:justify-between">
           <div class="sm:flex sm:space-x-5">
             <div v-if="book.picture" class="flex-shrink-0">
-              <img
+              <app-img
                 :src="book.picture.base"
-                :alt="book.title"
-                class="object-cover w-20 h-20 mx-auto rounded-full"
-                loading="lazy"
+                :color="book.picture.color"
+                :title="book.title"
+                class="w-20 h-20"
+                picture="rounded-full"
               />
             </div>
             <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">

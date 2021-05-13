@@ -1,10 +1,11 @@
 <template>
   <nuxt-link :to="route" class="group" :title="title">
     <article
+      loading="lazy"
       class="relative transition-colors duration-100 rounded-md sm:grid sm:grid-cols-2 sm:gap-3 group-hover:bg-gray-100 dark:group-hover:bg-gray-800"
     >
       <div class="h-32 overflow-hidden sm:aspect-w-2 sm:aspect-h-3">
-        <app-img :src="cover" :color="color" :title="title" />
+        <app-img :src="cover" :color="color" :title="title" class="cover" />
       </div>
       <div>
         <h2 class="font-semibold">
@@ -51,13 +52,14 @@ export default {
       default: true,
     },
   },
-  computed: {
-    hasDefaultSlot() {
-      return !!this.$slots.default
-    },
-    hasImageSlot() {
-      return !!this.$slots.image
-    },
-  },
 }
 </script>
+
+<style lang="postcss" scoped>
+.cover::v-deep {
+  & .img {
+    @apply rounded-sm object-top;
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
+  }
+}
+</style>

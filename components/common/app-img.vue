@@ -1,17 +1,19 @@
 <template>
-  <div class="relative object-cover object-top cover-shadow">
+  <div class="relative">
     <transition name="fade">
       <div
         v-if="loading"
-        class="absolute inset-0 transition-transform duration-300 bg-purple-600 blur-sm"
+        :style="`background-color: ${color}`"
+        :class="picture"
+        class="absolute inset-0 transition-transform duration-300 blur-sm max-size img"
       ></div>
     </transition>
     <img
-      :class="loading ? 'hidden' : ''"
+      :class="[loading ? 'hidden' : '', picture]"
       :src="src"
       :alt="title"
       :title="title"
-      class="w-full h-full"
+      class="object-cover max-size img"
       @load="onImgLoad"
     />
   </div>
@@ -33,11 +35,14 @@ export default {
       type: String,
       default: 'Image',
     },
+    picture: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {
       loading: true,
-      visible: true,
     }
   },
   watch: {
@@ -52,17 +57,10 @@ export default {
   },
 }
 </script>
-<style scoped>
-.src-image {
-  filter: blur(5px);
-  transition: filter 1.6s;
-  will-change: filter;
-}
-.src-image-loaded {
-  filter: blur(0);
-}
-.cover-shadow {
-  @apply rounded-sm;
-  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
+
+<style lang="postcss" scoped>
+.max-size {
+  width: 98%;
+  height: 98%;
 }
 </style>

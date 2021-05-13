@@ -81,6 +81,7 @@
           :key="serie.id"
           :data="serie"
           :cover="serie.picture ? serie.picture.base : null"
+          :color="serie.picture ? serie.picture.color : null"
           :title="serie.title"
           :route="{
             name: 'series-slug',
@@ -105,6 +106,7 @@
           :key="book.id"
           :data="book"
           :cover="book.picture.base"
+          :color="book.picture.color"
           :title="book.title"
           :route="{
             name: 'books-slug',

@@ -91,6 +91,11 @@ export default {
       ],
     }
   },
+  mounted() {
+    if (this.$route.query.lang) {
+      this.filterEnabled = true
+    }
+  },
   methods: {
     closeOpenedFilter() {
       this.openedFilter = false

@@ -201,7 +201,7 @@ const fetchBooks = async () => {
 
 const fetchSeries = async () => {
   try {
-    const result = await axios.get(`${process.env.API_URL}/series?limit=all`)
+    const result = await axios.get(`${process.env.API_URL}/series?limit=full`)
     return result.data
   } catch (error) {
     console.error('Unable to catch API')
@@ -211,7 +211,7 @@ const fetchSeries = async () => {
 
 const fetchAuthors = async () => {
   try {
-    const result = await axios.get(`${process.env.API_URL}/authors?limit=all`)
+    const result = await axios.get(`${process.env.API_URL}/authors?limit=full`)
     return result.data
   } catch (error) {
     console.error('Unable to catch API')
