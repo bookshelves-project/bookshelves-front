@@ -42,7 +42,7 @@
       :position-image="`right`"
       :icon="`open-book`"
       :image="`/images/book_reading.svg`"
-      :title="`Want to read directly from your eReader?`"
+      :title="`Want to download from your eReader?`"
     >
       <template #text>
         If you want to download and read an eBook directly from your eReader you

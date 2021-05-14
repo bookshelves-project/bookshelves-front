@@ -4,48 +4,34 @@
       :title="search ? `Results for &ldquo;${$route.query['q']}&rdquo;` : title"
       :subtitle="search ? `${search.length} results` : description"
     />
-    <form
-      class="w-full max-w-lg pb-6 m-auto lg:max-w-lg"
-      @submit.prevent="advancedSearch"
+    <!-- <collapse
+      :label="`Advanced search`"
+      :opened="$store.state.advancedSearchOpened"
     >
-      <label for="search" class="sr-only">Advanced search</label>
-      <div class="relative text-light-primary-100 focus-within:text-gray-400">
-        <div
-          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-        >
-          <svg-icon name="magnify-glass" class="w-5 h-5" />
+      <advanced-search-form />
+    </collapse> -->
+    <section class="mt-6">
+      <transition name="fade">
+        <div v-if="search && search.length > 0" :key="componentKey">
+          <search-results
+            v-if="authors.length"
+            :entity-type="`author`"
+            :entities="authors"
+          />
+          <search-results
+            v-if="series.length"
+            :entity-type="`serie`"
+            :entities="series"
+          />
+          <search-results
+            v-if="books.length"
+            :entity-type="`book`"
+            :entities="books"
+          />
         </div>
-        <input
-          id="search"
-          v-model="advancedSearchInput"
-          name="search"
-          class="block w-full py-4 pl-10 pr-3 text-lg leading-5 bg-gray-200 bg-opacity-50 border border-transparent rounded-md focus:border-gray-100 focus:bg-gray-100 focus:ring-0 bg-light-primary-600 placeholder-light-primary-100 focus:outline-none focus:ring-white focus:placeholder-gray-500 focus:text-gray-900 sm:text-sm"
-          placeholder="Advanced search"
-          type="search"
-        />
-      </div>
-    </form>
-    <!-- <advanced-search-form /> -->
-    <transition name="fade">
-      <div v-if="search && search.length > 0" :key="componentKey">
-        <search-results
-          v-if="authors.length"
-          :entity-type="`author`"
-          :entities="authors"
-        />
-        <search-results
-          v-if="series.length"
-          :entity-type="`serie`"
-          :entities="series"
-        />
-        <search-results
-          v-if="books.length"
-          :entity-type="`book`"
-          :entities="books"
-        />
-      </div>
-      <div v-else class="italic text-gray-500">No result</div>
-    </transition>
+        <div v-else class="italic text-gray-500">No result</div>
+      </transition>
+    </section>
   </main>
 </template>
 
@@ -56,6 +42,7 @@ import SectionHeading from '~/components/blocks/section-heading.vue'
 import SearchResults from '~/components/blocks/search-results.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 // import AdvancedSearchForm from '~/components/forms/advanced-search-form.vue'
+// import Collapse from '~/components/layout/collapse.vue'
 
 export default {
   name: 'SearchIndex',
@@ -63,6 +50,7 @@ export default {
     SectionHeading,
     SearchResults,
     // AdvancedSearchForm,
+    // Collapse,
   },
   data() {
     return {

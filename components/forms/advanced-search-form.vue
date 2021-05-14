@@ -1,5 +1,43 @@
 <template>
-  <form @submit.prevent="advancedSearch">
+  <form @submit.prevent="submit">
+    <div class="mb-5">
+      You can define advanced search here, select details with fields, in main
+      search bar you can search any book's title, any series' title or any
+      author's name.
+    </div>
+    <div class="flex items-center pb-6 m-auto w-max">
+      <label for="search" class="sr-only">Advanced search</label>
+      <div
+        class="relative flex text-light-primary-100 focus-within:text-gray-400"
+      >
+        <div
+          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+        >
+          <svg-icon name="magnify-glass" class="w-5 h-5 text-gray-300" />
+        </div>
+        <input
+          id="search"
+          v-model="search"
+          name="search"
+          class="block py-4 pl-10 pr-3 border border-gray-300 rounded-md w-96 focus:ring-0 focus:outline-none focus:ring-white focus:placeholder-gray-500 focus:text-gray-900 sm:text-sm"
+          placeholder="Search"
+          type="search"
+        />
+        <button
+          class="px-3 ml-2 text-white transition-colors duration-100 rounded-md bg-primary-600 hover:bg-primary-700"
+          type="submit"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+    <div class="grid grid-cols-5 gap-4 my-10">
+      <autocomplete-authors @author="author" />
+      <autocomplete-languages @author="author" />
+      <autocomplete-tags @tag="tag" />
+      <div>isbn</div>
+      <div>serie</div>
+    </div>
     <section class="grid grid-cols-3 gap-y-10">
       <div>
         <div class="block mb-1 text-sm font-semibold text-gray-700">
@@ -37,11 +75,11 @@
         <div class="block mb-1 text-sm font-semibold text-gray-700">
           Tags selected
         </div>
-        <div class="flex items-center h-10 mt-4">
+        <div class="flex items-center h-10 mt-2">
           <div class="w-full font-semibold">
             <span
               v-if="validTags.length"
-              class="block py-1 overflow-y-auto max-h-20"
+              class="block py-1 overflow-y-auto max-h-64"
             >
               <div class="flex flex-wrap space-x-1">
                 <span
@@ -79,26 +117,19 @@
         </div>
       </div>
     </section>
-    <div class="grid grid-cols-5 my-10">
-      <div class="max-w-xs">
-        <autocomplete-authors @author="author" />
-      </div>
-      <div>lang</div>
-      <autocomplete-tags @tag="tag" />
-      <div>isbn</div>
-      <div>serie</div>
-    </div>
   </form>
 </template>
 
 <script>
 import autocompleteAuthors from './search/autocomplete-authors.vue'
+import AutocompleteLanguages from './search/autocomplete-languages.vue'
 import AutocompleteTags from './search/autocomplete-tags.vue'
 export default {
   name: 'AdvancedSearchForm',
-  components: { autocompleteAuthors, AutocompleteTags },
+  components: { autocompleteAuthors, AutocompleteTags, AutocompleteLanguages },
   data() {
     return {
+      search: null,
       validAuthor: null,
       validLanguages: [],
       validTags: [],
@@ -116,6 +147,7 @@ export default {
         this.validTags.push(tag)
       }
     },
+    submit() {},
     containsObject(obj, list) {
       let i
       for (i = 0; i < list.length; i++) {

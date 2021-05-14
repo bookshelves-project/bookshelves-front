@@ -32,7 +32,7 @@ This will open the home page, usually on Google, you have **URL bar at the top**
 
 ## An example
 
-We will take an example with this website, with <api-link endpoint="/ereader">OPDS service</api-link>, just put this URL in URL bar and tap on "Go" <api-link endpoint="/ereader" :refer-it-self="true"></api-link>. You will see OPDS home page with search bar, don't hesitate to add it to your favorites.
+We will take an example with this website, with <api-link endpoint="/opds">OPDS service</api-link>, just put this URL in URL bar and tap on "Go" <api-link endpoint="/opds" :refer-it-self="true"></api-link>. You will see OPDS home page with search bar, don't hesitate to add it to your favorites.
 
 ![browser-options](/images/guides/ereader-download-ebook-from-ereader/browser-options.webp)
 

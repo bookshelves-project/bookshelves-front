@@ -6,7 +6,7 @@ description: 'How to download eBooks directly on your eReader with your internal
 
 ## Usage
 
-When you want to add an eBook to your eReader, you can plug it into your computer and add it manually or download one from the store associated with your eReader. But with Bookshelves, you have another solution: **use your eReader's web browser to directly download the eBook you want** with Bookshelves OPDS[^1]. You have just to put <api-link endpoint="/ereader" :refer-it-self="true"></api-link> URL into your eReader browser. To know more about download of eBooks with browser from your eReader, check [**Download eBook from eReader guide**](/guides/ereader-download-ebook-from-ereader).
+When you want to add an eBook to your eReader, you can plug it into your computer and add it manually or download one from the store associated with your eReader. But with Bookshelves, you have another solution: **use your eReader's web browser to directly download the eBook you want** with Bookshelves OPDS[^1]. You have just to put <api-link endpoint="/opds" :refer-it-self="true"></api-link> URL into your eReader browser. To know more about download of eBooks with browser from your eReader, check [**Download eBook from eReader guide**](/guides/ereader-download-ebook-from-ereader).
 
 ## Limitations
 

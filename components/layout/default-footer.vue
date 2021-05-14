@@ -167,7 +167,7 @@ export default {
         {
           icon: 'open-book',
           label: 'OPDS',
-          link: `${this.$config.apiURL}/ereader`,
+          link: `${this.$config.apiURL}/opds`,
         },
       ],
       navigationSupport: [
