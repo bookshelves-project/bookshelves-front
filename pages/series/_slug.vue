@@ -107,13 +107,13 @@
         <p class="italic">
           {{ serie.description }}
         </p>
-        <div v-if="serie.wikipediaLink" class="pt-1 text-right">
+        <div v-if="serie.descriptionLink" class="pt-1 text-right">
           To have more informations:
           <a
-            :href="serie.wikipediaLink"
+            :href="serie.descriptionLink"
             target="_blank"
             rel="noopener noreferrer"
-            >Wikipedia</a
+            >{{ getHostname(serie.descriptionLink) }}</a
           >
         </div>
       </div>
@@ -164,15 +164,15 @@
 </template>
 
 <script>
-import entityCard from '~/components/blocks/entity-card.vue'
-import favorites from '~/mixins/favorites'
-import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
-
 import {
+  getHostname,
   getLanguageFlag,
   getLanguage,
   getAuthors,
 } from '~/plugins/utils/methods'
+import entityCard from '~/components/blocks/entity-card.vue'
+import favorites from '~/mixins/favorites'
+import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {
   name: 'SeriesSlug',
@@ -200,6 +200,7 @@ export default {
       getLanguageFlag,
       getLanguage,
       getAuthors,
+      getHostname,
     }
   },
   head() {

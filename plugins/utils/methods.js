@@ -60,3 +60,7 @@ export const getAuthors = (authors) => {
   })
   return authorsToString
 }
+
+export const getHostname = (url) => {
+  return new URL(url).hostname
+}

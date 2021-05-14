@@ -1,5 +1,11 @@
 <template>
   <div class="relative">
+    <img
+      v-if="imageNotExist"
+      src="/images/bookshelves.png"
+      :alt="title"
+      class="object-cover max-size"
+    />
     <transition name="fade">
       <div
         v-if="loading"
@@ -43,12 +49,18 @@ export default {
   data() {
     return {
       loading: true,
+      imageNotExist: false,
     }
   },
   watch: {
     src(newValue, oldValue) {
       this.loading = true
     },
+  },
+  created() {
+    if (!this.src) {
+      this.imageNotExist = true
+    }
   },
   methods: {
     onImgLoad() {

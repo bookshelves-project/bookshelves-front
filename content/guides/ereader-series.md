@@ -10,7 +10,7 @@ picture: 'ereader'
 
 <alert tpye="info" title="About">
 
-This article was written using a eReader to present the use of a web browser with an eReader. Therefore the screenshots presented to show how to use the browser are related to the eReader interface. Most eReaders offer a browser but its location may differ from one eReader to another, so please refer to specialized articles on your eReader if the present guide is not enough to find it. **If your eReader don't offer any browser, you can't use this guide.**
+This article was written using a Kobo as eReader.
 
 </alert>
 

@@ -59,13 +59,13 @@
         <p class="italic">
           {{ author.description }}
         </p>
-        <div v-if="author.wikipediaLink" class="pt-1 text-right">
+        <div v-if="author.descriptionLink" class="pt-1 text-right">
           To have more informations:
           <a
-            :href="author.wikipediaLink"
+            :href="author.descriptionLink"
             target="_blank"
             rel="noopener noreferrer"
-            >Wikipedia</a
+            >{{ getHostname(author.descriptionLink) }}</a
           >
         </div>
       </div>
@@ -134,7 +134,7 @@ import entityCard from '~/components/blocks/entity-card.vue'
 import Divider from '~/components/special/divider.vue'
 import favorites from '~/mixins/favorites'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
-import { getLanguage } from '~/plugins/utils/methods'
+import { getLanguage, getHostname } from '~/plugins/utils/methods'
 
 export default {
   name: 'AuthorsSlug',
@@ -160,6 +160,7 @@ export default {
   data() {
     return {
       getLanguage,
+      getHostname,
       breadcrumbs: [],
     }
   },
@@ -230,7 +231,7 @@ export default {
         image: this.author.picture.base,
         jobTitle: 'Author',
         name: this.author.name,
-        url: this.author.wikipediaLink,
+        url: this.author.descriptionLink,
       },
     }
   },
