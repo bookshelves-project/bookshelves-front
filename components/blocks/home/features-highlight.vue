@@ -46,9 +46,10 @@
     >
       <template #text>
         If you want to download and read an eBook directly from your eReader you
-        can do it, without any computer. With OPDS from Bookshelves you can
-        access to very basic interface with your eReader browser to search and
-        download any eBook from your eReader.
+        can do it, without any computer. With OPDS (Open Publication
+        Distribution System) from Bookshelves you can access to very basic
+        interface with your eReader browser to search and download any eBook
+        from your eReader.
       </template>
       <template #cta>
         <app-button

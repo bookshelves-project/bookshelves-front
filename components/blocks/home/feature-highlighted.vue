@@ -49,7 +49,7 @@
       </div>
       <div
         :class="{
-          'lg:col-start-1': postion === 'left',
+          'lg:col-start-1': positionImage === 'left',
         }"
         class="mt-12 sm:mt-16 lg:mt-0"
       >

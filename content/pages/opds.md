@@ -1,7 +1,7 @@
 ---
-title: "eReader OPDS"
+title: "OPDS"
 subtitle: ''
-description: 'How to download eBooks directly on your eReader with your internal browser'
+description: 'How to download eBooks directly on your eReader with your internal browser with Open Publication Distribution System'
 ---
 
 ## Usage

@@ -26,6 +26,10 @@
   }
 }
 
+.nuxt-content img {
+  margin: auto;
+}
+
 .nuxt-content {
   & a {
     text-decoration: none !important;

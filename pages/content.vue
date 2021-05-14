@@ -43,22 +43,6 @@
           </div>
         </div>
         <div class="pt-4 pb-10 mx-auto prose prose-lg lg:px-5 lg:pt-8">
-          <div v-if="$route.params.slug === 'api-documentation'">
-            <a
-              :href="`${apiUrl}`"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block text-base text-gray-500 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-400"
-            >
-              API Status:
-              <span class="font-semibold">
-                <span v-if="apiStatusBoolean" class="text-green-600">
-                  available
-                </span>
-                <span v-else class="text-red-600"> unavailable </span>
-              </span>
-            </a>
-          </div>
           <nuxt-content :document="document" />
         </div>
       </div>
@@ -102,12 +86,6 @@ export default {
       document,
     }
   },
-  data() {
-    return {
-      apiUrl: this.$config.apiURL,
-      apiStatusBoolean: false,
-    }
-  },
   head() {
     const title = `${this.document.title}`
     const url = `${this.$config.baseURL}/${this.$route.params.type}/${this.document.slug}`
@@ -149,26 +127,6 @@ export default {
   computed: {
     getPicture() {
       return this.document.category ? this.$slugify(this.document.category) : ''
-    },
-  },
-  created() {
-    if (this.$route.params.slug === 'api-documentation') {
-      this.apiStatus()
-    }
-  },
-  methods: {
-    async apiStatus() {
-      let res = null
-      try {
-        res = await this.$axios.head(`${this.$config.apiURL}`)
-        if (res.status === 200) {
-          this.apiStatusBoolean = true
-        } else {
-          this.apiStatusBoolean = false
-        }
-      } catch (error) {
-        this.apiStatusBoolean = false
-      }
     },
   },
 }
