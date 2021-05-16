@@ -1,15 +1,8 @@
 <template>
   <form @submit.prevent="submit">
-    <div class="mb-5">
-      You can define advanced search here, select details with fields, in main
-      search bar you can search any book's title, any series' title or any
-      author's name.
-    </div>
-    <div class="flex items-center pb-6 m-auto w-max">
-      <label for="search" class="sr-only">Advanced search</label>
-      <div
-        class="relative flex text-light-primary-100 focus-within:text-gray-400"
-      >
+    <div class="mx-auto sm:flex sm:items-center w-max">
+      <div class="relative md:max-w-lg w-96">
+        <label for="search" class="sr-only">Search</label>
         <div
           class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
         >
@@ -18,19 +11,24 @@
         <input
           id="search"
           v-model="search"
-          name="search"
-          class="block py-4 pl-10 pr-3 border border-gray-300 rounded-md w-96 focus:ring-0 focus:outline-none focus:ring-white focus:placeholder-gray-500 focus:text-gray-900 sm:text-sm"
-          placeholder="Search"
           type="search"
+          name="search"
+          class="block w-full pl-10 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          placeholder="Global search"
         />
-        <button
-          class="px-3 ml-2 text-white transition-colors duration-100 rounded-md bg-primary-600 hover:bg-primary-700"
-          type="submit"
-        >
-          Search
-        </button>
       </div>
+      <button
+        type="submit"
+        class="inline-flex items-center justify-center w-full px-4 py-2 mt-3 font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+      >
+        Search
+      </button>
     </div>
+    <p class="max-w-lg mx-auto mt-3 text-gray-400">
+      You can define advanced search here, select details with fields, in main
+      search bar you can search any book's title, any series' title or any
+      author's name.
+    </p>
     <div class="grid grid-cols-5 gap-4 my-10">
       <autocomplete-authors @author="author" />
       <autocomplete-languages @author="author" />
@@ -124,6 +122,7 @@
 import autocompleteAuthors from './search/autocomplete-authors.vue'
 import AutocompleteLanguages from './search/autocomplete-languages.vue'
 import AutocompleteTags from './search/autocomplete-tags.vue'
+import { containsObject } from '~/plugins/utils/methods'
 export default {
   name: 'AdvancedSearchForm',
   components: { autocompleteAuthors, AutocompleteTags, AutocompleteLanguages },
@@ -135,6 +134,7 @@ export default {
       validTags: [],
       validIsbn: null,
       validSerie: null,
+      containsObject,
     }
   },
   methods: {
@@ -147,18 +147,9 @@ export default {
         this.validTags.push(tag)
       }
     },
-    submit() {},
-    containsObject(obj, list) {
-      let i
-      for (i = 0; i < list.length; i++) {
-        if (list[i] === obj) {
-          return true
-        }
-      }
-
-      return false
+    submit() {
+      this.$emit('advancedSearch', this.search)
     },
-    advancedSearch() {},
   },
 }
 </script>

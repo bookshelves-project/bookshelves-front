@@ -15,7 +15,7 @@
         >
       </div>
       <img
-        src="/images/warning.svg"
+        src="/images/error/warning.svg"
         alt="Warning"
         title="Warning"
         class="pb-16"

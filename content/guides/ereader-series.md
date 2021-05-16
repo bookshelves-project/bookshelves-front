@@ -39,27 +39,35 @@ On Bookshelves, many EPUB files have **series** *metadata* to display book serie
 
 If you want to refresh *metadata* for eBooks manually transfered, you will need to use Calibre software (you can transfer manually EPUB files but you will have to execute an option on Calibre), so if you haven't, [**download and install Calibre**](https://calibre-ebook.com).
 
-![books-list](/images/guides/ereader-series/calibre-serie.webp)
-*An example of EPUB file with series and number on Calibre*
+<md-img src="calibre-serie">
+    An example of EPUB file with series and number on Calibre
+</md-img>
 
 ### Refresh *metadata*
 
 Now you can transfer manually any eBooks which have a series, transfer all the series on your eReader with USB cable.
 
-![books-list](/images/guides/ereader-series/books-list.webp)
-*Here an example with **L'Autre**, a books series of Pierre Bottero transfered to my eReader*
+<md-img src="books-list">
+    Here an example with **L'Autre**, a books series of Pierre Bottero transfered to my eReader
+</md-img>
 
 When EPUB are on your eReader, you can **safely** disconnect it. Wait seconds to let eReader to import new content and when it's done and you can see new books, you will see in **My books**, on tab *Series*, you will **not see** the series. It's because eReader haven't refresh *metadata*, to refresh this, you need to connect again your eReader to your computer and open Calibre.
 
-![books-list](/images/guides/ereader-series/calibre.webp)
+<md-img src="calibre">
+    Click on Device from toolbar.
+</md-img>
 
 And you will see **Device** entry on Calibre, and you can execute **Update cached metadata on device**, this option will refresh *metadata* and now you can safely disconnect your eReader from your computer and you will see the series in *Series* tab in **My books**.
 
-![books-list](/images/guides/ereader-series/calibre-options.webp)
+<md-img src="calibre-options">
+    Select Update cached metadata on device.
+</md-img>
 
 You will have to do this **each time** you add a new series to your eReader.
 
-![affiliate](/images/guides/ereader-series/ereader-series.webp)
+<md-img src="kobo-series">
+    An example of series on Kobo.
+</md-img>
 
 ---
 

@@ -1,7 +1,8 @@
 <template>
   <main class="container relative max-w-7xl">
-    <section-heading :title="title" :subtitle="description" />
-    <entities-filter @filter="filter" />
+    <section-heading :title="title" :subtitle="description">
+      <entities-filter @filter="filter" />
+    </section-heading>
     <section v-if="!apiError">
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
@@ -70,7 +71,7 @@ import ApiErrorMessage from '~/components/special/api-error-message.vue'
 import EntitiesFilter from '~/components/blocks/entities-filter.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
-import { getLanguage } from '~/plugins/utils/methods'
+import { getLanguage, objectIsEmpty } from '~/plugins/utils/methods'
 
 export default {
   name: 'Books',
@@ -114,6 +115,7 @@ export default {
   data() {
     return {
       getLanguage,
+      objectIsEmpty,
       isLoading: false,
       isReloadForPaginate: false,
       componentKey: 0,
@@ -166,7 +168,7 @@ export default {
       itemListElement: items,
     }
   },
-  watchQuery: ['page', 'lang'],
+  watchQuery: ['page', 'lang', 'serie'],
   methods: {
     linkGen(pageNum) {
       const lang = this.$route.query.lang
@@ -175,9 +177,22 @@ export default {
         query: pageNum === 1 ? { lang } : { page: pageNum, lang },
       }
     },
-    filter(lang) {
-      if (lang) {
-        this.$router.push({ name: 'books', query: { lang } })
+    filter(param) {
+      if (param !== null) {
+        const query = {}
+
+        const currentQuery = this.$route.query
+        const queryIsEmpty = objectIsEmpty(currentQuery)
+        if (!queryIsEmpty) {
+          Object.assign(query, currentQuery)
+        }
+
+        const key = param.type
+        const newQuery = {}
+        newQuery[key] = param.data
+        query[param.type] = param.data
+
+        this.$router.push({ name: 'books', query })
       } else {
         this.$router.push({ name: 'books' })
       }

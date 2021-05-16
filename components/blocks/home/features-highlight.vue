@@ -6,7 +6,7 @@
         text: `Maybe it's not quite legal but it's cool!`,
         author: `An enthusiastic reader`,
       }"
-      :image="`/images/book_reading_alt.svg`"
+      :image="`/images/home/book_reading_alt.svg`"
       :title="`Find the book that fits you!`"
     >
       <template #text>
@@ -23,7 +23,7 @@
     </feature-highlighted>
     <feature-highlighted
       :position-image="`left`"
-      :image="`/images/ereaders.svg`"
+      :image="`/images/home/ereaders.svg`"
       :title="`Want to know your eReader?`"
       :icon="`ereader`"
     >
@@ -41,7 +41,7 @@
     <feature-highlighted
       :position-image="`right`"
       :icon="`open-book`"
-      :image="`/images/book_reading.svg`"
+      :image="`/images/home/book_reading.svg`"
       :title="`Want to download from your eReader?`"
     >
       <template #text>

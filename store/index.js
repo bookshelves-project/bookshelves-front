@@ -42,9 +42,13 @@ export const state = () => ({
     message: 'This action is not possible.',
   },
   statistics: null,
+  advancedSearchOpened: false,
 })
 
 export const mutations = {
+  setAdvancedSearchOpened(state, data) {
+    state.advancedSearchOpened = data
+  },
   setStatistics(state, data) {
     state.statistics = data
   },

@@ -64,3 +64,18 @@ export const getAuthors = (authors) => {
 export const getHostname = (url) => {
   return new URL(url).hostname
 }
+
+export const containsObject = (obj, list) => {
+  let i
+  for (i = 0; i < list.length; i++) {
+    if (list[i] === obj) {
+      return true
+    }
+  }
+
+  return false
+}
+
+export const objectIsEmpty = (obj) => {
+  return obj && Object.keys(obj).length === 0 && obj.constructor === Object
+}

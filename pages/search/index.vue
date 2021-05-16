@@ -4,12 +4,13 @@
       :title="search ? `Results for &ldquo;${$route.query['q']}&rdquo;` : title"
       :subtitle="search ? `${search.length} results` : description"
     />
-    <!-- <collapse
+    <collapse
       :label="`Advanced search`"
       :opened="$store.state.advancedSearchOpened"
+      @toggleCollapse="toggleCollapse"
     >
-      <advanced-search-form />
-    </collapse> -->
+      <advanced-search-form @advancedSearch="advancedSearch" />
+    </collapse>
     <section class="mt-6">
       <transition name="fade">
         <div v-if="search && search.length > 0" :key="componentKey">
@@ -41,16 +42,16 @@ import qs from 'qs'
 import SectionHeading from '~/components/blocks/section-heading.vue'
 import SearchResults from '~/components/blocks/search-results.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
-// import AdvancedSearchForm from '~/components/forms/advanced-search-form.vue'
-// import Collapse from '~/components/layout/collapse.vue'
+import AdvancedSearchForm from '~/components/forms/advanced-search-form.vue'
+import Collapse from '~/components/layout/collapse.vue'
 
 export default {
   name: 'SearchIndex',
   components: {
     SectionHeading,
     SearchResults,
-    // AdvancedSearchForm,
-    // Collapse,
+    AdvancedSearchForm,
+    Collapse,
   },
   data() {
     return {
@@ -131,10 +132,13 @@ export default {
     }
   },
   methods: {
-    advancedSearch() {
+    toggleCollapse(data) {
+      this.$store.commit('setAdvancedSearchOpened', data)
+    },
+    advancedSearch(search) {
       this.$router.push({
-        name: 'search',
-        query: { q: this.advancedSearchInput },
+        path: this.$route.path,
+        query: { q: search },
       })
     },
     async getSearchResults(query) {

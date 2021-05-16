@@ -20,28 +20,40 @@ With your eReader you can download an eBook directly from Internet. To do this, 
 
 From the Kobo browser example, from the eReader's home screen, tap on "More" in bottom navigation and then choose "Beta Features"...
 
-![kobo-more](/images/guides/ereader-download-ebook-from-ereader/kobo-more.webp)
+<md-img src="kobo-more">
+    **More** menu with Kobo.
+</md-img>
 
 ...and tap on "**Start**" in "**Web Browser**".
 
-![kobo-beta-features](/images/guides/ereader-download-ebook-from-ereader/kobo-beta-features.webp)
+<md-img src="kobo-beta-features">
+    Browser is hidden in submenu.
+</md-img>
 
 This will open the home page, usually on Google, you have **URL bar at the top**, **back, next & refresh buttons at the bottom** with a zoom bar, don't leave out the three dots indicating additional options at the bottom right as **you can add websites as favorites**.
 
-![browser-home](/images/guides/ereader-download-ebook-from-ereader/browser-home.webp)
+<md-img src="browser-home">
+    It's a small browser with vital options.
+</md-img>
 
 ## An example
 
 We will take an example with this website, with <api-link endpoint="/opds">OPDS service</api-link>, just put this URL in URL bar and tap on "Go" <api-link endpoint="/opds" :refer-it-self="true"></api-link>. You will see OPDS home page with search bar, don't hesitate to add it to your favorites.
 
-![browser-options](/images/guides/ereader-download-ebook-from-ereader/browser-options.webp)
+<md-img src="browser-options">
+    Bookshelves OPDS home page.
+</md-img>
 
 Search any book with title, author firstname and lastname or series' title. If you have an author or a series in results, you can tap on it to get all books associate with it, you can't download directly all books, you have to tap on book you want and tap on "Download". Here, we've choose a book:
 
-![browser-ebook-example](/images/guides/ereader-download-ebook-from-ereader/browser-ebook-example.webp)
+<md-img src="browser-ebook-example">
+    An eBook on Bookshelves OPDS.
+</md-img>
 
 A popup will appear when you tap on "Download", if you continue, your browser will download eBook.
 
-![brower-download](/images/guides/ereader-download-ebook-from-ereader/brower-download.webp)
+<md-img src="brower-download">
+    Browser download popup.
+</md-img>
 
 When you have eBook downloaded, you will find it in your books. If the book is associaté with series, you can't display it with this method because .epub files have some limitations about series, to add series informations you will need a computer with Calibre, check [**Set series guide**](/guides/ereader-series) for more informations.

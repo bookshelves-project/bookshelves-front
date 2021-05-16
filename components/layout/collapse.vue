@@ -52,9 +52,15 @@ export default {
       expanded: false,
     }
   },
+  mounted() {
+    if (this.opened) {
+      this.expanded = true
+    }
+  },
   methods: {
     switchSpoiler() {
       this.expanded = !this.expanded
+      this.$emit('toggleCollapse', this.expanded)
     },
   },
 }
