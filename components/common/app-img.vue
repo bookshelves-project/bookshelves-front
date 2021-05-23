@@ -15,8 +15,9 @@
       ></div>
     </transition>
     <img
-      :class="[loading ? 'hidden' : '', picture]"
-      :src="src"
+      v-lazy-load
+      :class="[loading ? '' : '', picture]"
+      :data-src="src"
       :alt="title"
       :title="title"
       class="object-cover max-size img"

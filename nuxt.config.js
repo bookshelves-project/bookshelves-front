@@ -136,6 +136,13 @@ export default {
     '@nuxtjs/sitemap',
     // https://github.com/avil13/vue-sweetalert2
     'vue-sweetalert2/nuxt',
+    // https://gitlab.com/broj42/nuxt-lazy-load
+    [
+      'nuxt-lazy-load',
+      {
+        directiveOnly: true,
+      },
+    ],
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
