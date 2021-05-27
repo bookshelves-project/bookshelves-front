@@ -59,14 +59,11 @@
         <p class="italic">
           {{ author.description }}
         </p>
-        <div v-if="author.descriptionLink" class="pt-1 text-right">
+        <div v-if="author.link" class="pt-1 text-right">
           To have more informations:
-          <a
-            :href="author.descriptionLink"
-            target="_blank"
-            rel="noopener noreferrer"
-            >{{ getHostname(author.descriptionLink) }}</a
-          >
+          <a :href="author.link" target="_blank" rel="noopener noreferrer">{{
+            getHostname(author.link)
+          }}</a>
         </div>
       </div>
       <divider v-if="author.series.length">
@@ -231,7 +228,7 @@ export default {
         image: this.author.picture.base,
         jobTitle: 'Author',
         name: this.author.name,
-        url: this.author.descriptionLink,
+        url: this.author.link,
       },
     }
   },

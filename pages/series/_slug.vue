@@ -107,14 +107,11 @@
         <p class="italic">
           {{ serie.description }}
         </p>
-        <div v-if="serie.descriptionLink" class="pt-1 text-right">
+        <div v-if="serie.link" class="pt-1 text-right">
           To have more informations:
-          <a
-            :href="serie.descriptionLink"
-            target="_blank"
-            rel="noopener noreferrer"
-            >{{ getHostname(serie.descriptionLink) }}</a
-          >
+          <a :href="serie.link" target="_blank" rel="noopener noreferrer">{{
+            getHostname(serie.link)
+          }}</a>
         </div>
       </div>
       <div class="relative mt-5 mb-10">
