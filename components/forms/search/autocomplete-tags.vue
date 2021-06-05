@@ -9,8 +9,8 @@
       </label>
       <div class="relative">
         <input
-          v-model="author"
-          name="author"
+          v-model="tag"
+          name="tag"
           :class="showList ? '' : 'rounded-b-md'"
           class="relative w-full py-2 pl-3 pr-10 text-left transition-transform duration-100 transform bg-white border border-gray-300 shadow-sm rounded-t-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           placeholder="Search any tag"
@@ -20,7 +20,7 @@
         />
         <transition name="fade">
           <button
-            v-if="author !== ''"
+            v-if="tag !== ''"
             type="button"
             class="absolute p-1 transition-colors duration-100 transform -translate-y-1/2 bg-gray-100 rounded-full hover:bg-gray-200 right-2 top-1/2"
             @click="clear"
@@ -36,12 +36,12 @@
         >
           <ul class="bg-white shadow-sm">
             <li
-              v-for="authorValue in authors"
-              :key="authorValue.id"
+              v-for="tagValue in tags"
+              :key="tagValue.id"
               class="p-2 py-1 font-semibold transition-colors duration-100 cursor-pointer hover:bg-gray-200"
-              @click="valid(authorValue)"
+              @click="valid(tagValue)"
             >
-              {{ authorValue.name }}
+              {{ tagValue.name }}
             </li>
           </ul>
         </div>
@@ -62,30 +62,30 @@ export default {
   data() {
     return {
       showList: false,
-      author: '',
-      authors: [],
-      fullAuthors: [],
+      tag: '',
+      tags: [],
+      fullTags: [],
       validate: true,
-      validAuthor: null,
+      validTag: null,
     }
   },
   watch: {
-    author(newValue, oldValue) {
-      if (this.author.length >= 1) {
-        this.authors = this.filterByValue(this.fullAuthors, this.author)
+    tag(newValue, oldValue) {
+      if (this.tag.length >= 1) {
+        this.tags = this.filterByValue(this.fullTags, this.tag)
         this.showList = true
       } else {
         this.showList = false
-        this.authors = []
+        this.tags = []
       }
     },
   },
   async created() {
-    await this.getAuthors()
+    await this.getTags()
   },
   methods: {
     openList() {
-      if (this.authors.length) {
+      if (this.tags.length) {
         this.showList = true
       }
     },
@@ -98,11 +98,11 @@ export default {
         )
       )
     },
-    async getAuthors(query) {
-      if (!this.authors.length) {
-        const authors = await this.$axios.$get(`/tags`)
+    async getTags(query) {
+      if (!this.tags.length) {
+        const tags = await this.$axios.$get(`/tags`)
 
-        this.fullAuthors = authors.data
+        this.fullTags = tags.data
       } else {
         this.showList = true
       }
@@ -111,21 +111,21 @@ export default {
       this.showList = false
     },
     clear() {
-      this.author = ''
+      this.tag = ''
       this.showList = false
-      this.validAuthor = null
+      this.validTag = null
       this.$emit('tag', null)
     },
-    valid(author) {
-      // this.author = author.name
-      this.validAuthor = author
+    valid(tag) {
+      // this.tag = tag.name
+      this.validTag = tag
       this.validate = false
       setTimeout(() => {
         this.showList = false
         this.validate = true
       }, 50)
-      console.log(this.validAuthor)
-      this.$emit('tag', this.validAuthor)
+      console.log(this.validTag)
+      this.$emit('tag', this.validTag)
     },
   },
 }

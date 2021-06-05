@@ -18,10 +18,12 @@
         >
           <div class="flex items-center flex-1 min-w-0">
             <div class="flex-shrink-0">
-              <component
-                :is="`icon-${getPicture(guide)}`"
+              <img
+                v-lazy-load
+                :data-src="`/images/guides/${guide.category.toLowerCase()}.webp`"
+                :alt="`${guide.slug} picture`"
                 class="object-cover w-12 h-12 text-opacity-50 rounded-full fill-current text-primary-600"
-              ></component>
+              />
             </div>
             <div class="flex-1 min-w-0 px-4 md:grid md:grid-cols-2 md:gap-4">
               <h2 class="my-auto text-xl font-medium text-primary-600">

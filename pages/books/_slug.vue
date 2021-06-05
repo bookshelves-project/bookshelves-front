@@ -15,6 +15,7 @@
           <div class="grid grid-cols-1 gap-4 lg:col-span-1">
             <book-serie v-if="book.serie !== null" :book="book" />
             <book-comments v-if="$config.moduleSocial" :book="book" />
+            <book-more :book="book" />
           </div>
         </div>
       </div>
@@ -26,13 +27,14 @@
 import BookComments from '~/components/blocks/books-slug/book-comments.vue'
 import bookHeader from '~/components/blocks/books-slug/book-header.vue'
 import BookMain from '~/components/blocks/books-slug/book-main.vue'
+import BookMore from '~/components/blocks/books-slug/book-more.vue'
 import BookSerie from '~/components/blocks/books-slug/book-serie.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import { getLanguage, getAuthors } from '~/plugins/utils/methods'
 
 export default {
   name: 'BooksSlug',
-  components: { bookHeader, BookComments, BookMain, BookSerie },
+  components: { bookHeader, BookComments, BookMain, BookSerie, BookMore },
   async asyncData({ app, params }) {
     try {
       const [book] = await Promise.all([
@@ -57,7 +59,7 @@ export default {
   },
   head() {
     const serie = this.book.serie
-      ? `(${this.book.serie.title}, vol. ${this.book.serieVolume})`
+      ? ` · ${this.book.serie.title}, vol. ${this.book.volume} `
       : ''
     const title = `${this.book.title} ${serie}by ${this.authors}`
     const url = `${this.$config.baseURL}/books/${this.book.author}/${this.book.slug}`

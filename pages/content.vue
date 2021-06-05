@@ -5,14 +5,8 @@
         <div class="text-on-img-tailwind">
           <div class="relative w-full">
             <div class="source" style="z-index: -1">
-              <component
-                :is="`icon-${getPicture}`"
-                v-if="$route.params.type === 'guides'"
-                class="h-40 mx-auto opacity-25 fill-current text-opacity-60 text-primary-600 object-container"
-              ></component>
               <img
-                v-if="$route.params.type === 'pages'"
-                :src="`/images/pages/${$nuxt.$route.params.slug}.webp`"
+                :src="picture"
                 :alt="`${$nuxt.$route.params.slug} picture`"
                 loading="lazy"
                 class="h-40 mx-auto opacity-25 object-container"
@@ -51,17 +45,7 @@
           class="lg:sticky lg:top-16 h-full lg:h-auto lg:max-h-(screen-5) pt-5"
         >
           <table-of-content :toc="document.toc"></table-of-content>
-          <component
-            :is="`icon-${getPicture}`"
-            v-if="$route.params.type === 'guides'"
-            class="hidden fill-current lg:block text-opacity-60 text-primary-600"
-          ></component>
-          <img
-            v-if="$route.params.type === 'pages'"
-            :src="`/images/pages/${$nuxt.$route.params.slug}.webp`"
-            :alt="`${$nuxt.$route.params.slug} picture`"
-            loading="lazy"
-          />
+          <img :src="picture" :alt="`${document.title} picture`" class="h-40" />
         </div>
       </div>
     </div>
@@ -87,14 +71,14 @@ export default {
     }
   },
   head() {
-    const title = `${this.document.title}`
+    const title = `${this.document.title} · Guides`
     const url = `${this.$config.baseURL}/${this.$route.params.type}/${this.document.slug}`
     const dynamicMeta = dynamicMetadata({
       type: 'article',
       title: this.document.title,
       description: this.document.description,
       url,
-      image: `${this.$config.baseURL}/images/no-cover.webp`,
+      image: `${this.$config.baseURL}/images/home/ereaders.svg`,
     })
     return {
       title,
@@ -125,8 +109,14 @@ export default {
     }
   },
   computed: {
-    getPicture() {
-      return this.document.category ? this.$slugify(this.document.category) : ''
+    picture() {
+      const name =
+        this.$route.params.type === 'guides'
+          ? this.document.category.toLowerCase()
+          : this.$route.params.slug
+      const picture = `/images/${this.$route.params.type}/${name}.webp`
+      console.log(picture)
+      return picture
     },
   },
 }

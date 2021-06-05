@@ -11,6 +11,9 @@ import SeriesSlug from '~/pages/series/_slug'
 import AuthorsIndex from '~/pages/authors/index'
 import AuthorsSlug from '~/pages/authors/_slug'
 
+import TagsIndex from '~/pages/tags/index'
+import TagsSlug from '~/pages/tags/_slug'
+
 import SearchIndex from '~/pages/search/index'
 import Contact from '~/pages/contact'
 
@@ -75,6 +78,17 @@ const routesList = [
     name: 'contact',
     path: '/contact',
     component: Contact,
+  },
+  // Tags
+  {
+    name: 'tags',
+    path: '/tags',
+    component: TagsIndex,
+  },
+  {
+    name: 'tags-slug',
+    path: '/tags/:slug',
+    component: TagsSlug,
   },
   // Auth
   {

@@ -26,95 +26,110 @@
     </div>
     <p class="max-w-lg mx-auto mt-3 text-gray-400">
       You can define advanced search here, select details with fields, in main
-      search bar you can search any book's title, any series' title or any
-      author's name.
+      search bar
+      <b
+        >you can search any book's title, any series' title, any author's name
+        or ISBN</b
+      >.
     </p>
-    <div class="grid grid-cols-5 gap-4 my-10">
-      <autocomplete-authors @author="author" />
-      <autocomplete-languages @author="author" />
-      <autocomplete-tags @tag="tag" />
-      <div>isbn</div>
-      <div>serie</div>
-    </div>
-    <section class="grid grid-cols-3 gap-y-10">
-      <div>
-        <div class="block mb-1 text-sm font-semibold text-gray-700">
-          Author selected
-        </div>
-        <div class="flex items-center h-10 mt-2">
-          <img
-            :src="
-              validAuthor
-                ? validAuthor.picture.base
-                : '/images/author-no-picture.svg'
-            "
-            :alt="validAuthor ? validAuthor.name : 'Any'"
-            :title="validAuthor ? validAuthor.name : 'Any'"
-            class="object-cover w-10 h-10 rounded-full"
-          />
-          <div class="ml-2 font-semibold">
-            <span v-if="validAuthor">{{ validAuthor.name }}</span>
-            <span v-else>Any author</span>
+    <div class="hidden">
+      <div class="grid grid-cols-4 gap-4 my-10">
+        <autocomplete-authors @author="author" />
+        <autocomplete-languages @lang="lang" />
+        <autocomplete-tags @tag="tag" />
+        <div class="relative flex items-start mt-8">
+          <div class="flex items-center h-5">
+            <input
+              id="conditions"
+              v-model="form.serie"
+              name="conditions"
+              type="checkbox"
+              class="w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-600"
+            />
           </div>
-        </div>
-      </div>
-      <div>
-        <div class="block mb-1 text-sm font-semibold text-gray-700">
-          Languages selected
-        </div>
-        <div class="flex items-center h-10 mt-2">
-          <div class="font-semibold">
-            <span v-if="validLanguages.length"></span>
-            <span v-else>Any language</span>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="block mb-1 text-sm font-semibold text-gray-700">
-          Tags selected
-        </div>
-        <div class="flex items-center h-10 mt-2">
-          <div class="w-full font-semibold">
-            <span
-              v-if="validTags.length"
-              class="block py-1 overflow-y-auto max-h-64"
+          <div class="ml-3 text-sm">
+            <label for="conditions" class="font-medium text-gray-700"
+              >Only series ?</label
             >
-              <div class="flex flex-wrap space-x-1">
-                <span
-                  v-for="tagValue in validTags"
-                  :key="tagValue.id"
-                  class="flex items-center px-2 py-1 my-1 bg-gray-200 rounded-full w-max"
-                >
-                  <span>{{ tagValue.name }}</span>
-                  <svg-icon name="cross" class="w-3 h-3 ml-2" />
-                </span>
-              </div>
-            </span>
-            <span v-else>Any tags</span>
           </div>
         </div>
       </div>
-      <div>
-        <div class="block mb-1 text-sm font-semibold text-gray-700">ISBN</div>
-        <div class="flex items-center h-10 mt-2">
-          <div class="font-semibold">
-            <span v-if="validIsbn"></span>
-            <span v-else>Any ISBN</span>
+      <section class="grid grid-cols-3 gap-y-32">
+        <div>
+          <div class="block mb-1 text-sm font-semibold text-gray-700">
+            Author selected
+          </div>
+          <div class="flex items-center h-10 mt-2">
+            <img
+              :src="
+                validAuthor
+                  ? validAuthor.picture.base
+                  : '/images/author-no-picture.svg'
+              "
+              :alt="validAuthor ? validAuthor.name : 'Any'"
+              :title="validAuthor ? validAuthor.name : 'Any'"
+              class="object-cover w-10 h-10 rounded-full"
+            />
+            <div class="ml-2 font-semibold">
+              <span v-if="validAuthor">{{ validAuthor.name }}</span>
+              <span v-else>Any author</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <div class="block mb-1 text-sm font-semibold text-gray-700">
-          Series selected
-        </div>
-        <div class="flex items-center h-10 mt-2">
-          <div class="font-semibold">
-            <span v-if="validSerie"></span>
-            <span v-else>Any series</span>
+        <div>
+          <div class="block mb-1 text-sm font-semibold text-gray-700">
+            Languages selected
+          </div>
+          <div class="flex items-center h-10 mt-2">
+            <div class="font-semibold">
+              <span v-if="validLanguages.length">
+                <div class="flex flex-wrap space-x-1">
+                  <span
+                    v-for="languageValue in validLanguages"
+                    :key="languageValue.id"
+                    class="flex items-center px-2 py-1 my-1 bg-gray-200 rounded-full w-max"
+                  >
+                    <span>{{ languageValue.name }}</span>
+                    <svg-icon
+                      name="cross"
+                      class="w-3 h-3 ml-2"
+                      @click="remove(languageValue, 'validLanguages')"
+                    />
+                  </span>
+                </div>
+              </span>
+              <span v-else>Any language</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+        <div>
+          <div class="block mb-1 text-sm font-semibold text-gray-700">
+            Tags selected
+          </div>
+          <div class="flex items-center h-10 mt-2">
+            <div class="w-full font-semibold">
+              <span v-if="validTags.length" class="block py-1 overflow-y-auto">
+                <div class="flex flex-wrap space-x-1">
+                  <span
+                    v-for="tagValue in validTags"
+                    :key="tagValue.id"
+                    class="flex items-center px-2 py-1 my-1 bg-gray-200 rounded-full w-max"
+                  >
+                    <span>{{ tagValue.name }}</span>
+                    <svg-icon
+                      name="cross"
+                      class="w-3 h-3 ml-2"
+                      @click="remove(tagValue, 'validTags')"
+                    />
+                  </span>
+                </div>
+              </span>
+              <span v-else>Any tags</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </form>
 </template>
 
@@ -135,16 +150,36 @@ export default {
       validIsbn: null,
       validSerie: null,
       containsObject,
+      form: {
+        author: null,
+        languages: [],
+        tags: [],
+        serie: false,
+      },
     }
   },
   methods: {
+    remove(item, array) {
+      this[array] = this[array].filter(function (obj) {
+        return obj.name !== item.name
+      })
+    },
     author(author) {
       this.validAuthor = author
     },
+    lang(lang) {
+      if (lang) {
+        console.log(lang)
+        if (!this.containsObject(lang, this.validLanguages)) {
+          this.validLanguages.push(lang)
+        }
+      }
+    },
     tag(tag) {
-      console.log(tag)
-      if (!this.containsObject(tag, this.validTags)) {
-        this.validTags.push(tag)
+      if (tag) {
+        if (!this.containsObject(tag, this.validTags)) {
+          this.validTags.push(tag)
+        }
       }
     },
     submit() {

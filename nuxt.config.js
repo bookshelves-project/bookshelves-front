@@ -141,6 +141,9 @@ export default {
       'nuxt-lazy-load',
       {
         directiveOnly: true,
+        loadingClass: 'isLoading',
+        loadedClass: 'isLoaded',
+        appendClass: 'lazyLoad',
       },
     ],
   ],

@@ -13,13 +13,13 @@
       <div class="pt-24"></div>
       <modal />
       <Nuxt class="min-height-content" />
-      <default-footer />
+      <app-footer />
     </div>
   </div>
 </template>
 
 <script>
-import DefaultFooter from '~/components/layout/default-footer.vue'
+import AppFooter from '~/components/layout/app-footer.vue'
 import Layer from '~/components/layout/layer.vue'
 import Navbar from '~/components/layout/navbar.vue'
 import Sidebar from '~/components/layout/sidebar.vue'
@@ -30,7 +30,7 @@ export default {
   name: 'LayoutDefault',
   components: {
     Navbar,
-    DefaultFooter,
+    AppFooter,
     Sidebar,
     Layer,
     Modal,

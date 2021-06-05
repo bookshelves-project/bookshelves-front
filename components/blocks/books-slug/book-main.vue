@@ -119,7 +119,22 @@
               {{ book.pageCount }}
             </dd>
           </div>
-          <div v-if="book.tags.length >= 1" class="sm:col-span-2">
+          <div v-if="book.genres.length >= 1" class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+              Genre
+            </dt>
+            <dd
+              class="flex flex-wrap mt-1 text-sm text-gray-900 dark:text-gray-100"
+            >
+              <span v-for="(genre, genreId) in book.genres" :key="genreId">
+                {{ genre.name
+                }}<span v-if="genreId !== book.genres.length - 1" class="mr-1"
+                  >,</span
+                >
+              </span>
+            </dd>
+          </div>
+          <div v-if="book.tags.length >= 1" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
               Tags
             </dt>

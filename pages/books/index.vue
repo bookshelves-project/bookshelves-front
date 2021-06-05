@@ -88,12 +88,14 @@ export default {
     try {
       const page = query.page
       const lang = query.lang
+      const serie = query.serie
       const [books] = await Promise.all([
         app.$axios.$get(
           `/books?${qs.stringify({
             page: page || 1,
             'per-page': 32,
             lang,
+            serie,
           })}`
         ),
       ])
@@ -172,9 +174,10 @@ export default {
   methods: {
     linkGen(pageNum) {
       const lang = this.$route.query.lang
+      const serie = this.$route.query.serie
       return {
         name: this.$route.name,
-        query: pageNum === 1 ? { lang } : { page: pageNum, lang },
+        query: pageNum === 1 ? { lang, serie } : { page: pageNum, lang, serie },
       }
     },
     filter(param) {
@@ -191,6 +194,8 @@ export default {
         const newQuery = {}
         newQuery[key] = param.data
         query[param.type] = param.data
+
+        console.log(query)
 
         this.$router.push({ name: 'books', query })
       } else {

@@ -114,18 +114,18 @@ export default {
       langs: [],
       series: [
         {
-          slug: 'without-series',
-          name: 'Without series',
+          slug: 'false',
+          name: 'No series',
         },
         {
-          slug: 'with-series',
-          name: 'With series',
+          slug: 'true',
+          name: 'Only series',
         },
       ],
     }
   },
   mounted() {
-    if (this.$route.query.lang) {
+    if (this.$route.query) {
       this.filterEnabled = true
     }
   },

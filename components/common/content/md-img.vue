@@ -21,11 +21,11 @@
           to open it in new tab
         </div>
         <img
-          :src="fullPath"
+          v-lazy-load
+          :data-src="fullPath"
           :alt="legend ? legend : src"
           :title="legend ? legend : src"
-          class="mx-auto my-auto shadow-sm"
-          loading="lazy"
+          class="mx-auto my-auto rounded-sm shadow-sm"
         />
         <legend v-if="legend" class="mt-2 mb-3 text-sm italic text-center">
           {{ legend }}

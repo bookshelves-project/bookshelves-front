@@ -9,8 +9,8 @@
       </label>
       <div class="relative">
         <input
-          v-model="author"
-          name="author"
+          v-model="language"
+          name="language"
           :class="showList ? '' : 'rounded-b-md'"
           class="relative w-full py-2 pl-3 pr-10 text-left transition-transform duration-100 transform bg-white border border-gray-300 shadow-sm rounded-t-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           placeholder="Search any tag"
@@ -20,7 +20,7 @@
         />
         <transition name="fade">
           <button
-            v-if="author !== ''"
+            v-if="language !== ''"
             type="button"
             class="absolute p-1 transition-colors duration-100 transform -translate-y-1/2 bg-gray-100 rounded-full hover:bg-gray-200 right-2 top-1/2"
             @click="clear"
@@ -36,12 +36,12 @@
         >
           <ul class="bg-white shadow-sm">
             <li
-              v-for="authorValue in authors"
-              :key="authorValue.id"
+              v-for="languageValue in languages"
+              :key="languageValue.id"
               class="p-2 py-1 font-semibold transition-colors duration-100 cursor-pointer hover:bg-gray-200"
-              @click="valid(authorValue)"
+              @click="valid(languageValue)"
             >
-              {{ authorValue.name }}
+              {{ languageValue.name }}
             </li>
           </ul>
         </div>
@@ -62,30 +62,30 @@ export default {
   data() {
     return {
       showList: false,
-      author: '',
-      authors: [],
-      fullAuthors: [],
+      language: '',
+      languages: [],
+      fullLanguages: [],
       validate: true,
-      validAuthor: null,
+      validLanguage: null,
     }
   },
   watch: {
-    author(newValue, oldValue) {
-      if (this.author.length >= 1) {
-        this.authors = this.filterByValue(this.fullAuthors, this.author)
+    language(newValue, oldValue) {
+      if (this.language.length >= 1) {
+        this.languages = this.filterByValue(this.fullLanguages, this.language)
         this.showList = true
       } else {
         this.showList = false
-        this.authors = []
+        this.languages = []
       }
     },
   },
   async created() {
-    await this.getAuthors()
+    await this.getLanguages()
   },
   methods: {
     openList() {
-      if (this.authors.length) {
+      if (this.languages.length) {
         this.showList = true
       }
     },
@@ -98,11 +98,11 @@ export default {
         )
       )
     },
-    async getAuthors(query) {
-      if (!this.authors.length) {
-        const authors = await this.$axios.$get(`/tags`)
+    async getLanguages(query) {
+      if (!this.languages.length) {
+        const languages = await this.$axios.$get(`/languages`)
 
-        this.fullAuthors = authors.data
+        this.fullLanguages = languages.data
       } else {
         this.showList = true
       }
@@ -111,21 +111,21 @@ export default {
       this.showList = false
     },
     clear() {
-      this.author = ''
+      this.language = ''
       this.showList = false
-      this.validAuthor = null
-      this.$emit('tag', null)
+      this.validLanguage = null
+      this.$emit('lang', null)
     },
-    valid(author) {
-      // this.author = author.name
-      this.validAuthor = author
+    valid(language) {
+      // this.language = language.name
+      this.validLanguage = language
       this.validate = false
       setTimeout(() => {
         this.showList = false
         this.validate = true
       }, 50)
-      console.log(this.validAuthor)
-      this.$emit('tag', this.validAuthor)
+      console.log(this.validLanguage)
+      this.$emit('lang', this.validLanguage)
     },
   },
 }

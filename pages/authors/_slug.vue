@@ -162,7 +162,7 @@ export default {
     }
   },
   head() {
-    const title = `${this.author.name} - Authors`
+    const title = `${this.author.name}`
     const url = `${this.$config.baseURL}/authors/${this.author.slug}`
     const dynamicMeta = dynamicMetadata({
       type: 'profile',
