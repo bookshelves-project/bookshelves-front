@@ -77,7 +77,9 @@ export default {
         {
           hid: 'book:isbn',
           property: 'book:isbn',
-          content: this.book.identifier.isbn13 || this.book.identifier.isbn,
+          content: this.book.identifier
+            ? this.book.identifier.isbn13 || this.book.identifier.isbn
+            : null,
         },
         {
           hid: 'book:author',
@@ -146,7 +148,9 @@ export default {
         datePublished: this.book.publishDate,
         image: this.book.picture.base,
         inLanguage: getLanguage(this.book.language),
-        isbn: this.book.identifier.isbn || this.book.identifier.isbn13,
+        isbn: this.book.identifier
+          ? this.book.identifier.isbn || this.book.identifier.isbn13
+          : null,
         name: this.book.title,
         numberOfPages: this.book.pageCount,
         publisher: this.book.publisher ? this.book.publisher.name : '',

@@ -10,7 +10,7 @@
           :to="{ name: 'tags-slug', params: { slug: tag.slug } }"
           class="px-3 py-1 m-1 transition-colors duration-100 bg-gray-300 rounded-full hover:bg-primary-300"
         >
-          {{ tag.name }}
+          {{ tag.name }} ({{ tag.count }})
         </nuxt-link>
       </section>
     </div>
@@ -23,7 +23,7 @@
           :to="{ name: 'tags-slug', params: { slug: tag.slug } }"
           class="px-3 py-1 m-1 transition-colors duration-100 bg-gray-300 rounded-full hover:bg-primary-300"
         >
-          {{ tag.name }}
+          {{ tag.name }} ({{ tag.count }})
         </nuxt-link>
       </section>
     </div>

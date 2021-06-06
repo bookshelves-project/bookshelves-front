@@ -125,7 +125,11 @@ export default {
     }
   },
   mounted() {
-    if (this.$route.query) {
+    if (
+      this.$route.query &&
+      Object.keys(this.$route.query).length !== 0 &&
+      this.$route.query.constructor === Object
+    ) {
       this.filterEnabled = true
     }
   },

@@ -6,7 +6,8 @@
         v-for="entity in entities"
         :key="entity.id"
         :data="entity"
-        :cover="entity.picture"
+        :cover="entity.picture.base"
+        :color="entity.picture.color"
         :title="entity.title"
         :limited-height="false"
         :route="{
