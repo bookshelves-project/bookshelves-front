@@ -6,13 +6,13 @@
         <div class="masonry-container">
           <book-header :book="book" class="masonry-block" />
           <book-main :book="book" class="masonry-block" />
-          <book-serie
-            v-if="book.serie !== null"
+          <book-comments
+            v-if="$config.moduleSocial"
             :book="book"
             class="masonry-block"
           />
-          <book-comments
-            v-if="$config.moduleSocial"
+          <book-serie
+            v-if="book.serie !== null"
             :book="book"
             class="masonry-block"
           />
