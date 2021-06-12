@@ -95,13 +95,20 @@
                       v-if="$route.params.slug !== book.slug"
                       :color="`white`"
                       :to="{
-                        name: 'books-slug',
+                        name: `${
+                          book.meta.entity ? book.meta.entity : 'book'
+                        }s-slug`,
                         params: {
-                          author: book.meta.author,
-                          slug: book.meta.slug,
+                          author: book.meta.author
+                            ? book.meta.author
+                            : book.author,
+                          slug: book.meta.slug ? book.meta.slug : book.slug,
                         },
                       }"
-                      >Refer to {{ book.meta.entity }}</app-button
+                      >Refer to
+                      {{
+                        book.meta.entity ? book.meta.entity : 'book'
+                      }}</app-button
                     >
                     <span v-else class="italic text-gray-500 dark:text-gray-400"
                       >Current page</span
