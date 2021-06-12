@@ -24,7 +24,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/css/app', '~/assets/css/markdown'],
+  css: ['~/assets/css/app.pcss', '~/assets/css/markdown'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   loading: {
@@ -146,6 +146,8 @@ export default {
         appendClass: 'lazyLoad',
       },
     ],
+    // https://image.nuxtjs.org/getting-started/installation
+    '@nuxt/image',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -245,6 +247,9 @@ export default {
     exclude:
       process.env.META_ROBOT_DISALLOW.split(',') || metadata.settings.disallow,
     sitemaps: sitemaps(),
+  },
+  image: {
+    // Options
   },
 
   hooks: {

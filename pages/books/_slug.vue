@@ -2,21 +2,21 @@
   <main class="container min-h-screen max-w-7xl">
     <div class="pb-8">
       <div class="max-w-3xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
-        <h1 class="sr-only">Profile</h1>
-        <!-- Main 2 column grid -->
-        <div class="grid items-start grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
-          <!-- Left column -->
-          <div class="grid grid-cols-1 gap-4 lg:col-span-1">
-            <book-header :book="book" />
-            <book-main :book="book" />
-          </div>
-
-          <!-- Right column -->
-          <div class="grid grid-cols-1 gap-4 lg:col-span-1">
-            <book-serie v-if="book.serie !== null" :book="book" />
-            <book-comments v-if="$config.moduleSocial" :book="book" />
-            <book-more :book="book" />
-          </div>
+        <h1 class="sr-only">{{ book.title }}</h1>
+        <div class="masonry-container">
+          <book-header :book="book" class="masonry-block" />
+          <book-main :book="book" class="masonry-block" />
+          <book-serie
+            v-if="book.serie !== null"
+            :book="book"
+            class="masonry-block"
+          />
+          <book-comments
+            v-if="$config.moduleSocial"
+            :book="book"
+            class="masonry-block"
+          />
+          <book-related :book="book" class="masonry-block" />
         </div>
       </div>
     </div>
@@ -27,14 +27,14 @@
 import BookComments from '~/components/blocks/books-slug/book-comments.vue'
 import bookHeader from '~/components/blocks/books-slug/book-header.vue'
 import BookMain from '~/components/blocks/books-slug/book-main.vue'
-import BookMore from '~/components/blocks/books-slug/book-more.vue'
+import BookRelated from '~/components/blocks/books-slug/book-related.vue'
 import BookSerie from '~/components/blocks/books-slug/book-serie.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import { getLanguage, getAuthors } from '~/plugins/utils/methods'
 
 export default {
   name: 'BooksSlug',
-  components: { bookHeader, BookComments, BookMain, BookSerie, BookMore },
+  components: { bookHeader, BookComments, BookMain, BookSerie, BookRelated },
   async asyncData({ app, params }) {
     try {
       const [book] = await Promise.all([
@@ -164,3 +164,24 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss" scoped>
+.masonry-block {
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin-bottom: 0.8rem;
+  break-inside: avoid;
+}
+
+.masonry-container {
+  column-count: 1;
+  column-gap: 1rem;
+}
+
+@screen lg {
+  .masonry-container {
+    column-count: 2;
+  }
+}
+</style>

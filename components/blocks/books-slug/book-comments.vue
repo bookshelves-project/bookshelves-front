@@ -25,7 +25,6 @@
                       :src="comment.user.picture"
                       class="w-10 h-10 rounded-full"
                       :alt="comment.user.name"
-                      loading="lazy"
                     />
                   </div>
                   <div>

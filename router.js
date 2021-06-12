@@ -13,6 +13,12 @@ import AuthorsSlug from '~/pages/authors/_slug'
 
 import TagsIndex from '~/pages/tags/index'
 import TagsSlug from '~/pages/tags/_slug'
+import LanguagesIndex from '~/pages/languages/index'
+import LanguagesSlug from '~/pages/languages/_slug'
+import PublishersIndex from '~/pages/publishers/index'
+import PublishersSlug from '~/pages/publishers/_slug'
+
+import RelatedSlug from '~/pages/related/_slug'
 
 import SearchIndex from '~/pages/search/index'
 import Contact from '~/pages/contact'
@@ -89,6 +95,31 @@ const routesList = [
     name: 'tags-slug',
     path: '/tags/:slug',
     component: TagsSlug,
+  },
+  {
+    name: 'languages',
+    path: '/languages',
+    component: LanguagesIndex,
+  },
+  {
+    name: 'languages-slug',
+    path: '/languages/:slug',
+    component: LanguagesSlug,
+  },
+  {
+    name: 'publishers',
+    path: '/publishers',
+    component: PublishersIndex,
+  },
+  {
+    name: 'publishers-slug',
+    path: '/publishers/:slug',
+    component: PublishersSlug,
+  },
+  {
+    name: 'related-slug',
+    path: '/related/:author/:slug',
+    component: RelatedSlug,
   },
   // Auth
   {

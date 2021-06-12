@@ -29,7 +29,7 @@ export const getLanguage = (slug) => {
   }
 }
 
-export const getLanguageFlag = (slug) => {
+export const formatLanguage = (slug, type = 'flag') => {
   const available = [
     {
       slug: 'fr',
@@ -46,8 +46,14 @@ export const getLanguageFlag = (slug) => {
   const language = available.find((lang) => lang.slug === slug)
   if (language) {
     const lang = language.id
-    return `https://www.countryflags.io/${lang}/flat/32.png`
+    if (type === 'flag') {
+      return `https://www.countryflags.io/${lang}/flat/32.png`
+    } else {
+      return language.label
+    }
   }
+
+  return 'unknown'
 }
 
 export const getAuthors = (authors) => {

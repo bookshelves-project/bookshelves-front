@@ -78,7 +78,7 @@
                 >Language :
               </span>
               <img
-                :src="getLanguageFlag(serie.language)"
+                :src="formatLanguage(serie.language)"
                 :alt="serie.language"
                 loading="lazy"
                 class="ml-2"
@@ -163,7 +163,7 @@
 <script>
 import {
   getHostname,
-  getLanguageFlag,
+  formatLanguage,
   getLanguage,
   getAuthors,
 } from '~/plugins/utils/methods'
@@ -194,7 +194,7 @@ export default {
   },
   data() {
     return {
-      getLanguageFlag,
+      formatLanguage,
       getLanguage,
       getAuthors,
       getHostname,

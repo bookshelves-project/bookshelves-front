@@ -18,7 +18,7 @@
       v-lazy-load
       :class="[loading ? '' : '', picture]"
       :data-src="src"
-      :alt="title"
+      :alt="noAlt ? '' : title"
       :title="title"
       class="object-cover max-size img"
       @load="onImgLoad"
@@ -45,6 +45,10 @@ export default {
     picture: {
       type: String,
       default: null,
+    },
+    noAlt: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {

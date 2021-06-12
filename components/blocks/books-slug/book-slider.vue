@@ -1,156 +1,167 @@
 <template>
-  <section aria-labelledby="timeline-title" class="relative book-books">
-    <div class="px-4 py-5 shadow sm:rounded-lg sm:px-6 dark:bg-gray-800">
-      <h2 id="timeline-title" class="px-2 text-lg font-semibold text-gray-900">
-        <slot name="title" />
-      </h2>
-      <p class="max-w-2xl px-2 mt-1 text-sm italic text-gray-500">
-        <slot name="subtitle" />
-      </p>
-      <div v-if="isLoaded" class="mt-5">
-        <agile
-          v-if="books.length"
-          ref="main"
-          class="main"
-          :options="options1"
-          :as-nav-for="asNavFor1"
+  <section aria-labelledby="book-slider">
+    <div
+      class="shadow sm:rounded-lg dark:bg-gray-800 relative book-books max-w-full overflow-hidden"
+    >
+      <div class="px-4 py-5 sm:px-6">
+        <h2
+          id="book-slider"
+          class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100"
         >
-          <div
-            v-for="(book, index) in books"
-            :key="index"
-            class="slide"
-            :class="`slide--${index}`"
+          <slot name="title" />
+        </h2>
+        <p class="max-w-2xl mt-1 text-sm italic text-gray-500">
+          <slot name="subtitle" />
+        </p>
+      </div>
+      <div
+        class="px-4 py-5 border-t border-gray-200 dark:border-gray-700 sm:px-6"
+      >
+        <div v-if="isLoaded" class="mt-5">
+          <agile
+            v-if="books.length"
+            ref="main"
+            class="main"
+            :options="options1"
+            :as-nav-for="asNavFor1"
           >
-            <div class="w-full h-full lg:grid lg:grid-cols-2">
-              <div class="col-span-1">
-                <app-img
-                  :src="book.picture.original"
-                  :color="book.picture.color"
-                  :title="book.title"
-                  class="object-cover object-top w-32 h-32 rounded-full lg:rounded-none lg:w-full lg:h-full"
-                />
-              </div>
-              <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
-                <div>
-                  <span
-                    class="text-sm font-medium text-gray-500 dark:text-gray-400"
-                    >Title
-                  </span>
-                  <h3 class="font-semibold text-black">
-                    {{ book.title }}
-                  </h3>
+            <div
+              v-for="(book, index) in books"
+              :key="index"
+              class="slide"
+              :class="`slide--${index}`"
+            >
+              <div class="w-full h-full lg:grid lg:grid-cols-2">
+                <div class="col-span-1">
+                  <app-img
+                    :src="book.picture.original"
+                    :color="book.picture.color"
+                    :title="book.title"
+                    class="object-cover object-top w-32 h-32 rounded-full lg:rounded-none lg:w-full lg:h-full"
+                  />
                 </div>
-                <div>
+                <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
                   <div>
                     <span
                       class="text-sm font-medium text-gray-500 dark:text-gray-400"
-                      >Authors
+                      >Title
                     </span>
-                    <h3 class="font-semibold">
-                      <span
-                        v-for="(author, authorId) in book.authors"
-                        :key="authorId"
-                        class="mr-1"
-                      >
-                        <nuxt-link
-                          :to="{
-                            name: 'authors-slug',
-                            params: { slug: book.author },
-                          }"
-                          class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
-                          >{{ author.name }}</nuxt-link
-                        >
-                        <span
-                          v-if="
-                            bookData.authors.length > 1 &&
-                            authorId !== bookData.authors.length - 1
-                          "
-                          >&</span
-                        >
-                      </span>
+                    <h3 class="font-semibold text-black">
+                      {{ book.title }}
                     </h3>
                   </div>
-                </div>
-                <div>
-                  <span
-                    class="text-sm font-medium text-gray-500 dark:text-gray-400"
-                    >Volume
-                  </span>
-                  <h3 class="font-semibold text-black">
-                    {{ book.volume }}
-                  </h3>
-                </div>
-                <div class="pt-6">
-                  <app-button
-                    v-if="$route.params.slug !== book.slug"
-                    :color="`white`"
-                    :to="{
-                      name: 'books-slug',
-                      params: {
-                        author: book.author,
-                        slug: book.slug,
-                      },
-                    }"
-                    >Refer to book</app-button
-                  >
-                  <span v-else class="italic text-gray-500 dark:text-gray-400"
-                    >Current page</span
-                  >
+                  <div>
+                    <div>
+                      <span
+                        class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                        >Authors
+                      </span>
+                      <h3 class="font-semibold">
+                        <span
+                          v-for="(author, authorId) in book.authors"
+                          :key="authorId"
+                          class="mr-1"
+                        >
+                          <nuxt-link
+                            :to="{
+                              name: 'authors-slug',
+                              params: { slug: author.slug },
+                            }"
+                            class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
+                            >{{ author.name }}</nuxt-link
+                          >
+                          <span
+                            v-if="
+                              bookData.authors.length > 1 &&
+                              authorId !== bookData.authors.length - 1
+                            "
+                            >&</span
+                          >
+                        </span>
+                      </h3>
+                    </div>
+                  </div>
+                  <div v-if="book.volume">
+                    <span
+                      class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                      >Volume
+                    </span>
+                    <h3 class="font-semibold text-black">
+                      {{ book.volume }}
+                    </h3>
+                  </div>
+                  <div class="pt-6">
+                    <app-button
+                      v-if="$route.params.slug !== book.slug"
+                      :color="`white`"
+                      :to="{
+                        name: 'books-slug',
+                        params: {
+                          author: book.meta.author,
+                          slug: book.meta.slug,
+                        },
+                      }"
+                      >Refer to {{ book.meta.entity }}</app-button
+                    >
+                    <span v-else class="italic text-gray-500 dark:text-gray-400"
+                      >Current page</span
+                    >
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <template slot="prevButton">
-            <svg-icon
-              name="arrow-chevron-right"
-              class="w-8 h-8 m-auto text-gray-900 dark:text-gray-400 arrow-rotate"
-            />
-          </template>
-          <template slot="nextButton">
-            <svg-icon
-              name="arrow-chevron-right"
-              class="w-8 h-8 m-auto text-gray-900 dark:text-gray-400"
-            />
-          </template>
-        </agile>
-        <agile
-          v-if="books.length"
-          ref="thumbnails"
-          class="thumbnails"
-          :options="options2"
-          :as-nav-for="asNavFor2"
-        >
-          <div
-            v-for="(book, index) in books"
-            :key="index"
-            class="slide slide--thumbniail"
-            :class="`slide--${index}`"
-            @click="$refs.thumbnails.goTo(index)"
+            <template slot="prevButton">
+              <svg-icon
+                name="arrow-chevron-right"
+                class="w-8 h-8 m-auto text-gray-900 dark:text-gray-400 arrow-rotate"
+              />
+            </template>
+            <template slot="nextButton">
+              <svg-icon
+                name="arrow-chevron-right"
+                class="w-8 h-8 m-auto text-gray-900 dark:text-gray-400"
+              />
+            </template>
+          </agile>
+          <agile
+            v-if="books.length"
+            ref="thumbnails"
+            class="thumbnails"
+            :options="options2"
+            :as-nav-for="asNavFor2"
           >
-            <app-img
-              :src="book.picture.original"
-              :color="book.picture.color"
-              :title="book.title"
-              class="object-cover object-center w-full h-full"
-            />
-          </div>
-        </agile>
-      </div>
-      <div v-else class="pt-10 pb-10">
-        <div
-          class="absolute transform -translate-x-1/2 translate-y-1/2 top-1/2 left-1/2"
-        >
-          <loading class="w-6 h-6" />
+            <div
+              v-for="(book, index) in books"
+              :key="index"
+              class="slide slide--thumbniail"
+              :class="`slide--${index}`"
+              @click="$refs.thumbnails.goTo(index)"
+            >
+              <app-img
+                :src="book.picture.base"
+                :color="book.picture.color"
+                :title="book.title"
+                class="object-cover object-center w-full h-full"
+              />
+            </div>
+          </agile>
         </div>
-      </div>
-      <div
-        v-if="!books.length"
-        class="px-2 text-sm italic text-gray-400 dark:text-gray-200"
-      >
-        No results.
-      </div>
-      <div class="mt-6">
-        <slot name="link" />
+        <div v-else class="pt-10 pb-10">
+          <div
+            class="absolute transform -translate-x-1/2 translate-y-1/2 top-1/2 left-1/2"
+          >
+            <loading class="w-6 h-6" />
+          </div>
+        </div>
+        <div
+          v-if="!books.length"
+          class="px-2 text-sm italic text-gray-400 dark:text-gray-200"
+        >
+          No results.
+        </div>
+        <div class="mt-6">
+          <slot name="link" />
+        </div>
       </div>
     </div>
   </section>

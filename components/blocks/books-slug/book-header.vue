@@ -12,6 +12,7 @@
                 :title="book.title"
                 class="w-20 h-20"
                 picture="rounded-full"
+                no-alt
               />
             </div>
             <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
@@ -82,7 +83,7 @@
           @click="toggleFavorite('book')"
         >
           <svg-icon
-            name="heart"
+            :name="isFavorite ? 'heart-full' : 'heart'"
             :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
             class="w-5 h-5"
           />

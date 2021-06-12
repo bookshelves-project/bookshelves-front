@@ -5,29 +5,30 @@
     :books="books"
     :loaded="loaded"
   >
-    <template #title> Related books </template>
+    <template #title> Related books & series </template>
     <template #subtitle>
-      Based on tags & genre, not in same series. Limited to 10 random
+      Based on tags & genre, not in same series. Limited to 10 first
       results.</template
     >
-    <!-- <template #link>
+    <template #link>
       <nuxt-link
         :to="{
-          name: 'series-slug',
+          name: 'related-slug',
           params: {
             author: book.author,
-            slug: book.serie.slug,
+            slug: book.slug,
           },
         }"
         class="flex items-center justify-center w-full px-4 py-2 text-sm font-semibold text-gray-700 transition-colors duration-100 bg-white border border-gray-300 rounded-md shadow-sm dark:border-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
       >
-        View series page
+        View all results
       </nuxt-link>
-    </template> -->
+    </template>
   </book-slider>
 </template>
 
 <script>
+import qs from 'qs'
 import BookSlider from './book-slider.vue'
 
 export default {
@@ -55,7 +56,11 @@ export default {
       if (this.book.tags.length || this.book.genres.length) {
         try {
           const books = await this.$axios.$get(
-            `/books/more/${this.book.author}/${this.book.slug}`
+            `/books/related/${this.book.author}/${
+              this.book.slug
+            }?${qs.stringify({
+              limit: true,
+            })}`
           )
           this.books = books.data
           this.loaded = true

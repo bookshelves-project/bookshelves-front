@@ -190,13 +190,13 @@ export default {
             {
               label: 'Languages',
               route: {
-                name: '',
+                name: 'languages',
               },
             },
             {
               label: 'Publishers',
               route: {
-                name: '',
+                name: 'publishers',
               },
             },
           ],

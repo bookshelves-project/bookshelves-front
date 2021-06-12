@@ -31,7 +31,7 @@
                       name: 'authors-slug',
                       params: { slug: author.slug },
                     }"
-                    class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
+                    class="internal-link"
                     >{{ author.name }}</nuxt-link
                   >
                   <span
@@ -59,7 +59,7 @@
                       slug: book.serie.slug,
                     },
                   }"
-                  class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
+                  class="internal-link"
                 >
                   {{ book.serie.title }}
                 </nuxt-link>
@@ -72,11 +72,15 @@
               Publishing
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
-              <span
-                >{{ book.publisher.name }} ({{
-                  $formatDate(book.publishDate)
-                }})</span
+              <nuxt-link
+                :to="{
+                  name: 'publishers-slug',
+                  params: { slug: book.publisher.slug },
+                }"
+                class="internal-link"
+                >{{ book.publisher.name }}</nuxt-link
               >
+              ({{ $formatDate(book.publishDate) }})
             </dd>
           </div>
           <div v-if="book.language" class="sm:col-span-1">
@@ -84,11 +88,15 @@
               Language
             </dt>
             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
-              <img
-                :src="getLanguageFlag(book.language)"
-                :alt="book.language"
-                loading="lazy"
-              />
+              <nuxt-link
+                :to="{
+                  name: 'books',
+                  query: { lang: book.language },
+                }"
+                class="internal-link"
+              >
+                {{ formatLanguage(book.language, 'label') }}
+              </nuxt-link>
             </dd>
           </div>
           <div v-if="book.identifier" class="sm:col-span-1">
@@ -126,12 +134,17 @@
             <dd
               class="flex flex-wrap mt-1 text-sm text-gray-900 dark:text-gray-100"
             >
-              <span v-for="(genre, genreId) in book.genres" :key="genreId">
+              <nuxt-link
+                v-for="(genre, genreId) in book.genres"
+                :key="genreId"
+                :to="{ name: 'tags-slug', params: { slug: genre.slug } }"
+                class="internal-link"
+              >
                 {{ genre.name
                 }}<span v-if="genreId !== book.genres.length - 1" class="mr-1"
                   >,</span
                 >
-              </span>
+              </nuxt-link>
             </dd>
           </div>
           <div v-if="book.tags.length >= 1" class="sm:col-span-1">
@@ -141,12 +154,17 @@
             <dd
               class="flex flex-wrap mt-1 text-sm text-gray-900 dark:text-gray-100"
             >
-              <span v-for="(tag, tagId) in book.tags" :key="tagId">
+              <nuxt-link
+                v-for="(tag, tagId) in book.tags"
+                :key="tagId"
+                :to="{ name: 'tags-slug', params: { slug: tag.slug } }"
+                class="internal-link"
+              >
                 {{ tag.name
                 }}<span v-if="tagId !== book.tags.length - 1" class="mr-1"
                   >,</span
                 >
-              </span>
+              </nuxt-link>
             </dd>
           </div>
           <div v-if="book.description" class="sm:col-span-2">
@@ -165,7 +183,7 @@
 </template>
 
 <script>
-import { getLanguageFlag } from '~/plugins/utils/methods'
+import { formatLanguage } from '~/plugins/utils/methods'
 export default {
   name: 'BookMain',
   props: {
@@ -176,7 +194,7 @@ export default {
   },
   data() {
     return {
-      getLanguageFlag,
+      formatLanguage,
     }
   },
 }
