@@ -1,6 +1,9 @@
 <template>
   <main class="container relative max-w-7xl">
-    <section-heading :title="title" :subtitle="description" />
+    <section-heading
+      :title="`${title} ${currentBook.title}`"
+      :subtitle="description"
+    />
     <section v-if="!apiError">
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
@@ -45,7 +48,7 @@
 <script>
 import EntityCard from '~/components/blocks/entity-card.vue'
 import sectionHeading from '~/components/blocks/section-heading.vue'
-import { getLanguage, objectIsEmpty } from '~/plugins/utils/methods'
+import { getLanguage, objectIsEmpty, getAuthors } from '~/plugins/utils/methods'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {
@@ -53,10 +56,13 @@ export default {
   components: { sectionHeading, EntityCard },
   async asyncData({ app, params }) {
     try {
-      const books = await app.$axios.$get(
-        `/books/related/${params.author}/${params.slug}`
-      )
+      const [currentBook, books] = await Promise.all([
+        app.$axios.$get(`/books/light/${params.author}/${params.slug}`),
+        app.$axios.$get(`/books/related/${params.author}/${params.slug}`),
+      ])
+
       return {
+        currentBook: currentBook.data,
         books: books.data,
         apiError: false,
       }
@@ -71,13 +77,13 @@ export default {
     return {
       getLanguage,
       objectIsEmpty,
-      title: `Related books & series`,
+      getAuthors,
+      title: `Related books & series for `,
       description: `List of all results for related books & series...`,
     }
   },
   head() {
-    console.log(this.$nuxt.$route.path)
-    const title = this.title
+    const title = `${this.title} ${this.currentBook.title}`
     const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
     const dynamicMeta = dynamicMetadata({
       title: this.title,

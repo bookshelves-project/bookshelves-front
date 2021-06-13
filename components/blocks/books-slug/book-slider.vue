@@ -95,20 +95,13 @@
                       v-if="$route.params.slug !== book.slug"
                       :color="`white`"
                       :to="{
-                        name: `${
-                          book.meta.entity ? book.meta.entity : 'book'
-                        }s-slug`,
+                        name: `${book.meta.entity}s-slug`,
                         params: {
-                          author: book.meta.author
-                            ? book.meta.author
-                            : book.author,
-                          slug: book.meta.slug ? book.meta.slug : book.slug,
+                          author: book.meta.author,
+                          slug: book.meta.slug,
                         },
                       }"
-                      >Refer to
-                      {{
-                        book.meta.entity ? book.meta.entity : 'book'
-                      }}</app-button
+                      >Refer to {{ book.meta.entity }}</app-button
                     >
                     <span v-else class="italic text-gray-500 dark:text-gray-400"
                       >Current page</span
@@ -131,7 +124,7 @@
             </template>
           </agile>
           <agile
-            v-if="books.length"
+            v-if="books.length > 1"
             ref="thumbnails"
             class="thumbnails"
             :options="options2"

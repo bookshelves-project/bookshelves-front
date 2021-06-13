@@ -1,7 +1,9 @@
 <template>
   <book-slider :book-data="book" :books="books" :loaded="loaded">
     <template #title> {{ book.serie.title }}'s series </template>
-    <template #subtitle> Current: vol. {{ book.volume }} </template>
+    <template #subtitle>
+      Current: vol. {{ book.volume }}, limited to 10 next volumes.
+    </template>
     <template #link>
       <nuxt-link
         :to="{
@@ -46,8 +48,10 @@ export default {
     async loadSerie() {
       if (this.book.serie !== null) {
         try {
-          const serie = await this.$axios.$get(this.book.serie.meta.show)
-          this.books = serie.data.books
+          const books = await this.$axios.$get(
+            `/series/books/${this.book.volume}/${this.book.serie.author}/${this.book.serie.slug}`
+          )
+          this.books = books.data
           this.loaded = true
         } catch (error) {
           console.error(error)

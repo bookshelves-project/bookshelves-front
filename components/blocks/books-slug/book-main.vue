@@ -134,17 +134,15 @@
             <dd
               class="flex flex-wrap mt-1 text-sm text-gray-900 dark:text-gray-100"
             >
-              <nuxt-link
-                v-for="(genre, genreId) in book.genres"
-                :key="genreId"
-                :to="{ name: 'tags-slug', params: { slug: genre.slug } }"
-                class="internal-link"
-              >
-                {{ genre.name
-                }}<span v-if="genreId !== book.genres.length - 1" class="mr-1"
+              <span v-for="(genre, genreId) in book.genres" :key="genreId">
+                <nuxt-link
+                  :to="{ name: 'tags-slug', params: { slug: genre.slug } }"
+                  class="internal-link"
+                  >{{ genre.name }} </nuxt-link
+                ><span v-if="genreId !== book.genres.length - 1" class="mr-1"
                   >,</span
                 >
-              </nuxt-link>
+              </span>
             </dd>
           </div>
           <div v-if="book.tags.length >= 1" class="sm:col-span-1">
@@ -154,17 +152,15 @@
             <dd
               class="flex flex-wrap mt-1 text-sm text-gray-900 dark:text-gray-100"
             >
-              <nuxt-link
-                v-for="(tag, tagId) in book.tags"
-                :key="tagId"
-                :to="{ name: 'tags-slug', params: { slug: tag.slug } }"
-                class="internal-link"
-              >
-                {{ tag.name
-                }}<span v-if="tagId !== book.tags.length - 1" class="mr-1"
+              <span v-for="(tag, tagId) in book.tags" :key="tagId">
+                <nuxt-link
+                  :to="{ name: 'tags-slug', params: { slug: tag.slug } }"
+                  class="internal-link"
+                  >{{ tag.name }}</nuxt-link
+                ><span v-if="tagId !== book.tags.length - 1" class="mr-1"
                   >,</span
                 >
-              </nuxt-link>
+              </span>
             </dd>
           </div>
           <div v-if="book.description" class="sm:col-span-2">
