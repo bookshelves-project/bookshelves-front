@@ -32,7 +32,7 @@ import Admin from '~/pages/admin'
 
 // Content
 import Guides from '~/pages/guides/index'
-import Content from '~/pages/content'
+import Content from '~/pages/_content'
 
 Vue.use(Router)
 
