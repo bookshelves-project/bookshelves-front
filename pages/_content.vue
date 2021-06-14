@@ -71,7 +71,9 @@ export default {
     }
   },
   head() {
-    const title = `${this.document.title} · Guides`
+    const title = `${this.document.title} · ${this.$capitalize(
+      this.$route.params.type
+    )}`
     const url = `${this.$config.baseURL}/${this.$route.params.type}/${this.document.slug}`
     const dynamicMeta = dynamicMetadata({
       type: 'article',

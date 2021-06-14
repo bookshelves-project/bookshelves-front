@@ -47,7 +47,7 @@ export const formatLanguage = (slug, type = 'flag') => {
   if (language) {
     const lang = language.id
     if (type === 'flag') {
-      return `https://www.countryflags.io/${lang}/flat/32.png`
+      return `https://www.countryflags.io/${lang}/flat/24.png`
     } else {
       return language.label
     }

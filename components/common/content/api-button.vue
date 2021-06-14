@@ -2,16 +2,22 @@
   <span class="flex">
     <app-button
       :color="`secondary`"
-      :href="`${$config.apiURL}/opds`"
+      :href="`${$config.apiURL}/${endpoint}`"
       class="mx-auto"
     >
-      Discover OPDS for eReaders
+      <slot />
     </app-button>
   </span>
 </template>
 
 <script>
 export default {
-  name: 'OpdsLink',
+  name: 'ApiButton',
+  props: {
+    endpoint: {
+      type: String,
+      default: '',
+    },
+  },
 }
 </script>

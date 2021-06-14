@@ -42,22 +42,23 @@
       :position-image="`right`"
       :icon="`open-book`"
       :image="`/images/home/book_reading.svg`"
-      :title="`Want to download from your eReader?`"
+      :title="`Bookshelves can follow you everywhere`"
     >
       <template #text>
-        If you want to download and read an eBook directly from your eReader you
-        can do it, without any computer. With OPDS (Open Publication
-        Distribution System) from Bookshelves you can access to very basic
-        interface with your eReader browser to search and download any eBook
-        from your eReader.
+        You can download directly eBooks from your eReader with
+        <b>Catalog</b> or you can use <b>OPDS</b> (Open Publication Distribution
+        System) feed to get all Bookshelves eBooks on your favorite application.
       </template>
       <template #cta>
         <app-button
           class="mt-6"
-          :to="{ name: 'content', params: { type: 'pages', slug: 'opds' } }"
+          :to="{
+            name: 'content',
+            params: { type: 'pages', slug: 'opds-catalog' },
+          }"
           :color="`white`"
         >
-          Discover OPDS
+          Discover OPDS & Catalog
         </app-button>
       </template>
     </feature-highlighted>

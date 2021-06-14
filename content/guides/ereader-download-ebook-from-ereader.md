@@ -38,16 +38,16 @@ This will open the home page, usually on Google, you have **URL bar at the top**
 
 ## An example
 
-We will take an example with this website, with <api-link endpoint="/opds">OPDS service</api-link>, just put this URL in URL bar and tap on "Go" <api-link endpoint="/opds" :refer-it-self="true"></api-link>. You will see OPDS home page with search bar, don't hesitate to add it to your favorites.
+We will take an example with this website, with <api-link endpoint="/catalog">Catalog service</api-link>, just put this URL in URL bar and tap on "Go" <api-link endpoint="/catalog" :refer-it-self="true"></api-link>. You will see Catalog home page with search bar, don't hesitate to add it to your favorites.
 
 <md-img src="browser-options">
-    Bookshelves OPDS home page.
+    Bookshelves Catalog home page.
 </md-img>
 
 Search any book with title, author firstname and lastname or series' title. If you have an author or a series in results, you can tap on it to get all books associate with it, you can't download directly all books, you have to tap on book you want and tap on "Download". Here, we've choose a book:
 
 <md-img src="browser-ebook-example">
-    An eBook on Bookshelves OPDS.
+    An eBook on Bookshelves Catalog.
 </md-img>
 
 A popup will appear when you tap on "Download", if you continue, your browser will download eBook.

@@ -126,6 +126,11 @@ export default {
         },
         {
           icon: 'open-book',
+          label: 'Catalog',
+          link: `${this.$config.apiURL}/catalog`,
+        },
+        {
+          icon: 'feed',
           label: 'OPDS',
           link: `${this.$config.apiURL}/opds`,
         },
@@ -143,10 +148,10 @@ export default {
               },
             },
             {
-              label: 'OPDS',
+              label: 'OPDS & Catalog',
               route: {
                 name: 'content',
-                params: { type: 'pages', slug: 'opds' },
+                params: { type: 'pages', slug: 'opds-catalog' },
               },
             },
           ],
@@ -159,13 +164,6 @@ export default {
               route: {
                 name: 'content',
                 params: { type: 'pages', slug: 'more-ebooks' },
-              },
-            },
-            {
-              label: 'Documentation API',
-              route: {
-                name: 'content',
-                params: { type: 'pages', slug: 'api-documentation' },
               },
             },
             {
@@ -212,10 +210,10 @@ export default {
               },
             },
             {
-              label: 'Cookies',
+              label: 'Privacy',
               route: {
                 name: 'content',
-                params: { type: 'pages', slug: 'cookies' },
+                params: { type: 'pages', slug: 'privacy' },
               },
             },
           ],
