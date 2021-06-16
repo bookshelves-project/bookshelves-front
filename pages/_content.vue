@@ -42,7 +42,7 @@
       </div>
       <div class="relative block w-full lg:mx-auto lg:w-1/4 lg:max-w-prose">
         <div
-          class="lg:sticky lg:top-16 h-full lg:h-auto lg:max-h-(screen-5) pt-5"
+          class="lg:sticky lg:top-16 h-full lg:h-auto lg:max-h-(screen-5) pt-5 max-w-xl mx-auto"
         >
           <table-of-content :toc="document.toc"></table-of-content>
           <img :src="picture" :alt="`${document.title} picture`" class="h-40" />

@@ -73,7 +73,7 @@
 <script>
 import qs from 'qs'
 import Autocomplete from '@trevoreyre/autocomplete-vue'
-import '~/assets/css/autocomplete.css'
+import '~/assets/css/autocomplete.pcss'
 import vClickOutside from 'v-click-outside'
 
 export default {

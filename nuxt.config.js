@@ -61,32 +61,20 @@ export default {
     '@nuxtjs/dotenv',
     // Doc: https://github.com/nuxt-community/router-module
     '@nuxtjs/router',
-    // https://google-fonts.nuxtjs.org/
-    '@nuxtjs/google-fonts',
     // https://image.nuxtjs.org
     // '@nuxt/image',
     // https://color-mode.nuxtjs.org/#setup
     '@nuxtjs/color-mode',
-    // https://github.com/nuxt-community/svg-module
-    // '@nuxtjs/svg',
     // https://github.com/nuxt-community/svg-sprite-module
     '@nuxtjs/svg-sprite',
     // https://html-validator.nuxtjs.org/
     // '@nuxtjs/html-validator',
   ],
   tailwindcss: {
-    cssPath: '~/assets/css/tailwind.css',
+    cssPath: '~/assets/css/tailwind.pcss',
   },
   routerModule: {
     keepDefaultRouter: true,
-  },
-  googleFonts: {
-    display: 'swap',
-    prefetch: true,
-    families: {
-      Quicksand: true,
-      Handlee: true,
-    },
   },
   colorMode: {
     classSuffix: '',

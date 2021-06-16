@@ -3,6 +3,7 @@ module.exports = {
   darkMode: 'class',
   purge: [
     'assets/**/*.css',
+    'assets/**/*.pcss',
     'components/**/*.vue',
     'layouts/**/*.vue',
     'pages/**/*.vue',
@@ -36,7 +37,6 @@ module.exports = {
         },
       },
       fontFamily: {
-        quicksand: ['Quicksand'],
         handlee: ['Handlee'],
       },
       height: {
