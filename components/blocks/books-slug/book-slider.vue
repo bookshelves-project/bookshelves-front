@@ -65,7 +65,7 @@
                           <nuxt-link
                             :to="{
                               name: 'authors-slug',
-                              params: { slug: author.slug },
+                              params: { slug: author.meta.slug },
                             }"
                             class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
                             >{{ author.name }}</nuxt-link
@@ -92,7 +92,7 @@
                   </div>
                   <div class="pt-6">
                     <app-button
-                      v-if="$route.params.slug !== book.slug"
+                      v-if="$route.params.slug !== book.meta.slug"
                       :color="`white`"
                       :to="{
                         name: `${book.meta.entity}s-slug`,

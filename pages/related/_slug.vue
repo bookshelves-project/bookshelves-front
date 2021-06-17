@@ -15,7 +15,10 @@
             :title="book.title"
             :route="{
               name: `${book.meta.entity}s-slug`,
-              params: { author: book.meta.author, slug: book.meta.slug },
+              params: {
+                author: book.meta.author,
+                slug: book.meta.slug,
+              },
             }"
           >
             <template #primary>

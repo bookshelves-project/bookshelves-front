@@ -6,7 +6,10 @@
         <nuxt-link
           v-for="publisher in publishers"
           :key="publisher.id"
-          :to="{ name: 'publishers-slug', params: { slug: publisher.slug } }"
+          :to="{
+            name: 'publishers-slug',
+            params: { slug: publisher.meta.slug },
+          }"
           class="px-3 py-1 m-1 transition-colors duration-100 bg-gray-300 rounded-full hover:bg-primary-300"
         >
           {{ publisher.name }} ({{ publisher.count }})

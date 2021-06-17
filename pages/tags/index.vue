@@ -7,7 +7,7 @@
         <nuxt-link
           v-for="tag in genres"
           :key="tag.id"
-          :to="{ name: 'tags-slug', params: { slug: tag.slug } }"
+          :to="{ name: 'tags-slug', params: { slug: tag.meta.slug } }"
           class="px-3 py-1 m-1 transition-colors duration-100 bg-gray-300 rounded-full hover:bg-primary-300"
         >
           {{ tag.name }} ({{ tag.count }})
@@ -20,7 +20,7 @@
         <nuxt-link
           v-for="tag in tags"
           :key="tag.id"
-          :to="{ name: 'tags-slug', params: { slug: tag.slug } }"
+          :to="{ name: 'tags-slug', params: { slug: tag.meta.slug } }"
           class="px-3 py-1 m-1 transition-colors duration-100 bg-gray-300 rounded-full hover:bg-primary-300"
         >
           {{ tag.name }} ({{ tag.count }})

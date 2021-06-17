@@ -12,7 +12,10 @@
         :limited-height="false"
         :route="{
           name: `${entity.meta.entity}s-slug`,
-          params: { author: entity.meta.author, slug: entity.meta.slug },
+          params: {
+            author: entity.meta.author,
+            slug: entity.meta.slug,
+          },
         }"
       >
         <template #primary>

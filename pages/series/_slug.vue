@@ -37,7 +37,10 @@
                 class="mr-1"
               >
                 <nuxt-link
-                  :to="{ name: 'authors-slug', params: { slug: author.slug } }"
+                  :to="{
+                    name: 'authors-slug',
+                    params: { slug: author.meta.slug },
+                  }"
                   class="text-gray-900 border-b border-gray-600 dark:border-gray-100 hover:text-gray-500 hover:border-gray-500"
                   >{{ author.name }}</nuxt-link
                 >
@@ -134,7 +137,7 @@
           :title="book.title"
           :route="{
             name: 'books-slug',
-            params: { author: book.author, slug: book.slug },
+            params: { author: book.meta.author, slug: book.meta.slug },
           }"
         >
           <template #primary>
@@ -202,7 +205,7 @@ export default {
   },
   head() {
     const title = `${this.serie.title} by ${this.authors}`
-    const url = `${this.$config.baseURL}/series/${this.serie.author}/${this.serie.slug}`
+    const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
     const dynamicMeta = dynamicMetadata({
       type: 'book',
       title,
@@ -246,7 +249,7 @@ export default {
       familyName: author.lastname,
       givenName: author.firstname,
       name: author.name,
-      url: `${this.$config.baseURL}/authors/${author.slug}`,
+      url: `${this.$config.baseURL}/authors/${author.meta.slug}`,
     }))
 
     const items = breadcrumbs.map((item, index) => ({
@@ -266,7 +269,7 @@ export default {
         author: authors,
         bookFormat: 'http://schema.org/BookSeries',
         image: this.serie.picture.base,
-        inLanguage: getLanguage(this.serie.language.slug),
+        inLanguage: getLanguage(this.serie.language),
         name: this.serie.title,
       },
     }

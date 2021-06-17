@@ -62,7 +62,7 @@ export default {
       ? ` · ${this.book.serie.title}, vol. ${this.book.volume} `
       : ''
     const title = `${this.book.title} ${serie}by ${this.authors}`
-    const url = `${this.$config.baseURL}/books/${this.book.author}/${this.book.slug}`
+    const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
     const dynamicMeta = dynamicMetadata({
       type: 'book',
       title,
@@ -125,7 +125,7 @@ export default {
       familyName: author.lastname,
       givenName: author.firstname,
       name: author.name,
-      url: `${this.$config.baseURL}/authors/${author.slug}`,
+      url: `${this.$config.baseURL}/authors/${author.meta.slug}`,
     }))
 
     const items = breadcrumbs.map((item, index) => ({

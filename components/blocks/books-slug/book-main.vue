@@ -29,7 +29,7 @@
                   <nuxt-link
                     :to="{
                       name: 'authors-slug',
-                      params: { slug: author.slug },
+                      params: { slug: author.meta.slug },
                     }"
                     class="internal-link"
                     >{{ author.name }}</nuxt-link
@@ -55,8 +55,8 @@
                   :to="{
                     name: 'series-slug',
                     params: {
-                      author: book.serie.author,
-                      slug: book.serie.slug,
+                      author: book.serie.meta.author,
+                      slug: book.serie.meta.slug,
                     },
                   }"
                   class="internal-link"
@@ -75,7 +75,7 @@
               <nuxt-link
                 :to="{
                   name: 'publishers-slug',
-                  params: { slug: book.publisher.slug },
+                  params: { slug: book.publisher.meta.slug },
                 }"
                 class="internal-link"
                 >{{ book.publisher.name }}</nuxt-link
@@ -136,7 +136,7 @@
             >
               <span v-for="(genre, genreId) in book.genres" :key="genreId">
                 <nuxt-link
-                  :to="{ name: 'tags-slug', params: { slug: genre.slug } }"
+                  :to="{ name: 'tags-slug', params: { slug: genre.meta.slug } }"
                   class="internal-link"
                   >{{ genre.name }} </nuxt-link
                 ><span v-if="genreId !== book.genres.length - 1" class="mr-1"
@@ -154,7 +154,7 @@
             >
               <span v-for="(tag, tagId) in book.tags" :key="tagId">
                 <nuxt-link
-                  :to="{ name: 'tags-slug', params: { slug: tag.slug } }"
+                  :to="{ name: 'tags-slug', params: { slug: tag.meta.slug } }"
                   class="internal-link"
                   >{{ tag.name }}</nuxt-link
                 ><span v-if="tagId !== book.tags.length - 1" class="mr-1"

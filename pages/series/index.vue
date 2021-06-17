@@ -12,7 +12,7 @@
             :title="serie.title"
             :route="{
               name: 'series-slug',
-              params: { author: serie.author, slug: serie.slug },
+              params: { author: serie.meta.author, slug: serie.meta.slug },
             }"
           >
             <template #primary>
@@ -106,7 +106,7 @@ export default {
   },
   head() {
     const title = this.title
-    const url = `${this.$config.baseURL}/series`
+    const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
     const dynamicMeta = dynamicMetadata({
       title: this.title,
       description: this.description,

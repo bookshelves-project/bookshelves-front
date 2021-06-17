@@ -101,7 +101,7 @@ const getBooksRoutes = () => {
 
     for (const book of books.data) {
       const route = {
-        url: `/books/${book.author}/${book.slug}`,
+        url: `/books/${book.meta.author}/${book.meta.slug}`,
         // lastmodISO: book.meta.updatedAt,
         priority: 0.6,
       }
@@ -119,7 +119,7 @@ const getSeriesRoutes = () => {
 
     for (const serie of series.data) {
       const route = {
-        url: `/series/${serie.author}/${serie.slug}`,
+        url: `/series/${serie.author}/${serie.meta.slug}`,
         // lastmodISO: serie.meta.updatedAt,
         priority: 0.6,
       }
@@ -137,7 +137,7 @@ const getAuthorsRoutes = () => {
 
     for (const author of authors.data) {
       const route = {
-        url: `/authors/${author.slug}`,
+        url: `/authors/${author.meta.slug}`,
         // lastmodISO: author.meta.updatedAt,
         priority: 0.9,
       }
@@ -179,7 +179,7 @@ const getPagesRoutes = () => {
 
     for (const page of pages) {
       const route = {
-        url: `/pages/${page.slug}`,
+        url: `/pages/${page.meta.slug}`,
         // lastmodISO: page.created_at,
         priority: 0.6,
       }

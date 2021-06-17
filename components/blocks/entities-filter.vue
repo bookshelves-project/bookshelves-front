@@ -83,13 +83,13 @@
             </div>
             <button
               v-for="lang in langs"
-              :key="lang.slug"
-              :class="{ 'bg-gray-100': $route.query.lang === lang.slug }"
+              :key="lang.meta.slug"
+              :class="{ 'bg-gray-100': $route.query.lang === lang.meta.slug }"
               type="button"
               class="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-100 dark:hover:bg-gray-800"
               role="menuitem"
               :aria-label="`Filter by ${lang.name}`"
-              @click="filterBy('lang', lang.slug)"
+              @click="filterBy('lang', lang.meta.slug)"
             >
               {{ lang.name }}
             </button>

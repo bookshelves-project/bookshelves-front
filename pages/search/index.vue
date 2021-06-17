@@ -56,7 +56,7 @@ export default {
   },
   head() {
     const title = this.title
-    const url = `${this.$config.baseURL}/search`
+    const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
     const dynamicMeta = dynamicMetadata({
       title: this.title,
       description: this.description,

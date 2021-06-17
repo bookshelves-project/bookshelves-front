@@ -17,7 +17,10 @@
             <nuxt-link
               :to="{
                 name: `${result.meta.entity}s-slug`,
-                params: { author: result.meta.author, slug: result.meta.slug },
+                params: {
+                  author: result.meta.author,
+                  slug: result.meta.slug,
+                },
               }"
               title="Search"
               aria-label="Search"
@@ -150,7 +153,10 @@ export default {
         this.$refs.search.setValue('')
         this.$router.push({
           name: `${result.meta.entity}s-slug`,
-          params: { author: result.meta.author, slug: result.meta.slug },
+          params: {
+            author: result.meta.author,
+            slug: result.meta.slug,
+          },
         })
       }
     },
