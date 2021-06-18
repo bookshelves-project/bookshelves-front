@@ -84,7 +84,7 @@ export default {
   @apply text-primary-600 bg-primary-100 border-transparent hover:bg-primary-200 hover:text-primary-600;
 }
 .primary {
-  @apply border-transparent shadow-sm text-white bg-primary-600 hover:bg-primary-600;
+  @apply border-transparent shadow-sm text-white bg-primary-600 hover:bg-primary-700;
 }
 .white {
   @apply border-gray-300 shadow-sm text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 hover:bg-primary-100;
