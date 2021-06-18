@@ -96,7 +96,7 @@ const getRoutes = () => {
 const getBooksRoutes = () => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
-    const books = await fetchBooks()
+    const books = await fetchEntities('books?all=true')
     const routes = []
 
     for (const book of books.data) {
@@ -114,7 +114,7 @@ const getBooksRoutes = () => {
 const getSeriesRoutes = () => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
-    const series = await fetchSeries()
+    const series = await fetchEntities('series?all=true')
     const routes = []
 
     for (const serie of series.data) {
@@ -132,7 +132,7 @@ const getSeriesRoutes = () => {
 const getAuthorsRoutes = () => {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
-    const authors = await fetchAuthors()
+    const authors = await fetchEntities('authors?all=true')
     const routes = []
 
     for (const author of authors.data) {
@@ -189,31 +189,13 @@ const getPagesRoutes = () => {
   })
 }
 
-const fetchBooks = async () => {
+const fetchEntities = async (endpoint) => {
+  const path = `${process.env.API_URL}/${endpoint}`
   try {
-    const result = await axios.get(`${process.env.API_URL}/books?all=true`)
+    const result = await axios.get(path)
     return result.data
   } catch (error) {
-    console.error('Unable to catch API')
-    return []
-  }
-}
-
-const fetchSeries = async () => {
-  try {
-    const result = await axios.get(`${process.env.API_URL}/series?all=true`)
-    return result.data
-  } catch (error) {
-    console.error('Unable to catch API')
-    return []
-  }
-}
-
-const fetchAuthors = async () => {
-  try {
-    const result = await axios.get(`${process.env.API_URL}/authors?all=true`)
-    return result.data
-  } catch (error) {
+    console.error(path)
     console.error('Unable to catch API')
     return []
   }
