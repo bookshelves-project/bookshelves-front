@@ -1,10 +1,10 @@
 ---
 title: "Privacy"
 subtitle: ''
-description: 'Bookshelves & privacy'
+description: 'Your privacy & your data'
 ---
 
 
 ## Cookies
 
-Bookshelves does not collect any information about anonymous visitors and no "cookies" are placed on your computer. We ate them for a long time.
+<app-name></app-name> does not collect any information about anonymous visitors and no "cookies" are placed on your computer. We ate them for a long time.

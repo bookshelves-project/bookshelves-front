@@ -21,7 +21,8 @@
         </div>
         <div class="max-w-md mt-3 ml-1">
           If you add new eBooks to <span class="font-mono">books-raw</span> you
-          can activate generation of new Books on Bookshelves with this action.
+          can activate generation of new Books on {{ $config.appName }} with
+          this action.
         </div>
       </div>
       <div class="py-5">

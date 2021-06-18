@@ -70,7 +70,7 @@ export default {
           route: { name: 'books' },
           data: 0,
           textTitle: 'eBooks',
-          text: 'available on Bookshelves',
+          text: `available on ${this.$config.appName}`,
         },
         series: {
           route: { name: 'series' },

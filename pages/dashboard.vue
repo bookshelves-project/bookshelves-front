@@ -79,7 +79,7 @@ export default {
   },
   head() {
     const title = 'Dashboard'
-    const description = 'An overview of all your activities on Bookshelves.'
+    const description = 'An overview of all your activities.'
     const image = `${this.$config.baseURL}/open-graph.jpg`
     const url = `${this.$config.baseURL}/dashboard`
     return {

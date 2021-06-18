@@ -94,9 +94,9 @@ About OPDS from Wikipedia:
 
 ### eReader & OPDS
 
-If you have an eReader, you can think it's an amazing idea to allow readers to get OPDS feeds on eReader. And it is, but many eReaders can't have OPDS feeds because eReaders' makers pre-install only their shops on their devices. If they allow OPDS feeds, they haven't control on what users can read and download. If you want to have an eReader with *libre* OS, you can install [**Koreader**](https://github.com/koreader/koreader). The alternative of new OS for eReader is to use eReader browser to download eBooks directly from online source, on the guide [**Download eBook from eReader**](/guides/ereader-download-ebook-from-ereader), you have an example with *Bookshelves Catalog*[^1].
+If you have an eReader, you can think it's an amazing idea to allow readers to get OPDS feeds on eReader. And it is, but many eReaders can't have OPDS feeds because eReaders' makers pre-install only their shops on their devices. If they allow OPDS feeds, they haven't control on what users can read and download. If you want to have an eReader with *libre* OS, you can install [**Koreader**](https://github.com/koreader/koreader). The alternative of new OS for eReader is to use eReader browser to download eBooks directly from online source, on the guide [**Download eBook from eReader**](/guides/ereader-download-ebook-from-ereader), you have an example with *<app-name></app-name> Catalog*[^1].
 
-If you want to use Bookshelves with OPDS, you can use <api-link endpoint="/opds/v1.2" :refer-it-self="true"></api-link> feed, check [OPDS & Catalog](/pages/opds-catalog) to know more about this.
+If you want to use <app-name></app-name> with OPDS, you can use <api-link endpoint="/opds/v1.2" :refer-it-self="true"></api-link> feed, check [OPDS & Catalog](/pages/opds-catalog) to know more about this.
 
 ### Feeds
 
@@ -113,4 +113,4 @@ If you have an application to read eBooks from OPDS feeds, you can add new feeds
 - [Revues.org](http://bookserver.revues.org/)
 - [YouScribe](http://opds.youscribe.com/Catalog/catalog.xml)
 
-[^1]: if OPDS is official and libre initiative, the Bookshelves Catalog is just a simple solution to allow to search eBooks with eReader browser on basic web interface for eReader without OPDS feeds, so almost all eReaders.
+[^1]: if OPDS is official and libre initiative, the <app-name></app-name> Catalog is just a simple solution to allow to search eBooks with eReader browser on basic web interface for eReader without OPDS feeds, so almost all eReaders.

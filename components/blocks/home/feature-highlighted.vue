@@ -88,7 +88,7 @@ export default {
     },
     icon: {
       type: String,
-      default: 'bookshelves',
+      default: 'book',
     },
     image: {
       type: String,

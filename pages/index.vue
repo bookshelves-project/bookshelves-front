@@ -36,7 +36,7 @@ export default {
     return {
       pinnedProjectDropdownOpened: false,
       projectDropdownOpened: false,
-      title: `Bookshelves, your digital library`,
+      title: `${this.$config.appName}, your digital library`,
     }
   },
   head() {
@@ -67,7 +67,7 @@ export default {
             '@type': 'SiteNavigationElement',
             position: 1,
             name: 'Home',
-            description: 'Home of Bookshelves',
+            description: `Home of ${this.$config.appName}`,
             url: `${this.$config.baseURL}/`,
           },
           {

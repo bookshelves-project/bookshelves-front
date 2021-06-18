@@ -6,13 +6,13 @@
         <div class="space-y-8 xl:col-span-1">
           <nuxt-link to="/" class="flex items-center lg:mx-0 w-max group">
             <svg-icon
-              name="bookshelves"
+              name="book"
               class="w-12 h-12 text-gray-400 transition-colors duration-100 dark:text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300"
             />
             <div
               class="mt-2 ml-3 text-2xl text-gray-400 transition-colors duration-100 md:text-xl font-handlee dark:text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300"
             >
-              Bookshelves
+              {{ $config.appName }}
             </div>
           </nuxt-link>
           <p class="text-base text-gray-500">
@@ -38,7 +38,7 @@
           class="grid grid-cols-1 gap-8 mt-12 sm:grid-cols-2 xl:mt-0 xl:col-span-2"
         >
           <div class="md:grid md:grid-cols-2 md:gap-8">
-            <footer-column :navigation="navigation.bookshelves" />
+            <footer-column :navigation="navigation.project" />
             <footer-column
               class="mt-12 md:mt-0"
               :navigation="navigation.support"
@@ -103,17 +103,11 @@ import FooterColumn from './footer-column.vue'
 
 export default {
   name: 'AppFooter',
-  // eslint-disable-next-line vue/no-unused-components
   components: { backToTop, ColorSwitcherToggle, FooterColumn },
   data() {
     return {
       team: process.env.AUTHOR || metadata.tags.author,
       socialIcons: [
-        // {
-        //   icon: 'gitlab',
-        //   label: 'Repository of Bookshelves',
-        //   link: 'https://gitlab.com/ewilan-riviere/bookshelves-front',
-        // },
         {
           icon: 'swagger',
           label: 'Swagger: API documentation',
@@ -136,8 +130,8 @@ export default {
         },
       ],
       navigation: {
-        bookshelves: {
-          title: 'Bookshelves',
+        project: {
+          title: this.$config.appName,
           links: [
             { label: 'Search', icon: 'annotation', route: { name: 'search' } },
             {

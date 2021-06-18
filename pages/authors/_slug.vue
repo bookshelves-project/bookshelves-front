@@ -168,7 +168,7 @@ export default {
     const dynamicMeta = dynamicMetadata({
       type: 'profile',
       title,
-      description: `${this.author.name} author on Bookshelves with ${this.author.count} books available.`,
+      description: `${this.author.name} author on ${this.$config.appName} with ${this.author.count} books available.`,
       url,
       image: this.author.picture.openGraph,
     })

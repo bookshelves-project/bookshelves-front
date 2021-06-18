@@ -94,7 +94,7 @@ export default {
         {
           hid: 'article:author',
           property: 'article:author',
-          content: 'Bookshelves',
+          content: this.$config.appName,
         },
         {
           hid: 'article:section',

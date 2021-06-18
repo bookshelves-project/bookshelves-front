@@ -6,11 +6,12 @@
       <h2
         class="text-base font-semibold tracking-wider uppercase text-primary-600"
       >
-        How to use Bookshelves
+        How to use {{ $config.appName }}
       </h2>
       <p class="mx-auto mt-5 text-xl text-gray-500 max-w-prose">
-        Let Bookshelves guide you through hundreds of eBooks and let yourself be
-        tempted by vast universes directly accessible by your eReader.
+        Let {{ $config.appName }} guide you through hundreds of eBooks and let
+        yourself be tempted by vast universes directly accessible by your
+        eReader.
       </p>
       <div class="mt-12">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

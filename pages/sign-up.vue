@@ -18,10 +18,10 @@
         <p
           class="p-5 mt-5 text-yellow-600 bg-yellow-200 border-2 border-yellow-300 rounded-md word-wraping"
         >
-          Bookshelves is in development, if you create an account it will
-          probably be deleted in a few days. Features once logged in are quite
-          limited and are only useful for testing purposes. Come back later for
-          the final version.
+          {{ $config.appName }} is in development, if you create an account it
+          will probably be deleted in a few days. Features once logged in are
+          quite limited and are only useful for testing purposes. Come back
+          later for the final version.
         </p>
         <div class="relative mt-6">
           <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -60,7 +60,7 @@ export default {
   auth: 'guest',
   head() {
     const title = 'Sign up'
-    const description = 'Create an account on Bookshelves.'
+    const description = 'Create an account.'
     const image = `${this.$config.baseURL}/open-graph.jpg`
     const url = `${this.$config.baseURL}/sign-up`
     return {

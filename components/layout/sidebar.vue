@@ -43,10 +43,12 @@
               <img
                 class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
                 src="/images/bookshelves.svg"
-                alt="Bookshelves logo"
+                :alt="`${$config.appName} logo`"
                 loading="lazy"
               />
-              <div class="mt-2 ml-3 text-2xl font-handlee">Bookshelves</div>
+              <div class="mt-2 ml-3 text-2xl font-handlee">
+                {{ $config.appName }}
+              </div>
             </span>
           </nuxt-link>
         </div>

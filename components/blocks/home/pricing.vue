@@ -16,8 +16,8 @@
         <p
           class="max-w-4xl mx-auto mt-3 text-xl text-gray-900 dark:text-gray-100 sm:mt-5 sm:text-2xl"
         >
-          Bookshelves offers different navigation possibilities, it's up to you
-          to see what suits you best
+          {{ $config.appName }} offers different navigation possibilities, it's
+          up to you to see what suits you best
         </p>
       </div>
     </div>
@@ -92,8 +92,7 @@ export default {
       pricings: {
         leave: {
           title: 'Let me go!',
-          description:
-            "You disagree with what Bookshelves offers and think it's shameful.",
+          description: `You disagree with what ${this.$config.appName} offers and think it's shameful.`,
           features: ['Leave this website now'],
         },
         free: {
@@ -114,8 +113,7 @@ export default {
         },
         account: {
           title: 'Community',
-          description:
-            'You like Bookshelves so much that you want extra features with an account?',
+          description: `You like ${this.$config.appName} so much that you want extra features with an account?`,
           features: [
             'Get a list of your favorite eBooks',
             'Leave ratings and comments',

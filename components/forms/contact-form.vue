@@ -84,8 +84,9 @@
               >Accept conditions</label
             >
             <p class="text-gray-500">
-              Accept conditions about data privacy about Bookshelves to send
-              your message to Bookshelves Team.
+              Accept conditions about data privacy about
+              {{ $config.appName }} to send your message to
+              {{ $config.appName }} Team.
             </p>
           </div>
         </div>

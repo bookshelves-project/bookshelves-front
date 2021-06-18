@@ -32,7 +32,7 @@ For a series of eBooks, you can have a **series** feature, if the series is set 
 
 ## About series
 
-On Bookshelves, many EPUB files have **series** *metadata* to display book series and series number. If you transfer directly EPUB files from Bookshelves on your eReader or if you use Calibre (or other software to format EPUB files) to set series, you can have some problem to display your eBooks by series on your eReader.
+On <app-name></app-name>, many EPUB files have **series** *metadata* to display book series and series number. If you transfer directly EPUB files from <app-name></app-name> on your eReader or if you use Calibre (or other software to format EPUB files) to set series, you can have some problem to display your eBooks by series on your eReader.
 
 - With a eReader you can transfer manually EPUB files to your eReader with USB cable from your computer, if you transfer EPUB files like this, you can find your eBooks on your eReader but series won't work because *metadata* of eReader have to be refreshed.
 - With eBooks from eReader shop you can download eBooks with **sync** and series will work because sync update *metadata* for eBooks from eReader shop.

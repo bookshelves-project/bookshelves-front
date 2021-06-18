@@ -42,12 +42,13 @@
       :position-image="`right`"
       :icon="`open-book`"
       :image="`/images/home/book_reading.svg`"
-      :title="`Bookshelves can follow you everywhere`"
+      :title="`${$config.appName} can follow you everywhere`"
     >
       <template #text>
         You can download directly eBooks from your eReader with
         <b>Catalog</b> or you can use <b>OPDS</b> (Open Publication Distribution
-        System) feed to get all Bookshelves eBooks on your favorite application.
+        System) feed to get all {{ $config.appName }} eBooks on your favorite
+        application.
       </template>
       <template #cta>
         <app-button

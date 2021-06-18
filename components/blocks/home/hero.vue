@@ -5,8 +5,9 @@
         <h1
           class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 font-handlee sm:text-5xl md:text-6xl"
         >
-          <span class="block text-indigo-600 dark:text-primary-400 xl:inline"
-            >Bookshelves</span
+          <span class="block text-indigo-600 dark:text-primary-400 xl:inline">{{
+            $config.appName
+          }}</span
           ><span class="hidden xl:inline">, </span
           ><span class="block xl:inline"
             >reading in complete tranquility...</span
