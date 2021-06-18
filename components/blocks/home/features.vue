@@ -67,7 +67,7 @@ export default {
           label: 'Download & read',
           condition: true,
           text:
-            'Download an eBook and/or a serie of eBook, from computer or directly from your eReader with internal browser, add them to your eReader and start reading!',
+            'Download an eBook and/or a serie of eBook add them to your eReader and start reading!',
         },
         {
           icon: 'code',
@@ -84,11 +84,11 @@ export default {
             'eBooks in several languages according to your preferences in order to reach a maximum number of readers.',
         },
         {
-          icon: 'user-group',
-          label: 'Account or guest',
-          condition: this.$config.moduleSocial,
+          icon: 'open-book',
+          label: 'OPDS & Catalog',
+          condition: true,
           text:
-            "You can use Bookshelves with an free account or as guest, it's up to you.",
+            'You can use OPDS feed or download eBooks from your eReader with Catalog.',
         },
       ],
     }
