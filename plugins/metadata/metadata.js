@@ -1,5 +1,5 @@
 let twitterLink = process.env.META_TWITTER_SITE
-twitterLink = twitterLink.replace('@', '')
+twitterLink = twitterLink ? twitterLink.replace('@', '') : null
 
 const app = process.env.APP_NAME || 'Bookshelves'
 
@@ -32,8 +32,8 @@ module.exports = {
     siteName: app,
   },
   twitter: {
-    creator: process.env.META_TWITTER_CREATOR || '@ewilanriviere',
-    site: process.env.META_TWITTER_SITE || '@bookshelves_ink',
+    creator: process.env.META_TWITTER_CREATOR || null,
+    site: process.env.META_TWITTER_SITE || null,
     url: `https://twitter.com/${twitterLink}`,
   },
 }

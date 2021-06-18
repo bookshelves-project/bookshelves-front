@@ -1,6 +1,6 @@
 <template>
   <div>
-    <divider> {{ entities.length }} {{ $capitalize(entityType) }}s </divider>
+    <divider> {{ entities.length }} {{ capitalize(entityType) }}s </divider>
     <div class="space-y-6 display-grid sm:space-y-0">
       <entity-card
         v-for="entity in entities"
@@ -41,6 +41,8 @@
 <script>
 import divider from '../special/divider.vue'
 import EntityCard from './entity-card.vue'
+import { capitalize } from '~/plugins/utils/methods'
+
 export default {
   name: 'SearchResults',
   components: { divider, EntityCard },
@@ -54,6 +56,11 @@ export default {
       type: Array,
       default: () => [],
     },
+  },
+  data() {
+    return {
+      capitalize,
+    }
   },
 }
 </script>

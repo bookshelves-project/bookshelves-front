@@ -81,7 +81,7 @@ export default {
     },
   },
   async created() {
-    await this.getLanguages()
+    await this.formatLanguages()
   },
   methods: {
     openList() {
@@ -98,7 +98,7 @@ export default {
         )
       )
     },
-    async getLanguages(query) {
+    async formatLanguages(query) {
       if (!this.languages.length) {
         const languages = await this.$axios.$get(`/languages`)
 

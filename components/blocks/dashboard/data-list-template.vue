@@ -52,7 +52,7 @@
                     {{ data.title }}
                   </p>
                   <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                    {{ $capitalize(data.meta.for) }}
+                    {{ capitalize(data.meta.for) }}
                   </p>
                 </div>
               </div>
@@ -101,6 +101,8 @@
 </template>
 
 <script>
+import { capitalize } from '~/plugins/utils/methods'
+
 export default {
   name: 'DataListTemplate',
   props: {
@@ -124,6 +126,7 @@ export default {
   data() {
     return {
       list: [],
+      capitalize,
     }
   },
   created() {

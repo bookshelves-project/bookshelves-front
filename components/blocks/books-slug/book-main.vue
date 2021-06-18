@@ -95,7 +95,7 @@
                 }"
                 class="internal-link"
               >
-                {{ formatLanguage(book.language, 'label') }}
+                {{ formatLanguage(book.language) }}
               </nuxt-link>
             </dd>
           </div>

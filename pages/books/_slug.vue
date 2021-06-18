@@ -30,7 +30,7 @@ import BookMain from '~/components/blocks/books-slug/book-main.vue'
 import BookRelated from '~/components/blocks/books-slug/book-related.vue'
 import BookSerie from '~/components/blocks/books-slug/book-serie.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
-import { getLanguage, getAuthors } from '~/plugins/utils/methods'
+import { formatLanguage, getAuthors } from '~/plugins/utils/methods'
 
 export default {
   name: 'BooksSlug',
@@ -147,7 +147,7 @@ export default {
         bookFormat: 'http://schema.org/Book',
         datePublished: this.book.publishDate,
         image: this.book.picture.base,
-        inLanguage: getLanguage(this.book.language),
+        inLanguage: formatLanguage(this.book.language),
         isbn: this.book.identifier
           ? this.book.identifier.isbn || this.book.identifier.isbn13
           : null,

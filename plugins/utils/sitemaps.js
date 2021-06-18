@@ -179,7 +179,7 @@ const getPagesRoutes = () => {
 
     for (const page of pages) {
       const route = {
-        url: `/pages/${page.meta.slug}`,
+        url: `/pages/${page.slug}`,
         // lastmodISO: page.created_at,
         priority: 0.6,
       }

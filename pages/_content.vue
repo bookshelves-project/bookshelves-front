@@ -55,6 +55,7 @@
 <script>
 import TableOfContent from '~/components/blocks/content/table-of-content.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
+import { capitalize } from '~/plugins/utils/methods'
 
 export default {
   name: 'ContentPage',
@@ -70,8 +71,13 @@ export default {
       document,
     }
   },
+  data() {
+    return {
+      capitalize,
+    }
+  },
   head() {
-    const title = `${this.document.title} · ${this.$capitalize(
+    const title = `${this.document.title} · ${this.capitalize(
       this.$route.params.type
     )}`
     const url = `${this.$config.baseURL}/${this.$route.params.type}/${this.document.slug}`

@@ -40,7 +40,7 @@
                 vol. {{ book.volume }}
               </div>
               <div class="mt-1">
-                {{ getLanguage(book.language) }}
+                {{ formatLanguage(book.language) }}
               </div>
             </template>
           </entity-card>
@@ -54,7 +54,7 @@
 <script>
 import EntityCard from '~/components/blocks/entity-card.vue'
 import sectionHeading from '~/components/blocks/section-heading.vue'
-import { getLanguage, getAuthors } from '~/plugins/utils/methods'
+import { formatLanguage, getAuthors } from '~/plugins/utils/methods'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {
@@ -80,7 +80,7 @@ export default {
   },
   data() {
     return {
-      getLanguage,
+      formatLanguage,
       getAuthors,
       title: `Books published by `,
       description: `List of all books for publisher`,

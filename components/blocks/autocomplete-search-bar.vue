@@ -43,7 +43,7 @@
                         {{ result.title }}
                       </div>
                       <div class="italic">
-                        {{ $capitalize(result.meta.entity) }}
+                        {{ capitalize(result.meta.entity) }}
                       </div>
                     </div>
                     <div class="">
@@ -78,6 +78,7 @@ import qs from 'qs'
 import Autocomplete from '@trevoreyre/autocomplete-vue'
 import '~/assets/css/autocomplete.pcss'
 import vClickOutside from 'v-click-outside'
+import { capitalize } from '~/plugins/utils/methods'
 
 export default {
   name: 'AutocompleteSearchBar',
@@ -95,6 +96,7 @@ export default {
   },
   data() {
     return {
+      capitalize,
       searchTerm: null,
       searchResults: [],
       searchMethod: {

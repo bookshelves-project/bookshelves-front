@@ -79,7 +79,7 @@
           :title="serie.title"
           :route="{
             name: 'series-slug',
-            params: { author: author.meta.slug, slug: serie.meta.slug },
+            params: { author: serie.meta.author, slug: serie.meta.slug },
           }"
         >
           <template #primary>
@@ -89,7 +89,7 @@
             {{ serie.count }} books
           </template>
           <template v-if="serie.language" #tertiary>
-            {{ getLanguage(serie.language) }}
+            {{ formatLanguage(serie.language) }}
           </template>
         </entity-card>
       </div>
@@ -115,7 +115,7 @@
             vol. {{ book.volume }}
           </template>
           <template v-if="book.language" #tertiary>
-            {{ getLanguage(book.language) }}
+            {{ formatLanguage(book.language) }}
           </template>
         </entity-card>
       </div>
@@ -128,7 +128,7 @@ import entityCard from '~/components/blocks/entity-card.vue'
 import Divider from '~/components/special/divider.vue'
 import favorites from '~/mixins/favorites'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
-import { getLanguage, getHostname } from '~/plugins/utils/methods'
+import { formatLanguage, getHostname } from '~/plugins/utils/methods'
 
 export default {
   name: 'AuthorsSlug',
@@ -157,7 +157,7 @@ export default {
   },
   data() {
     return {
-      getLanguage,
+      formatLanguage,
       getHostname,
       breadcrumbs: [],
     }

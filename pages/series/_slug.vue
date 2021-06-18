@@ -81,7 +81,7 @@
                 >Language :
               </span>
               <img
-                :src="formatLanguage(serie.language)"
+                :src="formatLanguage(serie.language, 'flag')"
                 :alt="serie.language"
                 loading="lazy"
                 class="ml-2"
@@ -167,7 +167,6 @@
 import {
   getHostname,
   formatLanguage,
-  getLanguage,
   getAuthors,
 } from '~/plugins/utils/methods'
 import entityCard from '~/components/blocks/entity-card.vue'
@@ -200,7 +199,6 @@ export default {
   data() {
     return {
       formatLanguage,
-      getLanguage,
       getAuthors,
       getHostname,
     }
@@ -271,7 +269,7 @@ export default {
         author: authors,
         bookFormat: 'http://schema.org/BookSeries',
         image: this.serie.picture.base,
-        inLanguage: getLanguage(this.serie.language),
+        inLanguage: formatLanguage(this.serie.language),
         name: this.serie.title,
       },
     }

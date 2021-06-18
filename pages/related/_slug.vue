@@ -38,7 +38,7 @@
               </div>
             </template>
             <template #tertiary>
-              {{ $capitalize(book.meta.entity) }}
+              {{ capitalize(book.meta.entity) }}
             </template>
           </entity-card>
         </div>
@@ -51,7 +51,12 @@
 <script>
 import EntityCard from '~/components/blocks/entity-card.vue'
 import sectionHeading from '~/components/blocks/section-heading.vue'
-import { getLanguage, objectIsEmpty, getAuthors } from '~/plugins/utils/methods'
+import {
+  formatLanguage,
+  objectIsEmpty,
+  getAuthors,
+  capitalize,
+} from '~/plugins/utils/methods'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {
@@ -78,9 +83,10 @@ export default {
   },
   data() {
     return {
-      getLanguage,
+      formatLanguage,
       objectIsEmpty,
       getAuthors,
+      capitalize,
       title: `Related books & series for `,
       description: `List of all results for related books & series...`,
     }

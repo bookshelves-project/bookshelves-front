@@ -77,6 +77,7 @@
 <script>
 import sectionHeading from '~/components/blocks/section-heading.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
+import { slugify } from '~/plugins/utils/methods'
 
 export default {
   name: 'GuidesIndex',
@@ -96,6 +97,7 @@ export default {
     return {
       title: `Guides`,
       description: `To know more about eBooks & eReaders`,
+      slugify,
     }
   },
   head() {
@@ -144,7 +146,7 @@ export default {
   },
   methods: {
     getPicture(guide) {
-      return guide.category ? this.$slugify(guide.category) : ''
+      return guide.category ? this.slugify(guide.category) : ''
     },
   },
 }

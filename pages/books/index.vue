@@ -39,7 +39,7 @@
                 vol. {{ book.volume }}
               </div>
               <div class="mt-1">
-                {{ getLanguage(book.language) }}
+                {{ formatLanguage(book.language) }}
               </div>
             </template>
           </entity-card>
@@ -71,7 +71,7 @@ import ApiErrorMessage from '~/components/special/api-error-message.vue'
 import EntitiesFilter from '~/components/blocks/entities-filter.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
-import { getLanguage, objectIsEmpty } from '~/plugins/utils/methods'
+import { formatLanguage, objectIsEmpty } from '~/plugins/utils/methods'
 
 export default {
   name: 'Books',
@@ -116,7 +116,7 @@ export default {
   },
   data() {
     return {
-      getLanguage,
+      formatLanguage,
       objectIsEmpty,
       isLoading: false,
       isReloadForPaginate: false,

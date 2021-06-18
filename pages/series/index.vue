@@ -34,7 +34,7 @@
             <template #tertiary>
               <div>{{ serie.count }} books</div>
               <div v-if="serie.language" class="mt-1">
-                {{ getLanguage(serie.language) }}
+                {{ formatLanguage(serie.language) }}
               </div>
             </template>
           </entity-card>
@@ -65,7 +65,7 @@ import SectionHeading from '~/components/blocks/section-heading.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
 
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
-import { getLanguage } from '~/plugins/utils/methods'
+import { formatLanguage } from '~/plugins/utils/methods'
 
 export default {
   name: 'SeriesIndex',
@@ -98,7 +98,7 @@ export default {
   },
   data() {
     return {
-      getLanguage,
+      formatLanguage,
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
       title: `Series`,
       description: `Discover books grouped by their serie's name`,
