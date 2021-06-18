@@ -63,7 +63,7 @@ export default {
   async asyncData({ app, params }) {
     try {
       const [publisher, books] = await Promise.all([
-        app.$axios.$get(`/publishers/light/${params.slug}`),
+        app.$axios.$get(`/publishers/${params.slug}`),
         app.$axios.$get(`/publishers/books/${params.slug}`),
       ])
 

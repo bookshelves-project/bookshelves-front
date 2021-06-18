@@ -37,7 +37,7 @@
                     :src="book.picture.original"
                     :color="book.picture.color"
                     :title="book.title"
-                    class="object-cover object-top w-32 h-32 rounded-full lg:rounded-none lg:w-full lg:h-full"
+                    class="object-cover object-top w-32 h-32 rounded-full lg:rounded-md lg:w-full lg:h-full"
                   />
                 </div>
                 <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
@@ -146,15 +146,25 @@
             </div>
           </agile>
         </div>
-        <div v-else class="pt-10 pb-10">
-          <div
-            class="absolute transform -translate-x-1/2 translate-y-1/2 top-1/2 left-1/2"
-          >
-            <loading class="w-6 h-6" />
+        <div v-else class="pt-10 pb-10 animate-pulse">
+          <div class="flex space-x-6">
+            <div class="bg-primary-300 h-96 w-64 rounded-md"></div>
+            <div class="mt-4 space-y-4">
+              <div class="h-8 w-48 rounded-md bg-primary-300"></div>
+              <div class="h-8 w-48 rounded-md bg-primary-300"></div>
+              <div class="h-8 w-48 rounded-md bg-primary-300"></div>
+            </div>
+          </div>
+          <div class="mt-6 flex items-center space-x-6">
+            <div
+              v-for="i in 5"
+              :key="i.id"
+              class="bg-primary-300 h-20 w-20 rounded-md"
+            ></div>
           </div>
         </div>
         <div
-          v-if="!books.length"
+          v-if="!isLoaded && !books.length"
           class="px-2 text-sm italic text-gray-400 dark:text-gray-200"
         >
           No results.

@@ -117,19 +117,19 @@
           }}</a>
         </div>
       </div>
-      <div class="relative mt-5 mb-10">
+      <div v-if="books" class="relative mt-5 mb-10">
         <div class="absolute inset-0 flex items-center" aria-hidden="true">
           <div class="w-full border-t border-gray-300"></div>
         </div>
         <div class="relative flex justify-center">
           <span class="px-2 text-gray-500 bg-white dark:bg-gray-900">
-            {{ serie.books.length }} Books
+            {{ books.length }} Books
           </span>
         </div>
       </div>
-      <div class="space-y-6 display-grid sm:space-y-0">
+      <div v-if="books" class="space-y-6 display-grid sm:space-y-0">
         <entity-card
-          v-for="book in serie.books"
+          v-for="book in books"
           :key="book.id"
           :data="book"
           :cover="book.picture.base"
@@ -180,12 +180,14 @@ export default {
   mixins: [favorites],
   async asyncData({ app, params }) {
     try {
-      const [serie] = await Promise.all([
+      const [serie, books] = await Promise.all([
         app.$axios.$get(`/series/${params.author}/${params.slug}`),
+        app.$axios.$get(`/series/books/${params.author}/${params.slug}`),
       ])
 
       return {
         serie: serie.data,
+        books: books.data,
       }
     } catch (error) {
       console.error(error)

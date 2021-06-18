@@ -66,15 +66,12 @@
           }}</a>
         </div>
       </div>
-      <divider v-if="author.series.length">
-        {{ author.series ? author.series.length : null }} Series
+      <divider v-if="series.length">
+        {{ series ? series.length : null }} Series
       </divider>
-      <div
-        v-if="author.series.length"
-        class="space-y-6 display-grid sm:space-y-0"
-      >
+      <div v-if="series.length" class="space-y-6 display-grid sm:space-y-0">
         <entity-card
-          v-for="serie in author.series"
+          v-for="serie in series"
           :key="serie.id"
           :data="serie"
           :cover="serie.picture ? serie.picture.base : null"
@@ -99,7 +96,7 @@
       <divider class="mt-16"> {{ author.count }} Books </divider>
       <div class="space-y-6 display-grid sm:space-y-0">
         <entity-card
-          v-for="book in author.books"
+          v-for="book in books"
           :key="book.id"
           :data="book"
           :cover="book.picture.base"
@@ -139,12 +136,16 @@ export default {
   mixins: [favorites],
   async asyncData({ app, params }) {
     try {
-      const [author] = await Promise.all([
+      const [author, series, books] = await Promise.all([
         app.$axios.$get(`/authors/${params.slug}`),
+        app.$axios.$get(`/authors/series/${params.slug}`),
+        app.$axios.$get(`/authors/books/${params.slug}`),
       ])
 
       return {
         author: author.data,
+        series: series.data,
+        books: books.data,
       }
     } catch (error) {
       console.error(error)
