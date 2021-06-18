@@ -12,6 +12,7 @@ module.exports = {
     color: process.env.META_COLOR || '#6C63FF',
     locale: 'en_US',
     lang: 'en',
+    googleToken: process.env.GOOGLE_SITE_VERIFICATION_TOKEN || null,
   },
   tags: {
     title: process.env.META_TITLE || 'Bookshelves',
