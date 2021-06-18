@@ -98,9 +98,9 @@ function getTwitterCard() {
       content: 'summary_large_image',
     },
     {
-      hid: 'twitter:site',
-      name: 'twitter:site',
-      content: metadata.twitter.site,
+      hid: 'twitter:url',
+      name: 'twitter:url',
+      content: metadata.twitter.url,
     },
     {
       hid: 'twitter:creator',

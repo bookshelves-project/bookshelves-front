@@ -119,7 +119,7 @@ const getSeriesRoutes = () => {
 
     for (const serie of series.data) {
       const route = {
-        url: `/series/${serie.author}/${serie.meta.slug}`,
+        url: `/series/${serie.meta.author}/${serie.meta.slug}`,
         // lastmodISO: serie.meta.updatedAt,
         priority: 0.6,
       }
@@ -191,7 +191,7 @@ const getPagesRoutes = () => {
 
 const fetchBooks = async () => {
   try {
-    const result = await axios.get(`${process.env.API_URL}/books?limit=all`)
+    const result = await axios.get(`${process.env.API_URL}/books?all=true`)
     return result.data
   } catch (error) {
     console.error('Unable to catch API')
@@ -201,7 +201,7 @@ const fetchBooks = async () => {
 
 const fetchSeries = async () => {
   try {
-    const result = await axios.get(`${process.env.API_URL}/series?limit=full`)
+    const result = await axios.get(`${process.env.API_URL}/series?all=true`)
     return result.data
   } catch (error) {
     console.error('Unable to catch API')
@@ -211,7 +211,7 @@ const fetchSeries = async () => {
 
 const fetchAuthors = async () => {
   try {
-    const result = await axios.get(`${process.env.API_URL}/authors?limit=full`)
+    const result = await axios.get(`${process.env.API_URL}/authors?all=true`)
     return result.data
   } catch (error) {
     console.error('Unable to catch API')

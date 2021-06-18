@@ -1,31 +1,39 @@
+let twitterLink = process.env.META_TWITTER_SITE
+twitterLink = twitterLink.replace('@', '')
+
+const app = process.env.APP_NAME || 'Bookshelves'
+
 module.exports = {
   settings: {
-    robots: 'index, follow',
-    disallow: ['/sign-in', '/sign-up', '/dashboard', '/admin'],
-    color: '#6C63FF',
+    robots: process.env.META_ROBOT || 'index, follow',
+    disallow:
+      process.env.META_ROBOT_DISALLOW ||
+      '/sign-in,/sign-up,/dashboard,/admin,/profile',
+    color: process.env.META_COLOR || '#6C63FF',
     locale: 'en_US',
     lang: 'en',
   },
   tags: {
-    title: 'Bookshelves, reading in complete tranquility...',
-    titleTemplate: '%s · Bookshelves',
+    title: process.env.META_TITLE || 'Bookshelves',
+    titleTemplate: `%s · ${app}`,
     description:
+      process.env.META_DESCRIPTION ||
       'For people with eReaders, download eBooks and reading in complete tranquility, your digital library that goes everywhere with you.',
     rating: 'general',
     keywords: ['epub', 'book', 'ebook'],
-    author: 'Bookshelves Team',
-    publisher: 'Memorandum',
+    author: process.env.APP_AUTHOR || 'Bookshelves Team',
+    publisher: app,
     copyright: 'BSD 2-Clause license',
     language: 'english',
-    designer: 'Bookshelves Team',
+    designer: process.env.APP_AUTHOR || 'Bookshelves Team',
   },
   og: {
     type: 'website',
-    siteName: 'Bookshelves',
+    siteName: app,
   },
   twitter: {
-    creator: '@ewilanriviere',
-    site: '@bookshelves_ink',
-    link: 'https://twitter.com/ewilanriviere',
+    creator: process.env.META_TWITTER_CREATOR || '@ewilanriviere',
+    site: process.env.META_TWITTER_SITE || '@bookshelves_ink',
+    url: `https://twitter.com/${twitterLink}`,
   },
 }

@@ -6,6 +6,7 @@ import metadataStatic from './plugins/metadata/metadata-static'
 
 export default {
   publicRuntimeConfig: {
+    appName: process.env.APP_NAME,
     baseURL: process.env.BASE_URL,
     moduleSocial: process.env.MODULE_SOCIAL,
     apiURL: process.env.API_URL,
