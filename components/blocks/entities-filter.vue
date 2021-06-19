@@ -105,7 +105,6 @@ import Dropdown from '@/components/special/dropdown-template.vue'
 
 export default {
   name: 'EntitiesFilter',
-  // eslint-disable-next-line vue/no-unused-components
   components: { Dropdown },
   data() {
     return {
