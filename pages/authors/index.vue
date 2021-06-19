@@ -23,16 +23,12 @@
         </div>
       </div>
       <div class="mt-6 mb-5">
-        <pagination
-          v-if="pages > 1"
-          :link-gen="linkGen"
-          :pages="pages"
-          :current-page="currentPage"
-          :limit="5"
-          class="flex justify-center"
-          @event="event"
-        >
-        </pagination>
+        <load-more
+          :last-page="authors.meta.last_page"
+          endpoint="authors"
+          :entities="authors.data"
+          @load="load"
+        />
       </div>
     </section>
     <api-error-message v-else />
@@ -42,15 +38,15 @@
 <script>
 import qs from 'qs'
 
-import Pagination from '~/components/special/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
+import LoadMore from '~/components/special/load-more.vue'
 
 export default {
   name: 'AuthorsIndex',
-  components: { Pagination, EntityCard, SectionHeading, ApiErrorMessage },
+  components: { EntityCard, SectionHeading, ApiErrorMessage, LoadMore },
   async asyncData({ app, query }) {
     try {
       const page = query.page
@@ -79,7 +75,6 @@ export default {
   },
   data() {
     return {
-      componentKey: 0,
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
       title: `Authors`,
       description: `Want to find all books written by specific author?`,
@@ -131,15 +126,8 @@ export default {
   },
   watchQuery: ['page'],
   methods: {
-    linkGen(pageNum) {
-      // this.componentKey += 1
-      return {
-        name: this.$route.name,
-        query: pageNum === 1 ? {} : { page: pageNum },
-      }
-    },
-    event(data) {
-      this.componentKey += 1
+    load(data) {
+      this.authors.data = data
     },
   },
 }

@@ -54,7 +54,7 @@ import sectionHeading from '~/components/blocks/section-heading.vue'
 import {
   formatLanguage,
   objectIsEmpty,
-  getAuthors,
+  formatAuthors,
   capitalize,
 } from '~/plugins/utils/methods'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
@@ -85,7 +85,7 @@ export default {
     return {
       formatLanguage,
       objectIsEmpty,
-      getAuthors,
+      formatAuthors,
       capitalize,
       title: `Related books & series for `,
       description: `List of all results for related books & series...`,

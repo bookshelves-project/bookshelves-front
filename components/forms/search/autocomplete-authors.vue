@@ -91,7 +91,7 @@ export default {
     },
   },
   async created() {
-    await this.getAuthors()
+    await this.formatAuthors()
   },
   methods: {
     openList() {
@@ -108,7 +108,7 @@ export default {
         )
       )
     },
-    async getAuthors(query) {
+    async formatAuthors(query) {
       if (!this.authors.length) {
         const authors = await this.$axios.$get(`/authors?limit=full`)
 

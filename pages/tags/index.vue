@@ -1,8 +1,8 @@
 <template>
   <div class="container max-w-7xl">
     <section-heading :title="title" :subtitle="description" />
-    <div>
-      <h2>Genres</h2>
+    <div class="mb-10">
+      <h2 class="mb-6 font-handlee text-2xl">Genres</h2>
       <section class="flex flex-wrap items-center">
         <nuxt-link
           v-for="tag in genres"
@@ -14,8 +14,8 @@
         </nuxt-link>
       </section>
     </div>
-    <div>
-      <h2>Tags</h2>
+    <div class="mb-10">
+      <h2 class="mb-6 font-handlee text-2xl">Tags</h2>
       <section class="flex flex-wrap items-center">
         <nuxt-link
           v-for="tag in tags"
@@ -31,13 +31,18 @@
 </template>
 
 <script>
+import qs from 'qs'
 import sectionHeading from '~/components/blocks/section-heading.vue'
 export default {
   name: 'TagsIndex',
   components: { sectionHeading },
   async asyncData({ app }) {
     const [genres, tags] = await Promise.all([
-      app.$axios.$get(`/genres`),
+      app.$axios.$get(
+        `/tags?${qs.stringify({
+          type: 'genre',
+        })}`
+      ),
       app.$axios.$get(`/tags`),
     ])
 
@@ -48,7 +53,7 @@ export default {
   },
   data() {
     return {
-      title: 'Tags',
+      title: 'Genres & Tags',
       description: '',
     }
   },

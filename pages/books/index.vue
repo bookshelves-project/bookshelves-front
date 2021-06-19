@@ -45,16 +45,17 @@
           </entity-card>
         </div>
       </div>
-      <div class="mt-6 mb-5">
-        <pagination
-          v-if="pages > 1"
-          :link-gen="linkGen"
-          :pages="pages"
-          :current-page="currentPage"
-          :limit="5"
-          class="flex justify-center"
-        >
-        </pagination>
+      <div class="mt-14 mb-5">
+        <load-more
+          :last-page="books.meta.last_page"
+          endpoint="books"
+          :entities="books.data"
+          :queries="{
+            lang: $route.query.lang,
+            serie: $route.query.serie,
+          }"
+          @load="load"
+        />
       </div>
     </section>
     <api-error-message v-else />
@@ -64,7 +65,6 @@
 <script>
 import qs from 'qs'
 
-import Pagination from '~/components/special/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
@@ -72,15 +72,16 @@ import EntitiesFilter from '~/components/blocks/entities-filter.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 import { formatLanguage, objectIsEmpty } from '~/plugins/utils/methods'
+import LoadMore from '~/components/special/load-more.vue'
 
 export default {
   name: 'Books',
   components: {
-    Pagination,
     EntityCard,
     SectionHeading,
     ApiErrorMessage,
     EntitiesFilter,
+    LoadMore,
   },
   auth: 'auth',
   layout: 'auth',
@@ -118,9 +119,6 @@ export default {
     return {
       formatLanguage,
       objectIsEmpty,
-      isLoading: false,
-      isReloadForPaginate: false,
-      componentKey: 0,
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
       title: `Books`,
       description: `Discover all available books sorted by title and serie's title`,
@@ -172,14 +170,6 @@ export default {
   },
   watchQuery: ['page', 'lang', 'serie'],
   methods: {
-    linkGen(pageNum) {
-      const lang = this.$route.query.lang
-      const serie = this.$route.query.serie
-      return {
-        name: this.$route.name,
-        query: pageNum === 1 ? { lang, serie } : { page: pageNum, lang, serie },
-      }
-    },
     filter(param) {
       if (param !== null) {
         const query = {}
@@ -195,12 +185,13 @@ export default {
         newQuery[key] = param.data
         query[param.type] = param.data
 
-        console.log(query)
-
         this.$router.push({ name: 'books', query })
       } else {
         this.$router.push({ name: 'books' })
       }
+    },
+    load(data) {
+      this.books.data = data
     },
   },
 }

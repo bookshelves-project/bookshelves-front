@@ -167,7 +167,7 @@
 import {
   getHostname,
   formatLanguage,
-  getAuthors,
+  formatAuthors,
 } from '~/plugins/utils/methods'
 import entityCard from '~/components/blocks/entity-card.vue'
 import favorites from '~/mixins/favorites'
@@ -199,7 +199,7 @@ export default {
   data() {
     return {
       formatLanguage,
-      getAuthors,
+      formatAuthors,
       getHostname,
     }
   },
@@ -226,7 +226,7 @@ export default {
   },
   computed: {
     authors() {
-      return getAuthors(this.serie.authors)
+      return formatAuthors(this.serie.authors)
     },
   },
   jsonld() {

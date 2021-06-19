@@ -93,7 +93,9 @@
           </template>
         </entity-card>
       </div>
-      <divider class="mt-16"> {{ author.count }} Books </divider>
+      <divider v-if="books.length" class="mt-16">
+        {{ books.length }} Books
+      </divider>
       <div class="space-y-6 display-grid sm:space-y-0">
         <entity-card
           v-for="book in books"
@@ -124,6 +126,7 @@
 </template>
 
 <script>
+import qs from 'qs'
 import entityCard from '~/components/blocks/entity-card.vue'
 import Divider from '~/components/special/divider.vue'
 import favorites from '~/mixins/favorites'
@@ -139,7 +142,11 @@ export default {
       const [author, series, books] = await Promise.all([
         app.$axios.$get(`/authors/${params.slug}`),
         app.$axios.$get(`/authors/series/${params.slug}`),
-        app.$axios.$get(`/authors/books/${params.slug}`),
+        app.$axios.$get(
+          `/authors/books/${params.slug}?${qs.stringify({
+            standalone: true,
+          })}`
+        ),
       ])
 
       return {

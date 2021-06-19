@@ -8,7 +8,7 @@
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
-            v-for="book in books"
+            v-for="book in books.data"
             :key="book.id"
             :cover="book.picture.base"
             :color="book.picture.color"
@@ -45,6 +45,14 @@
             </template>
           </entity-card>
         </div>
+        <div class="mt-14 mb-5">
+          <load-more
+            :last-page="books.meta.last_page"
+            :endpoint="`publishers/books/${publisher.meta.slug}`"
+            :entities="books.data"
+            @load="load"
+          />
+        </div>
       </div>
     </section>
     <api-error-message v-else />
@@ -54,12 +62,13 @@
 <script>
 import EntityCard from '~/components/blocks/entity-card.vue'
 import sectionHeading from '~/components/blocks/section-heading.vue'
-import { formatLanguage, getAuthors } from '~/plugins/utils/methods'
+import { formatLanguage, formatAuthors } from '~/plugins/utils/methods'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
+import LoadMore from '~/components/special/load-more.vue'
 
 export default {
   name: 'PageRelatedSlug',
-  components: { sectionHeading, EntityCard },
+  components: { sectionHeading, EntityCard, LoadMore },
   async asyncData({ app, params }) {
     try {
       const [publisher, books] = await Promise.all([
@@ -69,7 +78,7 @@ export default {
 
       return {
         publisher: publisher.data,
-        books: books.data,
+        books,
         apiError: false,
       }
     } catch (error) {
@@ -81,7 +90,7 @@ export default {
   data() {
     return {
       formatLanguage,
-      getAuthors,
+      formatAuthors,
       title: `Books published by `,
       description: `List of all books for publisher`,
     }
@@ -104,6 +113,11 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    load(data) {
+      this.books.data = data
+    },
   },
 }
 </script>

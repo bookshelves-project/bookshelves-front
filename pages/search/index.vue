@@ -7,7 +7,7 @@
     <advanced-search-form @advancedSearch="advancedSearch" />
     <section class="mt-6">
       <transition name="fade">
-        <div v-if="search && search.length > 0" :key="componentKey">
+        <div v-if="search && search.length">
           <search-results
             v-if="authors.length"
             :entity-type="`author`"
@@ -24,8 +24,11 @@
             :entities="books"
           />
         </div>
-        <div v-else class="italic text-gray-500">No result</div>
       </transition>
+      <transition name="fade">
+        <skeleton v-if="pending" />
+      </transition>
+      <div v-if="empty" class="italic text-gray-500">No result</div>
     </section>
   </main>
 </template>
@@ -37,6 +40,7 @@ import SectionHeading from '~/components/blocks/section-heading.vue'
 import SearchResults from '~/components/blocks/search-results.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import AdvancedSearchForm from '~/components/forms/advanced-search-form.vue'
+import Skeleton from '~/components/special/skeleton.vue'
 
 export default {
   name: 'SearchIndex',
@@ -44,12 +48,14 @@ export default {
     SectionHeading,
     SearchResults,
     AdvancedSearchForm,
+    Skeleton,
   },
   data() {
     return {
       search: [],
-      componentKey: 0,
+      pending: false,
       advancedSearchInput: '',
+      empty: false,
       title: `Search`,
       description: `Try to search what you want`,
     }
@@ -132,11 +138,18 @@ export default {
     },
     async getSearchResults(query) {
       if (query) {
+        this.pending = true
+        this.empty = false
         const search = await this.$axios.$get(
           `/search?${qs.stringify({
             q: query,
           })}`
         )
+        this.pending = false
+
+        if (!search.data.length) {
+          this.empty = true
+        }
 
         return search.data
       } else {

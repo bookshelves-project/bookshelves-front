@@ -40,7 +40,7 @@ export const formatLanguage = (slug, type = 'label') => {
 }
 
 // get all authors into a string from array of object
-export const getAuthors = (authors) => {
+export const formatAuthors = (authors) => {
   if (authors) {
     let authorsToString = ''
     authors.forEach((author, authorId) => {

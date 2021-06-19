@@ -30,7 +30,7 @@ import BookMain from '~/components/blocks/books-slug/book-main.vue'
 import BookRelated from '~/components/blocks/books-slug/book-related.vue'
 import BookSerie from '~/components/blocks/books-slug/book-serie.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
-import { formatLanguage, getAuthors } from '~/plugins/utils/methods'
+import { formatLanguage, formatAuthors } from '~/plugins/utils/methods'
 
 export default {
   name: 'BooksSlug',
@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      getAuthors,
+      formatAuthors,
     }
   },
   head() {
@@ -159,7 +159,7 @@ export default {
   },
   computed: {
     authors() {
-      return getAuthors(this.book.authors)
+      return formatAuthors(this.book.authors)
     },
   },
 }
