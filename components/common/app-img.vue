@@ -2,7 +2,7 @@
   <div class="relative">
     <img
       v-if="imageNotExist"
-      src="/images/bookshelves.png"
+      src="/images/no-cover.webp"
       :alt="title"
       class="object-cover max-size"
     />

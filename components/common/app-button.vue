@@ -11,7 +11,9 @@
     :disabled="disabled"
     @click="$emit('click')"
   >
-    <slot />
+    <span class="w-max mx-auto">
+      <slot />
+    </span>
   </component>
 </template>
 
@@ -90,7 +92,8 @@ export default {
   @apply border-gray-300 shadow-sm text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 hover:bg-primary-100;
 }
 
-.primary-disabled {
-  @apply bg-primary-300 cursor-not-allowed !important;
+.disabled {
+  @apply opacity-70 !important;
+  pointer-events: none;
 }
 </style>

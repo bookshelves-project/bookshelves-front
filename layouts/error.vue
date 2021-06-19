@@ -20,7 +20,7 @@
         </p>
         <div class="flex justify-center mt-5 space-x-20">
           <app-button to="/" :color="`primary`"> Home page </app-button>
-          <app-button :to="{ name: 'contact' }" :color="`primary`">
+          <app-button :to="{ name: 'contact' }" :color="`secondary`">
             Contact us
           </app-button>
           <!-- <nuxt-link exact to="/" class="error-link"

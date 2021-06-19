@@ -123,7 +123,6 @@ export default {
           ? this.document.category.toLowerCase()
           : this.$route.params.slug
       const picture = `/images/${this.$route.params.type}/${name}.webp`
-      console.log(picture)
       return picture
     },
   },
