@@ -123,8 +123,6 @@ export default {
     '@nuxtjs/auth-next',
     // https://sitemap.nuxtjs.org/guide/setup
     '@nuxtjs/sitemap',
-    // https://github.com/avil13/vue-sweetalert2
-    'vue-sweetalert2/nuxt',
     // https://gitlab.com/broj42/nuxt-lazy-load
     [
       'nuxt-lazy-load',
@@ -217,15 +215,10 @@ export default {
   content: {
     liveEdit: false,
     // https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins
-    markdown: {
-      prism: {
-        theme: 'prism-themes/themes/prism-vsc-dark-plus.css',
-      },
-    },
+    markdown: {},
   },
   robots: {
-    Disallow:
-      process.env.META_ROBOT_DISALLOW.split(',') || metadata.settings.disallow,
+    Disallow: metadata.settings.disallow.split(','),
     Sitemap: `${process.env.BASE_URL}/sitemap.xml`,
   },
   sitemap: {
@@ -233,8 +226,7 @@ export default {
     hostname: process.env.BASE_URL,
     cacheTime: 1000 * 60 * 15,
     gzip: true,
-    exclude:
-      process.env.META_ROBOT_DISALLOW.split(',') || metadata.settings.disallow,
+    exclude: metadata.settings.disallow.split(','),
     sitemaps: sitemaps(),
   },
   image: {
