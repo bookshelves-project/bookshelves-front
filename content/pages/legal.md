@@ -1,12 +1,9 @@
 ---
-
 title: "Legal"
 subtitle: ''
 description: 'About legal'
 ---
 
-<app-name></app-name> is absolutely not legal, the eBooks (EPUB files) that you will be able to download have been obtained in some cases legally (online purchase) and in others illegally (downloading pirate content via a website).
+<app-name></app-name> is not responsible for what you do with the files offered for download, you only have the right to download them if they are in the public domain and/or if you already own a legal copy of the file.
 
 You cannot hold <app-name></app-name> responsible for what you do with these files, and conversely, you own them.
-
-You are free to contact the relevant authorities to report this project, but it would be a shame not to have access to the eBooks offered here.
