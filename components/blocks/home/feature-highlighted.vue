@@ -1,5 +1,5 @@
 <template>
-  <div class="relative my-20">
+  <div class="relative my-3 md:my-20">
     <div
       class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24"
     >
@@ -51,7 +51,7 @@
         :class="{
           'lg:col-start-1': positionImage === 'left',
         }"
-        class="mt-12 sm:mt-16 lg:mt-0"
+        class="mt-12 sm:mt-16 lg:mt-0 hidden md:block"
       >
         <div
           class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full"

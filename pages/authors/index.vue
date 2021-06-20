@@ -23,12 +23,14 @@
         </div>
       </div>
       <div class="mt-6 mb-5">
-        <load-more
-          :last-page="authors.meta.last_page"
-          endpoint="authors"
-          :entities="authors.data"
-          @load="load"
-        />
+        <pagination
+          v-if="pages > 1"
+          :link-gen="linkGen"
+          :pages="pages"
+          :current-page="currentPage"
+          class="flex justify-center"
+        >
+        </pagination>
       </div>
     </section>
     <api-error-message v-else />
@@ -42,11 +44,11 @@ import EntityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
-import LoadMore from '~/components/special/load-more.vue'
+import Pagination from '~/components/special/pagination.vue'
 
 export default {
   name: 'AuthorsIndex',
-  components: { EntityCard, SectionHeading, ApiErrorMessage, LoadMore },
+  components: { EntityCard, SectionHeading, ApiErrorMessage, Pagination },
   async asyncData({ app, query }) {
     try {
       const page = query.page
@@ -126,8 +128,11 @@ export default {
   },
   watchQuery: ['page'],
   methods: {
-    load(data) {
-      this.authors.data = data
+    linkGen(pageNum) {
+      return {
+        name: this.$route.name,
+        query: pageNum === 1 ? {} : { page: pageNum },
+      }
     },
   },
 }

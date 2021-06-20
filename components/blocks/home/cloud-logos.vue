@@ -27,7 +27,7 @@
           />
         </a>
       </div>
-      <div>
+      <div class="hidden md:block">
         <p
           class="mt-8 text-sm font-semibold tracking-wide text-center text-gray-500 uppercase"
         >

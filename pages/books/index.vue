@@ -46,16 +46,14 @@
         </div>
       </div>
       <div class="mt-14 mb-5">
-        <load-more
-          :last-page="books.meta.last_page"
-          endpoint="books"
-          :entities="books.data"
-          :queries="{
-            lang: $route.query.lang,
-            serie: $route.query.serie,
-          }"
-          @load="load"
-        />
+        <pagination
+          v-if="pages > 1"
+          :link-gen="linkGen"
+          :pages="pages"
+          :current-page="currentPage"
+          class="flex justify-center"
+        >
+        </pagination>
       </div>
     </section>
     <api-error-message v-else />
@@ -72,7 +70,7 @@ import EntitiesFilter from '~/components/blocks/entities-filter.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 import { formatLanguage, objectIsEmpty } from '~/plugins/utils/methods'
-import LoadMore from '~/components/special/load-more.vue'
+import Pagination from '~/components/special/pagination.vue'
 
 export default {
   name: 'Books',
@@ -81,7 +79,7 @@ export default {
     SectionHeading,
     ApiErrorMessage,
     EntitiesFilter,
-    LoadMore,
+    Pagination,
   },
   auth: 'auth',
   layout: 'auth',
@@ -143,6 +141,7 @@ export default {
       ],
     }
   },
+  watchQuery: ['page', 'lang', 'serie'],
   jsonld() {
     const breadcrumbs = [
       {
@@ -168,8 +167,15 @@ export default {
       itemListElement: items,
     }
   },
-  watchQuery: ['page', 'lang', 'serie'],
   methods: {
+    linkGen(pageNum) {
+      const lang = this.$route.query.lang
+      const serie = this.$route.query.serie
+      return {
+        name: this.$route.name,
+        query: pageNum === 1 ? { lang, serie } : { page: pageNum, lang, serie },
+      }
+    },
     filter(param) {
       if (param !== null) {
         const query = {}
@@ -189,9 +195,6 @@ export default {
       } else {
         this.$router.push({ name: 'books' })
       }
-    },
-    load(data) {
-      this.books.data = data
     },
   },
 }

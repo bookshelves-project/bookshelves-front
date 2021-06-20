@@ -265,6 +265,9 @@ export default {
   transition: opacity 0.3s !important;
 }
 .book-books {
+  img {
+    @apply rounded-md;
+  }
   & .thumbnails {
     @apply mt-5;
     & .agile__nav-button {

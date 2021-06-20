@@ -2,13 +2,12 @@
   <nav
     class="flex items-center justify-between px-4 border-t border-gray-200 sm:px-0"
   >
-    <div class="flex flex-1 w-0 -mt-px">
+    <div class="flex flex-1 w-0 -mt-px item-ext">
       <nuxt-link
         :tag="getTag(1)"
         :to="linkGen(1)"
         active-class="pagination-active"
         exact-active-class="pagination-exact-active"
-        class="inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300"
       >
         <svg-icon
           name="arrow-narrow-right"
@@ -45,13 +44,25 @@
           active-class="pagination-active"
           exact-active-class="pagination-exact-active"
         >
-          <span class="border-none" style="padding: 0">{{
+          <em class="border-none" style="padding: 0">{{
             pageNum + startNumber - 1
-          }}</span>
+          }}</em>
         </nuxt-link>
       </div>
       <div v-if="showLastDots" class="item">
         <span>...</span>
+      </div>
+      <div v-if="displayLastPage" class="item">
+        <nuxt-link
+          :tag="getTag(pages)"
+          :to="linkGen(pages)"
+          active-class="pagination-active"
+          exact-active-class="pagination-exact-active"
+          title="Next"
+          aria-label="Next"
+        >
+          {{ pages }}
+        </nuxt-link>
       </div>
       <div class="item">
         <nuxt-link
@@ -66,13 +77,12 @@
         </nuxt-link>
       </div>
     </div>
-    <div class="flex justify-end flex-1 w-0 -mt-px item">
+    <div class="flex justify-end flex-1 w-0 -mt-px item-ext">
       <nuxt-link
         :tag="getTag(pages)"
         :to="linkGen(pages)"
         active-class="pagination-active"
         exact-active-class="pagination-exact-active"
-        class="inline-flex items-center pt-4 pl-1 text-sm font-medium text-gray-500 border-t-2 border-transparent hover:text-gray-700 hover:border-gray-300"
       >
         Last
         <svg-icon
@@ -95,10 +105,6 @@ export default {
       type: Number,
       default: 1,
     },
-    limit: {
-      type: Number,
-      default: 4,
-    },
     linkGen: {
       type: Function,
       default: () => () => {},
@@ -107,9 +113,19 @@ export default {
   data() {
     return {
       ellipsesThreshold: 3,
+      limit: 5,
     }
   },
   computed: {
+    displayLastPage() {
+      let limit = this.limit
+      limit = limit - 2
+      if (this.currentPage <= this.pages - limit) {
+        return true
+      }
+
+      return false
+    },
     showAllPages() {
       return this.pages <= this.limit
     },
@@ -174,6 +190,16 @@ export default {
       return this.limit
     },
   },
+  created() {
+    if (this.pages >= 8) {
+      const limit = this.pages / 3
+      if (limit <= 8) {
+        this.limit = limit
+      } else {
+        this.limit = 8
+      }
+    }
+  },
   methods: {
     isActive(pageNum) {
       return this.currentPage === pageNum
@@ -189,35 +215,40 @@ export default {
 .rotate-180 {
   transform: rotate(180deg);
 }
+em {
+  font-style: normal;
+}
+.item-ext {
+  & a,
+  span {
+    @apply inline-flex items-center pt-4 pr-1 text-sm font-medium text-gray-500 border-t-2 border-transparent;
+  }
+  & span {
+    @apply opacity-50;
+  }
+  & a {
+    @apply hover:text-gray-700 hover:border-gray-300;
+  }
+}
 .item {
   & a,
   & span {
-    /* @apply block w-10 text-center border-r py-2; */
-    @apply inline-flex items-center px-4 pt-4 text-sm font-medium text-gray-500 border-t-2 hover:text-gray-700 hover:border-gray-300 border-transparent dark:text-gray-100;
+    @apply inline-flex items-center px-4 pt-4 text-sm font-medium text-gray-500 border-t-2 border-transparent dark:text-gray-100;
   }
-
-  & a:hover {
-    /* @apply text-white bg-gray-500; */
+  & span {
+    @apply opacity-50;
   }
-
-  &:first-child {
-    & a,
-    & span {
-      /* @apply rounded-l; */
-    }
-  }
-
-  &:last-child {
-    & a,
-    & span {
-      /* @apply border-r-0 rounded-r; */
-    }
+  & a {
+    @apply hover:text-gray-700 hover:border-gray-300;
   }
 
   &.active {
     & a,
     & span {
       @apply text-indigo-600 border-indigo-500 dark:text-indigo-300 dark:border-indigo-300;
+    }
+    & span {
+      @apply opacity-100 font-semibold;
     }
   }
 }

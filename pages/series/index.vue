@@ -41,12 +41,14 @@
         </div>
       </div>
       <div class="mt-6 mb-5">
-        <load-more
-          :last-page="series.meta.last_page"
-          endpoint="series"
-          :entities="series.data"
-          @load="load"
-        />
+        <pagination
+          v-if="pages > 1"
+          :link-gen="linkGen"
+          :pages="pages"
+          :current-page="currentPage"
+          class="flex justify-center"
+        >
+        </pagination>
       </div>
     </section>
     <api-error-message v-else />
@@ -61,11 +63,11 @@ import ApiErrorMessage from '~/components/special/api-error-message.vue'
 
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import { formatLanguage } from '~/plugins/utils/methods'
-import LoadMore from '~/components/special/load-more.vue'
+import Pagination from '~/components/special/pagination.vue'
 
 export default {
   name: 'SeriesIndex',
-  components: { EntityCard, SectionHeading, ApiErrorMessage, LoadMore },
+  components: { EntityCard, SectionHeading, ApiErrorMessage, Pagination },
   async asyncData({ app, query }) {
     try {
       const page = query.page
@@ -146,8 +148,11 @@ export default {
   },
   watchQuery: ['page'],
   methods: {
-    load(data) {
-      this.series.data = data
+    linkGen(pageNum) {
+      return {
+        name: this.$route.name,
+        query: pageNum === 1 ? {} : { page: pageNum },
+      }
     },
   },
 }

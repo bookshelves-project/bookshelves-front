@@ -11,7 +11,7 @@
                 :color="book.picture.color"
                 :title="book.title"
                 class="w-20 h-20"
-                picture="rounded-full"
+                picture="rounded-md"
                 no-alt
               />
             </div>

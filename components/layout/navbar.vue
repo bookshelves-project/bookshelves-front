@@ -79,10 +79,10 @@ export default {
     },
     openSidebar() {
       this.$store.commit('setLayer', true)
-      if (process.client) {
-        const body = document.getElementsByTagName('body')[0]
-        body.classList.add('scroll-prevent')
-      }
+      // if (process.client) {
+      //   const body = document.getElementsByTagName('body')[0]
+      //   body.classList.add('scroll-prevent')
+      // }
 
       setTimeout(() => {
         this.$store.commit('setSidebar', true)

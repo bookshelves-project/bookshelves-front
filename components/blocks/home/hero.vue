@@ -22,7 +22,7 @@
         </p>
       </div>
     </div>
-    <div class="mx-auto mt-5 sm:mt-10 lg:mt-0 lg:ml-auto">
+    <div class="mx-auto mt-5 sm:mt-10 lg:mt-0 lg:ml-auto hidden md:block">
       <img
         src="/images/book-lover.svg"
         alt="Woman on books pile who is reading"
