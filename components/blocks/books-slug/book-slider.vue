@@ -31,16 +31,16 @@
               class="slide"
               :class="`slide--${index}`"
             >
-              <div class="w-full h-full lg:grid lg:grid-cols-2">
+              <div class="w-full h-full md:grid md:grid-cols-2">
                 <div class="col-span-1">
                   <app-img
                     :src="book.picture.original"
                     :color="book.picture.color"
                     :title="book.title"
-                    class="object-cover object-top w-32 h-32 rounded-full lg:rounded-md lg:w-full lg:h-full"
+                    class="object-cover object-top w-32 h-32 rounded-full md:rounded-md md:w-full md:h-full"
                   />
                 </div>
-                <div class="col-span-1 mt-3 ml-0 space-y-2 lg:ml-3 lg:mt-0">
+                <div class="col-span-1 mt-3 ml-0 space-y-2 md:ml-3 md:mt-0">
                   <div>
                     <span
                       class="text-sm font-medium text-gray-500 dark:text-gray-400"
@@ -148,18 +148,18 @@
         </div>
         <div v-else class="pt-10 pb-10 animate-pulse">
           <div class="flex space-x-6">
-            <div class="bg-primary-300 h-96 w-64 rounded-md"></div>
+            <div class="bg-gray-300 h-96 w-64 rounded-md"></div>
             <div class="mt-4 space-y-4">
-              <div class="h-8 w-48 rounded-md bg-primary-300"></div>
-              <div class="h-8 w-48 rounded-md bg-primary-300"></div>
-              <div class="h-8 w-48 rounded-md bg-primary-300"></div>
+              <div class="h-8 w-48 rounded-md bg-gray-300"></div>
+              <div class="h-8 w-48 rounded-md bg-gray-300"></div>
+              <div class="h-8 w-48 rounded-md bg-gray-300"></div>
             </div>
           </div>
           <div class="mt-6 flex items-center space-x-6">
             <div
               v-for="i in 5"
               :key="i.id"
-              class="bg-primary-300 h-20 w-20 rounded-md"
+              class="bg-gray-300 h-20 w-20 rounded-md"
             ></div>
           </div>
         </div>
@@ -209,7 +209,7 @@ export default {
         dots: false,
         fade: true,
         navButtons: true,
-        infinite: false,
+        infinite: true,
       },
 
       options2: {
@@ -218,15 +218,20 @@ export default {
         dots: true,
         navButtons: false,
         infinite: true,
-        slidesToShow: 3,
+        slidesToShow: 1,
         responsive: [
           {
-            breakpoint: 600,
+            breakpoint: 500,
+            settings: {
+              slidesToShow: 2,
+            },
+          },
+          {
+            breakpoint: 700,
             settings: {
               slidesToShow: 5,
             },
           },
-
           {
             breakpoint: 900,
             settings: {

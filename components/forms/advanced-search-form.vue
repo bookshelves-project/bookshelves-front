@@ -14,7 +14,7 @@
           type="search"
           name="search"
           class="block w-full pl-10 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          placeholder="Global search"
+          placeholder="Advanced search"
         />
       </div>
       <button
@@ -25,34 +25,30 @@
       </button>
     </div>
     <p class="max-w-lg mx-auto mt-3 text-gray-400">
-      You can define advanced search here, select details with fields, in main
-      search bar
-      <b
-        >you can search any book's title, any series' title, any author's name
-        or ISBN</b
-      >.
+      On advanced search, you can define your search (any book's title, any
+      series' title or ISBN) and select details with fields.
     </p>
-    <div class="hidden">
-      <div class="grid grid-cols-4 gap-4 my-10">
+    <div class="relative flex items-end mt-8">
+      <div class="flex items-center h-5">
+        <input
+          id="conditions"
+          v-model="form.onlySerie"
+          name="conditions"
+          type="checkbox"
+          class="w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-600"
+        />
+      </div>
+      <div class="ml-3 text-sm">
+        <label for="conditions" class="font-medium text-gray-700"
+          >Only series ?</label
+        >
+      </div>
+    </div>
+    <div>
+      <div class="grid grid-cols-3 gap-4 my-10">
         <autocomplete-authors @author="author" />
         <autocomplete-languages @lang="lang" />
         <autocomplete-tags @tag="tag" />
-        <div class="relative flex items-start mt-8">
-          <div class="flex items-center h-5">
-            <input
-              id="conditions"
-              v-model="form.serie"
-              name="conditions"
-              type="checkbox"
-              class="w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-600"
-            />
-          </div>
-          <div class="ml-3 text-sm">
-            <label for="conditions" class="font-medium text-gray-700"
-              >Only series ?</label
-            >
-          </div>
-        </div>
       </div>
       <section class="grid grid-cols-3 gap-y-32">
         <div>
@@ -148,13 +144,12 @@ export default {
       validLanguages: [],
       validTags: [],
       validIsbn: null,
-      validSerie: null,
       containsObject,
       form: {
         author: null,
         languages: [],
         tags: [],
-        serie: false,
+        onlySerie: false,
       },
     }
   },
@@ -169,7 +164,6 @@ export default {
     },
     lang(lang) {
       if (lang) {
-        console.log(lang)
         if (!this.containsObject(lang, this.validLanguages)) {
           this.validLanguages.push(lang)
         }
@@ -183,7 +177,34 @@ export default {
       }
     },
     submit() {
-      this.$emit('advancedSearch', this.search)
+      // tags
+      const tags = []
+      this.validTags.forEach((validTag) => {
+        tags.push(validTag.meta.slug)
+      })
+      // langs
+      const langs = []
+      this.validLanguages.forEach((validLanguage) => {
+        langs.push(validLanguage.meta.slug)
+      })
+
+      const search = {
+        q: this.search,
+        'only-serie': this.form.onlySerie,
+      }
+
+      if (this.validAuthor) {
+        search.author = this.validAuthor.meta.slug
+      }
+      if (tags.length) {
+        search.tags = tags.join()
+      }
+      if (langs.length) {
+        search.languages = langs.join()
+      }
+
+      console.log(search)
+      this.$emit('advancedSearch', search)
     },
   },
 }

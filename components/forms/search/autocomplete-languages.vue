@@ -124,7 +124,6 @@ export default {
         this.showList = false
         this.validate = true
       }, 50)
-      console.log(this.validLanguage)
       this.$emit('lang', this.validLanguage)
     },
   },

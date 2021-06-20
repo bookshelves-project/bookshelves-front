@@ -203,8 +203,6 @@ export default {
         newQuery[key] = param.data
         query[param.type] = param.data
 
-        console.log(query)
-
         this.$router.push({ name: 'books', query })
       } else {
         this.$router.push({ name: 'books' })

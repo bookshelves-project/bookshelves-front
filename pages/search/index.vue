@@ -41,6 +41,7 @@ import SearchResults from '~/components/blocks/search-results.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import AdvancedSearchForm from '~/components/forms/advanced-search-form.vue'
 import Skeleton from '~/components/special/skeleton.vue'
+import { objectIsEmpty } from '~/plugins/utils/methods'
 
 export default {
   name: 'SearchIndex',
@@ -53,6 +54,7 @@ export default {
   data() {
     return {
       search: [],
+      objectIsEmpty,
       pending: false,
       advancedSearchInput: '',
       empty: false,
@@ -62,7 +64,7 @@ export default {
   },
   head() {
     const title = this.title
-    const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
+    const url = `${this.$config.baseURL}/search`
     const dynamicMeta = dynamicMetadata({
       title: this.title,
       description: this.description,
@@ -98,11 +100,11 @@ export default {
   },
   async watchQuery(newQuery) {
     if (this) {
-      this.search = await this.getSearchResults(newQuery.q)
+      this.search = await this.getSearchResults(newQuery)
     }
   },
   async mounted() {
-    this.search = await this.getSearchResults(this.$route.query.q)
+    this.search = await this.getSearchResults(this.$route.query)
   },
   jsonld() {
     const breadcrumbs = [
@@ -133,25 +135,41 @@ export default {
     advancedSearch(search) {
       this.$router.push({
         path: this.$route.path,
-        query: { q: search },
+        query: search,
       })
     },
     async getSearchResults(query) {
       if (query) {
-        this.pending = true
-        this.empty = false
-        const search = await this.$axios.$get(
-          `/search?${qs.stringify({
-            q: query,
-          })}`
-        )
-        this.pending = false
+        if (!objectIsEmpty(query) && query.q.length >= 1) {
+          this.pending = true
+          this.empty = false
 
-        if (!search.data.length) {
-          this.empty = true
+          if (Object.keys(query).length === 1) {
+            const search = await this.$axios.$get(
+              `/search?${qs.stringify({
+                q: query.q,
+              })}`
+            )
+            this.pending = false
+
+            if (!search.data.length) {
+              this.empty = true
+            }
+
+            return search.data
+          } else {
+            const search = await this.$axios.$get(
+              `/search/advanced?${qs.stringify({
+                ...query,
+              })}`
+            )
+            this.pending = false
+            if (!search.data.length) {
+              this.empty = true
+            }
+            return search.data
+          }
         }
-
-        return search.data
       } else {
         return null
       }
