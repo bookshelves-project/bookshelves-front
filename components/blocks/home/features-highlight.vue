@@ -25,6 +25,10 @@
       :position-image="`left`"
       :image="`/images/home/ereaders.svg`"
       :title="`Want to know your eReader?`"
+      :blockquote="{
+        text: `The world of eReaders is so vast!`,
+        author: `A novice user`,
+      }"
       :icon="`ereader`"
     >
       <template #text>
@@ -42,6 +46,10 @@
       :position-image="`right`"
       :icon="`open-book`"
       :image="`/images/home/book_reading.svg`"
+      :blockquote="{
+        text: `I am only interested in OPDS feeds adapted to my eReader with Koreader OS.`,
+        author: `A very experimented reader`,
+      }"
       :title="`${$config.appName} can follow you everywhere`"
     >
       <template #text>
