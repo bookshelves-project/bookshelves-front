@@ -18,9 +18,8 @@
         >
           <div class="flex items-center flex-1 min-w-0">
             <div class="flex-shrink-0">
-              <img
-                v-lazy-load
-                :data-src="`/images/guides/${guide.category.toLowerCase()}.webp`"
+              <app-img
+                :src="`/images/guides/${guide.category.toLowerCase()}.webp`"
                 :alt="`${guide.slug} picture`"
                 class="object-cover w-12 h-12 text-opacity-50 rounded-full fill-current text-primary-600"
               />

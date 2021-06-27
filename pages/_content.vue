@@ -17,11 +17,11 @@
               >
                 <div class="mx-auto text-lg max-w-prose">
                   <div>
-                    <h2
+                    <div
                       class="block text-base font-semibold tracking-wide text-center uppercase text-primary-600"
                     >
                       {{ document.category }}
-                    </h2>
+                    </div>
                     <h1
                       class="block mt-2 text-3xl font-extrabold leading-8 tracking-tight text-center text-gray-900 sm:text-4xl"
                     >

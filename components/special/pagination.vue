@@ -5,7 +5,7 @@
     <div class="flex flex-1 w-0 -mt-px item-ext">
       <nuxt-link
         :tag="getTag(1)"
-        :to="linkGen(1)"
+        :to="getTag(pages) === 'span' ? '' : linkGen(1)"
         active-class="pagination-active"
         exact-active-class="pagination-exact-active"
       >
@@ -20,7 +20,7 @@
       <div class="item">
         <nuxt-link
           :tag="getTag(1)"
-          :to="linkGen(currentPage - 1)"
+          :to="getTag(pages) === 'span' ? '' : linkGen(currentPage - 1)"
           active-class="pagination-active"
           exact-active-class="pagination-exact-active"
           title="Previous"
@@ -40,7 +40,9 @@
       >
         <nuxt-link
           :tag="getTag(pageNum + startNumber - 1)"
-          :to="linkGen(pageNum + startNumber - 1)"
+          :to="
+            getTag(pages) === 'span' ? '' : linkGen(pageNum + startNumber - 1)
+          "
           active-class="pagination-active"
           exact-active-class="pagination-exact-active"
         >
@@ -55,7 +57,7 @@
       <div v-if="displayLastPage" class="item">
         <nuxt-link
           :tag="getTag(pages)"
-          :to="linkGen(pages)"
+          :to="getTag(pages) === 'span' ? '' : linkGen(pages)"
           active-class="pagination-active"
           exact-active-class="pagination-exact-active"
           title="Next"
@@ -67,7 +69,7 @@
       <div class="item">
         <nuxt-link
           :tag="getTag(pages)"
-          :to="linkGen(currentPage + 1)"
+          :to="getTag(pages) === 'span' ? '' : linkGen(currentPage + 1)"
           active-class="pagination-active"
           exact-active-class="pagination-exact-active"
           title="Next"
@@ -80,7 +82,7 @@
     <div class="flex justify-end flex-1 w-0 -mt-px item-ext">
       <nuxt-link
         :tag="getTag(pages)"
-        :to="linkGen(pages)"
+        :to="getTag(pages) === 'span' ? '' : linkGen(pages)"
         active-class="pagination-active"
         exact-active-class="pagination-exact-active"
       >

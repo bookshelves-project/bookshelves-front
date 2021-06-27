@@ -1,5 +1,10 @@
 <template>
   <div v-click-outside="onClickOutside">
+    <!-- <select id="tags" multiple>
+      <option value="value 1">Value 1</option>
+      <option value="value 2">Value 2</option>
+      <option value="value 3">Value 3</option>
+    </select> -->
     <div class="relative mb-3">
       <label
         id="listbox-label"
@@ -79,6 +84,14 @@ export default {
         this.tags = []
       }
     },
+  },
+  mounted() {
+    // eslint-disable-next-line no-unused-vars
+    // const SlimSelect = require('slim-select')
+    // eslint-disable-next-line no-new
+    // new SlimSelect({
+    //   select: '#tags',
+    // })
   },
   async created() {
     await this.getTags()

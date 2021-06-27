@@ -1,5 +1,5 @@
 <template>
-  <div class="relative mt-6">
+  <div class="relative mt-6 statistics">
     <div class="absolute bottom-0 w-full h-80">
       <div class="h-full">
         <img

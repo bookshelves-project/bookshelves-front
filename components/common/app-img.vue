@@ -18,6 +18,7 @@
       v-lazy-load
       :class="[loading ? '' : '', picture]"
       :data-src="src"
+      :src="src"
       :alt="noAlt ? '' : title"
       :title="title"
       class="object-cover max-size img"

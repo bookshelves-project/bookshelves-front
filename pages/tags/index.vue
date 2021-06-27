@@ -4,27 +4,25 @@
     <div class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Genres</h2>
       <section class="flex flex-wrap items-center">
-        <nuxt-link
+        <chip
           v-for="tag in genres"
           :key="tag.id"
           :to="{ name: 'tags-slug', params: { slug: tag.meta.slug } }"
-          class="px-3 py-1 m-1 transition-colors duration-100 bg-gray-300 rounded-full hover:bg-primary-300"
         >
           {{ tag.name }} ({{ tag.count }})
-        </nuxt-link>
+        </chip>
       </section>
     </div>
     <div class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Tags</h2>
       <section class="flex flex-wrap items-center">
-        <nuxt-link
+        <chip
           v-for="tag in tags"
           :key="tag.id"
           :to="{ name: 'tags-slug', params: { slug: tag.meta.slug } }"
-          class="px-3 py-1 m-1 transition-colors duration-100 bg-gray-300 rounded-full hover:bg-primary-300"
         >
           {{ tag.name }} ({{ tag.count }})
-        </nuxt-link>
+        </chip>
       </section>
     </div>
   </div>
@@ -33,9 +31,10 @@
 <script>
 import qs from 'qs'
 import sectionHeading from '~/components/blocks/section-heading.vue'
+import Chip from '~/components/blocks/chip.vue'
 export default {
   name: 'TagsIndex',
-  components: { sectionHeading },
+  components: { sectionHeading, Chip },
   async asyncData({ app }) {
     const [genres, tags] = await Promise.all([
       app.$axios.$get(
@@ -54,7 +53,7 @@ export default {
   data() {
     return {
       title: 'Genres & Tags',
-      description: '',
+      description: 'Find books and series by their genres and tags.',
     }
   },
 }

@@ -12,7 +12,7 @@
             'lg:py-32 lg:col-start-2': positionImage === 'left',
           },
         ]"
-        class="max-w-xl px-4 mx-auto sm:px-6 lg:max-w-none lg:mx-0 lg:px-0"
+        class="mx-auto sm:px-6 lg:max-w-none lg:mx-0 lg:px-0"
       >
         <div class="py-20">
           <div>

@@ -62,14 +62,12 @@ export default {
     '@nuxtjs/dotenv',
     // Doc: https://github.com/nuxt-community/router-module
     '@nuxtjs/router',
-    // https://image.nuxtjs.org
-    // '@nuxt/image',
     // https://color-mode.nuxtjs.org/#setup
     '@nuxtjs/color-mode',
     // https://github.com/nuxt-community/svg-sprite-module
     '@nuxtjs/svg-sprite',
     // https://html-validator.nuxtjs.org/
-    // '@nuxtjs/html-validator',
+    '@nuxtjs/html-validator',
   ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.pcss',
@@ -113,8 +111,6 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    // https://image.nuxtjs.org/
-    // '@nuxt/image',
     // https://www.npmjs.com/package/@nuxtjs/robots
     '@nuxtjs/robots',
     // https://i18n.nuxtjs.org/setup
@@ -133,8 +129,6 @@ export default {
         appendClass: 'lazyLoad',
       },
     ],
-    // https://image.nuxtjs.org/getting-started/installation
-    '@nuxt/image',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -228,9 +222,6 @@ export default {
     gzip: true,
     exclude: metadata.settings.disallow.split(','),
     sitemaps: sitemaps(),
-  },
-  image: {
-    // Options
   },
 
   hooks: {

@@ -19,7 +19,7 @@
               {{ serie.title }}
             </template>
             <template #secondary>
-              <div v-for="(author, authorId) in serie.authors" :key="authorId">
+              <span v-for="(author, authorId) in serie.authors" :key="authorId">
                 {{ author.name }}
                 <span
                   v-if="
@@ -29,13 +29,13 @@
                 >
                   &
                 </span>
-              </div>
+              </span>
             </template>
             <template #tertiary>
-              <div>{{ serie.count }} books</div>
-              <div v-if="serie.language" class="mt-1">
+              <span>{{ serie.count }} books</span>
+              <span v-if="serie.language" class="mt-1 block">
                 {{ formatLanguage(serie.language) }}
-              </div>
+              </span>
             </template>
           </entity-card>
         </div>
@@ -46,7 +46,6 @@
           :link-gen="linkGen"
           :pages="pages"
           :current-page="currentPage"
-          class="flex justify-center"
         >
         </pagination>
       </div>

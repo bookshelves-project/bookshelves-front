@@ -203,7 +203,6 @@ export default {
         search.languages = langs.join()
       }
 
-      console.log(search)
       this.$emit('advancedSearch', search)
     },
   },

@@ -1,5 +1,5 @@
 <template>
-  <main class="px-4 mx-auto lg:flex lg:items-center max-w-7xl">
+  <main class="px-4 mx-auto lg:flex lg:items-center max-w-7xl hero">
     <div class="max-w-2xl mx-auto lg:mx-0">
       <div class="sm:text-center lg:text-left">
         <h1

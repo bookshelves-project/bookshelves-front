@@ -53,7 +53,9 @@
           </div>
         </div>
       </div>
-      <div class="relative pt-8 mt-12 border-t border-gray-200">
+      <div
+        class="relative pt-8 mt-12 border-t border-gray-200 dark:border-gray-600"
+      >
         <div
           class="space-y-2 text-base text-gray-400 md:space-y-0 md:items-center md:flex xl:text-center"
         >

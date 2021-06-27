@@ -2,6 +2,7 @@
   <div v-click-outside="onClickOutside">
     <div class="relative flex items-center justify-end mr-10">
       <div class="relative w-full">
+        <label for="search" class="sr-only">Search</label>
         <autocomplete
           ref="search"
           :search="search"

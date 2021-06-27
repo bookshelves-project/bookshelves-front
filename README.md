@@ -7,10 +7,71 @@
 [![NodeJS](https://img.shields.io/static/v1?label=NodeJS&message=v14.16&color=339933&style=flat-square&logo=node.js&logoColor=ffffff)](https://nodejs.org/en)
 [![Yarn](https://img.shields.io/static/v1?label=Yarn&message=v1.2&color=2C8EBB&style=flat-square&logo=yarn&logoColor=ffffff)](https://classic.yarnpkg.com/lang/en/)
 
-- 📀 [**bookshelves-back**](https://gitlab.com/ewilan-riviere/bookshelves-back) : back-end of Bookshelves
-- 🎨 [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front) : front-end of Bookshelves (current repository)
-- 💻 [**bookshelves.ink**](https://bookshelves.ink) : front demo
-- 📚 [**Documentation API**](https://bookshelves.ink/api/documentation)
+📀 [**bookshelves-back**](https://gitlab.com/ewilan-riviere/bookshelves-back) : back-end of Bookshelves  
+🎨 [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front) : front-end of Bookshelves (current repository)  
+
+💻 [**bookshelves.ink**](https://bookshelves.ink): front demo  
+📚 [**bookshelves.ink/api/documentation**](https://bookshelves.ink/api/documentation): Documentation API  
+📚 [**bookshelves.ink/api/wiki**](https://bookshelves.ink/api/wiki): wiki for Bookshelves usage, if this link not work check [**files here**](https://gitlab.com/ewilan-riviere/bookshelves-back/-/tree/master/resources/views/pages/api/wiki/content)
+
+**Table of contents**
+
+- [**I. Setup**](#i-setup)
+  - [*I. a. Modify API*](#i-a-modify-api)
+- [**II. Production in SSR**](#ii-production-in-ssr)
+
+## **I. Setup**
+
+Setup local on <http://localhost:3000> with <https://bookshelves.ink> API
+
+Create `.env`
+
+```bash
+cp .env.example .env
+```
+
+Node.js dependencies
+
+```bash
+yarn
+```
+
+Local serve
+
+```bash
+yarn dev
+```
+
+### *I. a. Modify API*
+
+Modify `.env` on `API_URL` to use local API
+
+```yml
+API_URL=http://localhost:8000/api
+```
+
+## **II. Production in SSR**
+
+Update `.env`
+
+```yml
+BASE_URL=https://bookshelves.ink
+API_URL=https://bookshelves.ink/api
+```
+
+Setup build
+
+```bash
+yarn build
+```
+
+Launch server in SSR
+
+```bash
+yarn start
+```
+
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
 ## TODO <!-- omit in toc -->
 
@@ -46,72 +107,3 @@
   - review title by og
   - jsonld, sitelinks
   - fix route generate
-
----
-
-**Table of contents**
-
-- [**I. Setup**](#i-setup)
-  - [*I. a. Update API*](#i-a-update-api)
-- [**II. Production**](#ii-production)
-
----
-
-## **I. Setup**
-
-Setup local on <http://localhost:3000> with <https://bookshelves.ink> API
-
-Create `.env`
-
-```bash
-cp .env.example .env
-```
-
-Node.js dependencies
-
-```bash
-yarn
-```
-
-Local serve
-
-```bash
-yarn dev
-```
-
-### *I. a. Update API*
-
-Update `.env` file `API_URL` to use local API
-
-```yml
-API_URL=http://localhost:8000/api
-```
-
----
-
-## **II. Production**
-
-Update `.env`
-
-- `PORT` depends to **pm2** and NGINX configuration
-
-```yml
-PORT=3004
-HOST=127.0.0.1
-BASE_URL=https://bookshelves.ink
-API_URL=https://bookshelves.ink/api
-```
-
-Setup build
-
-```bash
-yarn build
-```
-
-Launch server in SSR
-
-```bash
-yarn start
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

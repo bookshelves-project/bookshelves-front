@@ -3,17 +3,11 @@
     <div>
       <div class="items-center justify-between mb-3 lg:flex">
         <div class="items-center lg:flex">
-          <!-- <nuxt-picture
-          :src="author.picture"
-          :alt="author.name"
-          class="object-cover object-center w-32 h-32 mx-auto rounded-full"
-          placeholder="/images/author-no-cover.png"
-        /> -->
           <img
             :src="author.picture ? author.picture.base : null"
             :alt="author.name"
             loading="lazy"
-            class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
+            class="object-cover object-center w-32 h-32 mx-auto rounded-md lg:w-16 lg:h-16 lg:mx-0"
           />
           <div class="flex items-center">
             <h1
@@ -138,28 +132,20 @@ export default {
   components: { entityCard, Divider },
   mixins: [favorites],
   async asyncData({ app, params }) {
-    try {
-      const [author, series, books] = await Promise.all([
-        app.$axios.$get(`/authors/${params.slug}`),
-        app.$axios.$get(`/authors/series/${params.slug}`),
-        app.$axios.$get(
-          `/authors/books/${params.slug}?${qs.stringify({
-            standalone: true,
-          })}`
-        ),
-      ])
+    const [author, series, books] = await Promise.all([
+      app.$axios.$get(`/authors/${params.slug}`),
+      app.$axios.$get(`/authors/series/${params.slug}`),
+      app.$axios.$get(
+        `/authors/books/${params.slug}?${qs.stringify({
+          standalone: true,
+        })}`
+      ),
+    ])
 
-      return {
-        author: author.data,
-        series: series.data,
-        books: books.data,
-      }
-    } catch (error) {
-      console.error(error)
-
-      return {
-        author: {},
-      }
+    return {
+      author: author.data,
+      series: series.data,
+      books: books.data,
     }
   },
   data() {

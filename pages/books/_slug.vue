@@ -36,20 +36,12 @@ export default {
   name: 'BooksSlug',
   components: { bookHeader, BookComments, BookMain, BookSerie, BookRelated },
   async asyncData({ app, params }) {
-    try {
-      const [book] = await Promise.all([
-        app.$axios.$get(`/books/${params.author}/${params.slug}`),
-      ])
+    const [book] = await Promise.all([
+      app.$axios.$get(`/books/${params.author}/${params.slug}`),
+    ])
 
-      return {
-        book: book.data,
-      }
-    } catch (error) {
-      console.error(error)
-
-      return {
-        book: [],
-      }
+    return {
+      book: book.data,
     }
   },
   data() {

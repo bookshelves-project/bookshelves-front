@@ -21,7 +21,7 @@
               {{ $overflow(book.title, 50) }}
             </template>
             <template #secondary>
-              <div v-for="(author, authorId) in book.authors" :key="authorId">
+              <span v-for="(author, authorId) in book.authors" :key="authorId">
                 {{ author.name }}
                 <span
                   v-if="
@@ -31,16 +31,16 @@
                 >
                   &
                 </span>
-              </div>
+              </span>
             </template>
             <template #tertiary>
-              <div v-if="book.serie" class="italic">
+              <span v-if="book.serie" class="italic">
                 {{ book.serie.title }},<br />
                 vol. {{ book.volume }}
-              </div>
-              <div class="mt-1">
+              </span>
+              <span class="mt-1 block">
                 {{ formatLanguage(book.language) }}
-              </div>
+              </span>
             </template>
           </entity-card>
         </div>
@@ -51,7 +51,6 @@
           :link-gen="linkGen"
           :pages="pages"
           :current-page="currentPage"
-          class="flex justify-center"
         >
         </pagination>
       </div>

@@ -17,7 +17,7 @@
       v-if="list.length"
       class="divide-y divide-gray-200 dark:divide-gray-700"
     >
-      <div
+      <li
         v-for="data in list"
         :key="data.id"
         class="relative grid grid-cols-6 bg-white dark:bg-gray-800"
@@ -92,7 +92,7 @@
             />
           </button>
         </div>
-      </div>
+      </li>
     </ul>
     <div v-else class="flex flex-wrap items-center p-4 text-gray-400">
       {{ emptyList }}

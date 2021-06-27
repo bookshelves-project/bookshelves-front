@@ -1,34 +1,65 @@
 <template>
   <div>
-    <hero />
-    <statistics />
-    <cloud-logos />
-    <features />
-    <features-highlight />
-    <pricing />
-    <home-cta />
+    <lazy-hydrate when-idle>
+      <hero />
+    </lazy-hydrate>
+    <lazy-hydrate when-visible>
+      <statistics />
+    </lazy-hydrate>
+    <lazy-hydrate when-visible>
+      <cloud-logos />
+    </lazy-hydrate>
+    <lazy-hydrate when-visible>
+      <selected-entities>
+        <template #ontitle> Want to read a good book? </template>
+        <template #title> Selection of books & series </template>
+        <template #text>
+          If you search a new book to read, check this selection of eBooks by
+          the {{ $config.appName }} Team.
+        </template>
+      </selected-entities>
+    </lazy-hydrate>
+    <lazy-hydrate when-visible>
+      <selected-entities endpoint="/books/latest" orientation="text-right">
+        <template #ontitle> Hyped by new books? </template>
+        <template #title> Latest books & series </template>
+        <template #text>
+          You check new books & series on {{ $config.appName }}? Here you have
+          latest books!
+        </template>
+      </selected-entities>
+    </lazy-hydrate>
+    <lazy-hydrate when-visible>
+      <features />
+    </lazy-hydrate>
+    <lazy-hydrate when-visible>
+      <features-highlight />
+    </lazy-hydrate>
+    <lazy-hydrate when-visible>
+      <pricing />
+    </lazy-hydrate>
+    <lazy-hydrate when-visible>
+      <home-cta />
+    </lazy-hydrate>
   </div>
 </template>
 
 <script>
-import CloudLogos from '~/components/blocks/home/cloud-logos.vue'
-import FeaturesHighlight from '~/components/blocks/home/features-highlight.vue'
-import Features from '~/components/blocks/home/features.vue'
-import Hero from '~/components/blocks/home/hero.vue'
-import HomeCta from '~/components/blocks/home/cta.vue'
-import Pricing from '~/components/blocks/home/pricing.vue'
-import Statistics from '~/components/blocks/home/statistics.vue'
+import LazyHydrate from 'vue-lazy-hydration'
 
 export default {
   name: 'Home',
   components: {
-    Hero,
-    Statistics,
-    Pricing,
-    Features,
-    CloudLogos,
-    FeaturesHighlight,
-    HomeCta,
+    LazyHydrate,
+    CloudLogos: () => import('~/components/blocks/home/cloud-logos.vue'),
+    FeaturesHighlight: () =>
+      import('~/components/blocks/home/features-highlight.vue'),
+    Features: () => import('~/components/blocks/home/features.vue'),
+    Hero: () => import('~/components/blocks/home/hero.vue'),
+    HomeCta: () => import('~/components/blocks/home/cta.vue'),
+    Pricing: () => import('~/components/blocks/home/pricing.vue'),
+    Statistics: () => import('~/components/blocks/home/statistics.vue'),
+    selectedEntities: () => import('~/components/blocks/selected-entities.vue'),
   },
   auth: 'auth',
   layout: 'auth',
@@ -42,6 +73,7 @@ export default {
   head() {
     return {
       title: this.title,
+      titleTemplate: '',
       link: [
         {
           rel: 'canonical',

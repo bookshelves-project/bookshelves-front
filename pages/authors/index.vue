@@ -28,7 +28,6 @@
           :link-gen="linkGen"
           :pages="pages"
           :current-page="currentPage"
-          class="flex justify-center"
         >
         </pagination>
       </div>

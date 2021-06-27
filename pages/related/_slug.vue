@@ -4,7 +4,7 @@
       :title="`${title} ${currentBook.title}`"
       :subtitle="description"
     />
-    <section v-if="!apiError">
+    <section>
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
@@ -44,7 +44,6 @@
         </div>
       </div>
     </section>
-    <api-error-message v-else />
   </main>
 </template>
 
@@ -63,22 +62,14 @@ export default {
   name: 'PageRelatedSlug',
   components: { sectionHeading, EntityCard },
   async asyncData({ app, params }) {
-    try {
-      const [currentBook, books] = await Promise.all([
-        app.$axios.$get(`/books/${params.author}/${params.slug}`),
-        app.$axios.$get(`/books/related/${params.author}/${params.slug}`),
-      ])
+    const [currentBook, books] = await Promise.all([
+      app.$axios.$get(`/books/${params.author}/${params.slug}`),
+      app.$axios.$get(`/books/related/${params.author}/${params.slug}`),
+    ])
 
-      return {
-        currentBook: currentBook.data,
-        books: books.data,
-        apiError: false,
-      }
-    } catch (error) {
-      console.error(error)
-      return {
-        apiError: true,
-      }
+    return {
+      currentBook: currentBook.data,
+      books: books.data,
     }
   },
   data() {

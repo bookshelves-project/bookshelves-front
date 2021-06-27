@@ -1,11 +1,10 @@
 <template>
-  <section aria-labelledby="book-slider">
+  <section>
     <div
       class="shadow sm:rounded-lg dark:bg-gray-800 relative book-books max-w-full overflow-hidden"
     >
       <div class="px-4 py-5 sm:px-6">
         <h2
-          id="book-slider"
           class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100"
         >
           <slot name="title" />

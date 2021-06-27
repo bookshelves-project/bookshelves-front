@@ -7,7 +7,7 @@
             :src="serie.picture.base"
             :alt="serie.title"
             loading="lazy"
-            class="object-cover object-center w-32 h-32 mx-auto rounded-full lg:w-16 lg:h-16 lg:mx-0"
+            class="object-cover object-center w-32 h-32 mx-auto rounded-md lg:w-16 lg:h-16 lg:mx-0"
           />
           <div class="ml-4">
             <div class="flex items-center">
@@ -178,22 +178,14 @@ export default {
   components: { entityCard },
   mixins: [favorites],
   async asyncData({ app, params }) {
-    try {
-      const [serie, books] = await Promise.all([
-        app.$axios.$get(`/series/${params.author}/${params.slug}`),
-        app.$axios.$get(`/series/books/${params.author}/${params.slug}`),
-      ])
+    const [serie, books] = await Promise.all([
+      app.$axios.$get(`/series/${params.author}/${params.slug}`),
+      app.$axios.$get(`/series/books/${params.author}/${params.slug}`),
+    ])
 
-      return {
-        serie: serie.data,
-        books: books.data,
-      }
-    } catch (error) {
-      console.error(error)
-
-      return {
-        serie: {},
-      }
+    return {
+      serie: serie.data,
+      books: books.data,
     }
   },
   data() {
