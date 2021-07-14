@@ -9,8 +9,8 @@
     <lazy-hydrate when-visible>
       <cloud-logos />
     </lazy-hydrate>
-    <lazy-hydrate when-visible>
-      <selected-entities>
+    <lazy-hydrate when-idle>
+      <selected-entities class="mt-8 lg:mt-16">
         <template #ontitle> Want to read a good book? </template>
         <template #title> Selection of books & series </template>
         <template #text>
@@ -20,7 +20,14 @@
       </selected-entities>
     </lazy-hydrate>
     <lazy-hydrate when-visible>
-      <selected-entities endpoint="/books/latest" orientation="text-right">
+      <features />
+    </lazy-hydrate>
+    <lazy-hydrate when-idle>
+      <selected-entities
+        endpoint="/books/latest"
+        orientation="text-right"
+        class="mb-8 lg:mb-16"
+      >
         <template #ontitle> Hyped by new books? </template>
         <template #title> Latest books & series </template>
         <template #text>
@@ -28,9 +35,6 @@
           latest books!
         </template>
       </selected-entities>
-    </lazy-hydrate>
-    <lazy-hydrate when-visible>
-      <features />
     </lazy-hydrate>
     <lazy-hydrate when-visible>
       <features-highlight />

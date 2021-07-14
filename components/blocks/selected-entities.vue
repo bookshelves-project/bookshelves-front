@@ -1,5 +1,5 @@
 <template>
-  <section class="selected-books max-w-7xl container mx-auto mt-8 lg:mt-36">
+  <section class="selected-books max-w-7xl container mx-auto">
     <div
       :class="orientation"
       class="text-sm font-semibold tracking-wide uppercase text-primary-600"
@@ -8,7 +8,14 @@
     </div>
     <h2
       :class="orientation"
-      class="mt-3 text-3xl font-extrabold text-gray-700 dark:text-gray-300 font-handlee"
+      class="
+        mt-3
+        text-3xl
+        font-extrabold
+        text-gray-700
+        dark:text-gray-300
+        font-handlee
+      "
     >
       <slot name="title" />
     </h2>
@@ -21,7 +28,16 @@
     <div class="mt-10">
       <div
         v-if="isLoading"
-        class="flex items-center h-64 w-full animate-pulse overflow-hidden bg-gray-300 rounded-md"
+        class="
+          flex
+          items-center
+          h-64
+          w-full
+          animate-pulse
+          overflow-hidden
+          bg-gray-300
+          rounded-md
+        "
       ></div>
       <client-only v-else>
         <agile
@@ -59,7 +75,14 @@
           <template slot="prevButton">
             <svg-icon
               name="arrow-chevron-right"
-              class="w-8 h-8 m-auto text-gray-900 dark:text-gray-400 arrow-rotate"
+              class="
+                w-8
+                h-8
+                m-auto
+                text-gray-900
+                dark:text-gray-400
+                arrow-rotate
+              "
             />
           </template>
           <template slot="nextButton">

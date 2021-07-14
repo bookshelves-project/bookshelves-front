@@ -1,10 +1,23 @@
 <template>
   <div class="relative py-16 sm:py-24 lg:py-32">
     <div
-      class="max-w-md px-4 mx-auto text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
+      class="
+        max-w-md
+        px-4
+        mx-auto
+        text-center
+        sm:max-w-3xl sm:px-6
+        lg:px-8 lg:max-w-7xl
+      "
     >
       <h2
-        class="text-base font-semibold tracking-wider uppercase text-primary-600"
+        class="
+          text-base
+          font-semibold
+          tracking-wider
+          uppercase
+          text-primary-600
+        "
       >
         How to use {{ $config.appName }}
       </h2>
@@ -22,7 +35,15 @@
             >
               <div class="-mt-6">
                 <div
-                  class="inline-flex items-center justify-center p-3 rounded-md shadow bg-primary-600"
+                  class="
+                    inline-flex
+                    items-center
+                    justify-center
+                    p-3
+                    rounded-md
+                    shadow
+                    bg-primary-600
+                  "
                 >
                   <svg-icon :name="feature.icon" class="w-8 h-8 text-white" />
                 </div>
@@ -53,43 +74,37 @@ export default {
           icon: 'epub',
           label: 'EPUB files',
           condition: true,
-          text:
-            'EPUB files format to be lightest as possible, a free DRM format that can be shared and edited at will, you can edit any eBook with Calibre',
+          text: 'EPUB files format to be lightest as possible, a free DRM format that can be shared and edited at will, you can edit any eBook with Calibre',
         },
         {
           icon: 'ereader',
           label: 'Regardless of eReader',
           condition: true,
-          text:
-            'Kobo, Bookeen, Vivlio or even Kindle (with Calibre), you can use eBooks in EPUB format on many eReaders',
+          text: 'Kobo, Bookeen, Vivlio or even Kindle (with Calibre), you can use eBooks in EPUB format on many eReaders',
         },
         {
           icon: 'download',
           label: 'Download & read',
           condition: true,
-          text:
-            'Download an eBook and/or a serie of eBook add them to your eReader and start reading!',
+          text: 'Download an eBook and/or a serie of eBook add them to your eReader and start reading!',
         },
         {
           icon: 'code',
           label: 'Metadata',
           condition: true,
-          text:
-            'All these informations that allows you to sort and find your books by author or series are integrated into each eBook',
+          text: 'All these informations that allows you to sort and find your books by author or series are integrated into each eBook',
         },
         {
           icon: 'languages',
           label: 'Multi languages',
           condition: true,
-          text:
-            'eBooks in several languages according to your preferences in order to reach a maximum number of readers.',
+          text: 'eBooks in several languages according to your preferences in order to reach a maximum number of readers.',
         },
         {
           icon: 'open-book',
           label: 'OPDS & Catalog',
           condition: true,
-          text:
-            'You can use OPDS feed or download eBooks from your eReader with Catalog.',
+          text: 'You can use OPDS feed or download eBooks from your eReader with Catalog.',
         },
       ],
     }
