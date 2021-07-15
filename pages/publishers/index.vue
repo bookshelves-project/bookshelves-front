@@ -3,27 +3,27 @@
     <section-heading :title="title" :subtitle="description" />
     <div>
       <section class="flex flex-wrap items-center">
-        <nuxt-link
+        <chip
           v-for="publisher in publishers"
           :key="publisher.id"
           :to="{
             name: 'publishers-slug',
             params: { slug: publisher.meta.slug },
           }"
-          class="px-3 py-1 m-1 transition-colors duration-100 bg-gray-300 rounded-full hover:bg-primary-300"
         >
           {{ publisher.name }} ({{ publisher.count }})
-        </nuxt-link>
+        </chip>
       </section>
     </div>
   </div>
 </template>
 
 <script>
+import Chip from '~/components/blocks/chip.vue'
 import sectionHeading from '~/components/blocks/section-heading.vue'
 export default {
   name: 'PagePublishers',
-  components: { sectionHeading },
+  components: { sectionHeading, Chip },
   async asyncData({ app }) {
     const publishers = await app.$axios.$get(`/publishers`)
 

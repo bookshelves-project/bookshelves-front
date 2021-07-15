@@ -7,10 +7,30 @@
           <nuxt-link to="/" class="flex items-center lg:mx-0 w-max group">
             <svg-icon
               name="book"
-              class="w-12 h-12 text-gray-400 transition-colors duration-100 dark:text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300"
+              class="
+                w-12
+                h-12
+                text-gray-400
+                transition-colors
+                duration-100
+                dark:text-gray-400
+                group-hover:text-gray-500
+                dark:group-hover:text-gray-300
+              "
             />
             <div
-              class="mt-2 ml-3 text-2xl text-gray-400 transition-colors duration-100 md:text-xl font-handlee dark:text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300"
+              class="
+                mt-2
+                ml-3
+                text-2xl text-gray-400
+                transition-colors
+                duration-100
+                md:text-xl
+                font-handlee
+                dark:text-gray-400
+                group-hover:text-gray-500
+                dark:group-hover:text-gray-300
+              "
             >
               {{ $config.appName }}
             </div>
@@ -27,7 +47,12 @@
               rel="noopener noreferrer"
               :title="socialIcon.label"
               :aria-label="socialIcon.label"
-              class="block text-gray-400 hover:text-gray-500 dark:hover:text-gray-500 dark:text-gray-400"
+              class="
+                block
+                text-gray-400
+                hover:text-gray-500
+                dark:hover:text-gray-500 dark:text-gray-400
+              "
             >
               <svg-icon :name="`${socialIcon.icon}`" class="w-6 h-6" />
             </a>
@@ -35,7 +60,13 @@
           </div>
         </div>
         <div
-          class="grid grid-cols-1 gap-8 mt-12 sm:grid-cols-2 xl:mt-0 xl:col-span-2"
+          class="
+            grid grid-cols-1
+            gap-8
+            mt-12
+            sm:grid-cols-2
+            xl:mt-0 xl:col-span-2
+          "
         >
           <div class="md:grid md:grid-cols-2 md:gap-8">
             <footer-column :navigation="navigation.project" />
@@ -54,10 +85,21 @@
         </div>
       </div>
       <div
-        class="relative pt-8 mt-12 border-t border-gray-200 dark:border-gray-600"
+        class="
+          relative
+          pt-8
+          mt-12
+          border-t border-gray-200
+          dark:border-gray-600
+        "
       >
         <div
-          class="space-y-2 text-base text-gray-400 md:space-y-0 md:items-center md:flex xl:text-center"
+          class="
+            space-y-2
+            text-base text-gray-400
+            md:space-y-0 md:items-center md:flex
+            xl:text-center
+          "
         >
           <a
             href="https://creativecommons.org"
@@ -65,7 +107,14 @@
             rel="noopener noreferrer"
             title="Creative commons"
             aria-label="Creative commons"
-            class="flex items-center space-x-2 transition-colors duration-100 hover:text-gray-500"
+            class="
+              flex
+              items-center
+              space-x-2
+              transition-colors
+              duration-100
+              hover:text-gray-500
+            "
           >
             <span class="flex space-x-1">
               <svg-icon
@@ -123,12 +172,12 @@ export default {
         {
           icon: 'open-book',
           label: 'Catalog',
-          link: `${this.$config.apiURL}/catalog`,
+          link: `${this.$apiUrlBase('/catalog')}`,
         },
         {
           icon: 'feed',
           label: 'OPDS',
-          link: `${this.$config.apiURL}/opds`,
+          link: `${this.$apiUrlBase('/opds')}`,
         },
       ],
       navigation: {

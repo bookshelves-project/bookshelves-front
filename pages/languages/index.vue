@@ -3,33 +3,35 @@
     <section-heading :title="title" :subtitle="description" />
     <div>
       <section class="flex flex-wrap items-center">
-        <nuxt-link
+        <chip
           v-for="language in languages"
           :key="language.id"
           :to="{
             name: 'books',
             query: { lang: language.meta.slug },
           }"
-          class="px-3 py-1 m-1 transition-colors duration-100 bg-primary-100 rounded-full hover:bg-primary-300 flex items-center space-x-2"
         >
-          <span>{{ language.name }}</span>
-          <img
-            :src="formatLanguage(language.meta.slug, 'flag')"
-            :alt="language.name"
-          />
+          <span class="flex items-center space-x-2">
+            <span>{{ language.name }}</span>
+            <img
+              :src="formatLanguage(language.meta.slug, 'flag')"
+              :alt="language.name"
+            />
+          </span>
           <!-- ({{ language.count }}) -->
-        </nuxt-link>
+        </chip>
       </section>
     </div>
   </div>
 </template>
 
 <script>
+import Chip from '~/components/blocks/chip.vue'
 import sectionHeading from '~/components/blocks/section-heading.vue'
 import { formatLanguage } from '~/plugins/utils/methods'
 export default {
   name: 'PageLanguages',
-  components: { sectionHeading },
+  components: { sectionHeading, Chip },
   async asyncData({ app }) {
     try {
       const languages = await app.$axios.$get('languages')

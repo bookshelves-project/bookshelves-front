@@ -1,7 +1,7 @@
 <template>
   <a
     ref="link"
-    :href="`${$config.apiURL}${endpoint}`"
+    :href="`${url}${endpoint}`"
     target="_blank"
     rel="noopener noreferrer"
     class="link"
@@ -21,10 +21,19 @@ export default {
       type: Boolean,
       default: false,
     },
+    base: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    url() {
+      return this.base ? this.$apiUrlBase() : this.$config.apiURL
+    },
   },
   mounted() {
     if (this.referItSelf) {
-      this.$refs.link.innerHTML = `${this.$config.apiURL}${this.endpoint}`
+      this.$refs.link.innerHTML = `${this.url}${this.endpoint}`
     }
   },
 }

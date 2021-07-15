@@ -28,4 +28,4 @@ If you want, you can contact us to add eBooks on our collection.
 
 ## I want to display <app-name></app-name> eBooks on another app
 
-If you want to get data from <app-name></app-name>, you can use public API: <api-link endpoint="/documentation">API documentation</api-link>. You can use <app-name></app-name> API from any other application, without any token.
+If you want to get data from <app-name></app-name>, you can use public API: <api-link endpoint="/docs">API documentation</api-link>. You can use <app-name></app-name> API from any other application, without any token.

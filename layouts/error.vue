@@ -1,36 +1,51 @@
 <template>
-  <div class="container flex">
-    <div class="max-w-lg mx-auto text-center relative w-full">
-      <img
-        src="/images/error/warning.svg"
-        alt="Warning"
-        title="Warning"
-        loading="lazy"
-        class="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-40"
-      />
-      <div
-        class="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
-      >
-        <h1 class="text-3xl font-semibold">
-          An error occurred ({{ `code ${error.statusCode}` }})
-        </h1>
-        <p class="max-w-xl mt-5 prose-xl">
-          We are sorry but something went wrong. If this is something that has
-          happened too often on certain features, please contact us.
+  <div
+    class="
+      min-h-screen
+      px-4
+      py-16
+      sm:px-6 sm:py-24
+      md:grid md:place-items-center
+      lg:px-8
+    "
+  >
+    <div class="max-w-max mx-auto">
+      <main class="sm:flex">
+        <p class="text-4xl font-extrabold text-primary-600 sm:text-5xl">
+          {{ error.statusCode }}
         </p>
-        <div class="flex justify-center mt-5 space-x-20">
-          <app-button to="/" :color="`primary`"> Home page </app-button>
-          <app-button :to="{ name: 'contact' }" :color="`secondary`">
-            Contact us
-          </app-button>
-          <!-- <nuxt-link exact to="/" class="error-link"
-            >Back to home page</nuxt-link
+        <div class="sm:ml-6">
+          <div class="sm:border-l sm:border-gray-200 sm:pl-6">
+            <h1
+              class="
+                text-4xl
+                font-semibold
+                text-gray-900
+                tracking-tight
+                sm:text-5xl
+              "
+            >
+              Page not found
+            </h1>
+            <p class="mt-1 text-base text-gray-500">
+              Please check the URL in the address bar and try again.
+            </p>
+          </div>
+          <div
+            class="
+              mt-10
+              flex
+              space-x-3
+              sm:border-l sm:border-transparent sm:pl-6
+            "
           >
-          <nuxt-link exact :to="{ name: 'contact' }" class="error-link"
-            >Contact us</nuxt-link
-          > -->
+            <app-button to="/" :color="`primary`"> Go back home </app-button>
+            <app-button :to="{ name: 'contact' }" :color="`secondary`">
+              Contact support
+            </app-button>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   </div>
 </template>

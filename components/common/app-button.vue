@@ -80,16 +80,16 @@ export default {
 
 <style lang="postcss" scoped>
 .btn {
-  @apply inline-flex items-center px-4 py-2 text-base font-semibold rounded-md transition-colors duration-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 border;
+  @apply inline-flex items-center px-4 py-2 text-base font-semibold rounded-md transition-colors duration-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 border !important;
 }
 .secondary {
-  @apply text-primary-600 bg-primary-100 border-transparent hover:bg-primary-200 hover:text-primary-600;
+  @apply text-primary-600 bg-primary-100 border-transparent hover:bg-primary-200 hover:text-primary-600 dark:text-gray-700 !important;
 }
 .primary {
-  @apply border-transparent shadow-sm text-white bg-primary-600 hover:bg-primary-700;
+  @apply border-transparent shadow-sm text-white bg-primary-600 hover:bg-primary-700 !important;
 }
 .white {
-  @apply border-gray-300 shadow-sm text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 hover:bg-primary-100;
+  @apply border-gray-300 shadow-sm text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 hover:bg-primary-100 !important;
 }
 
 .disabled {
