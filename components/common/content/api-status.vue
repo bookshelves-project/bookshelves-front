@@ -3,7 +3,14 @@
     :href="`${apiUrl}`"
     target="_blank"
     rel="noopener noreferrer"
-    class="block text-base text-gray-500 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-400 w-max"
+    class="
+      block
+      text-base text-gray-500
+      dark:text-gray-100
+      hover:text-gray-900
+      dark:hover:text-gray-400
+      w-max
+    "
   >
     API Status:
     <span class="font-semibold">

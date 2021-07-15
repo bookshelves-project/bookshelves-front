@@ -4,10 +4,29 @@
     <div class="mx-auto bg-white dark:bg-gray-900">
       <layer />
       <navbar
-        class="transform -translate-x-1/2 border-gray-800 max-w-7xl left-1/2 border-opacity-5"
+        class="
+          transform
+          -translate-x-1/2
+          border-gray-800
+          max-w-7xl
+          left-1/2
+          border-opacity-5
+        "
       />
       <div
-        class="fixed z-20 w-full h-16 bg-white border-gray-800 shadow dark:border-gray-800 dark:bg-gray-800 shadow-navbar dark:shadow-none border-opacity-5"
+        class="
+          fixed
+          z-20
+          w-full
+          h-16
+          bg-white
+          border-gray-800
+          shadow
+          dark:border-gray-800 dark:bg-gray-800
+          shadow-navbar
+          dark:shadow-none
+          border-opacity-5
+        "
       ></div>
       <sidebar />
       <div class="pt-24"></div>

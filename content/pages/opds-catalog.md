@@ -29,10 +29,6 @@ If you have any eReader with browser, you can use **Catalog**, it's an very simp
 - you will **not be able to have the series associated with an eBook** with this method because of the limitations of the EPUB format used. The only solution[^1] is to add the series with the Calibre software, as explained in this guide [**Get series on your Kobo**](/guides/ereader-series) for Kobo eReaders, with a file added on your eReader.
 - you will **not be able to download a whole series or all the eBooks of an author** because it is a .zip format that is proposed and your eReader only reads the formats linked to the eBooks.
 
-<api-button endpoint="catalog">
-Discover Catalog
-</api-button>
-
 ### Why ?
 
 The eReader's web browser is not very powerful, it's can be difficult to use because the touch on an eReader is not very responsive. Therefore, the OPDS adapts to this difficulty and proposes to search directly for the desired eBook, series or author in order to limit the results and to find the eReader more easily.
