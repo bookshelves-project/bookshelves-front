@@ -27,7 +27,20 @@
               v-for="(booksNav, booksNavId) in $store.state.navigation"
               :key="booksNavId"
               :to="{ name: booksNav.route }"
-              class="inline-flex items-center px-1 pt-1 text-sm font-semibold text-gray-400 transition-colors duration-100 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700 dark:hover:text-white dark:text-gray-400"
+              class="
+                inline-flex
+                items-center
+                px-1
+                pt-1
+                text-sm
+                font-semibold
+                text-gray-400
+                transition-colors
+                duration-100
+                border-b-2 border-transparent
+                hover:border-gray-300 hover:text-gray-700
+                dark:hover:text-white dark:text-gray-400
+              "
             >
               <span class="font-semibold">
                 {{ booksNav.label }}
@@ -36,7 +49,14 @@
           </div>
         </div>
         <div
-          class="flex items-center justify-center flex-1 px-2 lg:ml-6 lg:justify-end"
+          class="
+            flex
+            items-center
+            justify-center
+            flex-1
+            px-2
+            lg:ml-6 lg:justify-end
+          "
         >
           <div class="w-full max-w-lg lg:max-w-md">
             <autocomplete-search-bar />

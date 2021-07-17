@@ -5,7 +5,15 @@
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8">
         <div class="space-y-5 sm:space-y-4">
           <h2
-            class="text-3xl font-bold tracking-tight text-primary-600 dark:text-primary-500 font-handlee sm:text-4xl"
+            class="
+              text-3xl
+              font-bold
+              tracking-tight
+              text-primary-600
+              dark:text-primary-500
+              font-handlee
+              sm:text-4xl
+            "
           >
             Highlight on last eBooks
           </h2>
@@ -16,7 +24,11 @@
         </div>
         <div class="lg:col-span-2">
           <ul
-            class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-12 sm:space-y-0 lg:gap-x-8"
+            class="
+              space-y-12
+              sm:grid sm:grid-cols-2 sm:gap-12 sm:space-y-0
+              lg:gap-x-8
+            "
           >
             <li v-for="person in people" :key="person.name">
               <div class="flex items-center space-x-4 lg:space-x-6">

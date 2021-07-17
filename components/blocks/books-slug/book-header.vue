@@ -17,7 +17,13 @@
             </div>
             <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
               <p
-                class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-gray-100"
+                class="
+                  text-xl
+                  font-semibold
+                  text-gray-900
+                  sm:text-2xl
+                  dark:text-gray-100
+                "
               >
                 {{ book.title }}
               </p>
@@ -29,7 +35,14 @@
               </p>
               <p
                 v-if="book.epub"
-                class="flex items-center text-sm font-medium text-gray-600 dark:text-gray-300"
+                class="
+                  flex
+                  items-center
+                  text-sm
+                  font-medium
+                  text-gray-600
+                  dark:text-gray-300
+                "
               >
                 <svg-icon name="epub" class="w-4 h-4" />
                 <span class="ml-1"
@@ -43,7 +56,15 @@
       </div>
       <div
         :class="$auth.$state.loggedIn ? 'md:grid-cols-3' : 'md:grid-cols-2'"
-        class="grid grid-cols-1 border-t border-gray-200 divide-y divide-gray-200 dark:border-gray-700 dark:divide-gray-700 bg-gray-50 dark:bg-gray-800 md:divide-y-0 md:divide-x"
+        class="
+          grid grid-cols-1
+          border-t border-gray-200
+          divide-y divide-gray-200
+          dark:border-gray-700 dark:divide-gray-700
+          bg-gray-50
+          dark:bg-gray-800
+          md:divide-y-0 md:divide-x
+        "
       >
         <component
           :is="book.picture.original ? 'a' : 'span'"

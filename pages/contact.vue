@@ -71,7 +71,14 @@
         <div>
           <div class="text-center">
             <h1
-              class="text-3xl font-extrabold tracking-tight font-handlee text-primary-600 sm:text-4xl"
+              class="
+                text-3xl
+                font-extrabold
+                tracking-tight
+                font-handlee
+                text-primary-600
+                sm:text-4xl
+              "
             >
               Leave us a short note
             </h1>
@@ -152,12 +159,6 @@ export default {
           hid: 'twitter:image:src',
           property: 'twitter:image:src',
           content: image,
-        },
-      ],
-      link: [
-        {
-          rel: 'canonical',
-          href: url,
         },
       ],
     }

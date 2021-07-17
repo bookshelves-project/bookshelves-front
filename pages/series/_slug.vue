@@ -7,12 +7,25 @@
             :src="serie.picture.base"
             :alt="serie.title"
             loading="lazy"
-            class="object-cover object-center w-32 h-32 mx-auto rounded-md lg:w-16 lg:h-16 lg:mx-0"
+            class="
+              object-cover object-center
+              w-32
+              h-32
+              mx-auto
+              rounded-md
+              lg:w-16 lg:h-16 lg:mx-0
+            "
           />
           <div class="ml-4">
             <div class="flex items-center">
               <h1
-                class="text-3xl font-semibold text-center font-handlee lg:text-left"
+                class="
+                  text-3xl
+                  font-semibold
+                  text-center
+                  font-handlee
+                  lg:text-left
+                "
               >
                 {{ serie.title }}
               </h1>
@@ -41,7 +54,12 @@
                     name: 'authors-slug',
                     params: { slug: author.meta.slug },
                   }"
-                  class="text-gray-900 border-b border-gray-600 dark:border-gray-100 hover:text-gray-500 hover:border-gray-500"
+                  class="
+                    text-gray-900
+                    border-b border-gray-600
+                    dark:border-gray-100
+                    hover:text-gray-500 hover:border-gray-500
+                  "
                   >{{ author.name }}</nuxt-link
                 >
                 <span
@@ -60,7 +78,32 @@
           <div class="flex">
             <a
               :href="serie.download"
-              class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 border border-transparent rounded-md shadow-sm bg-primary-600 lg:mx-0 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-600 sm:w-max"
+              class="
+                inline-flex
+                items-center
+                justify-center
+                w-full
+                px-4
+                py-2
+                mx-auto
+                text-sm
+                font-semibold
+                text-white
+                transition-colors
+                duration-300
+                border border-transparent
+                rounded-md
+                shadow-sm
+                bg-primary-600
+                lg:mx-0
+                hover:bg-primary-600
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-offset-gray-100
+                focus:ring-primary-600
+                sm:w-max
+              "
             >
               <svg-icon name="download" class="w-5 h-5" />
               <div class="flex items-center ml-1">
@@ -75,7 +118,15 @@
           <div class="flex mx-auto lg:ml-auto lg:mr-0 w-max">
             <div
               v-if="serie.language"
-              class="flex mt-2 w-max lg:ml-auto lg:mx-0 md:items-center lg:flex md:justify-end md:mx-0"
+              class="
+                flex
+                mt-2
+                w-max
+                lg:ml-auto lg:mx-0
+                md:items-center
+                lg:flex
+                md:justify-end md:mx-0
+              "
             >
               <span class="font-semibold text-gray-900 dark:text-gray-100"
                 >Language :
@@ -159,11 +210,21 @@
           <template #tertiary> Vol. {{ book.volume }} </template>
         </entity-card>
       </div>
+      <div class="mt-6 mb-5">
+        <pagination
+          v-if="pages > 1"
+          :link-gen="linkGen"
+          :pages="pages"
+          :current-page="currentPage"
+        >
+        </pagination>
+      </div>
     </div>
   </main>
 </template>
 
 <script>
+import qs from 'qs'
 import {
   getHostname,
   formatLanguage,
@@ -172,20 +233,31 @@ import {
 import entityCard from '~/components/blocks/entity-card.vue'
 import favorites from '~/mixins/favorites'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
+import Pagination from '~/components/special/pagination.vue'
 
 export default {
   name: 'SeriesSlug',
-  components: { entityCard },
+  components: { entityCard, Pagination },
   mixins: [favorites],
-  async asyncData({ app, params }) {
+  async asyncData({ app, params, query }) {
+    const page = query.page
     const [serie, books] = await Promise.all([
       app.$axios.$get(`/series/${params.author}/${params.slug}`),
-      app.$axios.$get(`/series/books/${params.author}/${params.slug}`),
+      app.$axios.$get(
+        `/series/books/${params.author}/${params.slug}?${qs.stringify({
+          page: page || 1,
+          'per-page': 32,
+        })}`
+      ),
     ])
 
     return {
       serie: serie.data,
       books: books.data,
+      pages: books.meta.last_page,
+      currentPage: books.meta.current_page,
+      perPage: books.meta.per_page,
+      total: books.meta.total,
     }
   },
   data() {
@@ -208,17 +280,20 @@ export default {
     return {
       title,
       meta: [...dynamicMeta],
-      link: [
-        {
-          rel: 'canonical',
-          href: url,
-        },
-      ],
     }
   },
   computed: {
     authors() {
       return formatAuthors(this.serie.authors)
+    },
+  },
+  watchQuery: ['page'],
+  methods: {
+    linkGen(pageNum) {
+      return {
+        name: this.$route.name,
+        query: pageNum === 1 ? {} : { page: pageNum },
+      }
     },
   },
   jsonld() {

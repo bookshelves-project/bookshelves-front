@@ -10,7 +10,15 @@
         />
         <div
           aria-hidden="true"
-          class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white dark:from-gray-900"
+          class="
+            absolute
+            inset-x-0
+            top-0
+            h-32
+            bg-gradient-to-b
+            from-white
+            dark:from-gray-900
+          "
         ></div>
       </div>
     </div>
@@ -22,7 +30,14 @@
           A quick tour of eBooks count
         </h2>
         <p
-          class="mt-3 text-3xl font-extrabold text-gray-700 dark:text-gray-300 font-handlee"
+          class="
+            mt-3
+            text-3xl
+            font-extrabold
+            text-gray-700
+            dark:text-gray-300
+            font-handlee
+          "
         >
           Lots of ebooks for ever more insatiable readers
         </p>
@@ -32,16 +47,33 @@
           time to discover the new books.
         </p>
         <div
-          class="grid grid-cols-1 mt-12 gap-y-12 gap-x-6 md:grid-cols-2 lg:grid-cols-3"
+          class="
+            grid grid-cols-1
+            mt-12
+            gap-y-12 gap-x-6
+            md:grid-cols-2
+            lg:grid-cols-3
+          "
         >
           <p
             v-for="metric in metrics"
             :key="metric.id"
-            class="transition-colors duration-100 rounded-md hover:bg-gray-300 hover:bg-opacity-50"
+            class="
+              transition-colors
+              duration-100
+              rounded-md
+              hover:bg-gray-300 hover:bg-opacity-50
+            "
           >
             <nuxt-link :to="metric.route" class="block p-2">
               <span
-                class="block text-2xl font-bold text-gray-700 dark:text-gray-300"
+                class="
+                  block
+                  text-2xl
+                  font-bold
+                  text-gray-700
+                  dark:text-gray-300
+                "
               >
                 {{ metric.data }}
               </span>
@@ -111,19 +143,14 @@ export default {
       let countBooksEn = 0
       if (!this.$store.state.statistics) {
         try {
-          ;[
-            booksCount,
-            seriesCount,
-            authorsCount,
-            countBooksFr,
-            countBooksEn,
-          ] = await Promise.all([
-            this.$axios.$get('/count?entity=book'),
-            this.$axios.$get('/count?entity=serie'),
-            this.$axios.$get('/count?entity=author'),
-            this.$axios.$get('/count?entity=book&lang=fr'),
-            this.$axios.$get('/count?entity=book&lang=en'),
-          ])
+          ;[booksCount, seriesCount, authorsCount, countBooksFr, countBooksEn] =
+            await Promise.all([
+              this.$axios.$get('/count?entity=book'),
+              this.$axios.$get('/count?entity=serie'),
+              this.$axios.$get('/count?entity=author'),
+              this.$axios.$get('/count?entity=book&lang=fr'),
+              this.$axios.$get('/count?entity=book&lang=en'),
+            ])
 
           this.$store.commit('setStatistics', {
             booksCount,

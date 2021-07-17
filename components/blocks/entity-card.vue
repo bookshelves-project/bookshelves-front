@@ -2,7 +2,15 @@
   <nuxt-link :to="route" class="group" :title="title">
     <article
       loading="lazy"
-      class="relative transition-colors duration-100 rounded-md sm:grid sm:grid-cols-2 sm:gap-3 group-hover:bg-gray-100 dark:group-hover:bg-gray-800"
+      class="
+        relative
+        transition-colors
+        duration-100
+        rounded-md
+        sm:grid sm:grid-cols-2 sm:gap-3
+        group-hover:bg-gray-100
+        dark:group-hover:bg-gray-800
+      "
     >
       <div class="h-32 overflow-hidden sm:aspect-w-2 sm:aspect-h-3">
         <app-img :src="cover" :color="color" :title="title" class="cover" />

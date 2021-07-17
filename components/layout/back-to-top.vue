@@ -1,6 +1,15 @@
 <template>
   <button
-    class="p-1 ml-1 text-gray-400 transition-colors duration-100 bg-opacity-50 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-100"
+    class="
+      p-1
+      ml-1
+      text-gray-400
+      transition-colors
+      duration-100
+      bg-opacity-50
+      hover:text-gray-500 hover:bg-gray-100
+      dark:hover:bg-gray-800 dark:text-gray-100
+    "
     type="button"
     aria-label="Back to top"
     @click="scrollToTop"

@@ -2,13 +2,26 @@
   <div class="bg-gray-100 dark:bg-gray-800">
     <div class="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <p
-        class="text-sm font-semibold tracking-wide text-center text-gray-500 uppercase"
+        class="
+          text-sm
+          font-semibold
+          tracking-wide
+          text-center text-gray-500
+          uppercase
+        "
       >
         These companies do not support us (and do not know us) but without their
         work, ours would not be possible.
       </p>
       <div
-        class="grid grid-cols-1 gap-8 mt-6 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-5"
+        class="
+          grid grid-cols-1
+          gap-8
+          mt-6
+          sm:grid-cols-2
+          md:grid-cols-6
+          lg:grid-cols-5
+        "
       >
         <a
           v-for="logo in logos"
@@ -18,7 +31,16 @@
           rel="noopener noreferrer"
           :title="logo.label"
           :aria-label="logo.label"
-          class="flex justify-center col-span-1 transition-all duration-300 md:col-span-2 lg:col-span-1 hover:zoom"
+          class="
+            flex
+            justify-center
+            col-span-1
+            transition-all
+            duration-300
+            md:col-span-2
+            lg:col-span-1
+            hover:zoom
+          "
         >
           <component
             :is="logo.isImage ? 'img' : `icon-${logo.icon}`"
@@ -29,7 +51,14 @@
       </div>
       <div class="hidden md:block">
         <p
-          class="mt-8 text-sm font-semibold tracking-wide text-center text-gray-500 uppercase"
+          class="
+            mt-8
+            text-sm
+            font-semibold
+            tracking-wide
+            text-center text-gray-500
+            uppercase
+          "
         >
           Special thanks to
         </p>
@@ -42,7 +71,17 @@
             rel="noopener noreferrer"
             :title="logo.label"
             :aria-label="logo.label"
-            class="flex justify-center mx-auto mt-5 transition-all duration-300 md:mx-0 hover:zoom w-max"
+            class="
+              flex
+              justify-center
+              mx-auto
+              mt-5
+              transition-all
+              duration-300
+              md:mx-0
+              hover:zoom
+              w-max
+            "
           >
             <component
               :is="logo.isImage ? 'img' : `icon-${logo.icon}`"

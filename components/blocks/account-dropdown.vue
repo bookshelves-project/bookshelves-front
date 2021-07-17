@@ -5,7 +5,24 @@
         <span class="flex">
           <button
             type="button"
-            class="flex items-center text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out border border-transparent rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 dark:focus:bg-gray-700 hover:text-gray-800 focus:outline-none focus:bg-gray-50 active:bg-gray-50"
+            class="
+              flex
+              items-center
+              text-sm
+              font-medium
+              leading-4
+              text-gray-500
+              transition
+              duration-150
+              ease-in-out
+              border border-transparent
+              rounded-md
+              hover:bg-gray-50
+              dark:hover:bg-gray-700 dark:focus:bg-gray-700
+              hover:text-gray-800
+              focus:outline-none focus:bg-gray-50
+              active:bg-gray-50
+            "
             aria-label="Open user menu"
           >
             <span class="sr-only">Open user menu</span>
@@ -45,7 +62,15 @@
           <span v-for="link in authNav" :key="link.id">
             <nuxt-link
               :to="{ name: link.route }"
-              class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
+              class="
+                flex
+                items-center
+                px-4
+                py-2
+                text-sm text-gray-700
+                hover:bg-gray-200
+                dark:hover:bg-gray-700
+              "
               role="menuitem"
             >
               <span class="flex items-center" @click="closeAccountDropdown">
@@ -58,7 +83,17 @@
             </nuxt-link>
           </span>
           <button
-            class="flex items-center w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-800"
+            class="
+              flex
+              items-center
+              w-full
+              px-4
+              py-2
+              text-sm text-left text-gray-700
+              dark:text-gray-100
+              hover:bg-gray-200
+              dark:hover:bg-gray-800
+            "
             role="menuitem"
             type="button"
             @click="logout"
@@ -72,7 +107,14 @@
             v-for="link in $store.state.authNavigationFalse"
             :key="link.id"
             :to="{ name: link.route }"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-gray-800"
+            class="
+              block
+              px-4
+              py-2
+              text-sm text-gray-700
+              hover:bg-gray-200
+              dark:hover:bg-gray-800
+            "
             role="menuitem"
           >
             <span @click="closeAccountDropdown">{{ link.label }}</span>

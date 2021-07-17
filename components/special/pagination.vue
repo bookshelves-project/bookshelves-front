@@ -1,6 +1,13 @@
 <template>
   <nav
-    class="flex items-center justify-between px-4 border-t border-gray-200 sm:px-0"
+    class="
+      flex
+      items-center
+      justify-between
+      px-4
+      border-t border-gray-200
+      sm:px-0
+    "
   >
     <div class="flex flex-1 w-0 -mt-px item-ext">
       <nuxt-link

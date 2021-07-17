@@ -7,11 +7,27 @@
             :src="author.picture ? author.picture.base : null"
             :alt="author.name"
             loading="lazy"
-            class="object-cover object-center w-32 h-32 mx-auto rounded-md lg:w-16 lg:h-16 lg:mx-0"
+            class="
+              object-cover object-center
+              w-32
+              h-32
+              mx-auto
+              rounded-md
+              lg:w-16 lg:h-16 lg:mx-0
+            "
           />
           <div class="flex items-center">
             <h1
-              class="mt-2 ml-4 text-3xl font-semibold text-center lg:mt-0 font-handlee lg:text-left"
+              class="
+                mt-2
+                ml-4
+                text-3xl
+                font-semibold
+                text-center
+                lg:mt-0
+                font-handlee
+                lg:text-left
+              "
             >
               {{ author.name }}
             </h1>
@@ -33,7 +49,31 @@
         <div class="flex mt-5 lg:mt-0">
           <a
             :href="author.download"
-            class="inline-flex items-center justify-center w-full px-4 py-2 mx-auto text-sm font-semibold text-white transition-colors duration-300 border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-600 sm:w-max"
+            class="
+              inline-flex
+              items-center
+              justify-center
+              w-full
+              px-4
+              py-2
+              mx-auto
+              text-sm
+              font-semibold
+              text-white
+              transition-colors
+              duration-300
+              border border-transparent
+              rounded-md
+              shadow-sm
+              bg-primary-600
+              hover:bg-primary-600
+              focus:outline-none
+              focus:ring-2
+              focus:ring-offset-2
+              focus:ring-offset-gray-100
+              focus:ring-primary-600
+              sm:w-max
+            "
           >
             <svg-icon name="download" class="w-5 h-5" />
             <div class="flex items-center ml-1">
@@ -60,61 +100,77 @@
           }}</a>
         </div>
       </div>
-      <divider v-if="series.length">
-        {{ series ? series.length : null }} Series
-      </divider>
-      <div v-if="series.length" class="space-y-6 display-grid sm:space-y-0">
-        <entity-card
-          v-for="serie in series"
-          :key="serie.id"
-          :data="serie"
-          :cover="serie.picture ? serie.picture.base : null"
-          :color="serie.picture ? serie.picture.color : null"
-          :title="serie.title"
-          :route="{
-            name: 'series-slug',
-            params: { author: serie.meta.author, slug: serie.meta.slug },
-          }"
-        >
-          <template #primary>
-            {{ $overflow(serie.title, 50) }}
-          </template>
-          <template v-if="serie.count" #secondary>
-            {{ serie.count }} books
-          </template>
-          <template v-if="serie.language" #tertiary>
-            {{ formatLanguage(serie.language) }}
-          </template>
-        </entity-card>
-      </div>
-      <divider v-if="books.length" class="mt-16">
-        {{ books.length }} Books
-      </divider>
-      <div class="space-y-6 display-grid sm:space-y-0">
-        <entity-card
-          v-for="book in books"
-          :key="book.id"
-          :data="book"
-          :cover="book.picture.base"
-          :color="book.picture.color"
-          :title="book.title"
-          :route="{
-            name: 'books-slug',
-            params: { author: book.meta.author, slug: book.meta.slug },
-          }"
-        >
-          <template #primary>
-            {{ $overflow(book.title, 50) }}
-          </template>
-          <template v-if="book.serie" #secondary>
-            {{ book.serie.title }},<br />
-            vol. {{ book.volume }}
-          </template>
-          <template v-if="book.language" #tertiary>
-            {{ formatLanguage(book.language) }}
-          </template>
-        </entity-card>
-      </div>
+      <section v-if="series.data.length">
+        <divider> {{ series ? series.data.length : null }} Series </divider>
+        <div class="space-y-6 display-grid sm:space-y-0">
+          <entity-card
+            v-for="serie in series.data"
+            :key="serie.id"
+            :data="serie"
+            :cover="serie.picture ? serie.picture.base : null"
+            :color="serie.picture ? serie.picture.color : null"
+            :title="serie.title"
+            :route="{
+              name: 'series-slug',
+              params: { author: serie.meta.author, slug: serie.meta.slug },
+            }"
+          >
+            <template #primary>
+              {{ $overflow(serie.title, 50) }}
+            </template>
+            <template v-if="serie.count" #secondary>
+              {{ serie.count }} books
+            </template>
+            <template v-if="serie.language" #tertiary>
+              {{ formatLanguage(serie.language) }}
+            </template>
+          </entity-card>
+        </div>
+        <div class="mt-14 mb-5">
+          <load-more
+            :last-page="series.meta.last_page"
+            :endpoint="`authors/series/${$route.params.slug}`"
+            :entities="series.data"
+            @load="loadSeries"
+          />
+        </div>
+      </section>
+      <section v-if="books.data.length">
+        <divider class="mt-16"> {{ books.data.length }} Books </divider>
+        <div class="space-y-6 display-grid sm:space-y-0">
+          <entity-card
+            v-for="book in books.data"
+            :key="book.id"
+            :data="book"
+            :cover="book.picture.base"
+            :color="book.picture.color"
+            :title="book.title"
+            :route="{
+              name: 'books-slug',
+              params: { author: book.meta.author, slug: book.meta.slug },
+            }"
+          >
+            <template #primary>
+              {{ $overflow(book.title, 50) }}
+            </template>
+            <template v-if="book.serie" #secondary>
+              {{ book.serie.title }},<br />
+              vol. {{ book.volume }}
+            </template>
+            <template v-if="book.language" #tertiary>
+              {{ formatLanguage(book.language) }}
+            </template>
+          </entity-card>
+        </div>
+        <div class="mt-14 mb-5">
+          <load-more
+            :last-page="books.meta.last_page"
+            :endpoint="`authors/books/${$route.params.slug}`"
+            :entities="books.data"
+            @load="loadBooks"
+          />
+        </div>
+      </section>
     </div>
   </main>
 </template>
@@ -126,26 +182,36 @@ import Divider from '~/components/special/divider.vue'
 import favorites from '~/mixins/favorites'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import { formatLanguage, getHostname } from '~/plugins/utils/methods'
+import LoadMore from '~/components/special/load-more.vue'
 
 export default {
   name: 'AuthorsSlug',
-  components: { entityCard, Divider },
+  components: { entityCard, Divider, LoadMore },
   mixins: [favorites],
-  async asyncData({ app, params }) {
+  async asyncData({ app, params, query }) {
+    const page = query.page
     const [author, series, books] = await Promise.all([
       app.$axios.$get(`/authors/${params.slug}`),
-      app.$axios.$get(`/authors/series/${params.slug}`),
+      app.$axios.$get(
+        `/authors/series/${params.slug}?${qs.stringify({
+          page: page || 1,
+          'per-page': 32,
+        })}`
+      ),
       app.$axios.$get(
         `/authors/books/${params.slug}?${qs.stringify({
+          page: page || 1,
+          'per-page': 32,
           standalone: true,
         })}`
       ),
     ])
+    console.log(series)
 
     return {
       author: author.data,
-      series: series.data,
-      books: books.data,
+      series,
+      books,
     }
   },
   data() {
@@ -180,12 +246,6 @@ export default {
           content: this.author.firstname,
         },
       ],
-      link: [
-        {
-          rel: 'canonical',
-          href: url,
-        },
-      ],
     }
   },
   created() {
@@ -203,6 +263,14 @@ export default {
         text: this.author.name,
       },
     ]
+  },
+  methods: {
+    loadSeries(data) {
+      this.series.data = data
+    },
+    loadBooks(data) {
+      this.books.data = data
+    },
   },
   jsonld() {
     const items = this.breadcrumbs.map((item, index) => ({

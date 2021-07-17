@@ -1,7 +1,15 @@
 <template>
   <div class="relative my-3 md:my-20">
     <div
-      class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24"
+      class="
+        lg:mx-auto
+        lg:max-w-7xl
+        lg:px-8
+        lg:grid
+        lg:grid-cols-2
+        lg:grid-flow-col-dense
+        lg:gap-24
+      "
     >
       <div
         :class="[
@@ -19,7 +27,14 @@
             <div class="flex items-center">
               <svg-icon :name="icon" class="w-12 h-12 text-primary-600" />
               <h2
-                class="ml-3 text-3xl font-extrabold tracking-tight text-primary-600 font-handlee"
+                class="
+                  ml-3
+                  text-3xl
+                  font-extrabold
+                  tracking-tight
+                  text-primary-600
+                  font-handlee
+                "
               >
                 {{ title }}
               </h2>
@@ -54,7 +69,13 @@
         class="mt-12 sm:mt-16 lg:mt-0 hidden md:block"
       >
         <div
-          class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full"
+          class="
+            pl-4
+            -mr-48
+            sm:pl-6
+            md:-mr-16
+            lg:px-0 lg:m-0 lg:relative lg:h-full
+          "
         >
           <img
             v-if="image"
@@ -62,7 +83,11 @@
               { 'lg:left-0': positionImage === 'right' },
               { 'lg:right-0': positionImage === 'left' },
             ]"
-            class="w-full rounded-xl lg:absolute lg:h-full lg:w-auto lg:max-w-none"
+            class="
+              w-full
+              rounded-xl
+              lg:absolute lg:h-full lg:w-auto lg:max-w-none
+            "
             :src="image"
             :alt="title"
             loading="lazy"

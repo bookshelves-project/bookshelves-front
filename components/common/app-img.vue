@@ -11,7 +11,15 @@
         v-if="loading"
         :style="`background-color: ${color}`"
         :class="picture"
-        class="absolute inset-0 transition-transform duration-300 blur-sm max-size img"
+        class="
+          absolute
+          inset-0
+          transition-transform
+          duration-300
+          blur-sm
+          max-size
+          img
+        "
       ></div>
     </transition>
     <img

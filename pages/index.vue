@@ -78,12 +78,6 @@ export default {
     return {
       title: this.title,
       titleTemplate: '',
-      link: [
-        {
-          rel: 'canonical',
-          href: `${this.$config.baseURL}/`,
-        },
-      ],
     }
   },
   jsonld() {

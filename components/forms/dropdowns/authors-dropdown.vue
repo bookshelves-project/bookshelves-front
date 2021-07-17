@@ -8,14 +8,39 @@
         <template #trigger>
           <button
             type="button"
-            class="relative w-full py-2 pl-3 pr-10 text-left bg-white border border-gray-300 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            class="
+              relative
+              w-full
+              py-2
+              pl-3
+              pr-10
+              text-left
+              bg-white
+              border border-gray-300
+              rounded-md
+              shadow-sm
+              cursor-default
+              focus:outline-none
+              focus:ring-1
+              focus:ring-indigo-500
+              focus:border-indigo-500
+              sm:text-sm
+            "
             aria-haspopup="listbox"
             aria-expanded="true"
             aria-labelledby="listbox-label"
           >
             <span class="block truncate"> Tom Cook </span>
             <span
-              class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              class="
+                absolute
+                inset-y-0
+                right-0
+                flex
+                items-center
+                pr-2
+                pointer-events-none
+              "
             >
               <svg-icon name="selector" class="w-5 h-5 text-gray-400" />
             </span>
@@ -23,7 +48,21 @@
         </template>
         <template #content>
           <ul
-            class="absolute z-10 w-full py-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+            class="
+              absolute
+              z-10
+              w-full
+              py-1
+              overflow-auto
+              text-base
+              bg-white
+              rounded-md
+              shadow-lg
+              max-h-60
+              ring-1 ring-black ring-opacity-5
+              focus:outline-none
+              sm:text-sm
+            "
             tabindex="-1"
             role="listbox"
             aria-labelledby="listbox-label"
@@ -36,7 +75,15 @@
       -->
             <li
               id="listbox-option-0"
-              class="relative py-2 pl-8 pr-4 text-gray-900 cursor-default select-none"
+              class="
+                relative
+                py-2
+                pl-8
+                pr-4
+                text-gray-900
+                cursor-default
+                select-none
+              "
               role="option"
             >
               <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
@@ -48,7 +95,15 @@
           Highlighted: "text-white", Not Highlighted: "text-indigo-600"
         -->
               <span
-                class="text-indigo-600 absolute inset-y-0 left-0 flex items-center pl-1.5"
+                class="
+                  text-indigo-600
+                  absolute
+                  inset-y-0
+                  left-0
+                  flex
+                  items-center
+                  pl-1.5
+                "
               >
                 <!-- Heroicon name: solid/check -->
                 <svg

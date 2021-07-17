@@ -1,17 +1,39 @@
 <template>
   <div class="relative lg:grid lg:grid-cols-7">
     <div
-      class="max-w-md mx-auto lg:mx-0 lg:max-w-none lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3"
+      class="
+        max-w-md
+        mx-auto
+        lg:mx-0
+        lg:max-w-none
+        lg:col-start-1
+        lg:col-end-3
+        lg:row-start-2
+        lg:row-end-3
+      "
     >
       <div
-        class="flex flex-col h-full overflow-hidden rounded-lg shadow lg:rounded-none lg:rounded-l-lg"
+        class="
+          flex flex-col
+          h-full
+          overflow-hidden
+          rounded-lg
+          shadow
+          lg:rounded-none lg:rounded-l-lg
+        "
       >
         <div class="flex flex-col flex-1">
           <div class="px-6 py-10 bg-gray-50 dark:bg-gray-800">
             <div>
               <h3
                 id="tier-leave"
-                class="text-2xl italic font-medium text-center text-gray-900 font-handlee"
+                class="
+                  text-2xl
+                  italic
+                  font-medium
+                  text-center text-gray-900
+                  font-handlee
+                "
               >
                 &#8220; {{ pricings.leave.title }} &#8221;
               </h3>
@@ -23,7 +45,18 @@
             </div>
           </div>
           <div
-            class="flex flex-col justify-between flex-1 p-6 bg-gray-100 border-t-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 sm:p-10 lg:p-6 xl:p-10"
+            class="
+              flex flex-col
+              justify-between
+              flex-1
+              p-6
+              bg-gray-100
+              border-t-2 border-gray-200
+              dark:border-gray-600 dark:bg-gray-700
+              sm:p-10
+              lg:p-6
+              xl:p-10
+            "
           >
             <ul class="space-y-4">
               <pricing-bullet
@@ -37,17 +70,46 @@
       </div>
     </div>
     <div
-      class="max-w-lg mx-auto mt-10 lg:mt-0 lg:max-w-none lg:mx-0 lg:col-start-3 lg:col-end-6 lg:row-start-1 lg:row-end-4"
+      class="
+        max-w-lg
+        mx-auto
+        mt-10
+        lg:mt-0
+        lg:max-w-none
+        lg:mx-0
+        lg:col-start-3
+        lg:col-end-6
+        lg:row-start-1
+        lg:row-end-4
+      "
     >
       <div class="relative z-10 rounded-lg shadow-lg">
         <div
-          class="absolute inset-0 border-2 rounded-lg pointer-events-none border-primary-600"
+          class="
+            absolute
+            inset-0
+            border-2
+            rounded-lg
+            pointer-events-none
+            border-primary-600
+          "
           aria-hidden="true"
         ></div>
         <div class="absolute inset-x-0 top-0 transform translate-y-px">
           <div class="flex justify-center transform -translate-y-1/2">
             <span
-              class="inline-flex px-4 py-1 text-sm font-semibold tracking-wider text-white uppercase rounded-full bg-primary-600"
+              class="
+                inline-flex
+                px-4
+                py-1
+                text-sm
+                font-semibold
+                tracking-wider
+                text-white
+                uppercase
+                rounded-full
+                bg-primary-600
+              "
             >
               Most popular
             </span>
@@ -57,7 +119,14 @@
           <div>
             <h3
               id="tier-free"
-              class="text-3xl italic font-semibold text-center text-gray-900 font-handlee sm:-mx-6"
+              class="
+                text-3xl
+                italic
+                font-semibold
+                text-center text-gray-900
+                font-handlee
+                sm:-mx-6
+              "
             >
               &#8220; {{ pricings.free.title }} &#8221;
             </h3>
@@ -67,7 +136,16 @@
           </div>
         </div>
         <div
-          class="px-6 pt-10 pb-8 bg-gray-100 border-t-2 border-gray-200 rounded-b-lg dark:border-gray-600 dark:bg-gray-700 sm:px-10 sm:py-10"
+          class="
+            px-6
+            pt-10
+            pb-8
+            bg-gray-100
+            border-t-2 border-gray-200
+            rounded-b-lg
+            dark:border-gray-600 dark:bg-gray-700
+            sm:px-10 sm:py-10
+          "
         >
           <ul class="space-y-4">
             <pricing-bullet
@@ -80,7 +158,22 @@
             <div class="rounded-lg shadow-md">
               <button
                 type="button"
-                class="block w-full px-6 py-4 text-xl font-medium leading-6 text-center text-white transition-colors duration-100 border border-transparent rounded-lg bg-primary-600 hover:bg-primary-600"
+                class="
+                  block
+                  w-full
+                  px-6
+                  py-4
+                  text-xl
+                  font-medium
+                  leading-6
+                  text-center text-white
+                  transition-colors
+                  duration-100
+                  border border-transparent
+                  rounded-lg
+                  bg-primary-600
+                  hover:bg-primary-600
+                "
                 aria-describedby="tier-free"
                 @click="pricings.free.ctaAction"
               >
@@ -92,17 +185,40 @@
       </div>
     </div>
     <div
-      class="max-w-md mx-auto mt-10 lg:m-0 lg:max-w-none lg:col-start-6 lg:col-end-8 lg:row-start-2 lg:row-end-3"
+      class="
+        max-w-md
+        mx-auto
+        mt-10
+        lg:m-0
+        lg:max-w-none
+        lg:col-start-6
+        lg:col-end-8
+        lg:row-start-2
+        lg:row-end-3
+      "
     >
       <div
-        class="flex flex-col h-full overflow-hidden rounded-lg shadow lg:rounded-none lg:rounded-r-lg"
+        class="
+          flex flex-col
+          h-full
+          overflow-hidden
+          rounded-lg
+          shadow
+          lg:rounded-none lg:rounded-r-lg
+        "
       >
         <div class="flex flex-col flex-1 bg-gray-50 dark:bg-gray-800">
           <div class="px-6 py-10">
             <div>
               <h3
                 id="tier-account"
-                class="text-2xl italic font-medium text-center text-gray-900 font-handlee"
+                class="
+                  text-2xl
+                  italic
+                  font-medium
+                  text-center text-gray-900
+                  font-handlee
+                "
               >
                 &#8220; {{ pricings.account.title }} &#8221;
               </h3>
@@ -114,7 +230,18 @@
             </div>
           </div>
           <div
-            class="flex flex-col justify-between flex-1 p-6 bg-gray-100 border-t-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 sm:p-10 lg:p-6 xl:p-10"
+            class="
+              flex flex-col
+              justify-between
+              flex-1
+              p-6
+              bg-gray-100
+              border-t-2 border-gray-200
+              dark:border-gray-600 dark:bg-gray-700
+              sm:p-10
+              lg:p-6
+              xl:p-10
+            "
           >
             <ul class="space-y-4">
               <pricing-bullet
@@ -126,7 +253,21 @@
             <div class="mt-8">
               <div class="rounded-lg shadow-md">
                 <button
-                  class="block w-full px-6 py-3 text-base font-medium text-center text-white transition-colors duration-100 border border-transparent rounded-lg bg-primary-600 hover:bg-primary-600"
+                  class="
+                    block
+                    w-full
+                    px-6
+                    py-3
+                    text-base
+                    font-medium
+                    text-center text-white
+                    transition-colors
+                    duration-100
+                    border border-transparent
+                    rounded-lg
+                    bg-primary-600
+                    hover:bg-primary-600
+                  "
                   type="button"
                   aria-describedby="tier-account"
                   @click="pricings.account.ctaAction"

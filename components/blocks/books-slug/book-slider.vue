@@ -1,7 +1,15 @@
 <template>
   <section>
     <div
-      class="shadow sm:rounded-lg dark:bg-gray-800 relative book-books max-w-full overflow-hidden"
+      class="
+        shadow
+        sm:rounded-lg
+        dark:bg-gray-800
+        relative
+        book-books
+        max-w-full
+        overflow-hidden
+      "
     >
       <div class="px-4 py-5 sm:px-6">
         <h2
@@ -36,13 +44,24 @@
                     :src="book.picture.original"
                     :color="book.picture.color"
                     :title="book.title"
-                    class="object-cover object-top w-32 h-32 rounded-full md:rounded-md md:w-full md:h-full"
+                    class="
+                      object-cover object-top
+                      w-32
+                      h-32
+                      rounded-full
+                      md:rounded-md md:w-full md:h-full
+                    "
                   />
                 </div>
                 <div class="col-span-1 mt-3 ml-0 space-y-2 md:ml-3 md:mt-0">
                   <div>
                     <span
-                      class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                      class="
+                        text-sm
+                        font-medium
+                        text-gray-500
+                        dark:text-gray-400
+                      "
                       >Title
                     </span>
                     <h3 class="font-semibold text-black">
@@ -52,7 +71,12 @@
                   <div>
                     <div>
                       <span
-                        class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                        class="
+                          text-sm
+                          font-medium
+                          text-gray-500
+                          dark:text-gray-400
+                        "
                         >Authors
                       </span>
                       <h3 class="font-semibold">
@@ -66,7 +90,14 @@
                               name: 'authors-slug',
                               params: { slug: author.meta.slug },
                             }"
-                            class="text-gray-900 transition-colors duration-100 border-b border-gray-500 dark:border-gray-100 dark:hover:border-gray-400 hover:border-gray-400 hover:text-gray-400"
+                            class="
+                              text-gray-900
+                              transition-colors
+                              duration-100
+                              border-b border-gray-500
+                              dark:border-gray-100 dark:hover:border-gray-400
+                              hover:border-gray-400 hover:text-gray-400
+                            "
                             >{{ author.name }}</nuxt-link
                           >
                           <span
@@ -82,7 +113,12 @@
                   </div>
                   <div v-if="book.volume">
                     <span
-                      class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                      class="
+                        text-sm
+                        font-medium
+                        text-gray-500
+                        dark:text-gray-400
+                      "
                       >Volume
                     </span>
                     <h3 class="font-semibold text-black">
@@ -112,7 +148,14 @@
             <template slot="prevButton">
               <svg-icon
                 name="arrow-chevron-right"
-                class="w-8 h-8 m-auto text-gray-900 dark:text-gray-400 arrow-rotate"
+                class="
+                  w-8
+                  h-8
+                  m-auto
+                  text-gray-900
+                  dark:text-gray-400
+                  arrow-rotate
+                "
               />
             </template>
             <template slot="nextButton">

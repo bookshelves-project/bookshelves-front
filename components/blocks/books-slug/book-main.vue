@@ -13,7 +13,10 @@
         class="px-4 py-5 border-t border-gray-200 dark:border-gray-700 sm:px-6"
       >
         <dl
-          class="space-y-8 md:grid md:gap-x-4 md:gap-y-8 md:space-y-0 md:grid-cols-2"
+          class="
+            space-y-8
+            md:grid md:gap-x-4 md:gap-y-8 md:space-y-0 md:grid-cols-2
+          "
         >
           <div v-if="book.authors" class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -122,7 +125,13 @@
               Page count
             </dt>
             <dd
-              class="flex items-center mt-1 text-sm text-gray-900 dark:text-gray-100"
+              class="
+                flex
+                items-center
+                mt-1
+                text-sm text-gray-900
+                dark:text-gray-100
+              "
             >
               {{ book.pageCount }}
             </dd>
@@ -132,7 +141,12 @@
               Genre
             </dt>
             <dd
-              class="flex flex-wrap mt-1 text-sm text-gray-900 dark:text-gray-100"
+              class="
+                flex flex-wrap
+                mt-1
+                text-sm text-gray-900
+                dark:text-gray-100
+              "
             >
               <span v-for="(genre, genreId) in book.genres" :key="genreId">
                 <nuxt-link
@@ -150,7 +164,12 @@
               Tags
             </dt>
             <dd
-              class="flex flex-wrap mt-1 text-sm text-gray-900 dark:text-gray-100"
+              class="
+                flex flex-wrap
+                mt-1
+                text-sm text-gray-900
+                dark:text-gray-100
+              "
             >
               <span v-for="(tag, tagId) in book.tags" :key="tagId">
                 <nuxt-link

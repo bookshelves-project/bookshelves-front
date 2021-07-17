@@ -4,7 +4,15 @@
       <div class="relative md:max-w-lg w-96">
         <label for="search" class="sr-only">Search</label>
         <div
-          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+          class="
+            absolute
+            inset-y-0
+            left-0
+            flex
+            items-center
+            pl-3
+            pointer-events-none
+          "
         >
           <svg-icon name="magnify-glass" class="w-5 h-5 text-gray-300" />
         </div>
@@ -13,13 +21,42 @@
           v-model="search"
           type="search"
           name="search"
-          class="block w-full pl-10 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          class="
+            block
+            w-full
+            pl-10
+            border-gray-300
+            rounded-md
+            shadow-sm
+            focus:ring-indigo-500 focus:border-indigo-500
+            sm:text-sm
+          "
           placeholder="Advanced search"
         />
       </div>
       <button
         type="submit"
-        class="inline-flex items-center justify-center w-full px-4 py-2 mt-3 font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+        class="
+          inline-flex
+          items-center
+          justify-center
+          w-full
+          px-4
+          py-2
+          mt-3
+          font-medium
+          text-white
+          bg-indigo-600
+          border border-transparent
+          rounded-md
+          shadow-sm
+          hover:bg-indigo-700
+          focus:outline-none
+          focus:ring-2
+          focus:ring-offset-2
+          focus:ring-indigo-500
+          sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm
+        "
       >
         Search
       </button>
@@ -35,7 +72,14 @@
           v-model="form.onlySerie"
           name="conditions"
           type="checkbox"
-          class="w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-600"
+          class="
+            w-4
+            h-4
+            border-gray-300
+            rounded
+            text-primary-600
+            focus:ring-primary-600
+          "
         />
       </div>
       <div class="ml-3 text-sm">
@@ -83,7 +127,16 @@
                   <span
                     v-for="languageValue in validLanguages"
                     :key="languageValue.id"
-                    class="flex items-center px-2 py-1 my-1 bg-gray-200 rounded-full w-max"
+                    class="
+                      flex
+                      items-center
+                      px-2
+                      py-1
+                      my-1
+                      bg-gray-200
+                      rounded-full
+                      w-max
+                    "
                   >
                     <span>{{ languageValue.name }}</span>
                     <svg-icon
@@ -109,7 +162,16 @@
                   <span
                     v-for="tagValue in validTags"
                     :key="tagValue.id"
-                    class="flex items-center px-2 py-1 my-1 bg-gray-200 rounded-full w-max"
+                    class="
+                      flex
+                      items-center
+                      px-2
+                      py-1
+                      my-1
+                      bg-gray-200
+                      rounded-full
+                      w-max
+                    "
                   >
                     <span>{{ tagValue.name }}</span>
                     <svg-icon

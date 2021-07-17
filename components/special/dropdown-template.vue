@@ -14,7 +14,15 @@
     >
       <div
         v-show="open"
-        class="absolute z-40 mt-2 rounded-md shadow-lg dark:rounded-none ring-1 ring-primary-600 ring-opacity-5"
+        class="
+          absolute
+          z-40
+          mt-2
+          rounded-md
+          shadow-lg
+          dark:rounded-none
+          ring-1 ring-primary-600 ring-opacity-5
+        "
         :class="[
           alignmentClasses,
           contentClasses,

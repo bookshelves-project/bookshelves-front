@@ -124,12 +124,6 @@ export default {
           content: image,
         },
       ],
-      link: [
-        {
-          rel: 'canonical',
-          href: url,
-        },
-      ],
     }
   },
   methods: {

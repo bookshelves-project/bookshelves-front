@@ -17,7 +17,26 @@
           v-model="tag"
           name="tag"
           :class="showList ? '' : 'rounded-b-md'"
-          class="relative w-full py-2 pl-3 pr-10 text-left transition-transform duration-100 transform bg-white border border-gray-300 shadow-sm rounded-t-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          class="
+            relative
+            w-full
+            py-2
+            pl-3
+            pr-10
+            text-left
+            transition-transform
+            duration-100
+            transform
+            bg-white
+            border border-gray-300
+            shadow-sm
+            rounded-t-md
+            focus:outline-none
+            focus:ring-1
+            focus:ring-indigo-500
+            focus:border-indigo-500
+            sm:text-sm
+          "
           placeholder="Search any tag"
           type="search"
           autocomplete="off"
@@ -27,7 +46,19 @@
           <button
             v-if="tag !== ''"
             type="button"
-            class="absolute p-1 transition-colors duration-100 transform -translate-y-1/2 bg-gray-100 rounded-full hover:bg-gray-200 right-2 top-1/2"
+            class="
+              absolute
+              p-1
+              transition-colors
+              duration-100
+              transform
+              -translate-y-1/2
+              bg-gray-100
+              rounded-full
+              hover:bg-gray-200
+              right-2
+              top-1/2
+            "
             @click="clear"
           >
             <svg-icon name="cross" class="w-4 h-4 text-gray-700" />
@@ -37,13 +68,28 @@
       <transition name="fade">
         <div
           v-if="showList && validate"
-          class="absolute w-full overflow-y-auto border border-gray-500 max-h-64 rounded-b-md"
+          class="
+            absolute
+            w-full
+            overflow-y-auto
+            border border-gray-500
+            max-h-64
+            rounded-b-md
+          "
         >
           <ul class="bg-white shadow-sm">
             <li
               v-for="tagValue in tags"
               :key="tagValue.id"
-              class="p-2 py-1 font-semibold transition-colors duration-100 cursor-pointer hover:bg-gray-200"
+              class="
+                p-2
+                py-1
+                font-semibold
+                transition-colors
+                duration-100
+                cursor-pointer
+                hover:bg-gray-200
+              "
               @click="valid(tagValue)"
             >
               {{ tagValue.name }}

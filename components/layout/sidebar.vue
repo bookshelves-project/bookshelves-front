@@ -6,14 +6,36 @@
         :class="
           $store.state.sidebarOpened ? 'translate-x-0' : '-translate-x-full'
         "
-        class="relative flex flex-col flex-1 w-full max-w-xs pt-5 pb-4 transition duration-300 ease-in-out transform bg-white dark:bg-gray-800"
+        class="
+          relative
+          flex flex-col flex-1
+          w-full
+          max-w-xs
+          pt-5
+          pb-4
+          transition
+          duration-300
+          ease-in-out
+          transform
+          bg-white
+          dark:bg-gray-800
+        "
       >
         <div
           :class="$store.state.sidebarOpened ? 'opacity-100' : 'opacity-0'"
           class="absolute top-0 right-0 pt-2 -mr-12 transition-opacity"
         >
           <button
-            class="flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            class="
+              flex
+              items-center
+              justify-center
+              w-10
+              h-10
+              ml-1
+              rounded-full
+              focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white
+            "
             type="button"
             aria-label="Close side menu"
             @click="closeSidebar()"
@@ -41,7 +63,14 @@
           <nuxt-link to="/" class="inline-flex items-center w-auto h-8">
             <span class="inline-flex items-center" @click="closeSidebar">
               <img
-                class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
+                class="
+                  w-auto
+                  h-8
+                  transition-all
+                  duration-100
+                  sm:h-10
+                  group-hover:home-logo-shadow
+                "
                 src="/images/bookshelves.svg"
                 :alt="`${$config.appName} logo`"
                 loading="lazy"
@@ -57,7 +86,17 @@
             <div class="space-y-1">
               <nuxt-link
                 :to="{ name: 'home' }"
-                class="flex items-center text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 group"
+                class="
+                  flex
+                  items-center
+                  text-base
+                  font-medium
+                  leading-5
+                  text-gray-600
+                  rounded-md
+                  hover:text-gray-900 hover:bg-gray-100
+                  group
+                "
               >
                 <span
                   class="w-full px-2 py-4 font-semibold"
@@ -70,7 +109,17 @@
                 v-for="(booksNav, booksNavId) in $store.state.navigation"
                 :key="booksNavId"
                 :to="{ name: booksNav.route }"
-                class="flex items-center text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 group"
+                class="
+                  flex
+                  items-center
+                  text-base
+                  font-medium
+                  leading-5
+                  text-gray-600
+                  rounded-md
+                  hover:text-gray-900 hover:bg-gray-100
+                  group
+                "
               >
                 <span
                   class="w-full px-2 py-4 font-semibold"
@@ -83,7 +132,14 @@
             <div class="mt-8">
               <h3
                 id="teams-headline"
-                class="px-3 text-xs font-semibold tracking-wider text-gray-500 uppercase"
+                class="
+                  px-3
+                  text-xs
+                  font-semibold
+                  tracking-wider
+                  text-gray-500
+                  uppercase
+                "
               >
                 Authentification
               </h3>
@@ -97,7 +153,19 @@
                     v-for="link in $store.state.authNavigationTrue"
                     :key="link.id"
                     :to="{ name: link.route }"
-                    class="flex items-center w-full text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
+                    class="
+                      flex
+                      items-center
+                      w-full
+                      text-base
+                      font-semibold
+                      leading-5
+                      text-gray-600
+                      rounded-md
+                      group
+                      hover:text-gray-900 hover:bg-gray-100
+                      dark:hover:text-gray-900
+                    "
                     role="menuitem"
                   >
                     <span
@@ -112,7 +180,22 @@
                     </span>
                   </nuxt-link>
                   <button
-                    class="flex items-center w-full px-3 py-4 text-base font-semibold leading-5 text-gray-600 rounded-md dark:text-gray-100 group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
+                    class="
+                      flex
+                      items-center
+                      w-full
+                      px-3
+                      py-4
+                      text-base
+                      font-semibold
+                      leading-5
+                      text-gray-600
+                      rounded-md
+                      dark:text-gray-100
+                      group
+                      hover:text-gray-900 hover:bg-gray-100
+                      dark:hover:text-gray-900
+                    "
                     type="button"
                     role="menuitem"
                     @click="logout"
@@ -129,7 +212,19 @@
                     v-for="link in $store.state.authNavigationFalse"
                     :key="link.id"
                     :to="{ name: link.route }"
-                    class="flex items-center w-full text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900"
+                    class="
+                      flex
+                      items-center
+                      w-full
+                      text-base
+                      font-semibold
+                      leading-5
+                      text-gray-600
+                      rounded-md
+                      group
+                      hover:text-gray-900 hover:bg-gray-100
+                      dark:hover:text-gray-900
+                    "
                     role="menuitem"
                   >
                     <span

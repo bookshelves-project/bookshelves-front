@@ -2,7 +2,19 @@
   <div>
     <div
       :class="expanded ? 'rounded-t-lg' : 'rounded-lg'"
-      class="flex items-center px-4 py-3 mt-4 font-bold transition-colors duration-100 bg-gray-100 cursor-pointer hover:bg-gray-200"
+      class="
+        flex
+        items-center
+        px-4
+        py-3
+        mt-4
+        font-bold
+        transition-colors
+        duration-100
+        bg-gray-100
+        cursor-pointer
+        hover:bg-gray-200
+      "
       @click="switchSpoiler"
     >
       <svg-icon

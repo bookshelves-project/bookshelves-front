@@ -44,7 +44,12 @@
                     </div> -->
                     <div
                       :ref="comment.id"
-                      class="mt-1 text-sm text-gray-700 dark:text-gray-300 light-md"
+                      class="
+                        mt-1
+                        text-sm text-gray-700
+                        dark:text-gray-300
+                        light-md
+                      "
                       v-html="$overflow(comment.text, 300)"
                     ></div>
                     <button
@@ -68,7 +73,12 @@
                           comment.user.id === $auth.$state.user.data.id
                         "
                         type="button"
-                        class="text-gray-400 dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-300"
+                        class="
+                          text-gray-400
+                          dark:text-gray-200
+                          hover:text-gray-500
+                          dark:hover:text-gray-300
+                        "
                         title="Delete"
                         aria-label="Delete"
                         @click="deleteComment(comment.id)"
@@ -85,7 +95,14 @@
         </div>
       </div>
       <div
-        class="px-4 py-6 border-t border-transparent bg-gray-50 dark:bg-gray-800 dark:border-gray-700 sm:px-6"
+        class="
+          px-4
+          py-6
+          border-t border-transparent
+          bg-gray-50
+          dark:bg-gray-800 dark:border-gray-700
+          sm:px-6
+        "
       >
         <transition name="fade">
           <div v-if="$auth.$state.loggedIn" class="flex space-x-3">
@@ -107,7 +124,16 @@
                     name="text"
                     rows="3"
                     maxlength="1500"
-                    class="block w-full border-gray-300 rounded-md shadow-sm dark:bg-gray-200 focus:ring-primary-600 focus:border-primary-600 sm:text-sm"
+                    class="
+                      block
+                      w-full
+                      border-gray-300
+                      rounded-md
+                      shadow-sm
+                      dark:bg-gray-200
+                      focus:ring-primary-600 focus:border-primary-600
+                      sm:text-sm
+                    "
                     placeholder="Add a comment*"
                   ></textarea>
                   <div class="ml-1 text-sm text-gray-400">
@@ -151,11 +177,25 @@
                     href="https://devhints.io/markdown"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-start space-x-2 text-sm text-gray-500 group hover:text-gray-900 dark:hover:text-gray-100"
+                    class="
+                      inline-flex
+                      items-start
+                      space-x-2
+                      text-sm text-gray-500
+                      group
+                      hover:text-gray-900
+                      dark:hover:text-gray-100
+                    "
                   >
                     <!-- Heroicon name: solid/question-mark-circle -->
                     <svg
-                      class="flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-500"
+                      class="
+                        flex-shrink-0
+                        w-5
+                        h-5
+                        text-gray-400
+                        group-hover:text-gray-500
+                      "
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -176,7 +216,22 @@
                         ? 'bg-primary-400 text-gray-300 cursor-not-allowed'
                         : 'hover:bg-primary-600 bg-primary-600 text-white'
                     "
-                    class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
+                    class="
+                      inline-flex
+                      items-center
+                      justify-center
+                      px-4
+                      py-2
+                      text-sm
+                      font-medium
+                      border border-transparent
+                      rounded-md
+                      shadow-sm
+                      focus:outline-none
+                      focus:ring-2
+                      focus:ring-offset-2
+                      focus:ring-primary-600
+                    "
                     :disabled="form.text === ''"
                   >
                     Comment

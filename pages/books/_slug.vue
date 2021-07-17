@@ -89,12 +89,6 @@ export default {
           content: this.book.tags,
         },
       ],
-      link: [
-        {
-          rel: 'canonical',
-          href: url,
-        },
-      ],
     }
   },
   jsonld() {

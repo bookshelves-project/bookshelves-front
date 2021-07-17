@@ -3,7 +3,16 @@
     <div class="max-w-2xl mx-auto lg:mx-0">
       <div class="sm:text-center lg:text-left">
         <h1
-          class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 font-handlee sm:text-5xl md:text-6xl"
+          class="
+            text-4xl
+            font-extrabold
+            tracking-tight
+            text-gray-900
+            dark:text-gray-100
+            font-handlee
+            sm:text-5xl
+            md:text-6xl
+          "
         >
           <span class="block text-indigo-600 dark:text-primary-400 xl:inline">{{
             $config.appName
@@ -14,7 +23,15 @@
           >
         </h1>
         <p
-          class="mx-auto mt-3 text-base text-gray-500 dark:text-gray-400 sm:mt-5 sm:text-lg sm:max-w-xl md:mt-5 md:text-xl lg:mx-0"
+          class="
+            mx-auto
+            mt-3
+            text-base text-gray-500
+            dark:text-gray-400
+            sm:mt-5 sm:text-lg sm:max-w-xl
+            md:mt-5 md:text-xl
+            lg:mx-0
+          "
         >
           If you have an eReader and are looking for plenty of eBooks to take
           everywhere with you, you've come to the right place, hours of reading

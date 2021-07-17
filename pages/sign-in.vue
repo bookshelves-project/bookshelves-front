@@ -3,7 +3,13 @@
     <div class="flex col-span-1">
       <div class="w-full m-auto space-y-6 sm:w-96">
         <h2
-          class="mt-6 text-3xl font-extrabold text-center text-gray-900 font-handlee"
+          class="
+            mt-6
+            text-3xl
+            font-extrabold
+            text-center text-gray-900
+            font-handlee
+          "
         >
           Sign in to your account
         </h2>
@@ -14,7 +20,13 @@
           <div class="relative flex justify-center text-sm">
             <nuxt-link
               :to="{ name: 'register' }"
-              class="px-2 text-gray-500 bg-white dark:bg-gray-900 hover:text-gray-800"
+              class="
+                px-2
+                text-gray-500
+                bg-white
+                dark:bg-gray-900
+                hover:text-gray-800
+              "
             >
               Do you want to register?
             </nuxt-link>
@@ -88,12 +100,6 @@ export default {
           hid: 'twitter:image:src',
           property: 'twitter:image:src',
           content: image,
-        },
-      ],
-      link: [
-        {
-          rel: 'canonical',
-          href: url,
         },
       ],
     }

@@ -1,7 +1,12 @@
 <template>
   <div v-if="toc.length" class="relative block">
     <div
-      class="lg:sticky lg:top-5 overflow-y-auto h-full lg:h-auto lg:max-h-(screen-5)"
+      class="
+        lg:sticky lg:top-5
+        overflow-y-auto
+        h-full
+        lg:h-auto lg:max-h-(screen-5)
+      "
     >
       <nav
         class="py-4 lg:py-8"
@@ -11,7 +16,15 @@
         }"
       >
         <h3
-          class="mb-3 text-sm font-bold tracking-wider text-gray-500 uppercase lg:mb-2 lg:text-xs"
+          class="
+            mb-3
+            text-sm
+            font-bold
+            tracking-wider
+            text-gray-500
+            uppercase
+            lg:mb-2 lg:text-xs
+          "
         >
           On this page
         </h3>
@@ -32,7 +45,15 @@
           >
             <a
               :href="`#${link.id}`"
-              class="block text-sm duration-300 ease-in-out scrollactive-item transition-padding hover:pl-1"
+              class="
+                block
+                text-sm
+                duration-300
+                ease-in-out
+                scrollactive-item
+                transition-padding
+                hover:pl-1
+              "
               :class="{
                 'py-2': link.depth === 2,
                 'ml-2 pb-2': link.depth === 3,

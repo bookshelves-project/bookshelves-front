@@ -11,12 +11,26 @@
     <div class="flex col-span-1">
       <div class="w-full m-auto space-y-6 sm:w-96">
         <h2
-          class="mt-6 text-3xl font-extrabold text-center text-gray-900 font-handlee"
+          class="
+            mt-6
+            text-3xl
+            font-extrabold
+            text-center text-gray-900
+            font-handlee
+          "
         >
           Create your account
         </h2>
         <p
-          class="p-5 mt-5 text-yellow-600 bg-yellow-200 border-2 border-yellow-300 rounded-md word-wraping"
+          class="
+            p-5
+            mt-5
+            text-yellow-600
+            bg-yellow-200
+            border-2 border-yellow-300
+            rounded-md
+            word-wraping
+          "
         >
           {{ $config.appName }} is in development, if you create an account it
           will probably be deleted in a few days. Features once logged in are
@@ -30,7 +44,13 @@
           <div class="relative flex justify-center text-sm">
             <nuxt-link
               :to="{ name: 'login' }"
-              class="px-2 text-gray-500 bg-white dark:bg-gray-900 hover:text-gray-800"
+              class="
+                px-2
+                text-gray-500
+                bg-white
+                dark:bg-gray-900
+                hover:text-gray-800
+              "
             >
               Do you have an account?
             </nuxt-link>
@@ -103,12 +123,6 @@ export default {
           hid: 'twitter:image:src',
           property: 'twitter:image:src',
           content: image,
-        },
-      ],
-      link: [
-        {
-          rel: 'canonical',
-          href: url,
         },
       ],
     }

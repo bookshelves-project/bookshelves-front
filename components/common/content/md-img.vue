@@ -14,7 +14,17 @@
         <div
           v-if="zoom"
           :class="hover ? 'opacity-100' : 'opacity-0'"
-          class="absolute top-0 right-0 z-10 p-3 leading-5 transition-opacity duration-300 bg-gray-300 bg-opacity-60"
+          class="
+            absolute
+            top-0
+            right-0
+            z-10
+            p-3
+            leading-5
+            transition-opacity
+            duration-300
+            bg-gray-300 bg-opacity-60
+          "
         >
           Click on image
           <br />

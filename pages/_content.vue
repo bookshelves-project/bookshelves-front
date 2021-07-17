@@ -12,18 +12,42 @@
                 class="h-40 mx-auto opacity-25 object-container"
               />
               <div
-                class="absolute z-10 w-full text-2xl italic text-center text-white"
+                class="
+                  absolute
+                  z-10
+                  w-full
+                  text-2xl
+                  italic
+                  text-center text-white
+                "
                 style="top: 50%; left: 50%; transform: translate(-50%, -50%)"
               >
                 <div class="mx-auto text-lg max-w-prose">
                   <div>
                     <div
-                      class="block text-base font-semibold tracking-wide text-center uppercase text-primary-600"
+                      class="
+                        block
+                        text-base
+                        font-semibold
+                        tracking-wide
+                        text-center
+                        uppercase
+                        text-primary-600
+                      "
                     >
                       {{ document.category }}
                     </div>
                     <h1
-                      class="block mt-2 text-3xl font-extrabold leading-8 tracking-tight text-center text-gray-900 sm:text-4xl"
+                      class="
+                        block
+                        mt-2
+                        text-3xl
+                        font-extrabold
+                        leading-8
+                        tracking-tight
+                        text-center text-gray-900
+                        sm:text-4xl
+                      "
                     >
                       {{ document.title }}
                     </h1>
@@ -42,7 +66,14 @@
       </div>
       <div class="relative block w-full lg:mx-auto lg:w-1/4 lg:max-w-prose">
         <div
-          class="lg:sticky lg:top-16 h-full lg:h-auto lg:max-h-(screen-5) pt-5 max-w-xl mx-auto"
+          class="
+            lg:sticky lg:top-16
+            h-full
+            lg:h-auto lg:max-h-(screen-5)
+            pt-5
+            max-w-xl
+            mx-auto
+          "
         >
           <table-of-content :toc="document.toc"></table-of-content>
           <img :src="picture" :alt="`${document.title} picture`" class="h-40" />
@@ -106,12 +137,6 @@ export default {
           hid: 'article:section',
           property: 'article:section',
           content: this.$route.params.type,
-        },
-      ],
-      link: [
-        {
-          rel: 'canonical',
-          href: url,
         },
       ],
     }

@@ -11,17 +11,48 @@
         }"
         :title="guide.title"
         :aria-label="guide.title"
-        class="block col-span-1 px-3 py-2 overflow-hidden transition-colors duration-100 bg-white rounded-md shadow lg:px-6 lg:py-4 h-36 hover:bg-gray-50 dark:bg-gray-800"
+        class="
+          block
+          col-span-1
+          px-3
+          py-2
+          overflow-hidden
+          transition-colors
+          duration-100
+          bg-white
+          rounded-md
+          shadow
+          lg:px-6 lg:py-4
+          h-36
+          hover:bg-gray-50
+          dark:bg-gray-800
+        "
       >
         <div
-          class="flex items-center h-full px-2 py-2 lg:px-4 lg:py-4 lg:h-auto sm:px-6"
+          class="
+            flex
+            items-center
+            h-full
+            px-2
+            py-2
+            lg:px-4 lg:py-4 lg:h-auto
+            sm:px-6
+          "
         >
           <div class="flex items-center flex-1 min-w-0">
             <div class="flex-shrink-0">
               <app-img
                 :src="`/images/guides/${guide.category.toLowerCase()}.webp`"
                 :alt="`${guide.slug} picture`"
-                class="object-cover w-12 h-12 text-opacity-50 rounded-full fill-current text-primary-600"
+                class="
+                  object-cover
+                  w-12
+                  h-12
+                  text-opacity-50
+                  rounded-full
+                  fill-current
+                  text-primary-600
+                "
               />
             </div>
             <div class="flex-1 min-w-0 px-4 md:grid md:grid-cols-2 md:gap-4">
@@ -44,7 +75,16 @@
                   </p>
                   <div></div>
                   <p
-                    class="flex items-start mt-2 text-sm italic text-gray-800 dark:text-gray-300 line-clamp-2"
+                    class="
+                      flex
+                      items-start
+                      mt-2
+                      text-sm
+                      italic
+                      text-gray-800
+                      dark:text-gray-300
+                      line-clamp-2
+                    "
                   >
                     {{ guide.description }}
                   </p>
@@ -110,12 +150,6 @@ export default {
     return {
       title,
       meta: [...dynamicMeta],
-      link: [
-        {
-          rel: 'canonical',
-          href: url,
-        },
-      ],
     }
   },
   jsonld() {

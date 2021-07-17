@@ -1,6 +1,13 @@
 <template>
   <div
-    class="fixed z-50 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+    class="
+      fixed
+      z-50
+      transform
+      -translate-x-1/2 -translate-y-1/2
+      top-1/2
+      left-1/2
+    "
   >
     <transition name="fade">
       <div
@@ -14,7 +21,16 @@
       >
         <button
           type="button"
-          class="absolute text-gray-400 transition-colors duration-100 rounded top-2 right-2 hover:bg-gray-50"
+          class="
+            absolute
+            text-gray-400
+            transition-colors
+            duration-100
+            rounded
+            top-2
+            right-2
+            hover:bg-gray-50
+          "
           aria-label="Close"
           @click="close"
         >

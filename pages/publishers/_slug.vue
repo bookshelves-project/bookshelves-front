@@ -98,12 +98,6 @@ export default {
     return {
       title,
       meta: [...dynamicMeta],
-      link: [
-        {
-          rel: 'canonical',
-          href: url,
-        },
-      ],
     }
   },
   methods: {

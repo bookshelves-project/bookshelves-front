@@ -15,7 +15,17 @@
               required
               type="password"
               name="current_password"
-              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm dark:bg-gray-200"
+              class="
+                block
+                w-full
+                mt-1
+                border-gray-300
+                rounded-md
+                shadow-sm
+                focus:ring-primary-600 focus:border-primary-600
+                sm:text-sm
+                dark:bg-gray-200
+              "
             />
           </div>
 
@@ -31,7 +41,17 @@
               required
               type="password"
               name="password"
-              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm dark:bg-gray-200"
+              class="
+                block
+                w-full
+                mt-1
+                border-gray-300
+                rounded-md
+                shadow-sm
+                focus:ring-primary-600 focus:border-primary-600
+                sm:text-sm
+                dark:bg-gray-200
+              "
             />
           </div>
 
@@ -47,7 +67,17 @@
               required
               type="password"
               name="password_confirmation"
-              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-primary-600 focus:border-primary-600 sm:text-sm dark:bg-gray-200"
+              class="
+                block
+                w-full
+                mt-1
+                border-gray-300
+                rounded-md
+                shadow-sm
+                focus:ring-primary-600 focus:border-primary-600
+                sm:text-sm
+                dark:bg-gray-200
+              "
             />
           </div>
         </div>
