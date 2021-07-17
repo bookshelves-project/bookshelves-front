@@ -3,7 +3,7 @@
     <lazy-hydrate when-idle>
       <hero />
     </lazy-hydrate>
-    <lazy-hydrate when-visible>
+    <lazy-hydrate when-idle>
       <statistics />
     </lazy-hydrate>
     <lazy-hydrate when-visible>
