@@ -101,7 +101,7 @@
         </div>
       </div>
       <section v-if="series.data.length">
-        <divider> {{ series ? series.data.length : null }} Series </divider>
+        <divider> Series </divider>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
             v-for="serie in series.data"
@@ -136,7 +136,7 @@
         </div>
       </section>
       <section v-if="books.data.length">
-        <divider class="mt-16"> {{ books.data.length }} Books </divider>
+        <divider class="mt-16"> Books </divider>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
             v-for="book in books.data"

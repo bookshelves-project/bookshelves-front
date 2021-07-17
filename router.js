@@ -20,7 +20,8 @@ import PublishersSlug from '~/pages/publishers/_slug'
 
 import RelatedSlug from '~/pages/related/_slug'
 
-import SearchIndex from '~/pages/search/index'
+import Search from '~/pages/search'
+import SearchAdvanced from '~/pages/search-advanced'
 import Contact from '~/pages/contact'
 
 // Auth
@@ -78,7 +79,12 @@ const routesList = [
   {
     name: 'search',
     path: '/search',
-    component: SearchIndex,
+    component: Search,
+  },
+  {
+    name: 'search-advanced',
+    path: '/search-advanced',
+    component: SearchAdvanced,
   },
   {
     name: 'contact',

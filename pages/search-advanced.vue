@@ -44,7 +44,7 @@ import Skeleton from '~/components/special/skeleton.vue'
 import { objectIsEmpty } from '~/plugins/utils/methods'
 
 export default {
-  name: 'SearchIndex',
+  name: 'PageSearchAdvanced',
   components: {
     SectionHeading,
     SearchResults,

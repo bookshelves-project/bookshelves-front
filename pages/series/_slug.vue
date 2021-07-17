@@ -174,7 +174,7 @@
         </div>
         <div class="relative flex justify-center">
           <span class="px-2 text-gray-500 bg-white dark:bg-gray-900">
-            {{ books.length }} Books
+            Books
           </span>
         </div>
       </div>

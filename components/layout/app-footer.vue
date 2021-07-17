@@ -184,7 +184,7 @@ export default {
         project: {
           title: this.$config.appName,
           links: [
-            { label: 'Search', icon: 'annotation', route: { name: 'search' } },
+            { label: 'Advanced search', route: { name: 'search-advanced' } },
             {
               label: 'About',
               route: {
