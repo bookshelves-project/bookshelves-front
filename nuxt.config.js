@@ -67,7 +67,7 @@ export default {
     // https://github.com/nuxt-community/svg-sprite-module
     '@nuxtjs/svg-sprite',
     // https://html-validator.nuxtjs.org/
-    '@nuxtjs/html-validator',
+    // '@nuxtjs/html-validator',
   ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.pcss',
