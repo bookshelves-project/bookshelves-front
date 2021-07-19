@@ -78,7 +78,7 @@ export default {
             `/books/related/${this.book.meta.author}/${
               this.book.meta.slug
             }?${qs.stringify({
-              limit: true,
+              limit: 10,
             })}`
           )
           this.books = books.data
