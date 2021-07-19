@@ -85,6 +85,7 @@ About OPDS from Wikipedia:
 >The Open Publication Distribution System specification is prepared by an informal grouping of partners, combining Internet Archive, O'Reilly Media, Feedbooks, OLPC, and others.
 
 - [**OPDS**](https://opds.io): official website
+- [**OPDS specs**](https://specs.opds.io/): official specs for feed
 - [**Kobo : reprenez le contrôle**](https://lmorel3.fr/posts/kobo-root): install *Koreader* on Kobo 🇫🇷
 - [**Catalogues OPDS**](https://lecturenumenbib.wordpress.com/acquisitions/catalogues-opds/): about OPDS system 🇫🇷
 - [**Framabookin**](https://framacloud.org/fr/cultiver-son-jardin/bicbucstriim.html): install your own OPDS server 🇫🇷

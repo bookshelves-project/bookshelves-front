@@ -10,7 +10,7 @@ description: 'On other ways.'
 >
 >The Open Publication Distribution System specification is prepared by an informal grouping of partners, combining Internet Archive, O'Reilly Media, Feedbooks, OLPC, and others.
 
-<app-name></app-name> is also available with OPDS feed, if you have any application with OPDS feature, you can add feed of <app-name></app-name>, just add <api-link endpoint="/opds/v1.2" :refer-it-self="true"></api-link> to your application. To known more about application which can use OPDS, check [**More eBooks**](/pages/more-ebooks#opds).
+<app-name></app-name> is also available with OPDS feed, if you have any application with OPDS feature, you can add feed of <app-name></app-name>, just add <api-link endpoint="/opds/v1.2" :refer-it-self="true"></api-link> to your application. To known more about application which can use OPDS, check [**More eBooks**](/pages/more-ebooks#opds). You can check [**opds.io**](https://opds.io/) to know more about OPDS, <app-name></app-name> OPDS is based on [**specs.opds.io**](https://specs.opds.io/).
 
 ### Versions
 
