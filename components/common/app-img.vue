@@ -4,7 +4,7 @@
       v-if="imageNotExist"
       src="/images/no-cover.webp"
       :alt="title"
-      class="object-cover max-size dark:bg-gray-800"
+      class="object-cover dark:bg-gray-800 inset-0 absolute h-full w-full z-10"
     />
     <transition name="fade">
       <div
@@ -23,11 +23,12 @@
       ></div>
     </transition>
     <img
+      v-if="!imageNotExist"
       v-lazy-load
       :class="[loading ? '' : '', picture]"
       :data-src="src"
       :src="src"
-      :alt="noAlt ? '' : title"
+      :alt="imageNotExist ? '' : noAlt ? '' : title"
       :title="title"
       class="object-cover max-size img"
       @load="onImgLoad"
@@ -83,10 +84,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped>
-.max-size {
-  width: 98%;
-  height: 98%;
-}
-</style>

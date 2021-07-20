@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="route" class="group" :title="title">
+  <nuxt-link :to="route" class="group entity-card" :title="title">
     <article
       loading="lazy"
       class="
@@ -64,10 +64,14 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.cover::v-deep {
-  & .img {
-    @apply rounded-sm object-top;
-    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
+.entity-card {
+  & .cover::v-deep {
+    width: 97%;
+    height: 97%;
+    & .img {
+      @apply rounded-sm object-top h-full w-full;
+      box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
+    }
   }
 }
 </style>
