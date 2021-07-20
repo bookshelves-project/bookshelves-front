@@ -4,7 +4,7 @@
       v-if="imageNotExist"
       src="/images/no-cover.webp"
       :alt="title"
-      class="object-cover max-size"
+      class="object-cover max-size dark:bg-gray-800"
     />
     <transition name="fade">
       <div
