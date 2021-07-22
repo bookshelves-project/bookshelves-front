@@ -7,20 +7,37 @@
       class="object-cover dark:bg-gray-800 inset-0 absolute h-full w-full z-10"
     />
     <transition name="fade">
-      <div
-        v-if="loading"
-        :style="`background-color: ${color}`"
-        :class="picture"
-        class="
-          absolute
-          inset-0
-          transition-transform
-          duration-300
-          blur-sm
-          max-size
-          img
-        "
-      ></div>
+      <div v-if="loading">
+        <div
+          v-if="color"
+          :style="`background-color: ${color}`"
+          :class="picture"
+          class="
+            absolute
+            inset-0
+            transition-transform
+            duration-300
+            blur-sm
+            max-size
+            img
+          "
+        ></div>
+        <div
+          v-else
+          :class="picture"
+          class="
+            absolute
+            inset-0
+            transition-transform
+            duration-300
+            blur-sm
+            max-size
+            img
+            bg-gray-50
+            dark:bg-gray-800
+          "
+        ></div>
+      </div>
     </transition>
     <img
       v-if="!imageNotExist"
@@ -46,7 +63,7 @@ export default {
     },
     color: {
       type: String,
-      default: '#564fcc',
+      default: null,
     },
     title: {
       type: String,
