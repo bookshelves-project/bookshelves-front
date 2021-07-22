@@ -55,7 +55,7 @@
         </div>
       </div>
       <div
-        :class="$auth.$state.loggedIn ? 'md:grid-cols-4' : 'md:grid-cols-2'"
+        :class="$auth.$state.loggedIn ? 'md:grid-cols-4' : 'md:grid-cols-3'"
         class="
           grid grid-cols-1
           border-t border-gray-200
