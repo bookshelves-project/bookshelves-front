@@ -1,8 +1,10 @@
 import metadata from './plugins/metadata/metadata'
-import sitemaps from './plugins/utils/sitemaps'
+import sitemaps from './plugins/build/sitemaps'
 
 import metadataDynamic from './plugins/metadata/metadata-dynamic'
 import metadataStatic from './plugins/metadata/metadata-static'
+
+import { routes } from './plugins/build/routes'
 
 export default {
   publicRuntimeConfig: {
@@ -11,8 +13,11 @@ export default {
     moduleSocial: process.env.MODULE_SOCIAL,
     apiURL: process.env.API_URL,
   },
-  privateRuntimeConfig: {},
-  target: 'server',
+  target: process.env.TARGET || 'server',
+  generate: {
+    crawler: false,
+    routes,
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: metadata.tags.title,
