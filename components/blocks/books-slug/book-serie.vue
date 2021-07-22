@@ -9,7 +9,7 @@
         :to="{
           name: 'series-slug',
           params: {
-            author: book.meta.author,
+            author: book.serie.meta.author,
             slug: book.serie.meta.slug,
           },
         }"

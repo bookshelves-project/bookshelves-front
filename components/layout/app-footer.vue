@@ -161,8 +161,8 @@ export default {
       socialIcons: [
         {
           icon: 'swagger',
-          label: 'Swagger: API documentation',
-          link: `${this.$config.apiURL}/documentation`,
+          label: 'API documentation',
+          link: `${this.$apiUrlBase('/docs')}`,
         },
         {
           icon: 'calibre',
@@ -171,12 +171,12 @@ export default {
         },
         {
           icon: 'open-book',
-          label: 'Catalog',
+          label: 'Catalog: simple interface for eReader browser',
           link: `${this.$apiUrlBase('/catalog')}`,
         },
         {
           icon: 'feed',
-          label: 'OPDS',
+          label: 'OPDS feed',
           link: `${this.$apiUrlBase('/opds')}`,
         },
       ],

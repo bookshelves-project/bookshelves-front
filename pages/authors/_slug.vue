@@ -206,7 +206,6 @@ export default {
         })}`
       ),
     ])
-    console.log(series)
 
     return {
       author: author.data,

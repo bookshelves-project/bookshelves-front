@@ -49,7 +49,7 @@
                       w-32
                       h-32
                       rounded-full
-                      md:rounded-md md:w-full md:h-full
+                      md:rounded-none md:w-full md:h-full
                     "
                   />
                 </div>
@@ -308,7 +308,8 @@ export default {
 }
 .book-books {
   img {
-    @apply rounded-md;
+    @apply rounded-sm;
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
   }
   & .thumbnails {
     @apply mt-5;

@@ -30,7 +30,7 @@
       :src="src"
       :alt="imageNotExist ? '' : noAlt ? '' : title"
       :title="title"
-      class="object-cover max-size img"
+      class="object-cover max-size img h-full w-full"
       @load="onImgLoad"
     />
   </div>
