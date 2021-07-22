@@ -55,7 +55,7 @@
         </div>
       </div>
       <div
-        :class="$auth.$state.loggedIn ? 'md:grid-cols-3' : 'md:grid-cols-2'"
+        :class="$auth.$state.loggedIn ? 'md:grid-cols-4' : 'md:grid-cols-2'"
         class="
           grid grid-cols-1
           border-t border-gray-200
@@ -110,6 +110,17 @@
           />
           <span>Favorite</span>
         </button>
+        <component
+          :is="book.webreader ? 'a' : 'span'"
+          class="header-action header-action_active"
+          aria-label="Favorite"
+          :href="book.webreader"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg-icon name="eye" class="w-5 h-5" />
+          <span>Webreader</span>
+        </component>
       </div>
     </div>
   </section>
