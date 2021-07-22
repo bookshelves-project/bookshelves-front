@@ -152,7 +152,7 @@
                 <nuxt-link
                   :to="{ name: 'tags-slug', params: { slug: genre.meta.slug } }"
                   class="internal-link"
-                  >{{ genre.name }} </nuxt-link
+                  >{{ genre.name }}</nuxt-link
                 ><span v-if="genreId !== book.genres.length - 1" class="mr-1"
                   >,</span
                 >
