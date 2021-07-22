@@ -4,19 +4,20 @@ import sitemaps from './plugins/build/sitemaps'
 import metadataDynamic from './plugins/metadata/metadata-dynamic'
 import metadataStatic from './plugins/metadata/metadata-static'
 
-import { routes } from './plugins/build/routes'
-
 export default {
+  // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config
   publicRuntimeConfig: {
     appName: process.env.APP_NAME,
     baseURL: process.env.BASE_URL,
     moduleSocial: process.env.MODULE_SOCIAL,
     apiURL: process.env.API_URL,
   },
+  // Can be 'server' for SSR or 'static' for S
   target: process.env.TARGET || 'server',
+  // For static generation: https://nuxtjs.org/blog/going-full-static#new-config-option-target
+  // https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-generate
   generate: {
-    crawler: false,
-    routes,
+    crawler: true,
   },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -39,7 +40,7 @@ export default {
   },
 
   plugins: [
-    // global helper methods
+    // helper methods: available in any component
     '~/plugins/utils/helpers',
     // https://github.com/ndelvalle/v-click-outside
     '~/plugins/v-click-outside',
