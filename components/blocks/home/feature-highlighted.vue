@@ -39,7 +39,7 @@
                 {{ title }}
               </h2>
             </div>
-            <p class="mt-4 text-lg text-gray-500">
+            <p class="mt-4 text-lg text-gray-500" v-html="text">
               <slot name="text" />
             </p>
           </div>
@@ -122,6 +122,11 @@ export default {
     title: {
       type: String,
       default: null,
+    },
+  },
+  computed: {
+    text() {
+      return this.$slots.text[0].text
     },
   },
 }

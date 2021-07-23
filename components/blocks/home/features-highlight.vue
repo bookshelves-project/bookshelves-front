@@ -1,73 +1,23 @@
 <template>
   <div class="relative pt-16 pb-32 overflow-hidden">
     <feature-highlighted
-      :position-image="`right`"
+      v-for="feature in features"
+      :key="feature.id"
+      :position-image="feature.position"
       :blockquote="{
-        text: `Maybe it's not quite legal but it's cool!`,
-        author: `An enthusiastic reader`,
+        text: feature.blockquote.text,
+        author: feature.blockquote.author,
       }"
-      :image="`/images/home/book_reading_alt.svg`"
-      :title="`Find the book that fits you!`"
+      :image="`/images/home/${feature.image}`"
+      :title="feature.title"
+      :icon="feature.icon"
     >
       <template #text>
-        A selection of more than a hundred works, find the one that will strike
-        a chord with your soul. And come back for ten more. Search by title,
-        author or series then download all the books of an author or series if
-        you wish!
+        {{ feature.text }}
       </template>
       <template #cta>
-        <app-button :color="`white`" :to="{ name: 'books' }" class="mt-6">
-          Discover all books
-        </app-button>
-      </template>
-    </feature-highlighted>
-    <feature-highlighted
-      :position-image="`left`"
-      :image="`/images/home/ereaders.svg`"
-      :title="`Want to know your eReader?`"
-      :blockquote="{
-        text: `The world of eReaders is so vast!`,
-        author: `A novice user`,
-      }"
-      :icon="`ereader`"
-    >
-      <template #text>
-        Detailed guides are there to explain how to best manage your eReader but
-        also to get to know the eBooks better in order to modify them if you
-        wish.
-      </template>
-      <template #cta>
-        <app-button class="mt-6" :to="{ name: 'guides' }" :color="`white`">
-          Discover guides
-        </app-button>
-      </template>
-    </feature-highlighted>
-    <feature-highlighted
-      :position-image="`right`"
-      :icon="`open-book`"
-      :image="`/images/home/book_reading.svg`"
-      :blockquote="{
-        text: `I am only interested in OPDS feeds adapted to my eReader with Koreader OS.`,
-        author: `A very experimented reader`,
-      }"
-      :title="`${$config.appName} can follow you everywhere`"
-    >
-      <template #text>
-        You can download directly eBooks from your eReader with
-        <b>Catalog</b> or you can use <b>OPDS</b> (Open Publication Distribution
-        System) feed to get all {{ $config.appName }} eBooks on your favorite
-        application.
-      </template>
-      <template #cta>
-        <app-button
-          class="mt-6"
-          :to="{
-            name: 'content',
-            params: { type: 'pages', slug: 'opds-catalog' },
-          }"
-          :color="`white`"
-        >
-          Discover OPDS & Catalog
+        <app-button :color="`white`" :to="feature.cta.route" class="mt-6">
+          {{ feature.cta.text }}
         </app-button>
       </template>
     </feature-highlighted>
@@ -79,5 +29,59 @@ import featureHighlighted from './feature-highlighted.vue'
 export default {
   name: 'FeaturesHighlight',
   components: { featureHighlighted },
+  data() {
+    return {
+      features: [
+        {
+          title: 'Find the book that fits you!',
+          icon: 'book',
+          position: 'right',
+          blockquote: {
+            text: "Maybe it's not quite legal but it's cool!",
+            author: 'An enthusiastic reader',
+          },
+          image: 'book_reading_alt.svg',
+          text: 'A selection of more than a hundred works, find the one that will strike a chord with your soul. And come back for ten more. Search by title, author or series then download all the books of an author or series if you wish!',
+          cta: {
+            route: { name: 'books' },
+            text: 'Discover all books',
+          },
+        },
+        {
+          title: 'Want to know your eReader?',
+          icon: 'ereader',
+          position: 'left',
+          blockquote: {
+            text: 'The world of eReaders is so vast!',
+            author: 'A novice user',
+          },
+          image: 'ereaders.svg',
+          text: 'Detailed guides are there to explain how to best manage your eReader but also to get to know the eBooks better in order to modify them if you wish.',
+          cta: {
+            route: { name: 'guides' },
+            text: 'Discover guides',
+          },
+        },
+        {
+          title: 'Find the book that fits you!',
+          icon: 'open-book',
+          position: 'right',
+          blockquote: {
+            text: 'I am only interested in OPDS feeds adapted to my eReader with Koreader OS.',
+            author: 'A very experimented reader',
+          },
+          image: 'book_reading.svg',
+          text: 'You can download directly eBooks from your eReader with <b>Catalog</b> or you can use <b>OPDS</b> (Open Publication Distribution System) feed to get all eBooks on your favorite application. And if you want to read eBook directly in your browser with <b>Webreader</b>.',
+          cta: {
+            route: {
+              name: 'content',
+              params: { type: 'pages', slug: 'opds-catalog-more' },
+            },
+            text: 'Discover OPDS, Catalog & more',
+          },
+        },
+      ],
+    }
+  },
 }
 </script>

@@ -14,7 +14,7 @@ If you want to participate to this project, you can [**contact us**](/contact), 
 
 ## How to to use OPDS ?
 
-If you want to download and read eBooks from any device which support OPDS, you can do this with [**<app-name></app-name> OPDS**](/pages/opds-catalog) (Open Publication Distribution System).
+If you want to download and read eBooks from any device which support OPDS, you can do this with [**<app-name></app-name> OPDS**](/pages/opds-catalog-more) (Open Publication Distribution System).
 
 ## My books are on <app-name></app-name>, I disagree
 

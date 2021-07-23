@@ -1,5 +1,5 @@
 ---
-title: "OPDS & Catalog"
+title: "OPDS, Catalog & more"
 subtitle: ''
 description: 'On other ways.'
 ---
@@ -32,6 +32,10 @@ If you have any eReader with browser, you can use **Catalog**, it's an very simp
 ### Why ?
 
 The eReader's web browser is not very powerful, it's can be difficult to use because the touch on an eReader is not very responsive. Therefore, the OPDS adapts to this difficulty and proposes to search directly for the desired eBook, series or author in order to limit the results and to find the eReader more easily.
+
+## Webreader
+
+You can read any eBook available on <app-name></app-name> **directly in your browser with Webreader**, you can **access it from the detail page of any book** in the available actions. Webreader is a simple and effective feature aimed at allowing you to quickly read an eBook but not having all the options like on an eReader. You can **discover Webreader right now** by trying it with a random eBook from <api-link endpoint="/webreader" :refer-it-self="true"></api-link>.
 
 ## Android
 

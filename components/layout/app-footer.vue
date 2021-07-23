@@ -160,24 +160,29 @@ export default {
       team: process.env.AUTHOR || metadata.tags.author,
       socialIcons: [
         {
-          icon: 'swagger',
+          icon: 'api',
           label: 'API documentation',
           link: `${this.$apiUrlBase('/docs')}`,
         },
         {
-          icon: 'calibre',
-          label: 'Calibre: manage your eBooks',
-          link: 'https://calibre-ebook.com',
+          icon: 'wiki',
+          label: 'Wiki',
+          link: `${this.$apiUrlBase('/wiki')}`,
         },
         {
-          icon: 'open-book',
+          icon: 'ereader',
           label: 'Catalog: simple interface for eReader browser',
           link: `${this.$apiUrlBase('/catalog')}`,
         },
         {
-          icon: 'feed',
-          label: 'OPDS feed',
+          icon: 'opds',
+          label: 'OPDS',
           link: `${this.$apiUrlBase('/opds')}`,
+        },
+        {
+          icon: 'book-open',
+          label: 'Webreader',
+          link: `${this.$apiUrlBase('/webreader')}`,
         },
       ],
       navigation: {
@@ -193,10 +198,10 @@ export default {
               },
             },
             {
-              label: 'OPDS & Catalog',
+              label: 'OPDS, Catalog & more',
               route: {
                 name: 'content',
-                params: { type: 'pages', slug: 'opds-catalog' },
+                params: { type: 'pages', slug: 'opds-catalog-more' },
               },
             },
           ],
