@@ -166,22 +166,22 @@ export default {
         },
         {
           icon: 'wiki',
-          label: 'Wiki',
+          label: 'Wiki: to install your own application',
           link: `${this.$apiUrlBase('/wiki')}`,
         },
         {
-          icon: 'ereader',
+          icon: 'book-open',
           label: 'Catalog: simple interface for eReader browser',
           link: `${this.$apiUrlBase('/catalog')}`,
         },
         {
-          icon: 'opds',
-          label: 'OPDS',
+          icon: 'feed',
+          label: 'OPDS: Open Publication Distribution System',
           link: `${this.$apiUrlBase('/opds')}`,
         },
         {
-          icon: 'book-open',
-          label: 'Webreader',
+          icon: 'ereader',
+          label: 'Webreader: to read an eBook directly in your browser',
           link: `${this.$apiUrlBase('/webreader')}`,
         },
       ],
