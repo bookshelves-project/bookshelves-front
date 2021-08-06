@@ -49,7 +49,7 @@
           "
         >
           <div class="flex-shrink-0">
-            <img
+            <app-img
               :src="data.picture"
               class="object-cover w-16 h-16 rounded-full"
               :alt="data.title"
