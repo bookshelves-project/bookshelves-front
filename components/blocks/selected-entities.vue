@@ -1,5 +1,5 @@
 <template>
-  <section class="selected-books max-w-7xl container mx-auto">
+  <section v-if="isDisplay" class="selected-books max-w-7xl container mx-auto">
     <div
       :class="orientation"
       class="text-sm font-semibold tracking-wide uppercase text-primary-600"
@@ -125,6 +125,7 @@ export default {
       formatAuthors,
       isLoading: true,
       entities: null,
+      isDisplay: true,
       options: {
         autoplay: false,
         centerMode: true,
@@ -164,9 +165,13 @@ export default {
       try {
         const entities = await this.$axios.$get(this.endpoint)
         this.entities = entities.data
+        if (!this.entities.length) {
+          this.isDisplay = false
+        }
         this.isLoading = false
       } catch (error) {
         console.error(error)
+        this.isDisplay = false
       }
     },
   },
