@@ -12,7 +12,7 @@ export default {
     moduleSocial: process.env.MODULE_SOCIAL,
     apiURL: process.env.API_URL,
   },
-  // Can be 'server' for SSR or 'static' for S
+  // Can be 'server' for SSR or 'static' for SSG
   target: process.env.TARGET || 'server',
   // For static generation: https://nuxtjs.org/blog/going-full-static#new-config-option-target
   // https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-generate

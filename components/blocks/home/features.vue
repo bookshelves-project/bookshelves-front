@@ -101,10 +101,10 @@ export default {
           text: 'eBooks in several languages according to your preferences in order to reach a maximum number of readers.',
         },
         {
-          icon: 'open-book',
+          icon: 'feed',
           label: 'OPDS & Catalog',
           condition: true,
-          text: 'You can use OPDS feed or download eBooks from your eReader with Catalog.',
+          text: 'You can use OPDS feed or download eBooks from your eReader with Catalog. Webreader is available to read eBook directly in your browser.',
         },
       ],
     }
