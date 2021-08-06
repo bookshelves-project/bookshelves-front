@@ -161,6 +161,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'LoginForm',
   data() {
@@ -181,6 +183,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      setIsVisible: 'notification/setIsVisible',
+      setTitle: 'notification/setTitle',
+      setText: 'notification/setText',
+      setType: 'notification/setType',
+    }),
     fillForm() {
       for (const [key] of Object.entries(this.form)) {
         this.form[key] = this.formTesting[key]
@@ -209,36 +217,35 @@ export default {
               )
             }
           })
+          .catch((error) => {
+            console.error(error)
+            console.log('ERROR')
+
+            let title = 'Something unexpected happened'
+            let text =
+              "Seems you can't sign-in currently, we work on it, please try later"
+            const type = 'error'
+            try {
+              switch (error.response.status) {
+                case 422:
+                  title = 'Check your credentials'
+                  text = error.response.data.errors.email[0] || text
+                  break
+
+                default:
+                  break
+              }
+            } catch (error) {
+              console.error(error)
+            }
+            this.setIsVisible(true)
+            this.setTitle(title)
+            this.setText(text)
+            this.setType(type)
+            this.isLoading = false
+          })
       } catch (error) {
         console.error(error)
-        let title = 'Something unexpected happened'
-        let message =
-          "Seems you can't sign-in currently, we work on it, please try later"
-        try {
-          switch (error.response.status) {
-            case 422:
-              title = 'Check your credentials'
-              message = error.response.data.errors.email[0] || message
-              break
-
-            default:
-              break
-          }
-        } catch (error) {
-          console.error(error)
-        }
-        this.$store.commit('setAlertMessage', {
-          type: 'danger',
-          title,
-          message,
-        })
-        this.$store.commit('overlay/setIsVisible', true)
-        this.$store.commit('modal/setIsVisible', true)
-        setTimeout(() => {
-          this.$store.commit('overlay/setIsVisible', false)
-          this.$store.commit('modal/setIsVisible', false)
-        }, 2500)
-        this.isLoading = false
       }
     },
   },

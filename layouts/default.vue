@@ -1,5 +1,6 @@
 <template>
   <div :class="dev ? 'debug-screens' : ''">
+    <app-notification />
     <overlay />
     <div class="mx-auto bg-white dark:bg-gray-900">
       <layer />
@@ -38,22 +39,15 @@
 </template>
 
 <script>
-import AppFooter from '~/components/layout/app-footer.vue'
-import Layer from '~/components/layout/layer.vue'
-import Navbar from '~/components/layout/navbar.vue'
-import Sidebar from '~/components/layout/sidebar.vue'
-import Modal from '~/components/special/modal.vue'
-import Overlay from '~/components/special/overlay.vue'
-
 export default {
   name: 'LayoutDefault',
   components: {
-    Navbar,
-    AppFooter,
-    Sidebar,
-    Layer,
-    Modal,
-    Overlay,
+    AppFooter: () => import('~/components/layout/app-footer.vue'),
+    Layer: () => import('~/components/layout/layer.vue'),
+    Navbar: () => import('~/components/layout/navbar.vue'),
+    Sidebar: () => import('~/components/layout/sidebar.vue'),
+    Modal: () => import('~/components/special/modal.vue'),
+    Overlay: () => import('~/components/special/overlay.vue'),
   },
   data() {
     return {

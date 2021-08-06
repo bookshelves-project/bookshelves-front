@@ -88,12 +88,12 @@
               focus:ring-primary-600 focus:border-primary-600
               dark:bg-gray-300 dark:border-gray-300
             "
-            minlength="25"
+            minlength="15"
             maxlength="1500"
             required
           ></textarea>
           <div class="flex justify-between ml-1 text-sm text-gray-400">
-            <span>Min. 25 characters</span>
+            <span>Min. 15 characters</span>
             <span>Currently {{ form.message.length }}/1500</span>
           </div>
         </div>
@@ -190,6 +190,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'ContactForm',
   data() {
@@ -220,6 +222,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      setIsVisible: 'notification/setIsVisible',
+      setTitle: 'notification/setTitle',
+      setText: 'notification/setText',
+      setType: 'notification/setType',
+    }),
     fillForm() {
       for (const [key] of Object.entries(this.form)) {
         this.form[key] = this.formTesting[key]
@@ -242,36 +250,19 @@ export default {
           honeypot: false,
         }
 
-        const title = 'Message sended!'
-        const message = 'Thanks you for your message.'
-        this.$store.commit('setAlertMessage', {
-          type: 'success',
-          title,
-          message,
-        })
-        this.$store.commit('overlay/setIsVisible', true)
-        this.$store.commit('modal/setIsVisible', true)
-        setTimeout(() => {
-          this.$store.commit('overlay/setIsVisible', false)
-          this.$store.commit('modal/setIsVisible', false)
-        }, 2500)
+        this.setIsVisible(true)
+        this.setTitle('Message sended!')
+        this.setText('Thanks you for your message.')
+        this.setType('success')
       } catch (e) {
-        // console.error(e)
+        console.error(e)
         this.errors = true
-        const title = 'Error!'
-        const message =
+        this.setIsVisible(true)
+        this.setTitle('Error!')
+        this.setText(
           "We are sorry but your message can't be send, try in some time."
-        this.$store.commit('setAlertMessage', {
-          type: 'danger',
-          title,
-          message,
-        })
-        this.$store.commit('overlay/setIsVisible', true)
-        this.$store.commit('modal/setIsVisible', true)
-        setTimeout(() => {
-          this.$store.commit('overlay/setIsVisible', false)
-          this.$store.commit('modal/setIsVisible', false)
-        }, 2500)
+        )
+        this.setType('error')
       }
       this.loading = false
     },

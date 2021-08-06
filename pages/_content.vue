@@ -76,7 +76,11 @@
           "
         >
           <table-of-content :toc="document.toc"></table-of-content>
-          <img :src="picture" :alt="`${document.title} picture`" class="h-40" />
+          <img
+            :src="picture"
+            :alt="`${document.title} picture`"
+            class="h-40 hidden lg:block"
+          />
         </div>
       </div>
     </div>

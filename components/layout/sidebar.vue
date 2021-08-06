@@ -231,10 +231,6 @@
                       class="flex items-center px-3 py-4"
                       @click="closeSidebar"
                     >
-                      <span
-                        class="w-2.5 h-2.5 mr-4 bg-primary-600 rounded-full"
-                        aria-hidden="true"
-                      ></span>
                       <span> {{ link.label }} </span>
                     </span>
                   </nuxt-link>
