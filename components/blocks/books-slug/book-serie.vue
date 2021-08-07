@@ -7,7 +7,7 @@
     <template #link>
       <nuxt-link
         :to="{
-          name: 'series-slug',
+          name: 'series-author-slug',
           params: {
             author: book.serie.meta.author,
             slug: book.serie.meta.slug,

@@ -36,7 +36,6 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/robots": "^2.5.0",
-    "@nuxtjs/router": "^1.6.1",
     "@nuxtjs/sitemap": "^2.4.0",
     "@nuxtjs/svg-sprite": "^0.5.2",
     "@trevoreyre/autocomplete-vue": "^2.2.0",

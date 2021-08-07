@@ -1,5 +1,6 @@
 <template>
   <div :class="dev ? 'debug-screens' : ''">
+    <routes-list />
     <app-notification />
     <overlay />
     <div class="mx-auto bg-white dark:bg-gray-900">
@@ -45,6 +46,7 @@ import Navbar from '~/components/layout/navbar.vue'
 import Sidebar from '~/components/layout/sidebar.vue'
 import Modal from '~/components/special/modal.vue'
 import Overlay from '~/components/special/overlay.vue'
+import RoutesList from '~/components/special/routes-list.vue'
 
 export default {
   name: 'LayoutDefault',
@@ -55,6 +57,7 @@ export default {
     Layer,
     Modal,
     Overlay,
+    RoutesList,
   },
   data() {
     return {

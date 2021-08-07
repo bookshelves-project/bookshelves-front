@@ -66,8 +66,6 @@ export default {
     '@nuxtjs/tailwindcss',
     // https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    // Doc: https://github.com/nuxt-community/router-module
-    '@nuxtjs/router',
     // https://color-mode.nuxtjs.org/#setup
     '@nuxtjs/color-mode',
     // https://github.com/nuxt-community/svg-sprite-module
@@ -77,9 +75,6 @@ export default {
   ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.pcss',
-  },
-  routerModule: {
-    keepDefaultRouter: true,
   },
   colorMode: {
     classSuffix: '',

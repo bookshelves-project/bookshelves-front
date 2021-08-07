@@ -11,7 +11,7 @@
             :color="serie.picture.color"
             :title="serie.title"
             :route="{
-              name: 'series-slug',
+              name: 'series-author-slug',
               params: { author: serie.meta.author, slug: serie.meta.slug },
             }"
           >

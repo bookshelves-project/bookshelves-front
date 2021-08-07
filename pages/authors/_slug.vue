@@ -111,7 +111,7 @@
             :color="serie.picture ? serie.picture.color : null"
             :title="serie.title"
             :route="{
-              name: 'series-slug',
+              name: 'series-author-slug',
               params: { author: serie.meta.author, slug: serie.meta.slug },
             }"
           >
@@ -146,7 +146,7 @@
             :color="book.picture.color"
             :title="book.title"
             :route="{
-              name: 'books-slug',
+              name: 'books-author-slug',
               params: { author: book.meta.author, slug: book.meta.slug },
             }"
           >

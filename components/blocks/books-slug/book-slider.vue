@@ -130,7 +130,7 @@
                       v-if="$route.params.slug !== book.meta.slug"
                       :color="`white`"
                       :to="{
-                        name: `${book.meta.entity}s-slug`,
+                        name: `${book.meta.entity}s-author-slug`,
                         params: {
                           author: book.meta.author,
                           slug: book.meta.slug,

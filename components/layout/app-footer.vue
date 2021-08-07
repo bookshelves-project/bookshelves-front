@@ -201,14 +201,14 @@ export default {
             {
               label: 'About',
               route: {
-                name: 'content',
+                name: 'type-slug',
                 params: { type: 'pages', slug: 'about' },
               },
             },
             {
               label: 'OPDS, Catalog & more',
               route: {
-                name: 'content',
+                name: 'type-slug',
                 params: { type: 'pages', slug: 'opds-catalog-more' },
               },
             },
@@ -220,14 +220,14 @@ export default {
             {
               label: 'More eBooks',
               route: {
-                name: 'content',
+                name: 'type-slug',
                 params: { type: 'pages', slug: 'more-ebooks' },
               },
             },
             {
               label: 'FAQ',
               route: {
-                name: 'content',
+                name: 'type-slug',
                 params: { type: 'pages', slug: 'faq' },
               },
             },
@@ -263,14 +263,14 @@ export default {
             {
               label: 'Legal',
               route: {
-                name: 'content',
+                name: 'type-slug',
                 params: { type: 'pages', slug: 'legal' },
               },
             },
             {
               label: 'Privacy',
               route: {
-                name: 'content',
+                name: 'type-slug',
                 params: { type: 'pages', slug: 'privacy' },
               },
             },

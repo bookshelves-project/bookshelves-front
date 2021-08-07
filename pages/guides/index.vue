@@ -6,7 +6,7 @@
         v-for="guide in guides"
         :key="guide.id"
         :to="{
-          name: 'content',
+          name: 'type-slug',
           params: { type: 'guides', slug: guide.slug },
         }"
         :title="guide.title"

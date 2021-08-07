@@ -31,8 +31,8 @@ export const state = () => ({
     },
   ],
   authNavigationFalse: [
-    { label: 'Sign in', icon: 'login', route: 'login' },
-    { label: 'Sign up', icon: 'register', route: 'register' },
+    { label: 'Sign in', icon: 'login', route: 'sign-in' },
+    { label: 'Sign up', icon: 'register', route: 'sign-up' },
   ],
   design: ['bibliophile', 'book-lover', 'bookmark'],
   showAlert: false,
