@@ -1,5 +1,5 @@
 <template>
-  <main class="container relative max-w-7xl">
+  <main class="main-content relative">
     <section-heading :title="title" :subtitle="description">
       <entities-filter @filter="filter" />
     </section-heading>

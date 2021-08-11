@@ -1,5 +1,5 @@
 <template>
-  <div class="container max-w-7xl">
+  <div class="main-content">
     <section-heading :title="title" :subtitle="description" />
     <div class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Genres</h2>

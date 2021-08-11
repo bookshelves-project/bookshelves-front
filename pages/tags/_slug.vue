@@ -1,5 +1,5 @@
 <template>
-  <div class="container max-w-7xl">
+  <div class="main-content">
     <section-heading :title="`Tag: ${tag.name}`" :subtitle="description" />
     <div>
       <search-results

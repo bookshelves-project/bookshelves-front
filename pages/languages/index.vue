@@ -1,5 +1,5 @@
 <template>
-  <div class="container max-w-7xl">
+  <div class="main-content">
     <section-heading :title="title" :subtitle="description" />
     <div>
       <section class="flex flex-wrap items-center">

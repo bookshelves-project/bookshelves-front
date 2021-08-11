@@ -1,5 +1,5 @@
 <template>
-  <main class="container max-w-7xl">
+  <main class="main-content">
     <div>
       <div class="items-center justify-between mb-8 lg:flex">
         <div class="items-center lg:flex">

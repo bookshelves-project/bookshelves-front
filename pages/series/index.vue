@@ -1,5 +1,5 @@
 <template>
-  <main class="container max-w-7xl">
+  <main class="main-content">
     <section-heading :title="title" :subtitle="description" />
     <section v-if="!apiError">
       <div>

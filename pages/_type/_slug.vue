@@ -1,5 +1,5 @@
 <template>
-  <div class="container max-w-7xl">
+  <div class="main-content">
     <div class="flex flex-wrap-reverse w-full xl:col-span-3">
       <div class="w-full ml-auto lg:w-3/4">
         <div class="text-on-img-tailwind">

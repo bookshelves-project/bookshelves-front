@@ -31,7 +31,7 @@
         "
       ></div>
       <sidebar />
-      <div class="pt-24"></div>
+      <div style="padding-top: 4.2rem"></div>
       <modal />
       <Nuxt class="min-height-content" />
       <app-footer />

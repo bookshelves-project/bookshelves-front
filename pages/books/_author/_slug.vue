@@ -1,5 +1,5 @@
 <template>
-  <main class="container min-h-screen max-w-7xl">
+  <main class="main-content">
     <div class="pb-8">
       <div class="max-w-3xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <h1 class="sr-only">{{ book.title }}</h1>

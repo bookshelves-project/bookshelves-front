@@ -1,5 +1,5 @@
 <template>
-  <main class="container max-w-7xl">
+  <main class="main-content">
     <section-heading :title="title" :subtitle="description" />
     <div class="gap-4 lg:grid lg:grid-cols-2">
       <nuxt-link
