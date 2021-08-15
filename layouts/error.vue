@@ -1,51 +1,81 @@
 <template>
-  <div
-    class="
-      min-h-screen
-      px-4
-      py-16
-      sm:px-6 sm:py-24
-      md:grid md:place-items-center
-      lg:px-8
-    "
-  >
-    <div class="max-w-max mx-auto">
-      <main class="sm:flex">
-        <p class="text-4xl font-extrabold text-primary-600 sm:text-5xl">
-          {{ error.statusCode }}
-        </p>
-        <div class="sm:ml-6">
-          <div class="sm:border-l sm:border-gray-200 sm:pl-6">
+  <div class="bg-white min-h-screen flex flex-col lg:relative">
+    <div class="flex-grow flex flex-col">
+      <main class="flex-grow flex flex-col bg-white">
+        <div
+          class="
+            flex-grow
+            mx-auto
+            max-w-7xl
+            w-full
+            flex flex-col
+            px-4
+            sm:px-6
+            lg:px-8
+          "
+        >
+          <div class="flex-shrink-0 my-auto py-16 sm:py-32">
+            <p
+              class="
+                text-sm
+                font-semibold
+                text-indigo-600
+                uppercase
+                tracking-wide
+              "
+            >
+              {{ error.statusCode }} error
+            </p>
             <h1
               class="
+                mt-2
                 text-4xl
-                font-semibold
+                font-semibold font-handlee
                 text-gray-900
                 tracking-tight
                 sm:text-5xl
               "
             >
-              Page not found
+              <span v-if="error.statusCode === 404"> Page not found </span>
+              <span v-if="error.statusCode === 500"> Server has failed </span>
+              <span v-else>Something bad happened</span>
             </h1>
-            <p class="mt-1 text-base text-gray-500">
-              Please check the URL in the address bar and try again.
+            <p class="mt-2 text-base text-gray-500">
+              These isn't the book you're looking for.
             </p>
-          </div>
-          <div
-            class="
-              mt-10
-              flex
-              space-x-3
-              sm:border-l sm:border-transparent sm:pl-6
-            "
-          >
-            <app-button to="/" :color="`primary`"> Go back home </app-button>
-            <app-button :to="{ name: 'contact' }" :color="`secondary`">
-              Contact support
-            </app-button>
+            <div class="mt-6">
+              <nuxt-link
+                to="/"
+                class="
+                  text-base
+                  font-medium
+                  text-indigo-600
+                  hover:text-indigo-500
+                "
+                >Go back home<span aria-hidden="true"> &rarr;</span></nuxt-link
+              >
+            </div>
           </div>
         </div>
       </main>
+      <footer class="flex-shrink-0 bg-gray-50">
+        <div class="mx-auto max-w-7xl w-full px-4 py-16 sm:px-6 lg:px-8">
+          <nav class="flex space-x-4">
+            <nuxt-link
+              :to="{ name: 'contact' }"
+              class="text-sm font-medium text-gray-500 hover:text-gray-600"
+              >Contact Support</nuxt-link
+            >
+          </nav>
+        </div>
+      </footer>
+    </div>
+    <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+      <img
+        class="absolute inset-0 h-full w-full object-cover"
+        src="/images/library-mess.webp"
+        alt=""
+      />
     </div>
   </div>
 </template>
