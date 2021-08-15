@@ -85,12 +85,13 @@
             "
           >
             <component
-              :is="logo.isImage ? 'img' : `icon-${logo.icon}`"
+              :is="logo.isImage ? 'img' : `span`"
               :src="logo.icon"
               :size="80"
               class="w-32 h-32 text-gray-400"
               :stroke="logo.iconConfig ? logo.iconConfig.stroke : false"
               :alt="logo.icon"
+              v-html="logo.icon"
             />
           </a>
         </div>
