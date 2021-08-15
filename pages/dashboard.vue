@@ -1,5 +1,5 @@
 <template>
-  <div class="container max-w-7xl">
+  <div class="main-content">
     <section-heading
       v-if="$auth.$state.loggedIn"
       title="Dashboard"
