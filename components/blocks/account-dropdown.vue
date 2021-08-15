@@ -104,7 +104,7 @@
         </div>
         <div v-else>
           <nuxt-link
-            v-for="link in $store.state.authNavigationFalse"
+            v-for="link in $store.state.nav.authNavigationFalse"
             :key="link.id"
             :to="{ name: link.route }"
             class="
@@ -137,7 +137,7 @@ export default {
   },
   computed: {
     authNav() {
-      const nav = this.$store.state.authNavigationTrue
+      const nav = this.$store.state.nav.authNavigationTrue
       if (this.$auth.$state.user.isAdmin) {
         return nav
       } else {

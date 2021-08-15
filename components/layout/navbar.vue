@@ -24,7 +24,7 @@
           </div>
           <div class="hidden lg:ml-6 lg:flex lg:space-x-8 navbar">
             <nuxt-link
-              v-for="(booksNav, booksNavId) in $store.state.navigation"
+              v-for="(booksNav, booksNavId) in $store.state.nav.navigation"
               :key="booksNavId"
               :to="{ name: booksNav.route }"
               class="

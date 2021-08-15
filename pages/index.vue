@@ -1,7 +1,7 @@
 <template>
   <div>
     <lazy-hydrate when-idle>
-      <hero />
+      <hero class="pt-5" />
     </lazy-hydrate>
     <lazy-hydrate when-idle>
       <statistics />

@@ -85,7 +85,7 @@
           <nav class="px-2">
             <div class="space-y-1">
               <nuxt-link
-                :to="{ name: 'home' }"
+                to="/"
                 class="
                   flex
                   items-center
@@ -106,7 +106,7 @@
                 </span>
               </nuxt-link>
               <nuxt-link
-                v-for="(booksNav, booksNavId) in $store.state.navigation"
+                v-for="(booksNav, booksNavId) in $store.state.nav.navigation"
                 :key="booksNavId"
                 :to="{ name: booksNav.route }"
                 class="
@@ -150,7 +150,7 @@
               >
                 <div v-if="$auth.$state.loggedIn" class="space-y-2">
                   <nuxt-link
-                    v-for="link in $store.state.authNavigationTrue"
+                    v-for="link in $store.state.nav.authNavigationTrue"
                     :key="link.id"
                     :to="{ name: link.route }"
                     class="
@@ -209,7 +209,7 @@
                 </div>
                 <div v-else class="space-y-2">
                   <nuxt-link
-                    v-for="link in $store.state.authNavigationFalse"
+                    v-for="link in $store.state.nav.authNavigationFalse"
                     :key="link.id"
                     :to="{ name: link.route }"
                     class="

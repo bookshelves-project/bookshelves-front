@@ -196,15 +196,6 @@ export default {
           cta: 'Sign up',
           ctaAction: () => {
             // this.$router.push('sign-up')
-            this.$store.commit('setAlertMessage', {
-              type: 'warning',
-              title: 'Sorry!',
-              message: 'Sign up is not available yet!',
-            })
-            this.$store.commit('toggleShowAlert')
-            setTimeout(() => {
-              this.$store.commit('setShowAlert', false)
-            }, 3000)
           },
         },
       },

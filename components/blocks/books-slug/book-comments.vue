@@ -340,15 +340,7 @@ export default {
         this.form.rating = null
       } catch (error) {
         this.error = error.response.data
-        this.$store.commit('setAlertMessage', {
-          type: 'warning',
-          title: error.response.data.error,
-          message: 'Delete or edit previous comment.',
-        })
-        this.$store.commit('toggleShowAlert')
-        setTimeout(() => {
-          this.$store.commit('setShowAlert', false)
-        }, 3000)
+        // TODO set error notification
       }
       try {
         const comments = await this.$axios.$get(`/comments/book/${slug}`)
