@@ -26,7 +26,7 @@
     "generate": "nuxt generate",
     "analyze": "nuxt build -a ",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "yarn lint:js"
+    "lint": "npm run lint:js"
   },
   "dependencies": {
     "@nuxt/components": "^2.2.0",
