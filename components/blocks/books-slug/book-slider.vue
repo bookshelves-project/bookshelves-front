@@ -180,7 +180,7 @@
               @click="$refs.thumbnails.goTo(index)"
             >
               <app-img
-                :src="book.picture.base"
+                :src="book.picture.thumbnail"
                 :color="book.picture.color"
                 :title="book.title"
                 class="object-cover object-center w-full h-full"

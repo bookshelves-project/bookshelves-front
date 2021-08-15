@@ -4,7 +4,7 @@
       <div class="items-center justify-between mb-8 lg:flex">
         <div class="items-center lg:flex">
           <img
-            :src="serie.picture.base"
+            :src="serie.picture.thumbnail"
             :alt="serie.title"
             loading="lazy"
             class="
@@ -183,7 +183,7 @@
           v-for="book in books"
           :key="book.id"
           :data="book"
-          :cover="book.picture.base"
+          :cover="book.picture.thumbnail"
           :color="book.picture.color"
           :title="book.title"
           :route="{
@@ -335,7 +335,7 @@ export default {
         '@type': 'BookSeries',
         author: authors,
         bookFormat: 'http://schema.org/BookSeries',
-        image: this.serie.picture.base,
+        image: this.serie.picture.thumbnail,
         inLanguage: formatLanguage(this.serie.language),
         name: this.serie.title,
       },

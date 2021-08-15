@@ -19,7 +19,7 @@
           </div>
           <div class="relative flex justify-center text-sm">
             <nuxt-link
-              :to="{ name: 'register' }"
+              :to="{ name: 'sign-up' }"
               class="
                 px-2
                 text-gray-500

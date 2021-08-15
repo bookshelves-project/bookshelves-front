@@ -6,10 +6,11 @@
       justify-between
       pb-6
       mb-3
-      border-b border-gray-200
+      border-b
       dark:border-gray-600
       md:mb-10
     "
+    :class="border ? 'border-gray-200' : 'border-transparent'"
   >
     <div class="sm:items-center sm:flex sm:justify-between">
       <div :class="{ 'flex items-center': image }">
@@ -52,6 +53,10 @@ export default {
     image: {
       type: String,
       default: null,
+    },
+    border: {
+      type: Boolean,
+      default: true,
     },
   },
 }

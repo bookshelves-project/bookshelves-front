@@ -17,7 +17,10 @@
           <template #result="{ result, props }">
             <nuxt-link
               :to="{
-                name: `${result.meta.entity}s-slug`,
+                name:
+                  result.meta.entity === 'author'
+                    ? `authors-slug`
+                    : `${result.meta.entity}s-author-slug`,
                 params: {
                   author: result.meta.author,
                   slug: result.meta.slug,
@@ -31,7 +34,7 @@
                   <div class="col-span-1">
                     <div class="overflow-hidden">
                       <img
-                        :src="result.picture.base"
+                        :src="result.picture.thumbnail"
                         :alt="result.title"
                         class="object-cover rounded-full h-14 w-14"
                         loading="lazy"
@@ -167,7 +170,10 @@ export default {
       } else {
         this.$refs.search.setValue('')
         this.$router.push({
-          name: `${result.meta.entity}s-slug`,
+          name:
+            result.meta.entity === 'author'
+              ? `authors-slug`
+              : `${result.meta.entity}s-author-slug`,
           params: {
             author: result.meta.author,
             slug: result.meta.slug,

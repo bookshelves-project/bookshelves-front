@@ -7,7 +7,7 @@
           <entity-card
             v-for="serie in series.data"
             :key="serie.id"
-            :cover="serie.picture.base"
+            :cover="serie.picture.thumbnail"
             :color="serie.picture.color"
             :title="serie.title"
             :route="{

@@ -74,8 +74,8 @@ export default {
           text: 'You can download directly eBooks from your eReader with <b>Catalog</b> or you can use <b>OPDS</b> (Open Publication Distribution System) feed to get all eBooks on your favorite application. And if you want to read eBook directly in your browser with <b>Webreader</b>.',
           cta: {
             route: {
-              name: 'content',
-              params: { type: 'pages', slug: 'opds-catalog-more' },
+              name: 'type-slug',
+              params: { type: 'pages', slug: 'more-ebooks' },
             },
             text: 'Discover OPDS, Catalog & more',
           },

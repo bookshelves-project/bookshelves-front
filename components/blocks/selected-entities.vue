@@ -49,11 +49,14 @@
           <entity-card
             v-for="(entity, index) in entities"
             :key="index"
-            :cover="entity.picture.base"
+            :cover="entity.picture.thumbnail"
             :color="entity.picture.color"
             :title="entity.title"
             :route="{
-              name: `${entity.meta.entity}s-slug`,
+              name:
+                entity.meta.entity === 'author'
+                  ? `authors-slug`
+                  : `${entity.meta.entity}s-author-slug`,
               params: {
                 author: entity.meta.author,
                 slug: entity.meta.slug,

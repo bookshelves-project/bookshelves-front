@@ -7,7 +7,7 @@
           <div class="sm:flex sm:space-x-5">
             <div v-if="book.picture" class="flex-shrink-0">
               <app-img
-                :src="book.picture.base"
+                :src="book.picture.thumbnail"
                 :color="book.picture.color"
                 :title="book.title"
                 class="w-20 h-20"

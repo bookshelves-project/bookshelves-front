@@ -195,7 +195,7 @@ export default {
           ],
           cta: 'Sign up',
           ctaAction: () => {
-            // this.$router.push('register')
+            // this.$router.push('sign-up')
             this.$store.commit('setAlertMessage', {
               type: 'warning',
               title: 'Sorry!',

@@ -4,7 +4,7 @@
       <div class="items-center justify-between mb-3 lg:flex">
         <div class="items-center lg:flex">
           <img
-            :src="author.picture ? author.picture.base : null"
+            :src="author.picture ? author.picture.thumbnail : null"
             :alt="author.name"
             loading="lazy"
             class="
@@ -107,7 +107,7 @@
             v-for="serie in series.data"
             :key="serie.id"
             :data="serie"
-            :cover="serie.picture ? serie.picture.base : null"
+            :cover="serie.picture ? serie.picture.thumbnail : null"
             :color="serie.picture ? serie.picture.color : null"
             :title="serie.title"
             :route="{
@@ -142,7 +142,7 @@
             v-for="book in books.data"
             :key="book.id"
             :data="book"
-            :cover="book.picture.base"
+            :cover="book.picture.thumbnail"
             :color="book.picture.color"
             :title="book.title"
             :route="{
@@ -286,7 +286,7 @@ export default {
       itemListElement: items,
       mainEntity: {
         '@type': 'Person',
-        image: this.author.picture.base,
+        image: this.author.picture.thumbnail,
         jobTitle: 'Author',
         name: this.author.name,
         url: this.author.link,

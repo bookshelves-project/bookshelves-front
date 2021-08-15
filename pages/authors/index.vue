@@ -7,7 +7,7 @@
           <entity-card
             v-for="(author, authorId) in authors.data"
             :key="authorId"
-            :cover="author.picture.base"
+            :cover="author.picture.thumbnail"
             :color="author.picture.color"
             :title="author.name"
             :route="{

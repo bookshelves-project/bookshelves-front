@@ -17,7 +17,6 @@
             inset-0
             transition-transform
             duration-300
-            blur-sm
             max-size
             img
           "
@@ -30,7 +29,6 @@
             inset-0
             transition-transform
             duration-300
-            blur-sm
             max-size
             img
             bg-gray-50
@@ -44,7 +42,7 @@
       v-lazy-load
       :class="[loading ? '' : '', picture]"
       :data-src="src"
-      :alt="imageNotExist ? '' : noAlt ? '' : title"
+      :alt="imgAlt"
       :title="title"
       class="object-cover max-size img h-full w-full"
       @load="onImgLoad"
@@ -86,6 +84,14 @@ export default {
   watch: {
     src(newValue, oldValue) {
       this.loading = true
+    },
+  },
+  computed: {
+    imgAlt() {
+      if (!this.loading) {
+        return this.imageNotExist ? '' : this.noAlt ? '' : this.title
+      }
+      return ''
     },
   },
   created() {

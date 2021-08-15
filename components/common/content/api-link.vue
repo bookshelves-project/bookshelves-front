@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     url() {
-      return this.base ? this.$apiUrlBase() : this.$config.apiURL
+      return this.thumbnail ? this.$apiUrlBase() : this.$config.apiURL
     },
   },
   mounted() {

@@ -1,5 +1,5 @@
 <template>
-  <main class="container relative max-w-7xl">
+  <main class="main-content">
     <section-heading
       :title="`${title} ${currentBook.title}`"
       :subtitle="description"
@@ -10,11 +10,14 @@
           <entity-card
             v-for="book in books"
             :key="book.id"
-            :cover="book.picture.base"
+            :cover="book.picture.thumbnail"
             :color="book.picture.color"
             :title="book.title"
             :route="{
-              name: `${book.meta.entity}s-slug`,
+              name:
+                entity.meta.entity === 'author'
+                  ? `authors-slug`
+                  : `${entity.meta.entity}s-author-slug`,
               params: {
                 author: book.meta.author,
                 slug: book.meta.slug,

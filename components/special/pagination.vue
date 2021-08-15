@@ -15,6 +15,7 @@
         :to="getTag(pages) === 'span' ? '' : linkGen(1)"
         active-class="pagination-active"
         exact-active-class="pagination-exact-active"
+        class="external-pagination"
       >
         <svg-icon
           name="arrow-narrow-right"
@@ -61,7 +62,7 @@
       <div v-if="showLastDots" class="item">
         <span>...</span>
       </div>
-      <div v-if="displayLastPage" class="item">
+      <div v-if="showLastDots && displayLastPage" class="item">
         <nuxt-link
           :tag="getTag(pages)"
           :to="getTag(pages) === 'span' ? '' : linkGen(pages)"
@@ -92,6 +93,7 @@
         :to="getTag(pages) === 'span' ? '' : linkGen(pages)"
         active-class="pagination-active"
         exact-active-class="pagination-exact-active"
+        class="external-pagination"
       >
         Last
         <svg-icon
@@ -226,6 +228,9 @@ export default {
 }
 em {
   font-style: normal;
+}
+.external-pagination {
+  @apply inline-flex items-center text-gray-500;
 }
 .item-ext {
   & a,

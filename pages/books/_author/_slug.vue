@@ -60,7 +60,7 @@ export default {
       title,
       description: this.book.summary,
       url,
-      image: this.book.picture.openGraph,
+      image: this.book.picture.og,
     })
     return {
       title,
@@ -132,7 +132,7 @@ export default {
         author: authors,
         bookFormat: 'http://schema.org/Book',
         datePublished: this.book.publishDate,
-        image: this.book.picture.base,
+        image: this.book.picture.thumbnail,
         inLanguage: formatLanguage(this.book.language),
         isbn: this.book.identifier
           ? this.book.identifier.isbn || this.book.identifier.isbn13

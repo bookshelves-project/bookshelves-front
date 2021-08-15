@@ -1,5 +1,5 @@
 <template>
-  <main class="container mb-5 max-w-7xl">
+  <main class="main-content">
     <section-heading
       :title="search ? `Results for &ldquo;${$route.query['q']}&rdquo;` : title"
       :subtitle="search ? `${search.length} results` : description"

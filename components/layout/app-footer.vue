@@ -149,11 +149,11 @@
 </template>
 
 <script>
-import packageJson from '@/package.json'
-import metadata from '@/plugins/metadata/metadata'
 import ColorSwitcherToggle from '../special/color-switcher-toggle.vue'
 import backToTop from './back-to-top.vue'
 import FooterColumn from './footer-column.vue'
+import metadata from '@/plugins/metadata/metadata'
+import packageJson from '@/package.json'
 
 export default {
   name: 'AppFooter',
@@ -314,7 +314,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-@variants hover, group-hover {
+/* @variants hover, group-hover {
   /deep/ path {
     @apply transition-colors duration-300;
   }
@@ -360,5 +360,5 @@ export default {
   /deep/ .laravel-svg path:nth-child(1) {
     fill: #ff2d20;
   }
-}
+} */
 </style>

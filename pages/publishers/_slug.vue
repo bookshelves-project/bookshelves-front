@@ -10,11 +10,11 @@
           <entity-card
             v-for="book in books.data"
             :key="book.id"
-            :cover="book.picture.base"
+            :cover="book.picture.thumbnail"
             :color="book.picture.color"
             :title="book.title"
             :route="{
-              name: `books-slug`,
+              name: `books-author-slug`,
               params: { author: book.meta.author, slug: book.meta.slug },
             }"
           >

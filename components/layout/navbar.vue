@@ -112,10 +112,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped>
-@variants group-hover, hover, focus {
-  /* /deep/ .home-logo-shadow {
-  } */
-}
-</style>

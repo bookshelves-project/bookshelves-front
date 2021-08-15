@@ -31,7 +31,7 @@
         "
       ></div>
       <sidebar />
-      <div style="padding-top: 4.2rem"></div>
+      <div style="padding-top: 4rem"></div>
       <modal />
       <Nuxt class="min-height-content" />
       <app-footer />
@@ -68,11 +68,12 @@ export default {
 </script>
 
 <style lang="postcss">
-@variants group-hover, hover, focus, dark {
+/* @variants group-hover, hover, focus, dark {
   .shadow-navbar {
     box-shadow: 0 4px 2px -2px rgba(211, 211, 211, 0.4);
   }
-}
+} */
+
 .min-height-content {
   min-height: 70vh;
 }
