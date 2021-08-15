@@ -31,13 +31,13 @@ cp .env.example .env
 Node.js dependencies
 
 ```bash
-yarn
+npm i
 ```
 
 Local serve
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 ### *I. a. Modify API*
@@ -60,13 +60,13 @@ API_URL=https://bookshelves.ink/api
 Setup build
 
 ```bash
-yarn build
+npm run build
 ```
 
 Launch server in SSR
 
 ```bash
-yarn start
+npm run start
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
