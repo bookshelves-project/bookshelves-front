@@ -43,7 +43,7 @@
           </div>
           <div class="relative flex justify-center text-sm">
             <nuxt-link
-              :to="{ name: 'login' }"
+              :to="{ name: 'sign-in' }"
               class="
                 px-2
                 text-gray-500
@@ -61,70 +61,27 @@
         </div>
       </div>
     </div>
-    <div class="relative flex col-span-2 mt-10 xl:hidden">
-      <img
-        src="/images/bookmark.svg"
-        class="m-auto"
-        alt="bookmark"
-        loading="lazy"
-      />
-    </div>
   </div>
 </template>
 
 <script>
 import registerForm from '~/components/forms/register-form.vue'
+import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
+
 export default {
   name: 'PageRegister',
   components: { registerForm },
   auth: 'guest',
   head() {
     const title = 'Sign up'
-    const description = 'Create an account.'
-    const image = `${this.$config.baseURL}/open-graph.jpg`
-    const url = `${this.$config.baseURL}/sign-up`
+    const dynamicMeta = dynamicMetadata({
+      title,
+      description: 'Create an account.',
+      url: `${this.$config.baseURL}/${this.$nuxt.$route.path}`,
+    })
     return {
       title,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: image,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: url,
-        },
-        // Twitter Card
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          hid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: image,
-        },
-      ],
+      meta: [...dynamicMeta],
     }
   },
 }

@@ -168,7 +168,9 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import { randomString } from '~/plugins/utils/methods'
+
 export default {
   name: 'RegisterForm',
   data() {
@@ -191,6 +193,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      setIsVisible: 'notification/setIsVisible',
+      setTitle: 'notification/setTitle',
+      setText: 'notification/setText',
+      setType: 'notification/setType',
+    }),
     fillForm() {
       const name = randomString(6).toLowerCase()
       const email = `${name}@mail.com`
@@ -213,7 +221,13 @@ export default {
         })
       } catch (error) {
         console.error(error)
-        this.errors = error.response.data.errors
+        this.setIsVisible(true)
+        this.setTitle('Something unexpected happened')
+        this.setText(
+          "Seems you can't sign-up currently, we work on it, please try later"
+        )
+        this.setType('error')
+        // this.errors = error.response.data.errors
         this.isLoading = false
       }
     },

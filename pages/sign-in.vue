@@ -37,71 +37,28 @@
         </div>
       </div>
     </div>
-    <div class="flex col-span-2 mt-10 xl:mt-0">
-      <img
-        src="/images/bibliophile.svg"
-        class="m-auto"
-        alt="bibliophile"
-        loading="lazy"
-      />
-    </div>
   </div>
 </template>
 
 <script>
 import loginForm from '~/components/forms/login-form.vue'
+import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
+
 export default {
   name: 'PageLogin',
   components: { loginForm },
   auth: 'guest',
   head() {
     const title = 'Sign in'
-    const description =
-      'Sign in to get access to account features with favorite list, comments on eBooks...'
-    const image = `${this.$config.baseURL}/open-graph.jpg`
-    const url = `${this.$config.baseURL}/sign-in`
+    const dynamicMeta = dynamicMetadata({
+      title,
+      description:
+        'Sign in to get access to account features with favorite list, comments on eBooks...',
+      url: `${this.$config.baseURL}/${this.$nuxt.$route.path}`,
+    })
     return {
       title,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: image,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: url,
-        },
-        // Twitter Card
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          hid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: image,
-        },
-      ],
+      meta: [...dynamicMeta],
     }
   },
 }

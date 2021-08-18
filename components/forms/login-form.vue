@@ -219,12 +219,9 @@ export default {
           })
           .catch((error) => {
             console.error(error)
-            console.log('ERROR')
 
-            let title = 'Something unexpected happened'
-            let text =
-              "Seems you can't sign-in currently, we work on it, please try later"
-            const type = 'error'
+            let title = ''
+            let text = ''
             try {
               switch (error.response.status) {
                 case 422:
@@ -233,6 +230,9 @@ export default {
                   break
 
                 default:
+                  title = 'Something unexpected happened'
+                  text =
+                    "Seems you can't sign-in currently, we work on it, please try later"
                   break
               }
             } catch (error) {
@@ -241,7 +241,7 @@ export default {
             this.setIsVisible(true)
             this.setTitle(title)
             this.setText(text)
-            this.setType(type)
+            this.setType('error')
             this.isLoading = false
           })
       } catch (error) {

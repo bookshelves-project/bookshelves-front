@@ -30,7 +30,7 @@
               <img
                 v-if="$auth.$state.loggedIn"
                 class="w-8 h-8 rounded-full"
-                :src="$auth.$state.user.data.avatar"
+                :src="$auth.$state.user.data.profile_photo_url"
                 :alt="$auth.$state.user.data.name"
                 loading="lazy"
               />
