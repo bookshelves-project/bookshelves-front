@@ -25,9 +25,9 @@
         <nuxt-link
           :to="{
             name:
-              entity.meta.entity === 'author'
+              data.meta.entity === 'author'
                 ? `authors-slug`
-                : `${entity.meta.entity}s-author-slug`,
+                : `${data.meta.entity}s-author-slug`,
             params: {
               author: data.meta.author,
               slug: data.meta.slug,
