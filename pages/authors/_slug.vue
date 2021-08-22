@@ -4,7 +4,7 @@
       <div class="items-center justify-between mb-3 lg:flex">
         <div class="items-center lg:flex">
           <img
-            :src="author.picture ? author.picture.thumbnail : null"
+            :src="author.picture ? author.cover.thumbnail : null"
             :alt="author.name"
             loading="lazy"
             class="
@@ -107,8 +107,8 @@
             v-for="serie in series.data"
             :key="serie.id"
             :data="serie"
-            :cover="serie.picture ? serie.picture.thumbnail : null"
-            :color="serie.picture ? serie.picture.color : null"
+            :cover="serie.picture ? serie.cover.thumbnail : null"
+            :color="serie.picture ? serie.cover.color : null"
             :title="serie.title"
             :route="{
               name: 'series-author-slug',
@@ -142,8 +142,8 @@
             v-for="book in books.data"
             :key="book.id"
             :data="book"
-            :cover="book.picture.thumbnail"
-            :color="book.picture.color"
+            :cover="book.cover.thumbnail"
+            :color="book.cover.color"
             :title="book.title"
             :route="{
               name: 'books-author-slug',
@@ -228,7 +228,7 @@ export default {
       title,
       description: `${this.author.name} author on ${this.$config.appName} with ${this.author.count} books available.`,
       url,
-      image: this.author.picture.openGraph,
+      image: this.author.cover.openGraph,
     })
     return {
       title,
@@ -286,7 +286,7 @@ export default {
       itemListElement: items,
       mainEntity: {
         '@type': 'Person',
-        image: this.author.picture.thumbnail,
+        image: this.author.cover.thumbnail,
         jobTitle: 'Author',
         name: this.author.name,
         url: this.author.link,

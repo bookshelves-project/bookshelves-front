@@ -10,8 +10,8 @@
           <entity-card
             v-for="book in books"
             :key="book.id"
-            :cover="book.picture.thumbnail"
-            :color="book.picture.color"
+            :cover="book.cover.thumbnail"
+            :color="book.cover.color"
             :title="book.title"
             :route="{
               name:

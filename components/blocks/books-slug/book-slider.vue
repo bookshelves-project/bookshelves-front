@@ -41,8 +41,8 @@
               <div class="w-full h-full md:grid md:grid-cols-2">
                 <div class="col-span-1">
                   <app-img
-                    :src="book.picture.original"
-                    :color="book.picture.color"
+                    :src="book.cover.original"
+                    :color="book.cover.color"
                     :title="book.title"
                     class="
                       object-cover object-top
@@ -180,8 +180,8 @@
               @click="$refs.thumbnails.goTo(index)"
             >
               <app-img
-                :src="book.picture.thumbnail"
-                :color="book.picture.color"
+                :src="book.cover.thumbnail"
+                :color="book.cover.color"
                 :title="book.title"
                 class="object-cover object-center w-full h-full"
               />

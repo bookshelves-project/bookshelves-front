@@ -89,7 +89,7 @@
             >
               <div class="flex items-center">
                 <img
-                  :src="authorValue.picture.thumbnail"
+                  :src="authorValue.cover.thumbnail"
                   :alt="authorValue.name"
                   :title="authorValue.name"
                   class="object-cover w-10 h-10 rounded-full"

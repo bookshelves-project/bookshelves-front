@@ -103,7 +103,7 @@
             <img
               :src="
                 validAuthor
-                  ? validAuthor.picture.thumbnail
+                  ? validAuthor.cover.thumbnail
                   : '/images/author-no-picture.svg'
               "
               :alt="validAuthor ? validAuthor.name : 'Any'"

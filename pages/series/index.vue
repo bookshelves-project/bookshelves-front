@@ -7,8 +7,8 @@
           <entity-card
             v-for="serie in series.data"
             :key="serie.id"
-            :cover="serie.picture.thumbnail"
-            :color="serie.picture.color"
+            :cover="serie.cover.thumbnail"
+            :color="serie.cover.color"
             :title="serie.title"
             :route="{
               name: 'series-author-slug',

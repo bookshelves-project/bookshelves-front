@@ -49,8 +49,8 @@
           <entity-card
             v-for="(entity, index) in entities"
             :key="index"
-            :cover="entity.picture.thumbnail"
-            :color="entity.picture.color"
+            :cover="entity.cover.thumbnail"
+            :color="entity.cover.color"
             :title="entity.title"
             :route="{
               name:

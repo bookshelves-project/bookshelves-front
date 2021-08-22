@@ -7,8 +7,8 @@
           <div class="sm:flex sm:space-x-5">
             <div v-if="book.picture" class="flex-shrink-0">
               <app-img
-                :src="book.picture.thumbnail"
-                :color="book.picture.color"
+                :src="book.cover.thumbnail"
+                :color="book.cover.color"
                 :title="book.title"
                 class="w-20 h-20"
                 picture="rounded-md"
@@ -67,13 +67,13 @@
         "
       >
         <component
-          :is="book.picture.original ? 'a' : 'span'"
+          :is="book.cover.original ? 'a' : 'span'"
           v-if="book.picture"
-          :href="book.picture.original"
+          :href="book.cover.original"
           target="_blank"
           rel="noopener noreferrer"
           :class="
-            book.picture.original
+            book.cover.original
               ? 'header-action_active'
               : 'header-action_disabled'
           "
