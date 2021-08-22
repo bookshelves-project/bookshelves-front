@@ -1,40 +1,34 @@
 <template>
-  <nav
-    class="
-      flex
-      items-center
-      justify-between
-      px-4
-      border-t border-gray-200
-      sm:px-0
-    "
-  >
+  <nav class="flex justify-between px-4 border-t border-gray-200 sm:px-0">
     <div class="flex flex-1 w-0 -mt-px item-ext">
-      <nuxt-link
-        :tag="getTag(1)"
-        :to="getTag(pages) === 'span' ? '' : linkGen(1)"
-        active-class="pagination-active"
-        exact-active-class="pagination-exact-active"
-        class="external-pagination"
-      >
-        <svg-icon
-          name="arrow-narrow-right"
-          class="w-5 h-5 mr-3 text-gray-400 rotate-180"
-        />
-        First
+      <nuxt-link v-slot="{ navigate }" :to="linkGen(1)" custom>
+        <component
+          :is="getTag(1)"
+          class="external-pagination"
+          :to="linkGen(1)"
+          @click="navigate"
+        >
+          <svg-icon
+            name="arrow-narrow-right"
+            class="w-5 h-5 mr-3 text-gray-400 rotate-180 my-auto"
+          />
+          First
+        </component>
       </nuxt-link>
     </div>
     <div class="hidden md:-mt-px md:flex">
       <div class="item">
-        <nuxt-link
-          :tag="getTag(1)"
-          :to="getTag(pages) === 'span' ? '' : linkGen(currentPage - 1)"
-          active-class="pagination-active"
-          exact-active-class="pagination-exact-active"
-          title="Previous"
-          aria-label="Previous"
-        >
-          ‹
+        <nuxt-link v-slot="{ navigate }" :to="linkGen(1)" custom>
+          <component
+            :is="getTag(1)"
+            class="external-pagination"
+            :to="linkGen(currentPage - 1)"
+            title="Previous"
+            aria-label="Previous"
+            @click="navigate"
+          >
+            ‹
+          </component>
         </nuxt-link>
       </div>
       <div v-if="showFirstDots" class="item">
@@ -46,60 +40,67 @@
         :class="{ active: isActive(pageNum + startNumber - 1) }"
         class="item"
       >
-        <nuxt-link
-          :tag="getTag(pageNum + startNumber - 1)"
-          :to="
-            getTag(pages) === 'span' ? '' : linkGen(pageNum + startNumber - 1)
-          "
-          active-class="pagination-active"
-          exact-active-class="pagination-exact-active"
-        >
-          <em class="border-none" style="padding: 0">{{
-            pageNum + startNumber - 1
-          }}</em>
+        <nuxt-link v-slot="{ navigate }" :to="linkGen(1)" custom>
+          <component
+            :is="getTag(pageNum + startNumber - 1)"
+            class="external-pagination"
+            :to="linkGen(pageNum + startNumber - 1)"
+            title="Next"
+            aria-label="Next"
+            @click="navigate"
+          >
+            <em class="border-none" style="padding: 0">{{
+              pageNum + startNumber - 1
+            }}</em>
+          </component>
         </nuxt-link>
       </div>
       <div v-if="showLastDots" class="item">
         <span>...</span>
       </div>
       <div v-if="showLastDots && displayLastPage" class="item">
-        <nuxt-link
-          :tag="getTag(pages)"
-          :to="getTag(pages) === 'span' ? '' : linkGen(pages)"
-          active-class="pagination-active"
-          exact-active-class="pagination-exact-active"
-          title="Next"
-          aria-label="Next"
-        >
-          {{ pages }}
+        <nuxt-link v-slot="{ navigate }" :to="linkGen(1)" custom>
+          <component
+            :is="getTag(pages)"
+            class="external-pagination"
+            :to="linkGen(pages)"
+            title="Next"
+            aria-label="Next"
+            @click="navigate"
+          >
+            {{ pages }}
+          </component>
         </nuxt-link>
       </div>
       <div class="item">
-        <nuxt-link
-          :tag="getTag(pages)"
-          :to="getTag(pages) === 'span' ? '' : linkGen(currentPage + 1)"
-          active-class="pagination-active"
-          exact-active-class="pagination-exact-active"
-          title="Next"
-          aria-label="Next"
-        >
-          ›
+        <nuxt-link v-slot="{ navigate }" :to="linkGen(1)" custom>
+          <component
+            :is="getTag(pages)"
+            class="external-pagination"
+            :to="linkGen(currentPage + 1)"
+            title="Next"
+            aria-label="Next"
+            @click="navigate"
+          >
+            ›
+          </component>
         </nuxt-link>
       </div>
     </div>
     <div class="flex justify-end flex-1 w-0 -mt-px item-ext">
-      <nuxt-link
-        :tag="getTag(pages)"
-        :to="getTag(pages) === 'span' ? '' : linkGen(pages)"
-        active-class="pagination-active"
-        exact-active-class="pagination-exact-active"
-        class="external-pagination"
-      >
-        Last
-        <svg-icon
-          name="arrow-narrow-right"
-          class="w-5 h-5 ml-3 text-gray-400"
-        />
+      <nuxt-link v-slot="{ navigate }" :to="linkGen(pages)" custom>
+        <component
+          :is="getTag(pages)"
+          class="external-pagination"
+          :to="linkGen(pages)"
+          @click="navigate"
+        >
+          Last
+          <svg-icon
+            name="arrow-narrow-right"
+            class="w-5 h-5 ml-3 text-gray-400"
+          />
+        </component>
       </nuxt-link>
     </div>
   </nav>
@@ -216,7 +217,7 @@ export default {
       return this.currentPage === pageNum
     },
     getTag(pageNum) {
-      return this.isActive(pageNum) ? 'span' : 'a'
+      return this.isActive(pageNum) ? 'span' : 'nuxt-link'
     },
   },
 }
@@ -230,7 +231,13 @@ em {
   font-style: normal;
 }
 .external-pagination {
-  @apply inline-flex items-center text-gray-500;
+  @apply inline-flex items-center text-gray-500 pt-4 border-t-2 border-transparent;
+  & span {
+    @apply opacity-50;
+  }
+  & a {
+    @apply hover:text-gray-700 hover:border-gray-300;
+  }
 }
 .item-ext {
   & a,
