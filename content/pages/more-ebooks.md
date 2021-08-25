@@ -25,56 +25,7 @@ You want to read more eBooks ? Many resources exist on Internet to read and down
 - [**getfreeebooks**](https://www.getfreeebooks.com)
 - [**bookyards**](https://www.bookyards.com/en/welcome)
 - [**e-booksdirectory**](http://www.e-booksdirectory.com)
-
-## Applications
-
-📖 allow to read eBooks  
-📚 allow to manage OPDS feeds  
-💰 ads or premium  
-
-### Android
-
-- [**Aldiko**](https://play.google.com/store/apps/details?id=com.aldiko.android&hl=en&gl=US) 📖 📚 💰
-- [**Moon+ Reader**](https://play.google.com/store/apps/details?id=com.flyersoft.moonreader&hl=en&gl=US) 📖 📚 💰
-- [**Bookari**](https://play.google.com/store/apps/details?id=com.mantano.reader.android) 📖 📚 💰
-- [**Libby**](https://play.google.com/store/apps/details?id=com.overdrive.mobile.android.libby&hl=en&gl=US) 📖
-- [**Feedbooks**](https://play.google.com/store/apps/details?id=dev.jideguru.flutterEbookApp&hl=en&gl=US) 📖
-  - [**GitHub**](https://github.com/JideGuru/FlutterEbookApp)
-
-### iOS
-
-- [**eBook Search**](https://apps.apple.com/us/app/ebook-search-download-books/id416454511) 📖
-- [**KyBook**](https://apps.apple.com/app/id1348198785) 📖 📚 💰
-- [**Bookari**](https://apps.apple.com/fr/app/mantano-ebook-reader/id768229929) 📖 📚 💰
-- [**Libby**](https://apps.apple.com/us/app/libby-by-overdrive/id1076402606) 📖
-
-### Windows
-
-- [**Calibre**](https://calibre-ebook.com) 📖 📚
-- [**Book Bazaar Reader**](http://www.refrelent.com) 📖 📚
-
-### Linux
-
-- [**Calibre**](https://calibre-ebook.com) 📖 📚
-
-### macOS
-
-- [**Calibre**](https://calibre-ebook.com) 📖 📚
-
-### Tools
-
 - [**ISBN Search**](https://isbnsearch.org): search books by their ISBN
-- [**Koreader**](https://github.com/koreader/koreader): alternative for OS on eReaders **Github**
-- [**Calibre Web application**](https://github.com/janeczku/calibre-web): Github for Calibre on web
-- [**COPS**](https://github.com/seblucas/cops): Calibre OPDS PHP Server : web-based to serve ebooks
-
-## Shops
-
-- [**ePagine**](https://www.epagine.fr) 🇫🇷
-- [**chapitre.com**](https://www.chapitre.com) 🇫🇷
-- [**Kobo**](https://www.kobo.com/fr/fr) 🇫🇷
-- [**Hall du livre**](https://halldulivre.com) 🇫🇷
-- [**goodreads**](https://www.goodreads.com/ebooks) 🇬🇧
 
 ## OPDS
 
@@ -113,5 +64,58 @@ If you have an application to read eBooks from OPDS feeds, you can add new feeds
 - [Project Gutenberg](http://m.gutenberg.org/ebooks/?format=opds)
 - [Revues.org](http://bookserver.revues.org/)
 - [YouScribe](http://opds.youscribe.com/Catalog/catalog.xml)
+
+## Host your own library
+
+- [**Calibre Web application**](https://github.com/janeczku/calibre-web): Github for Calibre on web
+- [**COPS**](https://github.com/seblucas/cops): Calibre OPDS PHP Server : web-based to serve ebooks
+
+## Applications
+
+📖 allow to read eBooks  
+📚 allow to manage OPDS feeds  
+💰 ads or premium  
+
+### eReader
+
+- [**Koreader**](https://github.com/koreader/koreader): alternative for OS on eReaders on **Github**
+
+### Android
+
+- [**Aldiko**](https://play.google.com/store/apps/details?id=com.aldiko.android&hl=en&gl=US) 📖 📚 💰
+- [**Moon+ Reader**](https://play.google.com/store/apps/details?id=com.flyersoft.moonreader&hl=en&gl=US) 📖 📚 💰
+- [**Bookari**](https://play.google.com/store/apps/details?id=com.mantano.reader.android) 📖 📚 💰
+- [**Libby**](https://play.google.com/store/apps/details?id=com.overdrive.mobile.android.libby&hl=en&gl=US) 📖
+- [**Feedbooks**](https://play.google.com/store/apps/details?id=dev.jideguru.flutterEbookApp&hl=en&gl=US) 📖
+  - [**GitHub**](https://github.com/JideGuru/FlutterEbookApp)
+
+### iOS
+
+- [**eBook Search**](https://apps.apple.com/us/app/ebook-search-download-books/id416454511) 📖
+- [**KyBook**](https://apps.apple.com/app/id1348198785) 📖 📚 💰
+- [**Bookari**](https://apps.apple.com/fr/app/mantano-ebook-reader/id768229929) 📖 📚 💰
+- [**Libby**](https://apps.apple.com/us/app/libby-by-overdrive/id1076402606) 📖
+
+### Windows
+
+- [**Calibre**](https://calibre-ebook.com) 📖 📚
+- [**Book Bazaar Reader**](http://www.refrelent.com) 📖 📚
+
+### Linux
+
+- [**Calibre**](https://calibre-ebook.com) 📖 📚
+
+### macOS
+
+- [**Calibre**](https://calibre-ebook.com) 📖 📚
+
+## Shops
+
+- [**ePagine**](https://www.epagine.fr) 🇫🇷
+- [**chapitre.com**](https://www.chapitre.com) 🇫🇷
+- [**Kobo**](https://www.kobo.com)
+- [**Hall du livre**](https://halldulivre.com) 🇫🇷
+- [**goodreads**](https://www.goodreads.com/ebooks) 🇬🇧
+- [**Lulu**](https://www.lulu.com)
 
 [^1]: if OPDS is official and libre initiative, the <app-name></app-name> Catalog is just a simple solution to allow to search eBooks with eReader browser on basic web interface for eReader without OPDS feeds, so almost all eReaders.

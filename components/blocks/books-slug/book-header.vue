@@ -5,7 +5,7 @@
       <div class="p-6 bg-white dark:bg-gray-800">
         <div class="sm:flex sm:items-center sm:justify-between">
           <div class="sm:flex sm:space-x-5">
-            <div v-if="book.picture" class="flex-shrink-0">
+            <div v-if="book.cover" class="flex-shrink-0">
               <app-img
                 :src="book.cover.thumbnail"
                 :color="book.cover.color"
@@ -67,15 +67,12 @@
         "
       >
         <component
-          :is="book.cover.original ? 'a' : 'span'"
-          v-if="book.picture"
-          :href="book.cover.original"
+          :is="book.cover ? 'a' : 'span'"
+          :href="book.cover ? book.cover.original : null"
           target="_blank"
           rel="noopener noreferrer"
           :class="
-            book.cover.original
-              ? 'header-action_active'
-              : 'header-action_disabled'
+            book.cover ? 'header-action_active' : 'header-action_disabled'
           "
           class="header-action"
         >

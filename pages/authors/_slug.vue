@@ -4,7 +4,7 @@
       <div class="items-center justify-between mb-3 lg:flex">
         <div class="items-center lg:flex">
           <img
-            :src="author.picture ? author.cover.thumbnail : null"
+            :src="author.cover ? author.cover.thumbnail : null"
             :alt="author.name"
             loading="lazy"
             class="
@@ -107,8 +107,8 @@
             v-for="serie in series.data"
             :key="serie.id"
             :data="serie"
-            :cover="serie.picture ? serie.cover.thumbnail : null"
-            :color="serie.picture ? serie.cover.color : null"
+            :cover="serie.cover ? serie.cover.thumbnail : null"
+            :color="serie.cover ? serie.cover.color : null"
             :title="serie.title"
             :route="{
               name: 'series-author-slug',
