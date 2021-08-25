@@ -17,7 +17,7 @@ export default {
       type: String,
       default: '/',
     },
-    referItSelf: {
+    selfRefer: {
       type: Boolean,
       default: false,
     },
@@ -32,7 +32,7 @@ export default {
     },
   },
   mounted() {
-    if (this.referItSelf) {
+    if (this.selfRefer) {
       this.$refs.link.innerHTML = `${this.url}${this.endpoint}`
     }
   },
