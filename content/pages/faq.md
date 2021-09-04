@@ -14,18 +14,18 @@ If you want to participate to this project, you can [**contact us**](/contact), 
 
 ## How to to use OPDS ?
 
-If you want to download and read eBooks from any device which support OPDS, you can do this with [**<app-name></app-name> OPDS**](/pages/opds-catalog-more) (Open Publication Distribution System).
+If you want to download and read eBooks from any device which support OPDS, you can do this with [**<markdown-app-name></markdown-app-name> OPDS**](/pages/opds-catalog-more) (Open Publication Distribution System).
 
-## My books are on <app-name></app-name>, I disagree
+## My books are on <markdown-app-name></markdown-app-name>, I disagree
 
-If your are an author and you found your books here, you can ask us to remove it from <app-name></app-name>, just [**contact us**](/contact).
+If your are an author and you found your books here, you can ask us to remove it from <markdown-app-name></markdown-app-name>, just [**contact us**](/contact).
 
-## I want to host my <app-name></app-name> app
+## I want to host my <markdown-app-name></markdown-app-name> app
 
-You can setup <app-name></app-name> on your personal server from repositories [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front) & [**bookshelves-back**](https://gitlab.com/ewilan-riviere/bookshelves-back). You can consult <api-link endpoint="/wiki">official Wiki</api-link> to know more about Bookshelves setup.
+You can setup <markdown-app-name></markdown-app-name> on your personal server from repositories [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front) & [**bookshelves-back**](https://gitlab.com/ewilan-riviere/bookshelves-back). You can consult <markdown-api-link endpoint="/wiki">official Wiki</markdown-api-link> to know more about Bookshelves setup.
 
 If you want, you can contact us to add eBooks on our collection.
 
-## I want to display <app-name></app-name> eBooks on another app
+## I want to display <markdown-app-name></markdown-app-name> eBooks on another app
 
-If you want to get data from <app-name></app-name>, you can use public API: <api-link endpoint="/docs">API documentation</api-link>. You can use <app-name></app-name> API from any other application, without any token.
+If you want to get data from <markdown-app-name></markdown-app-name>, you can use public API: <markdown-api-link endpoint="/docs">API documentation</markdown-api-link>. You can use <markdown-app-name></markdown-app-name> API from any other application, without any token.

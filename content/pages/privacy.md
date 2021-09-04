@@ -13,11 +13,11 @@ description: 'Your privacy & your data'
 >
 >You are informed that, during your visits to this site, cookies may be installed on your terminal equipment.
 
-<app-name></app-name> does not collect any information about anonymous visitors and no "cookies" are placed on your computer. We ate them for a long time.
+<markdown-app-name></markdown-app-name> does not collect any information about anonymous visitors and no "cookies" are placed on your computer. We ate them for a long time.
 
 ## Personal data
 
-In the case of an account creation, you share personal information with <app-name></app-name>. Your data is confidential, we protect it and you can control it at any time.
+In the case of an account creation, you share personal information with <markdown-app-name></markdown-app-name>. Your data is confidential, we protect it and you can control it at any time.
 
 ### What do we use your data for?
 
@@ -25,8 +25,8 @@ Your data is useful for logging into your account and for retrieving your favori
 
 ### We protect your data
 
-- <app-name></app-name> is committed to ensuring the security and privacy of your personal data.
-- They are kept on secure servers to protect you in case of cyber attack. <app-name></app-name> does not sell any data.
+- <markdown-app-name></markdown-app-name> is committed to ensuring the security and privacy of your personal data.
+- They are kept on secure servers to protect you in case of cyber attack. <markdown-app-name></markdown-app-name> does not sell any data.
 
 ### You keep control of your data
 

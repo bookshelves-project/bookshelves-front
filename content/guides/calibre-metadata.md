@@ -9,11 +9,11 @@ created_at: 03-02-2021
 picture: 'calibre'
 ---
 
-<alert type="warning">
+<markdown-alert type="warning">
 
 You need to install [**Calibre**](https://calibre-ebook.com) to follow this guide. This software is available on Windows, MacOS and Linux. An EPUB file is just an archive like ZIP, you can open it with [**7zip**](https://www.7-zip.org), you will see that all EPUBs are far from being the same, some have been well designed and others have the files in bulk (even if they will work). One file is important `content.opf`, in this file you can find all metadata. It's this file you can easily edit with Calibre, you can try to edit it manually but it's not really easy because it's XML file not user friendly.
 
-</alert>
+</markdown-alert>
 
 <!--more-->
 
@@ -45,21 +45,21 @@ On a physical book, you have all this information but an eBook only has the info
 
 When Calibre is installed, launch it and you will have an interface with just one eBook, the starter guide. You can **add new eBooks with drag and drop** or **with add books button**.
 
-<md-img src="calibre-interface">
+<markdown-image src="calibre-interface">
     Calibre interface is not really beautiful but very complete.
-</md-img>
+</markdown-image>
 
 To edit metadata, click right on an eBook and select **Edit metadata** and you can update individually.
 
-<md-img src="calibre-edit-one">
+<markdown-image src="calibre-edit-one">
     Edit metadata of eBook.
-</md-img>
+</markdown-image>
 
-<alert type="warning">
+<markdown-alert type="warning">
 
 You can update multiple eBooks with **bulk edit** but pay attention of modifications, it's useful to update **series** or **publisher** but you can override existant data.
 
-</alert>
+</markdown-alert>
 
 ## Manually update metadata
 
@@ -70,56 +70,56 @@ We take an example [**La Forêt des captifs**](https://books.google.fr/books/abo
 - Series: `Les Mondes d'Ewilan`
 - Number: `1,00`
 
-<md-img src="calibre-meta-title">
+<markdown-image src="calibre-meta-title">
     You can clik on the arrow à the right of title and author to improve sorting, useful just for Calibre
-</md-img>
+</markdown-image>
 
 - Cover: you can delete current cover and add a new from your files, I advice `480x770` (ratio 1.6:1) in `.webp` or `.jpg`. If you haven't cover, you can download it from API with **Download cover** but it will be big size cover and EPUB file will be heavy.
 
-<md-img src="calibre-meta-cover">
+<markdown-image src="calibre-meta-cover">
     You can clik on the arrow à the right of title and author to improve sorting, useful just for Calibre
-</md-img>
+</markdown-image>
 
 - Ids: `isbn:9782700239904` search ISBN 13, you can find it on Google Books or Wikipedia
 - Published: `21 février 2007` (select day to valid date)
 - Publisher: `Rageot`
 - Languages: `Français`
 
-<md-img src="calibre-meta-misc">
+<markdown-image src="calibre-meta-misc">
     For `Ids` you have to specify type.
-</md-img>
+</markdown-image>
 
 - Comments: `Tandis que ses parents explorent des territoires sauvages de l'autre monde, Ewilan...`
 
-<md-img src="calibre-meta-comment">
+<markdown-image src="calibre-meta-comment">
     You can use HTML for comments but it's not a good idea.
-</md-img>
+</markdown-image>
 
 ## Automatically update metadata
 
 We have seen how to put metadata for a single book by hand. It's each time about 5 minutes to search for information according to the level of detail you want, retrieve a cover and rework it if necessary, etc... It is possible to automatically retrieve metadata and cover about the current book by using in the publicly available APIs. You can try it with **Download metadata**.
 
-<md-img src="calibre-meta-auto">
+<markdown-image src="calibre-meta-auto">
     Try to download metadata from Internet.
-</md-img>
+</markdown-image>
 
 It will take some time but it's really useful to full metadata. **But** information may not be exactly right, you will have to check it and the proposed coverage is often in high definition and therefore quite heavy, prefer a coverage resized by yourself if the size of the EPUB file matters to you.
 
 And now you can edit bulk eBooks with **Edit metadata**->**Download metadata and covers** to download metadata for multiple eBooks.
 
-<md-img src="calibre-meta-misc">
+<markdown-image src="calibre-meta-misc">
     Download meta from eBooks list.
-</md-img>
+</markdown-image>
 
-<alert title="Bulk conversion">
+<markdown-alert title="Bulk conversion">
 
 When you update metadata or edit books, don't hesitate to execute a bulk book conversion to generate again an EPUB files for multiple eBooks to be sure to update informations in each eBook, of course you can find generated file with **Open  containing folder**.
 
-<md-img src="calibre-convert-bulk">
+<markdown-image src="calibre-convert-bulk">
     With bulk convert, you can select all your library to convert all eBooks.
-</md-img>
+</markdown-image>
 
-</alert>
+</markdown-alert>
 
 When conversion is finish, you can get EPUB files from Calibre directory or just connect your Kobo to your computer and Calibre will detect it automatically and you will be able to transfer eBooks from Calibre, don't hesitate to check [**Series on Kobo**](ereader-series) to know how to display **series** on Kobo.
 
@@ -129,25 +129,25 @@ The metadata adds very little to the final weight of the EPUB file except for th
 
 Paying attention to this kind of detail is important for the final weight of the book which can easily go from 1.5 MB to 400 KB depending on the images used (like the cover but also the images present in the book). It may seem unimportant, your Kobo can store a lot of eBooks even if they are quite heavy. The problem is simply that the more eBooks you accumulate, the more space they take up, and the heavier an eBook is, the longer it will take your Kobo to open it. Select **Edit book** to check all files into EPUB archive with size.
 
-<md-img src="calibre-edit-book">
+<markdown-image src="calibre-edit-book">
     Edit an eBook is very useful to remove large assets like images and fonts.
-</md-img>
+</markdown-image>
 
 You can update files here but you have to delete original copy (ORIGINAL_EPUB file) of EPUB made by Calibre otherwise original copy will override your changements. Select **Open  containing folder** if you want to find where Calibre keep files for a book.
 
-<md-img src="calibre-disk-location">
+<markdown-image src="calibre-disk-location">
     To get disk location of an eBook.
-</md-img>
+</markdown-image>
 
-<alert title="Conversion">
+<markdown-alert title="Conversion">
 
 When you update metadata or edit book, don't hesitate to execute a book conversion to generate again an EPUB file to be sure to update informations in eBook, of course you can find generated file with **Open  containing folder**.
 
-<md-img src="calibre-convert">
+<markdown-image src="calibre-convert">
     Convert eBook when you update meta to erase old meta.
-</md-img>
+</markdown-image>
 
-</alert>
+</markdown-alert>
 
 ---
 

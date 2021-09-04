@@ -71,7 +71,7 @@
 <script>
 import { getHostname } from '~/plugins/utils/methods'
 export default {
-  name: 'MdImg',
+  name: 'MarkdownImage',
   props: {
     src: {
       type: String,

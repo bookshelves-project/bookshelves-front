@@ -11,9 +11,9 @@ created_at: 06-04-2021
 
 Connect your Kobo to your computer and navigate to Kobo disk to find this `.kobo/affiliate.conf`
 
-<md-img src="affiliate">
+<markdown-image src="affiliate">
     Where to find affiliate.conf.
-</md-img>
+</markdown-image>
 
 Replace `fnac` by `Kobo`
 
@@ -27,9 +27,9 @@ Replace `fnac` by `Kobo`
 
 Go to **More->Settings->Energy saving and privacy**
 
-<md-img src="energy-saving-and-privacy">
+<markdown-image src="energy-saving-and-privacy">
     Options to keep battery on Kobo.
-</md-img>
+</markdown-image>
 
 - **Automatically go to sleep after** & **Automatically power off after** keep your battery safe.
 - **Show current read**, **Show book covers full screen**, **Show info panel on full screen covers** & **Indicator light while charging** is only useful for aesthetic.

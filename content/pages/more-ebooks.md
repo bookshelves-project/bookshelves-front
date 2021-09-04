@@ -46,9 +46,9 @@ About OPDS from Wikipedia:
 
 ### eReader & OPDS
 
-If you have an eReader, you can think it's an amazing idea to allow readers to get OPDS feeds on eReader. And it is, but many eReaders can't have OPDS feeds because eReaders' makers pre-install only their shops on their devices. If they allow OPDS feeds, they haven't control on what users can read and download. If you want to have an eReader with *libre* OS, you can install [**Koreader**](https://github.com/koreader/koreader). The alternative of new OS for eReader is to use eReader browser to download eBooks directly from online source, on the guide [**Download eBook from eReader**](/guides/ereader-download-ebook-from-ereader), you have an example with *<app-name></app-name> Catalog*[^1].
+If you have an eReader, you can think it's an amazing idea to allow readers to get OPDS feeds on eReader. And it is, but many eReaders can't have OPDS feeds because eReaders' makers pre-install only their shops on their devices. If they allow OPDS feeds, they haven't control on what users can read and download. If you want to have an eReader with *libre* OS, you can install [**Koreader**](https://github.com/koreader/koreader). The alternative of new OS for eReader is to use eReader browser to download eBooks directly from online source, on the guide [**Download eBook from eReader**](/guides/ereader-download-ebook-from-ereader), you have an example with *<markdown-app-name></markdown-app-name> Catalog*[^1].
 
-If you want to use <app-name></app-name> with OPDS, you can use <api-link endpoint="/opds/v1.2" :self-refer="true"></api-link> feed, check [OPDS & Catalog](/pages/opds-catalog-more) to know more about this.
+If you want to use <markdown-app-name></markdown-app-name> with OPDS, you can use <markdown-api-link endpoint="/opds/v1.2" :self-refer="true"></markdown-api-link> feed, check [OPDS & Catalog](/pages/opds-catalog-more) to know more about this.
 
 ### Feeds
 
@@ -119,4 +119,4 @@ If you have an application to read eBooks from OPDS feeds, you can add new feeds
 - [**goodreads**](https://www.goodreads.com/ebooks) 🇬🇧
 - [**Lulu**](https://www.lulu.com)
 
-[^1]: if OPDS is official and libre initiative, the <app-name></app-name> Catalog is just a simple solution to allow to search eBooks with eReader browser on basic web interface for eReader without OPDS feeds, so almost all eReaders.
+[^1]: if OPDS is official and libre initiative, the <markdown-app-name></markdown-app-name> Catalog is just a simple solution to allow to search eBooks with eReader browser on basic web interface for eReader without OPDS feeds, so almost all eReaders.

@@ -52,11 +52,13 @@ export default {
 
   // GitHub: https://github.com/nuxt/components
   // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: [
-    { path: '~/components/common', pathPrefix: false },
-    { path: '~/components/common/content', pathPrefix: false },
-    { path: '~/components/common/icons', pathPrefix: false },
-  ],
+  components: true,
+  // components: [
+  //   true,
+  //   { path: '~/components/common', pathPrefix: false },
+  //   { path: '~/components/common/content', pathPrefix: false },
+  //   { path: '~/components/common/icons', pathPrefix: false },
+  // ],
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [

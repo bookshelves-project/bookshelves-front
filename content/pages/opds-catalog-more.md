@@ -10,19 +10,19 @@ description: 'On other ways.'
 >
 >The Open Publication Distribution System specification is prepared by an informal grouping of partners, combining Internet Archive, O'Reilly Media, Feedbooks, OLPC, and others.
 
-<app-name></app-name> is also available with OPDS feed, if you have any application with OPDS feature, you can add feed of <app-name></app-name>, just add <api-link endpoint="/opds/v1.2" :self-refer="true"></api-link> to your application. To known more about application which can use OPDS, check [**More eBooks**](/pages/more-ebooks#opds). You can check [**opds.io**](https://opds.io/) to know more about OPDS, <app-name></app-name> OPDS is based on [**specs.opds.io**](https://specs.opds.io/).
+<markdown-app-name></markdown-app-name> is also available with OPDS feed, if you have any application with OPDS feature, you can add feed of <markdown-app-name></markdown-app-name>, just add <markdown-api-link endpoint="/opds/v1.2" :self-refer="true"></markdown-api-link> to your application. To known more about application which can use OPDS, check [**More eBooks**](/pages/more-ebooks#opds). You can check [**opds.io**](https://opds.io/) to know more about OPDS, <markdown-app-name></markdown-app-name> OPDS is based on [**specs.opds.io**](https://specs.opds.io/).
 
 ### Versions
 
 OPDS versions available
 
-- v1.2: <api-link endpoint="/opds/v1.2" :self-refer="true"></api-link>
+- v1.2: <markdown-api-link endpoint="/opds/v1.2" :self-refer="true"></markdown-api-link>
 
 ## Catalog
 
 Most of eReader can't read OPDS feeds, so to download directly eBooks you have to use a computer and set manually eBooks on your device, etc... But **Catalog** is the solution **to download directly eBooks on your eReader without any computer**.
 
-If you have any eReader with browser, you can use **Catalog**, it's an very simple interface for your eReader like any shop to directly search and download eBooks. You have just to put <api-link endpoint="/catalog" :self-refer="true"></api-link> URL into your eReader browser. To know more about download of eBooks with browser from your eReader, check [**Download eBook from eReader guide**](/guides/ereader-download-ebook-from-ereader).
+If you have any eReader with browser, you can use **Catalog**, it's an very simple interface for your eReader like any shop to directly search and download eBooks. You have just to put <markdown-api-link endpoint="/catalog" :self-refer="true"></markdown-api-link> URL into your eReader browser. To know more about download of eBooks with browser from your eReader, check [**Download eBook from eReader guide**](/guides/ereader-download-ebook-from-ereader).
 
 ### Limitations
 
@@ -35,7 +35,7 @@ The eReader's web browser is not very powerful, it's can be difficult to use bec
 
 ## Webreader
 
-You can read any eBook available on <app-name></app-name> **directly in your browser with Webreader**, you can **access it from the detail page of any book** in the available actions. Webreader is a simple and effective feature aimed at allowing you to quickly read an eBook but not having all the options like on an eReader. You can **discover Webreader right now** by trying it with a random eBook from <api-link endpoint="/webreader" :self-refer="true"></api-link>.
+You can read any eBook available on <markdown-app-name></markdown-app-name> **directly in your browser with Webreader**, you can **access it from the detail page of any book** in the available actions. Webreader is a simple and effective feature aimed at allowing you to quickly read an eBook but not having all the options like on an eReader. You can **discover Webreader right now** by trying it with a random eBook from <markdown-api-link endpoint="/webreader" :self-refer="true"></markdown-api-link>.
 
 ## Android
 
