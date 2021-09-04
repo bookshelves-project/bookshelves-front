@@ -3,7 +3,6 @@
     <lazy-hydrate when-idle>
       <hero class="pt-5" />
     </lazy-hydrate>
-    <markdown-app-name />
     <lazy-hydrate when-idle>
       <statistics />
     </lazy-hydrate>
