@@ -72,38 +72,3 @@ npm run start
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-
-## TODO <!-- omit in toc -->
-
-- [ ] add last books added with random book cta
-- [ ] add i18n
-- [ ] skeleton nuxtjs: <https://stackoverflow.com/questions/57178253/how-to-create-skeleton-loading-in-nuxt-js>
-- [ ] avif format: <https://www.zdnet.com/article/chrome-and-firefox-are-getting-support-for-the-new-avif-image-format/>
-- [ ] jest:
-  - <https://vue-test-utils.vuejs.org/>
-  - <https://dev.to/bawa_geek/how-to-setup-jest-testing-in-nuxt-js-project-5c84>
-  - <https://medium.com/@brandonaaskov/how-to-test-nuxt-stores-with-jest-9a5d55d54b28>
-  - <https://dev.to/alousilva/how-to-mock-nuxt-client-only-component-with-jest-47da>
-  - <https://stackoverflow.com/questions/41458736/how-to-write-test-that-mocks-the-route-object-in-vue-components>
-- [ ] covers:
-  - optimize:
-    - <https://image.nuxtjs.org>
-    - <https://github.com/juliomrqz/nuxt-optimized-images>
-- [ ] design
-  - buttons on book details stealth
-  - review agile book selection (with vol 0)
-  - agile language flag to text
-  - review blocks order book detail (masonry or tailwind)
-  - book detail agile same page refer change
-  - book detail current vol remove
-  - book list filter remove (refresh page not appear)
-  - book list hover dark
-  - content custom component for zoom on img
-  - last books, book selection on home
-  - list min height
-  - search improve with options, add text to explain, change no result text
-  - paginate design color for not available page
-  - settings, update website name for vivacia
-  - review title by og
-  - jsonld, sitelinks
-  - fix route generate

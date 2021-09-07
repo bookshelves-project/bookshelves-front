@@ -75,7 +75,7 @@ export default {
           cta: {
             route: {
               name: 'type-slug',
-              params: { type: 'pages', slug: 'more-ebooks' },
+              params: { type: 'pages', slug: 'opds-catalog-more' },
             },
             text: 'Discover OPDS, Catalog & more',
           },

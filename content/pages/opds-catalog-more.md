@@ -10,13 +10,13 @@ description: 'On other ways.'
 >
 >The Open Publication Distribution System specification is prepared by an informal grouping of partners, combining Internet Archive, O'Reilly Media, Feedbooks, OLPC, and others.
 
-<markdown-app-name></markdown-app-name> is also available with OPDS feed, if you have any application with OPDS feature, you can add feed of <markdown-app-name></markdown-app-name>, just add <markdown-api-link endpoint="/opds/v1.2" :self-refer="true"></markdown-api-link> to your application. To known more about application which can use OPDS, check [**More eBooks**](/pages/more-ebooks#opds). You can check [**opds.io**](https://opds.io/) to know more about OPDS, <markdown-app-name></markdown-app-name> OPDS is based on [**specs.opds.io**](https://specs.opds.io/).
+<markdown-app-name></markdown-app-name> is also available with OPDS feed, if you have any application with OPDS feature, you can add feed of <markdown-app-name></markdown-app-name>, just add <markdown-api-link endpoint="/features/opds/v1.2" :self-refer="true"></markdown-api-link> to your application. To known more about application which can use OPDS, check [**More eBooks**](/pages/more-ebooks#opds). You can check [**opds.io**](https://opds.io/) to know more about OPDS, <markdown-app-name></markdown-app-name> OPDS is based on [**specs.opds.io**](https://specs.opds.io/).
 
 ### Versions
 
 OPDS versions available
 
-- v1.2: <markdown-api-link endpoint="/opds/v1.2" :self-refer="true"></markdown-api-link>
+- v1.2: <markdown-api-link endpoint="/features/opds/v1.2" :self-refer="true"></markdown-api-link>
 
 ## Catalog
 

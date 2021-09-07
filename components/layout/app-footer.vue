@@ -162,35 +162,35 @@ export default {
     return {
       team: process.env.AUTHOR || metadata.tags.author,
       socialIcons: [
-        {
-          icon: 'api',
-          label: 'API doc',
-          title: 'API documentation',
-          link: `${this.$apiUrlBase('/docs')}`,
-        },
-        {
-          icon: 'wiki',
-          label: 'Wiki',
-          title: 'Wiki: to install your own application',
-          link: `${this.$apiUrlBase('/wiki')}`,
-        },
+        // {
+        //   icon: 'api',
+        //   label: 'API doc',
+        //   title: 'API documentation',
+        //   link: `${this.$apiUrlBase('/docs')}`,
+        // },
+        // {
+        //   icon: 'wiki',
+        //   label: 'Wiki',
+        //   title: 'Wiki: to install your own application',
+        //   link: `${this.$apiUrlBase('/features/wiki')}`,
+        // },
         {
           icon: 'book-open',
           label: 'Catalog',
           title: 'Catalog: simple interface for eReader browser',
-          link: `${this.$apiUrlBase('/catalog')}`,
+          link: `${this.$apiUrlBase('/features/catalog')}`,
         },
         {
           icon: 'feed',
           label: 'OPDS',
           title: 'OPDS: Open Publication Distribution System',
-          link: `${this.$apiUrlBase('/opds')}`,
+          link: `${this.$apiUrlBase('/features/opds')}`,
         },
         {
           icon: 'ereader',
           label: 'Webreader',
           title: 'Webreader: to read an eBook directly in your browser',
-          link: `${this.$apiUrlBase('/webreader')}`,
+          link: `${this.$apiUrlBase('/features/webreader')}`,
         },
       ],
       navigation: {

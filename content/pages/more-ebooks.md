@@ -48,7 +48,7 @@ About OPDS from Wikipedia:
 
 If you have an eReader, you can think it's an amazing idea to allow readers to get OPDS feeds on eReader. And it is, but many eReaders can't have OPDS feeds because eReaders' makers pre-install only their shops on their devices. If they allow OPDS feeds, they haven't control on what users can read and download. If you want to have an eReader with *libre* OS, you can install [**Koreader**](https://github.com/koreader/koreader). The alternative of new OS for eReader is to use eReader browser to download eBooks directly from online source, on the guide [**Download eBook from eReader**](/guides/ereader-download-ebook-from-ereader), you have an example with *<markdown-app-name></markdown-app-name> Catalog*[^1].
 
-If you want to use <markdown-app-name></markdown-app-name> with OPDS, you can use <markdown-api-link endpoint="/opds/v1.2" :self-refer="true"></markdown-api-link> feed, check [OPDS & Catalog](/pages/opds-catalog-more) to know more about this.
+If you want to use <markdown-app-name></markdown-app-name> with OPDS, you can use <markdown-api-link endpoint="/features/opds/v1.2" :self-refer="true"></markdown-api-link> feed, check [OPDS & Catalog](/pages/opds-catalog-more) to know more about this.
 
 ### Feeds
 

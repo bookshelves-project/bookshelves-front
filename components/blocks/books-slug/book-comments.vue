@@ -174,7 +174,7 @@
                 </div> -->
                 <div class="flex items-center justify-between mt-3">
                   <a
-                    href="https://devhints.io/markdown"
+                    href="https://www.markdownguide.org/cheat-sheet/"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="

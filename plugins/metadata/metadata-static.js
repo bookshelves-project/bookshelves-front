@@ -89,7 +89,7 @@ function getOpenGraph() {
     },
     {
       hid: 'og:locale',
-      name: 'og:locale',
+      property: 'og:locale',
       content: metadata.settings.locale,
     },
   ]

@@ -15,9 +15,9 @@
             :title="book.title"
             :route="{
               name:
-                entity.meta.entity === 'author'
+                book.meta.entity === 'author'
                   ? `authors-slug`
-                  : `${entity.meta.entity}s-author-slug`,
+                  : `${book.meta.entity}s-author-slug`,
               params: {
                 author: book.meta.author,
                 slug: book.meta.slug,
@@ -63,6 +63,7 @@ import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {
   name: 'PageRelatedSlug',
+  // eslint-disable-next-line vue/no-unused-components
   components: { sectionHeading, EntityCard },
   async asyncData({ app, params }) {
     const [currentBook, books] = await Promise.all([
