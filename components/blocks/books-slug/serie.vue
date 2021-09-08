@@ -1,11 +1,11 @@
 <template>
-  <book-slider :book-data="book" :books="books" :loaded="loaded">
+  <blocks-books-slug-slider :books="books" :loaded="loaded">
     <template #title> {{ book.serie.title }}'s series </template>
     <template #subtitle>
       Current: vol. {{ book.volume }}, limited to 10 next volumes.
     </template>
     <template #link>
-      <nuxt-link
+      <app-button
         :to="{
           name: 'series-author-slug',
           params: {
@@ -13,41 +13,18 @@
             slug: book.serie.meta.slug,
           },
         }"
-        class="
-          flex
-          items-center
-          justify-center
-          w-full
-          px-4
-          py-2
-          text-sm
-          font-semibold
-          text-gray-700
-          transition-colors
-          duration-100
-          bg-white
-          border border-gray-300
-          rounded-md
-          shadow-sm
-          dark:border-gray-600
-          hover:bg-gray-200
-          dark:bg-gray-800 dark:hover:bg-gray-700
-        "
+        class="w-full"
+        color="white"
       >
         View series page
-      </nuxt-link>
+      </app-button>
     </template>
-  </book-slider>
+  </blocks-books-slug-slider>
 </template>
 
 <script>
-import BookSlider from './book-slider.vue'
-
 export default {
   name: 'BookSerie',
-  components: {
-    BookSlider,
-  },
   props: {
     book: {
       type: Object,

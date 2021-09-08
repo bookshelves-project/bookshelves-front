@@ -43,7 +43,7 @@
       <img
         src="/images/book-lover.svg"
         alt="Woman on books pile who is reading"
-        class="h-64 mx-auto md:h-hero lg:mx-0"
+        class="h-64 mx-auto md:h-[32rem] lg:mx-0"
         loading="lazy"
       />
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <book-slider
+  <blocks-books-slug-slider
     v-if="book.tags.length || book.genres.length"
     :book-data="book"
     :books="books"
@@ -11,7 +11,7 @@
       results.</template
     >
     <template #link>
-      <nuxt-link
+      <app-button
         :to="{
           name: 'related-author-slug',
           params: {
@@ -19,42 +19,20 @@
             slug: book.meta.slug,
           },
         }"
-        class="
-          flex
-          items-center
-          justify-center
-          w-full
-          px-4
-          py-2
-          text-sm
-          font-semibold
-          text-gray-700
-          transition-colors
-          duration-100
-          bg-white
-          border border-gray-300
-          rounded-md
-          shadow-sm
-          dark:border-gray-600
-          hover:bg-gray-200
-          dark:bg-gray-800 dark:hover:bg-gray-700
-        "
+        class="w-full"
+        color="white"
       >
         View all results
-      </nuxt-link>
+      </app-button>
     </template>
-  </book-slider>
+  </blocks-books-slug-slider>
 </template>
 
 <script>
 import qs from 'qs'
-import BookSlider from './book-slider.vue'
 
 export default {
   name: 'BookMore',
-  components: {
-    BookSlider,
-  },
   props: {
     book: {
       type: Object,

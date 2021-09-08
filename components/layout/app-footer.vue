@@ -1,7 +1,9 @@
 <template>
   <footer class="bg-white dark:bg-gray-900" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">Footer</h2>
-    <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:py-16 lg:px-8">
+    <div
+      class="px-4 pt-12 pb-6 mx-auto max-w-7xl sm:px-6 lg:pt-16 lg:pb-8 lg:px-8"
+    >
       <div class="xl:grid xl:grid-cols-3 xl:gap-8">
         <div class="space-y-8 xl:col-span-1">
           <div class="flex items-center space-x-10">
@@ -54,7 +56,7 @@
                 block
                 text-gray-400
                 hover:text-gray-500
-                dark:hover:text-gray-500 dark:text-gray-400
+                dark:hover:text-gray-300 dark:text-gray-400
               "
             >
               <svg-icon :name="`${socialIcon.icon}`" class="w-6 h-6 mx-auto" />
@@ -120,6 +122,7 @@
               transition-colors
               duration-100
               hover:text-gray-500
+              dark:hover:text-gray-300
             "
           >
             <span class="flex space-x-1">
@@ -137,7 +140,12 @@
             <span class="hidden mx-1 md:block">·</span>
             <nuxt-link
               :to="`/pages/about`"
-              class="transition-colors duration-100 hover:text-gray-500"
+              class="
+                transition-colors
+                duration-100
+                hover:text-gray-500
+                dark:hover:text-gray-300
+              "
               >{{ team }}</nuxt-link
             >
             <span class="hidden mx-1 md:block">·</span

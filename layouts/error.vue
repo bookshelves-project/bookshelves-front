@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white min-h-screen flex flex-col lg:relative">
+  <div class="bg-white dark:bg-gray-900 min-h-screen flex flex-col lg:relative">
     <div class="flex-grow flex flex-col">
-      <main class="flex-grow flex flex-col bg-white">
+      <main class="flex-grow flex flex-col">
         <div
           class="
             flex-grow
@@ -37,7 +37,9 @@
               "
             >
               <span v-if="error.statusCode === 404"> Page not found </span>
-              <span v-if="error.statusCode === 500"> Server has failed </span>
+              <span v-else-if="error.statusCode === 500">
+                Server has failed
+              </span>
               <span v-else>Something bad happened</span>
             </h1>
             <p class="mt-2 text-base text-gray-500">
@@ -58,7 +60,7 @@
           </div>
         </div>
       </main>
-      <footer class="flex-shrink-0 bg-gray-50">
+      <footer class="flex-shrink-0 bg-gray-50 dark:bg-gray-900">
         <div class="mx-auto max-w-7xl w-full px-4 py-16 sm:px-6 lg:px-8">
           <nav class="flex space-x-4">
             <nuxt-link

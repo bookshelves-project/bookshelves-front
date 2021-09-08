@@ -22,7 +22,7 @@ If your are an author and you found your books here, you can ask us to remove it
 
 ## I want to host my <markdown-app-name></markdown-app-name> app
 
-You can setup <markdown-app-name></markdown-app-name> on your personal server from repositories [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front) & [**bookshelves-back**](https://gitlab.com/ewilan-riviere/bookshelves-back). You can consult <markdown-api-link endpoint="/wiki">official Wiki</markdown-api-link> to know more about Bookshelves setup.
+You can setup <markdown-app-name></markdown-app-name> on your personal server from repositories [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front) & [**bookshelves-back**](https://gitlab.com/ewilan-riviere/bookshelves-back). You can consult <markdown-api-link endpoint="/wiki">official Wiki</markdown-api-link> to know more about <markdown-app-name></markdown-app-name> setup.
 
 If you want, you can contact us to add eBooks on our collection.
 

@@ -40,12 +40,6 @@ module.exports = {
       fontFamily: {
         handlee: ['Handlee'],
       },
-      height: {
-        hero: '32rem',
-      },
-      maxWidth: {
-        extra: '120rem',
-      },
     },
   },
   variants: {

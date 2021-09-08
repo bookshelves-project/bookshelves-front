@@ -63,6 +63,7 @@
               text-sm
               font-medium
               text-gray-700
+              dark:text-gray-300
               transition-colors
               duration-100
               bg-white
@@ -140,6 +141,7 @@
               text-sm
               font-medium
               text-gray-700
+              dark:text-gray-300
               transition-colors
               duration-100
               bg-white

@@ -48,6 +48,8 @@ export default {
     '~/plugins/vue-scrollactive',
     // https://github.com/ymmooot/nuxt-jsonld
     '~/plugins/jsonld',
+    // https://github.com/surmon-china/vue-awesome-swiper
+    '~/plugins/vue-awesome-swiper.client.js',
   ],
 
   // GitHub: https://github.com/nuxt/components
@@ -239,7 +241,5 @@ export default {
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
-    transpile: ['vue-agile'],
-  },
+  build: {},
 }

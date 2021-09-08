@@ -47,48 +47,23 @@
           </div>
         </div>
         <div class="flex mt-5 lg:mt-0">
-          <a
-            :href="author.download"
-            class="
-              inline-flex
-              items-center
-              justify-center
-              w-full
-              px-4
-              py-2
-              mx-auto
-              text-sm
-              font-semibold
-              text-white
-              transition-colors
-              duration-300
-              border border-transparent
-              rounded-md
-              shadow-sm
-              bg-primary-600
-              hover:bg-primary-600
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-offset-gray-100
-              focus:ring-primary-600
-              sm:w-max
-            "
-          >
-            <svg-icon name="download" class="w-5 h-5" />
-            <div class="flex items-center ml-1">
-              <div class="flex mx-1">
-                <span class="lg:mr-1">Download</span>
-                <span class="hidden md:block">{{ author.count }} eBooks</span>
+          <app-button :href="author.download" color="primary">
+            <div class="flex items-center">
+              <svg-icon name="download" class="w-5 h-5" />
+              <div class="flex items-center ml-1">
+                <div class="flex mx-1">
+                  <span class="lg:mr-1">Download</span>
+                  <span class="hidden md:block">{{ author.count }} eBooks</span>
+                </div>
+                <div>(ZIP {{ author.size }})</div>
               </div>
-              <div>(ZIP {{ author.size }})</div>
             </div>
-          </a>
+          </app-button>
         </div>
       </div>
       <div
         v-if="author.description"
-        class="max-w-full pt-2 mb-8 prose word-wraping"
+        class="max-w-full pt-2 mb-8 prose word-wraping dark:text-gray-100"
       >
         <p class="italic">
           {{ author.description }}
@@ -183,10 +158,11 @@ import favorites from '~/mixins/favorites'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import { formatLanguage, getHostname } from '~/plugins/utils/methods'
 import LoadMore from '~/components/special/load-more.vue'
+import AppButton from '~/components/app-button.vue'
 
 export default {
   name: 'AuthorsSlug',
-  components: { entityCard, Divider, LoadMore },
+  components: { entityCard, Divider, LoadMore, AppButton },
   mixins: [favorites],
   async asyncData({ app, params, query }) {
     const page = query.page

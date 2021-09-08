@@ -4,19 +4,19 @@
       <div class="max-w-3xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <h1 class="sr-only">{{ book.title }}</h1>
         <div class="masonry-container">
-          <book-header :book="book" class="masonry-block" />
-          <book-main :book="book" class="masonry-block" />
-          <book-comments
+          <blocks-books-slug-header :book="book" class="masonry-block" />
+          <blocks-books-slug-main :book="book" class="masonry-block" />
+          <blocks-books-slug-comments
             v-if="$config.moduleSocial"
             :book="book"
             class="masonry-block"
           />
-          <book-serie
+          <blocks-books-slug-serie
             v-if="book.serie !== null"
             :book="book"
-            class="masonry-block"
+            class="mb-6"
           />
-          <book-related :book="book" class="masonry-block" />
+          <blocks-books-slug-related :book="book" />
         </div>
       </div>
     </div>
@@ -24,17 +24,11 @@
 </template>
 
 <script>
-import BookComments from '~/components/blocks/books-slug/book-comments.vue'
-import bookHeader from '~/components/blocks/books-slug/book-header.vue'
-import BookMain from '~/components/blocks/books-slug/book-main.vue'
-import BookRelated from '~/components/blocks/books-slug/book-related.vue'
-import BookSerie from '~/components/blocks/books-slug/book-serie.vue'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import { formatLanguage, formatAuthors } from '~/plugins/utils/methods'
 
 export default {
   name: 'BooksSlug',
-  components: { bookHeader, BookComments, BookMain, BookSerie, BookRelated },
   async asyncData({ app, params }) {
     const [book] = await Promise.all([
       app.$axios.$get(`/books/${params.author}/${params.slug}`),

@@ -76,44 +76,18 @@
         </div>
         <div class="block mt-5 lg:block lg:mt-0">
           <div class="flex">
-            <a
-              :href="serie.download"
-              class="
-                inline-flex
-                items-center
-                justify-center
-                w-full
-                px-4
-                py-2
-                mx-auto
-                text-sm
-                font-semibold
-                text-white
-                transition-colors
-                duration-300
-                border border-transparent
-                rounded-md
-                shadow-sm
-                bg-primary-600
-                lg:mx-0
-                hover:bg-primary-600
-                focus:outline-none
-                focus:ring-2
-                focus:ring-offset-2
-                focus:ring-offset-gray-100
-                focus:ring-primary-600
-                sm:w-max
-              "
-            >
-              <svg-icon name="download" class="w-5 h-5" />
-              <div class="flex items-center ml-1">
-                <div class="mx-1">Download</div>
-                <div class="hidden lg:mr-1 lg:block">
-                  {{ serie.title }}
+            <app-button :href="serie.download" color="primary">
+              <div class="flex items-center">
+                <svg-icon name="download" class="w-5 h-5" />
+                <div class="flex items-center ml-1">
+                  <div class="mx-1">Download</div>
+                  <div class="hidden lg:mr-1 lg:block">
+                    {{ serie.title }}
+                  </div>
+                  <div>(ZIP {{ serie.size }})</div>
                 </div>
-                <div>(ZIP {{ serie.size }})</div>
               </div>
-            </a>
+            </app-button>
           </div>
           <div class="flex mx-auto lg:ml-auto lg:mr-0 w-max">
             <div
@@ -144,7 +118,11 @@
       <div v-if="serie.tags.length" class="flex">
         <h2 class="mr-1">Tags:</h2>
         <ul>
-          <li v-for="(tag, id) in serie.tags" :key="id" class="inline-block">
+          <li
+            v-for="(tag, id) in serie.tags"
+            :key="id"
+            class="inline-block dark:text-gray-100"
+          >
             <span>{{ tag.name }}</span
             ><span
               v-if="serie.tags.length > 1 && id !== serie.tags.length - 1"
@@ -156,7 +134,7 @@
       </div>
       <div
         v-if="serie.description"
-        class="max-w-full pt-2 mb-8 prose word-wraping"
+        class="max-w-full pt-2 mb-8 prose word-wraping dark:text-gray-100"
       >
         <p class="italic">
           {{ serie.description }}
