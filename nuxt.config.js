@@ -48,8 +48,6 @@ export default {
     '~/plugins/vue-scrollactive',
     // https://github.com/ymmooot/nuxt-jsonld
     '~/plugins/jsonld',
-    // https://github.com/surmon-china/vue-awesome-swiper
-    '~/plugins/vue-awesome-swiper.client.js',
   ],
 
   // GitHub: https://github.com/nuxt/components
@@ -133,6 +131,11 @@ export default {
         loadedClass: 'isLoaded',
         appendClass: 'lazyLoad',
       },
+    ],
+    // https://github.com/pimlie/nuxt-matomo
+    [
+      'nuxt-matomo',
+      { matomoUrl: process.env.MATOMO_URL, siteId: process.env.MATOMO_SITE_ID },
     ],
   ],
 

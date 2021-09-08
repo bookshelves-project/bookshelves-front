@@ -50,10 +50,10 @@
                         {{ capitalize(result.meta.entity) }}
                       </div>
                     </div>
-                    <div class="">
+                    <div class="text-sm italic">
                       <div v-if="result.serie" class="ml-1">
-                        in {{ result.serie.title }}, vol.
-                        {{ result.serie.number }}
+                        {{ result.serie }}, vol.
+                        {{ result.volume }}
                       </div>
                     </div>
                     <div class="wiki-snippet" v-html="result.snippet" />
@@ -192,6 +192,9 @@ export default {
 </script>
 
 <style lang="postcss">
+.autocomplete-result-list {
+  @apply scrollbar-thin;
+}
 /* .searchbar-navbar {
   & input {
     @apply w-40 sm:w-48 md:w-64 ml-auto transition-all duration-300 focus:w-full !important;

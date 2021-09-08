@@ -100,6 +100,7 @@
 </template>
 
 <script>
+// https://github.com/surmon-china/vue-awesome-swiper
 import 'swiper/css/swiper.min.css'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
@@ -125,6 +126,7 @@ export default {
   },
   data() {
     return {
+      isLoaded: false,
       main: {
         loop: false,
         spaceBetween: 10,
