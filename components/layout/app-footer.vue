@@ -94,6 +94,9 @@
           mt-12
           border-t border-gray-200
           dark:border-gray-600
+          flex
+          items-center
+          justify-between
         "
       >
         <div
@@ -142,7 +145,7 @@
             ><span class="hidden md:block">.</span></span
           >
         </div>
-        <back-to-top class="absolute bottom-0 right-0" />
+        <back-to-top />
       </div>
     </div>
   </footer>
@@ -175,16 +178,16 @@ export default {
         //   link: `${this.$apiUrlBase('/features/wiki')}`,
         // },
         {
-          icon: 'book-open',
-          label: 'Catalog',
-          title: 'Catalog: simple interface for eReader browser',
-          link: `${this.$apiUrlBase('/features/catalog')}`,
-        },
-        {
           icon: 'feed',
           label: 'OPDS',
           title: 'OPDS: Open Publication Distribution System',
           link: `${this.$apiUrlBase('/features/opds')}`,
+        },
+        {
+          icon: 'book-open',
+          label: 'Catalog',
+          title: 'Catalog: simple interface for eReader browser',
+          link: `${this.$apiUrlBase('/features/catalog')}`,
         },
         {
           icon: 'ereader',
