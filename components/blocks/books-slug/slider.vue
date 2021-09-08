@@ -54,7 +54,7 @@
                 :key="book.id"
                 class="hover:opacity-60 transition-opacity duration-100"
               >
-                <img
+                <app-image
                   class="w-full h-20 object-cover"
                   :src="book.cover.original"
                   :color="book.cover.color"

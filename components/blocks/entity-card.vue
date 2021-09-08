@@ -13,7 +13,7 @@
       "
     >
       <div class="h-32 overflow-hidden sm:aspect-w-2 sm:aspect-h-3">
-        <app-img :src="cover" :color="color" :title="title" class="cover" />
+        <app-image :src="cover" :color="color" :title="title" class="cover" />
       </div>
       <div>
         <h2 class="font-semibold">

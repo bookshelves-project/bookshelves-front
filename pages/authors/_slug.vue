@@ -158,7 +158,7 @@ import favorites from '~/mixins/favorites'
 import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import { formatLanguage, getHostname } from '~/plugins/utils/methods'
 import LoadMore from '~/components/special/load-more.vue'
-import AppButton from '~/components/app-button.vue'
+import AppButton from '~/components/app/button.vue'
 
 export default {
   name: 'AuthorsSlug',

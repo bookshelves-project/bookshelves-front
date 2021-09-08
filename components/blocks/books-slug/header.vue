@@ -6,7 +6,7 @@
         <div class="sm:flex sm:items-center sm:justify-between">
           <div class="sm:flex sm:space-x-5">
             <div v-if="book.cover" class="flex-shrink-0">
-              <app-img
+              <app-image
                 :src="book.cover.thumbnail"
                 :color="book.cover.color"
                 :title="book.title"
