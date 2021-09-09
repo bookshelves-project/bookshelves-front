@@ -1,8 +1,10 @@
 ---
-title: "OPDS, Catalog & more"
+title: "Features: OPDS, Catalog & more"
 subtitle: ''
 description: 'On other ways.'
 ---
+
+<markdown-api-link endpoint="/features" button>Access to Features</markdown-api-link>
 
 ## OPDS
 
@@ -22,7 +24,7 @@ OPDS versions available
 
 Most of eReader can't read OPDS feeds, so to download directly eBooks you have to use a computer and set manually eBooks on your device, etc... But **Catalog** is the solution **to download directly eBooks on your eReader without any computer**.
 
-If you have any eReader with browser, you can use **Catalog**, it's an very simple interface for your eReader like any shop to directly search and download eBooks. You have just to put <markdown-api-link endpoint="/catalog" :self-refer="true"></markdown-api-link> URL into your eReader browser. To know more about download of eBooks with browser from your eReader, check [**Download eBook from eReader guide**](/guides/ereader-download-ebook-from-ereader).
+If you have any eReader with browser, you can use **Catalog**, it's an very simple interface for your eReader like any shop to directly search and download eBooks. You have just to put <markdown-api-link endpoint="/features/catalog" :self-refer="true"></markdown-api-link> URL into your eReader browser. To know more about download of eBooks with browser from your eReader, check [**Download eBook from eReader guide**](/guides/ereader-download-ebook-from-ereader).
 
 ### Limitations
 
@@ -35,7 +37,7 @@ The eReader's web browser is not very powerful, it's can be difficult to use bec
 
 ## Webreader
 
-You can read any eBook available on <markdown-app-name></markdown-app-name> **directly in your browser with Webreader**, you can **access it from the detail page of any book** in the available actions. Webreader is a simple and effective feature aimed at allowing you to quickly read an eBook but not having all the options like on an eReader. You can **discover Webreader right now** by trying it with a random eBook from <markdown-api-link endpoint="/webreader" :self-refer="true"></markdown-api-link>.
+You can read any eBook available on <markdown-app-name></markdown-app-name> **directly in your browser with Webreader**, you can **access it from the detail page of any book** in the available actions. Webreader is a simple and effective feature aimed at allowing you to quickly read an eBook but not having all the options like on an eReader. You can **discover Webreader right now** by trying it with a random eBook from <markdown-api-link endpoint="/features/webreader" :self-refer="true"></markdown-api-link>.
 
 ## Android
 

@@ -14,9 +14,7 @@
       :src="book.cover.original"
       :color="book.cover.color"
       :title="book.title"
-      alt=""
-      width="384"
-      height="512"
+      alt="book.title"
     />
     <div
       class="

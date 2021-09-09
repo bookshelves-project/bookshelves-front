@@ -59,7 +59,6 @@ import {
   formatAuthors,
   capitalize,
 } from '~/plugins/utils/methods'
-import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {
   name: 'PageRelatedSlug',
@@ -82,21 +81,23 @@ export default {
       objectIsEmpty,
       formatAuthors,
       capitalize,
-      title: `Related books & series for `,
+      title: `Related books & series for`,
       description: `List of all results for related books & series...`,
     }
   },
   head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
     const title = `${this.title} ${this.currentBook.title}`
-    const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
-    const dynamicMeta = dynamicMetadata({
-      title: this.title,
-      description: this.description,
-      url,
-    })
     return {
       title,
-      meta: [...dynamicMeta],
+      meta: [
+        ...dynamicMetadata({
+          title,
+          description: this.description,
+          url: this.$nuxt.$route.path,
+          image: this.currentBook.cover.og,
+        }),
+      ],
     }
   },
 }

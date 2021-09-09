@@ -1,10 +1,11 @@
 const metadata = require('./metadata.js')
 
 // Settings
-const url = `${process.env.BASE_URL}/`
+const baseUrl = `${process.env.BASE_URL}`
+const url = `${baseUrl}/`
 const image = `${process.env.BASE_URL}/default.jpg`
 
-export default (meta) => {
+module.exports = (meta) => {
   return [
     //
     // Meta tags
@@ -46,7 +47,7 @@ function getOpenGraph(meta) {
     {
       hid: 'og:url',
       property: 'og:url',
-      content: (meta && meta.url) || url,
+      content: (meta && `${baseUrl}${meta.url}`) || url,
     },
     {
       hid: 'og:title',
@@ -68,16 +69,24 @@ function getOpenGraph(meta) {
       property: 'og:image:alt',
       content: (meta && meta.title) || metadata.tags.title,
     },
+    additionalOpenGraph(
+      meta,
+      meta.articlePublishedTime,
+      'article:published_time'
+    ),
+    additionalOpenGraph(meta, meta.articleAuthor, 'article:author'),
+    additionalOpenGraph(meta, meta.articleSection, 'article:section'),
+    additionalOpenGraph(meta, meta.bookISBN, 'book:isbn'),
+    additionalOpenGraph(meta, meta.bookAuthor, 'book:author'),
+    additionalOpenGraph(meta, meta.bookReleaseDate, 'book:release_date'),
+    additionalOpenGraph(meta, meta.bookTag, 'books:tag'),
+    additionalOpenGraph(meta, meta.profileFirstName, 'profile:first_name'),
+    additionalOpenGraph(meta, meta.profileLastName, 'profile:last_name'),
   ]
 }
 
 function getTwitterCard(meta) {
   return [
-    {
-      hid: 'twitter:url',
-      name: 'twitter:url',
-      content: (meta && meta.url) || url,
-    },
     {
       hid: 'twitter:title',
       name: 'twitter:title',
@@ -94,4 +103,14 @@ function getTwitterCard(meta) {
       content: (meta && meta.image) || image,
     },
   ]
+}
+
+function additionalOpenGraph(meta, customMeta, hid) {
+  return meta && customMeta
+    ? {
+        hid,
+        property: hid,
+        content: customMeta,
+      }
+    : ''
 }

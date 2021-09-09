@@ -52,54 +52,21 @@ export default {
   data() {
     return {
       loading: false,
+      title: 'Admin',
+      description: 'Admin dashboard',
     }
   },
   head() {
-    const title = 'Admin'
-    const description = 'Admin dashboard.'
-    const image = `${this.$config.baseURL}/open-graph.jpg`
-    const url = `${this.$config.baseURL}/dashboard`
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    const title = this.title
     return {
       title,
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: image,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: url,
-        },
-        // Twitter Card
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          hid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: image,
-        },
+        ...dynamicMetadata({
+          title,
+          description: this.description,
+          url: this.$nuxt.$route.path,
+        }),
       ],
     }
   },

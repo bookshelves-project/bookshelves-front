@@ -1,49 +1,39 @@
 <template>
   <div>
     <lazy-hydrate when-idle>
-      <hero class="pt-5" />
-    </lazy-hydrate>
-    <lazy-hydrate when-idle>
-      <statistics />
-    </lazy-hydrate>
-    <lazy-hydrate when-visible>
-      <cloud-logos />
-    </lazy-hydrate>
-    <lazy-hydrate when-idle>
-      <selected-entities class="mt-8 lg:mt-16">
-        <template #ontitle> Want to read a good book? </template>
-        <template #title> Selection of books & series </template>
-        <template #text>
-          If you search a new book to read, check this selection of eBooks by
-          the {{ $config.appName }} Team.
-        </template>
-      </selected-entities>
+      <div>
+        <lazy-blocks-home-hero class="pt-5" />
+        <lazy-blocks-home-statistics />
+        <lazy-blocks-home-cloud-logos />
+      </div>
     </lazy-hydrate>
     <lazy-hydrate when-visible>
-      <features />
-    </lazy-hydrate>
-    <lazy-hydrate when-idle>
-      <selected-entities
-        endpoint="/books/latest"
-        orientation="text-right"
-        class="mb-8 lg:mb-16"
-      >
-        <template #ontitle> Hyped by new books? </template>
-        <template #title> Latest books & series </template>
-        <template #text>
-          You check new books & series on {{ $config.appName }}? Here you have
-          latest books!
-        </template>
-      </selected-entities>
-    </lazy-hydrate>
-    <lazy-hydrate when-visible>
-      <features-highlight />
-    </lazy-hydrate>
-    <lazy-hydrate when-visible>
-      <pricing />
-    </lazy-hydrate>
-    <lazy-hydrate when-visible>
-      <home-cta />
+      <div>
+        <lazy-blocks-selected-entities class="mt-8 lg:mt-16">
+          <template #ontitle> Want to read a good book? </template>
+          <template #title> Selection of books & series </template>
+          <template #text>
+            If you search a new book to read, check this selection of eBooks by
+            the {{ $config.appName }} Team.
+          </template>
+        </lazy-blocks-selected-entities>
+        <lazy-blocks-home-features />
+        <lazy-blocks-selected-entities
+          endpoint="/books/latest"
+          orientation="text-right"
+          class="mb-8 lg:mb-16"
+        >
+          <template #ontitle> Hyped by new books? </template>
+          <template #title> Latest books & series </template>
+          <template #text>
+            You check new books & series on {{ $config.appName }}? Here you have
+            latest books!
+          </template>
+        </lazy-blocks-selected-entities>
+        <lazy-blocks-home-features-highlight />
+        <!-- <lazy-blocks-home-pricing /> -->
+        <lazy-blocks-home-cta />
+      </div>
     </lazy-hydrate>
   </div>
 </template>
@@ -55,15 +45,6 @@ export default {
   name: 'Home',
   components: {
     LazyHydrate,
-    CloudLogos: () => import('~/components/blocks/home/cloud-logos.vue'),
-    FeaturesHighlight: () =>
-      import('~/components/blocks/home/features-highlight.vue'),
-    Features: () => import('~/components/blocks/home/features.vue'),
-    Hero: () => import('~/components/blocks/home/hero.vue'),
-    HomeCta: () => import('~/components/blocks/home/cta.vue'),
-    Pricing: () => import('~/components/blocks/home/pricing.vue'),
-    Statistics: () => import('~/components/blocks/home/statistics.vue'),
-    selectedEntities: () => import('~/components/blocks/selected-entities.vue'),
   },
   auth: 'auth',
   layout: 'auth',

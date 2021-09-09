@@ -38,7 +38,7 @@ This will open the home page, usually on Google, you have **URL bar at the top**
 
 ## An example
 
-We will take an example with this website, with <markdown-api-link endpoint="/catalog">Catalog service</markdown-api-link>, just put this URL in URL bar and tap on "Go" <markdown-api-link endpoint="/catalog" self-refer></markdown-api-link>. You will see Catalog home page with search bar, don't hesitate to add it to your favorites.
+We will take an example with this website, with <markdown-api-link endpoint="/features/catalog">Catalog service</markdown-api-link>, just put this URL in URL bar and tap on "Go" <markdown-api-link endpoint="/features/catalog" self-refer></markdown-api-link>. You will see Catalog home page with search bar, don't hesitate to add it to your favorites.
 
 <markdown-image src="browser-options">
     Catalog home page.

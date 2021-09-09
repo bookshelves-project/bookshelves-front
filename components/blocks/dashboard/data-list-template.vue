@@ -53,7 +53,7 @@
         >
           <div class="flex-shrink-0">
             <app-image
-              :src="data.picture"
+              :src="data.cover"
               class="object-cover w-16 h-16 rounded-full"
               :alt="data.title"
               loading="lazy"

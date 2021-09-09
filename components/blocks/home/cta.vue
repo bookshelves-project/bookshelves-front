@@ -8,7 +8,7 @@
         mx-auto
         md:max-w-7xl
         sm:px-6
-        lg:py-24 lg:px-8 lg:flex lg:items-center lg:justify-between
+        lg:py-20 lg:px-8 lg:flex lg:items-center lg:justify-between
       "
     >
       <h2

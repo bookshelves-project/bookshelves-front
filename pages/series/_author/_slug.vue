@@ -210,7 +210,6 @@ import {
 } from '~/plugins/utils/methods'
 import entityCard from '~/components/blocks/entity-card.vue'
 import favorites from '~/mixins/favorites'
-import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import Pagination from '~/components/special/pagination.vue'
 
 export default {
@@ -246,18 +245,19 @@ export default {
     }
   },
   head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
     const title = `${this.serie.title} by ${this.authors}`
-    const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
-    const dynamicMeta = dynamicMetadata({
-      type: 'book',
-      title,
-      description: `Written by ${this.authors} with ${this.serie.count} books.`,
-      url,
-      image: this.serie.cover.openGraph,
-    })
     return {
       title,
-      meta: [...dynamicMeta],
+      meta: [
+        ...dynamicMetadata({
+          type: 'book',
+          title,
+          description: `Written by ${this.authors} with ${this.serie.count} books.`,
+          url: this.$nuxt.$route.path,
+          image: this.serie.cover.og,
+        }),
+      ],
     }
   },
   computed: {

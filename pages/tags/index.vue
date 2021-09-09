@@ -56,5 +56,19 @@ export default {
       description: 'Find books and series by their genres and tags.',
     }
   },
+  head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    const title = this.title
+    return {
+      title,
+      meta: [
+        ...dynamicMetadata({
+          title,
+          description: this.description,
+          url: this.$nuxt.$route.path,
+        }),
+      ],
+    }
+  },
 }
 </script>

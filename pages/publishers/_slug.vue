@@ -1,5 +1,5 @@
 <template>
-  <main class="container relative max-w-7xl">
+  <main class="main-content">
     <section-heading
       :title="`${title} ${publisher.name}`"
       :subtitle="description"
@@ -62,7 +62,6 @@
 import EntityCard from '~/components/blocks/entity-card.vue'
 import sectionHeading from '~/components/blocks/section-heading.vue'
 import { formatLanguage, formatAuthors } from '~/plugins/utils/methods'
-import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import LoadMore from '~/components/special/load-more.vue'
 
 export default {
@@ -83,21 +82,22 @@ export default {
     return {
       formatLanguage,
       formatAuthors,
-      title: `Books published by `,
+      title: `Books published by`,
       description: `List of all books for publisher`,
     }
   },
   head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
     const title = `${this.title} ${this.publisher.name}`
-    const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
-    const dynamicMeta = dynamicMetadata({
-      title: this.title,
-      description: this.description,
-      url,
-    })
     return {
       title,
-      meta: [...dynamicMeta],
+      meta: [
+        ...dynamicMetadata({
+          title,
+          description: this.description,
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
   methods: {

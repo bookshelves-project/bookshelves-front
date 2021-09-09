@@ -13,7 +13,7 @@ export default () => {
     //
     // Open Graph
     //
-    ...getOpenGraph(),
+    ...getog(),
     //
     // Twitter card
     //
@@ -80,7 +80,7 @@ function getMeta() {
   ]
 }
 
-function getOpenGraph() {
+function getog() {
   return [
     {
       hid: 'og:site_name',

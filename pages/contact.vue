@@ -114,52 +114,22 @@ import ContactForm from '~/components/forms/contact-form.vue'
 export default {
   name: 'Contact',
   components: { ContactForm },
-  head() {
-    const title = 'Contact us'
-    const description = 'Leave us a short note'
-    const image = `${this.$config.baseURL}/open-graph.jpg`
-    const url = `${this.$config.baseURL}/contact`
+  data() {
     return {
-      title,
+      title: 'Contact us',
+    }
+  },
+  head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    return {
+      title: this.title,
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: title },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: image,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: url,
-        },
-        // Twitter Card
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: title,
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: description,
-        },
-        {
-          hid: 'twitter:image:src',
-          property: 'twitter:image:src',
-          content: image,
-        },
+        ...dynamicMetadata({
+          title: this.title,
+          description:
+            "If you want to contact us, don't hesitate to send us a small message!",
+          url: this.$nuxt.$route.path,
+        }),
       ],
     }
   },

@@ -38,7 +38,6 @@ import qs from 'qs'
 
 import SectionHeading from '~/components/blocks/section-heading.vue'
 import SearchResults from '~/components/blocks/search-results.vue'
-import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import Skeleton from '~/components/special/skeleton.vue'
 import { objectIsEmpty } from '~/plugins/utils/methods'
 
@@ -61,16 +60,16 @@ export default {
     }
   },
   head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
     const title = this.title
-    const url = `${this.$config.baseURL}/search`
-    const dynamicMeta = dynamicMetadata({
-      title: this.title,
-      description: this.description,
-      url,
-    })
     return {
       title,
-      meta: [...dynamicMeta],
+      meta: [
+        ...dynamicMetadata({
+          title,
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
   computed: {

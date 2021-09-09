@@ -1,6 +1,10 @@
 <template>
   <div class="main-content">
-    <section-heading :title="`Tag: ${tag.name}`" :subtitle="description" />
+    <section-heading
+      :title="`${title}${tag.name}`"
+      :subtitle="description"
+      :border="false"
+    />
     <div>
       <search-results
         v-if="books.data.length"
@@ -39,8 +43,21 @@ export default {
   },
   data() {
     return {
-      title: 'Tag',
-      description: '',
+      description: 'Tag:',
+    }
+  },
+  head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    const title = `${this.title}${this.tag.name}`
+    return {
+      title,
+      meta: [
+        ...dynamicMetadata({
+          title,
+          description: this.description,
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
   methods: {

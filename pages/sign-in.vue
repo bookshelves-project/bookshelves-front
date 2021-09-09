@@ -62,23 +62,22 @@
 
 <script>
 import loginForm from '~/components/forms/login-form.vue'
-import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {
   name: 'PageLogin',
   components: { loginForm },
   auth: 'guest',
   head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
     const title = 'Sign in'
-    const dynamicMeta = dynamicMetadata({
-      title,
-      description:
-        'Sign in to get access to account features with favorite list, comments on eBooks...',
-      url: `${this.$config.baseURL}/${this.$nuxt.$route.path}`,
-    })
     return {
       title,
-      meta: [...dynamicMeta],
+      meta: [
+        ...dynamicMetadata({
+          title,
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
 }

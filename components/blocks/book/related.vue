@@ -1,30 +1,38 @@
 <template>
-  <blocks-books-slug-slider :books="books" :loaded="loaded">
-    <template #title> {{ book.serie.title }}'s series </template>
+  <blocks-book-slider
+    v-if="book.tags.length || book.genres.length"
+    :book-data="book"
+    :books="books"
+    :loaded="loaded"
+  >
+    <template #title> Related books & series </template>
     <template #subtitle>
-      Current: vol. {{ book.volume }}, limited to 10 next volumes.
-    </template>
+      Based on tags & genre, not in same series. Limited to 10 first
+      results.</template
+    >
     <template #link>
       <app-button
         :to="{
-          name: 'series-author-slug',
+          name: 'related-author-slug',
           params: {
-            author: book.serie.meta.author,
-            slug: book.serie.meta.slug,
+            author: book.meta.author,
+            slug: book.meta.slug,
           },
         }"
         class="w-full"
         color="white"
       >
-        View series page
+        View all results
       </app-button>
     </template>
-  </blocks-books-slug-slider>
+  </blocks-book-slider>
 </template>
 
 <script>
+import qs from 'qs'
+
 export default {
-  name: 'BookSerie',
+  name: 'BookMore',
   props: {
     book: {
       type: Object,
@@ -42,10 +50,14 @@ export default {
   },
   methods: {
     async loadSerie() {
-      if (this.book.serie !== null) {
+      if (this.book.tags.length || this.book.genres.length) {
         try {
           const books = await this.$axios.$get(
-            `/series/books/${this.book.volume}/${this.book.serie.meta.author}/${this.book.serie.meta.slug}`
+            `/books/related/${this.book.meta.author}/${
+              this.book.meta.slug
+            }?${qs.stringify({
+              limit: 10,
+            })}`
           )
           this.books = books.data
           this.loaded = true

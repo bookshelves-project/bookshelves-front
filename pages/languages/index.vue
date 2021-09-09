@@ -48,5 +48,19 @@ export default {
       description: '',
     }
   },
+  head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    const title = this.title
+    return {
+      title,
+      description: this.description,
+      meta: [
+        ...dynamicMetadata({
+          title,
+          url: this.$nuxt.$route.path,
+        }),
+      ],
+    }
+  },
 }
 </script>

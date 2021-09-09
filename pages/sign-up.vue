@@ -72,22 +72,22 @@
 
 <script>
 import registerForm from '~/components/forms/register-form.vue'
-import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 export default {
   name: 'PageRegister',
   components: { registerForm },
   auth: 'guest',
   head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
     const title = 'Sign up'
-    const dynamicMeta = dynamicMetadata({
-      title,
-      description: 'Create an account.',
-      url: `${this.$config.baseURL}/${this.$nuxt.$route.path}`,
-    })
     return {
       title,
-      meta: [...dynamicMeta],
+      meta: [
+        ...dynamicMetadata({
+          title,
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
 }

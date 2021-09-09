@@ -66,7 +66,6 @@ import EntityCard from '~/components/blocks/entity-card.vue'
 import SectionHeading from '~/components/blocks/section-heading.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
 import EntitiesFilter from '~/components/blocks/entities-filter.vue'
-import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 
 import { formatLanguage, objectIsEmpty } from '~/plugins/utils/methods'
 import Pagination from '~/components/special/pagination.vue'
@@ -122,16 +121,17 @@ export default {
     }
   },
   head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
     const title = this.title
-    const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
-    const dynamicMeta = dynamicMetadata({
-      title: this.title,
-      description: this.description,
-      url,
-    })
     return {
       title,
-      meta: [...dynamicMeta],
+      description: this.description,
+      meta: [
+        ...dynamicMetadata({
+          title,
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
   watchQuery: ['page', 'lang', 'serie'],

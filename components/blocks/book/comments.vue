@@ -108,7 +108,7 @@
           <div v-if="$auth.$state.loggedIn" class="flex space-x-3">
             <div class="flex-shrink-0">
               <img
-                :src="$auth.$state.user.data.avatar"
+                :src="$auth.$state.user.data.profile_photo_url"
                 class="w-10 h-10 rounded-full"
                 alt="avatar"
                 loading="lazy"

@@ -14,7 +14,7 @@ If you want to participate to this project, you can [**contact us**](/contact), 
 
 ## How to to use OPDS ?
 
-If you want to download and read eBooks from any device which support OPDS, you can do this with [**<markdown-app-name></markdown-app-name> OPDS**](/pages/opds-catalog-more) (Open Publication Distribution System).
+If you want to download and read eBooks from any device which support OPDS, you can do this with [**<markdown-app-name></markdown-app-name> OPDS**](/pages/features) (Open Publication Distribution System).
 
 ## My books are on <markdown-app-name></markdown-app-name>, I disagree
 

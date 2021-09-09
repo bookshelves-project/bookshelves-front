@@ -1,5 +1,5 @@
 <template>
-  <div class="relative pt-16 pb-32 overflow-hidden">
+  <div class="relative pt-16 pb-16 overflow-hidden">
     <feature-highlighted
       v-for="feature in features"
       :key="feature.id"
@@ -63,21 +63,21 @@ export default {
           },
         },
         {
-          title: 'Find the book that fits you!',
-          icon: 'open-book',
+          title: 'Features, read eBook on your way',
+          icon: 'catalog',
           position: 'right',
           blockquote: {
             text: 'I am only interested in OPDS feeds adapted to my eReader with Koreader OS.',
             author: 'A very experimented reader',
           },
           image: 'book_reading.svg',
-          text: 'You can download directly eBooks from your eReader with <b>Catalog</b> or you can use <b>OPDS</b> (Open Publication Distribution System) feed to get all eBooks on your favorite application. And if you want to read eBook directly in your browser with <b>Webreader</b>.',
+          text: 'Features offer a lot of extra options to find and read eBooks. You can download directly eBooks from your eReader with <b>Catalog</b> or you can use <b>OPDS</b> (Open Publication Distribution System) feed to get all eBooks on your favorite application. And if you want to read eBook directly in your browser with <b>Webreader</b>.',
           cta: {
             route: {
               name: 'type-slug',
-              params: { type: 'pages', slug: 'opds-catalog-more' },
+              params: { type: 'pages', slug: 'features' },
             },
-            text: 'Discover OPDS, Catalog & more',
+            text: 'Discover Features',
           },
         },
       ],

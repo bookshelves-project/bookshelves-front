@@ -2,6 +2,7 @@
   <section>
     <div
       class="
+        books-slider
         shadow
         sm:rounded-lg
         dark:bg-gray-800
@@ -33,7 +34,7 @@
               @slideChange="mainChange"
             >
               <swiper-slide v-for="book in books" :key="book.id">
-                <blocks-books-slug-slider-card :book="book" />
+                <blocks-book-slider-card :book="book" />
               </swiper-slide>
               <div slot="button-prev" class="swiper-button-prev">
                 <svg-icon name="arrow-chevron-right" />
@@ -185,6 +186,9 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.books-slider::v-deep {
+  overflow: hidden;
+}
 .books-slider-swiper::v-deep {
   & .swiper-button-prev {
     left: unset !important;

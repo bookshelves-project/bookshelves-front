@@ -1,7 +1,7 @@
 export const state = () => ({
   navigation: [
-    { label: 'Books', icon: 'book-open', route: 'books' },
-    { label: 'Series', icon: 'book-open', route: 'series' },
+    { label: 'Books', icon: 'catalog', route: 'books' },
+    { label: 'Series', icon: 'catalog', route: 'series' },
     { label: 'Authors', icon: 'annotation', route: 'authors' },
     { label: 'Guides', icon: 'annotation', route: 'guides' },
   ],

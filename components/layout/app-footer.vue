@@ -192,7 +192,7 @@ export default {
           link: `${this.$apiUrlBase('/features/opds')}`,
         },
         {
-          icon: 'book-open',
+          icon: 'catalog',
           label: 'Catalog',
           title: 'Catalog: simple interface for eReader browser',
           link: `${this.$apiUrlBase('/features/catalog')}`,
@@ -217,10 +217,10 @@ export default {
               },
             },
             {
-              label: 'OPDS, Catalog & more',
+              label: 'Features: OPDS, Catalog',
               route: {
                 name: 'type-slug',
-                params: { type: 'pages', slug: 'opds-catalog-more' },
+                params: { type: 'pages', slug: 'features' },
               },
             },
           ],

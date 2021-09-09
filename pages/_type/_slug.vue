@@ -89,7 +89,6 @@
 
 <script>
 import TableOfContent from '~/components/blocks/content/table-of-content.vue'
-import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import { capitalize } from '~/plugins/utils/methods'
 
 export default {
@@ -112,36 +111,22 @@ export default {
     }
   },
   head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
     const title = `${this.document.title} · ${this.capitalize(
       this.$route.params.type
     )}`
-    const url = `${this.$config.baseURL}/${this.$route.params.type}/${this.document.slug}`
-    const dynamicMeta = dynamicMetadata({
-      type: 'article',
-      title: this.document.title,
-      description: this.document.description,
-      url,
-      image: `${this.$config.baseURL}/images/home/ereaders.svg`,
-    })
     return {
       title,
+      description: this.document.description,
       meta: [
-        ...dynamicMeta,
-        {
-          hid: 'article:published_time',
-          property: 'article:published_time',
-          content: this.document.createdAt,
-        },
-        {
-          hid: 'article:author',
-          property: 'article:author',
-          content: this.$config.appName,
-        },
-        {
-          hid: 'article:section',
-          property: 'article:section',
-          content: this.$route.params.type,
-        },
+        ...dynamicMetadata({
+          title,
+          url: this.$nuxt.$route.path,
+          image: `${this.$config.baseURL}/images/home/ereaders.svg`,
+          articlePublishedTime: this.document.createdAt,
+          articleAuthor: this.$config.appName,
+          articleSection: this.$route.params.type,
+        }),
       ],
     }
   },

@@ -1,5 +1,6 @@
 <template>
-  <div class="main-content pt-8">
+  <div class="main-content">
+    <blocks-section-heading :title="`${title}`" :subtitle="description" />
     <div class="mt-10 sm:mt-0">
       <div class="md:grid md:grid-cols-3 md:gap-6">
         <div class="md:col-span-1">
@@ -58,6 +59,26 @@ export default {
       console.error(error)
       const user = {}
       return { user }
+    }
+  },
+  data() {
+    return {
+      title: 'Profile',
+      description: '',
+    }
+  },
+  head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    const title = this.title
+    return {
+      title,
+      description: this.description,
+      meta: [
+        ...dynamicMetadata({
+          title,
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
 }

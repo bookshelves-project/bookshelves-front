@@ -155,7 +155,6 @@ import qs from 'qs'
 import entityCard from '~/components/blocks/entity-card.vue'
 import Divider from '~/components/special/divider.vue'
 import favorites from '~/mixins/favorites'
-import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import { formatLanguage, getHostname } from '~/plugins/utils/methods'
 import LoadMore from '~/components/special/load-more.vue'
 import AppButton from '~/components/app/button.vue'
@@ -197,29 +196,20 @@ export default {
     }
   },
   head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
     const title = `${this.author.name}`
-    const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
-    const dynamicMeta = dynamicMetadata({
-      type: 'profile',
-      title,
-      description: `${this.author.name} author on ${this.$config.appName} with ${this.author.count} books available.`,
-      url,
-      image: this.author.cover.openGraph,
-    })
     return {
       title,
       meta: [
-        ...dynamicMeta,
-        {
-          hid: 'profile:first_name',
-          property: 'profile:first_name',
-          content: this.author.firstname,
-        },
-        {
-          hid: 'profile:last_name',
-          property: 'profile:last_name',
-          content: this.author.firstname,
-        },
+        ...dynamicMetadata({
+          title,
+          type: 'profile',
+          description: `${this.author.name} author on ${this.$config.appName} with ${this.author.count} books available.`,
+          image: this.author.cover.og,
+          url: this.$nuxt.$route.path,
+          profileFirstName: this.author.firstname,
+          profileLastName: this.author.firstname,
+        }),
       ],
     }
   },

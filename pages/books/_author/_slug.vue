@@ -4,19 +4,19 @@
       <div class="max-w-3xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <h1 class="sr-only">{{ book.title }}</h1>
         <div class="masonry-container">
-          <blocks-books-slug-header :book="book" class="masonry-block" />
-          <blocks-books-slug-main :book="book" class="masonry-block" />
-          <blocks-books-slug-comments
+          <blocks-book-header :book="book" class="masonry-block" />
+          <blocks-book-main :book="book" class="masonry-block" />
+          <blocks-book-comments
             v-if="$config.moduleSocial"
             :book="book"
             class="masonry-block"
           />
-          <blocks-books-slug-serie
+          <blocks-book-serie
             v-if="book.serie !== null"
             :book="book"
-            class="mb-6"
+            class="masonry-block"
           />
-          <blocks-books-slug-related :book="book" />
+          <blocks-book-related :book="book" class="masonry-block" />
         </div>
       </div>
     </div>
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import dynamicMetadata from '~/plugins/metadata/metadata-dynamic'
 import { formatLanguage, formatAuthors } from '~/plugins/utils/methods'
 
 export default {
@@ -44,44 +43,26 @@ export default {
     }
   },
   head() {
+    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
     const serie = this.book.serie
       ? ` · ${this.book.serie.title}, vol. ${this.book.volume} `
       : ''
     const title = `${this.book.title} ${serie}by ${this.authors}`
-    const url = `${this.$config.baseURL}/${this.$nuxt.$route.path}`
-    const dynamicMeta = dynamicMetadata({
-      type: 'book',
-      title,
-      description: this.book.summary,
-      url,
-      image: this.book.cover.og,
-    })
     return {
       title,
+      description: this.book.summary,
+      image: this.book.cover.og,
       meta: [
-        ...dynamicMeta,
-        {
-          hid: 'book:isbn',
-          property: 'book:isbn',
-          content: this.book.identifier
+        ...dynamicMetadata({
+          title,
+          url: this.$nuxt.$route.path,
+          bookISBN: this.book.identifier
             ? this.book.identifier.isbn13 || this.book.identifier.isbn
             : null,
-        },
-        {
-          hid: 'book:author',
-          property: 'books:author',
-          content: this.authors,
-        },
-        {
-          hid: 'book:release_date',
-          property: 'books:release_date',
-          content: this.book.publishDate,
-        },
-        {
-          hid: 'book:tag',
-          property: 'books:tag',
-          content: this.book.tags,
-        },
+          bookAuthor: this.authors,
+          bookReleaseDate: this.book.publishDate,
+          bookTag: this.book.tags,
+        }),
       ],
     }
   },

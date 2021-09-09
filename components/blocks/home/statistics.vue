@@ -131,8 +131,8 @@ export default {
       },
     }
   },
-  created() {
-    this.getStats()
+  async mounted() {
+    await this.getStats()
   },
   methods: {
     async getStats() {

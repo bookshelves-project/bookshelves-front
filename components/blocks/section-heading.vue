@@ -1,16 +1,11 @@
 <template>
   <div
-    class="
-      flex
-      items-center
-      justify-between
-      pb-6
-      mb-3
-      border-b
-      dark:border-gray-600
-      md:mb-10
+    class="flex items-center justify-between mb-3 border-b dark:border-gray-600"
+    :class="
+      border
+        ? 'border-gray-200 md:mb-10 pb-6'
+        : 'border-transparent md:mb-4 pb-2'
     "
-    :class="border ? 'border-gray-200' : 'border-transparent'"
   >
     <div class="sm:items-center sm:flex sm:justify-between">
       <div :class="{ 'flex items-center': image }">
