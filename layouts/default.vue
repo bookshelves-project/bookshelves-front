@@ -1,11 +1,11 @@
 <template>
   <div :class="dev ? 'debug-screens' : ''">
-    <routes-list />
+    <lazy-special-routes-list />
     <app-notification />
-    <overlay />
+    <special-overlay />
     <div class="mx-auto bg-white dark:bg-gray-900">
-      <layer />
-      <navbar
+      <layout-layer />
+      <layout-navbar
         class="
           transform
           -translate-x-1/2
@@ -30,35 +30,18 @@
           border-opacity-5
         "
       ></div>
-      <sidebar />
+      <layout-sidebar />
       <div style="padding-top: 4rem"></div>
-      <modal />
+      <special-modal />
       <Nuxt class="min-height-content" />
-      <app-footer />
+      <layout-footer />
     </div>
   </div>
 </template>
 
 <script>
-import AppFooter from '~/components/layout/app-footer.vue'
-import Layer from '~/components/layout/layer.vue'
-import Navbar from '~/components/layout/navbar.vue'
-import Sidebar from '~/components/layout/sidebar.vue'
-import Modal from '~/components/special/modal.vue'
-import Overlay from '~/components/special/overlay.vue'
-import RoutesList from '~/components/special/routes-list.vue'
-
 export default {
   name: 'LayoutDefault',
-  components: {
-    Navbar,
-    AppFooter,
-    Sidebar,
-    Layer,
-    Modal,
-    Overlay,
-    RoutesList,
-  },
   data() {
     return {
       dev: process.env.NODE_ENV !== 'production',

@@ -101,16 +101,8 @@
 </template>
 
 <script>
-// https://github.com/surmon-china/vue-awesome-swiper
-import 'swiper/css/swiper.min.css'
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-
 export default {
   name: 'BookSlider',
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
   props: {
     bookData: {
       type: Object,

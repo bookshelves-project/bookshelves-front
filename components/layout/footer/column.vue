@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'FooterColumn',
+  name: 'LayoutFooterColumn',
   props: {
     navigation: {
       type: Object,

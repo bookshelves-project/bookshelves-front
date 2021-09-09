@@ -1,8 +1,6 @@
 <template>
   <button
     class="
-      p-1
-      ml-1
       text-gray-400
       transition-colors
       duration-100

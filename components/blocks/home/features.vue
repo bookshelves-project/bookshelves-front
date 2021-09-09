@@ -104,7 +104,7 @@ export default {
           icon: 'feed',
           label: 'Features: OPDS & Catalog',
           condition: true,
-          text: 'Features offer you extra options: you can use OPDS feed or download eBooks from your eReader with Catalog. Webreader is available to read eBook directly in your browser.',
+          text: 'Features offer you extra options: you can use OPDS feed, download eBooks from your eReader with Catalog or read an eBook in your browser with Webreader.',
         },
       ],
     }

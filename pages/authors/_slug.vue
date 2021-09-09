@@ -16,38 +16,40 @@
               lg:w-16 lg:h-16 lg:mx-0
             "
           />
-          <div class="flex items-center">
-            <h1
-              class="
-                mt-2
-                ml-4
-                text-3xl
-                font-semibold
-                text-center
-                lg:mt-0
-                font-handlee
-                lg:text-left
-              "
-            >
-              {{ author.name }}
-            </h1>
-            <button
-              v-if="$auth.$state.loggedIn"
-              class="ml-3"
-              type="button"
-              aria-label="Favorite"
-              @click="toggleFavorite('author')"
-            >
-              <svg-icon
-                name="heart"
-                :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
-                class="w-5 h-5"
-              />
-            </button>
+          <div class="flex mt-6 lg:mt-0">
+            <div class="flex items-center mx-auto">
+              <h1
+                class="
+                  mt-2
+                  ml-4
+                  text-3xl
+                  font-semibold
+                  text-center
+                  lg:mt-0
+                  font-handlee
+                  lg:text-left
+                "
+              >
+                {{ author.name }}
+              </h1>
+              <button
+                v-if="$auth.$state.loggedIn"
+                class="ml-3"
+                type="button"
+                aria-label="Favorite"
+                @click="toggleFavorite('author')"
+              >
+                <svg-icon
+                  name="heart"
+                  :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
+                  class="w-5 h-5"
+                />
+              </button>
+            </div>
           </div>
         </div>
         <div class="flex mt-5 lg:mt-0">
-          <app-button :href="author.download" color="primary">
+          <app-button :href="author.download" color="primary" class="mx-auto">
             <div class="flex items-center">
               <svg-icon name="download" class="w-5 h-5" />
               <div class="flex items-center ml-1">
@@ -65,7 +67,7 @@
         v-if="author.description"
         class="max-w-full pt-2 mb-8 prose word-wraping dark:text-gray-100"
       >
-        <p class="italic">
+        <p class="italic line-clamp-6">
           {{ author.description }}
         </p>
         <div v-if="author.link" class="pt-1 text-right">

@@ -4,6 +4,8 @@ subtitle: ''
 description: 'On other ways.'
 ---
 
+*With Features, you can use some extra options like OPDS feed, Catalog to browse eBooks from your eReader or read an eBook in your web browser. If you are a developer, you will find Wiki for application usage, API documentation and more.*
+
 <markdown-api-link endpoint="/features" button>Access to Features</markdown-api-link>
 
 ## OPDS

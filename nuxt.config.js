@@ -31,7 +31,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/css/app.pcss', '~/assets/css/markdown'],
+  css: ['~/assets/css/app', '~/assets/css/markdown'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   loading: {
@@ -42,12 +42,16 @@ export default {
   plugins: [
     // helper methods: available in any component
     '~/plugins/utils/helpers',
+    // Global notifications
+    '~/plugins/notification',
     // https://github.com/ndelvalle/v-click-outside
     '~/plugins/v-click-outside',
     // https://github.com/eddiemf/vue-scrollactive
     '~/plugins/vue-scrollactive',
     // https://github.com/ymmooot/nuxt-jsonld
     '~/plugins/jsonld',
+    // https://github.com/surmon-china/vue-awesome-swiper
+    '~/plugins/vue-awesome-swiper.client.js',
   ],
 
   // GitHub: https://github.com/nuxt/components

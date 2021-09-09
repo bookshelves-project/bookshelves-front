@@ -5,10 +5,6 @@
         <lazy-blocks-home-hero class="pt-5" />
         <lazy-blocks-home-statistics />
         <lazy-blocks-home-cloud-logos />
-      </div>
-    </lazy-hydrate>
-    <lazy-hydrate when-visible>
-      <div>
         <lazy-blocks-selected-entities class="mt-8 lg:mt-16">
           <template #ontitle> Want to read a good book? </template>
           <template #title> Selection of books & series </template>

@@ -16,32 +16,34 @@
               lg:w-16 lg:h-16 lg:mx-0
             "
           />
-          <div class="ml-4">
-            <div class="flex items-center">
-              <h1
-                class="
-                  text-3xl
-                  font-semibold
-                  text-center
-                  font-handlee
-                  lg:text-left
-                "
-              >
-                {{ serie.title }}
-              </h1>
-              <button
-                v-if="$auth.$state.loggedIn"
-                class="ml-3"
-                type="button"
-                aria-label="Favorite"
-                @click="toggleFavorite('serie')"
-              >
-                <svg-icon
-                  name="heart"
-                  :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
-                  class="w-5 h-5"
-                />
-              </button>
+          <div class="ml-4 mt-6 lg:mt-0">
+            <div class="flex">
+              <div class="flex items-center mx-auto">
+                <h1
+                  class="
+                    text-3xl
+                    font-semibold
+                    text-center
+                    font-handlee
+                    lg:text-left
+                  "
+                >
+                  {{ serie.title }}
+                </h1>
+                <button
+                  v-if="$auth.$state.loggedIn"
+                  class="ml-3"
+                  type="button"
+                  aria-label="Favorite"
+                  @click="toggleFavorite('serie')"
+                >
+                  <svg-icon
+                    name="heart"
+                    :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
+                    class="w-5 h-5"
+                  />
+                </button>
+              </div>
             </div>
             <div class="mt-2 text-center lg:text-left lg:mt-0">
               <span
@@ -76,7 +78,7 @@
         </div>
         <div class="block mt-5 lg:block lg:mt-0">
           <div class="flex">
-            <app-button :href="serie.download" color="primary">
+            <app-button :href="serie.download" color="primary" class="mx-auto">
               <div class="flex items-center">
                 <svg-icon name="download" class="w-5 h-5" />
                 <div class="flex items-center ml-1">
@@ -136,7 +138,7 @@
         v-if="serie.description"
         class="max-w-full pt-2 mb-8 prose word-wraping dark:text-gray-100"
       >
-        <p class="italic">
+        <p class="italic line-clamp-6">
           {{ serie.description }}
         </p>
         <div v-if="serie.link" class="pt-1 text-right">

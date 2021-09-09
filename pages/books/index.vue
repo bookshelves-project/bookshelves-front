@@ -1,12 +1,12 @@
 <template>
   <main class="main-content relative">
-    <section-heading :title="title" :subtitle="description">
-      <entities-filter @filter="filter" />
-    </section-heading>
+    <blocks-section-heading :title="title" :subtitle="description">
+      <blocks-entities-filter @filter="filter" />
+    </blocks-section-heading>
     <section v-if="!apiError">
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
-          <entity-card
+          <blocks-entity-card
             v-for="book in books.data"
             :key="book.id"
             :cover="book.cover.thumbnail"
@@ -42,43 +42,30 @@
                 {{ formatLanguage(book.language) }}
               </span>
             </template>
-          </entity-card>
+          </blocks-entity-card>
         </div>
       </div>
       <div class="mt-14 mb-5">
-        <pagination
+        <special-pagination
           v-if="pages > 1"
           :link-gen="linkGen"
           :pages="pages"
           :current-page="currentPage"
         >
-        </pagination>
+        </special-pagination>
       </div>
     </section>
-    <api-error-message v-else />
+    <special-api-error-message v-else />
   </main>
 </template>
 
 <script>
 import qs from 'qs'
 
-import EntityCard from '~/components/blocks/entity-card.vue'
-import SectionHeading from '~/components/blocks/section-heading.vue'
-import ApiErrorMessage from '~/components/special/api-error-message.vue'
-import EntitiesFilter from '~/components/blocks/entities-filter.vue'
-
 import { formatLanguage, objectIsEmpty } from '~/plugins/utils/methods'
-import Pagination from '~/components/special/pagination.vue'
 
 export default {
   name: 'Books',
-  components: {
-    EntityCard,
-    SectionHeading,
-    ApiErrorMessage,
-    EntitiesFilter,
-    Pagination,
-  },
   auth: 'auth',
   layout: 'auth',
   async asyncData({ app, query }) {

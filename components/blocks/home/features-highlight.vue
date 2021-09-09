@@ -63,8 +63,8 @@ export default {
           },
         },
         {
-          title: 'Features, read eBook on your way',
-          icon: 'catalog',
+          title: 'Features, read as you wish',
+          icon: 'features',
           position: 'right',
           blockquote: {
             text: 'I am only interested in OPDS feeds adapted to my eReader with Koreader OS.',
