@@ -38,50 +38,68 @@ function getMeta(meta) {
   ]
 }
 function getOpenGraph(meta) {
+  const metaObject = meta || {}
   return [
     {
       hid: 'og:type',
       property: 'og:type',
-      content: (meta && meta.type) || metadata.og.type,
+      content: (metaObject && metaObject.type) || metadata.og.type,
     },
     {
       hid: 'og:url',
       property: 'og:url',
-      content: (meta && `${baseUrl}${meta.url}`) || url,
+      content: (metaObject && `${baseUrl}${metaObject.url}`) || url,
     },
     {
       hid: 'og:title',
       property: 'og:title',
-      content: (meta && meta.title) || metadata.tags.title,
+      content: (metaObject && metaObject.title) || metadata.tags.title,
     },
     {
       hid: 'og:description',
       property: 'og:description',
-      content: (meta && meta.description) || metadata.tags.description,
+      content:
+        (metaObject && metaObject.description) || metadata.tags.description,
     },
     {
       hid: 'og:image',
       property: 'og:image',
-      content: (meta && meta.image) || image,
+      content: (metaObject && metaObject.image) || image,
     },
     {
       hid: 'og:image:alt',
       property: 'og:image:alt',
-      content: (meta && meta.title) || metadata.tags.title,
+      content: (metaObject && metaObject.title) || metadata.tags.title,
     },
     additionalOpenGraph(
-      meta,
-      meta.articlePublishedTime,
+      metaObject,
+      metaObject.articlePublishedTime,
       'article:published_time'
     ),
-    additionalOpenGraph(meta, meta.articleAuthor, 'article:author'),
-    additionalOpenGraph(meta, meta.articleSection, 'article:section'),
-    additionalOpenGraph(meta, meta.bookISBN, 'book:isbn'),
-    additionalOpenGraph(meta, meta.bookAuthor, 'book:author'),
-    additionalOpenGraph(meta, meta.bookReleaseDate, 'book:release_date'),
-    additionalOpenGraph(meta, meta.bookTag, 'books:tag'),
-    additionalOpenGraph(meta, meta.profileFirstName, 'profile:first_name'),
-    additionalOpenGraph(meta, meta.profileLastName, 'profile:last_name'),
+    additionalOpenGraph(metaObject, metaObject.articleAuthor, 'article:author'),
+    additionalOpenGraph(
+      metaObject,
+      metaObject.articleSection,
+      'article:section'
+    ),
+    additionalOpenGraph(metaObject, metaObject.bookISBN, 'book:isbn'),
+    additionalOpenGraph(metaObject, metaObject.bookAuthor, 'book:author'),
+    additionalOpenGraph(
+      metaObject,
+      metaObject.bookReleaseDate,
+      'book:release_date'
+    ),
+    additionalOpenGraph(metaObject, metaObject.bookTag, 'books:tag'),
+    additionalOpenGraph(
+      metaObject,
+      metaObject.profileFirstName,
+      'profile:first_name'
+    ),
+    additionalOpenGraph(
+      metaObject,
+      metaObject.profileLastName,
+      'profile:last_name'
+    ),
   ]
 }
 
