@@ -161,8 +161,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-
 export default {
   name: 'LoginForm',
   data() {
@@ -183,12 +181,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
-      setIsVisible: 'notification/setIsVisible',
-      setTitle: 'notification/setTitle',
-      setText: 'notification/setText',
-      setType: 'notification/setType',
-    }),
     fillForm() {
       for (const [key] of Object.entries(this.form)) {
         this.form[key] = this.formTesting[key]
@@ -220,8 +212,9 @@ export default {
           .catch((error) => {
             console.error(error)
 
-            let title = ''
-            let text = ''
+            let title = 'Something unexpected happened'
+            let text =
+              "Seems you can't sign-in currently, we work on it, please try later"
             try {
               switch (error.response.status) {
                 case 422:
@@ -230,18 +223,17 @@ export default {
                   break
 
                 default:
-                  title = 'Something unexpected happened'
-                  text =
-                    "Seems you can't sign-in currently, we work on it, please try later"
                   break
               }
             } catch (error) {
               console.error(error)
             }
-            this.setIsVisible(true)
-            this.setTitle(title)
-            this.setText(text)
-            this.setType('error')
+            this.$nuxt.$emit('notification', {
+              title,
+              text,
+              type: 'error',
+            })
+
             this.isLoading = false
           })
       } catch (error) {

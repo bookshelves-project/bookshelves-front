@@ -107,7 +107,7 @@ export default {
   },
   computed: {
     desc() {
-      return metadata.tags.description
+      return metadata.website.description
     },
   },
 }

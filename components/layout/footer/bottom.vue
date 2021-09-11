@@ -73,7 +73,7 @@ export default {
   name: 'LayoutFooterBottom',
   data() {
     return {
-      team: process.env.AUTHOR || metadata.tags.author,
+      team: process.env.AUTHOR || metadata.website.author,
       packageJson,
       licenses: [
         {

@@ -168,7 +168,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 import { randomString } from '~/plugins/utils/methods'
 
 export default {
@@ -180,12 +179,7 @@ export default {
         email: '',
         password: '',
         password_confirmation: '',
-      },
-      formTesting: {
-        name: randomString(6),
-        email: `${randomString(6)}@mail.com`,
-        password: randomString(10),
-        password_confirmation: randomString(10),
+        terms: true,
       },
       isDev: process.env.NODE_ENV !== 'production',
       errors: {},
@@ -193,12 +187,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
-      setIsVisible: 'notification/setIsVisible',
-      setTitle: 'notification/setTitle',
-      setText: 'notification/setText',
-      setType: 'notification/setType',
-    }),
     fillForm() {
       const name = randomString(6).toLowerCase()
       const email = `${name}@mail.com`
@@ -208,26 +196,35 @@ export default {
         email,
         password,
         password_confirmation: password,
+        terms: true,
       }
     },
     async submit() {
       const name = this.form.email.split('@')
       this.form.name = name[0]
       this.isLoading = true
+
       try {
+        console.log(this.form)
         await this.$axios.$post('/register', this.form)
-        this.$auth.loginWith(this.$auth.options.defaultStrategy, {
-          data: this.form,
-        })
+        this.$auth
+          .loginWith(this.$auth.options.defaultStrategy, {
+            data: this.form,
+          })
+          .catch((error) => {
+            console.error(error)
+          })
       } catch (error) {
         console.error(error)
-        this.setIsVisible(true)
-        this.setTitle('Something unexpected happened')
-        this.setText(
+        const text =
+          Object.values(error.response.data.errors)[0][0] ||
           "Seems you can't sign-up currently, we work on it, please try later"
-        )
-        this.setType('error')
-        // this.errors = error.response.data.errors
+        this.$nuxt.$emit('notification', {
+          title: 'Something unexpected happened',
+          text,
+          type: 'error',
+        })
+        // error.response.status
         this.isLoading = false
       }
     },

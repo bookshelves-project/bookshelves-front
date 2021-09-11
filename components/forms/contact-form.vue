@@ -190,8 +190,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-
 export default {
   name: 'ContactForm',
   data() {
@@ -222,12 +220,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
-      setIsVisible: 'notification/setIsVisible',
-      setTitle: 'notification/setTitle',
-      setText: 'notification/setText',
-      setType: 'notification/setType',
-    }),
     fillForm() {
       for (const [key] of Object.entries(this.form)) {
         this.form[key] = this.formTesting[key]
@@ -250,19 +242,19 @@ export default {
           honeypot: false,
         }
 
-        this.setIsVisible(true)
-        this.setTitle('Message sended!')
-        this.setText('Thanks you for your message.')
-        this.setType('success')
+        this.$nuxt.$emit('notification', {
+          title: 'Message sended!',
+          text: 'Thanks you for your message.',
+          type: 'success',
+        })
       } catch (e) {
         console.error(e)
         this.errors = true
-        this.setIsVisible(true)
-        this.setTitle('Error!')
-        this.setText(
-          "We are sorry but your message can't be send, try in some time."
-        )
-        this.setType('error')
+        this.$nuxt.$emit('notification', {
+          title: 'Error!',
+          text: "We are sorry but your message can't be send, try in some time.",
+          type: 'error',
+        })
       }
       this.loading = false
     },

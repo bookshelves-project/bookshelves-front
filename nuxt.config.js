@@ -16,18 +16,32 @@ export default {
   target: process.env.TARGET || 'server',
   // For static generation: https://nuxtjs.org/blog/going-full-static#new-config-option-target
   // https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-generate
-  generate: {
-    crawler: true,
-  },
+  // generate: {
+  //   crawler: true,
+  // },
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: metadata.tags.title,
-    titleTemplate: metadata.tags.titleTemplate,
+    title: metadata.website.title,
+    titleTemplate: metadata.website.titleTemplate,
     htmlAttrs: {
       lang: metadata.settings.locale,
     },
     meta: [...metadataStatic(), ...metadataDynamic()],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      {
+        rel: 'apple-touch-icon',
+        type: 'image/png',
+        href: '/apple-touch-icon.png',
+      },
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'manifest',
+        crossorigin: 'use-credentials',
+        href: '/manifest.webmanifest',
+      },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -43,7 +57,7 @@ export default {
     // helper methods: available in any component
     '~/plugins/utils/helpers',
     // Global notifications
-    '~/plugins/notification',
+    '~/plugins/bus.client.js',
     // https://github.com/ndelvalle/v-click-outside
     '~/plugins/v-click-outside',
     // https://github.com/eddiemf/vue-scrollactive
@@ -162,23 +176,23 @@ export default {
   },
   pwa: {
     meta: {
-      name: metadata.tags.title,
-      author: process.env.META_AUTHOR || metadata.tags.author,
-      description: metadata.tags.description,
+      name: metadata.website.title,
+      author: process.env.META_AUTHOR || metadata.website.author,
+      description: metadata.website.description,
       theme_color: metadata.settings.color,
       lang: metadata.settings.lang,
       ogSiteName: metadata.og.siteName,
-      ogTitle: metadata.tags.title,
-      ogDescription: metadata.tags.description,
+      ogTitle: metadata.website.title,
+      ogDescription: metadata.website.description,
       ogImage: `${process.env.BASE_URL}/default.jpg`,
       ogUrl: process.env.BASE_URL,
       twitterSite: metadata.twitter.site,
       twitterCreator: metadata.twitter.creator,
     },
     manifest: {
-      name: metadata.tags.title,
+      name: metadata.website.title,
       short_name: metadata.og.siteName,
-      description: metadata.tags.description,
+      description: metadata.website.description,
       display: 'browser',
       lang: metadata.settings.lang,
     },
