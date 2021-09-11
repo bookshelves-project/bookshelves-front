@@ -14,7 +14,7 @@ module.exports = {
     lang: 'en',
     googleToken: process.env.GOOGLE_SITE_VERIFICATION_TOKEN || null,
   },
-  tags: {
+  website: {
     title: process.env.META_TITLE || 'Bookshelves',
     titleTemplate: `%s · ${app}`,
     description:

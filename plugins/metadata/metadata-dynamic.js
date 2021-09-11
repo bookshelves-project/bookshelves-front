@@ -1,9 +1,9 @@
-const metadata = require('./metadata.js')
+const metaGlobal = require('./metadata.js')
 
 // Settings
 const baseUrl = `${process.env.BASE_URL}`
-const url = `${baseUrl}/`
-const image = `${process.env.BASE_URL}/default.jpg`
+const homeUrl = `${baseUrl}/`
+const homeImage = `${process.env.BASE_URL}/default.jpg`
 
 module.exports = (meta) => {
   return [
@@ -23,8 +23,10 @@ module.exports = (meta) => {
 }
 
 function getMeta(meta) {
-  let metaDesc = 'meta'
-  metaDesc = (meta && meta.description) || metadata.tags.description
+  const metaLocal = meta || {}
+  let metaDesc = metaLocal.description
+    ? metaLocal.description
+    : metaGlobal.website.description
   const limit = 155
   if (metaDesc.length > limit) {
     metaDesc = metaDesc.substring(0, limit - 3) + '...'
@@ -38,93 +40,96 @@ function getMeta(meta) {
   ]
 }
 function getOpenGraph(meta) {
-  const metaObject = meta || {}
+  const metaLocal = meta || {}
   return [
     {
       hid: 'og:type',
       property: 'og:type',
-      content: (metaObject && metaObject.type) || metadata.og.type,
+      content: metaLocal.type ? metaLocal.type : metaGlobal.og.type,
     },
     {
       hid: 'og:url',
       property: 'og:url',
-      content: (metaObject && `${baseUrl}${metaObject.url}`) || url,
+      content: metaLocal.url ? `${baseUrl}${metaLocal.url}` : homeUrl,
     },
     {
       hid: 'og:title',
       property: 'og:title',
-      content: (metaObject && metaObject.title) || metadata.tags.title,
+      content: metaLocal.title ? metaLocal.title : metaGlobal.website.title,
     },
     {
       hid: 'og:description',
       property: 'og:description',
-      content:
-        (metaObject && metaObject.description) || metadata.tags.description,
+      content: metaLocal.description
+        ? metaLocal.description
+        : metaGlobal.website.description,
     },
     {
       hid: 'og:image',
       property: 'og:image',
-      content: (metaObject && metaObject.image) || image,
+      content: metaLocal.image ? metaLocal.image : homeImage,
     },
     {
       hid: 'og:image:alt',
       property: 'og:image:alt',
-      content: (metaObject && metaObject.title) || metadata.tags.title,
+      content: metaLocal.title ? metaLocal.title : metaGlobal.website.title,
     },
     additionalOpenGraph(
-      metaObject,
-      metaObject.articlePublishedTime,
+      metaLocal.articlePublishedTime,
       'article:published_time'
     ),
-    additionalOpenGraph(metaObject, metaObject.articleAuthor, 'article:author'),
-    additionalOpenGraph(
-      metaObject,
-      metaObject.articleSection,
-      'article:section'
-    ),
-    additionalOpenGraph(metaObject, metaObject.bookISBN, 'book:isbn'),
-    additionalOpenGraph(metaObject, metaObject.bookAuthor, 'book:author'),
-    additionalOpenGraph(
-      metaObject,
-      metaObject.bookReleaseDate,
-      'book:release_date'
-    ),
-    additionalOpenGraph(metaObject, metaObject.bookTag, 'books:tag'),
-    additionalOpenGraph(
-      metaObject,
-      metaObject.profileFirstName,
-      'profile:first_name'
-    ),
-    additionalOpenGraph(
-      metaObject,
-      metaObject.profileLastName,
-      'profile:last_name'
-    ),
+    // additionalOpenGraph(metaLocal, metaLocal.articleAuthor, 'article:author'),
+    // additionalOpenGraph(
+    //   metaLocal,
+    //   metaLocal.articleSection,
+    //   'article:section'
+    // ),
+    // additionalOpenGraph(metaLocal, metaLocal.bookISBN, 'book:isbn'),
+    // additionalOpenGraph(metaLocal, metaLocal.bookAuthor, 'book:author'),
+    // additionalOpenGraph(
+    //   metaLocal,
+    //   metaLocal.bookReleaseDate,
+    //   'book:release_date'
+    // ),
+    // additionalOpenGraph(metaLocal, metaLocal.bookTag, 'books:tag'),
+    // additionalOpenGraph(
+    //   metaLocal,
+    //   metaLocal.profileFirstName,
+    //   'profile:first_name'
+    // ),
+    // additionalOpenGraph(
+    //   metaLocal,
+    //   metaLocal.profileLastName,
+    //   'profile:last_name'
+    // ),
   ]
 }
 
 function getTwitterCard(meta) {
+  const metaLocal = meta || {}
   return [
     {
       hid: 'twitter:title',
       name: 'twitter:title',
-      content: (meta && meta.title) || metadata.tags.title,
+      content: metaLocal.title ? metaLocal.title : metaGlobal.website.title,
     },
     {
       hid: 'twitter:description',
       name: 'twitter:description',
-      content: (meta && meta.description) || metadata.tags.description,
+      content: metaLocal.description
+        ? metaLocal.description
+        : metaGlobal.website.description,
     },
     {
       hid: 'twitter:image',
       name: 'twitter:image',
-      content: (meta && meta.image) || image,
+      content: metaLocal.image ? metaLocal.image : homeImage,
     },
   ]
 }
 
-function additionalOpenGraph(meta, customMeta, hid) {
-  return meta && customMeta
+function additionalOpenGraph(customMeta, hid) {
+  return customMeta
     ? {
         hid,
         property: hid,

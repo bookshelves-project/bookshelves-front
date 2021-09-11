@@ -13,7 +13,7 @@ export default () => {
     //
     // Open Graph
     //
-    ...getog(),
+    ...getOpenGraph(),
     //
     // Twitter card
     //
@@ -45,42 +45,42 @@ function getMeta() {
     {
       hid: 'author',
       name: 'author',
-      content: metadata.tags.author,
+      content: metadata.website.author,
     },
     {
       hid: 'language',
       name: 'language',
-      content: metadata.tags.language,
+      content: metadata.website.language,
     },
     {
       hid: 'designer',
       name: 'designer',
-      content: metadata.tags.designer,
+      content: metadata.website.designer,
     },
     {
       hid: 'publisher',
       name: 'publisher',
-      content: metadata.tags.publisher,
+      content: metadata.website.publisher,
     },
     {
       hid: 'copyright',
       name: 'copyright',
-      content: metadata.tags.copyright,
+      content: metadata.website.copyright,
     },
     {
       hid: 'rating',
       name: 'rating',
-      content: metadata.tags.rating,
+      content: metadata.website.rating,
     },
     {
       hid: 'keywords',
       name: 'keywords',
-      content: metadata.tags.keywords.join(','),
+      content: metadata.website.keywords.join(','),
     },
   ]
 }
 
-function getog() {
+function getOpenGraph() {
   return [
     {
       hid: 'og:site_name',
@@ -102,15 +102,19 @@ function getTwitterCard() {
       name: 'twitter:card',
       content: 'summary_large_image',
     },
-    {
-      hid: 'twitter:url',
-      name: 'twitter:url',
-      content: metadata.twitter.url,
-    },
-    {
-      hid: 'twitter:creator',
-      name: 'twitter:creator',
-      content: metadata.twitter.creator,
-    },
+    metadata.twitter.url
+      ? {
+          hid: 'twitter:url',
+          name: 'twitter:url',
+          content: metadata.twitter.url,
+        }
+      : '',
+    metadata.twitter.creator
+      ? {
+          hid: 'twitter:creator',
+          name: 'twitter:creator',
+          content: metadata.twitter.creator,
+        }
+      : '',
   ]
 }
