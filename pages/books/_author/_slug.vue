@@ -1,24 +1,47 @@
 <template>
   <main class="main-content">
-    <div class="pb-8">
-      <div class="max-w-3xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
-        <h1 class="sr-only">{{ book.title }}</h1>
-        <div class="masonry-container">
-          <blocks-book-header :book="book" class="masonry-block" />
-          <blocks-book-main :book="book" class="masonry-block" />
-          <blocks-book-comments
-            v-if="$config.moduleSocial"
-            :book="book"
-            class="masonry-block"
+    <blocks-section-heading
+      :title="book.title"
+      :image="book.cover ? book.cover.thumbnail : null"
+      :image-original="book.cover ? book.cover.original : null"
+      :subtitle="subtitle"
+      :authors="book.authors"
+      :text="book.description"
+    >
+      <div>
+        <div>
+          <blocks-button-download
+            :href="book.epub ? book.epub.download : null"
+            :size="book.epub ? book.epub.size : null"
+            :type="`EPUB`"
           />
-          <blocks-book-serie
-            v-if="book.serie !== null"
-            :book="book"
-            class="masonry-block"
-          />
-          <blocks-book-related :book="book" class="masonry-block" />
+        </div>
+        <div v-if="book.webreader" class="mt-2">
+          <app-button :href="book.webreader" class="w-full" external>
+            <div class="flex items-center justify-between">
+              <svg-icon name="eye" class="w-5 h-5" />
+              <span class="ml-2">Webreader</span>
+            </div>
+          </app-button>
         </div>
       </div>
+      <template #text>
+        <div v-html="book.description"></div>
+      </template>
+    </blocks-section-heading>
+    <div class="masonry-container">
+      <blocks-book-main :book="book" class="masonry-block" />
+      <blocks-book-serie
+        v-if="book.serie !== null"
+        :book="book"
+        class="masonry-block"
+      />
+      <blocks-book-related :book="book" class="masonry-block" />
+      <blocks-book-comments
+        v-if="$config.moduleSocial"
+        :book="book"
+        class="masonry-block"
+      />
     </div>
   </main>
 </template>
@@ -119,6 +142,13 @@ export default {
     }
   },
   computed: {
+    subtitle() {
+      const lang = formatLanguage(this.book.language)
+      const serie = this.book.serie
+        ? `${this.book.serie.title}, vol. ${this.book.volume}, `
+        : null
+      return `${serie}into ${lang}`
+    },
     authors() {
       return formatAuthors(this.book.authors)
     },

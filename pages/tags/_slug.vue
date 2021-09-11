@@ -1,8 +1,8 @@
 <template>
   <div class="main-content">
     <section-heading
-      :title="`${title}${tag.name}`"
-      :subtitle="description"
+      :title="`${title} ${tag.name}`"
+      :subtitle="`${description} ${tag.name}`"
       :border="false"
     />
     <div>
@@ -43,7 +43,8 @@ export default {
   },
   data() {
     return {
-      description: 'Tag:',
+      title: 'Tag',
+      description: 'Books and series with tag',
     }
   },
   head() {

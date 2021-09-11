@@ -92,8 +92,10 @@
         >
           No results.
         </div>
-        <div class="mt-6">
-          <slot name="link" />
+        <div v-if="link" class="mt-6">
+          <app-button :to="link" class="w-full" color="white" align="center">
+            View series page
+          </app-button>
         </div>
       </div>
     </div>
@@ -115,6 +117,10 @@ export default {
     books: {
       type: Array,
       default: () => [],
+    },
+    link: {
+      type: String,
+      default: '',
     },
   },
   data() {

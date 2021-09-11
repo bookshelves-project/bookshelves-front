@@ -1,23 +1,18 @@
 <template>
-  <blocks-book-slider :books="books" :loaded="loaded">
+  <blocks-book-slider
+    :books="books"
+    :loaded="loaded"
+    :link="{
+      name: 'series-author-slug',
+      params: {
+        author: book.serie.meta.author,
+        slug: book.serie.meta.slug,
+      },
+    }"
+  >
     <template #title> {{ book.serie.title }}'s series </template>
     <template #subtitle>
       Current: vol. {{ book.volume }}, limited to 10 next volumes.
-    </template>
-    <template #link>
-      <app-button
-        :to="{
-          name: 'series-author-slug',
-          params: {
-            author: book.serie.meta.author,
-            slug: book.serie.meta.slug,
-          },
-        }"
-        class="w-full"
-        color="white"
-      >
-        View series page
-      </app-button>
     </template>
   </blocks-book-slider>
 </template>

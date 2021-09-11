@@ -1,10 +1,10 @@
 <template>
   <div :class="dev ? 'debug-screens' : ''">
     <lazy-special-routes-list />
-    <app-notification />
-    <special-overlay />
+    <lazy-app-notifications />
+    <lazy-special-overlay />
     <div class="mx-auto bg-white dark:bg-gray-900">
-      <layout-layer />
+      <lazy-layout-layer />
       <layout-navbar
         class="
           transform
@@ -30,11 +30,11 @@
           border-opacity-5
         "
       ></div>
-      <layout-sidebar />
+      <lazy-layout-sidebar />
       <div style="padding-top: 4rem"></div>
-      <special-modal />
+      <lazy-special-modal />
       <Nuxt class="min-height-content" />
-      <layout-footer />
+      <lazy-layout-footer />
     </div>
   </div>
 </template>

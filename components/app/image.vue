@@ -40,7 +40,7 @@
     <img
       v-if="!imageNotExist"
       v-lazy-load
-      :class="[loading ? '' : '', picture]"
+      :class="[loading ? '' : '', picture, classImg]"
       :data-src="src"
       :alt="imgAlt"
       :title="title"
@@ -74,6 +74,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    classImg: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
@@ -81,17 +85,17 @@ export default {
       imageNotExist: false,
     }
   },
-  watch: {
-    src(newValue, oldValue) {
-      this.loading = true
-    },
-  },
   computed: {
     imgAlt() {
       if (!this.loading) {
         return this.imageNotExist ? '' : this.noAlt ? '' : this.title
       }
       return ''
+    },
+  },
+  watch: {
+    src(newValue, oldValue) {
+      this.loading = true
     },
   },
   created() {

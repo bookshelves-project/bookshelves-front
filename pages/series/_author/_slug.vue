@@ -1,163 +1,56 @@
 <template>
   <main class="main-content">
-    <div>
-      <div class="items-center justify-between mb-8 lg:flex">
-        <div class="items-center lg:flex">
-          <img
-            :src="serie.cover.thumbnail"
-            :alt="serie.title"
-            loading="lazy"
-            class="
-              object-cover object-center
-              w-32
-              h-32
-              mx-auto
-              rounded-md
-              lg:w-16 lg:h-16 lg:mx-0
-            "
-          />
-          <div class="ml-4 mt-6 lg:mt-0">
-            <div class="flex">
-              <div class="flex items-center mx-auto">
-                <h1
-                  class="
-                    text-3xl
-                    font-semibold
-                    text-center
-                    font-handlee
-                    lg:text-left
-                  "
-                >
-                  {{ serie.title }}
-                </h1>
-                <button
-                  v-if="$auth.$state.loggedIn"
-                  class="ml-3"
-                  type="button"
-                  aria-label="Favorite"
-                  @click="toggleFavorite('serie')"
-                >
-                  <svg-icon
-                    name="heart"
-                    :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
-                    class="w-5 h-5"
-                  />
-                </button>
-              </div>
-            </div>
-            <div class="mt-2 text-center lg:text-left lg:mt-0">
-              <span
-                v-for="(author, authorId) in serie.authors"
-                :key="authorId"
-                class="mr-1"
-              >
-                <nuxt-link
-                  :to="{
-                    name: 'authors-slug',
-                    params: { slug: author.meta.slug },
-                  }"
-                  class="
-                    text-gray-900
-                    border-b border-gray-600
-                    dark:border-gray-100
-                    hover:text-gray-500 hover:border-gray-500
-                  "
-                  >{{ author.name }}</nuxt-link
-                >
-                <span
-                  v-if="
-                    serie.authors.length > 1 &&
-                    authorId !== serie.authors.length - 1
-                  "
-                  class="text-gray-900 dark:text-gray-100"
-                  >&</span
-                >
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="block mt-5 lg:block lg:mt-0">
-          <div class="flex">
-            <app-button :href="serie.download" color="primary" class="mx-auto">
-              <div class="flex items-center">
-                <svg-icon name="download" class="w-5 h-5" />
-                <div class="flex items-center ml-1">
-                  <div class="mx-1">Download</div>
-                  <div class="hidden lg:mr-1 lg:block">
-                    {{ serie.title }}
-                  </div>
-                  <div>(ZIP {{ serie.size }})</div>
-                </div>
-              </div>
-            </app-button>
-          </div>
-          <div class="flex mx-auto lg:ml-auto lg:mr-0 w-max">
-            <div
-              v-if="serie.language"
-              class="
-                flex
-                mt-2
-                w-max
-                lg:ml-auto lg:mx-0
-                md:items-center
-                lg:flex
-                md:justify-end md:mx-0
-              "
-            >
-              <span class="font-semibold text-gray-900 dark:text-gray-100"
-                >Language :
-              </span>
-              <img
-                :src="formatLanguage(serie.language, 'flag')"
-                :alt="serie.language"
-                loading="lazy"
-                class="ml-2"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div v-if="serie.tags.length" class="flex">
-        <h2 class="mr-1">Tags:</h2>
-        <ul>
-          <li
-            v-for="(tag, id) in serie.tags"
-            :key="id"
-            class="inline-block dark:text-gray-100"
-          >
-            <span>{{ tag.name }}</span
-            ><span
-              v-if="serie.tags.length > 1 && id !== serie.tags.length - 1"
-              class="mr-1 text-gray-900 dark:text-gray-100"
-              >,</span
-            >
-          </li>
-        </ul>
-      </div>
-      <div
-        v-if="serie.description"
-        class="max-w-full pt-2 mb-8 prose word-wraping dark:text-gray-100"
+    <blocks-section-heading
+      :title="serie.title"
+      :image="serie.cover ? serie.cover.thumbnail : null"
+      :subtitle="`${serie.count} eBooks`"
+      :authors="serie.authors"
+      :cta="serie.link"
+      :text="serie.description"
+      :border="false"
+    >
+      <blocks-button-download
+        :href="serie.download"
+        :size="serie.size"
+        :type="`ZIP`"
       >
-        <p class="italic line-clamp-6">
-          {{ serie.description }}
-        </p>
-        <div v-if="serie.link" class="pt-1 text-right">
-          To have more informations:
-          <a :href="serie.link" target="_blank" rel="noopener noreferrer">{{
-            getHostname(serie.link)
-          }}</a>
+        {{ serie.count }} eBooks
+      </blocks-button-download>
+      <template #content>
+        <div v-if="serie.tags && serie.tags.length" class="flex">
+          <h2 class="mr-1">Tags:</h2>
+          <ul>
+            <li
+              v-for="(tag, id) in serie.tags"
+              :key="id"
+              class="inline-block dark:text-gray-100"
+            >
+              <span>{{ tag.name }}</span
+              ><span
+                v-if="serie.tags.length > 1 && id !== serie.tags.length - 1"
+                class="mr-1 text-gray-900 dark:text-gray-100"
+                >,</span
+              >
+            </li>
+          </ul>
         </div>
-      </div>
-      <div v-if="books" class="relative mt-5 mb-10">
-        <div class="absolute inset-0 flex items-center" aria-hidden="true">
-          <div class="w-full border-t border-gray-300"></div>
-        </div>
-        <div class="relative flex justify-center">
-          <span class="px-2 text-gray-500 bg-white dark:bg-gray-900">
-            Books
-          </span>
-        </div>
-      </div>
+      </template>
+    </blocks-section-heading>
+    <div>
+      <button
+        v-if="$auth.$state.loggedIn"
+        class="ml-3"
+        type="button"
+        aria-label="Favorite"
+        @click="toggleFavorite('serie')"
+      >
+        <svg-icon
+          name="heart"
+          :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
+          class="w-5 h-5"
+        />
+      </button>
+      <blocks-divider v-if="books">Books</blocks-divider>
       <div v-if="books" class="space-y-6 display-grid sm:space-y-0">
         <entity-card
           v-for="book in books"

@@ -4,27 +4,19 @@
     :book-data="book"
     :books="books"
     :loaded="loaded"
+    :link="{
+      name: 'related-author-slug',
+      params: {
+        author: book.meta.author,
+        slug: book.meta.slug,
+      },
+    }"
   >
     <template #title> Related books & series </template>
     <template #subtitle>
       Based on tags & genre, not in same series. Limited to 10 first
       results.</template
     >
-    <template #link>
-      <app-button
-        :to="{
-          name: 'related-author-slug',
-          params: {
-            author: book.meta.author,
-            slug: book.meta.slug,
-          },
-        }"
-        class="w-full"
-        color="white"
-      >
-        View all results
-      </app-button>
-    </template>
   </blocks-book-slider>
 </template>
 

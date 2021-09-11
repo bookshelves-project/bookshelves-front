@@ -1,84 +1,37 @@
 <template>
   <main class="main-content">
-    <div>
-      <div class="items-center justify-between mb-3 lg:flex">
-        <div class="items-center lg:flex">
-          <img
-            :src="author.cover ? author.cover.thumbnail : null"
-            :alt="author.name"
-            loading="lazy"
-            class="
-              object-cover object-center
-              w-32
-              h-32
-              mx-auto
-              rounded-md
-              lg:w-16 lg:h-16 lg:mx-0
-            "
-          />
-          <div class="flex mt-6 lg:mt-0">
-            <div class="flex items-center mx-auto">
-              <h1
-                class="
-                  mt-2
-                  ml-4
-                  text-3xl
-                  font-semibold
-                  text-center
-                  lg:mt-0
-                  font-handlee
-                  lg:text-left
-                "
-              >
-                {{ author.name }}
-              </h1>
-              <button
-                v-if="$auth.$state.loggedIn"
-                class="ml-3"
-                type="button"
-                aria-label="Favorite"
-                @click="toggleFavorite('author')"
-              >
-                <svg-icon
-                  name="heart"
-                  :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
-                  class="w-5 h-5"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="flex mt-5 lg:mt-0">
-          <app-button :href="author.download" color="primary" class="mx-auto">
-            <div class="flex items-center">
-              <svg-icon name="download" class="w-5 h-5" />
-              <div class="flex items-center ml-1">
-                <div class="flex mx-1">
-                  <span class="lg:mr-1">Download</span>
-                  <span class="hidden md:block">{{ author.count }} eBooks</span>
-                </div>
-                <div>(ZIP {{ author.size }})</div>
-              </div>
-            </div>
-          </app-button>
-        </div>
-      </div>
-      <div
-        v-if="author.description"
-        class="max-w-full pt-2 mb-8 prose word-wraping dark:text-gray-100"
+    <blocks-section-heading
+      :title="author.name"
+      :image="author.cover ? author.cover.thumbnail : null"
+      :subtitle="`${author.count} eBooks`"
+      :cta="author.link"
+      :text="author.description"
+      :border="false"
+    >
+      <blocks-button-download
+        :href="author.download"
+        :size="author.size"
+        :type="`ZIP`"
       >
-        <p class="italic line-clamp-6">
-          {{ author.description }}
-        </p>
-        <div v-if="author.link" class="pt-1 text-right">
-          To have more informations:
-          <a :href="author.link" target="_blank" rel="noopener noreferrer">{{
-            getHostname(author.link)
-          }}</a>
-        </div>
-      </div>
+        {{ author.count }} eBooks
+      </blocks-button-download>
+    </blocks-section-heading>
+    <div>
+      <button
+        v-if="$auth.$state.loggedIn"
+        class="ml-3"
+        type="button"
+        aria-label="Favorite"
+        @click="toggleFavorite('author')"
+      >
+        <svg-icon
+          name="heart"
+          :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
+          class="w-5 h-5"
+        />
+      </button>
       <section v-if="series.data.length">
-        <divider> Series </divider>
+        <blocks-divider> Series </blocks-divider>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
             v-for="serie in series.data"
@@ -113,7 +66,7 @@
         </div>
       </section>
       <section v-if="books.data.length">
-        <divider class="mt-16"> Books </divider>
+        <blocks-divider class="mt-16"> Books </blocks-divider>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
             v-for="book in books.data"
@@ -155,15 +108,13 @@
 <script>
 import qs from 'qs'
 import entityCard from '~/components/blocks/entity-card.vue'
-import Divider from '~/components/special/divider.vue'
 import favorites from '~/mixins/favorites'
 import { formatLanguage, getHostname } from '~/plugins/utils/methods'
 import LoadMore from '~/components/special/load-more.vue'
-import AppButton from '~/components/app/button.vue'
 
 export default {
   name: 'AuthorsSlug',
-  components: { entityCard, Divider, LoadMore, AppButton },
+  components: { entityCard, LoadMore },
   mixins: [favorites],
   async asyncData({ app, params, query }) {
     const page = query.page
