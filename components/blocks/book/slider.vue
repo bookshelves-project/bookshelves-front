@@ -3,16 +3,14 @@
     <div
       class="
         books-slider
-        shadow
         sm:rounded-lg
-        dark:bg-gray-800
         relative
         book-books
         max-w-full
         overflow-hidden
       "
     >
-      <div class="px-4 py-5 sm:px-6">
+      <div class="py-5">
         <h2
           class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100"
         >
@@ -22,9 +20,7 @@
           <slot name="subtitle" />
         </p>
       </div>
-      <div
-        class="px-4 py-5 border-t border-gray-200 dark:border-gray-700 sm:px-6"
-      >
+      <div class="py-5">
         <client-only v-if="isLoaded">
           <section class="books-slider-swiper">
             <swiper
@@ -94,7 +90,7 @@
         </div>
         <div v-if="link" class="mt-6">
           <app-button :to="link" class="w-full" color="white" align="center">
-            View series page
+            View full results
           </app-button>
         </div>
       </div>
@@ -119,7 +115,7 @@ export default {
       default: () => [],
     },
     link: {
-      type: String,
+      type: [String, Object],
       default: '',
     },
   },

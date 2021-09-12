@@ -1,6 +1,6 @@
 <template>
   <div class="main-content">
-    <section-heading
+    <app-header
       :title="`${title} ${tag.name}`"
       :subtitle="`${description} ${tag.name}`"
       :border="false"
@@ -25,11 +25,10 @@
 
 <script>
 import SearchResults from '~/components/blocks/search-results.vue'
-import sectionHeading from '~/components/blocks/section-heading.vue'
 import LoadMore from '~/components/special/load-more.vue'
 export default {
   name: 'TagsSlug',
-  components: { sectionHeading, SearchResults, LoadMore },
+  components: { SearchResults, LoadMore },
   async asyncData({ app, params }) {
     const [tag, books] = await Promise.all([
       app.$axios.$get(`/tags/${params.slug}`),

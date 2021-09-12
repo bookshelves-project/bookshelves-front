@@ -1,6 +1,6 @@
 <template>
   <main class="main-content">
-    <section-heading :title="title" :subtitle="description" />
+    <app-header :title="title" :subtitle="description" />
     <section v-if="!apiError">
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
@@ -40,13 +40,12 @@
 import qs from 'qs'
 
 import EntityCard from '~/components/blocks/entity-card.vue'
-import SectionHeading from '~/components/blocks/section-heading.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
 import Pagination from '~/components/special/pagination.vue'
 
 export default {
   name: 'AuthorsIndex',
-  components: { EntityCard, SectionHeading, ApiErrorMessage, Pagination },
+  components: { EntityCard, ApiErrorMessage, Pagination },
   async asyncData({ app, query }) {
     try {
       const page = query.page

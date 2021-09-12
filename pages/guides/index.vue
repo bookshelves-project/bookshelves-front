@@ -1,6 +1,6 @@
 <template>
   <main class="main-content">
-    <section-heading :title="title" :subtitle="description" />
+    <app-header :title="title" :subtitle="description" />
     <div class="gap-4 lg:grid lg:grid-cols-2">
       <nuxt-link
         v-for="guide in guides"
@@ -114,12 +114,10 @@
 </template>
 
 <script>
-import sectionHeading from '~/components/blocks/section-heading.vue'
 import { slugify } from '~/plugins/utils/methods'
 
 export default {
   name: 'GuidesIndex',
-  components: { sectionHeading },
   async asyncData({ $content }) {
     const guides = await $content('guides', { deep: true })
       .without(['toc', 'body'])

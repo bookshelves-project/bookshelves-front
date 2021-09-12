@@ -1,6 +1,6 @@
 <template>
   <div class="main-content">
-    <section-heading :title="title" :subtitle="description" />
+    <app-header :title="title" :subtitle="description" />
     <div>
       <section class="flex flex-wrap items-center">
         <chip
@@ -27,11 +27,10 @@
 
 <script>
 import Chip from '~/components/blocks/chip.vue'
-import sectionHeading from '~/components/blocks/section-heading.vue'
 import { formatLanguage } from '~/plugins/utils/methods'
 export default {
   name: 'PageLanguages',
-  components: { sectionHeading, Chip },
+  components: { Chip },
   async asyncData({ app }) {
     try {
       const languages = await app.$axios.$get('languages')

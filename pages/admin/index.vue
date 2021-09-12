@@ -1,11 +1,11 @@
 <template>
   <div class="main-content">
     <admin-nav />
-    <section-heading
+    <app-header
       v-if="$auth.$state.loggedIn"
       title="Admin"
       :subtitle="`Welcome ${$auth.user.data.name}`"
-      :image="$auth.$state.user.data.profile_photo_url"
+      :image="$auth.$state.user.data.avatar"
     />
     <main>
       <nuxt-link :to="{ name: 'admin-database' }"> Admin database </nuxt-link>
@@ -44,10 +44,9 @@
 
 <script>
 import AdminNav from '~/components/admin/admin-nav.vue'
-import sectionHeading from '~/components/blocks/section-heading.vue'
 export default {
   name: 'PageAdmin',
-  components: { sectionHeading, AdminNav },
+  components: { AdminNav },
   middleware: 'admin',
   data() {
     return {

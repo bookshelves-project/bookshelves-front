@@ -1,7 +1,7 @@
 <template>
   <div class="fixed top-0 right-0 z-50">
     <transition-group name="list" tag="section">
-      <div v-for="(notification, id) in notifications" :key="id">
+      <div v-for="(notification, id) in notifications" :key="id + 1">
         <app-notification
           :id="id"
           :ref="notification.date"

@@ -1,22 +1,26 @@
 <template>
   <div class="flex">
-    <app-button
-      :color="`secondary`"
-      class="w-full max-w-lg mx-auto"
-      :disabled="disabled"
-      @click="load"
-    >
-      <div class="flex items-center space-x-2 relative">
-        <div class="absolute top-1/2 -translate-y-1/2 transform -left-5">
-          <transition name="fade">
-            <loading v-if="pending" class="w-5 h-5" />
-            <span v-else class="w-5 h-5"></span>
-          </transition>
+    <transition name="fade">
+      <app-button
+        v-if="!disabled"
+        :color="`secondary`"
+        class="w-full max-w-lg mx-auto"
+        :disabled="disabled"
+        align="center"
+        @click="load"
+      >
+        <div class="flex items-center space-x-2 relative">
+          <div class="absolute top-1/2 -translate-y-1/2 transform -left-5">
+            <transition name="fade">
+              <loading v-if="pending" class="w-5 h-5" />
+              <span v-else class="w-5 h-5"></span>
+            </transition>
+          </div>
+          <span v-if="!disabled">Load more</span>
+          <span v-else>End</span>
         </div>
-        <span v-if="!disabled">Load more</span>
-        <span v-else>End</span>
-      </div>
-    </app-button>
+      </app-button>
+    </transition>
   </div>
 </template>
 

@@ -205,7 +205,6 @@ export default {
       this.isLoading = true
 
       try {
-        console.log(this.form)
         await this.$axios.$post('/register', this.form)
         this.$auth
           .loginWith(this.$auth.options.defaultStrategy, {

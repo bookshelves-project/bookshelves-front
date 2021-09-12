@@ -1,6 +1,6 @@
 <template>
-  <main class="main-content">
-    <blocks-section-heading
+  <main v-if="serie" class="main-content">
+    <app-header
       :title="serie.title"
       :image="serie.cover ? serie.cover.thumbnail : null"
       :subtitle="`${serie.count} eBooks`"
@@ -8,6 +8,8 @@
       :cta="serie.link"
       :text="serie.description"
       :border="false"
+      :entity="serie"
+      favorite
     >
       <blocks-button-download
         :href="serie.download"
@@ -35,21 +37,8 @@
           </ul>
         </div>
       </template>
-    </blocks-section-heading>
+    </app-header>
     <div>
-      <button
-        v-if="$auth.$state.loggedIn"
-        class="ml-3"
-        type="button"
-        aria-label="Favorite"
-        @click="toggleFavorite('serie')"
-      >
-        <svg-icon
-          name="heart"
-          :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
-          class="w-5 h-5"
-        />
-      </button>
       <blocks-divider v-if="books">Books</blocks-divider>
       <div v-if="books" class="space-y-6 display-grid sm:space-y-0">
         <entity-card
@@ -93,6 +82,7 @@
         </pagination>
       </div>
     </div>
+    <blocks-comments :entity="serie" />
   </main>
 </template>
 
@@ -104,13 +94,11 @@ import {
   formatAuthors,
 } from '~/plugins/utils/methods'
 import entityCard from '~/components/blocks/entity-card.vue'
-import favorites from '~/mixins/favorites'
 import Pagination from '~/components/special/pagination.vue'
 
 export default {
-  name: 'SeriesSlug',
+  name: 'SeriesAuthorSlug',
   components: { entityCard, Pagination },
-  mixins: [favorites],
   async asyncData({ app, params, query }) {
     const page = query.page
     const [serie, books] = await Promise.all([

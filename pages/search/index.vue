@@ -1,6 +1,6 @@
 <template>
   <main class="main-content">
-    <section-heading
+    <app-header
       :title="search ? `Results for &ldquo;${$route.query['q']}&rdquo;` : title"
       :subtitle="search ? `${search.length} results` : description"
       :border="false"
@@ -36,7 +36,6 @@
 <script>
 import qs from 'qs'
 
-import SectionHeading from '~/components/blocks/section-heading.vue'
 import SearchResults from '~/components/blocks/search-results.vue'
 import Skeleton from '~/components/special/skeleton.vue'
 import { objectIsEmpty } from '~/plugins/utils/methods'
@@ -44,7 +43,6 @@ import { objectIsEmpty } from '~/plugins/utils/methods'
 export default {
   name: 'PageSearch',
   components: {
-    SectionHeading,
     SearchResults,
     Skeleton,
   },

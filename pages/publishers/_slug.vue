@@ -1,9 +1,6 @@
 <template>
   <main class="main-content">
-    <section-heading
-      :title="`${title} ${publisher.name}`"
-      :subtitle="description"
-    />
+    <app-header :title="`${title} ${publisher.name}`" :subtitle="description" />
     <section>
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
@@ -60,13 +57,12 @@
 
 <script>
 import EntityCard from '~/components/blocks/entity-card.vue'
-import sectionHeading from '~/components/blocks/section-heading.vue'
 import { formatLanguage, formatAuthors } from '~/plugins/utils/methods'
 import LoadMore from '~/components/special/load-more.vue'
 
 export default {
   name: 'PageRelatedSlug',
-  components: { sectionHeading, EntityCard, LoadMore },
+  components: { EntityCard, LoadMore },
   async asyncData({ app, params }) {
     const [publisher, books] = await Promise.all([
       app.$axios.$get(`/publishers/${params.slug}`),

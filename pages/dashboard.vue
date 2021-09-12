@@ -1,15 +1,15 @@
 <template>
   <div class="main-content">
-    <section-heading
+    <app-header
       v-if="$auth.$state.loggedIn"
       title="Dashboard"
       :subtitle="`Welcome ${$auth.user.data.name}`"
-      :image="$auth.$state.user.data.profile_photo_url"
+      :image="$auth.$state.user.data.avatar"
     />
     <!-- Main 2 column grid -->
-    <div class="grid items-start grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+    <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
       <!-- Left column -->
-      <div class="grid grid-cols-1 gap-4 lg:col-span-1">
+      <div class="grid grid-cols-1 gap-4 xl:col-span-1">
         <data-list-template
           :data-list="favorites"
           title="Favorites list"
@@ -27,7 +27,7 @@
       </div>
 
       <!-- Right column -->
-      <div class="grid grid-cols-1 gap-4 lg:col-span-1">
+      <div class="grid grid-cols-1 gap-4 xl:col-span-1">
         <data-list-template
           :data-list="comments"
           :with-image="false"
@@ -50,14 +50,12 @@
 
 <script>
 import DataListTemplate from '~/components/blocks/dashboard/data-list-template.vue'
-import sectionHeading from '~/components/blocks/section-heading.vue'
 
 import favorites from '~/mixins/favorites'
 import comments from '~/mixins/comments'
 export default {
   name: 'Dashboard',
   components: {
-    sectionHeading,
     DataListTemplate,
   },
   mixins: [favorites, comments],
@@ -68,6 +66,7 @@ export default {
         app.$axios.$get(`/favorites/by-user/${$auth.$state.user.data.id}`),
         app.$axios.$get(`/comments/by-user/${$auth.$state.user.data.id}`),
       ])
+      console.log(favorites)
 
       return {
         favorites: favorites.data,

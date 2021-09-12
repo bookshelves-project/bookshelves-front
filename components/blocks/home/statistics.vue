@@ -67,6 +67,19 @@
           >
             <nuxt-link :to="metric.route" class="block p-2">
               <span
+                v-if="isLoading"
+                class="
+                  block
+                  animate-pulse
+                  w-16
+                  h-8
+                  bg-gray-300
+                  dark:bg-gray-400
+                  rounded-md
+                "
+              ></span>
+              <span
+                v-else
                 class="
                   block
                   text-2xl
@@ -97,6 +110,7 @@ export default {
   name: 'Statistics',
   data() {
     return {
+      isLoading: true,
       metrics: {
         books: {
           route: { name: 'books' },
@@ -159,6 +173,8 @@ export default {
             countBooksFr,
             countBooksEn,
           })
+
+          this.isLoading = false
         } catch (error) {
           console.error(error)
         }
@@ -170,6 +186,8 @@ export default {
         authorsCount = stats.authorsCount
         countBooksFr = stats.countBooksFr
         countBooksEn = stats.countBooksEn
+
+        this.isLoading = false
       }
 
       this.metrics.books.data = booksCount

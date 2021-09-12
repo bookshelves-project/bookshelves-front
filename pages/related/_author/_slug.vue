@@ -1,6 +1,6 @@
 <template>
   <main class="main-content">
-    <section-heading
+    <app-header
       :title="`${title} ${currentBook.title}`"
       :subtitle="description"
     />
@@ -52,7 +52,6 @@
 
 <script>
 import EntityCard from '~/components/blocks/entity-card.vue'
-import sectionHeading from '~/components/blocks/section-heading.vue'
 import {
   formatLanguage,
   objectIsEmpty,
@@ -63,7 +62,7 @@ import {
 export default {
   name: 'PageRelatedSlug',
   // eslint-disable-next-line vue/no-unused-components
-  components: { sectionHeading, EntityCard },
+  components: { EntityCard },
   async asyncData({ app, params }) {
     const [currentBook, books] = await Promise.all([
       app.$axios.$get(`/books/${params.author}/${params.slug}`),

@@ -1,8 +1,8 @@
 <template>
   <main class="main-content relative">
-    <blocks-section-heading :title="title" :subtitle="description">
-      <blocks-entities-filter @filter="filter" />
-    </blocks-section-heading>
+    <app-header :title="title" :subtitle="description">
+      <blocks-entities-filter serie lang @filter="filter" />
+    </app-header>
     <section v-if="!apiError">
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">

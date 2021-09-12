@@ -1,9 +1,9 @@
 <template>
   <div
-    class="mb-3 border-b dark:border-gray-600"
+    class="mb-3 border-b"
     :class="
       border
-        ? 'border-gray-200 md:mb-10 pb-6'
+        ? 'border-gray-200 dark:border-gray-600 md:mb-10 pb-6'
         : 'border-transparent md:mb-4 pb-2'
     "
   >
@@ -30,12 +30,46 @@
             />
           </component>
           <div :class="{ 'ml-5': image }">
-            <h1
-              id="message-heading"
-              class="text-2xl font-extrabold font-handlee text-primary-600"
-            >
-              {{ title }}
-            </h1>
+            <div class="flex">
+              <h1
+                id="message-heading"
+                class="text-2xl font-extrabold font-handlee text-primary-600"
+              >
+                {{ title }}
+              </h1>
+              <button
+                v-if="favorite && $auth.$state.loggedIn"
+                class="ml-3 p-1"
+                type="button"
+                aria-label="Favorite"
+                @click="toggleFavorite"
+              >
+                <svg-icon
+                  v-if="isFavorite"
+                  name="heart-full"
+                  class="
+                    w-5
+                    h-5
+                    text-red-600
+                    hover:text-gray-600
+                    transition-colors
+                    duration-100
+                  "
+                />
+                <svg-icon
+                  v-else
+                  class="
+                    w-5
+                    h-5
+                    text-gray-600
+                    hover:text-red-600
+                    transition-colors
+                    duration-100
+                  "
+                  name="heart"
+                />
+              </button>
+            </div>
             <div class="mt-1 text-sm">
               <blocks-authors-links v-if="authors" :authors="authors" />
               <h2 class="text-gray-500 overflow-hidden overflow-ellipsis mt-1">
@@ -60,7 +94,7 @@
         text-gray-500
         mt-3
         italic
-        line-clamp-6
+        line-clamp-3
       "
     >
       <div v-html="text"></div>
@@ -82,9 +116,11 @@
 
 <script>
 import { getHostname } from '@/plugins/utils/methods'
+import favorites from '~/mixins/favorites'
 
 export default {
-  name: 'SectionHeading',
+  name: 'AppHeading',
+  mixins: [favorites],
   props: {
     title: {
       type: String,
@@ -118,9 +154,47 @@ export default {
       type: Array,
       default: () => [],
     },
+    favorite: {
+      type: Boolean,
+      default: false,
+    },
+    entity: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  data() {
+    return {
+      isFavorite: false,
+      favoritesList: [],
+    }
+  },
+  mounted() {
+    this.isFavoriteCheck()
+    this.favoritesList = this.favorites
   },
   methods: {
     getHostname,
+    isFavoriteCheck() {
+      this.isFavorite = this.entity ? this.entity.isFavorite : null
+    },
+    async toggleFavorite() {
+      const entity = this.$route.name.split('-')[0].slice(0, -1)
+      this.isFavorite = !this.isFavorite
+      const slug = this.$route.params.slug
+      try {
+        await this.$axios.$post(`/favorites/toggle/${entity}/${slug}`)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteFavorite(model, slug) {
+      try {
+        await this.$axios.$post(`/favorites/toggle/${model}/${slug}`)
+      } catch (error) {
+        console.error(error)
+      }
+    },
   },
 }
 </script>

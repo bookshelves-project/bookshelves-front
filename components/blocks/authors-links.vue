@@ -1,6 +1,10 @@
 <template>
   <div class="mt-2 text-center lg:text-left lg:mt-0">
-    <span v-for="(author, authorId) in authors" :key="authorId" class="mr-1">
+    <span
+      v-for="(author, authorId) in authors"
+      :key="authorId"
+      class="mr-1 dark:text-gray-100"
+    >
       By
       <nuxt-link
         :to="{

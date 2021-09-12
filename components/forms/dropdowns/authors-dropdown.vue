@@ -131,7 +131,7 @@
 </template>
 
 <script>
-import Dropdown from '@/components/special/dropdown-template.vue'
+import Dropdown from '~/components/fields/dropdown.vue'
 export default {
   name: 'AuthorsDropdown',
   components: {

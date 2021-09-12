@@ -78,30 +78,14 @@ function getOpenGraph(meta) {
       metaLocal.articlePublishedTime,
       'article:published_time'
     ),
-    // additionalOpenGraph(metaLocal, metaLocal.articleAuthor, 'article:author'),
-    // additionalOpenGraph(
-    //   metaLocal,
-    //   metaLocal.articleSection,
-    //   'article:section'
-    // ),
-    // additionalOpenGraph(metaLocal, metaLocal.bookISBN, 'book:isbn'),
-    // additionalOpenGraph(metaLocal, metaLocal.bookAuthor, 'book:author'),
-    // additionalOpenGraph(
-    //   metaLocal,
-    //   metaLocal.bookReleaseDate,
-    //   'book:release_date'
-    // ),
-    // additionalOpenGraph(metaLocal, metaLocal.bookTag, 'books:tag'),
-    // additionalOpenGraph(
-    //   metaLocal,
-    //   metaLocal.profileFirstName,
-    //   'profile:first_name'
-    // ),
-    // additionalOpenGraph(
-    //   metaLocal,
-    //   metaLocal.profileLastName,
-    //   'profile:last_name'
-    // ),
+    additionalOpenGraph(metaLocal.articleAuthor, 'article:author'),
+    additionalOpenGraph(metaLocal.articleSection, 'article:section'),
+    additionalOpenGraph(metaLocal.bookISBN, 'book:isbn'),
+    additionalOpenGraph(metaLocal.bookAuthor, 'book:author'),
+    additionalOpenGraph(metaLocal.bookReleaseDate, 'book:release_date'),
+    additionalOpenGraph(metaLocal.bookTag, 'book:tag'),
+    additionalOpenGraph(metaLocal.profileFirstName, 'profile:first_name'),
+    additionalOpenGraph(metaLocal.profileLastName, 'profile:last_name'),
   ]
 }
 

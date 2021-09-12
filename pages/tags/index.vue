@@ -1,6 +1,6 @@
 <template>
   <div class="main-content">
-    <section-heading :title="title" :subtitle="description" />
+    <app-header :title="title" :subtitle="description" />
     <div class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Genres</h2>
       <section class="flex flex-wrap items-center">
@@ -30,11 +30,10 @@
 
 <script>
 import qs from 'qs'
-import sectionHeading from '~/components/blocks/section-heading.vue'
 import Chip from '~/components/blocks/chip.vue'
 export default {
   name: 'TagsIndex',
-  components: { sectionHeading, Chip },
+  components: { Chip },
   async asyncData({ app }) {
     const [genres, tags] = await Promise.all([
       app.$axios.$get(

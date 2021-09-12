@@ -1,6 +1,8 @@
 <template>
   <main class="main-content">
-    <section-heading :title="title" :subtitle="description" />
+    <app-header :title="title" :subtitle="description">
+      <blocks-entities-filter lang @filter="filter" />
+    </app-header>
     <section v-if="!apiError">
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
@@ -57,23 +59,24 @@
 <script>
 import qs from 'qs'
 import EntityCard from '~/components/blocks/entity-card.vue'
-import SectionHeading from '~/components/blocks/section-heading.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
 
-import { formatLanguage } from '~/plugins/utils/methods'
+import { formatLanguage, objectIsEmpty } from '~/plugins/utils/methods'
 import Pagination from '~/components/special/pagination.vue'
 
 export default {
   name: 'SeriesIndex',
-  components: { EntityCard, SectionHeading, ApiErrorMessage, Pagination },
+  components: { EntityCard, ApiErrorMessage, Pagination },
   async asyncData({ app, query }) {
     try {
       const page = query.page
+      const lang = query.lang
       const [series] = await Promise.all([
         app.$axios.$get(
           `/series?${qs.stringify({
             page: page || 1,
             'per-page': 32,
+            lang,
           })}`
         ),
       ])
@@ -139,12 +142,32 @@ export default {
       itemListElement: items,
     }
   },
-  watchQuery: ['page'],
+  watchQuery: ['page', 'lang'],
   methods: {
     linkGen(pageNum) {
       return {
         name: this.$route.name,
         query: pageNum === 1 ? {} : { page: pageNum },
+      }
+    },
+    filter(param) {
+      if (param !== null) {
+        const query = {}
+
+        const currentQuery = this.$route.query
+        const queryIsEmpty = objectIsEmpty(currentQuery)
+        if (!queryIsEmpty) {
+          Object.assign(query, currentQuery)
+        }
+
+        const key = param.type
+        const newQuery = {}
+        newQuery[key] = param.data
+        query[param.type] = param.data
+
+        this.$router.push({ name: this.$route.name, query })
+      } else {
+        this.$router.push({ name: this.$route.name })
       }
     },
   },

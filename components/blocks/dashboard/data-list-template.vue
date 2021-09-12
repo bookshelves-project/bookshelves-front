@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-2 bg-white rounded-md shadow dark:bg-gray-800">
+  <div class="bg-white rounded-md shadow dark:bg-gray-800">
     <div
       class="px-4 py-5 border-b border-gray-200 dark:border-gray-700 sm:px-6"
     >
@@ -15,19 +15,26 @@
     </div>
     <ul
       v-if="list.length"
-      class="divide-y divide-gray-200 dark:divide-gray-700"
+      class="
+        divide-y divide-gray-200
+        dark:divide-gray-700
+        max-h-[50rem]
+        overflow-x-hidden overflow-y-auto
+        scrollbar-thin
+      "
     >
       <li
-        v-for="data in list"
-        :key="data.id"
+        v-for="(data, id) in list"
+        :key="id"
         class="relative grid grid-cols-6 bg-white dark:bg-gray-800"
+        :class="id === list.length - 1 ? 'rounded-b-md' : ''"
       >
         <nuxt-link
           :to="{
             name:
-              data.meta.entity === 'author'
+              data.meta.for === 'author'
                 ? `authors-slug`
-                : `${data.meta.entity}s-author-slug`,
+                : `${data.meta.for}s-author-slug`,
             params: {
               author: data.meta.author,
               slug: data.meta.slug,
@@ -49,17 +56,19 @@
             focus-within:ring-2
             focus-within:ring-inset
             focus-within:ring-indigo-600
+            overflow-x-hidden
           "
         >
           <div class="flex-shrink-0">
             <app-image
               :src="data.cover"
-              class="object-cover w-16 h-16 rounded-full"
+              class="object-cover w-16 h-16"
+              class-img="rounded-md"
               :alt="data.title"
               loading="lazy"
             />
           </div>
-          <div>
+          <div class="w-full">
             <div class="flex justify-between space-x-3">
               <div class="flex-1 min-w-0">
                 <div class="block focus:outline-none">
@@ -70,6 +79,8 @@
                       text-gray-900
                       truncate
                       dark:text-gray-100
+                      max-w-[15rem]
+                      overflow-ellipsis
                     "
                   >
                     {{ data.title }}
@@ -81,7 +92,6 @@
               </div>
               <div class="hidden lg:block">
                 <time
-                  v-if="data.createdAt && !data.updatedAt"
                   :datetime="data.createdAt"
                   class="
                     flex-shrink-0
@@ -91,7 +101,7 @@
                   "
                   >{{ $formatDate(data.createdAt) }}</time
                 >
-                <time
+                <!-- <time
                   v-if="data.updatedAt"
                   :datetime="data.updatedAt"
                   class="
@@ -101,7 +111,7 @@
                     whitespace-nowrap
                   "
                   >{{ $formatDate(data.updatedAt) }}</time
-                >
+                > -->
               </div>
             </div>
             <div v-if="data.text" class="hidden mt-1 lg:block">

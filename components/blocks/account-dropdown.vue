@@ -30,7 +30,7 @@
               <img
                 v-if="$auth.$state.loggedIn"
                 class="w-8 h-8 rounded-full"
-                :src="$auth.$state.user.data.profile_photo_url"
+                :src="$auth.$state.user.data.avatar"
                 :alt="$auth.$state.user.data.name"
                 loading="lazy"
               />
@@ -126,7 +126,7 @@
 </template>
 
 <script>
-import Dropdown from '@/components/special/dropdown-template.vue'
+import Dropdown from '~/components/fields/dropdown.vue'
 export default {
   name: 'AccountDropdown',
   components: { Dropdown },

@@ -1,12 +1,14 @@
 <template>
   <main class="main-content">
-    <blocks-section-heading
+    <app-header
       :title="author.name"
       :image="author.cover ? author.cover.thumbnail : null"
       :subtitle="`${author.count} eBooks`"
       :cta="author.link"
       :text="author.description"
+      :entity="author"
       :border="false"
+      favorite
     >
       <blocks-button-download
         :href="author.download"
@@ -15,21 +17,8 @@
       >
         {{ author.count }} eBooks
       </blocks-button-download>
-    </blocks-section-heading>
+    </app-header>
     <div>
-      <button
-        v-if="$auth.$state.loggedIn"
-        class="ml-3"
-        type="button"
-        aria-label="Favorite"
-        @click="toggleFavorite('author')"
-      >
-        <svg-icon
-          name="heart"
-          :class="isFavorite ? 'text-red-600' : 'text-gray-600'"
-          class="w-5 h-5"
-        />
-      </button>
       <section v-if="series.data.length">
         <blocks-divider> Series </blocks-divider>
         <div class="space-y-6 display-grid sm:space-y-0">
@@ -102,6 +91,7 @@
         </div>
       </section>
     </div>
+    <blocks-comments :entity="author" />
   </main>
 </template>
 

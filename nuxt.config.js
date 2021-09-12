@@ -10,6 +10,7 @@ export default {
     appName: process.env.APP_NAME,
     baseURL: process.env.BASE_URL,
     moduleSocial: process.env.MODULE_SOCIAL,
+    moduleSocialRating: process.env.MODULE_SOCIAL_RATING,
     apiURL: process.env.API_URL,
   },
   // Can be 'server' for SSR or 'static' for SSG
