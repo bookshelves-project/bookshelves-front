@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'BlockComments',
+  name: 'BlockCommentsIndex',
   props: {
     entity: {
       type: Object,

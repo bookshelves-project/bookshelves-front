@@ -32,7 +32,7 @@
           {{ $config.appName }}
         </div>
       </nuxt-link>
-      <special-color-switcher-toggle />
+      <layout-color-mode />
     </div>
     <p class="text-base text-gray-500">
       {{ desc }}

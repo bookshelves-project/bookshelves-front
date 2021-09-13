@@ -1,7 +1,5 @@
 <template>
   <span class="inline-flex items-center group">
-    <!-- This example requires Tailwind CSS v2.0+ -->
-    <!-- On: "", Off: "" -->
     <button
       type="button"
       aria-pressed="false"
@@ -26,7 +24,7 @@
       @click="switchColorMode()"
     >
       <span class="sr-only">Use setting</span>
-      <!-- On: "translate-x-5", Off: "translate-x-0" -->
+
       <span
         :class="colorMode === 'dark' ? 'translate-x-5' : 'translate-x-0'"
         class="
@@ -43,7 +41,6 @@
           ring-0
         "
       >
-        <!-- On: "opacity-0 ease-out duration-100", Off: "opacity-100 ease-in duration-100" -->
         <span
           :class="
             colorMode === 'dark' ? 'opacity-0 ease-out' : 'opacity-100 ease-in'
@@ -61,8 +58,8 @@
           "
           aria-hidden="true"
         >
-          <svg
-            v-if="colorMode === 'light'"
+          <svg-icon
+            name="sun"
             class="
               text-gray-400
               transition-colors
@@ -70,19 +67,8 @@
               icon-color
               group-hover:text-primary-600
             "
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-            />
-          </svg>
+          />
         </span>
-        <!-- On: "opacity-100 ease-in duration-100", Off: "opacity-0 ease-out duration-100" -->
         <span
           :class="
             colorMode === 'dark' ? 'opacity-100 ease-in' : 'opacity-0 ease-out'
@@ -100,19 +86,16 @@
           "
           aria-hidden="true"
         >
-          <svg
-            class="text-primary-600 icon-color"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-            />
-          </svg>
+          <svg-icon
+            name="moon"
+            class="
+              text-gray-400
+              transition-colors
+              duration-300
+              icon-color
+              group-hover:text-primary-600
+            "
+          />
         </span>
       </span>
     </button>
@@ -121,7 +104,7 @@
 
 <script>
 export default {
-  name: 'ColorSwitcher',
+  name: 'LayoutColorMode',
   computed: {
     colorMode: {
       get() {
@@ -158,8 +141,6 @@ export default {
 <style lang="postcss" scoped>
 .toggle {
   @apply h-6 w-11;
-  /* height: 1.5rem; */
-  /* width: 2.7rem; */
 }
 .toggle-inner {
   @apply h-5 w-5;

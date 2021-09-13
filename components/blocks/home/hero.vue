@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="mx-auto mt-5 sm:mt-10 lg:mt-0 lg:ml-auto hidden md:block">
-      <img
+      <app-image
         src="/images/book-lover.svg"
         alt="Woman on books pile who is reading"
         class="h-64 mx-auto md:h-[32rem] lg:mx-0"

@@ -82,7 +82,7 @@
         </pagination>
       </div>
     </div>
-    <blocks-comments :entity="serie" />
+    <blocks-comments-wrapper :entity="serie" />
   </main>
 </template>
 

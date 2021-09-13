@@ -91,7 +91,7 @@
         </div>
       </section>
     </div>
-    <blocks-comments :entity="author" />
+    <blocks-comments-wrapper :entity="author" />
   </main>
 </template>
 
