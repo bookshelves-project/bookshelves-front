@@ -152,15 +152,13 @@ export default {
       },
     ],
     // https://github.com/pimlie/nuxt-matomo
-    process.env.MATOMO_URL
-      ? [
-          'nuxt-matomo',
-          {
-            matomoUrl: process.env.MATOMO_URL,
-            siteId: process.env.MATOMO_SITE_ID,
-          },
-        ]
-      : '',
+    [
+      'nuxt-matomo',
+      {
+        matomoUrl: process.env.MATOMO_URL ? process.env.MATOMO_URL : null,
+        siteId: process.env.MATOMO_SITE_ID ? process.env.MATOMO_SITE_ID : null,
+      },
+    ],
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
