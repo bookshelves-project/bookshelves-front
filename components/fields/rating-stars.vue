@@ -81,6 +81,9 @@ export default {
     }
   },
   watch: {
+    rating(newValue, oldValue) {
+      this.currentRating = newValue
+    },
     value(newValue, oldValue) {
       this.currentRating = newValue
     },

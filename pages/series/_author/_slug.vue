@@ -19,7 +19,7 @@
         {{ serie.count }} eBooks
       </blocks-button-download>
       <template #content>
-        <div v-if="serie.tags && serie.tags.length" class="flex">
+        <div v-if="serie.tags && serie.tags.length" class="lg:flex">
           <h2 class="mr-1">Tags:</h2>
           <ul>
             <li
@@ -41,7 +41,7 @@
     <div>
       <blocks-divider v-if="books">Books</blocks-divider>
       <div v-if="books" class="space-y-6 display-grid sm:space-y-0">
-        <entity-card
+        <blocks-entity-card
           v-for="book in books"
           :key="book.id"
           :data="book"
@@ -70,7 +70,7 @@
             </span>
           </template>
           <template #tertiary> Vol. {{ book.volume }} </template>
-        </entity-card>
+        </blocks-entity-card>
       </div>
       <div class="mt-6 mb-5">
         <pagination
@@ -93,12 +93,11 @@ import {
   formatLanguage,
   formatAuthors,
 } from '~/plugins/utils/methods'
-import entityCard from '~/components/blocks/entity-card.vue'
 import Pagination from '~/components/special/pagination.vue'
 
 export default {
   name: 'SeriesAuthorSlug',
-  components: { entityCard, Pagination },
+  components: { Pagination },
   async asyncData({ app, params, query }) {
     const page = query.page
     const [serie, books] = await Promise.all([

@@ -1,5 +1,5 @@
 <template>
-  <app-button :href="href" color="primary" download>
+  <app-button :href="href" color="primary" download class="mx-auto lg:w-full">
     <div class="flex items-center">
       <svg-icon name="download" class="w-5 h-5" />
       <div class="flex items-center ml-1">
@@ -9,7 +9,7 @@
             <slot />
           </span>
         </div>
-        <div>({{ type }} {{ size }})</div>
+        <div class="hidden sm:block">({{ type }} {{ size }})</div>
       </div>
     </div>
   </app-button>

@@ -1,6 +1,6 @@
 <template>
   <nav class="flex justify-between px-4 border-t border-gray-200 sm:px-0">
-    <div class="flex flex-1 w-0 -mt-px item-ext">
+    <div class="hidden sm:flex flex-1 w-0 -mt-px item-ext">
       <nuxt-link v-slot="{ navigate }" :to="linkGen(1)" custom>
         <component
           :is="getTag(1)"
@@ -15,6 +15,56 @@
           First
         </component>
       </nuxt-link>
+    </div>
+    <div class="md:hidden flex justify-between">
+      <div class="item">
+        <nuxt-link v-slot="{ navigate }" :to="linkGen(1)" custom>
+          <component
+            :is="getTag(1)"
+            class="external-pagination"
+            :to="linkGen(currentPage - 1)"
+            title="Previous"
+            aria-label="Previous"
+            @click="navigate"
+          >
+            ‹
+          </component>
+        </nuxt-link>
+      </div>
+      <div
+        class="
+          mx-2
+          inline-flex
+          items-center
+          px-4
+          pt-4
+          text-sm
+          font-medium
+          text-gray-500
+          border-t-2 border-transparent
+          dark:text-gray-100
+        "
+      >
+        Page
+        <span class="ml-1">
+          <span v-if="$route.query.page">{{ $route.query.page }}</span>
+          <span v-else>1</span>
+        </span>
+      </div>
+      <div class="item">
+        <nuxt-link v-slot="{ navigate }" :to="linkGen(1)" custom>
+          <component
+            :is="getTag(pages)"
+            class="external-pagination"
+            :to="linkGen(currentPage + 1)"
+            title="Next"
+            aria-label="Next"
+            @click="navigate"
+          >
+            ›
+          </component>
+        </nuxt-link>
+      </div>
     </div>
     <div class="hidden md:-mt-px md:flex">
       <div class="item">
@@ -87,7 +137,7 @@
         </nuxt-link>
       </div>
     </div>
-    <div class="flex justify-end flex-1 w-0 -mt-px item-ext">
+    <div class="hidden sm:flex justify-end flex-1 w-0 -mt-px item-ext">
       <nuxt-link v-slot="{ navigate }" :to="linkGen(pages)" custom>
         <component
           :is="getTag(pages)"

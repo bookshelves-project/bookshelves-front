@@ -11,7 +11,7 @@
         <div
           v-if="color"
           :style="`background-color: ${color}`"
-          :class="picture"
+          :class="[picture, classImg]"
           class="
             absolute
             inset-0

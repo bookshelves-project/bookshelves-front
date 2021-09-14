@@ -260,3 +260,13 @@ export const calExactTimeDiff = (firstDate, secondDate = new Date()) => {
 
   return time
 }
+
+export const capitalizeEach = (string) => {
+  const arr = string.split(' ')
+
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
+  }
+
+  return arr.join(' ')
+}

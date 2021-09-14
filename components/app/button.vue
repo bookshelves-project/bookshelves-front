@@ -15,7 +15,7 @@
     <div class="inline-block" :class="alignData">
       <slot />
     </div>
-    <span v-if="external" class="absolute right-3">
+    <span v-if="external" class="hidden md:block absolute right-3">
       <svg-icon name="external-link" class="w-4 h-4" />
     </span>
   </component>

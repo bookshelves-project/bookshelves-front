@@ -11,7 +11,6 @@
               @click="openSidebar"
             >
               <svg-icon name="menu" class="w-8 h-8" />
-              <svg-icon name="book" class="w-8 h-8 text-primary-600" />
             </button>
             <nuxt-link
               to="/"

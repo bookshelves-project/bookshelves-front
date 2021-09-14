@@ -115,9 +115,11 @@
               </div>
             </div>
             <div v-if="data.text" class="hidden mt-1 lg:block">
-              <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
-                {{ data.text }}
-              </p>
+              <div
+                class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2"
+              >
+                <div v-html="data.text"></div>
+              </div>
             </div>
           </div>
         </nuxt-link>

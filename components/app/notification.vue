@@ -13,6 +13,7 @@
       w-64
       m-5
     "
+    :class="bgColor"
   >
     <div class="p-4">
       <div class="flex items-start">
@@ -77,6 +78,16 @@ export default {
         error: 'text-red-400',
         information: 'text-blue-400',
         default: 'text-blue-400',
+      }
+      return colors[this.notification.type] || colors.default
+    },
+    bgColor() {
+      const colors = {
+        success: 'bg-green-100',
+        warning: 'bg-orange-100',
+        error: 'bg-red-100',
+        information: 'bg-blue-100',
+        default: 'bg-blue-100',
       }
       return colors[this.notification.type] || colors.default
     },

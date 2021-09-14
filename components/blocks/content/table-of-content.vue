@@ -8,13 +8,7 @@
         lg:h-auto lg:max-h-(screen-5)
       "
     >
-      <nav
-        class="py-4 lg:py-8"
-        :class="{
-          'lg:pl-8 lg:pr-2': settings.layout !== 'single',
-          'lg:px-8': settings.layout === 'single',
-        }"
-      >
+      <nav class="pb-3 px-2">
         <h3
           class="
             mb-3

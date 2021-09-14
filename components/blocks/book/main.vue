@@ -10,7 +10,7 @@
       <dl
         class="
           space-y-8
-          lg:grid lg:gap-x-4 lg:gap-y-8 lg:space-y-0 lg:grid-cols-2
+          md:grid md:gap-x-4 md:gap-y-8 md:space-y-0 md:grid-cols-2
         "
       >
         <div v-if="book.authors" class="sm:col-span-1">

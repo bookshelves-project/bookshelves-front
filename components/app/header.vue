@@ -8,78 +8,105 @@
     "
   >
     <layout-breadcrumb class="mb-6" />
-    <div class="flex items-center justify-between">
+    <div class="lg:flex lg:items-center lg:justify-between">
       <div class="sm:items-center sm:flex sm:justify-between">
-        <div :class="{ 'flex items-center': image }">
-          <component
-            :is="imageOriginal ? 'a' : 'span'"
-            :href="imageOriginal"
-            target="_blank"
-            rel="noopener noreferrer"
-            :class="
-              imageOriginal ? 'hover:shadow transition-shadow duration-100' : ''
-            "
-          >
-            <app-image
-              v-if="image"
-              :src="image"
-              :alt="title"
-              :title="title"
-              class="object-cover w-20 h-20 rounded-md"
-              class-img="rounded-md"
-            />
-          </component>
-          <div :class="{ 'ml-5': image }">
-            <div class="flex">
+        <div
+          :class="{ 'lg:flex lg:items-center': image }"
+          class="mx-auto lg:mx-0"
+        >
+          <div class="flex">
+            <component
+              :is="imageOriginal ? 'a' : 'span'"
+              :href="imageOriginal"
+              target="_blank"
+              rel="noopener noreferrer"
+              :class="
+                imageOriginal
+                  ? 'hover:shadow transition-shadow duration-100'
+                  : ''
+              "
+              class="mx-auto"
+            >
+              <app-image
+                v-if="image"
+                :src="image"
+                :color="color"
+                :alt="title"
+                :title="title"
+                class="object-cover w-20 h-20 rounded-md"
+                class-img="rounded-md"
+              />
+            </component>
+          </div>
+          <div :class="{ 'sm:ml-5 mt-3 lg:mt-0': image }">
+            <div class="sm:flex">
               <h1
                 id="message-heading"
-                class="text-2xl font-extrabold font-handlee text-primary-600"
+                class="
+                  text-2xl
+                  font-extrabold font-handlee
+                  text-primary-600 text-center
+                  lg:text-left
+                  w-full
+                "
               >
                 {{ title }}
               </h1>
-              <button
-                v-if="favorite && $auth.$state.loggedIn"
-                class="ml-3 p-1"
-                type="button"
-                aria-label="Favorite"
-                @click="toggleFavorite"
-              >
-                <svg-icon
-                  v-if="isFavorite"
-                  name="heart-full"
-                  class="
-                    w-5
-                    h-5
-                    text-red-600
-                    hover:text-gray-600
-                    transition-colors
-                    duration-100
-                  "
-                />
-                <svg-icon
-                  v-else
-                  class="
-                    w-5
-                    h-5
-                    text-gray-600
-                    hover:text-red-600
-                    transition-colors
-                    duration-100
-                  "
-                  name="heart"
-                />
-              </button>
+              <div class="flex">
+                <button
+                  v-if="favorite && $auth.$state.loggedIn"
+                  class="sm:ml-3 p-1 mx-auto"
+                  type="button"
+                  aria-label="Favorite"
+                  @click="toggleFavorite"
+                >
+                  <svg-icon
+                    v-if="isFavorite"
+                    name="heart-full"
+                    class="
+                      w-5
+                      h-5
+                      text-red-600
+                      hover:text-gray-600
+                      transition-colors
+                      duration-100
+                    "
+                  />
+                  <svg-icon
+                    v-else
+                    class="
+                      w-5
+                      h-5
+                      text-gray-600
+                      hover:text-red-600
+                      transition-colors
+                      duration-100
+                    "
+                    name="heart"
+                  />
+                </button>
+              </div>
             </div>
             <div class="mt-1 text-sm">
               <blocks-authors-links v-if="authors" :authors="authors" />
-              <h2 class="text-gray-500 overflow-hidden overflow-ellipsis mt-1">
+              <h2
+                class="
+                  text-gray-500
+                  overflow-hidden overflow-ellipsis
+                  mt-1
+                  text-center
+                  lg:text-left
+                "
+              >
                 {{ subtitle }}
               </h2>
             </div>
           </div>
         </div>
       </div>
-      <slot />
+      <div v-if="$slots.default" class="mt-6 mb-3 lg:mt-0 lg:mb-0 flex">
+        <slot />
+      </div>
     </div>
     <div v-if="$slots.content" class="mt-6">
       <slot name="content" />
@@ -161,6 +188,10 @@ export default {
     entity: {
       type: Object,
       default: () => {},
+    },
+    color: {
+      type: String,
+      default: '#ffffff',
     },
   },
   data() {

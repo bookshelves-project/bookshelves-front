@@ -1,21 +1,31 @@
 <template>
   <div class="md:flex p-4 md:p-0 h-full">
-    <img
-      class="
-        w-32
-        h-32
-        md:w-48
-        xl:w-64
-        mx-auto
-        md:h-auto md:rounded-none
-        rounded-full
-        object-cover object-top
-      "
-      :src="book.cover.original"
-      :color="book.cover.color"
-      :title="book.title"
-      alt="book.title"
-    />
+    <div>
+      <app-image
+        class="
+          w-32
+          h-32
+          md:w-48
+          xl:w-64
+          mx-auto
+          md:h-full md:rounded-none
+          rounded-full
+          object-cover object-top
+        "
+        :src="book.cover.original"
+        class-img="w-32
+          h-32
+          md:w-48
+          xl:w-64
+          mx-auto
+          md:h-full md:rounded-none
+          rounded-full
+          object-cover object-top"
+        :color="book.cover.color"
+        :title="book.title"
+        alt="book.title"
+      />
+    </div>
     <div
       class="
         pt-6

@@ -4,11 +4,31 @@
       :title="book.title"
       :image="book.cover ? book.cover.thumbnail : null"
       :image-original="book.cover ? book.cover.original : null"
+      :color="book.cover ? book.cover.color : ''"
       :subtitle="subtitle"
       :authors="book.authors"
       :text="book.description"
       favorite
-    ></app-header>
+    >
+      <div class="space-y-3 mx-auto">
+        <div>
+          <blocks-button-download
+            v-if="book.epub.download"
+            :href="book.epub.download"
+            :size="book.epub ? book.epub.size : ''"
+            :type="`EPUB`"
+          />
+        </div>
+        <div v-if="book.webreader">
+          <app-button :href="book.webreader" class="w-full" external>
+            <div class="flex items-center space-x-1">
+              <svg-icon name="eye" class="w-5 h-5" />
+              <span>Webreader</span>
+            </div>
+          </app-button>
+        </div>
+      </div>
+    </app-header>
     <blocks-book-main :book="book" class="mb-6" />
     <div class="lg:grid lg:grid-cols-2 divide-x">
       <blocks-book-serie

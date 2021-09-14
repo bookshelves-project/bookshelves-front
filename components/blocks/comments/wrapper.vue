@@ -5,15 +5,23 @@
     class="border-t border-gray-200 dark:border-gray-600"
   >
     <div class="sm:overflow-hidden">
-      <div class="px-4 py-5 sm:px-6">
+      <div class="pt-5">
         <h2
           id="notes-title"
-          class="text-lg font-medium text-gray-900 dark:text-gray-100"
+          class="
+            text-2xl
+            font-handlee font-semibold
+            text-primary-600
+            dark:text-gray-100
+          "
         >
           Comments
         </h2>
+        <div v-if="$config.moduleSocialRating">
+          <fields-rating-stars :rating="avg" class="mt-2 mb-1" disable />
+        </div>
       </div>
-      <div class="grid lg:grid-cols-2 lg:gap-4">
+      <div class="grid lg:grid-cols-2 lg:gap-4 mt-5">
         <blocks-comments-list
           :comments="commentsList"
           class="order-2 lg:order-1"
@@ -37,6 +45,18 @@ export default {
     return {
       commentsList: [],
     }
+  },
+  computed: {
+    avg() {
+      const ratings = []
+      this.commentsList.forEach((comment) => {
+        ratings.push(comment.rating)
+      })
+      const sum = ratings.reduce((a, b) => parseFloat(a) + parseFloat(b), 0)
+      const avg = sum / ratings.length || 0
+
+      return avg
+    },
   },
   created() {
     this.commentsList = this.entity.comments

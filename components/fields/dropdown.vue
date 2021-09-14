@@ -20,7 +20,6 @@
           mt-2
           rounded-md
           shadow-lg
-          dark:rounded-none
           ring-1 ring-primary-600 ring-opacity-5
         "
         :class="[

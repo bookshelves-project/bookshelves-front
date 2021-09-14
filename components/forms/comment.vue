@@ -1,8 +1,8 @@
 <template>
-  <div class="px-4 py-6 sm:px-6">
+  <div class="p-2">
     <transition name="fade">
       <div v-if="$auth.$state.loggedIn" class="flex space-x-3">
-        <div class="flex-shrink-0">
+        <div class="flex-shrink-0 hidden md:block">
           <img
             :src="$auth.$state.user.data.avatar"
             class="w-10 h-10 rounded-full"
@@ -135,9 +135,17 @@ export default {
         await this.$axios.$post(`/comments/store/${entity}/${slug}`, this.form)
         this.form.text = ''
         this.form.rating = 0
+        this.$nuxt.$emit('notification', {
+          title: 'Success!',
+          text: 'Thanks you for your comment.',
+          type: 'success',
+        })
       } catch (error) {
-        this.error = error.response.data
-        // TODO set error notification
+        this.$nuxt.$emit('notification', {
+          title: 'Error',
+          text: error.response.data.error,
+          type: 'error',
+        })
       }
       this.$emit('refresh', slug)
     },
