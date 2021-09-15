@@ -95,7 +95,7 @@
               </div>
             </div>
           </div>
-          <contact-form />
+          <forms-contact />
         </div>
         <div class="hidden lg:block">
           <img
@@ -110,10 +110,8 @@
 </template>
 
 <script>
-import ContactForm from '~/components/forms/contact-form.vue'
 export default {
   name: 'Contact',
-  components: { ContactForm },
   data() {
     return {
       title: 'Contact us',

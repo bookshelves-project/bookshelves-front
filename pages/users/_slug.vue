@@ -1,11 +1,7 @@
 <template>
   <div class="main-content">
-    <app-header
-      v-if="$auth.$state.loggedIn"
-      :title="`${title}`"
-      :subtitle="`Welcome ${$auth.user.data.name}`"
-      :image="$auth.$state.user.data.avatar"
-    />
+    <app-header :title="`${title} ${user.name}`" :image="user.avatar" />
+
     <!-- Main 2 column grid -->
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
       <!-- Left column -->
@@ -17,8 +13,6 @@
           empty-list="Your favorite list is empty, try to favorite any book, series or author."
           icon="heart"
           :loading="loading"
-          :can-delete="true"
-          @destroy="destroy"
         />
       </div>
 
@@ -31,8 +25,6 @@
           empty-list="Your comments list is empty, try to comment any book, series or author."
           icon="comment"
           :loading="loading"
-          :can-delete="true"
-          @destroy="destroy"
         />
       </div>
     </div>
@@ -40,31 +32,33 @@
 </template>
 
 <script>
-import favorites from '~/mixins/favorites'
-import comments from '~/mixins/comments'
 export default {
-  name: 'PageProfile',
-  mixins: [favorites, comments],
-  middleware: 'auth',
+  name: 'PageProfileSlug',
+  async asyncData({ app, params }) {
+    const user = await app.$axios.$get(`/users/${params.slug}`)
+
+    return {
+      user: user.data,
+    }
+  },
   data() {
     return {
       loading: true,
+      title: `Profile of`,
       favorites: [],
       comments: [],
-      title: 'My profile',
     }
   },
   head() {
     const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
-    const title = 'My profile'
-    const description = 'An overview of all your activities.'
+    const title = `${this.title} ${this.user.name}`
     return {
       title,
       meta: [
         ...dynamicMetadata({
           title,
-          description,
           url: this.$nuxt.$route.path,
+          image: this.user.avatar,
         }),
       ],
     }
@@ -76,12 +70,8 @@ export default {
     async getData() {
       try {
         const [favorites, comments] = await Promise.all([
-          this.$axios.$get(
-            `/favorites/by-user/${this.$auth.$state.user.data.id}`
-          ),
-          this.$axios.$get(
-            `/comments/by-user/${this.$auth.$state.user.data.id}`
-          ),
+          this.$axios.$get(`/users/favorites/${this.$route.params.slug}`),
+          this.$axios.$get(`/users/comments/${this.$route.params.slug}`),
         ])
         this.favorites = favorites.data
         this.comments = comments.data
@@ -89,22 +79,6 @@ export default {
       } catch (error) {
         console.error(error)
         this.loading = false
-      }
-    },
-    destroy(data) {
-      data = data.data
-      switch (data.meta.type) {
-        case 'favorite':
-          this.deleteFavorite(data.meta.for, data.meta.slug)
-          break
-
-        case 'comment':
-          this.deleteComment(data.id)
-          break
-
-        default:
-          console.error('no type entity')
-          break
       }
     },
   },

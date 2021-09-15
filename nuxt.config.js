@@ -214,7 +214,7 @@ export default {
             propertyName: 'access_token',
           },
           logout: { url: '/logout', method: 'post' },
-          user: { url: '/user', method: 'get', propertyName: false },
+          user: { url: '/profile', method: 'get', propertyName: false },
         },
         tokenRequired: true,
         tokenType: 'Bearer',
@@ -225,7 +225,7 @@ export default {
       login: '/sign-in',
       logout: '/sign-in',
       callback: '/',
-      home: '/dashboard',
+      home: '/profile',
     },
     cookie: {
       options: {

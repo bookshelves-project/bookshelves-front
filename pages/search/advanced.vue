@@ -4,7 +4,7 @@
       :title="search ? `Results for &ldquo;${$route.query['q']}&rdquo;` : title"
       :subtitle="search ? `${search.length} results` : description"
     />
-    <advanced-search-form @advancedSearch="advancedSearch" />
+    <forms-advanced-search @advancedSearch="advancedSearch" />
     <section class="mt-6">
       <transition name="fade">
         <div v-if="search && search.length">
@@ -37,7 +37,6 @@
 import qs from 'qs'
 
 import SearchResults from '~/components/blocks/search-results.vue'
-import AdvancedSearchForm from '~/components/forms/advanced-search-form.vue'
 import Skeleton from '~/components/special/skeleton.vue'
 import { objectIsEmpty } from '~/plugins/utils/methods'
 
@@ -45,7 +44,6 @@ export default {
   name: 'PageSearchAdvanced',
   components: {
     SearchResults,
-    AdvancedSearchForm,
     Skeleton,
   },
   data() {

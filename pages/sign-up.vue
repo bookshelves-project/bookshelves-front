@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="mt-8">
-          <register-form />
+          <forms-register />
         </div>
       </div>
     </div>
@@ -71,11 +71,8 @@
 </template>
 
 <script>
-import registerForm from '~/components/forms/register-form.vue'
-
 export default {
   name: 'PageRegister',
-  components: { registerForm },
   auth: 'guest',
   head() {
     const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')

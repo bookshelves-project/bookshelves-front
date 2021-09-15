@@ -38,7 +38,7 @@
       />
       <blocks-book-related :book="book" :class="book.serie ? 'lg:pl-10' : ''" />
     </div>
-    <blocks-comments-wrapper :entity="book" class="mt-6" />
+    <blocks-comments-template :entity="book" class="mt-6" />
   </main>
 </template>
 

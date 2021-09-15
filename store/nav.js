@@ -7,21 +7,23 @@ export const state = () => ({
   ],
   authNavigationTrue: [
     {
-      label: 'Dashboard',
-      icon: 'template',
-      route: 'dashboard',
-      isAdmin: false,
-    },
-    {
-      label: 'Profile',
-      icon: 'cog',
+      label: 'My profile',
+      icon: 'user-circle',
       route: 'profile',
       isAdmin: false,
     },
     {
+      label: 'Settings',
+      icon: 'cog',
+      route: 'profile-settings',
+      isAdmin: false,
+    },
+  ],
+  authNavigationAdmin: [
+    {
       label: 'Admin',
       icon: 'control',
-      route: 'admin',
+      route: 'profile-admin',
       isAdmin: true,
     },
   ],

@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="mt-8">
-          <login-form />
+          <forms-login />
         </div>
       </div>
     </div>
@@ -61,11 +61,8 @@
 </template>
 
 <script>
-import loginForm from '~/components/forms/login-form.vue'
-
 export default {
   name: 'PageLogin',
-  components: { loginForm },
   auth: 'guest',
   head() {
     const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
