@@ -11,10 +11,15 @@
         />
       </div>
       <div>
-        <div class="text-sm">
-          <span class="font-medium text-gray-900 dark:text-gray-100">
-            {{ comment.user.name }}
-          </span>
+        <div>
+          <nuxt-link
+            :to="{ name: 'users-slug', params: { slug: comment.user.slug } }"
+            class="text-sm border-b border-gray-900 dark:border-gray-100"
+          >
+            <span class="font-medium text-gray-900 dark:text-gray-100">
+              {{ comment.user.name }}
+            </span>
+          </nuxt-link>
         </div>
         <fields-rating-stars
           v-if="$config.moduleSocialRating"
