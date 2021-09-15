@@ -28,7 +28,8 @@ export default {
     color: {
       type: String,
       default: 'secondary',
-      validator: (val) => ['secondary', 'primary', 'white'].includes(val),
+      validator: (val) =>
+        ['secondary', 'primary', 'white', 'danger'].includes(val),
     },
     href: {
       type: String,
@@ -114,10 +115,13 @@ export default {
   @apply text-primary-600 bg-primary-100 border-transparent hover:bg-primary-200 hover:text-primary-600 dark:text-gray-700 !important;
 }
 .primary {
-  @apply border-transparent shadow-sm text-white bg-primary-600 hover:bg-primary-700 !important;
+  @apply border-transparent shadow-sm text-white bg-primary-600 hover:bg-primary-500 !important;
 }
 .white {
   @apply border-gray-300 shadow-sm text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 hover:bg-primary-100 !important;
+}
+.danger {
+  @apply border-red-300 shadow-sm text-red-700 bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-red-700 hover:bg-red-100 !important;
 }
 
 .disabled {
