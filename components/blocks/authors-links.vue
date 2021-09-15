@@ -1,5 +1,8 @@
 <template>
-  <div v-if="authors.length" class="mt-2 text-center lg:text-left lg:mt-0">
+  <div
+    v-if="authors.length"
+    class="mt-2 text-center lg:text-left lg:mt-0 dark:text-white"
+  >
     By
     <span
       v-for="(author, authorId) in authors"

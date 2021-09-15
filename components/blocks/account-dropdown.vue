@@ -30,8 +30,12 @@
               <img
                 v-if="$auth.$state.loggedIn"
                 class="w-8 h-8 rounded-full"
-                :src="$auth.$state.user.data.avatar"
-                :alt="$auth.$state.user.data.name"
+                :src="
+                  $auth.$state.user.data ? $auth.$state.user.data.avatar : null
+                "
+                :alt="
+                  $auth.$state.user.data ? $auth.$state.user.data.name : null
+                "
                 loading="lazy"
               />
               <img
@@ -82,6 +86,31 @@
               </span>
             </nuxt-link>
           </span>
+          <hr v-if="authAdmin.length" class="my-1" />
+          <span v-for="link in authAdmin" :key="link.id">
+            <nuxt-link
+              :to="{ name: link.route }"
+              class="
+                flex
+                items-center
+                px-4
+                py-2
+                text-sm text-gray-700
+                hover:bg-gray-200
+                dark:hover:bg-gray-800
+              "
+              role="menuitem"
+            >
+              <span class="flex items-center" @click="closeAccountDropdown">
+                <svg-icon
+                  :name="link.icon"
+                  class="w-5 h-5 mr-1 text-gray-500"
+                />
+                {{ link.label }}
+              </span>
+            </nuxt-link>
+          </span>
+          <hr class="my-1" />
           <button
             class="
               flex
@@ -138,6 +167,14 @@ export default {
   computed: {
     authNav() {
       const nav = this.$store.state.nav.authNavigationTrue
+      if (this.$auth.$state.user.isAdmin) {
+        return nav
+      } else {
+        return nav.filter((item) => !item.isAdmin)
+      }
+    },
+    authAdmin() {
+      const nav = this.$store.state.nav.authNavigationAdmin
       if (this.$auth.$state.user.isAdmin) {
         return nav
       } else {

@@ -44,6 +44,7 @@
                 text-sm
                 font-medium
                 text-gray-500
+                dark:text-gray-400
                 transition-colors
                 duration-100
                 p-1
@@ -52,7 +53,7 @@
               :class="
                 id >= crumbs.length - 1
                   ? ''
-                  : 'hover:text-gray-700 hover:bg-gray-200'
+                  : 'hover:text-gray-700 hover:bg-gray-200 dark:hover:text-gray-100 dark:hover:bg-gray-700'
               "
             >
               {{ capitalize(link.title) }}
