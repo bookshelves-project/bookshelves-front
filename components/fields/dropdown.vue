@@ -16,7 +16,7 @@
         v-show="open"
         class="
           absolute
-          z-40
+          z-20
           mt-2
           rounded-md
           shadow-lg

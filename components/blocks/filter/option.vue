@@ -39,7 +39,7 @@
       </button>
     </template>
     <template #content>
-      <div class="py-1">
+      <div class="py-1 dark:bg-gray-700">
         <div
           class="
             block
@@ -66,7 +66,7 @@
             py-2
             text-sm text-left text-gray-700
             hover:bg-gray-200 hover:text-gray-900
-            dark:text-gray-100 dark:hover:bg-gray-800
+            dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-800
           "
           role="menuitem"
           :aria-label="`Filter by ${option.name}`"
