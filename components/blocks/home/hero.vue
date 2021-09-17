@@ -55,3 +55,11 @@ export default {
   name: 'Hero',
 }
 </script>
+
+<style lang="postcss" scoped>
+.hero::v-deep {
+  & img {
+    object-fit: contain !important;
+  }
+}
+</style>

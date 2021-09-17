@@ -93,6 +93,8 @@ export default {
     '@nuxtjs/svg-sprite',
     // https://html-validator.nuxtjs.org/
     // '@nuxtjs/html-validator',
+    // https://composition-api.nuxtjs.org/getting-started/setup
+    '@nuxtjs/composition-api/module',
   ],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.pcss',
