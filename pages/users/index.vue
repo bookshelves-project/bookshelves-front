@@ -53,7 +53,7 @@ export default {
   name: 'PageUsers',
   async asyncData({ app }) {
     const users = await app.$axios.$get('/users')
-    console.log(users)
+
     return {
       users: users.data,
     }

@@ -9,11 +9,9 @@
     <!-- Main 2 column grid -->
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
       <!-- Left column -->
-      <div
-        v-if="user.showFavorites"
-        class="grid grid-cols-1 gap-4 xl:col-span-1"
-      >
+      <div class="grid grid-cols-1 gap-4 xl:col-span-1">
         <blocks-data-list-template
+          v-if="user.displayFavorites"
           :data-list="favorites"
           title="Favorites list"
           subtitle="All your favorites will be here."
@@ -21,14 +19,15 @@
           icon="heart"
           :loading="loading"
         />
+        <div v-else class="italic text-gray-400 dark:text-gray-500">
+          {{ user.name }} don't want to show comments.
+        </div>
       </div>
 
       <!-- Right column -->
-      <div
-        v-if="user.showComments"
-        class="grid grid-cols-1 gap-4 xl:col-span-1"
-      >
+      <div class="grid grid-cols-1 gap-4 xl:col-span-1">
         <blocks-data-list-template
+          v-if="user.displayComments"
           :data-list="comments"
           title="Comments list"
           subtitle="All your comments will be here."
@@ -36,6 +35,9 @@
           icon="comment"
           :loading="loading"
         />
+        <div v-else class="italic text-gray-400 dark:text-gray-500">
+          {{ user.name }} don't want to show favorites.
+        </div>
       </div>
     </div>
   </div>

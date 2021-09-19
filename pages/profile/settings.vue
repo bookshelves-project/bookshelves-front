@@ -50,7 +50,7 @@ export default {
   middleware: 'auth',
   async asyncData({ app }) {
     const user = await app.$axios.$get(`/profile`)
-    console.log(user)
+
     return {
       user: user.data,
     }
