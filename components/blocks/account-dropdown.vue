@@ -167,18 +167,18 @@ export default {
   computed: {
     authNav() {
       const nav = this.$store.state.nav.authNavigationTrue
-      if (this.$auth.$state.user.isAdmin) {
+      if (this.$auth.$state.user.data.isAdmin) {
         return nav
       } else {
-        return nav.filter((item) => !item.isAdmin)
+        return nav.filter((item) => !item.data.isAdmin)
       }
     },
     authAdmin() {
       const nav = this.$store.state.nav.authNavigationAdmin
-      if (this.$auth.$state.user.isAdmin) {
+      if (this.$auth.$state.user.data.isAdmin) {
         return nav
       } else {
-        return nav.filter((item) => !item.isAdmin)
+        return nav.filter((item) => !item.data.isAdmin)
       }
     },
   },

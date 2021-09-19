@@ -4,8 +4,18 @@
       v-if="$auth.$state.loggedIn"
       :title="`${title}`"
       :subtitle="`Welcome ${$auth.user.data.name}`"
+      :text="$auth.user.data.about"
       :image="$auth.$state.user.data.avatar"
-    />
+    >
+      <app-button
+        :to="{
+          name: 'users-slug',
+          params: { slug: $auth.user.data.meta.slug },
+        }"
+      >
+        See my public profile
+      </app-button>
+    </app-header>
     <!-- Main 2 column grid -->
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
       <!-- Left column -->

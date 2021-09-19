@@ -37,7 +37,7 @@
           <button
             v-if="comment.text.length > 300"
             type="button"
-            class="mt-2 font-medium text-primary-600"
+            class="mt-2 text-sm font-medium text-primary-600"
             @click="toggleFullComment(comment.id, comment.text)"
           >
             <span v-if="overflow"> See more </span>

@@ -4,6 +4,7 @@
       v-if="!disable"
       for="rating"
       class="
+        sr-only
         block
         text-sm
         font-medium
@@ -18,8 +19,8 @@
       <div
         id="rating"
         name="rating"
-        class="flex items-center space-x-1"
-        :class="{ 'p-2': !disable }"
+        class="flex items-center space-x-1y"
+        :class="{ 'py-2': !disable }"
       >
         <div
           v-for="(star, id) in stars"

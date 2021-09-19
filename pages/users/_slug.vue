@@ -1,11 +1,18 @@
 <template>
   <div class="main-content">
-    <app-header :title="`${title} ${user.name}`" :image="user.avatar" />
+    <app-header
+      :title="`${title} ${user.name}`"
+      :image="user.avatar"
+      :text="user.about"
+    />
 
     <!-- Main 2 column grid -->
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
       <!-- Left column -->
-      <div class="grid grid-cols-1 gap-4 xl:col-span-1">
+      <div
+        v-if="user.showFavorites"
+        class="grid grid-cols-1 gap-4 xl:col-span-1"
+      >
         <blocks-data-list-template
           :data-list="favorites"
           title="Favorites list"
@@ -17,7 +24,10 @@
       </div>
 
       <!-- Right column -->
-      <div class="grid grid-cols-1 gap-4 xl:col-span-1">
+      <div
+        v-if="user.showComments"
+        class="grid grid-cols-1 gap-4 xl:col-span-1"
+      >
         <blocks-data-list-template
           :data-list="comments"
           title="Comments list"

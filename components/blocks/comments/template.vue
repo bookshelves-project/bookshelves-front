@@ -17,7 +17,7 @@
         >
           Comments
         </h2>
-        <div v-if="$config.moduleSocialRating">
+        <div v-if="$config.moduleSocialRating && commentsList.length > 5">
           <fields-rating-stars :rating="avg" class="mt-2 mb-1" disable />
         </div>
       </div>

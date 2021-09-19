@@ -53,8 +53,23 @@
             >{{ team }}</nuxt-link
           >
           <span class="hidden mx-1 md:block">·</span
-          ><span v-if="packageJson" class="block md:flex"
-            >{{ packageJson.license }} license</span
+          ><nuxt-link
+            v-if="packageJson"
+            :to="{
+              name: 'type-slug',
+              params: { type: 'pages', slug: 'license' },
+            }"
+            class="block md:flex"
+            >{{ packageJson.license }} license</nuxt-link
+          ><span class="hidden md:block">,</span
+          ><nuxt-link
+            v-if="packageJson"
+            :to="{
+              name: 'type-slug',
+              params: { type: 'pages', slug: 'changelog' },
+            }"
+            class="block md:flex italic md:ml-1"
+            >v{{ packageJson.version }}</nuxt-link
           ><span class="hidden md:block">.</span>
         </div>
       </span>
