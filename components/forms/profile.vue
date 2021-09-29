@@ -31,6 +31,13 @@
           class="col-span-6 md:col-span-4"
           required
         />
+        <fields-radios
+          v-model="form.gender"
+          :options="genders"
+          label="Gender"
+          name="gender"
+          class="col-span-6 md:col-span-4"
+        />
         <fields-input-text
           v-model="form.about"
           name="about"
@@ -121,6 +128,14 @@
               Check this if you want to display your comments publickly on your
               profile.
             </fields-checkbox>
+            <fields-checkbox
+              v-model="form.display_gender"
+              name="display_gender"
+              label="Display gender"
+            >
+              Check this if you want to display your gender publickly on your
+              profile.
+            </fields-checkbox>
           </fieldset>
         </div>
       </div>
@@ -141,6 +156,7 @@
 </template>
 
 <script>
+import { capitalize } from '@/plugins/utils/methods'
 export default {
   name: 'FormsProfile',
   props: {
@@ -155,27 +171,43 @@ export default {
         name: '',
         email: '',
         avatar: '',
+        gender: '',
         use_gravatar: false,
         display_favorites: false,
         display_comments: false,
+        display_gender: false,
         about: '',
       },
       isLoading: false,
       progress: 0,
       avatarPreview: null,
+      genders: [],
     }
   },
-  created() {
+  async created() {
     if (this.user) {
       this.form.name = this.user.name
       this.form.email = this.user.email
       this.form.use_gravatar = this.user.use_gravatar
       this.form.display_favorites = this.user.display_favorites
       this.form.display_comments = this.user.display_comments
+      this.form.display_gender = this.user.display_gender
       this.form.about = this.user.about
+      // this.form.gender = this.user.gender
     }
+    await this.getData()
   },
   methods: {
+    capitalize,
+    async getData() {
+      const genders = await this.$axios.$get('/users/genders')
+      genders.data.forEach((gender) => {
+        this.genders.push({
+          label: this.capitalize(gender),
+          value: gender,
+        })
+      })
+    },
     async submit() {
       this.isLoading = true
       const data = new FormData()
