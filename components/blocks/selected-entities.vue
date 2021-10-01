@@ -172,6 +172,7 @@ export default {
   },
 }
 </script>
+
 <style lang="postcss" scoped>
 .selected-entities-swiper::v-deep {
   & .swiper-button-prev {
