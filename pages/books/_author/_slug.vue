@@ -61,7 +61,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
     const serie = this.book.serie
       ? ` · ${this.book.serie.title}, vol. ${this.book.volume} `
       : ''

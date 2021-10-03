@@ -139,7 +139,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
     const title = `${this.author.name}`
     return {
       title,

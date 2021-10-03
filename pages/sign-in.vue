@@ -65,7 +65,7 @@ export default {
   name: 'PageLogin',
   auth: 'guest',
   head() {
-    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
     const title = 'Sign in'
     return {
       title,

@@ -1,8 +1,8 @@
-import metadata from './plugins/metadata/metadata'
-import sitemaps from './plugins/build/sitemaps'
-
-import metadataDynamic from './plugins/metadata/metadata-dynamic'
-import metadataStatic from './plugins/metadata/metadata-static'
+import metadata from './plugins/config/metadata'
+import sitemaps from './plugins/config/sitemaps'
+import pwa from './plugins/config/pwa'
+import metadataDynamic from './plugins/config/metadata-dynamic'
+import metadataStatic from './plugins/config/metadata-static'
 
 export default {
   // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config
@@ -48,12 +48,12 @@ export default {
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['~/assets/css/app', '~/assets/css/markdown'],
 
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   loading: {
     color: metadata.settings.color,
     height: '2px',
   },
 
+  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     // helper methods: available in any component
     '~/plugins/utils/helpers',
@@ -176,27 +176,8 @@ export default {
     },
   },
   pwa: {
-    meta: {
-      name: metadata.website.title,
-      author: process.env.META_AUTHOR || metadata.website.author,
-      description: metadata.website.description,
-      theme_color: metadata.settings.color,
-      lang: metadata.settings.lang,
-      ogSiteName: metadata.og.siteName,
-      ogTitle: metadata.website.title,
-      ogDescription: metadata.website.description,
-      ogImage: `${process.env.BASE_URL}/default.jpg`,
-      ogUrl: process.env.BASE_URL,
-      twitterSite: metadata.twitter.site,
-      twitterCreator: metadata.twitter.creator,
-    },
-    manifest: {
-      name: metadata.website.title,
-      short_name: metadata.og.siteName,
-      description: metadata.website.description,
-      display: 'browser',
-      lang: metadata.settings.lang,
-    },
+    meta: pwa.meta,
+    manifest: pwa.manifest,
   },
   proxy: {
     '/api': {

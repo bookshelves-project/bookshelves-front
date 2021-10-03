@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import metadata from '@/plugins/metadata/metadata'
+import metadata from '@/plugins/config/metadata'
 
 export default {
   name: 'LayoutFooterIdentity',

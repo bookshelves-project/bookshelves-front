@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import metadata from '@/plugins/metadata/metadata'
+import metadata from '@/plugins/config/metadata'
 import packageJson from '@/package.json'
 
 export default {

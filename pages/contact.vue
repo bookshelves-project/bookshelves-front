@@ -118,7 +118,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
     return {
       title: this.title,
       meta: [

@@ -75,7 +75,7 @@ export default {
   name: 'PageRegister',
   auth: 'guest',
   head() {
-    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
     const title = 'Sign up'
     return {
       title,

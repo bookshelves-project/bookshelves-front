@@ -14,6 +14,11 @@ body {
   color-scheme: dark;
   scrollbar-color: theme('colors.gray.600') theme('colors.gray.900');
 }
+.dark {
+  & body {
+    @apply bg-gray-900;
+  }
+}
 
 .fade-enter-active,
 .fade-leave-active {

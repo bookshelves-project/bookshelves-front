@@ -65,7 +65,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/metadata/metadata-dynamic')
+    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
     const title = 'My profile'
     const description = 'An overview of all your activities.'
     return {
