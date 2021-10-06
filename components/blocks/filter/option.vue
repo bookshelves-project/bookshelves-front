@@ -1,5 +1,5 @@
 <template>
-  <fields-dropdown align="right" :width="48">
+  <app-dropdown align="right" :width="48">
     <template #trigger>
       <button
         :id="`${filter}-filter`"
@@ -78,7 +78,7 @@
         </button>
       </div>
     </template>
-  </fields-dropdown>
+  </app-dropdown>
 </template>
 
 <script>

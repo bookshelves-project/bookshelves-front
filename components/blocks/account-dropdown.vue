@@ -1,6 +1,6 @@
 <template>
   <div class="ml-3">
-    <dropdown align="right" :width="48">
+    <app-dropdown align="right" :width="48">
       <template #trigger>
         <span class="flex">
           <button
@@ -150,15 +150,13 @@
           </nuxt-link>
         </div>
       </template>
-    </dropdown>
+    </app-dropdown>
   </div>
 </template>
 
 <script>
-import Dropdown from '~/components/fields/dropdown.vue'
 export default {
   name: 'AccountDropdown',
-  components: { Dropdown },
   data() {
     return {
       accountDropdownOpened: false,

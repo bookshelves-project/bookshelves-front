@@ -1,5 +1,5 @@
 <template>
-  <li class="mb-8">
+  <li class="mb-8 comment">
     <div class="flex space-x-3">
       <div class="flex-shrink-0">
         <app-image
@@ -27,12 +27,12 @@
           class="mt-2 mb-1"
           disable
         />
-        <div>
+        <div class="comment-text">
           <div
             :ref="comment.id"
             class="mt-1 text-sm text-gray-700 dark:text-gray-300 light-md"
             :class="overflow ? 'line-clamp-4' : ''"
-            v-html="comment.text"
+            v-html="$md.render(comment.text)"
           ></div>
           <button
             v-if="comment.text.length > 300"
@@ -105,3 +105,11 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss" scoped>
+.comment::v-deep {
+  & .comment-text {
+    @apply prose prose-lg;
+  }
+}
+</style>

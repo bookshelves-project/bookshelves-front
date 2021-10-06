@@ -46,7 +46,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~/assets/css/app', '~/assets/css/markdown'],
+  css: ['~/assets/css/app.pcss', '~/assets/css/markdown.pcss'],
 
   loading: {
     color: metadata.settings.color,
@@ -161,6 +161,8 @@ export default {
         siteId: process.env.MATOMO_SITE_ID ? process.env.MATOMO_SITE_ID : null,
       },
     ],
+    // https://www.npmjs.com/package/@nuxtjs/markdownit
+    '@nuxtjs/markdownit',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -235,6 +237,13 @@ export default {
     gzip: true,
     exclude: metadata.settings.disallow.split(','),
     sitemaps: sitemaps(),
+  },
+  // See https://github.com/markdown-it/markdown-it
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    // use: ['markdown-it-div', 'markdown-it-attrs'],
   },
 
   hooks: {

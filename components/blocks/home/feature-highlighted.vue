@@ -77,16 +77,17 @@
             lg:px-0 lg:m-0 lg:relative lg:h-full
           "
         >
-          <img
+          <app-image
             v-if="image"
             :class="[
               { 'lg:left-0': positionImage === 'right' },
               { 'lg:right-0': positionImage === 'left' },
             ]"
-            class="
+            class="lg:absolute"
+            class-img="
               w-full
               rounded-xl
-              lg:absolute lg:h-full lg:w-auto lg:max-w-none
+              lg:h-full lg:w-auto lg:max-w-none
             "
             :src="image"
             :alt="title"

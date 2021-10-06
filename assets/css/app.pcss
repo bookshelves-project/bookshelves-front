@@ -1,4 +1,5 @@
 @import './swiper.pcss';
+@import './app/vue.pcss';
 
 @font-face {
   font-family: Handlee;
@@ -18,33 +19,6 @@ body {
   & body {
     @apply bg-gray-900;
   }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-.list-item {
-  display: inline-block;
-  margin-right: 10px;
-}
-.list-enter-active,
-.list-leave-active {
-  transition: all 1s;
-}
-.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-[v-cloak] > * {
-  display: none;
-}
-[v-cloak]::before {
-  content: '';
 }
 
 button {
