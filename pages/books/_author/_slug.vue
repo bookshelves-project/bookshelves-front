@@ -30,7 +30,13 @@
       </div>
     </app-header>
     <blocks-book-main :book="book" class="mb-6" />
-    <div class="lg:grid lg:grid-cols-2 divide-x">
+    <div
+      class="
+        lg:grid lg:grid-cols-2
+        divide-x divide-transparent
+        lg:divide-gray-200 lg:dark:divide-gray-600
+      "
+    >
       <blocks-book-serie
         v-if="book.serie !== null"
         :book="book"

@@ -5,8 +5,7 @@
         class="
           w-32
           h-32
-          md:w-48
-          xl:w-64
+          md:w-64
           mx-auto
           md:h-full md:rounded-none
           rounded-full
@@ -15,8 +14,7 @@
         :src="book.cover.original"
         class-img="w-32
           h-32
-          md:w-48
-          xl:w-64
+          md:w-64
           mx-auto
           md:h-full md:rounded-none
           rounded-full
