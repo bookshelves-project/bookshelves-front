@@ -5,7 +5,7 @@
 [![nuxtjs](https://img.shields.io/static/v1?label=Designed%20to%20be&message=SSR&color=00C58E&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxtjs.org/docs/2.x/concepts/server-side-rendering/)
 
 [![NodeJS](https://img.shields.io/static/v1?label=NodeJS&message=v14.16&color=339933&style=flat-square&logo=node.js&logoColor=ffffff)](https://nodejs.org/en)
-[![yarn](https://img.shields.io/static/v1?label=yarn&message=1.2&color=2C8EBB&style=flat-square&logo=yarn&logoColor=ffffff)](https://classic.yarnpkg.com/lang/en/)
+[![npm](https://img.shields.io/static/v1?label=NPM&message=v8&color=2C8EBB&style=flat-square&logo=npm&logoColor=CB3837)](https://docs.npmjs.com/cli/)
 
 📀 [**bookshelves-back**](https://gitlab.com/ewilan-riviere/bookshelves-back) : back-end of Bookshelves  
 🎨 [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front) : front-end of Bookshelves (current repository)  
