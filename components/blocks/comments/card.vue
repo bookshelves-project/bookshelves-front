@@ -109,7 +109,7 @@ export default {
 <style lang="postcss" scoped>
 .comment::v-deep {
   & .comment-text {
-    @apply prose prose-lg;
+    @apply prose prose-lg dark:prose-light;
   }
 }
 </style>

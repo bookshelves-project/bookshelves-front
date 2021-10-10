@@ -8,7 +8,7 @@
       :border="false"
     />
     <div class="flex flex-wrap-reverse w-full xl:col-span-3">
-      <div class="prose prose-lg">
+      <div class="prose prose-lg dark:prose-light">
         <nuxt-content :document="document" />
       </div>
       <div class="relative block w-full lg:mx-auto lg:w-1/4 lg:max-w-prose">
