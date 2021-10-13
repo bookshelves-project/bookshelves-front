@@ -7,7 +7,9 @@
         <chip
           v-for="tag in genres"
           :key="tag.id"
-          :to="{ name: 'tags-slug', params: { slug: tag.meta.slug } }"
+          :to="
+            localePath({ name: 'tags-slug', params: { slug: tag.meta.slug } })
+          "
         >
           {{ tag.name }} ({{ tag.count }})
         </chip>
@@ -19,7 +21,9 @@
         <chip
           v-for="tag in tags"
           :key="tag.id"
-          :to="{ name: 'tags-slug', params: { slug: tag.meta.slug } }"
+          :to="
+            localePath({ name: 'tags-slug', params: { slug: tag.meta.slug } })
+          "
         >
           {{ tag.name }} ({{ tag.count }})
         </chip>

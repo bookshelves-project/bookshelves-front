@@ -16,7 +16,11 @@
         {{ feature.text }}
       </template>
       <template #cta>
-        <app-button :color="`white`" :to="feature.cta.route" class="mt-6">
+        <app-button
+          :color="`white`"
+          :to="localePath(feature.cta.route)"
+          class="mt-6"
+        >
           {{ feature.cta.text }}
         </app-button>
       </template>

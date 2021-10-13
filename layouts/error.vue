@@ -64,7 +64,7 @@
         <div class="mx-auto max-w-7xl w-full px-4 py-16 sm:px-6 lg:px-8">
           <nav class="flex space-x-4">
             <nuxt-link
-              :to="{ name: 'contact' }"
+              :to="localePath({ name: 'contact' })"
               class="text-sm font-medium text-gray-500 hover:text-gray-600"
               >Contact Support</nuxt-link
             >

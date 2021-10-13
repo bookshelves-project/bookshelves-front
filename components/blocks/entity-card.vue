@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="route" class="group entity-card" :title="title">
+  <nuxt-link :to="localePath(route)" class="group entity-card" :title="title">
     <article
       loading="lazy"
       class="

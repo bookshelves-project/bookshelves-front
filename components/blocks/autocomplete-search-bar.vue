@@ -16,16 +16,18 @@
         >
           <template #result="{ result, props }">
             <nuxt-link
-              :to="{
-                name:
-                  result.meta.entity === 'author'
-                    ? `authors-slug`
-                    : `${result.meta.entity}s-author-slug`,
-                params: {
-                  author: result.meta.author,
-                  slug: result.meta.slug,
-                },
-              }"
+              :to="
+                localePath({
+                  name:
+                    result.meta.entity === 'author'
+                      ? `authors-slug`
+                      : `${result.meta.entity}s-author-slug`,
+                  params: {
+                    author: result.meta.author,
+                    slug: result.meta.slug,
+                  },
+                })
+              "
               title="Search"
               aria-label="Search"
             >
@@ -130,10 +132,12 @@ export default {
   methods: {
     searchWithButton() {
       const querySearch = this.$refs.search.value
-      this.$router.push({
-        name: 'search',
-        query: { q: querySearch },
-      })
+      this.$router.push(
+        this.localePath({
+          name: 'search',
+          query: { q: querySearch },
+        })
+      )
     },
     search(input) {
       const method = this.searchMethod[this.method]
@@ -163,22 +167,26 @@ export default {
     handleSubmit(result) {
       if (result === undefined) {
         this.$refs.search.setValue('')
-        this.$router.push({
-          name: 'search',
-          query: { q: this.searchTerm },
-        })
+        this.$router.push(
+          this.localePath({
+            name: 'search',
+            query: { q: this.searchTerm },
+          })
+        )
       } else {
         this.$refs.search.setValue('')
-        this.$router.push({
-          name:
-            result.meta.entity === 'author'
-              ? `authors-slug`
-              : `${result.meta.entity}s-author-slug`,
-          params: {
-            author: result.meta.author,
-            slug: result.meta.slug,
-          },
-        })
+        this.$router.push(
+          this.localePath({
+            name:
+              result.meta.entity === 'author'
+                ? `authors-slug`
+                : `${result.meta.entity}s-author-slug`,
+            params: {
+              author: result.meta.author,
+              slug: result.meta.slug,
+            },
+          })
+        )
       }
     },
     handleUpdate(result) {

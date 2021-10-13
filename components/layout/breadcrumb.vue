@@ -4,7 +4,7 @@
       <ol role="list" class="flex items-center space-x-2">
         <li>
           <div>
-            <nuxt-link :to="{ name: 'index' }">
+            <nuxt-link :to="localePath({ name: 'index' })">
               <!-- Heroicon name: solid/home -->
               <svg
                 class="
@@ -38,7 +38,7 @@
             />
             <component
               :is="id >= crumbs.length - 1 ? 'span' : 'nuxt-link'"
-              :to="link.path"
+              :to="localePath(link.path)"
               class="
                 ml-1
                 text-sm
@@ -63,7 +63,7 @@
       </ol>
     </nav>
     <nuxt-link
-      :to="{ name: 'index' }"
+      :to="localePath({ name: 'index' })"
       class="flex md:hidden items-center font-semibold text-xl"
     >
       <svg-icon
@@ -82,11 +82,12 @@ export default {
   computed: {
     crumbs() {
       const fullPath = this.$route.fullPath
-      const params = fullPath.startsWith('/')
+      let params = fullPath.startsWith('/')
         ? fullPath.substring(1).split('/')
         : fullPath.split('/')
       const crumbs = []
       let path = ''
+      params = params.filter((e) => e.length > 3)
       params.forEach((param, index) => {
         path = `${path}/${param}`
         const match = this.$router.match(path)

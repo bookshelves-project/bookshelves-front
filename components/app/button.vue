@@ -2,7 +2,7 @@
   <component
     :is="component"
     ref="btn"
-    :to="to ? to : null"
+    :to="to ? localePath(to) : null"
     :target="href !== null ? (download ? '' : '_blank') : null"
     :rel="href !== null ? 'noopener noreferrer' : null"
     :type="component === 'button' ? type : null"
@@ -118,10 +118,10 @@ export default {
   @apply border-transparent shadow-sm text-white bg-primary-600 hover:bg-primary-500 !important;
 }
 .white {
-  @apply border-gray-300 shadow-sm text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 hover:bg-primary-100 !important;
+  @apply border-gray-300 dark:border-gray-600 shadow-sm text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 hover:bg-primary-100 !important;
 }
 .danger {
-  @apply border-red-300 shadow-sm text-red-700 bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-red-700 hover:bg-red-100 !important;
+  @apply border-red-300 dark:border-red-600 shadow-sm text-red-700 bg-white dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-red-700 hover:bg-red-100 !important;
 }
 
 .disabled {

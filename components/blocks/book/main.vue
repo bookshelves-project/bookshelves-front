@@ -25,10 +25,12 @@
                 class="mr-1"
               >
                 <nuxt-link
-                  :to="{
-                    name: 'authors-slug',
-                    params: { slug: author.meta.slug },
-                  }"
+                  :to="
+                    localePath({
+                      name: 'authors-slug',
+                      params: { slug: author.meta.slug },
+                    })
+                  "
                   class="internal-link"
                   >{{ author.name }}</nuxt-link
                 >
@@ -50,13 +52,15 @@
           <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
             <h2>
               <nuxt-link
-                :to="{
-                  name: 'series-author-slug',
-                  params: {
-                    author: book.serie.meta.author,
-                    slug: book.serie.meta.slug,
-                  },
-                }"
+                :to="
+                  localePath({
+                    name: 'series-author-slug',
+                    params: {
+                      author: book.serie.meta.author,
+                      slug: book.serie.meta.slug,
+                    },
+                  })
+                "
                 class="internal-link"
               >
                 {{ book.serie.title }}
@@ -71,10 +75,12 @@
           </dt>
           <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
             <nuxt-link
-              :to="{
-                name: 'publishers-slug',
-                params: { slug: book.publisher.meta.slug },
-              }"
+              :to="
+                localePath({
+                  name: 'publishers-slug',
+                  params: { slug: book.publisher.meta.slug },
+                })
+              "
               class="internal-link"
               >{{ book.publisher.name }}</nuxt-link
             >
@@ -87,10 +93,12 @@
           </dt>
           <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
             <nuxt-link
-              :to="{
-                name: 'books',
-                query: { lang: book.language },
-              }"
+              :to="
+                localePath({
+                  name: 'books',
+                  query: { lang: book.language },
+                })
+              "
               class="internal-link"
             >
               {{ formatLanguage(book.language) }}
@@ -140,7 +148,12 @@
           >
             <span v-for="(genre, genreId) in book.genres" :key="genreId">
               <nuxt-link
-                :to="{ name: 'tags-slug', params: { slug: genre.meta.slug } }"
+                :to="
+                  localePath({
+                    name: 'tags-slug',
+                    params: { slug: genre.meta.slug },
+                  })
+                "
                 class="internal-link"
                 >{{ genre.name }}</nuxt-link
               ><span v-if="genreId !== book.genres.length - 1" class="mr-1"
@@ -158,7 +171,12 @@
           >
             <span v-for="(tag, tagId) in book.tags" :key="tagId">
               <nuxt-link
-                :to="{ name: 'tags-slug', params: { slug: tag.meta.slug } }"
+                :to="
+                  localePath({
+                    name: 'tags-slug',
+                    params: { slug: tag.meta.slug },
+                  })
+                "
                 class="internal-link"
                 >{{ tag.name }}</nuxt-link
               ><span v-if="tagId !== book.tags.length - 1" class="mr-1">,</span>

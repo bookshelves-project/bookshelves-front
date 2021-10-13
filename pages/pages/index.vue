@@ -1,8 +1,10 @@
 <template>
   <blocks-redirection
-    :to="{
-      name: 'index',
-    }"
+    :to="
+      localePath({
+        name: 'index',
+      })
+    "
   />
 </template>
 

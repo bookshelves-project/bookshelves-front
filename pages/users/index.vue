@@ -5,7 +5,7 @@
       <nuxt-link
         v-for="user in users"
         :key="user.id"
-        :to="{ name: 'users-slug', params: { slug: user.slug } }"
+        :to="localePath({ name: 'users-slug', params: { slug: user.slug } })"
         class="
           relative
           rounded-lg

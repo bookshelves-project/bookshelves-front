@@ -13,7 +13,7 @@
               <svg-icon name="menu" class="w-8 h-8" />
             </button>
             <nuxt-link
-              to="/"
+              :to="localePath('/')"
               class="hidden lg:block"
               title="Home"
               aria-label="Home"
@@ -25,7 +25,11 @@
             <nuxt-link
               v-for="(booksNav, booksNavId) in $store.state.nav.navigation"
               :key="booksNavId"
-              :to="{ name: booksNav.route }"
+              :to="
+                localePath({
+                  name: booksNav.route,
+                })
+              "
               class="
                 inline-flex
                 items-center

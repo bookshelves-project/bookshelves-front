@@ -43,7 +43,7 @@
           <span class="hidden mx-1 md:block">·</span>
           <nuxt-link
             v-if="team"
-            :to="`/pages/about`"
+            :to="localePath(`/pages/about`)"
             class="
               transition-colors
               duration-100
@@ -55,19 +55,23 @@
           <span class="hidden mx-1 md:block">·</span
           ><nuxt-link
             v-if="packageJson"
-            :to="{
-              name: 'type-slug',
-              params: { type: 'pages', slug: 'license' },
-            }"
+            :to="
+              localePath({
+                name: 'type-slug',
+                params: { type: 'pages', slug: 'license' },
+              })
+            "
             class="block md:flex"
             >{{ packageJson.license }} license</nuxt-link
           ><span class="hidden md:block">,</span
           ><nuxt-link
             v-if="packageJson"
-            :to="{
-              name: 'type-slug',
-              params: { type: 'pages', slug: 'changelog' },
-            }"
+            :to="
+              localePath({
+                name: 'type-slug',
+                params: { type: 'pages', slug: 'changelog' },
+              })
+            "
             class="block md:flex italic md:ml-1"
             >v{{ packageJson.version }}</nuxt-link
           ><span class="hidden md:block">.</span>

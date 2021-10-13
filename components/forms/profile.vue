@@ -13,7 +13,9 @@
             Your current user permalink is {{ user.slug }}, you can access to
             your
             <nuxt-link
-              :to="{ name: 'users-slug', params: { slug: user.slug } }"
+              :to="
+                localePath({ name: 'users-slug', params: { slug: user.slug } })
+              "
               class="
                 border-b border-gray-500
                 hover:text-gray-600 hover:border-gray-600

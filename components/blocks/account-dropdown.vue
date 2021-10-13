@@ -65,7 +65,7 @@
         <div v-if="$auth.$state.loggedIn">
           <span v-for="link in authNav" :key="link.id">
             <nuxt-link
-              :to="{ name: link.route }"
+              :to="localePath({ name: link.route })"
               class="
                 flex
                 items-center
@@ -89,7 +89,7 @@
           <hr v-if="authAdmin.length" class="my-1" />
           <span v-for="link in authAdmin" :key="link.id">
             <nuxt-link
-              :to="{ name: link.route }"
+              :to="localePath({ name: link.route })"
               class="
                 flex
                 items-center
@@ -135,7 +135,7 @@
           <nuxt-link
             v-for="link in $store.state.nav.authNavigationFalse"
             :key="link.id"
-            :to="{ name: link.route }"
+            :to="localePath({ name: link.route })"
             class="
               block
               px-4

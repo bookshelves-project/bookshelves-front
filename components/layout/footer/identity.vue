@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="flex items-center space-x-10">
-      <nuxt-link to="/" class="flex items-center lg:mx-0 w-max group">
+      <nuxt-link
+        :to="localePath('/')"
+        class="flex items-center lg:mx-0 w-max group"
+      >
         <svg-icon
           name="book"
           class="
@@ -59,6 +62,7 @@
             {{ socialIcon.label }}
           </div>
         </a>
+        <app-language-switch />
       </div>
     </div>
   </div>

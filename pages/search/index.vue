@@ -122,10 +122,12 @@ export default {
   },
   methods: {
     advancedSearch(search) {
-      this.$router.push({
-        path: this.$route.path,
-        query: search,
-      })
+      this.$router.push(
+        this.localePath({
+          path: this.$route.path,
+          query: search,
+        })
+      )
     },
     async getSearchResults(query) {
       if (query) {

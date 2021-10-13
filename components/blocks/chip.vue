@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="to"
+    :to="localePath(to)"
     class="
       px-3
       py-1

@@ -171,9 +171,9 @@ export default {
         newQuery[key] = param.data
         query[param.type] = param.data
 
-        this.$router.push({ name: 'books', query })
+        this.$router.push(this.localePath({ name: 'books', query }))
       } else {
-        this.$router.push({ name: 'books' })
+        this.$router.push(this.localePath({ name: 'books' }))
       }
     },
   },

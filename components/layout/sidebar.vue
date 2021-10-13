@@ -109,7 +109,7 @@
               <nuxt-link
                 v-for="(booksNav, booksNavId) in $store.state.nav.navigation"
                 :key="booksNavId"
-                :to="{ name: booksNav.route }"
+                :to="localePath({ name: booksNav.route })"
                 class="
                   flex
                   items-center
@@ -154,7 +154,7 @@
                   <nuxt-link
                     v-for="link in $store.state.nav.authNavigationTrue"
                     :key="link.id"
-                    :to="{ name: link.route }"
+                    :to="localePath({ name: link.route })"
                     class="
                       flex
                       items-center
@@ -213,7 +213,7 @@
                   <nuxt-link
                     v-for="link in $store.state.nav.authNavigationFalse"
                     :key="link.id"
-                    :to="{ name: link.route }"
+                    :to="localePath({ name: link.route })"
                     class="
                       flex
                       items-center

@@ -182,7 +182,7 @@ export default {
           ],
           cta: 'Discover all eBooks',
           ctaAction: () => {
-            this.$router.push('books')
+            this.$router.push(this.localePath('books'))
           },
         },
         account: {

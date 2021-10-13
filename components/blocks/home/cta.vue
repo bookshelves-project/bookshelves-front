@@ -28,7 +28,7 @@
       </h2>
       <div class="flex mt-8 lg:mt-0 lg:flex-shrink-0">
         <div class="inline-flex rounded-md shadow">
-          <app-button :color="`primary`" :to="{ name: 'books' }">
+          <app-button :color="`primary`" :to="localePath({ name: 'books' })">
             Discover eBooks
           </app-button>
         </div>

@@ -54,10 +54,12 @@
             class="mr-1"
           >
             <nuxt-link
-              :to="{
-                name: 'authors-slug',
-                params: { slug: author.meta.slug },
-              }"
+              :to="
+                localePath({
+                  name: 'authors-slug',
+                  params: { slug: author.meta.slug },
+                })
+              "
               class="
                 text-gray-900
                 transition-colors
@@ -89,13 +91,15 @@
         <app-button
           v-if="$route.params.slug !== book.meta.slug"
           :color="`white`"
-          :to="{
-            name: `${book.meta.entity}s-author-slug`,
-            params: {
-              author: book.meta.author,
-              slug: book.meta.slug,
-            },
-          }"
+          :to="
+            localePath({
+              name: `${book.meta.entity}s-author-slug`,
+              params: {
+                author: book.meta.author,
+                slug: book.meta.slug,
+              },
+            })
+          "
           >Refer to {{ book.meta.entity }}</app-button
         >
         <span v-else class="italic text-gray-500 dark:text-gray-400"

@@ -18,9 +18,7 @@
             $config.appName
           }}</span
           ><span class="hidden xl:inline">, </span
-          ><span class="block xl:inline"
-            >reading in complete tranquility...</span
-          >
+          ><span class="block xl:inline">{{ $t('hero.title') }}</span>
         </h1>
         <p
           class="
@@ -33,9 +31,7 @@
             lg:mx-0
           "
         >
-          If you have an eReader and are looking for plenty of eBooks to take
-          everywhere with you, you've come to the right place, hours of reading
-          in perspective.
+          {{ $t('hero.text') }}
         </p>
       </div>
     </div>

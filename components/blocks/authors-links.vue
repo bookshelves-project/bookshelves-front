@@ -10,10 +10,12 @@
       class="mr-1 dark:text-gray-100"
     >
       <nuxt-link
-        :to="{
-          name: 'authors-slug',
-          params: { slug: author.meta.slug },
-        }"
+        :to="
+          localePath({
+            name: 'authors-slug',
+            params: { slug: author.meta.slug },
+          })
+        "
         class="
           text-gray-900
           border-b border-gray-600

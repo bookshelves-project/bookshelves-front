@@ -5,10 +5,12 @@
       <nuxt-link
         v-for="guide in guides"
         :key="guide.id"
-        :to="{
-          name: 'type-slug',
-          params: { type: 'guides', slug: guide.slug },
-        }"
+        :to="
+          localePath({
+            name: 'type-slug',
+            params: { type: 'guides', slug: guide.slug },
+          })
+        "
         :title="guide.title"
         :aria-label="guide.title"
         class="

@@ -6,10 +6,12 @@
         <chip
           v-for="publisher in publishers"
           :key="publisher.id"
-          :to="{
-            name: 'publishers-slug',
-            params: { slug: publisher.meta.slug },
-          }"
+          :to="
+            localePath({
+              name: 'publishers-slug',
+              params: { slug: publisher.meta.slug },
+            })
+          "
         >
           {{ publisher.name }} ({{ publisher.count }})
         </chip>

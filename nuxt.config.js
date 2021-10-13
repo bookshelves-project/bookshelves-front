@@ -138,7 +138,7 @@ export default {
     // https://www.npmjs.com/package/@nuxtjs/robots
     '@nuxtjs/robots',
     // https://i18n.nuxtjs.org/setup
-    // 'nuxt-i18n',
+    '@nuxtjs/i18n',
     // https://auth.nuxtjs.org/guide/setup
     '@nuxtjs/auth-next',
     // https://sitemap.nuxtjs.org/guide/setup
@@ -244,6 +244,28 @@ export default {
     linkify: true,
     breaks: true,
     // use: ['markdown-it-div', 'markdown-it-attrs'],
+  },
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        file: 'en.js',
+        name: 'English',
+      },
+      {
+        code: 'fr',
+        file: 'fr.js',
+        name: 'Français',
+      },
+    ],
+    // lazy: true,
+    defaultLocale: 'en',
+    langDir: '~locales/',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root', // recommended
+    },
   },
 
   hooks: {

@@ -1,5 +1,5 @@
 <template>
-  <li class="mb-8 comment">
+  <li v-if="comment.user" class="mb-8 comment">
     <div class="flex space-x-3">
       <div class="flex-shrink-0">
         <app-image
@@ -13,7 +13,12 @@
       <div>
         <div>
           <nuxt-link
-            :to="{ name: 'users-slug', params: { slug: comment.user.slug } }"
+            :to="
+              localePath({
+                name: 'users-slug',
+                params: { slug: comment.user.slug },
+              })
+            "
             class="text-sm border-b border-gray-900 dark:border-gray-100"
           >
             <span class="font-medium text-gray-900 dark:text-gray-100">
@@ -30,9 +35,15 @@
         <div class="comment-text">
           <div
             :ref="comment.id"
-            class="mt-1 text-sm text-gray-700 dark:text-gray-300 light-md"
-            :class="overflow ? 'line-clamp-4' : ''"
-            v-html="$md.render(comment.text)"
+            class="
+              mt-1
+              text-sm text-gray-700
+              dark:text-gray-300
+              light-md
+              overflow-hidden
+            "
+            :class="overflow ? 'overflow-comment' : ''"
+            v-html="comment.text"
           ></div>
           <button
             v-if="comment.text.length > 300"
@@ -110,6 +121,25 @@ export default {
 .comment::v-deep {
   & .comment-text {
     @apply prose prose-lg dark:prose-light;
+  }
+
+  & .comment-text .overflow-comment {
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  & .comment-text .overflow-comment p {
+    display: contents;
+  }
+
+  & .comment-text .overflow-comment p:after {
+    content: '\A';
+    white-space: pre;
   }
 }
 </style>

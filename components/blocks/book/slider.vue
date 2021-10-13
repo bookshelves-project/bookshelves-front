@@ -89,7 +89,12 @@
           No results.
         </div>
         <div v-if="link" class="mt-6">
-          <app-button :to="link" class="w-full" color="white" align="center">
+          <app-button
+            :to="localePath(link)"
+            class="w-full"
+            color="white"
+            align="center"
+          >
             View full results
           </app-button>
         </div>

@@ -31,7 +31,7 @@
           </div>
           <div class="relative flex justify-center text-sm">
             <nuxt-link
-              :to="{ name: 'sign-up' }"
+              :to="localePath({ name: 'sign-up' })"
               class="
                 px-2
                 text-gray-500

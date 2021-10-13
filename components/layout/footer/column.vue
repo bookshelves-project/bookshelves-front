@@ -22,7 +22,7 @@
           dark:text-gray-100 dark:hover:text-gray-400
         "
       >
-        <nuxt-link :to="link.route" class="block">
+        <nuxt-link :to="localePath(link.route)" class="block">
           {{ link.label }}
         </nuxt-link>
       </li>

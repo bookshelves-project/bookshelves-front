@@ -8,7 +8,9 @@
       :image="$auth.$state.user.data.avatar"
     />
     <main>
-      <nuxt-link :to="{ name: 'admin-database' }"> Admin database </nuxt-link>
+      <nuxt-link :to="localePath({ name: 'admin-database' })">
+        Admin database
+      </nuxt-link>
       <div class="py-5">
         <div class="flex items-center space-x-6">
           <app-button @click="updateNewEbooks">

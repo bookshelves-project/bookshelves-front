@@ -43,7 +43,7 @@
         <nuxt-link
           v-for="link in navigation"
           :key="link.id"
-          :to="{ name: link.route }"
+          :to="localePath({ name: link.route })"
           class="
             text-gray-900
             rounded-l-lg

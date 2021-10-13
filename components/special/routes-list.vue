@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     routes() {
-      const routes = []
+      let routes = []
       this.$router.options.routes.forEach((route) => {
         routes.push({
           name: route.name,
@@ -70,8 +70,12 @@ export default {
         })
       })
       console.log('------------')
+      routes = routes.filter((e) => e.name.includes('__en'))
+      routes = routes.sort((a, b) =>
+        a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
+      )
       routes.forEach((route) => {
-        console.log(`${route.name} => ${route.path}`)
+        console.log(`${route.name.replace('___en', '')} => ${route.path}`)
       })
       console.log('------------')
     },

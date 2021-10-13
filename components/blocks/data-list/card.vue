@@ -4,16 +4,18 @@
     class="relative grid grid-cols-6 bg-white dark:bg-gray-800"
   >
     <nuxt-link
-      :to="{
-        name:
-          data.meta.for === 'author'
-            ? `authors-slug`
-            : `${data.meta.for}s-author-slug`,
-        params: {
-          author: data.meta.author,
-          slug: data.meta.slug,
-        },
-      }"
+      :to="
+        localePath({
+          name:
+            data.meta.for === 'author'
+              ? `authors-slug`
+              : `${data.meta.for}s-author-slug`,
+          params: {
+            author: data.meta.author,
+            slug: data.meta.slug,
+          },
+        })
+      "
       :title="data.title"
       :aria-label="data.title"
       class="
@@ -77,7 +79,7 @@
         </div>
         <div v-if="data.text" class="hidden mt-1 lg:block">
           <div class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
-            <div v-html="$md.render(data.text)"></div>
+            <div v-html="data.text"></div>
           </div>
         </div>
       </div>

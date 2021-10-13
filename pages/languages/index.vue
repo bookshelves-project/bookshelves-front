@@ -6,10 +6,12 @@
         <chip
           v-for="language in languages"
           :key="language.id"
-          :to="{
-            name: 'books',
-            query: { lang: language.meta.slug },
-          }"
+          :to="
+            localePath({
+              name: 'books',
+              query: { lang: language.meta.slug },
+            })
+          "
         >
           <span class="flex items-center space-x-2">
             <span>{{ language.name }}</span>

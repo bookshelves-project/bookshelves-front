@@ -8,10 +8,12 @@
       :image="$auth.$state.user.data.avatar"
     >
       <app-button
-        :to="{
-          name: 'users-slug',
-          params: { slug: $auth.user.data.meta.slug },
-        }"
+        :to="
+          localePath({
+            name: 'users-slug',
+            params: { slug: $auth.user.data.meta.slug },
+          })
+        "
       >
         See my public profile
       </app-button>

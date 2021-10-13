@@ -65,7 +65,7 @@
               hover:bg-gray-300 hover:bg-opacity-50
             "
           >
-            <nuxt-link :to="metric.route" class="block p-2">
+            <nuxt-link :to="localePath(metric.route)" class="block p-2">
               <span
                 v-if="isLoading"
                 class="
