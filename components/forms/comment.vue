@@ -12,30 +12,15 @@
         </div>
         <div class="flex-1 min-w-0">
           <form @submit.prevent="submit">
-            <div>
-              <label for="text" class="sr-only">About</label>
-              <textarea
-                id="text"
-                v-model="form.text"
-                name="text"
-                rows="3"
-                maxlength="1500"
-                class="
-                  block
-                  w-full
-                  border-gray-300
-                  rounded-md
-                  shadow-sm
-                  dark:bg-gray-200
-                  focus:ring-primary-600 focus:border-primary-600
-                  sm:text-sm
-                "
-                placeholder="Add a comment*"
-              ></textarea>
-              <div class="ml-1 text-sm text-gray-400">
-                {{ form.text.length }}/1500
-              </div>
-            </div>
+            <fields-input-text
+              id="text"
+              v-model="form.text"
+              name="text"
+              rows="3"
+              maxlength="1500"
+              placeholder="Add a comment*"
+              multiline
+            ></fields-input-text>
             <fields-rating-stars
               v-if="$config.moduleSocialRating"
               v-model="form.rating"

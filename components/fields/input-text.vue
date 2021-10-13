@@ -14,18 +14,21 @@
         :id="name"
         :value="value"
         :name="name"
+        :placeholder="placeholder"
         rows="4"
         :minlength="minlength > 0 ? minlength : ''"
         :maxlength="maxlength > 0 ? maxlength : ''"
         class="
           shadow-sm
-          focus:ring-indigo-500 focus:border-indigo-500
+          focus:ring-primary-500 focus:border-primary-500
           block
           w-full
           sm:text-sm
           rounded-md
           border border-gray-300
           dark:border-gray-700 dark:bg-gray-600 dark:text-white
+          placeholder-gray-900
+          dark:placeholder-gray-100
         "
         @input="$emit('input', $event.target.value)"
       ></textarea>
@@ -43,7 +46,7 @@
         :step="type === 'time' ? 1 : null"
         class="
           shadow-sm
-          focus:ring-indigo-500 focus:border-indigo-500
+          focus:ring-primary-500 focus:border-primary-500
           block
           w-full
           sm:text-sm
