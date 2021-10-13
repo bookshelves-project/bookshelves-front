@@ -80,13 +80,16 @@
               <span class="flex items-center" @click="closeAccountDropdown">
                 <svg-icon
                   :name="link.icon"
-                  class="w-5 h-5 mr-1 text-gray-500"
+                  class="w-5 h-5 mr-1 text-gray-500 dark:text-gray-400"
                 />
                 {{ link.label }}
               </span>
             </nuxt-link>
           </span>
-          <hr v-if="authAdmin.length" class="my-1" />
+          <hr
+            v-if="authAdmin.length"
+            class="my-1 border-gray-200 dark:border-gray-600"
+          />
           <span v-for="link in authAdmin" :key="link.id">
             <nuxt-link
               :to="localePath({ name: link.route })"
@@ -104,13 +107,13 @@
               <span class="flex items-center" @click="closeAccountDropdown">
                 <svg-icon
                   :name="link.icon"
-                  class="w-5 h-5 mr-1 text-gray-500"
+                  class="w-5 h-5 mr-1 text-gray-500 dark:text-gray-400"
                 />
                 {{ link.label }}
               </span>
             </nuxt-link>
           </span>
-          <hr class="my-1" />
+          <hr class="my-1 border-gray-200 dark:border-gray-600" />
           <button
             class="
               flex
@@ -127,7 +130,10 @@
             type="button"
             @click="logout"
           >
-            <svg-icon name="logout" class="w-5 h-5 mr-1 text-gray-500" />
+            <svg-icon
+              name="logout"
+              class="w-5 h-5 mr-1 text-gray-500 dark:text-gray-400"
+            />
             Sign out
           </button>
         </div>

@@ -4,13 +4,19 @@
       <div
         v-if="label"
         :id="`label-${name}`"
-        class="text-base font-medium text-gray-900 sm:text-sm sm:text-gray-700"
+        class="
+          text-base
+          font-medium
+          text-gray-900
+          sm:text-sm sm:text-gray-700
+          dark:text-gray-300
+        "
       >
         {{ label }}
       </div>
       <div :class="label ? 'mt-1' : ''">
         <div class="max-w-lg">
-          <p v-if="helper" class="text-sm text-gray-500">
+          <p v-if="helper" class="text-sm text-gray-500 dark:text-gray-400">
             {{ helper }}
           </p>
           <div class="mt-4 gap-4 grid grid-cols-2">
@@ -35,7 +41,14 @@
               />
               <label
                 :for="option.value"
-                class="ml-3 block text-sm font-medium text-gray-700"
+                class="
+                  ml-3
+                  block
+                  text-sm
+                  font-medium
+                  text-gray-700
+                  dark:text-gray-300
+                "
               >
                 {{ option.label }}
               </label>
