@@ -40,7 +40,7 @@
                 />
                 <div class="space-y-1 text-lg font-medium leading-6">
                   <h3>{{ person.name }}</h3>
-                  <p class="text-indigo-600">{{ person.role }}</p>
+                  <p class="text-primary-600">{{ person.role }}</p>
                 </div>
               </div>
             </li>

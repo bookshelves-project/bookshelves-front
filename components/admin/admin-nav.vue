@@ -24,7 +24,7 @@
         class="
           block
           w-full
-          focus:ring-indigo-500 focus:border-indigo-500
+          focus:ring-primary-500 focus:border-primary-500
           border-gray-300
           rounded-md
         "
@@ -104,7 +104,7 @@ export default {
 .tab-active {
   @apply text-gray-900;
   & span:nth-child(2) {
-    @apply bg-indigo-500;
+    @apply bg-primary-500;
   }
 }
 </style>

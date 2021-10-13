@@ -31,7 +31,7 @@
         label="Remember me"
       />
       <!-- <div class="mt-6 text-sm md:mt-0">
-        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+        <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
           Forgot your password?
         </a>
       </div> -->

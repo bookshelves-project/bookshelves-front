@@ -19,7 +19,7 @@
               class="
                 text-sm
                 font-semibold
-                text-indigo-600
+                text-primary-600
                 uppercase
                 tracking-wide
               "
@@ -51,8 +51,8 @@
                 class="
                   text-base
                   font-medium
-                  text-indigo-600
-                  hover:text-indigo-500
+                  text-primary-600
+                  hover:text-primary-500
                 "
                 >Go back home<span aria-hidden="true"> &rarr;</span></nuxt-link
               >

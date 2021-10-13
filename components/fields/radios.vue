@@ -26,10 +26,10 @@
                 :name="name"
                 type="radio"
                 class="
-                  focus:ring-indigo-500
+                  focus:ring-primary-500
                   h-4
                   w-4
-                  text-indigo-600
+                  text-primary-600
                   border-gray-300
                 "
               />

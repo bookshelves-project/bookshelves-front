@@ -25,7 +25,7 @@
               focus:ring-2
               focus:ring-offset-2
               focus:ring-offset-gray-100
-              focus:ring-indigo-500
+              focus:ring-primary-500
               group
               dark:bg-gray-800 dark:border-gray-700
             "

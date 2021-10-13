@@ -23,7 +23,7 @@
           hover:border-gray-400
           focus-within:ring-2
           focus-within:ring-offset-2
-          focus-within:ring-indigo-500
+          focus-within:ring-primary-500
         "
       >
         <div class="flex-shrink-0">

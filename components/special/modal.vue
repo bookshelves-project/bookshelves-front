@@ -93,15 +93,15 @@
               text-base
               font-medium
               text-white
-              bg-indigo-600
+              bg-primary-600
               border border-transparent
               rounded-md
               shadow-sm
-              hover:bg-indigo-700
+              hover:bg-primary-700
               focus:outline-none
               focus:ring-2
               focus:ring-offset-2
-              focus:ring-indigo-500
+              focus:ring-primary-500
               sm:text-sm
             "
             @click="close"

@@ -316,7 +316,7 @@ em {
   &.active {
     & a,
     & span {
-      @apply text-indigo-600 border-indigo-500 dark:text-indigo-300 dark:border-indigo-300;
+      @apply text-primary-600 border-primary-500 dark:text-primary-300 dark:border-primary-300;
     }
     & span {
       @apply opacity-100 font-semibold;

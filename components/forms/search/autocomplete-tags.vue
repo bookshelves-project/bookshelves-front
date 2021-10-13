@@ -33,8 +33,8 @@
             rounded-t-md
             focus:outline-none
             focus:ring-1
-            focus:ring-indigo-500
-            focus:border-indigo-500
+            focus:ring-primary-500
+            focus:border-primary-500
             sm:text-sm
           "
           placeholder="Search any tag"

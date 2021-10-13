@@ -78,6 +78,13 @@ export default {
         console.log(`${route.name.replace('___en', '')} => ${route.path}`)
       })
       console.log('------------')
+      console.log('i18n is enabled!')
+      console.log('You have to set your routes with localePath().')
+      this.$nuxt.$emit('notification', {
+        title: 'Check your console',
+        text: 'List of all routes is available.',
+        type: 'success',
+      })
     },
   },
 }

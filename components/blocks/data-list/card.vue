@@ -28,7 +28,9 @@
         space-x-6
         hover:bg-gray-50
         dark:hover:bg-gray-700
-        focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600
+        focus-within:ring-2
+        focus-within:ring-inset
+        focus-within:ring-primary-600
         overflow-x-hidden
       "
       :class="canDelete ? 'col-span-5' : 'col-span-6'"

@@ -198,7 +198,7 @@ export default {
 <style lang="postcss" scoped>
 /* Basic editor styles */
 .editor::v-deep {
-  @apply shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md;
+  @apply shadow-sm focus:ring-primary-500 focus:border-primary-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md;
 }
 .editor__actions::v-deep {
   @apply p-2 sticky top-20;

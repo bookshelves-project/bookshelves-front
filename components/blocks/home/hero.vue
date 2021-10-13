@@ -14,9 +14,9 @@
             md:text-6xl
           "
         >
-          <span class="block text-indigo-600 dark:text-primary-400 xl:inline">{{
-            $config.appName
-          }}</span
+          <span
+            class="block text-primary-600 dark:text-primary-400 xl:inline"
+            >{{ $config.appName }}</span
           ><span class="hidden xl:inline">, </span
           ><span class="block xl:inline">{{ $t('hero.title') }}</span>
         </h1>
