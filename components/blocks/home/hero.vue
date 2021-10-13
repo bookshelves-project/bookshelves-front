@@ -18,7 +18,9 @@
             class="block text-primary-600 dark:text-primary-400 xl:inline"
             >{{ $config.appName }}</span
           ><span class="hidden xl:inline">, </span
-          ><span class="block xl:inline">{{ $t('hero.title') }}</span>
+          ><span class="block xl:inline">{{
+            $t('pages.home.hero.title')
+          }}</span>
         </h1>
         <p
           class="
@@ -31,7 +33,7 @@
             lg:mx-0
           "
         >
-          {{ $t('hero.text') }}
+          {{ $t('pages.home.hero.text') }}
         </p>
       </div>
     </div>

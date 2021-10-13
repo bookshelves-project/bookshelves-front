@@ -76,18 +76,6 @@ export default {
   data() {
     return {
       features: [
-        // {
-        //   icon: 'api',
-        //   label: 'API doc',
-        //   title: 'API documentation',
-        //   link: `${this.$apiUrlBase('/docs')}`,
-        // },
-        // {
-        //   icon: 'wiki',
-        //   label: 'Wiki',
-        //   title: 'Wiki: to install your own application',
-        //   link: `${this.$apiUrlBase('/features/wiki')}`,
-        // },
         {
           icon: 'feed',
           label: 'OPDS',

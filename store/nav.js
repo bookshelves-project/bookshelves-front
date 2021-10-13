@@ -1,9 +1,9 @@
 export const state = () => ({
   navigation: [
-    { label: 'Books', icon: 'catalog', route: 'books' },
-    { label: 'Series', icon: 'catalog', route: 'series' },
-    { label: 'Authors', icon: 'annotation', route: 'authors' },
-    { label: 'Guides', icon: 'annotation', route: 'guides' },
+    { label: 'books', icon: 'catalog', route: 'books' },
+    { label: 'series', icon: 'catalog', route: 'series' },
+    { label: 'authors', icon: 'annotation', route: 'authors' },
+    { label: 'guides', icon: 'annotation', route: 'guides' },
   ],
   authNavigationTrue: [
     {

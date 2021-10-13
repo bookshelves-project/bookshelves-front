@@ -10,7 +10,7 @@
         dark:text-gray-500
       "
     >
-      {{ navigation.title }}
+      {{ $t(`footer.nav.${navigation.title}`) }}
     </h3>
     <ul class="mt-4 space-y-4">
       <li
@@ -23,7 +23,7 @@
         "
       >
         <nuxt-link :to="localePath(link.route)" class="block">
-          {{ link.label }}
+          {{ $t(`footer.nav.${link.label}`) }}
         </nuxt-link>
       </li>
     </ul>

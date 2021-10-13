@@ -46,7 +46,7 @@
               "
             >
               <span class="font-semibold">
-                {{ booksNav.label }}
+                {{ $t(`nav.${booksNav.label}`) }}
               </span>
             </nuxt-link>
           </div>

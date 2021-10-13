@@ -24,18 +24,18 @@ export default {
     return {
       navigation: {
         project: {
-          title: this.$config.appName,
+          title: 'discover',
           links: [
-            { label: 'Advanced search', route: { name: 'search-advanced' } },
+            { label: 'advanced-search', route: { name: 'search-advanced' } },
             {
-              label: 'About',
+              label: 'about',
               route: {
                 name: 'type-slug',
                 params: { type: 'pages', slug: 'about' },
               },
             },
             {
-              label: 'Features',
+              label: 'features',
               route: {
                 name: 'type-slug',
                 params: { type: 'pages', slug: 'features' },
@@ -44,42 +44,42 @@ export default {
           ],
         },
         support: {
-          title: 'Support',
+          title: 'support',
           links: [
             {
-              label: 'More eBooks',
+              label: 'more-ebooks',
               route: {
                 name: 'type-slug',
                 params: { type: 'pages', slug: 'more-ebooks' },
               },
             },
             {
-              label: 'FAQ',
+              label: 'faq',
               route: {
                 name: 'type-slug',
                 params: { type: 'pages', slug: 'faq' },
               },
             },
-            { label: 'Contact', route: { name: 'contact' } },
+            { label: 'contact', route: { name: 'contact' } },
           ],
         },
         advanced: {
-          title: 'More',
+          title: 'more',
           links: [
             {
-              label: 'Genres & Tags',
+              label: 'genres-tags',
               route: {
                 name: 'tags',
               },
             },
             {
-              label: 'Languages',
+              label: 'languages',
               route: {
                 name: 'languages',
               },
             },
             {
-              label: 'Publishers',
+              label: 'publishers',
               route: {
                 name: 'publishers',
               },
@@ -87,17 +87,17 @@ export default {
           ],
         },
         legal: {
-          title: 'Legal',
+          title: 'legal',
           links: [
             {
-              label: 'Legal',
+              label: 'legality',
               route: {
                 name: 'type-slug',
                 params: { type: 'pages', slug: 'legal' },
               },
             },
             {
-              label: 'Privacy',
+              label: 'privacy',
               route: {
                 name: 'type-slug',
                 params: { type: 'pages', slug: 'privacy' },
