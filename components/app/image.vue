@@ -40,11 +40,8 @@
     <img
       v-if="!imageNotExist"
       v-lazy-load
-      :class="[loading ? '' : '', picture, classImg]"
       :data-src="src"
-      :alt="imgAlt"
-      :title="title"
-      class="object-cover max-size img h-full w-full"
+      class="max-size img"
       @load="onImgLoad"
     />
   </div>
@@ -85,14 +82,6 @@ export default {
       imageNotExist: false,
     }
   },
-  computed: {
-    imgAlt() {
-      if (!this.loading) {
-        return this.imageNotExist ? '' : this.noAlt ? '' : this.title
-      }
-      return ''
-    },
-  },
   watch: {
     src(newValue, oldValue) {
       this.loading = true
@@ -105,6 +94,7 @@ export default {
   },
   methods: {
     onImgLoad() {
+      console.log('loading')
       this.loading = false
     },
   },

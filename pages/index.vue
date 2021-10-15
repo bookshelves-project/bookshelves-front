@@ -28,6 +28,13 @@
         </lazy-blocks-selected-entities>
         <lazy-blocks-home-features-highlight />
         <!-- <lazy-blocks-home-pricing /> -->
+        <app-img
+          src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format"
+          class="h-56 object-cover rounded-md mb-5 w-1/2"
+          title="Title"
+          alt="alt image"
+          legend="Legend"
+        />
         <lazy-blocks-home-cta />
       </div>
     </lazy-hydrate>
