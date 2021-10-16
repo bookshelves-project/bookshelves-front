@@ -43,7 +43,7 @@
         >
           <div class="flex items-center flex-1 min-w-0">
             <div class="flex-shrink-0">
-              <app-image
+              <app-img
                 :src="`/images/guides/${guide.category.toLowerCase()}.webp`"
                 :alt="`${guide.slug} picture`"
                 class="

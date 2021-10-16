@@ -2,11 +2,10 @@
   <li v-if="comment.user" class="mb-8 comment">
     <div class="flex space-x-3">
       <div class="flex-shrink-0">
-        <app-image
+        <app-img
           :src="comment.user.avatar"
           :color="comment.user.color"
-          class="w-10 h-10"
-          class-img="rounded-full"
+          class="w-10 h-10 rounded-full"
           :alt="comment.user.name"
         />
       </div>

@@ -9,7 +9,6 @@ const formatDate = (date) => {
   if (process.client) {
     userLang = navigator.language || navigator.userLanguage
   }
-  console.log(userLang)
 
   return date.toLocaleString(userLang, {
     year: 'numeric',

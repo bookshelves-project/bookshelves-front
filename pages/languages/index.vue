@@ -15,7 +15,7 @@
         >
           <span class="flex items-center space-x-2">
             <span>{{ language.name }}</span>
-            <img
+            <app-img
               :src="formatLanguage(language.meta.slug, 'flag')"
               :alt="language.name"
             />

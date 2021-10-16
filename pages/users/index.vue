@@ -27,9 +27,8 @@
         "
       >
         <div class="flex-shrink-0">
-          <app-image
-            class="h-10 w-10"
-            class-img="rounded-full"
+          <app-img
+            class="h-10 w-10 rounded-full"
             :src="user.avatar"
             :color="user.avatar.color"
           />

@@ -88,7 +88,7 @@
               @click="valid(authorValue)"
             >
               <div class="flex items-center">
-                <img
+                <app-img
                   :src="authorValue.cover.thumbnail"
                   :alt="authorValue.name"
                   :title="authorValue.name"

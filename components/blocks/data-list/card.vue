@@ -36,12 +36,10 @@
       :class="canDelete ? 'col-span-5' : 'col-span-6'"
     >
       <div class="flex-shrink-0">
-        <app-image
+        <app-img
           :src="data.cover"
-          class="object-cover w-16 h-16"
-          class-img="rounded-md"
+          class="object-cover w-16 h-16 rounded-md"
           :alt="data.title"
-          loading="lazy"
         />
       </div>
       <div class="w-full">

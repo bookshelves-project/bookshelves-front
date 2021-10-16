@@ -8,6 +8,16 @@
       {{ label }}
       <span v-if="required" class="text-red-600 dark:text-red-500"> * </span>
     </label>
+    <p
+      v-if="helper || $slots.default"
+      :id="`${name}-description`"
+      class="mt-1 mb-2 text-sm text-gray-500 dark:text-gray-400"
+    >
+      <span v-if="helper">
+        {{ helper }}
+      </span>
+      <slot v-else />
+    </p>
     <div class="mt-1 relative">
       <textarea
         v-if="multiline"
@@ -80,16 +90,6 @@
         </div>
       </div>
     </div>
-    <p
-      v-if="helper || $slots.default"
-      :id="`${name}-description`"
-      class="mt-2 text-sm text-gray-500 dark:text-gray-400"
-    >
-      <span v-if="helper">
-        {{ helper }}
-      </span>
-      <slot v-else />
-    </p>
     <p
       v-if="$slots.error"
       :id="`${name}-error`"

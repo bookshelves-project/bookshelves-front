@@ -98,11 +98,7 @@
           <forms-contact />
         </div>
         <div class="hidden lg:block">
-          <img
-            src="/images/pages/contact.webp"
-            alt="Mail sent"
-            loading="lazy"
-          />
+          <app-img src="/images/pages/contact.webp" />
         </div>
       </div>
     </div>

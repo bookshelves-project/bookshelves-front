@@ -13,7 +13,7 @@
         :class="orientation"
         class="text-sm font-semibold tracking-wide uppercase text-primary-600"
       >
-        <slot name="ontitle" />
+        {{ eyebrow }}
       </div>
       <h2
         :class="orientation"
@@ -26,13 +26,13 @@
           font-handlee
         "
       >
-        <slot name="title" />
+        {{ title }}
       </h2>
       <p
         :class="[orientation, { 'max-w-3xl': orientation === null }]"
         class="mt-5 text-lg text-gray-900 dark:text-gray-100"
       >
-        <slot name="text" />
+        <slot />
       </p>
       <div class="mt-10">
         <div
@@ -109,6 +109,14 @@ export default {
       default: '/books/selection',
     },
     orientation: {
+      type: String,
+      default: null,
+    },
+    eyebrow: {
+      type: String,
+      default: null,
+    },
+    title: {
       type: String,
       default: null,
     },

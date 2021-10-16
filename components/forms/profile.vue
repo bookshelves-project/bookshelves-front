@@ -39,6 +39,7 @@
           label="Gender"
           name="gender"
           class="col-span-6 md:col-span-4"
+          required
         />
         <fields-input-text
           v-model="form.about"
@@ -58,11 +59,10 @@
             </label>
             <div class="flex items-center mt-1">
               <div v-show="!avatarPreview">
-                <img
+                <app-img
                   :src="user ? user.avatar : null"
                   :alt="user ? user.name : null"
                   class="object-cover w-12 h-12 rounded-full"
-                  loading="lazy"
                 />
               </div>
               <div v-show="avatarPreview">
@@ -187,28 +187,28 @@ export default {
     }
   },
   async created() {
+    await this.getData()
     if (this.user) {
       this.form.name = this.user.name
       this.form.email = this.user.email
       this.form.use_gravatar = this.user.use_gravatar
-      this.form.display_favorites = this.user.display_favorites
-      this.form.display_comments = this.user.display_comments
-      this.form.display_gender = this.user.display_gender
+      this.form.display_favorites = this.user.displayFavorites
+      this.form.display_comments = this.user.displayComments
+      this.form.display_gender = this.user.displayGender
       this.form.about = this.user.about
-      // this.form.gender = this.user.gender
+      this.form.gender = this.user.gender
     }
-    await this.getData()
   },
   methods: {
     capitalize,
     async getData() {
       const genders = await this.$axios.$get('/users/genders')
-      genders.data.forEach((gender) => {
+      for (const [key, value] of Object.entries(genders.data)) {
         this.genders.push({
-          label: this.capitalize(gender),
-          value: gender,
+          label: value,
+          value: key,
         })
-      })
+      }
     },
     async submit() {
       this.isLoading = true
@@ -220,9 +220,11 @@ export default {
 
       data.append('name', this.form.name)
       data.append('email', this.form.email)
+      data.append('gender', this.form.gender)
       data.append('use_gravatar', this.form.use_gravatar ? 1 : 0)
       data.append('display_favorites', this.form.display_favorites ? 1 : 0)
       data.append('display_comments', this.form.display_comments ? 1 : 0)
+      data.append('display_gender', this.form.display_gender ? 1 : 0)
       data.append('about', this.form.about)
 
       const config = {

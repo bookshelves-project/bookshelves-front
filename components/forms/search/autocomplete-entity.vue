@@ -88,7 +88,7 @@
               @click="valid(entityValue)"
             >
               <div class="flex items-center">
-                <img
+                <app-img
                   :src="entityValue.cover.thumbnail"
                   :alt="entityValue.name"
                   :title="entityValue.name"

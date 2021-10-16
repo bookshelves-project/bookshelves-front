@@ -6,13 +6,12 @@
         <div class="sm:flex sm:items-center sm:justify-between">
           <div class="sm:flex sm:space-x-5">
             <div v-if="book.cover" class="flex-shrink-0">
-              <app-image
+              <app-img
                 :src="book.cover.thumbnail"
                 :color="book.cover.color"
                 :title="book.title"
                 class="w-20 h-20"
                 picture="rounded-md"
-                no-alt
               />
             </div>
             <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">

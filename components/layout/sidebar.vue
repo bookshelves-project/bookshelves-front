@@ -62,7 +62,7 @@
         <div class="flex items-center flex-shrink-0 px-4">
           <nuxt-link to="/" class="inline-flex items-center w-auto h-8">
             <span class="inline-flex items-center" @click="closeSidebar">
-              <img
+              <app-img
                 class="
                   w-auto
                   h-8
@@ -73,7 +73,6 @@
                 "
                 src="/images/bookshelves.svg"
                 :alt="`${$config.appName} logo`"
-                loading="lazy"
               />
               <div class="mt-2 ml-3 text-2xl font-handlee">
                 {{ $config.appName }}

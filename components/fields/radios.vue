@@ -29,6 +29,7 @@
               <input
                 :id="option.value"
                 v-model="radioValue"
+                :value="option.value"
                 :name="name"
                 type="radio"
                 class="
@@ -87,13 +88,16 @@ export default {
   },
   data() {
     return {
-      radioValue: 'none',
+      radioValue: 'UNKNOWN',
     }
   },
   watch: {
     value(newValue, oldValue) {
       this.radioValue = newValue
     },
+  },
+  mounted() {
+    this.radioValue = this.value
   },
 }
 </script>

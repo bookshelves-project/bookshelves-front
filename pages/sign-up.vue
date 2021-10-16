@@ -1,12 +1,7 @@
 <template>
   <div class="gap-10 px-8 mx-auto xl:grid xl:grid-cols-3 max-w-7xl relative">
     <div class="relative hidden col-span-2 xl:flex">
-      <app-image
-        src="/images/bookmark.svg"
-        class="m-auto"
-        alt="bookmark"
-        loading="lazy"
-      />
+      <app-img src="/images/bookmark.svg" class="m-auto" alt="bookmark" />
     </div>
     <div
       class="

@@ -5,36 +5,27 @@
         <lazy-blocks-home-hero class="pt-5" />
         <lazy-blocks-home-statistics />
         <lazy-blocks-home-cloud-logos />
-        <lazy-blocks-selected-entities class="mt-8 lg:mt-16">
-          <template #ontitle> Want to read a good book? </template>
-          <template #title> Selection of books & series </template>
-          <template #text>
-            If you search a new book to read, check this selection of eBooks by
-            the {{ $config.appName }} Team.
-          </template>
+        <lazy-blocks-selected-entities
+          class="mt-8 lg:mt-16"
+          eyebrow="Want to read a good book?"
+          title="Selection of books & series"
+        >
+          If you search a new book to read, check this selection of eBooks by
+          the {{ $config.appName }} Team.
         </lazy-blocks-selected-entities>
         <lazy-blocks-home-features />
         <lazy-blocks-selected-entities
           endpoint="/books/latest"
           orientation="text-right"
           class="mb-8 lg:mb-16"
+          eyebrow="Hyped by new books?"
+          title="Latest books & series"
         >
-          <template #ontitle> Hyped by new books? </template>
-          <template #title> Latest books & series </template>
-          <template #text>
-            You check new books & series on {{ $config.appName }}? Here you have
-            latest books!
-          </template>
+          You check new books & series on {{ $config.appName }}? Here you have
+          latest books!
         </lazy-blocks-selected-entities>
         <lazy-blocks-home-features-highlight />
         <!-- <lazy-blocks-home-pricing /> -->
-        <app-img
-          src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format"
-          class="h-56 object-cover rounded-md mb-5 w-1/2"
-          title="Title"
-          alt="alt image"
-          legend="Legend"
-        />
         <lazy-blocks-home-cta />
       </div>
     </lazy-hydrate>

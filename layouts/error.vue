@@ -73,10 +73,9 @@
       </footer>
     </div>
     <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-      <img
+      <app-img
         class="absolute inset-0 h-full w-full object-cover"
         src="/images/library-mess.webp"
-        alt=""
       />
     </div>
   </div>

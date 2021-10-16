@@ -100,7 +100,7 @@
             Author selected
           </div>
           <div class="flex items-center h-10 mt-2">
-            <img
+            <app-img
               :src="
                 validAuthor
                   ? validAuthor.cover.thumbnail

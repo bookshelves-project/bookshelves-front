@@ -163,6 +163,8 @@ export default {
     ],
     // https://www.npmjs.com/package/@nuxtjs/markdownit
     '@nuxtjs/markdownit',
+    // https://image.nuxtjs.org/getting-started/installation
+    '@nuxt/image',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -266,6 +268,9 @@ export default {
       cookieKey: 'i18n_redirected',
       redirectOn: 'root', // recommended
     },
+  },
+  image: {
+    // Options
   },
 
   hooks: {

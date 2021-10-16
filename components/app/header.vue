@@ -27,7 +27,7 @@
               "
               class="mx-auto"
             >
-              <app-image
+              <app-img
                 v-if="image"
                 :src="image"
                 :color="color"

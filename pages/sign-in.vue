@@ -50,12 +50,7 @@
       </div>
     </div>
     <div class="col-span-2 mt-10 xl:mt- hidden xl:flex">
-      <app-image
-        src="/images/bibliophile.svg"
-        class="m-auto"
-        alt="bibliophile"
-        loading="lazy"
-      />
+      <app-img src="/images/bibliophile.svg" class="m-auto" alt="bibliophile" />
     </div>
   </div>
 </template>

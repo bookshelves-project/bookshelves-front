@@ -8,19 +8,27 @@
         <div
           v-if="loading"
           ref="Placeholder"
-          :class="placeholder ? '' : 'bg-white dark:bg-gray-900'"
+          :class="placeholder"
           class="absolute z-10 inset-0 transition-transform duration-100"
-          :style="placeholder ? `background-color: ${placeholder}` : ''"
+          :style="color ? `background-color: ${color}` : ''"
         ></div>
       </transition>
       <figure class="h-full">
+        <!-- <nuxt-picture
+          ref="Image"
+          :src="src"
+          :alt="alt"
+          :title="title"
+          class="!m-0 !w-full h-full"
+          @load="load"
+        /> -->
         <img
           ref="Image"
           v-lazy-load
           :data-src="src"
-          :alt="alt"
-          :title="title"
-          class="!m-0 !w-full h-full"
+          :alt="invisible ? '' : titleData"
+          :title="invisible ? '' : titleData"
+          class="!m-0 !w-full h-full img"
           @load="load"
         />
         <figcaption v-if="legend" class="dark:text-gray-50 mt-2 mx-2 mb-10">
@@ -39,10 +47,6 @@ export default {
       type: String,
       default: null,
     },
-    alt: {
-      type: String,
-      default: null,
-    },
     title: {
       type: String,
       default: null,
@@ -53,7 +57,15 @@ export default {
     },
     placeholder: {
       type: String,
+      default: 'bg-gray-100 dark:bg-gray-800',
+    },
+    color: {
+      type: String,
       default: null,
+    },
+    invisible: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -61,7 +73,16 @@ export default {
       init: false,
       loading: true,
       notExist: false,
+      altTitle: null,
     }
+  },
+  computed: {
+    titleData() {
+      if (!this.title) {
+        return this.altTitle
+      }
+      return this.title
+    },
   },
   watch: {
     src(newValue, oldValue) {
@@ -70,20 +91,37 @@ export default {
     },
   },
   mounted() {
-    this.setStyle()
+    this.setup()
+    // TODO
+    // auto alt and title
   },
   methods: {
+    setup() {
+      this.setMeta()
+      this.setStyle()
+    },
     setStyle() {
-      /* eslint-disable no-unused-vars */
-      const appImg = this.$refs.AppImg
-      const placeholder = this.$refs.Placeholder
-      const image = this.$refs.Image
-      const style = appImg.classList
-      style.forEach((s) => {
-        // placeholder.classList.add(s)
-        image.classList.add(s)
-      })
-      //   this.init = false
+      try {
+        /* eslint-disable no-unused-vars */
+        const appImg = this.$refs.AppImg
+        const placeholder = this.$refs.Placeholder
+        const image = this.$refs.Image
+        const style = appImg.classList
+        style.forEach((s) => {
+          // placeholder.classList.add(s)
+          image.classList.add(s)
+        })
+        //   this.init = false
+      } catch (error) {}
+    },
+    setMeta() {
+      try {
+        let title = this.src.split('/')
+        title = title[title.length - 1]
+        title = title.split('.')
+        title = title[0]
+        this.altTitle = title
+      } catch (error) {}
     },
     load() {
       this.loading = false

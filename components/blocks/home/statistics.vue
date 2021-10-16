@@ -3,10 +3,9 @@
     <div class="absolute bottom-0 w-full h-80">
       <div class="h-full">
         <img
+          v-lazy-load
           class="object-cover w-full h-full opacity-25"
           src="/images/library.webp"
-          alt="Library"
-          loading="lazy"
         />
         <div
           aria-hidden="true"

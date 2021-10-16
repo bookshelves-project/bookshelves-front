@@ -3,11 +3,10 @@
     <transition name="fade">
       <div v-if="$auth.$state.loggedIn" class="flex space-x-3">
         <div class="flex-shrink-0 hidden md:block">
-          <img
+          <app-img
             :src="$auth.$state.user.data.avatar"
             class="w-10 h-10 rounded-full"
-            alt="avatar"
-            loading="lazy"
+            :alt="$auth.$state.user.data.username"
           />
         </div>
         <div class="flex-1 min-w-0">

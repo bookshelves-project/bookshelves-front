@@ -14,9 +14,9 @@
       <div class="h-32 overflow-hidden sm:aspect-w-2 sm:aspect-h-3">
         <app-img
           :src="cover"
-          :placeholder="color"
+          :color="color"
           :title="title"
-          class="cover"
+          class="cover object-cover"
         />
       </div>
       <div>
@@ -68,8 +68,8 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.entity-card {
-  & .cover::v-deep {
+.entity-card::v-deep {
+  & .cover {
     width: 97%;
     height: 97%;
     & .img {

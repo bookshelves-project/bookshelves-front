@@ -27,23 +27,19 @@
           >
             <span class="sr-only">Open user menu</span>
             <transition name="fade">
-              <img
+              <app-img
                 v-if="$auth.$state.loggedIn"
                 class="w-8 h-8 rounded-full"
                 :src="
                   $auth.$state.user.data ? $auth.$state.user.data.avatar : null
                 "
-                :alt="
-                  $auth.$state.user.data ? $auth.$state.user.data.name : null
-                "
-                loading="lazy"
+                invisible
               />
-              <img
+              <app-img
                 v-else
                 src="/images/user.svg"
                 class="w-8 h-8 rounded-full"
-                alt="avatar"
-                loading="lazy"
+                invisible
               />
             </transition>
             <svg

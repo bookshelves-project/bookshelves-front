@@ -51,14 +51,11 @@
                 :key="book.id"
                 class="hover:opacity-60 transition-opacity duration-100"
               >
-                <app-image
+                <app-img
                   class="w-full h-20 object-cover"
                   :src="book.cover.original"
                   :color="book.cover.color"
                   :title="book.title"
-                  alt=""
-                  width="384"
-                  height="512"
                 />
               </swiper-slide>
               <div slot="pagination" class="swiper-pagination"></div>

@@ -35,11 +35,10 @@
                 <div class="grid grid-cols-5 gap-4">
                   <div class="col-span-1">
                     <div class="overflow-hidden">
-                      <img
+                      <app-img
                         :src="result.cover.thumbnail"
                         :alt="result.title"
                         class="object-cover rounded-full h-14 w-14"
-                        loading="lazy"
                       />
                     </div>
                   </div>
