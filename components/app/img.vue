@@ -14,14 +14,6 @@
         ></div>
       </transition>
       <figure class="h-full">
-        <!-- <nuxt-picture
-          ref="Image"
-          :src="src"
-          :alt="alt"
-          :title="title"
-          class="!m-0 !w-full h-full"
-          @load="load"
-        /> -->
         <img
           ref="Image"
           v-lazy-load
