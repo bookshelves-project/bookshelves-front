@@ -2,7 +2,7 @@
   <main class="main-content relative">
     <app-header title="Book" :subtitle="description" :border="false">
       <template #filters>
-        <blocks-filters has-serie language sort @filter="filter" />
+        <blocks-filters has-serie languages sort @filter="filter" />
       </template>
     </app-header>
     <section v-if="!apiError">

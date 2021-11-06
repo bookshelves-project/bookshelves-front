@@ -2,7 +2,7 @@
   <main class="main-content">
     <app-header title="Series" :subtitle="description">
       <template #filters>
-        <blocks-filters lang @filter="filter" />
+        <blocks-filters languages @filter="filter" />
       </template>
     </app-header>
     <section v-if="!apiError">
@@ -144,7 +144,7 @@ export default {
       itemListElement: items,
     }
   },
-  watchQuery: ['page', 'lang'],
+  watchQuery: ['page', 'filter[languages]'],
   methods: {
     linkGen(pageNum) {
       const query = { ...this.$route.query }

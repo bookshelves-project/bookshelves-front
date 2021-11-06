@@ -51,7 +51,7 @@
                   @filter="filter"
                 />
                 <blocks-filters-option
-                  v-if="language"
+                  v-if="languages"
                   filter="languages"
                   label="Languages"
                   :options="languagesOptions"
@@ -97,7 +97,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    language: {
+    languages: {
       type: Boolean,
       default: false,
     },
