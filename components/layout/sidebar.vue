@@ -62,7 +62,7 @@
         <div class="flex items-center flex-shrink-0 px-4">
           <nuxt-link to="/" class="inline-flex items-center w-auto h-8">
             <span class="inline-flex items-center" @click="closeSidebar">
-              <app-img
+              <img
                 class="
                   w-auto
                   h-8
@@ -126,7 +126,7 @@
                   class="w-full px-2 py-4 font-semibold"
                   @click="closeSidebar"
                 >
-                  {{ booksNav.label }}
+                  {{ $t(`nav.${booksNav.label}`) }}
                 </span>
               </nuxt-link>
             </div>
