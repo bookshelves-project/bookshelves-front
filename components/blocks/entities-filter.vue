@@ -49,17 +49,17 @@
         </transition>
       </div>
       <blocks-filter-option
-        v-if="serie"
-        filter="serie"
+        v-if="hasSerie"
+        filter="has_serie"
         icon="collection"
         :options="series"
         @filter="filter"
       />
       <blocks-filter-option
-        v-if="lang"
-        filter="lang"
+        v-if="language"
+        filter="language"
         icon="languages"
-        :options="langs"
+        :options="languages"
         meta="meta.slug"
         @filter="filter"
       />
@@ -71,11 +71,11 @@
 export default {
   name: 'EntitiesFilter',
   props: {
-    serie: {
+    hasSerie: {
       type: Boolean,
       default: false,
     },
-    lang: {
+    language: {
       type: Boolean,
       default: false,
     },
@@ -84,7 +84,7 @@ export default {
     return {
       openedFilter: false,
       filterEnabled: false,
-      langs: [],
+      languages: [],
       series: [
         {
           meta: {
@@ -112,7 +112,7 @@ export default {
   },
   async created() {
     const languages = await this.$axios.$get('/languages')
-    this.langs = languages.data
+    this.languages = languages.data
   },
   methods: {
     closeOpenedFilter() {
@@ -129,5 +129,3 @@ export default {
   },
 }
 </script>
-
-<style lang="postcss" scoped></style>

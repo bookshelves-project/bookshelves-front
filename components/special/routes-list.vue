@@ -7,10 +7,9 @@
       z-50
       bottom-0
       right-0
-      m-2
       bg-gray-700
       p-2
-      rounded-md
+      rounded-tl-md
       hover:bg-gray-600
       transition-colors
       duration-100
@@ -30,7 +29,7 @@
         focus:outline-none focus:ring-2 focus:ring-offset-2
       "
     >
-      <div class="w-10 h-10 text-gray-200">
+      <div class="w-6 h-6 text-gray-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

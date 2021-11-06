@@ -1,7 +1,7 @@
 <template>
   <main class="main-content relative">
     <app-header :title="title" :subtitle="description">
-      <blocks-entities-filter serie lang @filter="filter" />
+      <blocks-entities-filter has-serie language @filter="filter" />
     </app-header>
     <section v-if="!apiError">
       <div>
@@ -71,15 +71,15 @@ export default {
   async asyncData({ app, query }) {
     try {
       const page = query.page
-      const lang = query.lang
-      const serie = query.serie
+      const language = query.language
+      const hasSerie = query.has_serie
       const [books] = await Promise.all([
         app.$axios.$get(
           `/books?${qs.stringify({
             page: page || 1,
             'per-page': 32,
-            lang,
-            serie,
+            'filter[languages]': language,
+            'filter[has_serie]': hasSerie,
           })}`
         ),
       ])
@@ -121,7 +121,7 @@ export default {
       ],
     }
   },
-  watchQuery: ['page', 'lang', 'serie'],
+  watchQuery: ['page', 'language', 'has_serie'],
   jsonld() {
     const breadcrumbs = [
       {
@@ -149,11 +149,14 @@ export default {
   },
   methods: {
     linkGen(pageNum) {
-      const lang = this.$route.query.lang
+      const language = this.$route.query.language
       const serie = this.$route.query.serie
       return {
         name: this.$route.name,
-        query: pageNum === 1 ? { lang, serie } : { page: pageNum, lang, serie },
+        query:
+          pageNum === 1
+            ? { language, serie }
+            : { page: pageNum, language, has_serie: serie },
       }
     },
     filter(param) {

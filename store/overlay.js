@@ -1,9 +1,18 @@
 export const state = () => ({
-  isVisible: false,
+  visibleLayer: false,
+  visibleOverlay: false,
 })
 
+export const getters = {
+  isVisibleLayer: (state) => state.visibleLayer,
+  isVisibleOverlay: (state) => state.visibleOverlay,
+}
+
 export const mutations = {
-  setIsVisible(state, data) {
-    state.isVisible = data
+  setVisibleLayer(state, data) {
+    state.visibleLayer = data
+  },
+  setVisibleOverlay(state, data) {
+    state.visibleOverlay = data
   },
 }

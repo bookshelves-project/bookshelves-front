@@ -169,11 +169,12 @@ export default {
   axios: {
     baseURL: process.env.API_URL,
     credentials: true,
-    https: false,
+    // https: true,
     headers: {
       common: {
         'X-Requested-With': 'XMLHttpRequest',
         'Access-Control-Allow-Origin': '*',
+        Accept: 'application/json, text/plain, */*',
       },
     },
   },
@@ -181,12 +182,12 @@ export default {
     meta: pwa.meta,
     manifest: pwa.manifest,
   },
-  proxy: {
-    '/api': {
-      target: `${process.env.API_URL}`,
-      pathRewrite: { '^/': '/' },
-    },
-  },
+  // proxy: {
+  //   '/api': {
+  //     target: `${process.env.API_URL}`,
+  //     pathRewrite: { '^/': '/' },
+  //   },
+  // },
   auth: {
     strategies: {
       laravelSanctum: {
