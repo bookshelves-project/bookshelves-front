@@ -35,7 +35,6 @@
         <div class="ml-4 flex-shrink-0 flex">
           <button
             class="
-              bg-white
               rounded-md
               inline-flex
               text-gray-400
