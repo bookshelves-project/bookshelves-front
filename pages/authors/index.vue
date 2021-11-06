@@ -48,12 +48,14 @@ export default {
   components: { EntityCard, ApiErrorMessage, Pagination },
   async asyncData({ app, query }) {
     try {
-      const page = query.page
+      const queryList = { ...query }
+      queryList.page = query.page || 1
+      queryList['per-page'] = 32
+
       const [authors] = await Promise.all([
         app.$axios.$get(
           `/authors?${qs.stringify({
-            page: page || 1,
-            'per-page': 32,
+            ...queryList,
           })}`
         ),
       ])
@@ -120,10 +122,13 @@ export default {
   watchQuery: ['page'],
   methods: {
     linkGen(pageNum) {
-      return {
+      const query = { ...this.$route.query }
+      query.page = pageNum
+      const route = {
         name: this.$route.name,
-        query: pageNum === 1 ? {} : { page: pageNum },
+        query: { ...query },
       }
+      return route
     },
   },
 }

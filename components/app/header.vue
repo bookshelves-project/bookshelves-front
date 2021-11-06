@@ -138,6 +138,9 @@
         >
       </div>
     </div>
+    <div class="mt-6">
+      <slot name="filters" />
+    </div>
   </div>
 </template>
 

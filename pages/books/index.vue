@@ -1,7 +1,9 @@
 <template>
   <main class="main-content relative">
-    <app-header :title="title" :subtitle="description">
-      <blocks-entities-filter has-serie language @filter="filter" />
+    <app-header title="Book" :subtitle="description" :border="false">
+      <template #filters>
+        <blocks-filters has-serie language sort @filter="filter" />
+      </template>
     </app-header>
     <section v-if="!apiError">
       <div>
@@ -61,25 +63,20 @@
 
 <script>
 import qs from 'qs'
-
-import { formatLanguage, objectIsEmpty } from '~/plugins/utils/methods'
+import { formatLanguage } from '~/plugins/utils/methods'
 
 export default {
   name: 'Books',
-  auth: 'auth',
-  layout: 'auth',
   async asyncData({ app, query }) {
     try {
-      const page = query.page
-      const language = query.language
-      const hasSerie = query.has_serie
+      const queryList = { ...query }
+      queryList.page = query.page || 1
+      queryList['per-page'] = 32
+
       const [books] = await Promise.all([
         app.$axios.$get(
           `/books?${qs.stringify({
-            page: page || 1,
-            'per-page': 32,
-            'filter[languages]': language,
-            'filter[has_serie]': hasSerie,
+            ...queryList,
           })}`
         ),
       ])
@@ -93,6 +90,7 @@ export default {
         apiError: false,
       }
     } catch (error) {
+      console.error(error)
       return {
         apiError: true,
       }
@@ -101,9 +99,8 @@ export default {
   data() {
     return {
       formatLanguage,
-      objectIsEmpty,
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
-      title: `Books`,
+      title: `All books available on ${this.$config.appName}`,
       description: `Discover all available books sorted by title and serie's title`,
     }
   },
@@ -121,7 +118,7 @@ export default {
       ],
     }
   },
-  watchQuery: ['page', 'language', 'has_serie'],
+  watchQuery: ['page', 'filter[has_serie]', 'filter[languages]', 'sort'],
   jsonld() {
     const breadcrumbs = [
       {
@@ -149,35 +146,18 @@ export default {
   },
   methods: {
     linkGen(pageNum) {
-      const language = this.$route.query.language
-      const serie = this.$route.query.serie
-      return {
+      const query = { ...this.$route.query }
+      query.page = pageNum
+      const route = {
         name: this.$route.name,
-        query:
-          pageNum === 1
-            ? { language, serie }
-            : { page: pageNum, language, has_serie: serie },
+        query: { ...query },
       }
+      return route
     },
-    filter(param) {
-      if (param !== null) {
-        const query = {}
+    filter(newQuery) {
+      const query = { ...this.$route.query, ...newQuery }
 
-        const currentQuery = this.$route.query
-        const queryIsEmpty = objectIsEmpty(currentQuery)
-        if (!queryIsEmpty) {
-          Object.assign(query, currentQuery)
-        }
-
-        const key = param.type
-        const newQuery = {}
-        newQuery[key] = param.data
-        query[param.type] = param.data
-
-        this.$router.push(this.localePath({ name: 'books', query }))
-      } else {
-        this.$router.push(this.localePath({ name: 'books' }))
-      }
+      this.$router.push(this.localePath({ name: 'books', query: { ...query } }))
     },
   },
 }

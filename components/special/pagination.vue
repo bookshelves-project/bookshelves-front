@@ -95,7 +95,7 @@
             :is="getTag(pageNum + startNumber - 1)"
             class="external-pagination"
             :to="linkGen(pageNum + startNumber - 1)"
-            title="Next"
+            :title="`Page ${pageNum + startNumber - 1}`"
             aria-label="Next"
             @click="navigate"
           >
@@ -114,7 +114,7 @@
             :is="getTag(pages)"
             class="external-pagination"
             :to="linkGen(pages)"
-            title="Next"
+            :title="`Page ${pages}`"
             aria-label="Next"
             @click="navigate"
           >
@@ -243,13 +243,13 @@ export default {
         return this.pages
       }
       if (this.nearFromBeginning || this.nearFromEnd) {
-        return this.limit - 1
+        return parseInt(this.limit, 10) - 1
       }
       if (this.isOnTheMiddle) {
         // return this.limit - 2
-        return this.limit
+        return parseInt(this.limit, 10)
       }
-      return this.limit
+      return parseInt(this.limit, 10)
     },
   },
   created() {
