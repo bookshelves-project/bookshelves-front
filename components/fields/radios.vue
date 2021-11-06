@@ -16,10 +16,15 @@
       </div>
       <div :class="label ? 'mt-1' : ''">
         <div class="max-w-lg">
-          <p v-if="helper" class="text-sm text-gray-500 dark:text-gray-400">
+          <div v-if="helper" class="text-sm text-gray-500 dark:text-gray-400">
             {{ helper }}
-          </p>
-          <div class="mt-4 gap-4 grid grid-cols-2">
+          </div>
+          <div
+            :class="[
+              flex ? 'grid grid-cols-2 gap-4' : 'space-y-3',
+              { 'mt-4': label },
+            ]"
+          >
             <div
               v-for="option in options"
               :key="option.id"
@@ -66,7 +71,7 @@ export default {
   name: 'FieldRadios',
   props: {
     value: {
-      type: [String, Number],
+      type: [String, Number, Boolean],
       default: 0,
     },
     name: {
@@ -80,6 +85,10 @@ export default {
     helper: {
       type: String,
       default: '',
+    },
+    flex: {
+      type: Boolean,
+      default: false,
     },
     options: {
       type: Array,

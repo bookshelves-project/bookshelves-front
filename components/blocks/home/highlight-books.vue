@@ -17,10 +17,10 @@
           >
             Highlight on last eBooks
           </h2>
-          <p class="text-xl text-gray-500">
+          <div class="text-xl text-gray-500">
             Here is a selection of the latest eBooks released that you can
             discover right now!
-          </p>
+          </div>
         </div>
         <div class="lg:col-span-2">
           <ul
@@ -38,7 +38,7 @@
                 />
                 <div class="space-y-1 text-lg font-medium leading-6">
                   <h3>{{ person.name }}</h3>
-                  <p class="text-primary-600">{{ person.role }}</p>
+                  <div class="text-primary-600">{{ person.role }}</div>
                 </div>
               </div>
             </li>

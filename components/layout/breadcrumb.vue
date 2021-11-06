@@ -33,7 +33,7 @@
         <li v-for="(link, id) in crumbs" :key="id">
           <div class="flex items-center">
             <svg-icon
-              name="arrow-chevron-right"
+              name="chevron-right"
               class="flex-shrink-0 h-5 w-5 text-gray-300"
             />
             <component

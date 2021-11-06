@@ -39,6 +39,7 @@
           label="Gender"
           name="gender"
           class="col-span-6 md:col-span-4"
+          flex
           required
         />
         <fields-input-text

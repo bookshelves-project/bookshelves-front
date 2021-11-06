@@ -39,18 +39,18 @@
                 {{ title }}
               </h2>
             </div>
-            <p class="mt-4 text-lg text-gray-500" v-html="text">
+            <div class="mt-4 text-lg text-gray-500" v-html="text">
               <slot name="text" />
-            </p>
+            </div>
           </div>
           <slot name="cta" />
         </div>
         <div v-if="blockquote" class="pt-6 mt-8 border-t border-gray-200">
           <blockquote>
             <div>
-              <p class="text-base text-gray-500">
+              <div class="text-base text-gray-500">
                 &ldquo;{{ blockquote.text }}&rdquo;
-              </p>
+              </div>
             </div>
             <footer class="mt-3">
               <div class="flex items-center space-x-3">

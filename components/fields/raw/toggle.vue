@@ -22,9 +22,9 @@
     >
       {{ label }}
     </label>
-    <p v-if="helper" :id="`${name}-hint-text`" class="fr-hint-text">
+    <div v-if="helper" :id="`${name}-hint-text`" class="fr-hint-text">
       {{ helper }}
-    </p>
+    </div>
   </div>
 </template>
 

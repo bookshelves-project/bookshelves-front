@@ -23,13 +23,16 @@
         "
       />
     </div>
-    <div class="ml-3 text-sm">
-      <label :for="name" class="font-medium text-gray-700 dark:text-gray-300">
+    <div class="ml-3 text-sm w-full">
+      <label
+        :for="name"
+        class="font-medium text-gray-700 dark:text-gray-300 block w-full"
+      >
         {{ label }}
       </label>
-      <p :id="`${name}-description`" class="text-gray-500 dark:text-gray-400">
+      <div :id="`${name}-description`" class="text-gray-500 dark:text-gray-400">
         <slot />
-      </p>
+      </div>
     </div>
   </div>
 </template>
