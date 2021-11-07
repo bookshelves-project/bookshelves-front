@@ -28,7 +28,7 @@
             <img
               class="block h-8 w-8 m-auto"
               src="/images/bookshelves.svg"
-              alt="Workflow"
+              :alt="$config.appName"
             />
           </nuxt-link>
           <div class="hidden lg:block lg:ml-10 h-full">

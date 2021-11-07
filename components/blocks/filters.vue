@@ -5,7 +5,7 @@
 
       <div class="relative z-10 border-b border-gray-200 pb-4">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-          <div class="relative inline-block text-left">
+          <div class="relative flex items-center text-left">
             <blocks-filters-option
               v-if="sort.length"
               filter="sort"
@@ -13,8 +13,27 @@
               :options="sort"
               type="button"
               click-close
-              @filter="filter"
             />
+            <button
+              v-if="$route.query.sort"
+              class="
+                p-2
+                ml-1
+                rounded-md
+                transition-colors
+                duration-75
+                hover:bg-gray-200
+              "
+              @click="reverseSort($route.query.sort.includes('-'))"
+            >
+              <svg-icon
+                name="arrow-sm-right"
+                class="w-5 h-5 text-gray-500 transform"
+                :class="
+                  $route.query.sort.includes('-') ? '-rotate-90' : 'rotate-90'
+                "
+              />
+            </button>
           </div>
           <button
             type="button"
@@ -41,7 +60,6 @@
                   type="radio"
                   align="right"
                   click-close
-                  @filter="filter"
                 />
                 <blocks-filters-option
                   v-if="languages"
@@ -50,7 +68,6 @@
                   type="checkbox"
                   :options="languagesOptions"
                   align="right"
-                  @filter="filter"
                 />
               </div>
             </div>
@@ -132,20 +149,19 @@ export default {
       })
       return languagesData
     },
-    filter(newQuery) {
-      let query = {}
-      if (typeof newQuery === 'object' && newQuery.override) {
-        // reset current query
-        const query = Object.assign({}, this.$route.query)
-        delete query[newQuery.type]
-        this.$router.replace({ query })
-      } else {
-        query = { ...this.$route.query, ...newQuery }
-
-        this.$router.push({ name: this.$route.name, query: { ...query } })
+    reverseSort(asc = false) {
+      let newQuery = this.$route.query
+      const order = asc ? '' : '-'
+      let sort = `${order}${newQuery.sort}`
+      if (asc) {
+        sort = newQuery.sort.replace('-', '')
       }
 
-      console.log(this.$route.query)
+      newQuery = { sort }
+
+      let query = {}
+      query = { ...this.$route.query, ...newQuery }
+      this.$router.replace({ query: { ...query } })
     },
   },
 }

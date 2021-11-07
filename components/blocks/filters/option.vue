@@ -222,8 +222,18 @@ export default {
     capitalize,
     slugify,
     isEmpty,
-    filterBy(query) {
-      this.$emit('filter', query)
+    filterBy(newQuery) {
+      let query = {}
+      if (typeof newQuery === 'object' && newQuery.override) {
+        // reset current query
+        const query = Object.assign({}, this.$route.query)
+        delete query[newQuery.type]
+        this.$router.replace({ query })
+      } else {
+        query = { ...this.$route.query, ...newQuery }
+
+        this.$router.replace({ query: { ...query } })
+      }
     },
     setCheckboxesOptions() {
       try {
