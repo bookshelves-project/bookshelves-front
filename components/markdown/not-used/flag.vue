@@ -1,6 +1,6 @@
 <template>
   <span>
-    <app-img :src="formatLanguage(lang)" :alt="lang" class="flag" />
+    {{ formatLanguage(lang).flag }}
   </span>
 </template>
 

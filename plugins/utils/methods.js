@@ -12,31 +12,23 @@ export const randomString = (L) => {
 }
 
 // get language flag url or label from slug
-export const formatLanguage = (slug, type = 'label') => {
+export const formatLanguage = (slug) => {
   const available = [
     {
       slug: 'fr',
       id: 'fr',
       label: 'French',
+      flag: '🇫🇷',
     },
     {
       slug: 'en',
       id: 'gb',
       label: 'English',
+      flag: '🇬🇧',
     },
   ]
 
-  const language = available.find((lang) => lang.slug === slug)
-  if (language) {
-    const lang = language.id
-    const availableTypes = {
-      label: language.label,
-      flag: `https://www.countryflags.io/${lang}/flat/24.png`,
-    }
-    return availableTypes[type] || availableTypes.default
-  }
-
-  return 'unknown'
+  return available.find((lang) => lang.slug === slug)
 }
 
 // get all authors into a string from array of object

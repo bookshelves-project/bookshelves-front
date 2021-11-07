@@ -38,7 +38,7 @@
             <template #tertiary>
               <span>{{ serie.count }} books</span>
               <span v-if="serie.language" class="mt-1 block">
-                {{ formatLanguage(serie.language) }}
+                {{ formatLanguage(serie.language).label }}
               </span>
             </template>
           </entity-card>

@@ -41,7 +41,7 @@
                 vol. {{ book.volume }}
               </span>
               <span class="mt-1 block">
-                {{ formatLanguage(book.language) }}
+                {{ formatLanguage(book.language).label }}
               </span>
             </template>
           </blocks-entity-card>

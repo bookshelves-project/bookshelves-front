@@ -9,16 +9,13 @@
           :to="
             localePath({
               name: 'books',
-              query: { lang: language.meta.slug },
+              query: { 'filter[languages]': language.meta.slug },
             })
           "
         >
           <span class="flex items-center space-x-2">
             <span>{{ language.name }}</span>
-            <app-img
-              :src="formatLanguage(language.meta.slug, 'flag')"
-              :alt="language.name"
-            />
+            {{ formatLanguage(language.meta.slug).flag }}
           </span>
           <!-- ({{ language.count }}) -->
         </chip>

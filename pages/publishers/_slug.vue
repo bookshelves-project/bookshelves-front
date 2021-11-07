@@ -37,7 +37,7 @@
                 vol. {{ book.volume }}
               </div>
               <div class="mt-1">
-                {{ formatLanguage(book.language) }}
+                {{ formatLanguage(book.language).label }}
               </div>
             </template>
           </entity-card>

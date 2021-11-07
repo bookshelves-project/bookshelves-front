@@ -96,7 +96,7 @@ export default {
   },
   computed: {
     subtitle() {
-      const lang = formatLanguage(this.book.language)
+      const lang = formatLanguage(this.book.language).label
       const serie = this.book.serie
         ? `${this.book.serie.title}, vol. ${this.book.volume}, `
         : ''

@@ -46,7 +46,7 @@
                 <svg-icon name="epub" class="w-4 h-4" />
                 <span class="ml-1"
                   >EPUB {{ book.epub.size }} into
-                  {{ formatLanguage(book.language) }}</span
+                  {{ formatLanguage(book.language).label }}</span
                 >
               </p>
             </div>

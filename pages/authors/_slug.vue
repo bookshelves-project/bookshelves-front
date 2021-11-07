@@ -41,7 +41,7 @@
               {{ serie.count }} books
             </template>
             <template v-if="serie.language" #tertiary>
-              {{ formatLanguage(serie.language) }}
+              {{ formatLanguage(serie.language).label }}
             </template>
           </entity-card>
         </div>
@@ -77,7 +77,7 @@
               vol. {{ book.volume }}
             </template>
             <template v-if="book.language" #tertiary>
-              {{ formatLanguage(book.language) }}
+              {{ formatLanguage(book.language).label }}
             </template>
           </entity-card>
         </div>

@@ -34,7 +34,7 @@
                 {{ formatAuthors(entity.authors) }}
               </div>
               <div v-if="entity.language" class="mt-3">
-                {{ formatLanguage(entity.language) }}
+                {{ formatLanguage(entity.language).label }}
               </div>
             </div>
           </div>
