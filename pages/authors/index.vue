@@ -1,6 +1,10 @@
 <template>
   <main class="main-content">
-    <app-header :title="title" :subtitle="description" />
+    <app-header :title="title" :subtitle="description">
+      <template #filters>
+        <blocks-filters :sort="sortOptions" />
+      </template>
+    </app-header>
     <section v-if="!apiError">
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
@@ -79,6 +83,20 @@ export default {
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
       title: `Authors`,
       description: `Want to find all books written by specific author?`,
+      sortOptions: [
+        {
+          title: 'By lastname (default)',
+          query: { sort: 'lastname' },
+        },
+        {
+          title: 'By firstname',
+          query: { sort: 'firstname' },
+        },
+        {
+          title: 'Newest created',
+          query: { sort: '-created_at' },
+        },
+      ],
     }
   },
   head() {
@@ -119,7 +137,7 @@ export default {
       itemListElement: items,
     }
   },
-  watchQuery: ['page'],
+  watchQuery: ['page', 'sort'],
   methods: {
     linkGen(pageNum) {
       const query = { ...this.$route.query }

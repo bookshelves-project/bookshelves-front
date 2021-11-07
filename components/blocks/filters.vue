@@ -6,19 +6,12 @@
       <div class="relative z-10 border-b border-gray-200 pb-4">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
           <div class="relative inline-block text-left">
-            <!-- <blocks-filters-option-sort
-              v-if="sort"
-              filter="sort"
-              label="Sort"
-              :options="sortOptions"
-              @filter="filter"
-            /> -->
             <blocks-filters-option
-              v-if="sort"
+              v-if="sort.length"
               filter="sort"
               label="Sort"
-              :options="sortOptions"
-              sort
+              :options="sort"
+              type="button"
               click-close
               @filter="filter"
             />
@@ -45,7 +38,7 @@
                   filter="has_serie"
                   label="Series"
                   :options="seriesOptions"
-                  radio
+                  type="radio"
                   align="right"
                   click-close
                   @filter="filter"
@@ -54,6 +47,7 @@
                   v-if="languages"
                   filter="languages"
                   label="Languages"
+                  type="checkbox"
                   :options="languagesOptions"
                   align="right"
                   @filter="filter"
@@ -102,39 +96,20 @@ export default {
       default: false,
     },
     sort: {
-      type: Boolean,
-      default: false,
+      type: Array,
+      default: () => [],
     },
   },
   data() {
     return {
-      sortOptions: [
-        {
-          title: "By series' title (default)",
-          query: { sort: 'title_sort' },
-          default: true,
-        },
-        {
-          title: 'By title',
-          query: { sort: 'title' },
-        },
-        {
-          title: 'Most recently published',
-          query: { sort: '-date' },
-        },
-        {
-          title: 'Newest uploaded',
-          query: { sort: '-created_at' },
-        },
-      ],
       seriesOptions: [
         {
           title: 'No series',
-          query: { 'filter[has_serie]': false },
+          query: { 'filter[has_serie]': 'false' },
         },
         {
           title: 'Only series',
-          query: { 'filter[has_serie]': true },
+          query: { 'filter[has_serie]': 'true' },
         },
         {
           title: 'Any',
@@ -158,9 +133,19 @@ export default {
       return languagesData
     },
     filter(newQuery) {
-      // console.log(newQuery)
-      const query = { ...this.$route.query, ...newQuery }
-      this.$emit('filter', query)
+      let query = {}
+      if (typeof newQuery === 'object' && newQuery.override) {
+        // reset current query
+        const query = Object.assign({}, this.$route.query)
+        delete query[newQuery.type]
+        this.$router.replace({ query })
+      } else {
+        query = { ...this.$route.query, ...newQuery }
+
+        this.$router.push({ name: this.$route.name, query: { ...query } })
+      }
+
+      console.log(this.$route.query)
     },
   },
 }

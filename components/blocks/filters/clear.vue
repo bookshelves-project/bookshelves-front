@@ -50,7 +50,7 @@ export default {
   methods: {
     isEmpty,
     clearAll() {
-      this.$router.push(this.localePath({ name: this.$route.name, query: {} }))
+      this.$router.push({ name: this.$route.name, query: {} })
     },
   },
 }

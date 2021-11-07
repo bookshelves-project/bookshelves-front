@@ -2,7 +2,7 @@
   <main class="main-content">
     <app-header title="Series" :subtitle="description">
       <template #filters>
-        <blocks-filters languages @filter="filter" />
+        <blocks-filters languages :sort="sortOptions" />
       </template>
     </app-header>
     <section v-if="!apiError">
@@ -103,6 +103,20 @@ export default {
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
       title: `All series available on ${this.$config.appName}`,
       description: `Discover books grouped by their serie's name`,
+      sortOptions: [
+        {
+          title: "By series' title (default)",
+          query: { sort: 'title_sort' },
+        },
+        {
+          title: 'By title',
+          query: { sort: 'title' },
+        },
+        {
+          title: 'Newest uploaded',
+          query: { sort: '-created_at' },
+        },
+      ],
     }
   },
   head() {
@@ -144,7 +158,7 @@ export default {
       itemListElement: items,
     }
   },
-  watchQuery: ['page', 'filter[languages]'],
+  watchQuery: ['page', 'filter[languages]', 'sort'],
   methods: {
     linkGen(pageNum) {
       const query = { ...this.$route.query }
@@ -154,13 +168,6 @@ export default {
         query: { ...query },
       }
       return route
-    },
-    filter(newQuery) {
-      const query = { ...this.$route.query, ...newQuery }
-
-      this.$router.push(
-        this.localePath({ name: 'series', query: { ...query } })
-      )
     },
   },
 }

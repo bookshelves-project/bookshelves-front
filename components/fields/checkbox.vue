@@ -1,11 +1,6 @@
 <template>
-  <!-- <div class="fr-checkbox-group">
-    <input :id="name" v-model="checkbox" type="checkbox" :name="name" />
-    <label class="fr-label" :for="name">
-      {{ label }}
-    </label>
-  </div> -->
   <div class="relative flex items-start">
+    <div class="absolute inset-0" @click="checkbox = !checkbox"></div>
     <div class="flex items-center h-5">
       <input
         :id="name"

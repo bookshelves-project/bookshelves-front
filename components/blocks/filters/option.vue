@@ -12,9 +12,12 @@
             text-sm
             font-medium
             text-gray-700
-            hover:text-gray-900
+            transition-colors
+            duration-75
+            hover:text-gray-900 hover:bg-gray-200
+            rounded-md
             py-2
-            px-1
+            px-2
           "
         >
           {{ label }}
@@ -46,7 +49,7 @@
           "
         >
           <div class="py-1" role="none">
-            <div v-if="sort">
+            <div v-if="type === 'button'">
               <button
                 v-for="option in formOptions"
                 :key="option.id"
@@ -68,22 +71,16 @@
               </button>
             </div>
             <div v-else>
-              <div v-if="radio">
+              <div v-if="type === 'radio'">
                 <fields-radios
                   v-model="radioValue"
                   :options="radioOptions"
                   name="series"
-                  class="
-                    font-medium
-                    text-gray-900
-                    px-4
-                    py-2
-                    text-left text-sm
-                    w-full
-                  "
+                  hover
+                  class="font-medium text-gray-900 text-left text-sm w-full"
                 />
               </div>
-              <div v-else>
+              <div v-else-if="type === 'checkbox'">
                 <fields-checkbox
                   v-for="option in formOptions"
                   :key="option.id"
@@ -92,11 +89,13 @@
                   :name="slugify(option.title)"
                   class="
                     font-medium
-                    text-gray-900
-                    px-4
-                    py-2
-                    text-left text-sm
+                    text-gray-900 text-left text-sm
                     w-full
+                    transition-colors
+                    duration-75
+                    hover:bg-gray-200
+                    py-2
+                    px-2
                   "
                 />
               </div>
@@ -109,6 +108,7 @@
 </template>
 
 <script>
+import { isEmpty } from 'lodash'
 import { capitalize, slugify } from '@/plugins/utils/methods'
 export default {
   name: 'FiltersOption',
@@ -133,13 +133,10 @@ export default {
       type: [Array, Function],
       default: () => [],
     },
-    sort: {
-      type: Boolean,
-      default: false,
-    },
-    radio: {
-      type: Boolean,
-      default: false,
+    type: {
+      type: String,
+      default: 'checkbox',
+      validator: (val) => ['checkbox', 'radio', 'button'].includes(val),
     },
     clickClose: {
       type: Boolean,
@@ -148,7 +145,6 @@ export default {
   },
   data() {
     return {
-      openedFilter: false,
       form: {},
       formOptions: [],
       radioValue: null,
@@ -159,57 +155,74 @@ export default {
   },
   watch: {
     radioValue(newValue) {
-      this.currentQueryType = Object.keys(this.formOptions[0].query)[0]
-      const query = { [this.currentQueryType]: newValue }
-      this.filterBy(query)
+      if (this.type === 'radio' && newValue !== undefined) {
+        this.currentQueryType = Object.keys(this.formOptions[0].query)[0]
+        if (newValue === 'any') {
+          this.filterBy({
+            override: true,
+            type: this.currentQueryType,
+          })
+        } else {
+          const query = { [this.currentQueryType]: newValue }
+          this.filterBy(query)
+        }
+      }
     },
     form: {
       handler() {
-        const options = []
-        for (const [key, value] of Object.entries(this.form)) {
-          if (value) {
-            options.push(key)
+        if (this.type === 'checkbox') {
+          /**
+           * Get options on true
+           */
+          const options = []
+          for (const [key, value] of Object.entries(this.form)) {
+            if (value) {
+              options.push(key)
+            }
           }
-        }
-        if (options.length && this.formOptions[0]) {
-          this.currentQueryType = Object.keys(this.formOptions[0].query)[0]
-          const query = { [this.currentQueryType]: options.join(',') }
-          this.filterBy(query)
+          /**
+           * Send options
+           */
+          if (this.formOptions[0]) {
+            this.currentQueryType = Object.keys(this.formOptions[0].query)[0]
+          }
+          if (options.length) {
+            const query = { [this.currentQueryType]: options.join(',') }
+            this.filterBy(query)
+          } else if (!isEmpty(this.$route.query[this.currentQueryType])) {
+            this.filterBy({
+              override: true,
+              type: this.currentQueryType,
+            })
+          }
         }
       },
       deep: true,
     },
   },
-  mounted() {
-    this.$nextTick(async () => {
-      this.formOptions = this.options
+  async created() {
+    this.formOptions = this.options
+    if (this.type === 'radio') {
       /**
-       * Only if not sorting
+       * Set radios options
        */
-      if (!this.sort) {
-        if (this.radio) {
-          /**
-           * Set radios options
-           */
-          this.setRadiosOptions()
-        } else {
-          /**
-           * Set checkboxes options
-           */
-          if (typeof this.options === 'function') {
-            this.formOptions = await this.options()
-          }
-          this.setCheckboxesOptions()
-        }
+      this.setRadiosOptions()
+    }
+    if (this.type === 'checkbox') {
+      /**
+       * Set checkboxes options
+       */
+      if (typeof this.options === 'function') {
+        this.formOptions = await this.options()
       }
-    })
+      this.setCheckboxesOptions()
+    }
   },
   methods: {
     capitalize,
     slugify,
+    isEmpty,
     filterBy(query) {
-      this.filterEnabled = true
-      this.openedFilter = false
       this.$emit('filter', query)
     },
     setCheckboxesOptions() {

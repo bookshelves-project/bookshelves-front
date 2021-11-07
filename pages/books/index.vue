@@ -2,7 +2,7 @@
   <main class="main-content relative">
     <app-header title="Book" :subtitle="description" :border="false">
       <template #filters>
-        <blocks-filters has-serie languages sort @filter="filter" />
+        <blocks-filters has-serie languages :sort="sortOptions" />
       </template>
     </app-header>
     <section v-if="!apiError">
@@ -102,6 +102,24 @@ export default {
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
       title: `All books available on ${this.$config.appName}`,
       description: `Discover all available books sorted by title and serie's title`,
+      sortOptions: [
+        {
+          title: "By series' title (default)",
+          query: { sort: 'title_sort' },
+        },
+        {
+          title: 'By title',
+          query: { sort: 'title' },
+        },
+        {
+          title: 'Most recently published',
+          query: { sort: '-date' },
+        },
+        {
+          title: 'Newest uploaded',
+          query: { sort: '-created_at' },
+        },
+      ],
     }
   },
   head() {
@@ -153,11 +171,6 @@ export default {
         query: { ...query },
       }
       return route
-    },
-    filter(newQuery) {
-      const query = { ...this.$route.query, ...newQuery }
-
-      this.$router.push(this.localePath({ name: 'books', query: { ...query } }))
     },
   },
 }
