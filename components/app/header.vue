@@ -138,7 +138,7 @@
         >
       </div>
     </div>
-    <div class="mt-6">
+    <div class="mt-4">
       <slot name="filters" />
     </div>
   </div>

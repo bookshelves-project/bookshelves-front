@@ -3,7 +3,7 @@
     <section aria-labelledby="filter-heading">
       <h2 id="filter-heading" class="sr-only">Filters</h2>
 
-      <div class="relative z-10 border-b border-gray-200 pb-4">
+      <div class="relative z-10 border-b border-gray-200 pb-2">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
           <div class="relative flex items-center text-left">
             <blocks-filters-option
@@ -54,16 +54,16 @@
               <div class="flex items-center space-x-4">
                 <blocks-filters-option
                   v-if="hasSerie"
-                  filter="has_serie"
+                  filter="filter[has_serie]"
                   label="Series"
                   :options="seriesOptions"
-                  type="radio"
+                  type="button"
                   align="right"
                   click-close
                 />
                 <blocks-filters-option
                   v-if="languages"
-                  filter="languages"
+                  filter="filter[languages]"
                   label="Languages"
                   type="checkbox"
                   :options="languagesOptions"
@@ -74,33 +74,42 @@
           </div>
         </div>
       </div>
-      <div>
-        <div class="max-w-7xl mx-auto py-3 sm:flex sm:items-center">
-          <h3
-            class="text-xs font-semibold uppercase tracking-wide text-gray-500"
-          >
-            Filters
-            <span class="sr-only">, active</span>
-          </h3>
+      <transition name="fade">
+        <div v-if="queryAvailable">
+          <div class="max-w-7xl mx-auto py-2 sm:flex sm:items-center">
+            <h3
+              class="
+                text-xs
+                font-semibold
+                uppercase
+                tracking-wide
+                text-gray-500
+              "
+            >
+              Filters
+              <span class="sr-only">, active</span>
+            </h3>
 
-          <div
-            aria-hidden="true"
-            class="hidden w-px h-5 bg-gray-300 sm:block sm:ml-4"
-          ></div>
+            <div
+              aria-hidden="true"
+              class="hidden w-px h-10 bg-gray-300 sm:block sm:ml-4"
+            ></div>
 
-          <div class="mt-2 sm:mt-0 sm:ml-4">
-            <div class="-m-1 flex flex-wrap items-center">
-              <blocks-filters-clear />
-              <blocks-filters-chip />
+            <div class="mt-2 sm:mt-0 sm:ml-4">
+              <div class="-m-1 flex flex-wrap items-center">
+                <blocks-filters-clear />
+                <blocks-filters-queries />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </transition>
     </section>
   </div>
 </template>
 
 <script>
+import { isEmpty } from 'lodash'
 export default {
   name: 'Filters',
   props: {
@@ -121,30 +130,41 @@ export default {
     return {
       seriesOptions: [
         {
-          title: 'No series',
-          query: { 'filter[has_serie]': 'false' },
+          label: 'No series',
+          value: 'false',
         },
         {
-          title: 'Only series',
-          query: { 'filter[has_serie]': 'true' },
+          label: 'Only series',
+          value: 'true',
         },
         {
-          title: 'Any',
-          query: { 'filter[has_serie]': 'any' },
-          default: true,
+          label: 'Any',
+          value: 'any',
         },
       ],
     }
   },
+  computed: {
+    queryAvailable() {
+      const query = this.$route.query
+      return !this.isEmpty(query)
+    },
+  },
   methods: {
+    isEmpty,
     async languagesOptions() {
       const languages = await this.$axios.$get('/languages')
+      const query = this.$route.query
+      const queryLanguages = query['filter[languages]']
       const languagesData = []
       languages.data.forEach((el) => {
         languagesData.push({
-          title: el.name,
-          slug: el.meta.slug,
+          label: el.name,
+          value: el.meta.slug,
           query: { 'filter[languages]': el.meta.slug },
+          enabled: queryLanguages
+            ? queryLanguages.includes(el.meta.slug)
+            : false,
         })
       })
       return languagesData

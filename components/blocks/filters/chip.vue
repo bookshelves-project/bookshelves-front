@@ -1,5 +1,5 @@
 <template>
-  <span
+  <button
     class="
       m-1
       inline-flex
@@ -13,10 +13,17 @@
       font-medium
       bg-white
       text-gray-900
+      group
+      hover:bg-gray-100
+      transition-colors
+      duration-75
     "
+    @click="removeQuery"
   >
-    <span>Objects</span>
-    <button
+    <span>
+      <slot />
+    </span>
+    <span
       type="button"
       class="
         flex-shrink-0
@@ -27,19 +34,36 @@
         rounded-full
         inline-flex
         text-gray-400
-        hover:bg-gray-200 hover:text-gray-500
+        group-hover:bg-gray-200 group-hover:text-gray-500
+        transition-colors
+        duration-75
       "
     >
       <span class="sr-only">Remove filter for Objects</span>
       <svg class="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
         <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
       </svg>
-    </button>
-  </span>
+    </span>
+  </button>
 </template>
 
 <script>
 export default {
   name: 'FiltersChip',
+  props: {
+    filterType: {
+      type: String,
+      default: null,
+    },
+    filterValue: {
+      type: String,
+      default: null,
+    },
+  },
+  methods: {
+    removeQuery() {
+      this.$emit('remove', this.filterType)
+    },
+  },
 }
 </script>

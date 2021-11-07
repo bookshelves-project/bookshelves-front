@@ -104,20 +104,20 @@ export default {
       description: `Discover all available books sorted by title and serie's title`,
       sortOptions: [
         {
-          title: "By series' title (default)",
-          query: { sort: 'title_sort' },
+          label: "By series' title (default)",
+          value: 'title_sort',
         },
         {
-          title: 'By title',
-          query: { sort: 'title' },
+          label: 'By title',
+          value: 'title',
         },
         {
-          title: 'Most recently published',
-          query: { sort: '-date' },
+          label: 'Most recently published',
+          value: '-date',
         },
         {
-          title: 'Newest uploaded',
-          query: { sort: '-created_at' },
+          label: 'Newest uploaded',
+          value: '-created_at',
         },
       ],
     }

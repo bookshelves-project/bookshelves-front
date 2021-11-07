@@ -16,6 +16,7 @@
           border-gray-300
           rounded
         "
+        :value="valueData"
       />
     </div>
     <div class="ml-3 text-sm w-full">
@@ -37,7 +38,7 @@ export default {
   name: 'Checkbox',
   props: {
     value: {
-      type: Boolean,
+      type: [Boolean, Array],
       default: false,
     },
     name: {
@@ -45,6 +46,10 @@ export default {
       default: null,
     },
     label: {
+      type: String,
+      default: null,
+    },
+    valueData: {
       type: String,
       default: null,
     },

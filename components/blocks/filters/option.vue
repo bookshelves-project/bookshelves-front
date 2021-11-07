@@ -51,7 +51,7 @@
           <div class="py-1" role="none">
             <div v-if="type === 'button'">
               <button
-                v-for="option in formOptions"
+                v-for="option in optionsData"
                 :key="option.id"
                 class="
                   font-medium
@@ -63,40 +63,28 @@
                   w-full
                 "
                 :class="{
-                  'bg-gray-200': $route.query.sort === option.query.sort,
+                  'bg-gray-200': $route.query[filter] === option.value,
                 }"
-                @click="filterBy(option.query)"
+                @click="filterBy(option.value)"
               >
-                {{ option.title }}
+                {{ option.label }}
               </button>
             </div>
             <div v-else>
               <div v-if="type === 'radio'">
                 <fields-radios
-                  v-model="radioValue"
-                  :options="radioOptions"
-                  name="series"
+                  v-model="radio"
+                  :options="optionsData"
+                  :name="filter"
                   hover
                   class="font-medium text-gray-900 text-left text-sm w-full"
                 />
               </div>
               <div v-else-if="type === 'checkbox'">
-                <fields-checkbox
-                  v-for="option in formOptions"
-                  :key="option.id"
-                  v-model="form[slugify(option.slug)]"
-                  :label="option.title"
-                  :name="slugify(option.title)"
-                  class="
-                    font-medium
-                    text-gray-900 text-left text-sm
-                    w-full
-                    transition-colors
-                    duration-75
-                    hover:bg-gray-200
-                    py-2
-                    px-2
-                  "
+                <fields-checkboxes-filter
+                  v-model="checkboxes"
+                  :options="optionsData"
+                  :filter="filter"
                 />
               </div>
             </div>
@@ -108,15 +96,11 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex'
 import { isEmpty } from 'lodash'
-import { capitalize, slugify } from '@/plugins/utils/methods'
 export default {
   name: 'FiltersOption',
   props: {
-    filter: {
-      type: String,
-      default: '',
-    },
     align: {
       type: String,
       default: 'left',
@@ -128,6 +112,10 @@ export default {
     label: {
       type: String,
       default: null,
+    },
+    filter: {
+      type: String,
+      default: '',
     },
     options: {
       type: [Array, Function],
@@ -145,129 +133,102 @@ export default {
   },
   data() {
     return {
-      form: {},
-      formOptions: [],
-      radioValue: null,
-      radioOptions: [],
-      currentQuery: null,
-      currentQueryType: null,
+      languages: {
+        data: [],
+      },
+      optionsData: [],
+      radio: null,
+      checkboxes: [],
     }
   },
+  computed: {
+    ...mapGetters({
+      storeQueries: 'filters/queries',
+    }),
+  },
   watch: {
-    radioValue(newValue) {
-      if (this.type === 'radio' && newValue !== undefined) {
-        this.currentQueryType = Object.keys(this.formOptions[0].query)[0]
-        if (newValue === 'any') {
-          this.filterBy({
-            override: true,
-            type: this.currentQueryType,
-          })
+    checkboxes: {
+      handler(newValue) {
+        let newQuery = []
+        newQuery = newValue.join(',')
+        if (isEmpty(newQuery)) {
+          this.removeQuery()
         } else {
-          const query = { [this.currentQueryType]: newValue }
-          this.filterBy(query)
-        }
-      }
-    },
-    form: {
-      handler() {
-        if (this.type === 'checkbox') {
-          /**
-           * Get options on true
-           */
-          const options = []
-          for (const [key, value] of Object.entries(this.form)) {
-            if (value) {
-              options.push(key)
-            }
-          }
-          /**
-           * Send options
-           */
-          if (this.formOptions[0]) {
-            this.currentQueryType = Object.keys(this.formOptions[0].query)[0]
-          }
-          if (options.length) {
-            const query = { [this.currentQueryType]: options.join(',') }
-            this.filterBy(query)
-          } else if (!isEmpty(this.$route.query[this.currentQueryType])) {
-            this.filterBy({
-              override: true,
-              type: this.currentQueryType,
-            })
-          }
+          this.filterBy(newQuery)
         }
       },
       deep: true,
     },
+    // radio(newValue) {
+    //   console.log(newValue)
+    // },
   },
   async created() {
-    this.formOptions = this.options
-    if (this.type === 'radio') {
-      /**
-       * Set radios options
-       */
-      this.setRadiosOptions()
-    }
-    if (this.type === 'checkbox') {
-      /**
-       * Set checkboxes options
-       */
-      if (typeof this.options === 'function') {
-        this.formOptions = await this.options()
-      }
-      this.setCheckboxesOptions()
+    /**
+     * Set optionsData from options
+     */
+    if (typeof this.options === 'function') {
+      this.optionsData = await this.options()
+      this.setCheckboxesValues()
+    } else {
+      this.optionsData = this.options
     }
   },
   methods: {
-    capitalize,
-    slugify,
     isEmpty,
-    filterBy(newQuery) {
-      let query = {}
-      if (typeof newQuery === 'object' && newQuery.override) {
-        // reset current query
-        const query = Object.assign({}, this.$route.query)
-        delete query[newQuery.type]
-        this.$router.replace({ query })
-      } else {
-        query = { ...this.$route.query, ...newQuery }
-
-        this.$router.replace({ query: { ...query } })
-      }
-    },
-    setCheckboxesOptions() {
-      try {
-        const form = {}
-        this.formOptions.forEach((el) => {
-          this.currentQueryType = Object.keys(el.query)[0]
-          let currentQuery = this.$route.query[this.currentQueryType]
-          if (currentQuery !== undefined) {
-            currentQuery = currentQuery.split(',')
-            this.currentQuery = currentQuery
-            form[el.slug] = this.currentQuery.includes(el.slug)
+    ...mapMutations({
+      setQueries: 'filters/setQueries',
+      setClear: 'filters/setClear',
+    }),
+    setCheckboxesValues() {
+      // eslint-disable-next-line no-unused-vars
+      for (const [key, option] of Object.entries(this.optionsData)) {
+        if (option.enabled) {
+          const index = this.checkboxes.findIndex((x) => x === option.value)
+          if (index === -1) {
+            this.checkboxes.push(option.value)
           }
-        })
-        this.form = form
-      } catch (error) {
-        console.error(error)
+        }
       }
     },
-    setRadiosOptions() {
-      try {
-        this.formOptions.forEach((el) => {
-          this.currentQueryType = Object.keys(el.query)[0]
+    /**
+     * Push query, to replace all queries set `replace` to `true`
+     *
+     * @param {string} newQuery
+     * @param {boolean} replace
+     */
+    filterBy(newQuery, replace = false) {
+      newQuery = { [this.filter]: newQuery }
+      const query = this.$route.query
 
-          this.radioOptions.push({
-            label: el.title,
-            value: Object.values(el.query)[0],
-          })
+      if (replace) {
+        this.$router.replace({
+          query: { query: newQuery },
         })
 
-        this.currentQuery = this.$route.query[this.currentQueryType]
-        this.radioValue = this.currentQuery
-      } catch (error) {
-        console.error(error)
+        this.updateStore(newQuery)
+      } else {
+        this.$router.push({
+          name: this.$route.name,
+          query: { ...query, ...newQuery },
+        })
+
+        this.updateStore({ ...query, ...newQuery })
       }
+    },
+    /**
+     * Remove current query
+     */
+    removeQuery() {
+      // reset current query
+      const query = Object.assign({}, this.$route.query)
+      delete query[this.filter]
+      this.$router.replace({ query })
+
+      this.updateStore(query)
+    },
+    updateStore(query) {
+      this.setQueries({ ...query })
     },
   },
 }

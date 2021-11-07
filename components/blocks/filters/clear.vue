@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex'
 import { isEmpty } from 'lodash'
 export default {
   name: 'FilterClear',
@@ -42,6 +43,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      clear: 'filters/clear',
+    }),
     queryAvailable() {
       const query = this.$route.query
       return !this.isEmpty(query)
@@ -49,8 +53,13 @@ export default {
   },
   methods: {
     isEmpty,
+    ...mapMutations({
+      setQueries: 'filters/setQueries',
+      setClear: 'filters/setClear',
+    }),
     clearAll() {
-      this.$router.push({ name: this.$route.name, query: {} })
+      this.setQueries({})
+      this.$router.replace({ name: this.$route.name, query: {} })
     },
   },
 }

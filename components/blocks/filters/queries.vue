@@ -1,0 +1,69 @@
+<template>
+  <div>
+    <blocks-filters-chip
+      v-for="item in queries"
+      :key="item.id"
+      :filter-type="item.type"
+      :filter-value="item.value"
+      @remove="remove"
+    >
+      {{ item.type }}
+    </blocks-filters-chip>
+  </div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+import { isEmpty } from 'lodash'
+export default {
+  name: 'FiltesQueries',
+  props: {
+    refresh: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      queries: [],
+    }
+  },
+  computed: {
+    ...mapGetters({
+      storeQueries: 'filters/queries',
+    }),
+    queryAvailable() {
+      const query = this.$route.query
+      return !this.isEmpty(query)
+    },
+  },
+  watch: {
+    storeQueries: {
+      handler(newValue, oldValue) {
+        this.setQueries(newValue)
+      },
+      deep: true,
+    },
+  },
+  methods: {
+    isEmpty,
+    setQueries(queries) {
+      this.queries = []
+      for (const [key, value] of Object.entries(queries)) {
+        this.queries.push({ type: key, value })
+      }
+    },
+    remove(type) {
+      try {
+        const query = Object.assign({}, this.$route.query)
+        delete query[type]
+        this.$router.replace({ query })
+
+        this.setQueries(query)
+      } catch (error) {
+        console.log('Error on replace')
+      }
+    },
+  },
+}
+</script>

@@ -1,6 +1,6 @@
 <template>
   <main class="main-content">
-    <app-header title="Series" :subtitle="description">
+    <app-header title="Series" :subtitle="description" :border="false">
       <template #filters>
         <blocks-filters languages :sort="sortOptions" />
       </template>
@@ -105,16 +105,19 @@ export default {
       description: `Discover books grouped by their serie's name`,
       sortOptions: [
         {
-          title: "By series' title (default)",
+          label: "By series' title (default)",
           query: { sort: 'title_sort' },
+          value: 'title_sort',
         },
         {
-          title: 'By title',
+          label: 'By title',
           query: { sort: 'title' },
+          value: 'title',
         },
         {
-          title: 'Newest uploaded',
+          label: 'Newest uploaded',
           query: { sort: '-created_at' },
+          value: '-created_at',
         },
       ],
     }

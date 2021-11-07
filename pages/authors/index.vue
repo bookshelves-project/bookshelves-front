@@ -1,6 +1,6 @@
 <template>
   <main class="main-content">
-    <app-header :title="title" :subtitle="description">
+    <app-header :title="title" :subtitle="description" :border="false">
       <template #filters>
         <blocks-filters :sort="sortOptions" />
       </template>
@@ -85,16 +85,19 @@ export default {
       description: `Want to find all books written by specific author?`,
       sortOptions: [
         {
-          title: 'By lastname (default)',
+          label: 'By lastname (default)',
           query: { sort: 'lastname' },
+          value: 'lastname',
         },
         {
-          title: 'By firstname',
+          label: 'By firstname',
           query: { sort: 'firstname' },
+          value: 'firstname',
         },
         {
-          title: 'Newest created',
+          label: 'Newest created',
           query: { sort: '-created_at' },
+          value: '-created_at',
         },
       ],
     }
