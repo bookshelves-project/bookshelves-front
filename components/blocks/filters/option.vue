@@ -98,6 +98,7 @@
 <script>
 import { mapMutations, mapGetters } from 'vuex'
 import { isEmpty } from 'lodash'
+import { pushIfNotExist } from '@/plugins/utils/methods'
 export default {
   name: 'FiltersOption',
   props: {
@@ -184,10 +185,7 @@ export default {
       // eslint-disable-next-line no-unused-vars
       for (const [key, option] of Object.entries(this.optionsData)) {
         if (option.enabled) {
-          const index = this.checkboxes.findIndex((x) => x === option.value)
-          if (index === -1) {
-            this.checkboxes.push(option.value)
-          }
+          pushIfNotExist(this.checkboxes, option.value)
         }
       }
     },
@@ -220,11 +218,9 @@ export default {
      * Remove current query
      */
     removeQuery() {
-      // reset current query
       const query = Object.assign({}, this.$route.query)
       delete query[this.filter]
-      this.$router.replace({ query })
-
+      this.$router.push({ query })
       this.updateStore(query)
     },
     updateStore(query) {

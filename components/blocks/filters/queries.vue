@@ -7,7 +7,7 @@
       :filter-value="item.value"
       @remove="remove"
     >
-      {{ item.type }}
+      {{ `${filterName(item.type)}: ${item.value}` }}
     </blocks-filters-chip>
   </div>
 </template>
@@ -47,6 +47,15 @@ export default {
   },
   methods: {
     isEmpty,
+    filterName(query) {
+      const filters = {
+        'filter[has_serie]': 'has series',
+        sort: 'sort by',
+        'filter[languages]': 'languages',
+        default: 'unknown',
+      }
+      return filters[query] || filters.default
+    },
     setQueries(queries) {
       this.queries = []
       for (const [key, value] of Object.entries(queries)) {

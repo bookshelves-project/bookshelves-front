@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ $route.query[filter] }}
     <div
       v-for="option in options"
       :key="option.id"
@@ -15,6 +14,7 @@
         duration-75
       "
     >
+      <div class="absolute inset-0" @click="toggleCheckbox(option.value)"></div>
       <div class="flex items-center h-5">
         <input
           :id="option.value"
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { pushIfNotExist } from '@/plugins/utils/methods'
 export default {
   name: 'CheckboxesFilter',
   props: {
@@ -63,8 +64,8 @@ export default {
   },
   data() {
     return {
-      checkbox: false,
       checkboxes: [],
+      blockWatch: false,
     }
   },
   watch: {
@@ -72,18 +73,33 @@ export default {
       this.checkboxes = newValue
     },
     checkboxes() {
-      this.$emit('input', this.checkboxes)
+      if (!this.blockWatch) {
+        this.$emit('input', this.checkboxes)
+      }
     },
     '$route.query'(newValue) {
+      this.blockWatch = true
       const query = this.$route.query[this.filter]
       if (query === undefined) {
         this.checkboxes = []
       }
-      console.clear()
+      this.blockWatch = false
     },
   },
   created() {
     this.checkbox = this.value
+  },
+  methods: {
+    toggleCheckbox(value) {
+      if (this.checkboxes.includes(value)) {
+        const index = this.checkboxes.indexOf(value)
+        if (index !== -1) {
+          this.checkboxes.splice(index, 1)
+        }
+      } else {
+        pushIfNotExist(this.checkboxes, value)
+      }
+    },
   },
 }
 </script>

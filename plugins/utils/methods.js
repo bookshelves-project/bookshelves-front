@@ -270,3 +270,15 @@ export const capitalizeEach = (string) => {
 
   return arr.join(' ')
 }
+
+/**
+ * Push in array if not exists
+ * @param {array} array
+ * @param {any} value
+ */
+export const pushIfNotExist = (array, value) => {
+  const index = array.findIndex((x) => x === value)
+  if (index === -1) {
+    array.push(value)
+  }
+}

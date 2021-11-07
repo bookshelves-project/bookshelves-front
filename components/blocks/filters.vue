@@ -74,41 +74,31 @@
           </div>
         </div>
       </div>
-      <transition name="fade">
-        <div v-if="queryAvailable">
-          <div class="max-w-7xl mx-auto py-2 sm:flex sm:items-center">
-            <h3
-              class="
-                text-xs
-                font-semibold
-                uppercase
-                tracking-wide
-                text-gray-500
-              "
-            >
-              Filters
-              <span class="sr-only">, active</span>
-            </h3>
+      <div class="max-w-7xl mx-auto py-2 sm:flex sm:items-center">
+        <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          Filters
+          <span class="sr-only">, active</span>
+        </h3>
 
-            <div
-              aria-hidden="true"
-              class="hidden w-px h-10 bg-gray-300 sm:block sm:ml-4"
-            ></div>
+        <div
+          aria-hidden="true"
+          class="hidden w-px h-10 bg-gray-300 sm:block sm:ml-4"
+        ></div>
 
-            <div class="mt-2 sm:mt-0 sm:ml-4">
-              <div class="-m-1 flex flex-wrap items-center">
-                <blocks-filters-clear />
-                <blocks-filters-queries />
-              </div>
-            </div>
+        <div class="mt-2 sm:mt-0 sm:ml-4">
+          <div class="-m-1 flex flex-wrap items-center">
+            <div v-if="!queryAvailable" class="italic text-gray-300">None.</div>
+            <blocks-filters-clear />
+            <blocks-filters-queries />
           </div>
         </div>
-      </transition>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import { isEmpty } from 'lodash'
 export default {
   name: 'Filters',
@@ -152,6 +142,9 @@ export default {
   },
   methods: {
     isEmpty,
+    ...mapMutations({
+      setQueries: 'filters/setQueries',
+    }),
     async languagesOptions() {
       const languages = await this.$axios.$get('/languages')
       const query = this.$route.query
@@ -182,6 +175,8 @@ export default {
       let query = {}
       query = { ...this.$route.query, ...newQuery }
       this.$router.replace({ query: { ...query } })
+
+      this.setQueries({ ...query })
     },
   },
 }

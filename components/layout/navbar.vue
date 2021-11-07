@@ -31,7 +31,7 @@
               :alt="$config.appName"
             />
           </nuxt-link>
-          <div class="hidden lg:block lg:ml-10 h-full">
+          <div class="hidden lg:block lg:ml-4 h-full">
             <div class="flex space-x-6 h-full">
               <nuxt-link
                 v-for="(booksNav, booksNavId) in $store.state.nav.navigation"
