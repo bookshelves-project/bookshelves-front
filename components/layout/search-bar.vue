@@ -67,8 +67,12 @@
           "
           ><span class="sr-only">Press </span
           ><kbd class="font-sans"
-            ><abbr title="Control" class="no-underline">Ctrl </abbr></kbd
-          ><span class="sr-only"> and </span><kbd class="font-sans">K</kbd
+            ><abbr title="Control" class="no-underline"
+              ><span class="mr-1" v-html="metaKey"></span> </abbr></kbd
+          ><span class="sr-only"> and </span
+          ><kbd class="font-sans uppercase" :title="searchKey">{{
+            searchKey
+          }}</kbd
           ><span class="sr-only"> to search</span></span
         >
       </div>
@@ -83,6 +87,7 @@ export default {
   name: 'LayoutSearchBar',
   data() {
     return {
+      metaKey: 'Ctrl',
       searchKey: 'k',
     }
   },
@@ -94,6 +99,7 @@ export default {
   mounted() {
     window.addEventListener('keydown', this.shortcutOpen)
     window.addEventListener('keydown', this.shortcutClose)
+    this.isMacintosh()
   },
   beforeDestroy() {
     window.removeEventListener('keydown', this.shortcutOpen)
@@ -103,6 +109,13 @@ export default {
     ...mapMutations({
       setModalOpened: 'search/setModalOpened',
     }),
+    isMacintosh() {
+      if (navigator.userAgent.includes('Mac')) {
+        this.metaKey = '&#8984;'
+      } else {
+        this.metaKey = '&#8963;'
+      }
+    },
     shortcutOpen(e) {
       if (e.key === this.searchKey && (e.ctrlKey || e.metaKey)) {
         e.preventDefault() // present "Save Page" from getting triggered.
