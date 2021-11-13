@@ -34,7 +34,7 @@
           <div class="hidden lg:block lg:ml-4 h-full">
             <div class="flex space-x-6 h-full">
               <nuxt-link
-                v-for="(booksNav, booksNavId) in $store.state.nav.navigation"
+                v-for="(booksNav, booksNavId) in navigation"
                 :key="booksNavId"
                 :to="
                   localePath({
@@ -293,12 +293,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Navbar',
   data() {
     return {
       displayIfScrolled: false,
     }
+  },
+  computed: {
+    ...mapGetters({
+      navigation: 'nav/main',
+    }),
   },
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)

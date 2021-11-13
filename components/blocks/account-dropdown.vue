@@ -44,7 +44,7 @@
       <template #content>
         <div class="w-48 bg-white dark:bg-gray-800">
           <div v-if="$auth.$state.loggedIn">
-            <span v-for="link in authNav" :key="link.id">
+            <span v-for="link in auth" :key="link.id">
               <nuxt-link
                 :to="localePath({ name: link.route })"
                 class="
@@ -67,7 +67,7 @@
                 </span>
               </nuxt-link>
             </span>
-            <hr
+            <!-- <hr
               v-if="authAdmin.length"
               class="my-1 border-gray-200 dark:border-gray-600"
             />
@@ -93,7 +93,7 @@
                   {{ link.label }}
                 </span>
               </nuxt-link>
-            </span>
+            </span> -->
             <hr class="my-1 border-gray-200 dark:border-gray-600" />
             <button
               class="
@@ -120,7 +120,7 @@
           </div>
           <div v-else>
             <nuxt-link
-              v-for="link in $store.state.nav.authNavigationFalse"
+              v-for="link in guest"
               :key="link.id"
               :to="localePath({ name: link.route })"
               class="
@@ -143,6 +143,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'AccountDropdown',
   data() {
@@ -151,22 +152,26 @@ export default {
     }
   },
   computed: {
-    authNav() {
-      const nav = this.$store.state.nav.authNavigationTrue
-      if (this.$auth.$state.user.data.isAdmin) {
-        return nav
-      } else {
-        return nav.filter((item) => !item.data.isAdmin)
-      }
-    },
-    authAdmin() {
-      const nav = this.$store.state.nav.authNavigationAdmin
-      if (this.$auth.$state.user.data.isAdmin) {
-        return nav
-      } else {
-        return nav.filter((item) => !item.data.isAdmin)
-      }
-    },
+    ...mapGetters({
+      auth: 'nav/auth',
+      guest: 'nav/guest',
+    }),
+    // authNav() {
+    //   const nav = this.$store.state.nav.authNavigationTrue
+    //   if (this.$auth.$state.user.data.isAdmin) {
+    //     return nav
+    //   } else {
+    //     return nav.filter((item) => !item.data.isAdmin)
+    //   }
+    // },
+    // authAdmin() {
+    //   const nav = this.$store.state.nav.authNavigationAdmin
+    //   if (this.$auth.$state.user.data.isAdmin) {
+    //     return nav
+    //   } else {
+    //     return nav.filter((item) => !item.data.isAdmin)
+    //   }
+    // },
   },
   methods: {
     async logout() {
