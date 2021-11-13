@@ -84,7 +84,14 @@
               class="internal-link"
               >{{ book.publisher.name }}</nuxt-link
             >
-            ({{ $formatDate(book.publishDate) }})
+          </dd>
+        </div>
+        <div v-if="book.publishDate" class="sm:col-span-1">
+          <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+            Published at
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
+            {{ $formatDate(book.publishDate) }}
           </dd>
         </div>
         <div v-if="book.language" class="sm:col-span-1">
@@ -101,7 +108,7 @@
               "
               class="internal-link"
             >
-              {{ formatLanguage(book.language) }}
+              {{ formatLanguage(book.language).label }}
             </nuxt-link>
           </dd>
         </div>

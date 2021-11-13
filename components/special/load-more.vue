@@ -12,7 +12,7 @@
         <div class="flex items-center space-x-2 relative">
           <div class="absolute top-1/2 -translate-y-1/2 transform -left-5">
             <transition name="fade">
-              <loading v-if="pending" class="w-5 h-5" />
+              <app-loading v-if="pending" class="w-5 h-5" />
               <span v-else class="w-5 h-5"></span>
             </transition>
           </div>

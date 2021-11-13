@@ -1,38 +1,13 @@
 <template>
   <div :class="dev ? 'debug-screens' : ''">
+    <lazy-layout-overlay />
     <lazy-special-routes-list />
     <lazy-app-notifications />
-    <lazy-special-overlay />
     <div class="mx-auto bg-white dark:bg-gray-900">
       <lazy-layout-layer />
-      <layout-navbar
-        class="
-          transform
-          -translate-x-1/2
-          border-gray-800
-          max-w-7xl
-          left-1/2
-          border-opacity-5
-        "
-      />
-      <div
-        class="
-          fixed
-          z-20
-          w-full
-          h-16
-          bg-white
-          border-gray-800
-          shadow
-          dark:border-gray-800 dark:bg-gray-800
-          shadow-navbar
-          dark:shadow-none
-          border-opacity-5
-        "
-      ></div>
+      <layout-navbar />
       <lazy-layout-sidebar />
       <div style="padding-top: 4rem"></div>
-      <lazy-special-modal />
       <Nuxt class="min-height-content" />
       <lazy-layout-footer />
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="books.length">
     <div
       class="
         books-slider
@@ -16,9 +16,9 @@
         >
           <slot name="title" />
         </h2>
-        <p class="max-w-2xl mt-1 text-sm italic text-gray-500">
+        <div lass="max-w-2xl mt-1 text-sm italic text-gray-500">
           <slot name="subtitle" />
-        </p>
+        </div>
       </div>
       <div class="py-5">
         <client-only v-if="isLoaded">
@@ -33,10 +33,10 @@
                 <blocks-book-slider-card :book="book" />
               </swiper-slide>
               <div slot="button-prev" class="swiper-button-prev">
-                <svg-icon name="arrow-chevron-right" />
+                <svg-icon name="chevron-right" />
               </div>
               <div slot="button-next" class="swiper-button-next">
-                <svg-icon name="arrow-chevron-right" />
+                <svg-icon name="chevron-right" />
               </div>
             </swiper>
             <swiper

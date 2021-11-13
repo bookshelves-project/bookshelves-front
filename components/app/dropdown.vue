@@ -1,8 +1,8 @@
 <template>
-  <div v-click-outside="closeDropdown" class="relative">
-    <span @click="open = !open">
-      <slot name="trigger"></slot>
-    </span>
+  <div v-click-outside="() => (open = false)" class="relative">
+    <button class="h-full rounded-md" @click="open = !open">
+      <slot name="trigger" />
+    </button>
 
     <transition
       enter-active-class="transition duration-100 ease-out"
@@ -16,21 +16,18 @@
         v-show="open"
         class="
           absolute
-          z-20
+          z-50
           mt-2
           rounded-md
           shadow-lg
+          dark:rounded-none
           ring-1 ring-primary-600 ring-opacity-5
         "
-        :class="[
-          alignmentClasses,
-          contentClasses,
-          large ? 'w-full' : widthClass,
-        ]"
+        :class="[alignmentClasses]"
         style="display: none"
-        @click="open = false"
+        @click="clickClose ? (open = false) : ''"
       >
-        <slot name="content"></slot>
+        <slot name="content" />
       </div>
     </transition>
   </div>
@@ -39,7 +36,7 @@
 <script>
 import vClickOutside from 'v-click-outside'
 export default {
-  name: 'DropdownTemplate',
+  name: 'Dropdown',
   directives: {
     clickOutside: vClickOutside.directive,
   },
@@ -48,15 +45,11 @@ export default {
       type: String,
       default: 'right',
     },
-    width: {
-      type: Number,
-      default: 48,
+    arrow: {
+      type: Boolean,
+      default: false,
     },
-    contentClasses: {
-      type: Array,
-      default: () => ['bg-gray-100', 'dark:bg-gray-700'],
-    },
-    large: {
+    clickClose: {
       type: Boolean,
       default: false,
     },
@@ -69,10 +62,6 @@ export default {
   },
 
   computed: {
-    widthClass() {
-      return `w-${this.width}`
-    },
-
     alignmentClasses() {
       if (this.align === 'left') {
         return 'origin-top-left left-0'
@@ -105,12 +94,6 @@ export default {
     }
 
     document.removeEventListener('keydown', closeOnEscape)
-  },
-
-  methods: {
-    closeDropdown(event) {
-      this.open = false
-    },
   },
 }
 </script>

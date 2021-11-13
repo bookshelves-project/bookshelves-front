@@ -112,7 +112,7 @@ export default {
   @apply inline-flex items-center px-4 py-2 text-base font-semibold rounded-md transition-colors duration-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 border !important;
 }
 .secondary {
-  @apply text-primary-600 bg-primary-100 border-transparent hover:bg-primary-200 hover:text-primary-600 dark:text-gray-700 !important;
+  @apply text-primary-600 bg-primary-100 dark:bg-primary-700 dark:hover:bg-primary-800 border-transparent hover:bg-primary-200 hover:text-primary-600 dark:text-gray-200 !important;
 }
 .primary {
   @apply border-transparent shadow-sm text-white bg-primary-600 hover:bg-primary-500 !important;

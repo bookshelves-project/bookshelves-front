@@ -42,9 +42,9 @@
               </span>
               <span v-else>Something bad happened</span>
             </h1>
-            <p class="mt-2 text-base text-gray-500">
+            <div class="mt-2 text-base text-gray-500">
               These isn't the book you're looking for.
-            </p>
+            </div>
             <div class="mt-6">
               <nuxt-link
                 to="/"

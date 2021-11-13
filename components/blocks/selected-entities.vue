@@ -85,10 +85,10 @@
               </blocks-entity-card>
             </swiper-slide>
             <div slot="button-prev" class="swiper-button-prev">
-              <svg-icon name="arrow-chevron-right" />
+              <svg-icon name="chevron-right" />
             </div>
             <div slot="button-next" class="swiper-button-next">
-              <svg-icon name="arrow-chevron-right" />
+              <svg-icon name="chevron-right" />
             </div>
             <div slot="pagination" class="swiper-pagination"></div>
           </swiper>

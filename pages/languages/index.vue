@@ -1,7 +1,12 @@
 <template>
   <div class="main-content">
-    <app-header :title="title" :subtitle="description" />
-    <div>
+    <app-header :title="title" :subtitle="description" :border="false" />
+    <blocks-content-list
+      :items="languages"
+      name="languages"
+      route-name="languages-slug"
+    />
+    <!-- <div>
       <section class="flex flex-wrap items-center">
         <chip
           v-for="language in languages"
@@ -9,30 +14,24 @@
           :to="
             localePath({
               name: 'books',
-              query: { lang: language.meta.slug },
+              query: { 'filter[languages]': language.meta.slug },
             })
           "
         >
           <span class="flex items-center space-x-2">
             <span>{{ language.name }}</span>
-            <app-img
-              :src="formatLanguage(language.meta.slug, 'flag')"
-              :alt="language.name"
-            />
+            {{ formatLanguage(language.meta.slug).flag }}
           </span>
-          <!-- ({{ language.count }}) -->
         </chip>
       </section>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import Chip from '~/components/blocks/chip.vue'
 import { formatLanguage } from '~/plugins/utils/methods'
 export default {
   name: 'PageLanguages',
-  components: { Chip },
   async asyncData({ app }) {
     try {
       const languages = await app.$axios.$get('languages')
@@ -45,8 +44,9 @@ export default {
   data() {
     return {
       formatLanguage,
-      title: 'Languages',
-      description: '',
+      title: 'Languages of eBooks and series',
+      description:
+        'You can read your eBooks in many languages, browse each possibilities!',
     }
   },
   head() {

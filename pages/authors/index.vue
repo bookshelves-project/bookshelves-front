@@ -1,6 +1,10 @@
 <template>
   <main class="main-content">
-    <app-header :title="title" :subtitle="description" />
+    <app-header :title="title" :subtitle="description" :border="false">
+      <template #filters>
+        <blocks-filters :sort="sortOptions" />
+      </template>
+    </app-header>
     <section v-if="!apiError">
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
@@ -48,12 +52,14 @@ export default {
   components: { EntityCard, ApiErrorMessage, Pagination },
   async asyncData({ app, query }) {
     try {
-      const page = query.page
+      const queryList = { ...query }
+      queryList.page = query.page || 1
+      queryList['per-page'] = 32
+
       const [authors] = await Promise.all([
         app.$axios.$get(
           `/authors?${qs.stringify({
-            page: page || 1,
-            'per-page': 32,
+            ...queryList,
           })}`
         ),
       ])
@@ -77,6 +83,23 @@ export default {
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
       title: `Authors`,
       description: `Want to find all books written by specific author?`,
+      sortOptions: [
+        {
+          label: 'By lastname (default)',
+          query: { sort: 'lastname' },
+          value: 'lastname',
+        },
+        {
+          label: 'By firstname',
+          query: { sort: 'firstname' },
+          value: 'firstname',
+        },
+        {
+          label: 'Newest created',
+          query: { sort: '-created_at' },
+          value: '-created_at',
+        },
+      ],
     }
   },
   head() {
@@ -117,13 +140,16 @@ export default {
       itemListElement: items,
     }
   },
-  watchQuery: ['page'],
+  watchQuery: ['page', 'sort'],
   methods: {
     linkGen(pageNum) {
-      return {
+      const query = { ...this.$route.query }
+      query.page = pageNum
+      const route = {
         name: this.$route.name,
-        query: pageNum === 1 ? {} : { page: pageNum },
+        query: { ...query },
       }
+      return route
     },
   },
 }

@@ -77,6 +77,10 @@ If you have an application to read eBooks from OPDS feeds, you can add new feeds
 📚 allow to manage OPDS feeds  
 💰 ads or premium  
 
+### Firefox
+
+- [**epubreader**](https://addons.mozilla.org/en-US/firefox/addon/epubreader/)
+
 ### eReader
 
 - [**Koreader**](https://github.com/koreader/koreader): alternative for OS on eReaders on **Github**

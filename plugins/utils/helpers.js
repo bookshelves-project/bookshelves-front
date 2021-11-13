@@ -41,3 +41,32 @@ const apiUrlBase = (endpoint = '') => {
 }
 
 Vue.prototype.$apiUrlBase = apiUrlBase
+
+const toggleOverlay = ($store, status = false) => {
+  if (status) {
+    $store.commit('overlay/setVisibleLayer', status)
+    setTimeout(() => {
+      $store.commit('overlay/setVisibleOverlay', status)
+    }, 150)
+  } else {
+    $store.commit('overlay/setVisibleOverlay', status)
+    setTimeout(() => {
+      $store.commit('overlay/setVisibleLayer', status)
+    }, 250)
+  }
+}
+Vue.prototype.$toggleOverlay = toggleOverlay
+
+// export default function ({ app, store }, inject) {
+//   const helpers = {
+//     getAdminLogin() {
+//       return app.$config
+//     },
+//     getOverlayState() {
+//       console.log(store.state.overlay.visibleLayer)
+//     },
+//   }
+//   inject('helpers', helpers)
+// }
+// this.$helpers.getAdminLogin()
+// doc: https://stackoverflow.com/questions/64564864/privateruntimeconfig-values-are-undefined-under-plugins
