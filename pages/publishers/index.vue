@@ -1,20 +1,33 @@
 <template>
   <div class="main-content">
-    <app-header :title="title" :subtitle="description" />
+    <app-header :title="title" :subtitle="description" :border="false">
+      <template #filters>
+        <blocks-filters negligible />
+      </template>
+    </app-header>
     <blocks-content-list
       :items="publishers"
       name="publishers"
-      menu
       route-name="publishers-slug"
     />
   </div>
 </template>
 
 <script>
+import { isEmpty } from 'lodash'
+import qs from 'qs'
+
 export default {
   name: 'PagePublishers',
-  async asyncData({ app }) {
-    const publishers = await app.$axios.$get(`/publishers`)
+  async asyncData({ app, query }) {
+    const queryList = { ...query }
+    if (isEmpty(queryList)) {
+      queryList['filter[negligible]'] = false
+    }
+
+    const publishers = await app.$axios.$get(
+      `/publishers?${qs.stringify({ ...queryList })}`
+    )
 
     return {
       publishers: publishers.data,
@@ -23,7 +36,7 @@ export default {
   data() {
     return {
       title: 'Publishers',
-      description: '',
+      description: 'Find your favorite publisher!',
     }
   },
   head() {
@@ -40,5 +53,6 @@ export default {
       ],
     }
   },
+  watchQuery: ['filter[negligible]'],
 }
 </script>
