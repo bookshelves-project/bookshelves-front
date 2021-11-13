@@ -12,9 +12,11 @@
             text-sm
             font-medium
             text-gray-700
+            dark:text-gray-300
             transition-colors
             duration-75
             hover:text-gray-900 hover:bg-gray-200
+            dark:hover:bg-gray-800
             rounded-md
             py-2
             px-2
@@ -44,6 +46,7 @@
             rounded-md
             shadow-2xl
             bg-white
+            dark:bg-gray-800
             ring-1 ring-black ring-opacity-5
             focus:outline-none
           "
@@ -56,14 +59,17 @@
                 class="
                   font-medium
                   text-gray-900
+                  dark:text-gray-100
                   px-4
                   py-2
                   text-left text-sm
                   hover:bg-gray-200
+                  dark:hover:bg-gray-700
                   w-full
                 "
                 :class="{
-                  'bg-gray-200': $route.query[filter] === option.value,
+                  'bg-gray-200 dark:bg-gray-600':
+                    $route.query[filter] === option.value,
                 }"
                 @click="filterBy(option.value)"
               >

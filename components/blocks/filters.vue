@@ -3,7 +3,9 @@
     <section aria-labelledby="filter-heading">
       <h2 id="filter-heading" class="sr-only">Filters</h2>
 
-      <div class="relative z-10 border-b border-gray-200 pb-2">
+      <div
+        class="relative z-10 border-b border-gray-200 dark:border-gray-700 pb-2"
+      >
         <div class="max-w-7xl mx-auto flex items-center justify-between">
           <div class="relative flex items-center text-left">
             <blocks-filters-option
@@ -62,6 +64,15 @@
                   click-close
                 />
                 <blocks-filters-option
+                  v-if="negligible"
+                  filter="filter[negligible]"
+                  label="Negligible"
+                  :options="negligibleOptions"
+                  type="button"
+                  align="right"
+                  click-close
+                />
+                <blocks-filters-option
                   v-if="languages"
                   filter="filter[languages]"
                   label="Languages"
@@ -75,14 +86,23 @@
         </div>
       </div>
       <div class="max-w-7xl mx-auto py-2 sm:flex sm:items-center">
-        <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-500">
+        <h3
+          class="
+            text-xs
+            font-semibold
+            uppercase
+            tracking-wide
+            text-gray-500
+            dark:text-gray-400
+          "
+        >
           Filters
           <span class="sr-only">, active</span>
         </h3>
 
         <div
           aria-hidden="true"
-          class="hidden w-px h-10 bg-gray-300 sm:block sm:ml-4"
+          class="hidden w-px h-10 bg-gray-300 dark:bg-gray-700 sm:block sm:ml-4"
         ></div>
 
         <div class="mt-2 sm:mt-0 sm:ml-4">
@@ -111,6 +131,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    negligible: {
+      type: Boolean,
+      default: false,
+    },
     sort: {
       type: Array,
       default: () => [],
@@ -130,6 +154,16 @@ export default {
         {
           label: 'Any',
           value: 'any',
+        },
+      ],
+      negligibleOptions: [
+        {
+          label: 'All',
+          value: 'true',
+        },
+        {
+          label: 'Hide (default)',
+          value: 'false',
         },
       ],
     }

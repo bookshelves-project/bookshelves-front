@@ -113,7 +113,7 @@ export default {
       if (navigator.userAgent.includes('Mac')) {
         this.metaKey = '&#8984;'
       } else {
-        this.metaKey = '&#8963;'
+        this.metaKey = 'Ctrl'
       }
     },
     shortcutOpen(e) {

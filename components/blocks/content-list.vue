@@ -14,60 +14,63 @@
               sticky
               top-0
               border-t border-b border-gray-200
-              bg-gray-50
+              dark:border-gray-600
               px-6
               py-1
               text-sm
               font-medium
               text-gray-500
+              dark:text-gray-400
             "
           >
             <h3>
               {{ char }}
             </h3>
           </div>
-          <ul role="list" class="relative z-0 divide-y divide-gray-200">
+          <ul
+            role="list"
+            class="relative z-0 divide-y divide-gray-200 dark:divide-gray-600"
+          >
             <li v-for="item in itemsGroup" :key="item.id">
-              <div
-                class="
-                  relative
-                  px-6
-                  py-5
-                  flex
-                  items-center
-                  space-x-3
-                  hover:bg-gray-50
-                  focus-within:ring-2
-                  focus-within:ring-inset
-                  focus-within:ring-indigo-500
+              <nuxt-link
+                :to="
+                  localePath({
+                    name: routeName,
+                    params: { slug: item.meta.slug },
+                  })
                 "
               >
-                <nuxt-link
-                  :to="
-                    localePath({
-                      name: routeName,
-                      params: { slug: item.meta.slug },
-                    })
+                <div
+                  class="
+                    relative
+                    px-6
+                    py-5
+                    hover:bg-gray-50
+                    dark:hover:bg-gray-800
+                    transition-colors
+                    duration-75
+                    focus-within:ring-2
+                    focus-within:ring-inset
+                    focus-within:ring-indigo-500
                   "
-                  class="focus:outline-none w-full"
                 >
-                  <!-- Extend touch target to entire panel -->
-                  <span class="absolute inset-0" aria-hidden="true"></span>
-                  <p class="text-sm font-medium text-gray-900">
+                  <p
+                    class="text-sm font-medium text-gray-900 dark:text-gray-100"
+                  >
                     {{ item.name }}
                   </p>
-                  <div class="flex items-center">
+                  <div class="flex items-center mt-2">
                     <div
                       class="h-5 rounded-md"
                       :class="color(item.count)"
                       :style="`width: ${percent(item.count)}%`"
                     ></div>
-                    <p class="text-sm text-gray-500 ml-1">
+                    <p class="text-sm text-gray-500 dark:text-gray-400 ml-1">
                       {{ item.count }}
                     </p>
                   </div>
-                </nuxt-link>
-              </div>
+                </div>
+              </nuxt-link>
             </li>
           </ul>
         </div>
@@ -91,6 +94,7 @@
         :key="char"
         class="
           hover:bg-gray-200
+          dark:hover:bg-gray-800
           rounded-md
           p-2
           transition-colors
@@ -135,20 +139,28 @@ export default {
       colors: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
     }
   },
+  watch: {
+    items(newValue, oldValue) {
+      this.init()
+    },
+  },
   created() {
-    const itemsGroupByChar = this.groupBy(this.items, 'first_char')
-    this.itemsGroupByChar = itemsGroupByChar
-
-    let minimal = 0
-    this.items.forEach((element) => {
-      if (minimal < element.count) {
-        minimal = element.count
-      }
-    })
-    this.bestCount = minimal
+    this.init()
   },
   methods: {
     groupBy,
+    init() {
+      const itemsGroupByChar = this.groupBy(this.items, 'first_char')
+      this.itemsGroupByChar = itemsGroupByChar
+
+      let minimal = 0
+      this.items.forEach((element) => {
+        if (minimal < element.count) {
+          minimal = element.count
+        }
+      })
+      this.bestCount = minimal
+    },
     percent(value) {
       return (value * 100) / this.bestCount
     },
@@ -174,13 +186,13 @@ export default {
 </script>
 
 <style scoped>
-[id]::before {
+/* [id]::before {
   content: '';
   display: block;
   height: 65px;
   margin-top: -65px;
   visibility: hidden;
-}
+} */
 .red {
   @apply bg-red-200 dark:bg-red-700 hover:bg-red-300 dark:hover:bg-red-800;
 }

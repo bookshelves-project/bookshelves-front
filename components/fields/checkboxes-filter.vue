@@ -10,6 +10,7 @@
         py-2
         px-3
         hover:bg-gray-200
+        dark:hover:bg-gray-700
         transition-colors
         duration-75
       "

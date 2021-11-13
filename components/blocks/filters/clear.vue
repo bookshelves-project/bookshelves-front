@@ -5,6 +5,7 @@
         v-if="queryAvailable"
         class="
           hover:bg-gray-200
+          dark:hover:bg-gray-800
           transition-colors
           duration-75
           py-2
@@ -22,9 +23,24 @@
       >
         <svg-icon
           name="trash"
-          class="w-4 h-4 text-gray-700 group-hover:text-gray-900"
+          class="
+            w-4
+            h-4
+            text-gray-700
+            dark:text-gray-300
+            group-hover:text-gray-900
+            dark:group-hover:text-gray-100
+          "
         />
-        <span class="ml-2 text-gray-700 group-hover:text-gray-900">
+        <span
+          class="
+            ml-2
+            text-gray-700
+            dark:text-gray-300
+            group-hover:text-gray-900
+            dark:group-hover:text-gray-100
+          "
+        >
           Clear all
         </span>
       </button>

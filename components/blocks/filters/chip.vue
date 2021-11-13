@@ -5,6 +5,7 @@
       inline-flex
       rounded-full
       border border-gray-200
+      dark:border-gray-700
       items-center
       py-1.5
       pl-3
@@ -12,9 +13,12 @@
       text-sm
       font-medium
       bg-white
+      dark:bg-gray-800
       text-gray-900
+      dark:text-gray-100
       group
       hover:bg-gray-100
+      dark:hover:bg-gray-900
       transition-colors
       duration-75
     "

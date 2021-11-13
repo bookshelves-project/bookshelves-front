@@ -52,6 +52,7 @@ export default {
         'filter[has_serie]': 'has series',
         sort: 'sort by',
         'filter[languages]': 'languages',
+        'filter[negligible]': 'hide negligible',
         default: 'unknown',
       }
       return filters[query] || filters.default
