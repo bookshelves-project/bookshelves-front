@@ -16,13 +16,13 @@
           <nuxt-link
             :to="localePath('/')"
             class="
-              flex-shrink-0
-              h-full
-              flex
+              flex-shrink-0 flex
               hover:bg-gray-100
               transition-colors
               duration-75
-              px-3
+              p-2
+              rounded-md
+              ml-2
             "
           >
             <img

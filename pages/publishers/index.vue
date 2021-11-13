@@ -1,30 +1,18 @@
 <template>
   <div class="main-content">
     <app-header :title="title" :subtitle="description" />
-    <div>
-      <section class="flex flex-wrap items-center">
-        <chip
-          v-for="publisher in publishers"
-          :key="publisher.id"
-          :to="
-            localePath({
-              name: 'publishers-slug',
-              params: { slug: publisher.meta.slug },
-            })
-          "
-        >
-          {{ publisher.name }} ({{ publisher.count }})
-        </chip>
-      </section>
-    </div>
+    <blocks-content-list
+      :items="publishers"
+      name="publishers"
+      menu
+      route-name="publishers-slug"
+    />
   </div>
 </template>
 
 <script>
-import Chip from '~/components/blocks/chip.vue'
 export default {
   name: 'PagePublishers',
-  components: { Chip },
   async asyncData({ app }) {
     const publishers = await app.$axios.$get(`/publishers`)
 

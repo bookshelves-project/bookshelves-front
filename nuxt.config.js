@@ -96,6 +96,9 @@ export default {
     // https://composition-api.nuxtjs.org/getting-started/setup
     '@nuxtjs/composition-api/module',
   ],
+  eslint: {
+    cache: false,
+  },
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.pcss',
   },

@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   mode: 'jit',
   darkMode: 'class',
@@ -25,6 +27,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        orange: colors.orange,
         primary: {
           100: '#e2e0ff',
           200: '#c4c1ff',

@@ -1,7 +1,7 @@
 <template>
-  <dropdown align="right-0" :width="48">
+  <dropdown align="left">
     <template #trigger>
-      <button
+      <div
         id="language"
         title="Language"
         type="button"
@@ -17,10 +17,10 @@
         <div class="text-xs text-center mt-2">
           {{ $t('language') }}
         </div>
-      </button>
+      </div>
     </template>
     <template #content>
-      <div class="py-1">
+      <div class="py-1 bg-white dark:bg-gray-800 rounded-md w-48">
         <nuxt-link
           v-for="locale in availableLocales"
           :key="locale.code"

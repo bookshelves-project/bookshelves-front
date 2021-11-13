@@ -3,41 +3,29 @@
     <app-header :title="title" :subtitle="description" />
     <div class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Genres</h2>
-      <section class="flex flex-wrap items-center">
-        <chip
-          v-for="tag in genres"
-          :key="tag.id"
-          :to="
-            localePath({ name: 'tags-slug', params: { slug: tag.meta.slug } })
-          "
-        >
-          {{ tag.name }} ({{ tag.count }})
-        </chip>
-      </section>
+      <blocks-content-list
+        :items="genres"
+        name="genres"
+        route-name="tags-slug"
+      />
     </div>
     <div class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Tags</h2>
-      <section class="flex flex-wrap items-center">
-        <chip
-          v-for="tag in tags"
-          :key="tag.id"
-          :to="
-            localePath({ name: 'tags-slug', params: { slug: tag.meta.slug } })
-          "
-        >
-          {{ tag.name }} ({{ tag.count }})
-        </chip>
-      </section>
+      <blocks-content-list
+        :items="tags"
+        name="tags"
+        menu
+        route-name="tags-slug"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import qs from 'qs'
-import Chip from '~/components/blocks/chip.vue'
+
 export default {
   name: 'TagsIndex',
-  components: { Chip },
   async asyncData({ app }) {
     const [genres, tags] = await Promise.all([
       app.$axios.$get(
