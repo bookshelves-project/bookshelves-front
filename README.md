@@ -11,7 +11,7 @@
 🎨 [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front) : front-end of Bookshelves (current repository)  
 
 💻 [**bookshelves.ink**](https://bookshelves.ink): front demo  
-📚 [**bookshelves.ink/features**](https://bookshelves.ink/features): back-end features  
+📚 [**bookshelves.ink/features**](https://bookshelves.ink/features/wiki): back-end wiki  
 
 **Table of contents**
 
