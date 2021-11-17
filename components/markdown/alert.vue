@@ -28,7 +28,9 @@ export default {
       type: String,
       default: 'info',
       validator(value) {
-        return ['info', 'success', 'warning', 'danger'].includes(value)
+        return ['info', 'success', 'warning', 'danger', 'required'].includes(
+          value
+        )
       },
     },
     title: {
@@ -43,13 +45,14 @@ export default {
         success: 'success',
         warning: 'warning',
         danger: 'danger',
+        required: 'required',
       }[this.type]
     },
   },
 }
 </script>
 
-<style lang="postcss">
+<style>
 .alert p {
   @apply m-0 !important;
 }
@@ -57,7 +60,7 @@ export default {
 .alert a {
   @apply text-gray-700 !important;
 }
-.dark-mode .alert a {
+.dark .alert a {
   @apply text-gray-300 !important;
 }
 
@@ -72,25 +75,25 @@ export default {
 /* Info */
 
 .alert-info {
-  @apply bg-primary-100 border-primary-400;
+  @apply bg-blue-100 border-blue-400;
 }
 .alert-info code {
-  @apply bg-primary-200 shadow-none border-0 text-current;
+  @apply bg-blue-200 shadow-none border-0 text-current;
 }
 .alert-info .alert-icon {
-  @apply text-primary-400;
+  @apply text-blue-400;
 }
 .alert-info .alert-content {
-  @apply text-primary-600;
+  @apply text-blue-700;
 }
-.dark-mode .alert-info {
-  @apply bg-primary-900 border-primary-600;
+.dark .alert-info {
+  @apply bg-blue-900 border-blue-700;
 }
-.dark-mode .alert-info code {
-  @apply bg-primary-800;
+.dark .alert-info code {
+  @apply bg-blue-800;
 }
-.dark-mode .alert-info .alert-content {
-  @apply text-primary-300;
+.dark .alert-info .alert-content {
+  @apply text-blue-300;
 }
 
 /* Success */
@@ -107,38 +110,38 @@ export default {
 .alert-success .alert-content {
   @apply text-green-700;
 }
-.dark-mode .alert-success {
+.dark .alert-success {
   @apply bg-green-900 border-green-700;
 }
-.dark-mode .alert-success code {
+.dark .alert-success code {
   @apply bg-green-800;
 }
-.dark-mode .alert-success .alert-content {
+.dark .alert-success .alert-content {
   @apply text-green-300;
 }
 
 /* Warning */
 
 .alert-warning {
-  @apply bg-yellow-100 border-yellow-400;
+  @apply bg-red-100 border-red-400;
 }
 .alert-warning code {
-  @apply bg-yellow-200 shadow-none border-0 text-current;
+  @apply bg-red-200 shadow-none border-0 text-current;
 }
 .alert-warning .alert-icon {
-  @apply text-yellow-400;
+  @apply text-red-400;
 }
 .alert-warning .alert-content {
-  @apply text-yellow-700;
+  @apply text-red-700;
 }
-.dark-mode .alert-warning {
+.dark .alert-warning {
   @apply bg-yellow-900 border-yellow-700;
 }
-.dark-mode .alert-warning code {
+.dark .alert-warning code {
   @apply bg-yellow-800;
 }
-.dark-mode .alert-warning .alert-content {
-  @apply text-yellow-300;
+.dark .alert-warning .alert-content {
+  @apply text-red-300;
 }
 
 /* Danger */
@@ -155,13 +158,37 @@ export default {
 .alert-danger .alert-content {
   @apply text-red-700;
 }
-.dark-mode .alert-danger {
+.dark .alert-danger {
   @apply bg-red-900 border-red-700;
 }
-.dark-mode .alert-danger code {
+.dark .alert-danger code {
   @apply bg-red-800;
 }
-.dark-mode .alert-danger .alert-content {
+.dark .alert-danger .alert-content {
   @apply text-red-300;
+}
+
+/* Required */
+
+.alert-required {
+  @apply bg-indigo-100 border-indigo-400;
+}
+.alert-required code {
+  @apply bg-indigo-200 shadow-none border-0 text-current;
+}
+.alert-required .alert-icon {
+  @apply text-indigo-400;
+}
+.alert-required .alert-content {
+  @apply text-indigo-700;
+}
+.dark .alert-required {
+  @apply bg-indigo-900 border-indigo-700;
+}
+.dark .alert-required code {
+  @apply bg-indigo-800;
+}
+.dark .alert-required .alert-content {
+  @apply text-indigo-300;
 }
 </style>

@@ -228,7 +228,12 @@ export default {
   content: {
     liveEdit: false,
     // https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins
-    markdown: {},
+    markdown: {
+      prism: {
+        // https://github.com/PrismJS/prism-themes
+        theme: 'assets/css/app/prism-vsc-dark-plus.pcss',
+      },
+    },
   },
   robots: {
     Disallow: metadata.settings.disallow.split(','),

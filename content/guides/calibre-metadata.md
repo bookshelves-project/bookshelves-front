@@ -9,13 +9,15 @@ created_at: 03-02-2021
 picture: 'calibre'
 ---
 
-<markdown-alert type="warning">
-
 You need to install [**Calibre**](https://calibre-ebook.com) to follow this guide. This software is available on Windows, MacOS and Linux. An EPUB file is just an archive like ZIP, you can open it with [**7zip**](https://www.7-zip.org), you will see that all EPUBs are far from being the same, some have been well designed and others have the files in bulk (even if they will work). One file is important `content.opf`, in this file you can find all metadata. It's this file you can easily edit with Calibre, you can try to edit it manually but it's not really easy because it's XML file not user friendly.
 
-</markdown-alert>
-
 <!--more-->
+
+<markdown-alert type="required">
+
+- [**Calibre**](https://calibre-ebook.com): to manage your comics and mangas
+
+</markdown-alert>
 
 ## Technical words
 

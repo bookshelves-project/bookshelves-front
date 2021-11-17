@@ -7,6 +7,7 @@ draft: false
 created_at: 06-04-2021
 ---
 
+
 ## Display cover instead fnac logo
 
 Connect your Kobo to your computer and navigate to Kobo disk to find this `.kobo/affiliate.conf`

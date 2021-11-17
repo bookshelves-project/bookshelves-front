@@ -155,8 +155,7 @@ module.exports = {
             strong: {
               color: theme('colors.gray.100'),
             },
-            code: {
-              color: theme('colors.gray.300'),
+            pre: {
               backgroundColor: theme('colors.gray.800'),
             },
             h1: {
