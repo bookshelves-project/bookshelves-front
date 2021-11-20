@@ -71,7 +71,7 @@
                   sm:h-10
                   group-hover:home-logo-shadow
                 "
-                src="/images/bookshelves.svg"
+                src="/icon.svg"
                 :alt="`${$config.appName} logo`"
               />
               <div class="mt-2 ml-3 text-2xl font-handlee">

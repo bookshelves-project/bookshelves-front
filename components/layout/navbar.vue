@@ -27,7 +27,7 @@
           >
             <img
               class="block h-8 w-8 m-auto"
-              src="/images/bookshelves.svg"
+              src="/icon.svg"
               :alt="$config.appName"
             />
           </nuxt-link>
