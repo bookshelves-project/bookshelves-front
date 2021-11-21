@@ -1,6 +1,6 @@
-const metadata = require('./metadata.js')
+import metadata from './metadata'
 
-module.exports = {
+const pwa = {
   meta: {
     name: metadata.website.title,
     author: metadata.website.author,
@@ -23,3 +23,5 @@ module.exports = {
     lang: metadata.settings.lang,
   },
 }
+
+export default pwa
