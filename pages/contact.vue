@@ -118,7 +118,7 @@ export default {
     return {
       title: this.title,
       meta: [
-        ...dynamicMetadata({
+        ...dynamicMetadata.default({
           title: this.title,
           description:
             "If you want to contact us, don't hesitate to send us a small message!",

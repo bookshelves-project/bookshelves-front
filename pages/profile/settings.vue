@@ -68,7 +68,7 @@ export default {
       title,
       description: this.description,
       meta: [
-        ...dynamicMetadata({
+        ...dynamicMetadata.default({
           title,
           url: this.$nuxt.$route.path,
         }),

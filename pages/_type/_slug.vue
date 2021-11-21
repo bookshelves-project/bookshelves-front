@@ -60,7 +60,7 @@ export default {
       title,
       description: this.document.description,
       meta: [
-        ...dynamicMetadata({
+        ...dynamicMetadata.default({
           title,
           url: this.$nuxt.$route.path,
           image: `${this.$config.baseURL}/images/home/ereaders.svg`,

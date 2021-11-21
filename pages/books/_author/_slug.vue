@@ -80,7 +80,7 @@ export default {
         description: this.book.summary,
         image: this.book.cover.og,
         meta: [
-          ...dynamicMetadata({
+          ...dynamicMetadata.default({
             title,
             url: this.$nuxt.$route.path,
             bookISBN: this.book.identifier

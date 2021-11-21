@@ -132,7 +132,7 @@ export default {
     return {
       title,
       meta: [
-        ...dynamicMetadata({
+        ...dynamicMetadata.default({
           type: 'book',
           title,
           description: `Written by ${this.authors} with ${this.serie.count} books.`,

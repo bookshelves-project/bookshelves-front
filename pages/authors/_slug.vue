@@ -144,7 +144,7 @@ export default {
     return {
       title,
       meta: [
-        ...dynamicMetadata({
+        ...dynamicMetadata.default({
           title,
           type: 'profile',
           description: `${this.author.name} author on ${this.$config.appName} with ${this.author.count} books available.`,
