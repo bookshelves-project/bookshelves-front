@@ -7,18 +7,11 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+  @apply m-0 p-0 bg-white dark:bg-gray-900;
 }
 .dark {
   color-scheme: dark;
   scrollbar-color: theme('colors.gray.600') theme('colors.gray.900');
-}
-.dark {
-  & body {
-    @apply bg-gray-900;
-  }
 }
 
 button {
@@ -56,5 +49,5 @@ button {
 }
 
 .main-content {
-  @apply container max-w-7xl lg:pt-6 pt-5 min-h-screen;
+  @apply container max-w-7xl lg:pt-6 pt-5 min-h-screen text-black dark:text-white;
 }

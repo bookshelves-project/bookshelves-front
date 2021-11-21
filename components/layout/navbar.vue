@@ -18,6 +18,7 @@
             class="
               flex-shrink-0 flex
               hover:bg-gray-100
+              dark:hover:bg-gray-700
               transition-colors
               duration-75
               p-2

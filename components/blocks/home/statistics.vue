@@ -61,7 +61,9 @@
               transition-colors
               duration-100
               rounded-md
-              hover:bg-gray-300 hover:bg-opacity-50
+              hover:bg-gray-300
+              dark:hover:bg-gray-600
+              hover:bg-opacity-50
             "
           >
             <nuxt-link :to="localePath(metric.route)" class="block p-2">
