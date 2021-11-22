@@ -1,7 +1,9 @@
 <template>
   <main class="main-content">
-    <app-header :title="title" :subtitle="description">
-      <blocks-entities-filter lang @filter="filter" />
+    <app-header title="Series" :subtitle="description" :border="false">
+      <template #filters>
+        <blocks-filters languages :sort="sortOptions" />
+      </template>
     </app-header>
     <section v-if="!apiError">
       <div>
@@ -36,7 +38,7 @@
             <template #tertiary>
               <span>{{ serie.count }} books</span>
               <span v-if="serie.language" class="mt-1 block">
-                {{ formatLanguage(serie.language) }}
+                {{ formatLanguage(serie.language).label }}
               </span>
             </template>
           </entity-card>
@@ -61,7 +63,7 @@ import qs from 'qs'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
 
-import { formatLanguage, objectIsEmpty } from '~/plugins/utils/methods'
+import { formatLanguage } from '~/plugins/utils/methods'
 import Pagination from '~/components/special/pagination.vue'
 
 export default {
@@ -69,14 +71,14 @@ export default {
   components: { EntityCard, ApiErrorMessage, Pagination },
   async asyncData({ app, query }) {
     try {
-      const page = query.page
-      const lang = query.lang
+      const queryList = { ...query }
+      queryList.page = query.page || 1
+      queryList['per-page'] = 32
+
       const [series] = await Promise.all([
         app.$axios.$get(
           `/series?${qs.stringify({
-            page: page || 1,
-            'per-page': 32,
-            lang,
+            ...queryList,
           })}`
         ),
       ])
@@ -99,8 +101,25 @@ export default {
     return {
       formatLanguage,
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
-      title: `Series`,
+      title: `All series available on ${this.$config.appName}`,
       description: `Discover books grouped by their serie's name`,
+      sortOptions: [
+        {
+          label: "By series' title (default)",
+          query: { sort: 'title_sort' },
+          value: 'title_sort',
+        },
+        {
+          label: 'By title',
+          query: { sort: 'title' },
+          value: 'title',
+        },
+        {
+          label: 'Newest uploaded',
+          query: { sort: '-created_at' },
+          value: '-created_at',
+        },
+      ],
     }
   },
   head() {
@@ -109,7 +128,7 @@ export default {
     return {
       title,
       meta: [
-        ...dynamicMetadata({
+        ...dynamicMetadata.default({
           title,
           description: this.description,
           url: this.$nuxt.$route.path,
@@ -142,33 +161,16 @@ export default {
       itemListElement: items,
     }
   },
-  watchQuery: ['page', 'lang'],
+  watchQuery: ['page', 'filter[languages]', 'sort'],
   methods: {
     linkGen(pageNum) {
-      return {
+      const query = { ...this.$route.query }
+      query.page = pageNum
+      const route = {
         name: this.$route.name,
-        query: pageNum === 1 ? {} : { page: pageNum },
+        query: { ...query },
       }
-    },
-    filter(param) {
-      if (param !== null) {
-        const query = {}
-
-        const currentQuery = this.$route.query
-        const queryIsEmpty = objectIsEmpty(currentQuery)
-        if (!queryIsEmpty) {
-          Object.assign(query, currentQuery)
-        }
-
-        const key = param.type
-        const newQuery = {}
-        newQuery[key] = param.data
-        query[param.type] = param.data
-
-        this.$router.push(this.localePath({ name: this.$route.name, query }))
-      } else {
-        this.$router.push(this.localePath({ name: this.$route.name }))
-      }
+      return route
     },
   },
 }

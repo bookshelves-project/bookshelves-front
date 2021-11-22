@@ -67,7 +67,7 @@ export default {
     return {
       title,
       meta: [
-        ...dynamicMetadata({
+        ...dynamicMetadata.default({
           title,
           url: this.$nuxt.$route.path,
           image: this.user.avatar,

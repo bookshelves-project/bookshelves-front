@@ -62,7 +62,7 @@
         <div class="flex items-center flex-shrink-0 px-4">
           <nuxt-link to="/" class="inline-flex items-center w-auto h-8">
             <span class="inline-flex items-center" @click="closeSidebar">
-              <app-img
+              <img
                 class="
                   w-auto
                   h-8
@@ -71,7 +71,7 @@
                   sm:h-10
                   group-hover:home-logo-shadow
                 "
-                src="/images/bookshelves.svg"
+                src="/icon.svg"
                 :alt="`${$config.appName} logo`"
               />
               <div class="mt-2 ml-3 text-2xl font-handlee">
@@ -106,7 +106,7 @@
                 </span>
               </nuxt-link>
               <nuxt-link
-                v-for="(booksNav, booksNavId) in $store.state.nav.navigation"
+                v-for="(booksNav, booksNavId) in navigation"
                 :key="booksNavId"
                 :to="localePath({ name: booksNav.route })"
                 class="
@@ -126,7 +126,7 @@
                   class="w-full px-2 py-4 font-semibold"
                   @click="closeSidebar"
                 >
-                  {{ booksNav.label }}
+                  {{ $t(`nav.${booksNav.label}`) }}
                 </span>
               </nuxt-link>
             </div>
@@ -151,7 +151,7 @@
               >
                 <div v-if="$auth.$state.loggedIn" class="space-y-2">
                   <nuxt-link
-                    v-for="link in $store.state.nav.authNavigationTrue"
+                    v-for="link in auth"
                     :key="link.id"
                     :to="localePath({ name: link.route })"
                     class="
@@ -210,7 +210,7 @@
                 </div>
                 <div v-else class="space-y-2">
                   <nuxt-link
-                    v-for="link in $store.state.nav.authNavigationFalse"
+                    v-for="link in guest"
                     :key="link.id"
                     :to="localePath({ name: link.route })"
                     class="
@@ -249,11 +249,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import vClickOutside from 'v-click-outside'
 export default {
   name: 'Sidebar',
   directives: {
     clickOutside: vClickOutside.directive,
+  },
+  computed: {
+    ...mapGetters({
+      navigation: 'nav/main',
+      auth: 'nav/auth',
+      guest: 'nav/guest',
+    }),
   },
   methods: {
     async logout() {

@@ -10,8 +10,8 @@
           uppercase
         "
       >
-        These companies do not support us (and do not know us) but without their
-        work, ours would not be possible.
+        Special thanks to these softwares or websites because they help our
+        work.
       </p>
       <div
         class="
@@ -24,7 +24,7 @@
         "
       >
         <a
-          v-for="logo in logos"
+          v-for="logo in specialThanksLogos"
           :key="logo.id"
           :href="logo.link"
           target="_blank"
@@ -44,57 +44,14 @@
         >
           <component
             :is="logo.isImage ? 'img' : `span`"
+            :src="logo.icon"
+            :size="80"
             class="w-32 h-32 text-gray-400"
+            :stroke="logo.iconConfig ? logo.iconConfig.stroke : false"
             :alt="logo.icon"
             v-html="logo.icon"
           />
         </a>
-      </div>
-      <div class="hidden md:block">
-        <p
-          class="
-            mt-8
-            text-sm
-            font-semibold
-            tracking-wide
-            text-center text-gray-500
-            uppercase
-          "
-        >
-          Special thanks to
-        </p>
-        <div class="justify-center mt-6 md:space-x-16 md:flex">
-          <a
-            v-for="logo in specialThanksLogos"
-            :key="logo.id"
-            :href="logo.link"
-            target="_blank"
-            rel="noopener noreferrer"
-            :title="logo.label"
-            :aria-label="logo.label"
-            class="
-              flex
-              justify-center
-              mx-auto
-              mt-5
-              transition-all
-              duration-300
-              md:mx-0
-              hover:zoom
-              w-max
-            "
-          >
-            <component
-              :is="logo.isImage ? 'img' : `span`"
-              :src="logo.icon"
-              :size="80"
-              class="w-32 h-32 text-gray-400"
-              :stroke="logo.iconConfig ? logo.iconConfig.stroke : false"
-              :alt="logo.icon"
-              v-html="logo.icon"
-            />
-          </a>
-        </div>
       </div>
     </div>
   </div>

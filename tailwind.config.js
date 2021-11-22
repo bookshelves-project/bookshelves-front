@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   mode: 'jit',
   darkMode: 'class',
@@ -25,6 +27,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        orange: colors.orange,
         primary: {
           100: '#e2e0ff',
           200: '#c4c1ff',
@@ -152,8 +155,7 @@ module.exports = {
             strong: {
               color: theme('colors.gray.100'),
             },
-            code: {
-              color: theme('colors.gray.300'),
+            pre: {
               backgroundColor: theme('colors.gray.800'),
             },
             h1: {

@@ -1,11 +1,6 @@
 <template>
-  <!-- <div class="fr-checkbox-group">
-    <input :id="name" v-model="checkbox" type="checkbox" :name="name" />
-    <label class="fr-label" :for="name">
-      {{ label }}
-    </label>
-  </div> -->
   <div class="relative flex items-start">
+    <div class="absolute inset-0" @click="checkbox = !checkbox"></div>
     <div class="flex items-center h-5">
       <input
         :id="name"
@@ -21,15 +16,19 @@
           border-gray-300
           rounded
         "
+        :value="valueData"
       />
     </div>
-    <div class="ml-3 text-sm">
-      <label :for="name" class="font-medium text-gray-700 dark:text-gray-300">
+    <div class="ml-3 text-sm w-full">
+      <label
+        :for="name"
+        class="font-medium text-gray-700 dark:text-gray-300 block w-full"
+      >
         {{ label }}
       </label>
-      <p :id="`${name}-description`" class="text-gray-500 dark:text-gray-400">
+      <div :id="`${name}-description`" class="text-gray-500 dark:text-gray-400">
         <slot />
-      </p>
+      </div>
     </div>
   </div>
 </template>
@@ -39,7 +38,7 @@ export default {
   name: 'Checkbox',
   props: {
     value: {
-      type: Boolean,
+      type: [Boolean, Array],
       default: false,
     },
     name: {
@@ -47,6 +46,10 @@ export default {
       default: null,
     },
     label: {
+      type: String,
+      default: null,
+    },
+    valueData: {
       type: String,
       default: null,
     },

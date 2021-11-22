@@ -132,7 +132,7 @@ export default {
     return {
       title,
       meta: [
-        ...dynamicMetadata({
+        ...dynamicMetadata.default({
           type: 'book',
           title,
           description: `Written by ${this.authors} with ${this.serie.count} books.`,
@@ -196,7 +196,7 @@ export default {
         author: authors,
         bookFormat: 'http://schema.org/BookSeries',
         image: this.serie.cover.thumbnail,
-        inLanguage: formatLanguage(this.serie.language),
+        inLanguage: formatLanguage(this.serie.language).label,
         name: this.serie.title,
       },
     }

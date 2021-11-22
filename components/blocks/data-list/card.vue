@@ -46,7 +46,7 @@
         <div class="flex justify-between space-x-3">
           <div class="flex-1 min-w-0">
             <div class="block focus:outline-none">
-              <p
+              <div
                 class="
                   text-base
                   font-semibold
@@ -58,10 +58,10 @@
                 "
               >
                 {{ data.title }}
-              </p>
-              <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+              </div>
+              <div class="text-sm text-gray-500 truncate dark:text-gray-400">
                 {{ capitalize(data.meta.for) }}
-              </p>
+              </div>
             </div>
           </div>
           <div class="hidden lg:block">

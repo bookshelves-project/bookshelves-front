@@ -1,32 +1,18 @@
-const metaGlobal = require('./metadata.js')
+import metadata from './metadata'
 
-// Settings
-const baseUrl = `${process.env.BASE_URL}`
-const homeUrl = `${baseUrl}/`
-const homeImage = `${process.env.BASE_URL}/default.jpg`
+const baseUrl: string = `${process.env.BASE_URL}`
+const homeUrl: string = `${baseUrl}/`
+const homeImage: string = `${process.env.BASE_URL}/default.jpg`
 
-module.exports = (meta) => {
-  return [
-    //
-    // Meta tags
-    //
-    ...getMeta(meta),
-    //
-    // Open Graph
-    //
-    ...getOpenGraph(meta),
-    //
-    // Twitter card
-    //
-    ...getTwitterCard(meta),
-  ]
+const metadataDynamic = (meta?: any) => {
+  return [...getMeta(meta), ...getOpenGraph(meta), ...getTwitterCard(meta)]
 }
 
-function getMeta(meta) {
+function getMeta(meta: any) {
   const metaLocal = meta || {}
   let metaDesc = metaLocal.description
     ? metaLocal.description
-    : metaGlobal.website.description
+    : metadata.website.description
   const limit = 155
   if (metaDesc.length > limit) {
     metaDesc = metaDesc.substring(0, limit - 3) + '...'
@@ -39,13 +25,13 @@ function getMeta(meta) {
     },
   ]
 }
-function getOpenGraph(meta) {
+function getOpenGraph(meta: any) {
   const metaLocal = meta || {}
   return [
     {
       hid: 'og:type',
       property: 'og:type',
-      content: metaLocal.type ? metaLocal.type : metaGlobal.og.type,
+      content: metaLocal.type ? metaLocal.type : metadata.og.type,
     },
     {
       hid: 'og:url',
@@ -55,14 +41,14 @@ function getOpenGraph(meta) {
     {
       hid: 'og:title',
       property: 'og:title',
-      content: metaLocal.title ? metaLocal.title : metaGlobal.website.title,
+      content: metaLocal.title ? metaLocal.title : metadata.website.title,
     },
     {
       hid: 'og:description',
       property: 'og:description',
       content: metaLocal.description
         ? metaLocal.description
-        : metaGlobal.website.description,
+        : metadata.website.description,
     },
     {
       hid: 'og:image',
@@ -72,7 +58,7 @@ function getOpenGraph(meta) {
     {
       hid: 'og:image:alt',
       property: 'og:image:alt',
-      content: metaLocal.title ? metaLocal.title : metaGlobal.website.title,
+      content: metaLocal.title ? metaLocal.title : metadata.website.title,
     },
     additionalOpenGraph(
       metaLocal.articlePublishedTime,
@@ -89,20 +75,20 @@ function getOpenGraph(meta) {
   ]
 }
 
-function getTwitterCard(meta) {
+function getTwitterCard(meta: any) {
   const metaLocal = meta || {}
   return [
     {
       hid: 'twitter:title',
       name: 'twitter:title',
-      content: metaLocal.title ? metaLocal.title : metaGlobal.website.title,
+      content: metaLocal.title ? metaLocal.title : metadata.website.title,
     },
     {
       hid: 'twitter:description',
       name: 'twitter:description',
       content: metaLocal.description
         ? metaLocal.description
-        : metaGlobal.website.description,
+        : metadata.website.description,
     },
     {
       hid: 'twitter:image',
@@ -112,7 +98,7 @@ function getTwitterCard(meta) {
   ]
 }
 
-function additionalOpenGraph(customMeta, hid) {
+function additionalOpenGraph(customMeta: string, hid: string) {
   return customMeta
     ? {
         hid,
@@ -121,3 +107,5 @@ function additionalOpenGraph(customMeta, hid) {
       }
     : ''
 }
+
+export default metadataDynamic

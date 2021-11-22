@@ -40,11 +40,11 @@
         >
           Lots of ebooks for ever more insatiable readers
         </p>
-        <p class="max-w-3xl mt-5 text-lg text-gray-900 dark:text-gray-100">
+        <div class="max-w-3xl mt-5 text-lg text-gray-900 dark:text-gray-100">
           More and more eBooks for more and more reading, each day brings its
           own novelties (or almost). Don't hesitate to come back from time to
           time to discover the new books.
-        </p>
+        </div>
         <div
           class="
             grid grid-cols-1
@@ -61,7 +61,9 @@
               transition-colors
               duration-100
               rounded-md
-              hover:bg-gray-300 hover:bg-opacity-50
+              hover:bg-gray-300
+              dark:hover:bg-gray-600
+              hover:bg-opacity-50
             "
           >
             <nuxt-link :to="localePath(metric.route)" class="block p-2">
@@ -130,13 +132,13 @@ export default {
           text: 'who wrote these eBooks',
         },
         booksFr: {
-          route: { name: 'books', query: { lang: 'fr' } },
+          route: { name: 'books', query: { 'filter[languages]': 'fr' } },
           data: 0,
           textTitle: '',
           text: 'eBooks in french',
         },
         booksEn: {
-          route: { name: 'books', query: { lang: 'en' } },
+          route: { name: 'books', query: { 'filter[languages]': 'en' } },
           data: 0,
           textTitle: '',
           text: 'eBooks in english',
@@ -149,51 +151,25 @@ export default {
   },
   methods: {
     async getStats() {
-      let booksCount = 0
-      let seriesCount = 0
-      let authorsCount = 0
-      let countBooksFr = 0
-      let countBooksEn = 0
-      if (!this.$store.state.statistics) {
-        try {
-          ;[booksCount, seriesCount, authorsCount, countBooksFr, countBooksEn] =
-            await Promise.all([
-              this.$axios.$get('/count?entity=book'),
-              this.$axios.$get('/count?entity=serie'),
-              this.$axios.$get('/count?entity=author'),
-              this.$axios.$get('/count?entity=book&lang=fr'),
-              this.$axios.$get('/count?entity=book&lang=en'),
-            ])
+      try {
+        const count = await this.$axios.$get(
+          '/count?entities=book,serie,author&languages=fr,en'
+        )
 
-          this.$store.commit('setStatistics', {
-            booksCount,
-            seriesCount,
-            authorsCount,
-            countBooksFr,
-            countBooksEn,
-          })
+        const entities = count.data.entities
+        const languages = count.data.languages
 
-          this.isLoading = false
-        } catch (error) {
-          console.error(error)
-        }
-      } else {
-        const stats = this.$store.state.statistics
+        this.metrics.books.data = entities.book
+        this.metrics.series.data = entities.serie
+        this.metrics.authors.data = entities.author
 
-        booksCount = stats.booksCount
-        seriesCount = stats.seriesCount
-        authorsCount = stats.authorsCount
-        countBooksFr = stats.countBooksFr
-        countBooksEn = stats.countBooksEn
-
-        this.isLoading = false
+        this.metrics.booksFr.data = languages.fr
+        this.metrics.booksEn.data = languages.en
+      } catch (error) {
+        console.error(error)
       }
 
-      this.metrics.books.data = booksCount
-      this.metrics.series.data = seriesCount
-      this.metrics.authors.data = authorsCount
-      this.metrics.booksFr.data = countBooksFr
-      this.metrics.booksEn.data = countBooksEn
+      this.isLoading = false
     },
   },
 }

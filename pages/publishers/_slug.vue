@@ -37,7 +37,7 @@
                 vol. {{ book.volume }}
               </div>
               <div class="mt-1">
-                {{ formatLanguage(book.language) }}
+                {{ formatLanguage(book.language).label }}
               </div>
             </template>
           </entity-card>
@@ -88,7 +88,7 @@ export default {
     return {
       title,
       meta: [
-        ...dynamicMetadata({
+        ...dynamicMetadata.default({
           title,
           description: this.description,
           url: this.$nuxt.$route.path,

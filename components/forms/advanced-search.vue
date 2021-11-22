@@ -61,10 +61,10 @@
         Search
       </button>
     </div>
-    <p class="max-w-lg mx-auto mt-3 text-gray-400">
+    <div class="max-w-lg mx-auto mt-3 text-gray-400">
       On advanced search, you can define your search (any book's title, any
       series' title or ISBN) and select details with fields.
-    </p>
+    </div>
     <div class="relative flex items-end mt-8">
       <div class="flex items-center h-5">
         <input

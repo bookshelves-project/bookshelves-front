@@ -1,22 +1,10 @@
-const metadata = require('./metadata.js')
+import metadata from './metadata'
 
-export default () => {
+const metadataStatic = () => {
   return [
-    //
-    // Settings
-    //
     ...getSettings(),
-    //
-    // Meta tags
-    //
     ...getMeta(),
-    //
-    // Open Graph
-    //
     ...getOpenGraph(),
-    //
-    // Twitter card
-    //
     ...getTwitterCard(),
   ]
 }
@@ -118,3 +106,5 @@ function getTwitterCard() {
       : '',
   ]
 }
+
+export default metadataStatic

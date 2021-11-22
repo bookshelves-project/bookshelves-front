@@ -63,7 +63,7 @@
               </h2>
               <div class="hidden md:block">
                 <div>
-                  <p class="text-sm text-gray-500 dark:text-gray-100">
+                  <div class="text-sm text-gray-500 dark:text-gray-100">
                     <span v-if="guide.updatedAt">
                       <time :datetime="guide.updatedAt">{{
                         $formatDate(guide.updatedAt)
@@ -74,7 +74,7 @@
                         $formatDate(guide.createdAt)
                       }}</time>
                     </span>
-                  </p>
+                  </div>
                   <div></div>
                   <p
                     class="
@@ -145,7 +145,7 @@ export default {
       title,
       description: this.description,
       meta: [
-        ...dynamicMetadata({
+        ...dynamicMetadata.default({
           title,
           url: this.$nuxt.$route.path,
         }),

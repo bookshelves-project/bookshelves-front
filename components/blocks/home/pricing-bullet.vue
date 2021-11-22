@@ -18,9 +18,9 @@
         />
       </svg>
     </div>
-    <p class="ml-3 text-base font-medium text-gray-500 dark:text-gray-300">
+    <div class="ml-3 text-base font-medium text-gray-500 dark:text-gray-300">
       {{ value }}
-    </p>
+    </div>
   </li>
 </template>
 

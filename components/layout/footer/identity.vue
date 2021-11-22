@@ -37,9 +37,9 @@
       </nuxt-link>
       <layout-color-mode />
     </div>
-    <p class="text-base text-gray-500">
+    <div class="text-base text-gray-500">
       {{ desc }}
-    </p>
+    </div>
     <div class="flex items-center space-x-6">
       <div class="flex space-x-6">
         <a

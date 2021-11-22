@@ -10,6 +10,12 @@ created_at: 23/04/2021
 
 When you buy an eBook it can have DRM protection, you could open and read it only with propriety software.
 
+<markdown-alert type="required">
+
+- [**Calibre**](https://calibre-ebook.com): to manage your comics and mangas
+
+</markdown-alert>
+
 ## Adobe DRM
 
 When you buy an eBook it can have Adobe DRM protection: a small file with standard name `URLLink.acsm`. Basically, it's a file for Adobe Digital Editions software, it can be downloaded by this application and read only by this application. To erase it, you need to download [**Adobe Digital Editions**](https://www.adobe.com/solutions/ebook/digital-editions/download.html) to download eBooks, install it and open `URLLink.acsm`, Adobe Digital Editions will download the eBook and when it's done, you can **click right on the eBook** to choose **Display file in explorer**, you will find an EPUB file under protection.

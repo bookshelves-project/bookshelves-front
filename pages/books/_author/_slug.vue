@@ -80,7 +80,7 @@ export default {
         description: this.book.summary,
         image: this.book.cover.og,
         meta: [
-          ...dynamicMetadata({
+          ...dynamicMetadata.default({
             title,
             url: this.$nuxt.$route.path,
             bookISBN: this.book.identifier
@@ -96,7 +96,7 @@ export default {
   },
   computed: {
     subtitle() {
-      const lang = formatLanguage(this.book.language)
+      const lang = formatLanguage(this.book.language).label
       const serie = this.book.serie
         ? `${this.book.serie.title}, vol. ${this.book.volume}, `
         : ''

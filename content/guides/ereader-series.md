@@ -8,6 +8,12 @@ created_at: 03-02-2021
 picture: 'ereader'
 ---
 
+<markdown-alert type="required">
+
+- [**Calibre**](https://calibre-ebook.com): to manage your comics and mangas
+
+</markdown-alert>
+
 <markdown-alert tpye="info" title="About">
 
 This article was written using a Kobo as eReader.
