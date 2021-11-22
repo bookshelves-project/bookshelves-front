@@ -1,8 +1,8 @@
 <template>
   <div>
-    <lazy-blocks-home-hero class="pt-5" />
-    <lazy-blocks-home-statistics />
-    <lazy-blocks-home-cloud-logos />
+    <lazy-blocks-home-hero :hero="homePage.hero" class="pt-5" />
+    <!-- <lazy-blocks-home-statistics /> -->
+    <!-- <lazy-blocks-home-cloud-logos />
     <lazy-blocks-selected-entities
       class="mt-8 lg:mt-16"
       eyebrow="Want to read a good book?"
@@ -23,111 +23,41 @@
       latest books!
     </lazy-blocks-selected-entities>
     <lazy-blocks-home-features-highlight />
-    <lazy-blocks-home-cta />
+    <lazy-blocks-home-cta /> -->
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, useAsync, useContext } from '@nuxtjs/composition-api'
+import {
+  defineComponent,
+  useFetch,
+  useAsync,
+  useContext,
+  ref,
+  onBeforeMount,
+  ssrPromise,
+} from '@nuxtjs/composition-api'
+import { ApiResponse } from '~/types/ApiResponse'
+import { HomePage } from '~/types/home-page/home-page'
 
+// export default {
+//   async asyncData() {
+//     const res: ApiResponse = await ctx.$axios.$get(`/cms/home-page`)
+//     console.log(res)
+
+//     const homePage: HomePage = res.data
+
+//     return {
+//       homePage,
+//     }
+//   },
+// }
 const ctx = useContext()
-const title: string = `${ctx.$config.appName}, your digital library`
-const a = ref<Array<string>>(['a'])
+const response = ref<ApiResponse>({})
+const homePage = ref<HomePage>({})
 
-const homePage = useAsync(async () => {
-  try {
-    const { data } = await ctx.$axios.get(
-      'http://localhost:8000/api/cms/home-page'
-    )
-
-    return data.data
-  } catch (error) {
-    return {}
-  }
+useFetch(async () => {
+  const { data } = await ctx.$axios.get(`/cms/home-page`)
+  homePage.value = data.data
 })
-
-const current = ref<boolean>(true)
-const message = ref<String>('data')
-
-function update() {
-  if (current.value) {
-    message.value = 'data'
-  } else {
-    message.value = 'New data'
-  }
-  current.value = !current.value
-}
-
-const head = () => {
-  return {
-    title: title,
-    titleTemplate: '',
-  }
-}
-const jsonld = () => {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    url: `${ctx.$config.baseURL}/`,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${ctx.$config.baseURL}/search?q={search_term_string}`,
-      'query-input': 'required name=search_term_string',
-    },
-    mainEntity: {
-      '@type': 'ItemList',
-      itemListElement: [
-        {
-          '@type': 'SiteNavigationElement',
-          position: 1,
-          name: 'Home',
-          description: `Home of ${ctx.$config.appName}`,
-          url: `${ctx.$config.baseURL}/`,
-        },
-        {
-          '@type': 'SiteNavigationElement',
-          position: 2,
-          name: 'Books',
-          description: 'List of all books',
-          url: `${ctx.$config.baseURL}/books`,
-        },
-        {
-          '@type': 'SiteNavigationElement',
-          position: 3,
-          name: 'Series',
-          description: 'List of all series',
-          url: `${ctx.$config.baseURL}/series`,
-        },
-        {
-          '@type': 'SiteNavigationElement',
-          position: 4,
-          name: 'Authors',
-          description: 'List of all authors',
-          url: `${ctx.$config.baseURL}/authors`,
-        },
-        {
-          '@type': 'SiteNavigationElement',
-          position: 5,
-          name: 'Guides',
-          description: 'List of guides',
-          url: `${ctx.$config.baseURL}/guides`,
-        },
-        {
-          '@type': 'SiteNavigationElement',
-          position: 6,
-          name: 'Search',
-          description: 'Search books, series or authors',
-          url: `${ctx.$config.baseURL}/search`,
-        },
-        {
-          '@type': 'SiteNavigationElement',
-          position: 7,
-          name: 'Contact',
-          description: 'Contact us',
-          url: `${ctx.$config.baseURL}/contact`,
-        },
-      ],
-    },
-  }
-}
 </script>

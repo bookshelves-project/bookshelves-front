@@ -22,7 +22,6 @@
 <script>
 import { Editor, EditorContent } from '@tiptap/vue-2'
 import StarterKit from '@tiptap/starter-kit'
-import Highlight from '@tiptap/extension-highlight'
 import Typography from '@tiptap/extension-typography'
 
 export default {
@@ -149,7 +148,7 @@ export default {
   },
   mounted() {
     this.editor = new Editor({
-      extensions: [StarterKit, Highlight, Typography],
+      extensions: [StarterKit, Typography],
       editorProps: {
         attributes: {
           spellcheck: 'false',
