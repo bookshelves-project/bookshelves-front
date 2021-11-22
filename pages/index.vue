@@ -35,11 +35,15 @@ const title: string = `${ctx.$config.appName}, your digital library`
 const a = ref<Array<string>>(['a'])
 
 const homePage = useAsync(async () => {
-  const { data } = await ctx.$axios.get(
-    'http://localhost:8000/api/cms/home-page'
-  )
+  try {
+    const { data } = await ctx.$axios.get(
+      'http://localhost:8000/api/cms/home-page'
+    )
 
-  return data.data
+    return data.data
+  } catch (error) {
+    return {}
+  }
 })
 
 const current = ref<boolean>(true)

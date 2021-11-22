@@ -34,10 +34,10 @@ const overflow = (text, maxLength = 25) => {
 Vue.prototype.$overflow = overflow
 
 const apiUrlBase = (endpoint = '') => {
-  let api = process.env.API_URL
-  api = api.replace('/api', '')
-  api = `${api}${endpoint}`
-  return api
+  // let api = process.env.API_URL
+  // api = api.replace('/api', '')
+  // api = `${api}${endpoint}`
+  return ''
 }
 
 Vue.prototype.$apiUrlBase = apiUrlBase

@@ -6,16 +6,13 @@ import hooks from './plugins/config/hooks'
 import loading from './plugins/config/loading'
 
 const config: NuxtConfig = {
-  // https://nuxtjs.org/docs/configuration-glossary/configuration-build/
+  // https://nuxtjs.org/docs/configuration-glossary/configuration-build
   build: {},
-  ...buildModules,
   // https://nuxtjs.org/docs/configuration-glossary/configuration-css
   css: ['~/assets/css/app.pcss', '~/assets/css/markdown.pcss'],
   // Auto import components (https://go.nuxtjs.dev/config-components)
   // GitHub: https://github.com/nuxt/components
   components: true,
-  // https://nuxtjs.org/docs/configuration-glossary/configuration-env/
-  env: {},
   // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config
   publicRuntimeConfig: {
     appName: process.env.APP_NAME,
@@ -24,28 +21,24 @@ const config: NuxtConfig = {
     moduleSocialRating: process.env.MODULE_SOCIAL_RATING,
     apiURL: process.env.API_URL,
   },
+  privateRuntimeConfig: {},
   // https://nuxtjs.org/docs/configuration-glossary/configuration-head
   head: head,
   loading: loading,
+  ...buildModules,
   ...modules,
-  // https://nuxtjs.org/docs/configuration-glossary/configuration-plugins/
+  // https://nuxtjs.org/docs/configuration-glossary/configuration-plugins
   plugins: [
-    // helper methods: available in any component
-    '~/plugins/utils/helpers',
-    // Global notifications
-    '~/plugins/bus.client.js',
-    // https://github.com/ndelvalle/v-click-outside
-    '~/plugins/v-click-outside',
-    // https://github.com/eddiemf/vue-scrollactive
-    '~/plugins/vue-scrollactive',
-    // https://github.com/ymmooot/nuxt-jsonld
-    '~/plugins/jsonld',
-    // https://github.com/surmon-china/vue-awesome-swiper
-    '~/plugins/vue-awesome-swiper.client.js',
+    '~/plugins/utils/helpers', // helper methods: available in any component
+    '~/plugins/bus.client.js', // Global notifications
+    '~/plugins/v-click-outside', // https://github.com/ndelvalle/v-click-outside
+    '~/plugins/vue-scrollactive', // https://github.com/eddiemf/vue-scrollactive
+    '~/plugins/jsonld', // https://github.com/ymmooot/nuxt-jsonld
+    '~/plugins/vue-awesome-swiper.client.js', // https://github.com/surmon-china/vue-awesome-swiper
     // '~/plugins/composition-api.js',
     // '~/plugins/truncater',
   ],
-  // https://nuxtjs.org/docs/configuration-glossary/configuration-hooks/
+  // https://nuxtjs.org/docs/configuration-glossary/configuration-hooks
   hooks: hooks,
 }
 
