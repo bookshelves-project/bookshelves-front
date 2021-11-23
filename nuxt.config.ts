@@ -35,7 +35,7 @@ const config: NuxtConfig = {
     '~/plugins/vue-scrollactive', // https://github.com/eddiemf/vue-scrollactive
     '~/plugins/jsonld', // https://github.com/ymmooot/nuxt-jsonld
     '~/plugins/vue-awesome-swiper.client.js', // https://github.com/surmon-china/vue-awesome-swiper
-    // '~/plugins/composition-api.js',
+    '~/plugins/composition-api.js', // https://typescript.nuxtjs.org/cookbook/components
     // '~/plugins/truncater',
   ],
   // https://nuxtjs.org/docs/configuration-glossary/configuration-hooks

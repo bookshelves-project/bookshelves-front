@@ -41,7 +41,6 @@
     "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/sitemap": "^2.4.0",
     "@nuxtjs/svg-sprite": "^0.5.2",
-    "@tiptap/extension-highlight": "^2.0.0-beta.16",
     "@tiptap/extension-typography": "^2.0.0-beta.14",
     "@tiptap/starter-kit": "^2.0.0-beta.104",
     "@tiptap/vue-2": "^2.0.0-beta.50",
