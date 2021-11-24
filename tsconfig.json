@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
-    "module": "ESNext",
+    "target": "ES2020",
+    "module": "ES2020",
     "moduleResolution": "Node",
     "lib": [
       "ESNext",
@@ -16,6 +16,9 @@
     "noEmit": true,
     "experimentalDecorators": true,
     "noUnusedLocals": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
       "~/*": [
@@ -26,14 +29,17 @@
       ]
     },
     "types": [
+      "@types/node",
       "@nuxt/types",
+      "@nuxt/http",
       "@nuxtjs/axios",
       "@nuxt/content",
-      "@types/node",
       "unplugin-vue2-script-setup/types",
       "@nuxtjs/i18n",
       "@nuxtjs/auth-next",
-      "@nuxtjs/color-mode"
+      "@nuxtjs/color-mode",
+      "@pinia/nuxt",
+      "cookie-universal-nuxt"
     ],
   },
   "vueCompilerOptions": {
