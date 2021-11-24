@@ -1,8 +1,9 @@
 <template>
   <div>
     <lazy-blocks-home-hero :hero="homePage.hero" class="pt-5" />
-    <!-- <lazy-blocks-home-statistics /> -->
-    <!-- <lazy-blocks-home-cloud-logos />
+    <lazy-blocks-home-statistics :statistics="homePage.statistics" />
+    <lazy-blocks-home-cloud-logos :logos="homePage.logos" />
+    <!-- 
     <lazy-blocks-selected-entities
       class="mt-8 lg:mt-16"
       eyebrow="Want to read a good book?"
@@ -27,37 +28,33 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import {
-  defineComponent,
-  useFetch,
-  useAsync,
-  useContext,
-  ref,
-  onBeforeMount,
-  ssrPromise,
-} from '@nuxtjs/composition-api'
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator'
+import { stringify } from 'qs'
 import { ApiResponse } from '~/types/ApiResponse'
 import { HomePage } from '~/types/home-page/home-page'
+import { Application } from '~/types/application'
 
-// export default {
-//   async asyncData() {
-//     const res: ApiResponse = await ctx.$axios.$get(`/cms/home-page`)
-//     console.log(res)
+@Component({
+  async asyncData(ctx) {
+    try {
+      const homePage: HomePage = await ctx.$axios
+        .$get(`/cms/home-page?${stringify({ lang: ctx.i18n.locale })}`)
+        .then((e: ApiResponse) => e.data)
 
-//     const homePage: HomePage = res.data
+      return {
+        homePage,
+      }
+    } catch (error) {
+      console.log(error)
 
-//     return {
-//       homePage,
-//     }
-//   },
-// }
-const ctx = useContext()
-const response = ref<ApiResponse>({})
-const homePage = ref<HomePage>({})
-
-useFetch(async () => {
-  const { data } = await ctx.$axios.get(`/cms/home-page`)
-  homePage.value = data.data
+      return {
+        homePage: {},
+      }
+    }
+  },
 })
+export default class PageHome extends Vue {
+  homePage: HomePage = {}
+}
 </script>
