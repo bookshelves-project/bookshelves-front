@@ -1,17 +1,17 @@
 <template>
-  <div ref="AppImg" class="relative">
-    <div
+  <span ref="AppImg" class="relative">
+    <span
       :class="init ? 'opacity-100' : 'opacity-100'"
       class="app-img transition-opacity duration-200 h-full"
     >
       <transition name="fade">
-        <div
+        <span
           v-if="loading"
           ref="Placeholder"
           :class="placeholder"
           class="absolute z-10 inset-0 transition-transform duration-100"
           :style="color ? `background-color: ${color}` : ''"
-        ></div>
+        ></span>
       </transition>
       <figure class="h-full">
         <img
@@ -27,8 +27,8 @@
           {{ legend }}
         </figcaption>
       </figure>
-    </div>
-  </div>
+    </span>
+  </span>
 </template>
 
 <script>

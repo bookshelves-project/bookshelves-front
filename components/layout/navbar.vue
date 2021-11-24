@@ -91,7 +91,6 @@
               focus:ring-offset-primary-600
               focus:ring-white
             "
-            aria-controls="mobile-menu"
             @click="openSidebar"
           >
             <svg-icon name="menu" class="block w-6 h-6" />

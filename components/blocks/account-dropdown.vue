@@ -2,7 +2,7 @@
   <div class="ml-3">
     <app-dropdown align="right" click-close>
       <template #trigger>
-        <div
+        <span
           class="
             flex
             items-center
@@ -22,6 +22,7 @@
             active:bg-gray-50
           "
         >
+          <span class="sr-only"> Account </span>
           <transition name="fade">
             <app-img
               v-if="$auth.$state.loggedIn"
@@ -39,7 +40,7 @@
             />
           </transition>
           <svg-icon name="dropdown" class="w-5 h-5" />
-        </div>
+        </span>
       </template>
       <template #content>
         <div class="w-48 bg-white dark:bg-gray-800">

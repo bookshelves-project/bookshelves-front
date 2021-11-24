@@ -60,7 +60,7 @@ export default {
       default: null,
     },
     filterValue: {
-      type: String,
+      type: [String, Number],
       default: null,
     },
   },
