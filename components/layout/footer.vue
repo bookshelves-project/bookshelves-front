@@ -1,9 +1,7 @@
 <template>
   <footer class="bg-white dark:bg-gray-900" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">Footer</h2>
-    <div
-      class="px-4 pt-12 pb-6 mx-auto max-w-7xl sm:px-6 lg:pt-16 lg:pb-8 lg:px-8"
-    >
+    <div class="px-4 pt-12 pb-6 mx-auto max-w-7xl lg:pt-16 lg:pb-8">
       <div class="xl:grid xl:grid-cols-3 xl:gap-8">
         <layout-footer-identity class="space-y-8 xl:col-span-1" />
         <layout-footer-navigation
