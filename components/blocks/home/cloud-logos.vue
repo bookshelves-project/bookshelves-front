@@ -40,7 +40,7 @@
             hover:zoom
           "
         >
-          <app-img :src="logo.media" :title="logo.label" class="w-32" />
+          <app-img :src="logo.picture" :title="logo.label" class="w-32" />
         </a>
       </div>
     </div>

@@ -67,7 +67,6 @@
           maxlength="64"
           type="search"
           enterkeyhint="go"
-          value=""
         />
         <transition name="fade">
           <div
@@ -93,13 +92,13 @@
       class="mt-6"
       :class="{ 'border-t border-b border-gray-200': results.length }"
     >
+      <div
+        v-if="results.count"
+        class="mb-3 text-center text-gray-600 dark:text-gray-400 mt-2"
+      >
+        {{ results.count }} results
+      </div>
       <div class="max-h-[30rem] overflow-y-scroll scrollbar-thin px-6">
-        <div
-          v-if="results.count"
-          class="mb-3 text-center text-gray-600 dark:text-gray-400 mt-2"
-        >
-          {{ results.count }} results
-        </div>
         <layout-search-bar-results
           :results="results"
           title="More relevant authors"

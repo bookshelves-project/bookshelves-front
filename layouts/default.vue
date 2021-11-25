@@ -37,10 +37,10 @@ useMeta(() => ({
 </script>
 
 <script lang="ts">
-export default defineComponent({
+export default {
   middleware: ['init'],
   head: {},
-})
+}
 </script>
 
 <style lang="postcss">
