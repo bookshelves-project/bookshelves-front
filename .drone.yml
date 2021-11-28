@@ -12,10 +12,11 @@ steps:
 
   - name: deploy
     commands:
+      - export PM2_HOME=/home/$USER/.pm2
       - cd /home/$USER/www/${DRONE_REPO_NAME}
-      - /home/ewilan/.nvm/versions/node/v16.13.0/bin/yarn
-      - /home/ewilan/.nvm/versions/node/v16.13.0/bin/yarn build
-      - /home/ewilan/.nvm/versions/node/v16.13.0/bin/pm2 restart bookshelves
+      - /home/$USER/.nvm/versions/node/v16.13.0/bin/npm i
+      - /home/$USER/.nvm/versions/node/v16.13.0/bin/npm run build
+      - pm2 restart bookshelves
     depends_on:
       - update
 
