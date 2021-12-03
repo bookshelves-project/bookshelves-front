@@ -39,7 +39,7 @@
         </a>
       </div>
       <span class="flex">
-        <div class="mx-auto md:flex">
+        <span class="mx-auto md:flex">
           <span class="hidden mx-1 md:block">·</span>
           <nuxt-link
             v-if="team"
@@ -75,7 +75,7 @@
             class="block md:flex italic md:ml-1"
             >v{{ packageJson.version }}</nuxt-link
           ><span class="hidden md:block">.</span>
-        </div>
+        </span>
       </span>
     </div>
     <div class="flex mt-6 lg:mt-0">

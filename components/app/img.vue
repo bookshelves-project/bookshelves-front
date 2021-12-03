@@ -1,25 +1,26 @@
 <template>
-  <div ref="AppImg" class="relative">
-    <div
+  <span ref="AppImg" class="relative block">
+    <span
       :class="init ? 'opacity-100' : 'opacity-100'"
-      class="app-img transition-opacity duration-200 h-full"
+      class="app-img transition-opacity duration-200 h-full block"
     >
       <transition name="fade">
-        <div
+        <span
           v-if="loading"
           ref="Placeholder"
           :class="placeholder"
-          class="absolute z-10 inset-0 transition-transform duration-100"
+          class="absolute z-10 inset-0 transition-transform duration-100 block"
           :style="color ? `background-color: ${color}` : ''"
-        ></div>
+        ></span>
       </transition>
       <figure class="h-full">
         <img
           ref="Image"
           v-lazy-load
+          :src="src"
           :data-src="src"
-          :alt="invisible ? '' : titleData"
-          :title="invisible ? '' : titleData"
+          :alt="meta"
+          :title="meta"
           class="!m-0 !w-full h-full img"
           @load="load"
         />
@@ -27,8 +28,8 @@
           {{ legend }}
         </figcaption>
       </figure>
-    </div>
-  </div>
+    </span>
+  </span>
 </template>
 
 <script>
@@ -66,6 +67,7 @@ export default {
       loading: true,
       notExist: false,
       altTitle: null,
+      meta: null,
     }
   },
   computed: {
@@ -117,6 +119,7 @@ export default {
     },
     load() {
       this.loading = false
+      this.meta = this.title
       //   const appImg = this.$refs.AppImg
       //   appImg.classList = ''
     },

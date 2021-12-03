@@ -26,7 +26,7 @@
         <h2
           class="text-sm font-semibold tracking-wide uppercase text-primary-600"
         >
-          A quick tour of eBooks count
+          {{ statistics.eyebrow }}
         </h2>
         <p
           class="
@@ -38,12 +38,10 @@
             font-handlee
           "
         >
-          Lots of ebooks for ever more insatiable readers
+          {{ statistics.title }}
         </p>
         <div class="max-w-3xl mt-5 text-lg text-gray-900 dark:text-gray-100">
-          More and more eBooks for more and more reading, each day brings its
-          own novelties (or almost). Don't hesitate to come back from time to
-          time to discover the new books.
+          {{ statistics.text }}
         </div>
         <div
           class="
@@ -54,9 +52,9 @@
             lg:grid-cols-3
           "
         >
-          <p
-            v-for="metric in metrics"
-            :key="metric.id"
+          <div
+            v-for="(metric, id) in statistics.list"
+            :key="id"
             class="
               transition-colors
               duration-100
@@ -66,21 +64,8 @@
               hover:bg-opacity-50
             "
           >
-            <nuxt-link :to="localePath(metric.route)" class="block p-2">
+            <div class="block p-2">
               <span
-                v-if="isLoading"
-                class="
-                  block
-                  animate-pulse
-                  w-16
-                  h-8
-                  bg-gray-300
-                  dark:bg-gray-400
-                  rounded-md
-                "
-              ></span>
-              <span
-                v-else
                 class="
                   block
                   text-2xl
@@ -89,24 +74,33 @@
                   dark:text-gray-300
                 "
               >
-                {{ metric.data }}
+                {{ metric.count }}
               </span>
               <span
                 class="block mt-1 text-base text-gray-900 dark:text-gray-100"
                 ><span class="font-medium text-gray-700 dark:text-gray-300">
-                  {{ metric.textTitle }}
+                  {{ metric.label }}
                 </span>
-                <span v-html="metric.text"></span>
               </span>
-            </nuxt-link>
-          </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Statistics } from '~/types/home-page/home-page'
+
+@Component
+export default class HomeStatistics extends Vue {
+  @Prop({ type: Object, required: true }) statistics!: Statistics
+}
+</script>
+
+<!-- <script>
 export default {
   name: 'Statistics',
   data() {
@@ -173,6 +167,4 @@ export default {
     },
   },
 }
-</script>
-
-<style lang="postcss" scoped></style>
+</script> -->

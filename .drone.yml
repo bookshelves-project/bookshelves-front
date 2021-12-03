@@ -1,0 +1,31 @@
+kind: pipeline
+type: exec
+name: default
+
+clone:
+  disable: true
+
+steps:
+  - name: update
+    commands:
+      - cd /home/$USER/www/${DRONE_REPO_NAME} && git pull
+
+  - name: deploy
+    commands:
+      - export PM2_HOME=/home/$USER/.pm2
+      - cd /home/$USER/www/${DRONE_REPO_NAME}
+      - /home/$USER/.nvm/versions/node/v16.13.0/bin/npm i
+      - /home/$USER/.nvm/versions/node/v16.13.0/bin/npm run build
+      - pm2 restart bookshelves
+    depends_on:
+      - update
+
+  - name: notify
+    commands:
+      - docker run --rm -e WEBHOOK_ID=914189993424064622 -e WEBHOOK_TOKEN=gf9Soxdun4B0HAus-af7rT54bwWwpJXpjugTzPSt_fZwMDlzB1OjkuX-tbBfKBGucFxP -e WAIT=false -e TTS=false -e MESSAGE='Success build for ${DRONE_REPO_NAME}' appleboy/drone-discord
+    depends_on:
+      - deploy
+
+trigger:
+  branch:
+    - master

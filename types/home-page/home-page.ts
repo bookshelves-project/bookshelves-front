@@ -19,7 +19,7 @@ export interface FeaturesList {
   icon?: string
   text?: string
   title?: string
-  media?: string
+  picture?: string
 }
 
 export interface Logos {
@@ -31,7 +31,7 @@ export interface LogosList {
   link?: string
   slug?: string
   label?: string
-  media?: string
+  picture?: string
 }
 
 export interface Statistics {

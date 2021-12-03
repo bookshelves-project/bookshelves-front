@@ -1,11 +1,10 @@
 <template>
   <dropdown align="left">
     <template #trigger>
-      <div
+      <span
         id="language"
         title="Language"
         type="button"
-        aria-label="Language"
         class="
           block
           text-gray-400
@@ -14,10 +13,10 @@
         "
       >
         <svg-icon name="lang" class="w-6 h-6 mx-auto" />
-        <div class="text-xs text-center mt-2">
+        <span class="text-xs text-center mt-2">
           {{ $t('language') }}
-        </div>
-      </div>
+        </span>
+      </span>
     </template>
     <template #content>
       <div class="py-1 bg-white dark:bg-gray-800 rounded-md w-48">

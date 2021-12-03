@@ -14,9 +14,10 @@
       transition-colors
       duration-100
     "
+    type="button"
     @click="routes"
   >
-    <div
+    <span
       class="
         flex
         items-center
@@ -29,7 +30,8 @@
         focus:outline-none focus:ring-2 focus:ring-offset-2
       "
     >
-      <div class="w-6 h-6 text-gray-200">
+      <span class="sr-only">Routes</span>
+      <span class="w-6 h-6 text-gray-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -46,8 +48,8 @@
           <path d="M11.75 8.75a4 4 0 0 1 6.5 0"></path>
           <path d="M8.5 6.5a8 8 0 0 1 13 0"></path>
         </svg>
-      </div>
-    </div>
+      </span>
+    </span>
   </button>
 </template>
 

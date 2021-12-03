@@ -1,43 +1,10 @@
 import pwa from './pwa'
 import metadata from './metadata'
 
-// https://nuxtjs.org/docs/configuration-glossary/configuration-modules/
 const modules: object = {
-  modules: [
-    /**
-     * Http requests, auth & PWA
-     */
-    '@nuxtjs/axios', // https://go.nuxtjs.dev/axios
-    '@nuxtjs/auth-next', // https://auth.nuxtjs.org/
-    '@nuxtjs/pwa', // https://go.nuxtjs.dev/pwa
-    /**
-     * i18n, markdown, lazy-load
-     */
-    '@nuxtjs/i18n', // https://i18n.nuxtjs.org/
-    '@nuxt/content', // https://go.nuxtjs.dev/content
-    '@nuxtjs/markdownit', // https://www.npmjs.com/package/@nuxtjs/markdownit
-    [
-      'nuxt-lazy-load',
-      {
-        directiveOnly: true,
-        loadingClass: 'isLoading',
-        loadedClass: 'isLoaded',
-        appendClass: 'lazyLoad',
-      },
-    ], // https://gitlab.com/broj42/nuxt-lazy-load
-    /**
-     * sitemaps, seo
-     */
-    '@nuxtjs/robots', // https://www.npmjs.com/package/@nuxtjs/robots
-    '@nuxtjs/sitemap', // https://sitemap.nuxtjs.org/
-    [
-      'nuxt-matomo',
-      {
-        matomoUrl: process.env.MATOMO_URL ? process.env.MATOMO_URL : null,
-        siteId: process.env.MATOMO_SITE_ID ? process.env.MATOMO_SITE_ID : null,
-      },
-    ], // https://github.com/pimlie/nuxt-matomo
-  ],
+  http: {
+    // options
+  },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: process.env.API_URL,
@@ -146,6 +113,18 @@ const modules: object = {
       redirectOn: 'root', // recommended
     },
   },
+}
+
+export const nuxtLazyLoad: object = {
+  directiveOnly: true,
+  loadingClass: 'isLoading',
+  loadedClass: 'isLoaded',
+  appendClass: 'lazyLoad',
+}
+
+export const matomo: object = {
+  matomoUrl: process.env.MATOMO_URL ? process.env.MATOMO_URL : null,
+  siteId: process.env.MATOMO_SITE_ID ? process.env.MATOMO_SITE_ID : null,
 }
 
 export default modules
