@@ -81,7 +81,7 @@ export default {
   methods: {
     close() {
       this.$store.commit('setShowAlert', false)
-    },
-  },
+    }
+  }
 }
 </script>

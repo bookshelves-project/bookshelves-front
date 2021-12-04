@@ -38,6 +38,6 @@
 
 <script>
 export default {
-  name: 'CardLoading',
+  name: 'CardLoading'
 }
 </script>

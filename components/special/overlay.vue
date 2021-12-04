@@ -12,7 +12,7 @@ export default {
   name: 'Overlay',
   data() {
     return {
-      isVisible: false,
+      isVisible: false
     }
   },
   watch: {
@@ -20,8 +20,8 @@ export default {
       setTimeout(() => {
         this.isVisible = newValue
       }, 150)
-    },
-  },
+    }
+  }
 }
 </script>
 

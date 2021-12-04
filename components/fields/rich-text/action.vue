@@ -14,21 +14,21 @@ export default {
   props: {
     editor: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     action: {
       type: String,
-      default: '',
+      default: ''
     },
     method: {
       type: String,
-      default: 'toggleBold',
+      default: 'toggleBold'
     },
     params: {
       type: Object,
-      default: () => {},
-    },
-  },
+      default: () => {}
+    }
+  }
 }
 </script>
 

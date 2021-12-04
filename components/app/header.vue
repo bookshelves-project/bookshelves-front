@@ -124,7 +124,7 @@
         line-clamp-3
       "
     >
-      <div v-html="text"></div>
+      <div v-html="text" />
     </div>
     <div v-if="cta" class="dark:text-gray-100 text-gray-500">
       <div class="pt-1 text-right">
@@ -134,8 +134,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-gray-700 border-b border-gray-500"
-          >{{ getHostname(cta) }}</a
-        >
+        >{{ getHostname(cta) }}</a>
       </div>
     </div>
     <div class="mt-4">
@@ -145,7 +144,7 @@
 </template>
 
 <script>
-import { getHostname } from '@/plugins/utils/methods'
+import { getHostname } from '~/plugins/utils/methods'
 import favorites from '~/mixins/favorites'
 
 export default {
@@ -154,65 +153,65 @@ export default {
   props: {
     title: {
       type: String,
-      default: '',
+      default: ''
     },
     subtitle: {
       type: String,
-      default: '',
+      default: ''
     },
     image: {
       type: String,
-      default: null,
+      default: null
     },
     imageOriginal: {
       type: String,
-      default: null,
+      default: null
     },
     border: {
       type: Boolean,
-      default: true,
+      default: true
     },
     cta: {
       type: String,
-      default: '',
+      default: ''
     },
     text: {
       type: String,
-      default: '',
+      default: ''
     },
     authors: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     favorite: {
       type: Boolean,
-      default: false,
+      default: false
     },
     entity: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     color: {
       type: String,
-      default: '#ffffff',
-    },
-  },
-  data() {
-    return {
-      isFavorite: false,
-      favoritesList: [],
+      default: '#ffffff'
     }
   },
-  mounted() {
+  data () {
+    return {
+      isFavorite: false,
+      favoritesList: []
+    }
+  },
+  mounted () {
     this.isFavoriteCheck()
     this.favoritesList = this.favorites
   },
   methods: {
     getHostname,
-    isFavoriteCheck() {
+    isFavoriteCheck () {
       this.isFavorite = this.entity ? this.entity.isFavorite : null
     },
-    async toggleFavorite() {
+    async toggleFavorite () {
       const entity = this.$route.name.split('-')[0].slice(0, -1)
       this.isFavorite = !this.isFavorite
       const slug = this.$route.params.slug
@@ -222,14 +221,14 @@ export default {
         console.error(error)
       }
     },
-    async deleteFavorite(model, slug) {
+    async deleteFavorite (model, slug) {
       try {
         await this.$axios.$post(`/favorites/toggle/${model}/${slug}`)
       } catch (error) {
         console.error(error)
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

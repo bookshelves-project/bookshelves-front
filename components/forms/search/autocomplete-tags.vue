@@ -108,7 +108,7 @@ import { filter, flow, values, partialRight, some, method } from 'lodash'
 export default {
   name: 'AutocompleteTags',
   directives: {
-    clickOutside: vClickOutside.directive,
+    clickOutside: vClickOutside.directive
   },
   data() {
     return {
@@ -117,7 +117,7 @@ export default {
       tags: [],
       fullTags: [],
       validate: true,
-      validTag: null,
+      validTag: null
     }
   },
   watch: {
@@ -129,7 +129,7 @@ export default {
         this.showList = false
         this.tags = []
       }
-    },
+    }
   },
   mounted() {
     // eslint-disable-next-line no-unused-vars
@@ -159,7 +159,7 @@ export default {
     },
     async getTags(query) {
       if (!this.tags.length) {
-        const tags = await this.$axios.$get(`/tags`)
+        const tags = await this.$axios.$get('/tags')
 
         this.fullTags = tags.data
       } else {
@@ -184,7 +184,7 @@ export default {
         this.validate = true
       }, 50)
       this.$emit('tag', this.validTag)
-    },
-  },
+    }
+  }
 }
 </script>

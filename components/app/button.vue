@@ -28,52 +28,52 @@ export default {
     color: {
       type: String,
       default: 'secondary',
-      validator: (val) =>
-        ['secondary', 'primary', 'white', 'danger'].includes(val),
+      validator: val =>
+        ['secondary', 'primary', 'white', 'danger'].includes(val)
     },
     href: {
       type: String,
-      default: null,
+      default: null
     },
     to: {
       type: [String, Object],
-      default: null,
+      default: null
     },
     // Only for true hackers & trickers
     overrideComponent: {
       type: String,
-      default: null,
+      default: null
     },
     overrideClass: {
       type: String,
-      default: null,
+      default: null
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     type: {
       type: String,
       default: 'button',
-      validator: (val) => ['button', 'reset', 'submit'].includes(val),
+      validator: val => ['button', 'reset', 'submit'].includes(val)
     },
     external: {
       type: Boolean,
-      default: false,
+      default: false
     },
     align: {
       type: String,
       default: 'left',
-      validator: (val) => ['left', 'center', 'right'].includes(val),
+      validator: val => ['left', 'center', 'right'].includes(val)
     },
     download: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
-      component: 'button',
+      component: 'button'
     }
   },
   computed: {
@@ -82,10 +82,10 @@ export default {
         left: 'mr-auto',
         center: 'mx-auto',
         right: 'ml-auto',
-        default: 'mx-auto',
+        default: 'mx-auto'
       }
       return alignements[this.align] || alignements.default
-    },
+    }
   },
   created() {
     if (this.href !== null) {
@@ -103,7 +103,7 @@ export default {
       const btn = this.$refs.btn
       btn.setAttribute('href', this.href)
     }
-  },
+  }
 }
 </script>
 

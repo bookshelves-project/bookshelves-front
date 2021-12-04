@@ -31,12 +31,12 @@ export default {
         return ['info', 'success', 'warning', 'danger', 'required'].includes(
           value
         )
-      },
+      }
     },
     title: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   computed: {
     icon() {
@@ -45,10 +45,10 @@ export default {
         success: 'success',
         warning: 'warning',
         danger: 'danger',
-        required: 'required',
+        required: 'required'
       }[this.type]
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -81,15 +81,15 @@ export default {
         name: '',
         email: '',
         message: '',
-        honeypot: false,
+        honeypot: false
       },
       formTesting: {
         name: 'Ewilan',
         email: 'ewilan@dotslashplay.it',
         message:
           'Dolor pariatur exercitation duis dolore eu ut commodo quis incididunt ad voluptate sit. Do est nulla adipisicing ut dolore amet dolore nostrud labore. Magna laborum aliqua duis eiusmod quis aliquip officia veniam adipisicing est magna nostrud culpa. Laborum nisi nisi sit Lorem fugiat aute deserunt ea reprehenderit sint sint nulla ad labore.',
-        honeypot: false,
-      },
+        honeypot: false
+      }
     }
   },
   mounted() {
@@ -118,13 +118,13 @@ export default {
           name: '',
           email: '',
           message: '',
-          honeypot: false,
+          honeypot: false
         }
 
         this.$nuxt.$emit('notification', {
           title: 'Message sended!',
           text: 'Thanks you for your message.',
-          type: 'success',
+          type: 'success'
         })
       } catch (e) {
         console.error(e)
@@ -132,12 +132,12 @@ export default {
         this.$nuxt.$emit('notification', {
           title: 'Error!',
           text: "We are sorry but your message can't be send, try in some time.",
-          type: 'error',
+          type: 'error'
         })
       }
       this.loading = false
-    },
-  },
+    }
+  }
 }
 </script>
 

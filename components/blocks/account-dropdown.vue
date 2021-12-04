@@ -149,14 +149,14 @@ export default {
   name: 'AccountDropdown',
   data() {
     return {
-      accountDropdownOpened: false,
+      accountDropdownOpened: false
     }
   },
   computed: {
     ...mapGetters({
       auth: 'nav/auth',
-      guest: 'nav/guest',
-    }),
+      guest: 'nav/guest'
+    })
     // authNav() {
     //   const nav = this.$store.state.nav.authNavigationTrue
     //   if (this.$auth.$state.user.data.isAdmin) {
@@ -185,7 +185,7 @@ export default {
     },
     closeAccountDropdown() {
       this.accountDropdownOpened = false
-    },
-  },
+    }
+  }
 }
 </script>

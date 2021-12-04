@@ -24,7 +24,7 @@
                 <span
                   v-if="
                     book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
+                      authorId !== book.authors.length - 1
                   "
                 >
                   &
@@ -66,20 +66,20 @@ export default {
   async asyncData({ app, params }) {
     const [publisher, books] = await Promise.all([
       app.$axios.$get(`/publishers/${params.slug}`),
-      app.$axios.$get(`/publishers/books/${params.slug}`),
+      app.$axios.$get(`/publishers/books/${params.slug}`)
     ])
 
     return {
       publisher: publisher.data,
-      books,
+      books
     }
   },
   data() {
     return {
       formatLanguage,
       formatAuthors,
-      title: `Books published by`,
-      description: `List of all books for publisher`,
+      title: 'Books published by',
+      description: 'List of all books for publisher'
     }
   },
   head() {
@@ -91,15 +91,15 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
   },
   methods: {
     load(data) {
       this.books.data = data
-    },
-  },
+    }
+  }
 }
 </script>

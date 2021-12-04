@@ -9,7 +9,9 @@
             <slot />
           </span>
         </div>
-        <div class="hidden sm:block">({{ type }} {{ size }})</div>
+        <div class="hidden sm:block">
+          ({{ type }} {{ size }})
+        </div>
       </div>
     </div>
   </app-button>
@@ -21,16 +23,16 @@ export default {
   props: {
     href: {
       type: String,
-      default: null,
+      default: null
     },
     size: {
       type: String,
-      default: null,
+      default: null
     },
     type: {
       type: String,
-      default: 'EPUB',
-    },
-  },
+      default: 'EPUB'
+    }
+  }
 }
 </script>

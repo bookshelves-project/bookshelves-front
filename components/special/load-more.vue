@@ -33,33 +33,33 @@ export default {
   props: {
     lastPage: {
       type: Number,
-      default: 0,
+      default: 0
     },
     endpoint: {
       type: String,
-      default: 'books',
+      default: 'books'
     },
     entities: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     queries: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
       pending: false,
       currentPage: 1,
       disabled: false,
-      objectIsEmpty,
+      objectIsEmpty
     }
   },
   watch: {
     $route(to, from) {
       this.disabled = false
-    },
+    }
   },
   mounted() {
     if (this.currentPage === this.lastPage) {
@@ -78,7 +78,7 @@ export default {
     async apiCall(data, entity) {
       this.pending = true
       const queries = {
-        page: data.page,
+        page: data.page
       }
       if (!objectIsEmpty(this.queries)) {
         Object.assign(queries, this.queries)
@@ -96,7 +96,7 @@ export default {
       this.$emit('load', entities)
 
       this.pending = false
-    },
-  },
+    }
+  }
 }
 </script>

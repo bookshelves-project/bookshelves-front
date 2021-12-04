@@ -29,16 +29,14 @@
       "
     >
       <div>
-        <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
-          >Title
+        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Title
         </span>
         <h3 class="font-semibold text-black">
           {{ book.title }}
         </h3>
       </div>
       <div>
-        <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
-          >Authors
+        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Authors
         </span>
         <h3 class="font-semibold">
           <span
@@ -61,20 +59,17 @@
                 dark:border-gray-100 dark:hover:border-gray-400
                 hover:border-gray-400 hover:text-gray-400
               "
-              >{{ author.name }}</nuxt-link
-            >
+            >{{ author.name }}</nuxt-link>
             <span
               v-if="
                 book.authors.length > 1 && authorId !== book.authors.length - 1
               "
-              >&</span
-            >
+            >&</span>
           </span>
         </h3>
       </div>
       <div v-if="book.volume">
-        <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
-          >Volume
+        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Volume
         </span>
         <h3 class="font-semibold text-black">
           {{ book.volume }}
@@ -93,11 +88,13 @@
               },
             })
           "
-          >Refer to {{ book.meta.entity }}</app-button
         >
-        <span v-else class="italic text-gray-500 dark:text-gray-400"
-          >Current page</span
-        >
+          Refer to {{ book.meta.entity }}
+        </app-button>
+        <span
+          v-else
+          class="italic text-gray-500 dark:text-gray-400"
+        >Current page</span>
       </div>
     </div>
   </div>
@@ -109,8 +106,8 @@ export default {
   props: {
     book: {
       type: Object,
-      default: () => {},
-    },
-  },
+      default: () => {}
+    }
+  }
 }
 </script>

@@ -73,8 +73,7 @@
                 dark:text-gray-400
                 whitespace-nowrap
               "
-              >{{ $formatDate(data.createdAt) }}</time
-            >
+            >{{ $formatDate(data.createdAt) }}</time>
           </div>
         </div>
         <div v-if="data.text" class="hidden mt-1 lg:block">
@@ -117,18 +116,18 @@ export default {
   props: {
     data: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     canDelete: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   methods: {
     capitalize,
     destroy(data) {
       this.$emit('destroy', data)
-    },
-  },
+    }
+  }
 }
 </script>

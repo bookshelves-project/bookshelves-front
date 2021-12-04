@@ -21,8 +21,8 @@ export default {
   props: {
     text: {
       type: Boolean,
-      default: true,
-    },
-  },
+      default: true
+    }
+  }
 }
 </script>

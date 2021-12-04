@@ -14,17 +14,17 @@ export default {
   props: {
     to: {
       type: [String, Object],
-      default: () => {},
+      default: () => {}
     },
     order: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
   data() {
     return {
       colors: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
-      color: 'red',
+      color: 'red'
     }
   },
   created() {
@@ -33,8 +33,8 @@ export default {
   methods: {
     setColor() {
       this.color = this.colors[this.order % this.colors.length]
-    },
-  },
+    }
+  }
 }
 </script>
 

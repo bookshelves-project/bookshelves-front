@@ -80,27 +80,27 @@ export default {
           icon: 'feed',
           label: 'OPDS',
           title: 'OPDS: Open Publication Distribution System',
-          link: `${this.$apiUrlBase('/features/opds')}`,
+          link: `${this.$apiUrlBase('/features/opds')}`
         },
         {
           icon: 'catalog',
           label: 'Catalog',
           title: 'Catalog: simple interface for eReader browser',
-          link: `${this.$apiUrlBase('/features/catalog')}`,
+          link: `${this.$apiUrlBase('/features/catalog')}`
         },
         {
           icon: 'ereader',
           label: 'Webreader',
           title: 'Webreader: to read an eBook directly in your browser',
-          link: `${this.$apiUrlBase('/features/webreader')}`,
-        },
-      ],
+          link: `${this.$apiUrlBase('/features/webreader')}`
+        }
+      ]
     }
   },
   computed: {
     desc() {
       return metadata.website.description
-    },
-  },
+    }
+  }
 }
 </script>

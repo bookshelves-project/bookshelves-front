@@ -1,7 +1,9 @@
 <template>
   <section aria-labelledby="book-header">
     <div class="overflow-hidden bg-white rounded-lg shadow dark:bg-gray-800">
-      <h2 id="profile-overview-title" class="sr-only">Profile Overview</h2>
+      <h2 id="profile-overview-title" class="sr-only">
+        Profile Overview
+      </h2>
       <div class="p-6 bg-white dark:bg-gray-800">
         <div class="sm:flex sm:items-center sm:justify-between">
           <div class="sm:flex sm:space-x-5">
@@ -44,10 +46,8 @@
                 "
               >
                 <svg-icon name="epub" class="w-4 h-4" />
-                <span class="ml-1"
-                  >EPUB {{ book.epub.size }} into
-                  {{ formatLanguage(book.language).label }}</span
-                >
+                <span class="ml-1">EPUB {{ book.epub.size }} into
+                  {{ formatLanguage(book.language).label }}</span>
               </p>
             </div>
           </div>
@@ -132,15 +132,15 @@ export default {
   props: {
     book: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
       formatLanguage,
-      isFavorite: false,
+      isFavorite: false
     }
-  },
+  }
 }
 </script>
 

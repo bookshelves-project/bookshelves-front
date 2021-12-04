@@ -54,7 +54,7 @@ export default {
     return {
       loading: false,
       title: 'Admin',
-      description: 'Admin dashboard',
+      description: 'Admin dashboard'
     }
   },
   head() {
@@ -66,9 +66,9 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
   },
   methods: {
@@ -81,14 +81,14 @@ export default {
             title: 'Update success',
             text: `${res.success}, found ${res.books} books`,
             icon: 'success',
-            confirmButtonText: 'Understand',
+            confirmButtonText: 'Understand'
           })
         } else {
           this.$swal({
             title: 'Oops!',
             text: 'It seems no new eBook is available in books-raw directory',
             icon: 'error',
-            confirmButtonText: 'Understand',
+            confirmButtonText: 'Understand'
           })
         }
 
@@ -99,11 +99,11 @@ export default {
           title: 'Oops!',
           text: 'Unknown error spawn!',
           icon: 'error',
-          confirmButtonText: 'Understand',
+          confirmButtonText: 'Understand'
         })
         this.loading = false
       }
-    },
-  },
+    }
+  }
 }
 </script>

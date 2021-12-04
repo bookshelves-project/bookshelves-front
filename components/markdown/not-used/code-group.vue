@@ -33,21 +33,21 @@ export default {
   data() {
     return {
       tabs: [],
-      activeTabIndex: 0,
+      activeTabIndex: 0
     }
   },
   watch: {
     activeTabIndex(newValue, oldValue) {
       this.switchTab(newValue)
-    },
+    }
   },
   mounted() {
     this.tabs = this.$slots.default
-      .filter((slot) => Boolean(slot.componentOptions))
+      .filter(slot => Boolean(slot.componentOptions))
       .map((slot) => {
         return {
           label: slot.componentOptions.propsData.label,
-          elm: slot.elm,
+          elm: slot.elm
         }
       })
     this.$nextTick(this.updateHighlighteUnderlinePosition)
@@ -71,8 +71,8 @@ export default {
       const highlightUnderline = this.$refs['highlight-underline']
       highlightUnderline.style.left = `${activeTab.offsetLeft}px`
       highlightUnderline.style.width = `${activeTab.clientWidth}px`
-    },
-  },
+    }
+  }
 }
 </script>
 

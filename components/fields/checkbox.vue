@@ -39,24 +39,24 @@ export default {
   props: {
     value: {
       type: [Boolean, Array],
-      default: false,
+      default: false
     },
     name: {
       type: String,
-      default: null,
+      default: null
     },
     label: {
       type: String,
-      default: null,
+      default: null
     },
     valueData: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   data() {
     return {
-      checkbox: false,
+      checkbox: false
     }
   },
   watch: {
@@ -65,10 +65,10 @@ export default {
     },
     checkbox(newValue, oldValue) {
       this.$emit('input', this.checkbox)
-    },
+    }
   },
   created() {
     this.checkbox = this.value
-  },
+  }
 }
 </script>

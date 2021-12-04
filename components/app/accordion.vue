@@ -40,14 +40,14 @@
 export default {
   data() {
     return {
-      isOpen: false,
+      isOpen: false
     }
   },
 
   methods: {
     toggleAccordion() {
       this.isOpen = !this.isOpen
-    },
-  },
+    }
+  }
 }
 </script>

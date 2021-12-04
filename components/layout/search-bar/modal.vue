@@ -22,11 +22,7 @@
             border border-gray-300
             rounded-md
           "
-          ><span class="sr-only">Press </span
-          ><kbd class="font-sans"
-            ><abbr title="Escape" class="no-underline">Esc </abbr></kbd
-          ><span class="sr-only"> to quit search</span></span
-        >
+        ><span class="sr-only">Press </span><kbd class="font-sans"><abbr title="Escape" class="no-underline">Esc </abbr></kbd><span class="sr-only"> to quit search</span></span>
       </div>
     </div>
     <div class="mt-6 m-4">
@@ -134,7 +130,9 @@
     </div>
     <div class="mx-6 my-4">
       <div v-if="results.type" class="flex items-center">
-        <div class="ml-auto font-semibold">Powered by</div>
+        <div class="ml-auto font-semibold">
+          Powered by
+        </div>
         <a
           v-if="results.type === 'meilisearch'"
           href="https://www.meilisearch.com/"
@@ -185,8 +183,8 @@ export default {
       form: {
         authors: true,
         series: true,
-        books: true,
-      },
+        books: true
+      }
     }
   },
   watch: {
@@ -194,7 +192,7 @@ export default {
       if (newValue.length >= 3) {
         this.searchResults(newValue)
       }
-    },
+    }
   },
   mounted() {
     this.$refs.search.focus()
@@ -214,7 +212,7 @@ export default {
         const data = await this.$axios.$get(
           `/search?${qs.stringify({
             q: input,
-            types: types.join(','),
+            types: types.join(',')
           })}`
         )
         this.results = data.data
@@ -222,7 +220,7 @@ export default {
         console.error(error)
       }
       this.loading = false
-    },
-  },
+    }
+  }
 }
 </script>

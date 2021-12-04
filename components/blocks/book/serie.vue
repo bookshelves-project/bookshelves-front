@@ -10,7 +10,9 @@
       },
     }"
   >
-    <template #title> {{ book.serie.title }}'s series </template>
+    <template #title>
+      {{ book.serie.title }}'s series
+    </template>
     <template #subtitle>
       Current: vol. {{ book.volume }}, limited to 10 next volumes.
     </template>
@@ -23,13 +25,13 @@ export default {
   props: {
     book: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
       books: [],
-      loaded: false,
+      loaded: false
     }
   },
   async mounted() {
@@ -48,7 +50,7 @@ export default {
           console.error(error)
         }
       }
-    },
-  },
+    }
+  }
 }
 </script>

@@ -51,43 +51,43 @@ export default {
   name: 'Gallery',
   props: {
     value: {
-      default: () => {},
+      default: () => {}
     },
     gallery: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     label: {
       type: String,
-      default: '',
+      default: ''
     },
     accept: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     name: {
       type: String,
-      default: '',
+      default: ''
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     helper: {
       type: String,
-      default: '',
+      default: ''
     },
     // Example
     // { form: form, entity: post, route: 'posts', media: 'pictures' }
     delete: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
       filesList: [],
-      filesToDeleted: [],
+      filesToDeleted: []
     }
   },
   watch: {
@@ -95,7 +95,7 @@ export default {
       if (newValue) {
         this.filesList = newValue.media
       }
-    },
+    }
   },
   created() {
     if (this.gallery) {
@@ -113,8 +113,8 @@ export default {
     },
     upload(files) {
       this.$emit('input', files)
-    },
-  },
+    }
+  }
 }
 </script>
 

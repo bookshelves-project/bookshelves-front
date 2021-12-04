@@ -104,58 +104,58 @@
 <script>
 import { mapMutations, mapGetters } from 'vuex'
 import { isEmpty } from 'lodash'
-import { pushIfNotExist } from '@/plugins/utils/methods'
+import { pushIfNotExist } from '~/plugins/utils/methods'
 export default {
   name: 'FiltersOption',
   props: {
     align: {
       type: String,
-      default: 'left',
+      default: 'left'
     },
     icon: {
       type: String,
-      default: null,
+      default: null
     },
     label: {
       type: String,
-      default: null,
+      default: null
     },
     filter: {
       type: String,
-      default: '',
+      default: ''
     },
     options: {
       type: [Array, Function],
-      default: () => [],
+      default: () => []
     },
     type: {
       type: String,
       default: 'checkbox',
-      validator: (val) => ['checkbox', 'radio', 'button'].includes(val),
+      validator: val => ['checkbox', 'radio', 'button'].includes(val)
     },
     clickClose: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  data() {
+  data () {
     return {
       languages: {
-        data: [],
+        data: []
       },
       optionsData: [],
       radio: null,
-      checkboxes: [],
+      checkboxes: []
     }
   },
   computed: {
     ...mapGetters({
-      storeQueries: 'filters/queries',
-    }),
+      storeQueries: 'filters/queries'
+    })
   },
   watch: {
     checkboxes: {
-      handler(newValue) {
+      handler (newValue) {
         let newQuery = []
         newQuery = newValue.join(',')
         if (isEmpty(newQuery)) {
@@ -164,13 +164,13 @@ export default {
           this.filterBy(newQuery)
         }
       },
-      deep: true,
-    },
+      deep: true
+    }
     // radio(newValue) {
     //   console.log(newValue)
     // },
   },
-  async created() {
+  async created () {
     /**
      * Set optionsData from options
      */
@@ -185,9 +185,9 @@ export default {
     isEmpty,
     ...mapMutations({
       setQueries: 'filters/setQueries',
-      setClear: 'filters/setClear',
+      setClear: 'filters/setClear'
     }),
-    setCheckboxesValues() {
+    setCheckboxesValues () {
       // eslint-disable-next-line no-unused-vars
       for (const [key, option] of Object.entries(this.optionsData)) {
         if (option.enabled) {
@@ -201,20 +201,20 @@ export default {
      * @param {string} newQuery
      * @param {boolean} replace
      */
-    filterBy(newQuery, replace = false) {
+    filterBy (newQuery, replace = false) {
       newQuery = { [this.filter]: newQuery }
       const query = this.$route.query
 
       if (replace) {
         this.$router.replace({
-          query: { query: newQuery },
+          query: { query: newQuery }
         })
 
         this.updateStore(newQuery)
       } else {
         this.$router.push({
           name: this.$route.name,
-          query: { ...query, ...newQuery },
+          query: { ...query, ...newQuery }
         })
 
         this.updateStore({ ...query, ...newQuery })
@@ -223,15 +223,15 @@ export default {
     /**
      * Remove current query
      */
-    removeQuery() {
+    removeQuery () {
       const query = Object.assign({}, this.$route.query)
       delete query[this.filter]
       this.$router.push({ query })
       this.updateStore(query)
     },
-    updateStore(query) {
+    updateStore (query) {
       this.setQueries({ ...query })
-    },
-  },
+    }
+  }
 }
 </script>

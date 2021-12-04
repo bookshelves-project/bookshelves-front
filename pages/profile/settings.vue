@@ -49,16 +49,16 @@ export default {
   name: 'PageSettings',
   middleware: 'auth',
   async asyncData({ app }) {
-    const user = await app.$axios.$get(`/profile`)
+    const user = await app.$axios.$get('/profile')
 
     return {
-      user: user.data,
+      user: user.data
     }
   },
   data() {
     return {
       title: 'Settings',
-      description: 'Update your settings',
+      description: 'Update your settings'
     }
   },
   head() {
@@ -70,10 +70,10 @@ export default {
       meta: [
         ...dynamicMetadata.default({
           title,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
-  },
+  }
 }
 </script>

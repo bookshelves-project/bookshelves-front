@@ -33,7 +33,7 @@
                 <span
                   v-if="
                     book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
+                      authorId !== book.authors.length - 1
                   "
                 >
                   &
@@ -56,7 +56,7 @@ import {
   formatLanguage,
   objectIsEmpty,
   formatAuthors,
-  capitalize,
+  capitalize
 } from '~/plugins/utils/methods'
 
 export default {
@@ -66,12 +66,12 @@ export default {
   async asyncData({ app, params }) {
     const [currentBook, books] = await Promise.all([
       app.$axios.$get(`/books/${params.author}/${params.slug}`),
-      app.$axios.$get(`/books/related/${params.author}/${params.slug}`),
+      app.$axios.$get(`/books/related/${params.author}/${params.slug}`)
     ])
 
     return {
       currentBook: currentBook.data,
-      books: books.data,
+      books: books.data
     }
   },
   data() {
@@ -80,8 +80,8 @@ export default {
       objectIsEmpty,
       formatAuthors,
       capitalize,
-      title: `Related books & series for`,
-      description: `List of all results for related books & series...`,
+      title: 'Related books & series for',
+      description: 'List of all results for related books & series...'
     }
   },
   head() {
@@ -94,10 +94,10 @@ export default {
           title,
           description: this.description,
           url: this.$nuxt.$route.path,
-          image: this.currentBook.cover.og,
-        }),
-      ],
+          image: this.currentBook.cover.og
+        })
+      ]
     }
-  },
+  }
 }
 </script>

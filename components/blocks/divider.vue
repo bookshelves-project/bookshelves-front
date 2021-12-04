@@ -13,6 +13,6 @@
 
 <script>
 export default {
-  name: 'Divider',
+  name: 'Divider'
 }
 </script>

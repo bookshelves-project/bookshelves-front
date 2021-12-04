@@ -57,17 +57,17 @@ export default {
   props: {
     filterType: {
       type: String,
-      default: null,
+      default: null
     },
     filterValue: {
       type: [String, Number],
-      default: null,
-    },
+      default: null
+    }
   },
   methods: {
-    removeQuery() {
+    removeQuery () {
       this.$emit('remove', this.filterType)
-    },
-  },
+    }
+  }
 }
 </script>

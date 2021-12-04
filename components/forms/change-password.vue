@@ -55,11 +55,11 @@ export default {
       form: {
         current_password: '',
         password: '',
-        password_confirmation: '',
+        password_confirmation: ''
       },
       isLoading: false,
       passwordUpdate: false,
-      passwordsMatch: false,
+      passwordsMatch: false
     }
   },
   watch: {
@@ -69,7 +69,7 @@ export default {
     'form.password_confirmation'(newValue, oldValue) {
       this.passwordUpdate = true
       this.checkPasswords()
-    },
+    }
   },
   methods: {
     async submitPassword() {
@@ -78,19 +78,19 @@ export default {
         this.form = {
           current_password: '',
           password: '',
-          password_confirmation: '',
+          password_confirmation: ''
         }
         this.$nuxt.$emit('notification', {
           title: 'Success!',
           text: 'Your password has been updated.',
-          type: 'success',
+          type: 'success'
         })
       } catch (error) {
         console.error(error)
         this.$nuxt.$emit('notification', {
           title: 'Error!',
           text: 'An error happened.',
-          type: 'error',
+          type: 'error'
         })
       }
     },
@@ -100,7 +100,7 @@ export default {
       } else {
         this.passwordsMatch = false
       }
-    },
-  },
+    }
+  }
 }
 </script>

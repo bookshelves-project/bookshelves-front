@@ -6,7 +6,9 @@
       </template>
     </app-header>
     <div class="mb-10">
-      <h2 class="mb-6 font-handlee text-2xl">Genres</h2>
+      <h2 class="mb-6 font-handlee text-2xl">
+        Genres
+      </h2>
       <blocks-content-list
         :items="genres"
         name="genres"
@@ -14,7 +16,9 @@
       />
     </div>
     <div class="mb-10">
-      <h2 class="mb-6 font-handlee text-2xl">Tags</h2>
+      <h2 class="mb-6 font-handlee text-2xl">
+        Tags
+      </h2>
       <blocks-content-list :items="tags" name="tags" route-name="tags-slug" />
     </div>
   </div>
@@ -36,26 +40,26 @@ export default {
       app.$axios.$get(
         `/tags?${qs.stringify({
           'filter[type]': 'genre',
-          ...queryList,
+          ...queryList
         })}`
       ),
       app.$axios.$get(
         `/tags?${qs.stringify({
           'filter[type]': 'tag',
-          ...queryList,
+          ...queryList
         })}`
-      ),
+      )
     ])
 
     return {
       genres: genres.data,
-      tags: tags.data,
+      tags: tags.data
     }
   },
   data() {
     return {
       title: 'Genres & Tags',
-      description: 'Find books and series by their genres and tags.',
+      description: 'Find books and series by their genres and tags.'
     }
   },
   head() {
@@ -67,11 +71,11 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
   },
-  watchQuery: ['filter[negligible]'],
+  watchQuery: ['filter[negligible]']
 }
 </script>

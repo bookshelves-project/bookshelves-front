@@ -1,23 +1,11 @@
 <template>
-  <nuxt-link :to="localePath(route)" class="group entity-card" :title="title">
+  <nuxt-link :to="ctx.localePath(route)" class="group entity-card" :title="title">
     <article
-      class="
-        relative
-        transition-colors
-        duration-100
-        rounded-md
-        sm:grid sm:grid-cols-2 sm:gap-3
-        group-hover:bg-gray-100
-        dark:group-hover:bg-gray-800
-      "
+      class="relative transition-colors duration-100 rounded-md sm:grid sm:grid-cols-2 sm:gap-3 group-hover:bg-gray-100 dark:group-hover:bg-gray-800 h-full"
     >
       <div class="h-32 overflow-hidden sm:aspect-w-2 sm:aspect-h-3">
-        <app-img
-          :src="cover"
-          :color="color"
-          :title="title"
-          class="cover object-cover"
-        />
+        <app-img :src="cover" :color="color" :title="title" class="cover object-cover" />
+        <!-- <img :src="cover" :color="color" :title="title" class="cover object-cover" /> -->
       </div>
       <div>
         <h2 class="font-semibold">
@@ -34,48 +22,40 @@
   </nuxt-link>
 </template>
 
-<script>
-export default {
-  name: 'EntityCard',
-  props: {
-    cover: {
-      type: String,
-      default: '/images/no-cover.webp',
-    },
-    route: {
-      type: [Object, String],
-      default: () => '/',
-      required: true,
-    },
-    color: {
-      type: String,
-      default: '#564fcc',
-    },
-    title: {
-      type: String,
-      default: null,
-    },
-    shadow: {
-      type: Boolean,
-      default: true,
-    },
-    limitedHeight: {
-      type: Boolean,
-      default: true,
-    },
+<script setup lang="ts">
+import { PropType } from '@vue/runtime-dom'
+import { Location } from 'vue-router'
+
+const props = defineProps({
+  cover: {
+    type: String,
+    default: '/images/no-cover.webp'
   },
-}
+  color: {
+    type: String,
+    default: ''
+  },
+  title: {
+    type: String,
+    default: ''
+  },
+  route: {
+    type: [Object, String] as PropType<Location>,
+    default: '/'
+  }
+})
+
+const ctx = useContext()
+
 </script>
 
-<style lang="postcss" scoped>
-.entity-card::v-deep {
-  & .cover {
-    width: 97%;
-    height: 97%;
-    & .img {
-      @apply rounded-sm object-top h-full w-full;
-      box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
-    }
-  }
+<style lang="css" scoped>
+.entity-card::v-deep .cover {
+  width: 97%;
+  height: 99%;
+}
+.entity-card::v-deep img {
+  @apply rounded-sm object-top h-full w-full;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
 }
 </style>

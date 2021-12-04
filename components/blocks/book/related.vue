@@ -12,11 +12,13 @@
       },
     }"
   >
-    <template #title> Related books & series </template>
+    <template #title>
+      Related books & series
+    </template>
     <template #subtitle>
       Based on tags & genre, not in same series. Limited to 10 first
-      results.</template
-    >
+      results.
+    </template>
   </blocks-book-slider>
 </template>
 
@@ -28,13 +30,13 @@ export default {
   props: {
     book: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
       books: [],
-      loaded: false,
+      loaded: false
     }
   },
   async mounted() {
@@ -48,7 +50,7 @@ export default {
             `/books/related/${this.book.meta.author}/${
               this.book.meta.slug
             }?${qs.stringify({
-              limit: 10,
+              limit: 10
             })}`
           )
           this.books = books.data
@@ -57,7 +59,7 @@ export default {
           console.error(error)
         }
       }
-    },
-  },
+    }
+  }
 }
 </script>

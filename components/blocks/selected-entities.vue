@@ -106,20 +106,20 @@ export default {
   props: {
     endpoint: {
       type: String,
-      default: '/books/selection',
+      default: '/books/selection'
     },
     orientation: {
       type: String,
-      default: null,
+      default: null
     },
     eyebrow: {
       type: String,
-      default: null,
+      default: null
     },
     title: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   data() {
     return {
@@ -136,28 +136,28 @@ export default {
         grabCursor: true,
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          prevEl: '.swiper-button-prev'
         },
         paginationClickable: true,
         pagination: {
           el: '.swiper-pagination',
-          clickable: true,
+          clickable: true
         },
         breakpoints: {
           500: {
             slidesPerView: 2,
-            slidesPerGroup: 2,
+            slidesPerGroup: 2
           },
           800: {
             slidesPerView: 3,
-            slidesPerGroup: 3,
+            slidesPerGroup: 3
           },
           1200: {
             slidesPerView: 4,
-            slidesPerGroup: 4,
-          },
-        },
-      },
+            slidesPerGroup: 4
+          }
+        }
+      }
     }
   },
   async mounted() {
@@ -176,8 +176,8 @@ export default {
         console.error(error)
         this.isDisplay = false
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

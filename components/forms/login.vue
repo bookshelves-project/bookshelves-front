@@ -62,16 +62,16 @@ export default {
       form: {
         email: '',
         password: '',
-        remember: false,
+        remember: false
       },
       formTesting: {
         email: 'admin@mail.com',
         password: 'password',
-        remember: true,
+        remember: true
       },
       isDev: process.env.NODE_ENV !== 'production',
       errors: {},
-      isLoading: false,
+      isLoading: false
     }
   },
   methods: {
@@ -129,7 +129,7 @@ export default {
             this.$nuxt.$emit('notification', {
               title,
               text,
-              type: 'error',
+              type: 'error'
             })
 
             this.isLoading = false
@@ -137,7 +137,7 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    },
-  },
+    }
+  }
 }
 </script>

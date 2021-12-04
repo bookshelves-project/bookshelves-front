@@ -41,7 +41,9 @@
         </template>
         <template #tertiary>
           <div v-if="entity.serie" class="mt-5">
-            <div class="font-semibold">Serie &#8212;</div>
+            <div class="font-semibold">
+              Serie &#8212;
+            </div>
             <div class="italic break-all">
               {{ entity.serie }}
             </div>
@@ -58,7 +60,7 @@ import EntityCard from './entity-card.vue'
 import {
   capitalize,
   formatLanguage,
-  formatAuthors,
+  formatAuthors
 } from '~/plugins/utils/methods'
 
 export default {
@@ -68,19 +70,19 @@ export default {
     entityType: {
       type: String,
       default: 'book',
-      validator: (val) => ['book', 'serie', 'author'].includes(val),
+      validator: val => ['book', 'serie', 'author'].includes(val)
     },
     entities: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   data() {
     return {
       capitalize,
       formatLanguage,
-      formatAuthors,
+      formatAuthors
     }
-  },
+  }
 }
 </script>

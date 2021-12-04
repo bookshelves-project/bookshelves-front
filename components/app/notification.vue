@@ -62,12 +62,12 @@ export default {
   props: {
     id: {
       type: Number,
-      default: 0,
+      default: 0
     },
     notification: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   computed: {
     color() {
@@ -76,7 +76,7 @@ export default {
         warning: 'text-orange-400',
         error: 'text-red-400',
         information: 'text-blue-400',
-        default: 'text-blue-400',
+        default: 'text-blue-400'
       }
       return colors[this.notification.type] || colors.default
     },
@@ -86,15 +86,15 @@ export default {
         warning: 'bg-orange-100',
         error: 'bg-red-100',
         information: 'bg-blue-100',
-        default: 'bg-blue-100',
+        default: 'bg-blue-100'
       }
       return colors[this.notification.type] || colors.default
-    },
+    }
   },
   methods: {
     clear() {
       this.$emit('delete', this.notification)
-    },
-  },
+    }
+  }
 }
 </script>

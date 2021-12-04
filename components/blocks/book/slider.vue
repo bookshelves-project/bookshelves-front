@@ -106,20 +106,20 @@ export default {
   props: {
     bookData: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     loaded: {
       type: Boolean,
-      default: false,
+      default: false
     },
     books: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     link: {
       type: [String, Object],
-      default: '',
-    },
+      default: ''
+    }
   },
   data() {
     return {
@@ -130,8 +130,8 @@ export default {
         grabCursor: true,
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
+          prevEl: '.swiper-button-prev'
+        }
       },
       thumbs: {
         loop: false,
@@ -142,26 +142,26 @@ export default {
         paginationClickable: true,
         pagination: {
           el: '.swiper-pagination',
-          clickable: true,
+          clickable: true
         },
         breakpoints: {
           500: {
-            slidesPerView: 2,
+            slidesPerView: 2
           },
           800: {
-            slidesPerView: 3,
+            slidesPerView: 3
           },
           1200: {
-            slidesPerView: 5,
-          },
-        },
-      },
+            slidesPerView: 5
+          }
+        }
+      }
     }
   },
   watch: {
     loaded(newValue, oldValue) {
       this.isLoaded = newValue
-    },
+    }
   },
   methods: {
     mainChange() {
@@ -176,8 +176,8 @@ export default {
     thumbsEvent(index) {
       const main = this.$refs.swiperMain.$swiper
       main.slideTo(index)
-    },
-  },
+    }
+  }
 }
 </script>
 

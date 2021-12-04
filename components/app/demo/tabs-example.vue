@@ -18,6 +18,6 @@
 
 <script>
 export default {
-  name: 'AppTabsExample',
+  name: 'AppTabsExample'
 }
 </script>

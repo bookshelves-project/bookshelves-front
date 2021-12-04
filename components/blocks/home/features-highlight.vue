@@ -42,14 +42,14 @@ export default {
           position: 'right',
           blockquote: {
             text: "Maybe it's not quite legal but it's cool!",
-            author: 'An enthusiastic reader',
+            author: 'An enthusiastic reader'
           },
           image: 'book_reading_alt.svg',
           text: 'A selection of more than a hundred works, find the one that will strike a chord with your soul. And come back for ten more. Search by title, author or series then download all the books of an author or series if you wish!',
           cta: {
             route: { name: 'books' },
-            text: 'Discover all books',
-          },
+            text: 'Discover all books'
+          }
         },
         {
           title: 'Want to know your eReader?',
@@ -57,14 +57,14 @@ export default {
           position: 'left',
           blockquote: {
             text: 'The world of eReaders is so vast!',
-            author: 'A novice user',
+            author: 'A novice user'
           },
           image: 'ereaders.svg',
           text: 'Detailed guides are there to explain how to best manage your eReader but also to get to know the eBooks better in order to modify them if you wish.',
           cta: {
             route: { name: 'guides' },
-            text: 'Discover guides',
-          },
+            text: 'Discover guides'
+          }
         },
         {
           title: 'Features, read as you wish',
@@ -72,20 +72,20 @@ export default {
           position: 'right',
           blockquote: {
             text: 'I am only interested in OPDS feeds adapted to my eReader with Koreader OS.',
-            author: 'A very experimented reader',
+            author: 'A very experimented reader'
           },
           image: 'book_reading.svg',
           text: 'Features offer a lot of extra options to find and read eBooks. You can download directly eBooks from your eReader with <b>Catalog</b> or you can use <b>OPDS</b> (Open Publication Distribution System) feed to get all eBooks on your favorite application. And if you want to read eBook directly in your browser with <b>Webreader</b>.',
           cta: {
             route: {
               name: 'type-slug',
-              params: { type: 'pages', slug: 'features' },
+              params: { type: 'pages', slug: 'features' }
             },
-            text: 'Discover Features',
-          },
-        },
-      ],
+            text: 'Discover Features'
+          }
+        }
+      ]
     }
-  },
+  }
 }
 </script>

@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       notifications: [],
-      timeout: 4000,
+      timeout: 4000
     }
   },
   mounted() {
@@ -42,9 +42,9 @@ export default {
     },
     clear(notif) {
       this.notifications = this.notifications.filter(
-        (x) => x.date !== notif.date
+        x => x.date !== notif.date
       )
-    },
-  },
+    }
+  }
 }
 </script>

@@ -15,7 +15,7 @@
         duration-75
       "
     >
-      <div class="absolute inset-0" @click="toggleCheckbox(option.value)"></div>
+      <div class="absolute inset-0" @click="toggleCheckbox(option.value)" />
       <div class="flex items-center h-5">
         <input
           :id="option.value"
@@ -31,7 +31,7 @@
             border-gray-300
             rounded
           "
-        />
+        >
       </div>
       <div class="ml-3 text-sm w-full">
         <label
@@ -46,52 +46,52 @@
 </template>
 
 <script>
-import { pushIfNotExist } from '@/plugins/utils/methods'
+import { pushIfNotExist } from '~/plugins/utils/methods'
 export default {
   name: 'CheckboxesFilter',
   props: {
     options: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     value: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     filter: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
-  data() {
+  data () {
     return {
       checkboxes: [],
-      blockWatch: false,
+      blockWatch: false
     }
   },
   watch: {
-    value(newValue, oldValue) {
+    value (newValue, oldValue) {
       this.checkboxes = newValue
     },
-    checkboxes() {
+    checkboxes () {
       if (!this.blockWatch) {
         this.$emit('input', this.checkboxes)
       }
     },
-    '$route.query'(newValue) {
+    '$route.query' (newValue) {
       this.blockWatch = true
       const query = this.$route.query[this.filter]
       if (query === undefined) {
         this.checkboxes = []
       }
       this.blockWatch = false
-    },
+    }
   },
-  created() {
+  created () {
     this.checkbox = this.value
   },
   methods: {
-    toggleCheckbox(value) {
+    toggleCheckbox (value) {
       if (this.checkboxes.includes(value)) {
         const index = this.checkboxes.indexOf(value)
         if (index !== -1) {
@@ -100,7 +100,7 @@ export default {
       } else {
         pushIfNotExist(this.checkboxes, value)
       }
-    },
-  },
+    }
+  }
 }
 </script>

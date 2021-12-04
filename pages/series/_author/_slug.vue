@@ -20,26 +20,25 @@
       </blocks-button-download>
       <template #content>
         <div v-if="serie.tags && serie.tags.length" class="lg:flex">
-          <h2 class="mr-1">Tags:</h2>
+          <h2 class="mr-1">
+            Tags:
+          </h2>
           <ul>
-            <li
-              v-for="(tag, id) in serie.tags"
-              :key="id"
-              class="inline-block dark:text-gray-100"
-            >
-              <span>{{ tag.name }}</span
-              ><span
+            <li v-for="(tag, id) in serie.tags" :key="id" class="inline-block dark:text-gray-100">
+              <span>{{ tag.name }}</span>
+              <span
                 v-if="serie.tags.length > 1 && id !== serie.tags.length - 1"
                 class="mr-1 text-gray-900 dark:text-gray-100"
-                >,</span
-              >
+              >,</span>
             </li>
           </ul>
         </div>
       </template>
     </app-header>
     <div>
-      <blocks-divider v-if="books">Books</blocks-divider>
+      <blocks-divider v-if="books">
+        Books
+      </blocks-divider>
       <div v-if="books" class="space-y-6 display-grid sm:space-y-0">
         <blocks-entity-card
           v-for="book in books"
@@ -62,24 +61,18 @@
               <span
                 v-if="
                   book.authors.length > 1 &&
-                  authorId !== book.authors.length - 1
+                    authorId !== book.authors.length - 1
                 "
-              >
-                ,
-              </span>
+              >,</span>
             </span>
           </template>
-          <template #tertiary> Vol. {{ book.volume }} </template>
+          <template #tertiary>
+            Vol. {{ book.volume }}
+          </template>
         </blocks-entity-card>
       </div>
       <div class="mt-6 mb-5">
-        <pagination
-          v-if="pages > 1"
-          :link-gen="linkGen"
-          :pages="pages"
-          :current-page="currentPage"
-        >
-        </pagination>
+        <pagination v-if="pages > 1" :link-gen="linkGen" :pages="pages" :current-page="currentPage"></pagination>
       </div>
     </div>
     <blocks-comments-template :entity="serie" />
@@ -87,13 +80,12 @@
 </template>
 
 <script>
-import qs from 'qs'
+import { stringify } from 'qs'
 import {
   getHostname,
   formatLanguage,
-  formatAuthors,
+  formatAuthors
 } from '~/plugins/utils/methods'
-import Pagination from '~/components/special/pagination.vue'
 
 export default {
   name: 'SeriesAuthorSlug',
@@ -103,11 +95,11 @@ export default {
     const [serie, books] = await Promise.all([
       app.$axios.$get(`/series/${params.author}/${params.slug}`),
       app.$axios.$get(
-        `/series/books/${params.author}/${params.slug}?${qs.stringify({
+        `/series/books/${params.author}/${params.slug}?${stringify({
           page: page || 1,
-          'per-page': 32,
+          perPage: 32
         })}`
-      ),
+      )
     ])
 
     return {
@@ -116,14 +108,14 @@ export default {
       pages: books.meta.last_page,
       currentPage: books.meta.current_page,
       perPage: books.meta.per_page,
-      total: books.meta.total,
+      total: books.meta.total
     }
   },
   data() {
     return {
       formatLanguage,
       formatAuthors,
-      getHostname,
+      getHostname
     }
   },
   head() {
@@ -137,46 +129,46 @@ export default {
           title,
           description: `Written by ${this.authors} with ${this.serie.count} books.`,
           url: this.$nuxt.$route.path,
-          image: this.serie.cover.og,
-        }),
-      ],
+          image: this.serie.cover.og
+        })
+      ]
     }
   },
   computed: {
     authors() {
       return formatAuthors(this.serie.authors)
-    },
+    }
   },
   watchQuery: ['page'],
   methods: {
     linkGen(pageNum) {
       return {
         name: this.$route.name,
-        query: pageNum === 1 ? {} : { page: pageNum },
+        query: pageNum === 1 ? {} : { page: pageNum }
       }
-    },
+    }
   },
   jsonld() {
     const breadcrumbs = [
       {
         url: this.$config.baseURL,
-        text: 'Home',
+        text: 'Home'
       },
       {
         url: `${this.$config.baseURL}/series`,
-        text: 'Series',
+        text: 'Series'
       },
       {
         url: `${this.$config.baseURL}/series/${this.$route.params.author}/${this.$route.params.slug}`,
-        text: this.serie.title,
-      },
+        text: this.serie.title
+      }
     ]
     const authors = this.serie.authors.map((author, index) => ({
       '@type': 'Person',
       familyName: author.lastname,
       givenName: author.firstname,
       name: author.name,
-      url: `${this.$config.baseURL}/authors/${author.meta.slug}`,
+      url: `${this.$config.baseURL}/authors/${author.meta.slug}`
     }))
 
     const items = breadcrumbs.map((item, index) => ({
@@ -184,8 +176,8 @@ export default {
       position: index + 1,
       item: {
         '@id': item.url,
-        name: item.text,
-      },
+        name: item.text
+      }
     }))
     return {
       '@context': 'https://schema.org',
@@ -197,9 +189,9 @@ export default {
         bookFormat: 'http://schema.org/BookSeries',
         image: this.serie.cover.thumbnail,
         inLanguage: formatLanguage(this.serie.language).label,
-        name: this.serie.title,
-      },
+        name: this.serie.title
+      }
     }
-  },
+  }
 }
 </script>

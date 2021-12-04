@@ -68,13 +68,13 @@ export default {
   props: {
     horizontal: {
       type: Boolean,
-      required: false,
-    },
+      required: false
+    }
   },
   data() {
     return {
       loading: true,
-      tabs: [],
+      tabs: []
     }
   },
   created() {
@@ -88,8 +88,8 @@ export default {
       this.tabs.forEach((tab) => {
         tab.isActive = tab.name === selectedTab.name
       })
-    },
-  },
+    }
+  }
 }
 </script>
 

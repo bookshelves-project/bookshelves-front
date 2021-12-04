@@ -53,18 +53,18 @@
 import {
   formatLanguage,
   formatAuthors,
-  formatTags,
+  formatTags
 } from '~/plugins/utils/methods'
 
 export default {
   name: 'BooksAuthorSlug',
   async asyncData({ app, params }) {
     const [book] = await Promise.all([
-      app.$axios.$get(`/books/${params.author}/${params.slug}`),
+      app.$axios.$get(`/books/${params.author}/${params.slug}`)
     ])
 
     return {
-      book: book.data,
+      book: book.data
     }
   },
   head() {
@@ -88,9 +88,9 @@ export default {
               : null,
             bookAuthor: authors,
             bookReleaseDate: this.book.publishDate,
-            bookTag: this.formatTags(this.book.tags),
-          }),
-        ],
+            bookTag: this.formatTags(this.book.tags)
+          })
+        ]
       }
     }
   },
@@ -101,12 +101,12 @@ export default {
         ? `${this.book.serie.title}, vol. ${this.book.volume}, `
         : ''
       return `${serie}into ${lang}`
-    },
+    }
   },
   methods: {
     formatLanguage,
     formatAuthors,
-    formatTags,
-  },
+    formatTags
+  }
 }
 </script>

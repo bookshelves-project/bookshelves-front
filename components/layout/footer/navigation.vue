@@ -23,8 +23,8 @@ export default {
   name: 'LayoutFooterNavigation',
   computed: {
     ...mapGetters({
-      navigation: 'nav/footer',
-    }),
-  },
+      navigation: 'nav/footer'
+    })
+  }
 }
 </script>

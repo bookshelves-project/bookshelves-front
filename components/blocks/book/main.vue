@@ -32,15 +32,13 @@
                     })
                   "
                   class="internal-link"
-                  >{{ author.name }}</nuxt-link
-                >
+                >{{ author.name }}</nuxt-link>
                 <span
                   v-if="
                     book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
+                      authorId !== book.authors.length - 1
                   "
-                  >&</span
-                >
+                >&</span>
               </span>
             </h2>
           </dd>
@@ -82,8 +80,9 @@
                 })
               "
               class="internal-link"
-              >{{ book.publisher.name }}</nuxt-link
             >
+              {{ book.publisher.name }}
+            </nuxt-link>
           </dd>
         </div>
         <div v-if="book.publishDate" class="sm:col-span-1">
@@ -162,10 +161,10 @@
                   })
                 "
                 class="internal-link"
-                >{{ genre.name }}</nuxt-link
-              ><span v-if="genreId !== book.genres.length - 1" class="mr-1"
-                >,</span
-              >
+              >{{ genre.name }}</nuxt-link><span
+                v-if="genreId !== book.genres.length - 1"
+                class="mr-1"
+              >,</span>
             </span>
           </dd>
         </div>
@@ -185,8 +184,7 @@
                   })
                 "
                 class="internal-link"
-                >{{ tag.name }}</nuxt-link
-              ><span v-if="tagId !== book.tags.length - 1" class="mr-1">,</span>
+              >{{ tag.name }}</nuxt-link><span v-if="tagId !== book.tags.length - 1" class="mr-1">,</span>
             </span>
           </dd>
         </div>
@@ -226,13 +224,13 @@ export default {
   props: {
     book: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
-      formatLanguage,
+      formatLanguage
     }
-  },
+  }
 }
 </script>

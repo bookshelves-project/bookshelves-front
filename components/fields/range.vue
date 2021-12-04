@@ -34,31 +34,31 @@ export default {
   props: {
     value: {
       type: [String, Number],
-      default: 0,
+      default: 0
     },
     name: {
       type: String,
-      default: '',
+      default: ''
     },
     label: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   data() {
     return {
       range: 5,
-      list: ['woman', 'non-binary', 'man'],
+      list: ['woman', 'non-binary', 'man']
     }
   },
   computed: {
     cssVars() {
       return {
         '--list': this.list.length,
-        '--step': '12px',
+        '--step': '12px'
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

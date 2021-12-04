@@ -53,37 +53,37 @@ export default {
   props: {
     dataList: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     title: {
       type: String,
-      default: '',
+      default: ''
     },
     subtitle: {
       type: String,
-      default: '',
+      default: ''
     },
     emptyList: {
       type: String,
-      default: '',
+      default: ''
     },
     loading: {
       type: Boolean,
-      default: true,
+      default: true
     },
     icon: {
       type: String,
-      default: '',
+      default: ''
     },
     canDelete: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
       list: [],
-      isLoading: true,
+      isLoading: true
     }
   },
   watch: {
@@ -92,7 +92,7 @@ export default {
     },
     loading(newValue, oldValue) {
       this.isLoading = this.loading
-    },
+    }
   },
   mounted() {
     this.list = this.dataList
@@ -100,11 +100,11 @@ export default {
   },
   methods: {
     destroy(data) {
-      const list = this.list.filter((item) => item.meta.slug !== data.meta.slug)
+      const list = this.list.filter(item => item.meta.slug !== data.meta.slug)
       this.list = list
       this.$emit('destroy', { data })
-    },
-  },
+    }
+  }
 }
 </script>
 

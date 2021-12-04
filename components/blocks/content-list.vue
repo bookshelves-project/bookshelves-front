@@ -117,32 +117,32 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     name: {
       type: String,
-      default: null,
+      default: null
     },
     menu: {
       type: Boolean,
-      default: false,
+      default: false
     },
     routeName: {
       type: String,
-      default: 'index',
-    },
+      default: 'index'
+    }
   },
   data() {
     return {
       itemsGroupByChar: [],
       bestCount: null,
-      colors: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
+      colors: ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
     }
   },
   watch: {
     items(newValue, oldValue) {
       this.init()
-    },
+    }
   },
   created() {
     this.init()
@@ -180,8 +180,8 @@ export default {
       }
 
       return style
-    },
-  },
+    }
+  }
 }
 </script>
 

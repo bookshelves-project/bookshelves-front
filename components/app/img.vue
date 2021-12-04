@@ -1,5 +1,5 @@
 <template>
-  <span ref="AppImg" class="relative block">
+  <span ref="AppImg">
     <span
       :class="init ? 'opacity-100' : 'opacity-100'"
       class="app-img transition-opacity duration-200 h-full block"
@@ -17,16 +17,13 @@
         <img
           ref="Image"
           v-lazy-load
-          :src="src"
           :data-src="src"
           :alt="meta"
           :title="meta"
           class="!m-0 !w-full h-full img"
           @load="load"
         />
-        <figcaption v-if="legend" class="dark:text-gray-50 mt-2 mx-2 mb-10">
-          {{ legend }}
-        </figcaption>
+        <figcaption v-if="legend" class="dark:text-gray-50 mt-2 mx-2 mb-10">{{ legend }}</figcaption>
       </figure>
     </span>
   </span>
@@ -38,28 +35,28 @@ export default {
   props: {
     src: {
       type: String,
-      default: null,
+      default: null
     },
     title: {
       type: String,
-      default: null,
+      default: null
     },
     legend: {
       type: String,
-      default: null,
+      default: null
     },
     placeholder: {
       type: String,
-      default: 'bg-gray-100 dark:bg-gray-800',
+      default: 'bg-gray-100 dark:bg-gray-800'
     },
     color: {
       type: String,
-      default: null,
+      default: null
     },
     invisible: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -67,7 +64,7 @@ export default {
       loading: true,
       notExist: false,
       altTitle: null,
-      meta: null,
+      meta: null
     }
   },
   computed: {
@@ -76,13 +73,13 @@ export default {
         return this.altTitle
       }
       return this.title
-    },
+    }
   },
   watch: {
     src(newValue, oldValue) {
       //   this.setStyle()
       this.loading = true
-    },
+    }
   },
   mounted() {
     this.setup()
@@ -92,7 +89,7 @@ export default {
   methods: {
     setup() {
       this.setMeta()
-      this.setStyle()
+      // this.setStyle()
     },
     setStyle() {
       try {
@@ -106,7 +103,7 @@ export default {
           image.classList.add(s)
         })
         //   this.init = false
-      } catch (error) {}
+      } catch (error) { }
     },
     setMeta() {
       try {
@@ -115,22 +112,14 @@ export default {
         title = title.split('.')
         title = title[0]
         this.altTitle = title
-      } catch (error) {}
+      } catch (error) { }
     },
     load() {
       this.loading = false
       this.meta = this.title
       //   const appImg = this.$refs.AppImg
       //   appImg.classList = ''
-    },
-  },
+    }
+  }
 }
 </script>
-
-<style lang="postcss" scoped>
-.app-img {
-  /* &.placeholder {
-    @apply ;
-  } */
-}
-</style>

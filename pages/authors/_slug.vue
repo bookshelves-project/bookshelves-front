@@ -55,7 +55,9 @@
         </div>
       </section>
       <section v-if="books.data.length">
-        <blocks-divider class="mt-16"> Books </blocks-divider>
+        <blocks-divider class="mt-16">
+          Books
+        </blocks-divider>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
             v-for="book in books.data"
@@ -113,29 +115,29 @@ export default {
       app.$axios.$get(
         `/authors/series/${params.slug}?${qs.stringify({
           page: page || 1,
-          'per-page': 32,
+          perPage: 32
         })}`
       ),
       app.$axios.$get(
         `/authors/books/${params.slug}?${qs.stringify({
           page: page || 1,
-          'per-page': 32,
-          standalone: true,
+          perPage: 32,
+          standalone: true
         })}`
-      ),
+      )
     ])
 
     return {
       author: author.data,
       series,
-      books,
+      books
     }
   },
   data() {
     return {
       formatLanguage,
       getHostname,
-      breadcrumbs: [],
+      breadcrumbs: []
     }
   },
   head() {
@@ -151,25 +153,25 @@ export default {
           image: this.author.cover.og,
           url: this.$nuxt.$route.path,
           profileFirstName: this.author.firstname,
-          profileLastName: this.author.firstname,
-        }),
-      ],
+          profileLastName: this.author.firstname
+        })
+      ]
     }
   },
   created() {
     this.breadcrumbs = [
       {
         url: this.$config.baseURL,
-        text: 'Home',
+        text: 'Home'
       },
       {
         url: `${this.$config.baseURL}/authors`,
-        text: 'Authors',
+        text: 'Authors'
       },
       {
         url: `${this.$config.baseURL}/authors/${this.$route.params.slug}`,
-        text: this.author.name,
-      },
+        text: this.author.name
+      }
     ]
   },
   methods: {
@@ -178,7 +180,7 @@ export default {
     },
     loadBooks(data) {
       this.books.data = data
-    },
+    }
   },
   jsonld() {
     const items = this.breadcrumbs.map((item, index) => ({
@@ -186,8 +188,8 @@ export default {
       position: index + 1,
       item: {
         '@id': item.url,
-        name: item.text,
-      },
+        name: item.text
+      }
     }))
     return {
       '@context': 'https://schema.org',
@@ -198,9 +200,9 @@ export default {
         image: this.author.cover.thumbnail,
         jobTitle: 'Author',
         name: this.author.name,
-        url: this.author.link,
-      },
+        url: this.author.link
+      }
     }
-  },
+  }
 }
 </script>

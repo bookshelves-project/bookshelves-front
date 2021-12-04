@@ -58,7 +58,7 @@ export default {
   name: 'RoutesList',
   data() {
     return {
-      devMode: process.env.NODE_ENV !== 'production',
+      devMode: process.env.NODE_ENV !== 'production'
     }
   },
   methods: {
@@ -67,11 +67,11 @@ export default {
       this.$router.options.routes.forEach((route) => {
         routes.push({
           name: route.name,
-          path: route.path,
+          path: route.path
         })
       })
       console.log('------------')
-      routes = routes.filter((e) => e.name.includes('__en'))
+      routes = routes.filter(e => e.name.includes('__en'))
       routes = routes.sort((a, b) =>
         a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
       )
@@ -84,9 +84,9 @@ export default {
       this.$nuxt.$emit('notification', {
         title: 'Check your console',
         text: 'List of all routes is available.',
-        type: 'success',
+        type: 'success'
       })
-    },
-  },
+    }
+  }
 }
 </script>

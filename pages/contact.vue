@@ -110,7 +110,7 @@ export default {
   name: 'Contact',
   data() {
     return {
-      title: 'Contact us',
+      title: 'Contact us'
     }
   },
   head() {
@@ -122,10 +122,10 @@ export default {
           title: this.title,
           description:
             "If you want to contact us, don't hesitate to send us a small message!",
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
-  },
+  }
 }
 </script>

@@ -12,14 +12,14 @@ export default {
     lang: {
       type: String,
       default: 'en',
-      validator: (val) => ['en', 'fr'].includes(val),
-    },
+      validator: val => ['en', 'fr'].includes(val)
+    }
   },
   data() {
     return {
-      formatLanguage,
+      formatLanguage
     }
-  },
+  }
 }
 </script>
 

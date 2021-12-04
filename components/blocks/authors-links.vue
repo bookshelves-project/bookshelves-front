@@ -22,13 +22,11 @@
           dark:border-gray-100
           hover:text-gray-500 hover:border-gray-500
         "
-        >{{ author.name }}</nuxt-link
-      >
+      >{{ author.name }}</nuxt-link>
       <span
         v-if="authors.length > 1 && authorId !== authors.length - 1"
         class="text-gray-900 dark:text-gray-100"
-        >&</span
-      >
+      >&</span>
     </span>
   </div>
 </template>
@@ -39,8 +37,8 @@ export default {
   props: {
     authors: {
       type: Array,
-      default: () => [],
-    },
-  },
+      default: () => []
+    }
+  }
 }
 </script>

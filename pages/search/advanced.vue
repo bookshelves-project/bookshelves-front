@@ -28,7 +28,9 @@
       <transition name="fade">
         <skeleton v-if="pending" />
       </transition>
-      <div v-if="empty" class="italic text-gray-500">No result</div>
+      <div v-if="empty" class="italic text-gray-500">
+        No result
+      </div>
     </section>
   </main>
 </template>
@@ -44,7 +46,7 @@ export default {
   name: 'PageSearchAdvanced',
   components: {
     SearchResults,
-    Skeleton,
+    Skeleton
   },
   data() {
     return {
@@ -53,8 +55,8 @@ export default {
       pending: false,
       advancedSearchInput: '',
       empty: false,
-      title: `Search`,
-      description: `Try to search what you want`,
+      title: 'Search',
+      description: 'Try to search what you want'
     }
   },
   head() {
@@ -65,27 +67,27 @@ export default {
       meta: [
         ...dynamicMetadata.default({
           title,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
   },
   computed: {
     authors() {
       let search = this.search
-      search = search.filter((entity) => entity.meta.entity === 'author')
+      search = search.filter(entity => entity.meta.entity === 'author')
       return search
     },
     series() {
       let search = this.search
-      search = search.filter((entity) => entity.meta.entity === 'serie')
+      search = search.filter(entity => entity.meta.entity === 'serie')
       return search
     },
     books() {
       let search = this.search
-      search = search.filter((entity) => entity.meta.entity === 'book')
+      search = search.filter(entity => entity.meta.entity === 'book')
       return search
-    },
+    }
   },
   async watchQuery(newQuery) {
     if (this) {
@@ -99,25 +101,25 @@ export default {
     const breadcrumbs = [
       {
         url: this.$config.baseURL,
-        text: 'Home',
+        text: 'Home'
       },
       {
         url: `${this.$config.baseURL}/search`,
-        text: 'Search',
-      },
+        text: 'Search'
+      }
     ]
     const items = breadcrumbs.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {
         '@id': item.url,
-        name: item.text,
-      },
+        name: item.text
+      }
     }))
     return {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      itemListElement: items,
+      itemListElement: items
     }
   },
   methods: {
@@ -125,7 +127,7 @@ export default {
       this.$router.push(
         this.localePath({
           path: this.$route.path,
-          query: search,
+          query: search
         })
       )
     },
@@ -138,7 +140,7 @@ export default {
           if (Object.keys(query).length === 1) {
             const search = await this.$axios.$get(
               `/search?${qs.stringify({
-                q: query.q,
+                q: query.q
               })}`
             )
             this.pending = false
@@ -151,7 +153,7 @@ export default {
           } else {
             const search = await this.$axios.$get(
               `/search/advanced?${qs.stringify({
-                ...query,
+                ...query
               })}`
             )
             this.pending = false
@@ -164,7 +166,7 @@ export default {
       } else {
         return null
       }
-    },
-  },
+    }
+  }
 }
 </script>

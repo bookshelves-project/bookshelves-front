@@ -39,6 +39,6 @@
 
 <script>
 export default {
-  name: 'Cta',
+  name: 'Cta'
 }
 </script>

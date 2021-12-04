@@ -20,11 +20,11 @@ export default {
         app.localePath({
           name: 'authors-slug',
           params: {
-            slug: params.author,
-          },
+            slug: params.author
+          }
         })
       )
     }
-  },
+  }
 }
 </script>

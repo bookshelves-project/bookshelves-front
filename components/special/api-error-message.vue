@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'ApiErrorMessage',
+  name: 'ApiErrorMessage'
 }
 </script>
 

@@ -44,8 +44,7 @@
       <span
         class="hidden sm:inline-block sm:align-middle sm:h-screen"
         aria-hidden="true"
-        >&#8203;</span
-      >
+      >&#8203;</span>
 
       <transition name="fade">
         <div v-if="modal" class="fixed z-50 inset-0 overflow-y-auto">
@@ -63,8 +62,7 @@
             <span
               class="hidden sm:inline-block sm:align-middle sm:h-screen"
               aria-hidden="true"
-              >&#8203;</span
-            >
+            >&#8203;</span>
 
             <button
               class="
@@ -182,24 +180,24 @@ import vClickOutside from 'v-click-outside'
 export default {
   name: 'Modal',
   directives: {
-    clickOutside: vClickOutside.directive,
+    clickOutside: vClickOutside.directive
   },
   props: {
     open: {
       type: Boolean,
-      default: false,
+      default: false
     },
     size: {
       type: String,
       default: 'sm',
-      validator: (val) => ['sm', 'md', 'lg', 'xl', '2xl'].includes(val),
-    },
+      validator: val => ['sm', 'md', 'lg', 'xl', '2xl'].includes(val)
+    }
   },
   data() {
     return {
       modal: false,
       layer: false,
-      overlay: false,
+      overlay: false
     }
   },
   watch: {
@@ -219,14 +217,14 @@ export default {
         }, 250)
         // document.getElementsByTagName('html')[0].classList.remove('noscroll')
       }
-    },
+    }
   },
   methods: {
     closeEvent() {
       this.modal = false
       // this.$toggleOverlay(this.$store, false)
       this.$emit('close', this.modal)
-    },
-  },
+    }
+  }
 }
 </script>

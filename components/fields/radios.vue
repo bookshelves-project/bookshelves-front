@@ -69,45 +69,45 @@ export default {
   props: {
     value: {
       type: [String, Number, Boolean],
-      default: 0,
+      default: 0
     },
     name: {
       type: String,
-      default: '',
+      default: ''
     },
     label: {
       type: String,
-      default: '',
+      default: ''
     },
     helper: {
       type: String,
-      default: '',
+      default: ''
     },
     flex: {
       type: Boolean,
-      default: false,
+      default: false
     },
     hover: {
       type: Boolean,
-      default: false,
+      default: false
     },
     options: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   data() {
     return {
-      radioValue: 'UNKNOWN',
+      radioValue: 'UNKNOWN'
     }
   },
   watch: {
     value(newValue, oldValue) {
       this.radioValue = newValue
-    },
+    }
   },
   mounted() {
     this.radioValue = this.value
-  },
+  }
 }
 </script>
