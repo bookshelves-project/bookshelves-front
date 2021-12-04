@@ -3,7 +3,7 @@ export const state = () => ({
     { label: 'books', route: 'books' },
     { label: 'series', route: 'series' },
     { label: 'authors', route: 'authors' },
-    { label: 'genres-tags', route: 'tags' },
+    { label: 'genres-tags', route: 'tags' }
   ],
   footer: {
     project: {
@@ -14,17 +14,17 @@ export const state = () => ({
           label: 'about',
           route: {
             name: 'type-slug',
-            params: { type: 'pages', slug: 'about' },
-          },
+            params: { type: 'pages', slug: 'about' }
+          }
         },
         {
           label: 'features',
           route: {
             name: 'type-slug',
-            params: { type: 'pages', slug: 'features' },
-          },
-        },
-      ],
+            params: { type: 'pages', slug: 'features' }
+          }
+        }
+      ]
     },
     support: {
       title: 'support',
@@ -33,18 +33,18 @@ export const state = () => ({
           label: 'more-ebooks',
           route: {
             name: 'type-slug',
-            params: { type: 'pages', slug: 'more-ebooks' },
-          },
+            params: { type: 'pages', slug: 'more-ebooks' }
+          }
         },
         {
           label: 'faq',
           route: {
             name: 'type-slug',
-            params: { type: 'pages', slug: 'faq' },
-          },
+            params: { type: 'pages', slug: 'faq' }
+          }
         },
-        { label: 'contact', route: { name: 'contact' } },
-      ],
+        { label: 'contact', route: { name: 'contact' } }
+      ]
     },
     advanced: {
       title: 'more',
@@ -52,22 +52,22 @@ export const state = () => ({
         {
           label: 'guides',
           route: {
-            name: 'guides',
-          },
+            name: 'guides'
+          }
         },
         {
           label: 'languages',
           route: {
-            name: 'languages',
-          },
+            name: 'languages'
+          }
         },
         {
           label: 'publishers',
           route: {
-            name: 'publishers',
-          },
-        },
-      ],
+            name: 'publishers'
+          }
+        }
+      ]
     },
     legal: {
       title: 'legal',
@@ -76,51 +76,51 @@ export const state = () => ({
           label: 'legality',
           route: {
             name: 'type-slug',
-            params: { type: 'pages', slug: 'legal' },
-          },
+            params: { type: 'pages', slug: 'legal' }
+          }
         },
         {
           label: 'privacy',
           route: {
             name: 'type-slug',
-            params: { type: 'pages', slug: 'privacy' },
-          },
-        },
-      ],
-    },
+            params: { type: 'pages', slug: 'privacy' }
+          }
+        }
+      ]
+    }
   },
   auth: [
     {
       label: 'My profile',
       icon: 'user-circle',
       route: 'profile',
-      isAdmin: false,
+      isAdmin: false
     },
     {
       label: 'Settings',
       icon: 'cog',
       route: 'profile-settings',
-      isAdmin: false,
-    },
+      isAdmin: false
+    }
   ],
   admin: [
     {
       label: 'Admin',
       icon: 'control',
       route: 'profile-admin',
-      isAdmin: true,
-    },
+      isAdmin: true
+    }
   ],
   guest: [
     { label: 'Sign in', icon: 'login', route: 'sign-in' },
-    { label: 'Sign up', icon: 'register', route: 'sign-up' },
-  ],
+    { label: 'Sign up', icon: 'register', route: 'sign-up' }
+  ]
 })
 
 export const getters = {
-  main: (state) => state.main,
-  footer: (state) => state.footer,
-  auth: (state) => state.auth,
-  admin: (state) => state.admin,
-  guest: (state) => state.guest,
+  main: state => state.main,
+  footer: state => state.footer,
+  auth: state => state.auth,
+  admin: state => state.admin,
+  guest: state => state.guest
 }

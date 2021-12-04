@@ -1,11 +1,11 @@
 export const state = () => ({
   visibleLayer: false,
-  visibleOverlay: false,
+  visibleOverlay: false
 })
 
 export const getters = {
-  isVisibleLayer: (state) => state.visibleLayer,
-  isVisibleOverlay: (state) => state.visibleOverlay,
+  isVisibleLayer: state => state.visibleLayer,
+  isVisibleOverlay: state => state.visibleOverlay
 }
 
 export const mutations = {
@@ -14,5 +14,5 @@ export const mutations = {
   },
   setVisibleOverlay(state, data) {
     state.visibleOverlay = data
-  },
+  }
 }

@@ -2,7 +2,7 @@ export const state = () => ({
   sidebarOpened: false,
   layerVisible: false,
   layerOpacity: false,
-  statistics: null,
+  statistics: null
 })
 
 export const mutations = {
@@ -20,5 +20,5 @@ export const mutations = {
   },
   setLayerOpacity(state, data) {
     state.layerOpacity = data
-  },
+  }
 }
