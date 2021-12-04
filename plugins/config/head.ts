@@ -7,23 +7,23 @@ const head: object = {
   title: metadata.website.title,
   titleTemplate: metadata.website.titleTemplate,
   htmlAttrs: {
-    lang: metadata.settings.locale,
+    lang: metadata.settings.locale
   },
   meta: [...metadataStatic(), ...metadataDynamic()],
   link: [
     {
       rel: 'apple-touch-icon',
       type: 'image/png',
-      href: '/apple-touch-icon.png',
+      href: '/apple-touch-icon.png'
     },
     { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
     { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
     {
       rel: 'manifest',
       crossorigin: 'use-credentials',
-      href: '/manifest.webmanifest',
-    },
-  ],
+      href: '/manifest.webmanifest'
+    }
+  ]
 }
 
 export default head

@@ -13,7 +13,7 @@ const formatDate = (date) => {
   return date.toLocaleString(userLang, {
     year: 'numeric',
     month: 'long',
-    day: 'numeric',
+    day: 'numeric'
   })
 }
 Vue.prototype.$formatDate = formatDate

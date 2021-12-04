@@ -13,15 +13,15 @@ const pwa = {
     ogImage: `${process.env.BASE_URL}/default.jpg`,
     ogUrl: process.env.BASE_URL,
     twitterSite: metadata.twitter.site,
-    twitterCreator: metadata.twitter.creator,
+    twitterCreator: metadata.twitter.creator
   },
   manifest: {
     name: metadata.website.title,
     short_name: metadata.og.siteName,
     description: metadata.website.description,
     display: 'browser',
-    lang: metadata.settings.lang,
-  },
+    lang: metadata.settings.lang
+  }
 }
 
 export default pwa

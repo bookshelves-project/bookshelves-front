@@ -12,7 +12,7 @@ export const randomString = (L) => {
 }
 
 // get language flag url or label from slug
-export const formatLanguage = (slug) => {
+export const formatLanguage = (slug: string) => {
   const available = [
     {
       slug: 'fr',
@@ -103,7 +103,7 @@ export const slugify = (text) => {
 }
 
 // time difference in Days
-function getDaysDiff (startDate = new Date(), endDate = new Date()) {
+function getDaysDiff(startDate = new Date(), endDate = new Date()) {
   if (startDate > endDate) { [startDate, endDate] = [endDate, startDate] }
 
   const timeDiff = endDate - startDate
@@ -114,7 +114,7 @@ function getDaysDiff (startDate = new Date(), endDate = new Date()) {
 
 // time difference in Months
 // eslint-disable-next-line no-unused-vars
-function getMonthsDiff (startDate = new Date(), endDate = new Date()) {
+function getMonthsDiff(startDate = new Date(), endDate = new Date()) {
   const monthsOfFullYears = getYearsDiff(startDate, endDate) * 12
   let months = monthsOfFullYears
   // the variable below is not necessary, but I kept it for understanding of code
@@ -144,7 +144,7 @@ function getMonthsDiff (startDate = new Date(), endDate = new Date()) {
 }
 
 // time difference in Years
-function getYearsDiff (startDate = new Date(), endDate = new Date()) {
+function getYearsDiff(startDate = new Date(), endDate = new Date()) {
   if (startDate > endDate) { [startDate, endDate] = [endDate, startDate] }
 
   const yearB4End = new Date(
