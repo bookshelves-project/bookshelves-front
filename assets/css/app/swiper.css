@@ -36,10 +36,12 @@
   color: unset !important;
   color: unset !important;
 }
+
 .swiper-wrapper {
   height: 100%;
   width: 100%;
 }
+
 .swiper-slide {
   background-size: cover;
   background-position: center;
