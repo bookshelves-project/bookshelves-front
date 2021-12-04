@@ -1,7 +1,6 @@
 import { defineNuxtMiddleware } from '@nuxtjs/composition-api'
-import { ApiResponse } from '~/types/ApiResponse'
-import { Application } from '~/types/application'
-import { useUserStore } from '~/stores/user'
+import { useUserStore } from '~/types/nuxt3/stores/user'
+import { ApiResponse, Application } from '~/types'
 
 export default defineNuxtMiddleware((ctx) => {
   // const user = useUserStore()
@@ -9,16 +8,16 @@ export default defineNuxtMiddleware((ctx) => {
   //   user.$state.application &&
   //   Object.keys(user.$state.application).length === 0 &&
   //   Object.getPrototypeOf(user.$state.application) === Object.prototype
-  const cookieEmpty = ctx.$cookies.get('app')
+  const cookie = ctx.$cookies.get('app')
   // ctx.$cookies.remove('app')
-  // console.log(cookieEmpty)
 
-  if (!cookieEmpty) {
-    const app = ctx.$axios.get(`/application`).then((e) => {
+  if (cookie === undefined) {
+    ctx.$axios.get('/cms/application').then((e) => {
       const response: ApiResponse = e.data
       const app: Application = response.data
       ctx.$cookies.set('app', app)
       // user.setApplication(app)
+      console.log(e)
     })
   }
 })

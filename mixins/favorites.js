@@ -2,7 +2,7 @@ export default {
   data() {
     return {
       isFavorite: false,
-      favoritesList: [],
+      favoritesList: []
     }
   },
   mounted() {
@@ -29,6 +29,6 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    },
-  },
+    }
+  }
 }
