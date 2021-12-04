@@ -29,7 +29,7 @@ export const getPosts = () => {
   console.log(posts)
 
   return {
-    posts,
+    posts
   }
 }
 
@@ -47,6 +47,6 @@ export const usePost = (id: number) => {
   return {
     post,
     fetchPost,
-    onFetchPost: (fn: any) => toExecute.push(fn),
+    onFetchPost: (fn: any) => toExecute.push(fn)
   }
 }

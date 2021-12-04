@@ -17,22 +17,22 @@
 
 import { stringify } from 'qs'
 import { ref, useFetch, useAsync, useContext } from '@nuxtjs/composition-api'
-import { Book } from '~/types/books/book'
+import { Book } from '~/types'
 
-export const getBooks = (perPage: number = 32) => {
-  const books = ref<Array<Book>>([])
+export const getBooks = (perPage = 32) => {
+  const books = ref<Book[]>([])
   const ctx = useContext()
   const toExecute: any = []
   useAsync(async () => {
     books.value = await ctx.$axios
-      .$get(`/books?${stringify({ 'per-page': perPage })}`)
+      .$get(`/books?${stringify({ perPage })}`)
       .then((e) => {
         return e.data
       })
   })
 
   return {
-    books,
+    books
   }
 }
 
@@ -42,8 +42,8 @@ export const getBookRoute = (author: string, slug: string) => {
     name: 'books-author-slug',
     params: {
       author,
-      slug,
-    },
+      slug
+    }
   })
 }
 
@@ -58,6 +58,6 @@ export const getBook = (slug: string) => {
   })
 
   return {
-    book,
+    book
   }
 }
