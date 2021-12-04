@@ -2,7 +2,7 @@
   <main class="main-content">
     <app-header title="Series" :subtitle="description" :border="false">
       <template #filters>
-        <blocks-filters languages :sort="sortOptions" />
+        <blocks-filters languages :sort="sortOptions" paginate />
       </template>
     </app-header>
     <section v-if="!apiError">
@@ -28,30 +28,28 @@
                 <span
                   v-if="
                     serie.authors.length > 1 &&
-                    authorId !== serie.authors.length - 1
+                      authorId !== serie.authors.length - 1
                   "
-                >
-                  &
-                </span>
+                >&</span>
               </span>
             </template>
             <template #tertiary>
               <span>{{ serie.count }} books</span>
-              <span v-if="serie.language" class="mt-1 block">
-                {{ formatLanguage(serie.language).label }}
-              </span>
+              <span
+                v-if="serie.language"
+                class="mt-1 block"
+              >{{ formatLanguage(serie.language).label }}</span>
             </template>
           </entity-card>
         </div>
       </div>
       <div class="mt-6 mb-5">
         <pagination
-          v-if="pages > 1"
-          :link-gen="linkGen"
-          :pages="pages"
-          :current-page="currentPage"
-        >
-        </pagination>
+          v-if="meta"
+          :current-page="meta.current_page"
+          :per-page="meta.per_page"
+          :total="meta.total"
+        />
       </div>
     </section>
     <api-error-message v-else />
@@ -59,12 +57,12 @@
 </template>
 
 <script>
-import qs from 'qs'
+import { stringify } from 'qs'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
 
 import { formatLanguage } from '~/plugins/utils/methods'
-import Pagination from '~/components/special/pagination.vue'
+import Pagination from '~/components/blocks/pagination.vue'
 
 export default {
   name: 'SeriesIndex',
@@ -73,27 +71,24 @@ export default {
     try {
       const queryList = { ...query }
       queryList.page = query.page || 1
-      queryList['per-page'] = 32
+      queryList.perPage = 32
 
       const [series] = await Promise.all([
         app.$axios.$get(
-          `/series?${qs.stringify({
-            ...queryList,
+          `/series?${stringify({
+            ...queryList
           })}`
-        ),
+        )
       ])
 
       return {
         series,
-        pages: series.meta.last_page,
-        currentPage: series.meta.current_page,
-        perPage: series.meta.per_page,
-        total: series.meta.total,
-        apiError: false,
+        meta: series.meta,
+        apiError: false
       }
     } catch (error) {
       return {
-        apiError: true,
+        apiError: true
       }
     }
   },
@@ -102,24 +97,24 @@ export default {
       formatLanguage,
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
       title: `All series available on ${this.$config.appName}`,
-      description: `Discover books grouped by their serie's name`,
+      description: 'Discover books grouped by their serie\'s name',
       sortOptions: [
         {
           label: "By series' title (default)",
           query: { sort: 'title_sort' },
-          value: 'title_sort',
+          value: 'title_sort'
         },
         {
           label: 'By title',
           query: { sort: 'title' },
-          value: 'title',
+          value: 'title'
         },
         {
           label: 'Newest uploaded',
           query: { sort: '-created_at' },
-          value: '-created_at',
-        },
-      ],
+          value: '-created_at'
+        }
+      ]
     }
   },
   head() {
@@ -131,34 +126,34 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
   },
   jsonld() {
     const breadcrumbs = [
       {
         url: this.$config.baseURL,
-        text: 'Home',
+        text: 'Home'
       },
       {
         url: `${this.$config.baseURL}/series`,
-        text: 'Series',
-      },
+        text: 'Series'
+      }
     ]
     const items = breadcrumbs.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {
         '@id': item.url,
-        name: item.text,
-      },
+        name: item.text
+      }
     }))
     return {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      itemListElement: items,
+      itemListElement: items
     }
   },
   watchQuery: ['page', 'filter[languages]', 'sort'],
@@ -168,10 +163,10 @@ export default {
       query.page = pageNum
       const route = {
         name: this.$route.name,
-        query: { ...query },
+        query: { ...query }
       }
       return route
-    },
-  },
+    }
+  }
 }
 </script>

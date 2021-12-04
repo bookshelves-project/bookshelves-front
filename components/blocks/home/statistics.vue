@@ -6,7 +6,7 @@
           v-lazy-load
           class="object-cover w-full h-full opacity-25"
           src="/images/library.webp"
-        />
+        >
         <div
           aria-hidden="true"
           class="
@@ -18,7 +18,7 @@
             from-white
             dark:from-gray-900
           "
-        ></div>
+        />
       </div>
     </div>
     <div class="px-4 mx-auto sm:px-6 max-w-7xl">
@@ -78,9 +78,9 @@
               </span>
               <span
                 class="block mt-1 text-base text-gray-900 dark:text-gray-100"
-                ><span class="font-medium text-gray-700 dark:text-gray-300">
-                  {{ metric.label }}
-                </span>
+              ><span class="font-medium text-gray-700 dark:text-gray-300">
+                {{ metric.label }}
+              </span>
               </span>
             </div>
           </div>
@@ -92,7 +92,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Statistics } from '~/types/home-page/home-page'
+import { Statistics } from '~/types/cms/home-page'
 
 @Component
 export default class HomeStatistics extends Vue {

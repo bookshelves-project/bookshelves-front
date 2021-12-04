@@ -13,8 +13,8 @@ export default {
   name: 'PagePages',
   middleware({ params, redirect }) {
     return redirect({
-      name: 'index',
+      name: 'index'
     })
-  },
+  }
 }
 </script>

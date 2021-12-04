@@ -19,9 +19,7 @@
         >
           <span
             class="block text-primary-600 dark:text-primary-400 xl:inline"
-            >{{ app.name }}</span
-          ><span class="hidden xl:inline">, </span
-          ><span class="block xl:inline">{{ props.hero.title }}</span>
+          >{{ app.name }}</span><span class="hidden xl:inline">, </span><span class="block xl:inline">{{ props.hero.title }}</span>
         </h1>
         <p
           class="
@@ -54,8 +52,8 @@
 <script setup lang="ts">
 import { useContext } from '@nuxtjs/composition-api'
 import { NuxtConfig } from '@nuxt/types'
-import { Hero } from '~/types/home-page/hero'
-import { Application } from '~/types/application'
+import { Hero } from '~/types/cms/home-page'
+import { Application } from '~/types'
 
 const props = defineProps<{
   hero: Hero

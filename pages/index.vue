@@ -3,7 +3,7 @@
     <lazy-blocks-home-hero :hero="homePage.hero" class="pt-5" />
     <lazy-blocks-home-statistics :statistics="homePage.statistics" />
     <lazy-blocks-home-cloud-logos :logos="homePage.logos" />
-    <!-- 
+    <!--
     <lazy-blocks-selected-entities
       class="mt-8 lg:mt-16"
       eyebrow="Want to read a good book?"
@@ -31,28 +31,26 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { stringify } from 'qs'
-import { ApiResponse } from '~/types/ApiResponse'
-import { HomePage } from '~/types/home-page/home-page'
-import { Application } from '~/types/application'
+import { ApiResponse, HomePage } from '~/types'
 
 @Component({
-  async asyncData(ctx) {
+  async asyncData (ctx) {
     try {
       const homePage: HomePage = await ctx.$axios
         .$get(`/cms/home-page?${stringify({ lang: ctx.i18n.locale })}`)
         .then((e: ApiResponse) => e.data)
 
       return {
-        homePage,
+        homePage
       }
     } catch (error) {
       console.log(error)
 
       return {
-        homePage: {},
+        homePage: {}
       }
     }
-  },
+  }
 })
 export default class PageHome extends Vue {
   homePage: HomePage = {}

@@ -74,40 +74,40 @@ export default {
           icon: 'epub',
           label: 'EPUB files',
           condition: true,
-          text: 'EPUB files format to be lightest as possible, a free DRM format that can be shared and edited at will, you can edit any eBook with Calibre',
+          text: 'EPUB files format to be lightest as possible, a free DRM format that can be shared and edited at will, you can edit any eBook with Calibre'
         },
         {
           icon: 'ereader',
           label: 'Regardless of eReader',
           condition: true,
-          text: 'Kobo, Bookeen, Vivlio or even Kindle (with Calibre), you can use eBooks in EPUB format on many eReaders',
+          text: 'Kobo, Bookeen, Vivlio or even Kindle (with Calibre), you can use eBooks in EPUB format on many eReaders'
         },
         {
           icon: 'download',
           label: 'Download & read',
           condition: true,
-          text: 'Download an eBook and/or a serie of eBook add them to your eReader and start reading!',
+          text: 'Download an eBook and/or a serie of eBook add them to your eReader and start reading!'
         },
         {
           icon: 'code',
           label: 'Metadata',
           condition: true,
-          text: 'All these informations that allows you to sort and find your books by author or series are integrated into each eBook',
+          text: 'All these informations that allows you to sort and find your books by author or series are integrated into each eBook'
         },
         {
           icon: 'languages',
           label: 'Multi languages',
           condition: true,
-          text: 'eBooks in several languages according to your preferences in order to reach a maximum number of readers.',
+          text: 'eBooks in several languages according to your preferences in order to reach a maximum number of readers.'
         },
         {
           icon: 'feed',
           label: 'Features: OPDS & Catalog',
           condition: true,
-          text: 'Features offer you extra options: you can use OPDS feed, download eBooks from your eReader with Catalog or read an eBook in your browser with Webreader.',
-        },
-      ],
+          text: 'Features offer you extra options: you can use OPDS feed, download eBooks from your eReader with Catalog or read an eBook in your browser with Webreader.'
+        }
+      ]
     }
-  },
+  }
 }
 </script>

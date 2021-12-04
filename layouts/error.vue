@@ -54,8 +54,9 @@
                   text-primary-600
                   hover:text-primary-500
                 "
-                >Go back home<span aria-hidden="true"> &rarr;</span></nuxt-link
               >
+                Go back home<span aria-hidden="true"> &rarr;</span>
+              </nuxt-link>
             </div>
           </div>
         </div>
@@ -66,8 +67,9 @@
             <nuxt-link
               :to="localePath({ name: 'contact' })"
               class="text-sm font-medium text-gray-500 hover:text-gray-600"
-              >Contact Support</nuxt-link
             >
+              Contact Support
+            </nuxt-link>
           </nav>
         </div>
       </footer>
@@ -86,9 +88,9 @@ export default {
   props: {
     error: {
       type: Object,
-      default: () => {},
-    },
-  },
+      default: () => {}
+    }
+  }
 }
 </script>
 
