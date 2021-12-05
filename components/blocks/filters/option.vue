@@ -1,80 +1,38 @@
 <template>
   <div class="relative inline-block text-left">
-    <app-dropdown :align="align" :click-close="clickClose">
+    <div v-if="type === 'switch'">
+      <fields-toggle v-model="switchValue" :label="label" />
+    </div>
+    <app-dropdown v-else :align="align" :click-close="clickClose">
       <template #trigger>
         <div
           :id="`${filter}-filter`"
           :title="`${label}`"
-          class="
-            group
-            inline-flex
-            justify-center
-            text-sm
-            font-medium
-            text-gray-700
-            dark:text-gray-300
-            transition-colors
-            duration-75
-            hover:text-gray-900 hover:bg-gray-200
-            dark:hover:bg-gray-800
-            rounded-md
-            py-2
-            px-2
-          "
+          class="group inline-flex justify-center text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-75 hover:text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-md py-2 px-2"
         >
           {{ label }}
           <svg-icon
             name="chevron-right"
-            class="
-              flex-shrink-0
-              -mr-1
-              ml-1
-              h-5
-              w-5
-              text-gray-400
-              group-hover:text-gray-500
-              transform
-              rotate-90
-            "
+            class="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500 transform rotate-90"
           />
         </div>
       </template>
       <template #content>
         <div
-          class="
-            w-48
-            rounded-md
-            shadow-2xl
-            bg-white
-            dark:bg-gray-800
-            ring-1 ring-black ring-opacity-5
-            focus:outline-none
-          "
+          class="w-48 rounded-md shadow-2xl bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none"
         >
           <div class="py-1" role="none">
             <div v-if="type === 'button'">
               <button
                 v-for="option in optionsData"
                 :key="option.id"
-                class="
-                  font-medium
-                  text-gray-900
-                  dark:text-gray-100
-                  px-4
-                  py-2
-                  text-left text-sm
-                  hover:bg-gray-200
-                  dark:hover:bg-gray-700
-                  w-full
-                "
+                class="font-medium text-gray-900 dark:text-gray-100 px-4 py-2 text-left text-sm hover:bg-gray-200 dark:hover:bg-gray-700 w-full"
                 :class="{
                   'bg-gray-200 dark:bg-gray-600':
                     $route.query[filter] === option.value,
                 }"
                 @click="filterBy(option.value)"
-              >
-                {{ option.label }}
-              </button>
+              >{{ option.label }}</button>
             </div>
             <div v-else>
               <div v-if="type === 'radio'">
@@ -131,21 +89,22 @@ export default {
     type: {
       type: String,
       default: 'checkbox',
-      validator: val => ['checkbox', 'radio', 'button'].includes(val)
+      validator: val => ['checkbox', 'radio', 'button', 'switch'].includes(val)
     },
     clickClose: {
       type: Boolean,
       default: false
     }
   },
-  data () {
+  data() {
     return {
       languages: {
         data: []
       },
       optionsData: [],
       radio: null,
-      checkboxes: []
+      checkboxes: [],
+      switchValue: false
     }
   },
   computed: {
@@ -155,7 +114,7 @@ export default {
   },
   watch: {
     checkboxes: {
-      handler (newValue) {
+      handler(newValue) {
         let newQuery = []
         newQuery = newValue.join(',')
         if (isEmpty(newQuery)) {
@@ -165,12 +124,12 @@ export default {
         }
       },
       deep: true
+    },
+    switchValue(newValue) {
+      this.filterBy(newValue)
     }
-    // radio(newValue) {
-    //   console.log(newValue)
-    // },
   },
-  async created () {
+  async created() {
     /**
      * Set optionsData from options
      */
@@ -187,7 +146,7 @@ export default {
       setQueries: 'filters/setQueries',
       setClear: 'filters/setClear'
     }),
-    setCheckboxesValues () {
+    setCheckboxesValues() {
       // eslint-disable-next-line no-unused-vars
       for (const [key, option] of Object.entries(this.optionsData)) {
         if (option.enabled) {
@@ -201,7 +160,7 @@ export default {
      * @param {string} newQuery
      * @param {boolean} replace
      */
-    filterBy (newQuery, replace = false) {
+    filterBy(newQuery, replace = false) {
       newQuery = { [this.filter]: newQuery }
       const query = this.$route.query
 
@@ -223,13 +182,13 @@ export default {
     /**
      * Remove current query
      */
-    removeQuery () {
+    removeQuery() {
       const query = Object.assign({}, this.$route.query)
       delete query[this.filter]
       this.$router.push({ query })
       this.updateStore(query)
     },
-    updateStore (query) {
+    updateStore(query) {
       this.setQueries({ ...query })
     }
   }
