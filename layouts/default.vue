@@ -1,7 +1,7 @@
 <template>
   <div :class="dev ? 'debug-screens' : ''">
     <lazy-layout-overlay />
-    <lazy-special-routes-list />
+    <lazy-layout-helper />
     <lazy-app-notifications />
     <div class="app mx-auto">
       <lazy-layout-layer />
