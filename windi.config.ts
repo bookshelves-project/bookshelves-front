@@ -1,24 +1,8 @@
 import { defineConfig } from 'windicss/helpers'
 import colors from 'windicss/colors'
-import filtersPlugin from 'windicss/plugin/filters'
-import formsPlugin from 'windicss/plugin/forms'
-import aspectRatioPlugin from 'windicss/plugin/aspect-ratio'
-import lineClampPlugin from 'windicss/plugin/line-clamp'
-import typographyPlugin from 'windicss/plugin/typography'
-import scrollbarPlugin from '@windicss/plugin-scrollbar'
 
 export default defineConfig({
   darkMode: 'class',
-  extract: {
-    include: [
-      'assets/**/*.css',
-      'components/**/*.vue',
-      'layouts/**/*.vue',
-      'pages/**/*.vue',
-      'plugins/**/*.js',
-      'nuxt.config.js'
-    ]
-  },
   safelist: [],
   theme: {
     container: {
@@ -53,15 +37,19 @@ export default defineConfig({
       }
     }
   },
+  shortcuts: {
+    'debug-screens': 'before:bottom-0 before:left-0 before:fixed before:z-[2147483647] before:px-1 before:text-sm before:bg-black before:text-white before:shadow-xl @sm:before:content-["screen:sm"] @md:before:content-["screen:md"] @lg:before:content-["screen:lg"] @xl:before:content-["screen:xl"] @2xl:before:content-["screen:2xl"] <sm:before:content-["screen:none"]'
+  },
   plugins: [
-    filtersPlugin,
-    formsPlugin,
-    aspectRatioPlugin,
-    lineClampPlugin,
-    scrollbarPlugin,
-    typographyPlugin({
-      modifiers: ['DEFAULT', 'dark', 'sm', 'lg', 'red'],
-      dark: true
-    })
+    // require('windicss/plugin/filters'),
+    require('windicss/plugin/forms'),
+    require('windicss/plugin/aspect-ratio'),
+    require('windicss/plugin/line-clamp'),
+    require('@windicss/plugin-scrollbar'),
+    require('windicss/plugin/typography')
+    // typographyPlugin({
+    //   modifiers: ['DEFAULT', 'dark', 'sm', 'lg', 'red'],
+    //   dark: true
+    // })
   ]
 })

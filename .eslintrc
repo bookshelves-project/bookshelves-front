@@ -29,8 +29,10 @@
     "vue/no-v-html": "off",
     "vue/space-before-function-parens": "off",
     "no-unused-vars": "off",
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/multiline-html-element-content-newline": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "vue/html-self-closing": "off"
+    "vue/html-self-closing": "off",
   }
 }
