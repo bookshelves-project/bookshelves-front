@@ -3,6 +3,7 @@ import type { BooksApiPaginateResponse, Book, QueryBooks, Author } from './book'
 import type { Content } from './content'
 import type { Application, HomePage } from './cms'
 import type { Route } from './nuxt'
+import { NotificationType, Notification } from './notification'
 
 export {
   // api
@@ -23,5 +24,8 @@ export {
   Application,
   HomePage,
   // nuxt
-  Route
+  Route,
+  // notification
+  Notification,
+  NotificationType
 }

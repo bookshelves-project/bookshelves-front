@@ -2,18 +2,22 @@
   <div class="fixed top-0 right-0 z-50">
     <transition-group name="list" tag="section">
       <div v-for="(notification, id) in notifications" :key="id + 1">
-        <app-notification
-          :id="id"
-          :ref="notification.date"
-          :notification="notification"
-          @delete="deleteItem"
-        />
+        <app-notification :notification="notification" />
       </div>
     </transition-group>
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { Notification } from '~/types'
+import { namespace, getterType, mutationType, actionType } from '~/store/notification'
+
+// from: https://blog.aspiresys.pl/technology/toast-notifications-in-vue/
+const ctx = useContext()
+const notifications = computed(() => (ctx.store.state.notification.notifications as Notification[]))
+</script>
+
+<!-- <script>
 export default {
   name: 'AppNotifications',
   data() {
@@ -37,14 +41,6 @@ export default {
         this.clear(notifData)
       }, this.timeout)
     },
-    deleteItem(notif) {
-      this.clear(notif)
-    },
-    clear(notif) {
-      this.notifications = this.notifications.filter(
-        x => x.date !== notif.date
-      )
-    }
   }
 }
-</script>
+</script> -->
