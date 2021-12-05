@@ -1,9 +1,6 @@
 <template>
   <main class="main-content">
-    <app-header
-      :title="`${title} ${currentBook.title}`"
-      :subtitle="description"
-    />
+    <app-header :title="`${title} ${currentBook.title}`" :subtitle="description" />
     <section>
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
@@ -24,10 +21,8 @@
               },
             }"
           >
-            <template #primary>
-              {{ $overflow(book.title, 50) }}
-            </template>
-            <template #secondary>
+            <template #title>{{ $overflow(book.title, 50) }}</template>
+            <template #subtitle>
               <div v-for="(author, authorId) in book.authors" :key="authorId">
                 {{ author.name }}
                 <span
@@ -35,14 +30,10 @@
                     book.authors.length > 1 &&
                       authorId !== book.authors.length - 1
                   "
-                >
-                  &
-                </span>
+                >&</span>
               </div>
             </template>
-            <template #tertiary>
-              {{ capitalize(book.meta.entity) }}
-            </template>
+            <template #extra>{{ capitalize(book.meta.entity) }}</template>
           </entity-card>
         </div>
       </div>

@@ -19,12 +19,8 @@
               params: { slug: author.meta.slug },
             }"
           >
-            <template #primary>
-              {{ author.lastname }} {{ author.firstname }}
-            </template>
-            <template #tertiary>
-              {{ author.count }} books
-            </template>
+            <template #title>{{ author.lastname }} {{ author.firstname }}</template>
+            <template #extra>{{ author.count }} books</template>
           </entity-card>
         </div>
       </div>

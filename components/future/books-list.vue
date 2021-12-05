@@ -13,11 +13,11 @@
             params: { author: book.meta.author, slug: book.meta.slug },
           }"
         >
-          <template #primary>
+          <template #title>
             <!-- {{ $overflow(book.title, 50) }} -->
             {{ book.title }}
           </template>
-          <template #secondary>
+          <template #subtitle>
             <span v-if="book.authors">{{ formatAuthors(book.authors) }}</span>
             <!-- <span v-for="(author, authorId) in book.authors" :key="authorId">
                 {{ author.name }}
@@ -31,7 +31,7 @@
                 </span>
             </span>-->
           </template>
-          <template #tertiary>
+          <template #extra>
             <span v-if="book.serie" class="italic">
               {{ book.serie.title }},
               <br />
@@ -43,9 +43,7 @@
           </template>
         </blocks-entity-card>
       </div>
-      <div v-else>
-        Loading...
-      </div>
+      <div v-else>Loading...</div>
     </transition>
   </div>
 </template>

@@ -19,24 +19,22 @@
               params: { author: serie.meta.author, slug: serie.meta.slug },
             }"
           >
-            <template #primary>
-              {{ serie.title }}
-            </template>
-            <template #secondary>
+            <template #title>{{ serie.title }}</template>
+            <template #subtitle>
               <span v-for="(author, authorId) in serie.authors" :key="authorId">
                 {{ author.name }}
                 <span
                   v-if="
-                    serie.authors.length > 1 &&
-                      authorId !== serie.authors.length - 1
+                serie.authors.length > 1 &&
+                authorId !== serie.authors.length - 1
                   "
                 >&</span>
               </span>
             </template>
-            <template #tertiary>
+            <template #extra>
               <span>{{ serie.count }} books</span>
               <span
-                v-if="serie.language"
+                v-if="serie.language  "
                 class="mt-1 block"
               >{{ formatLanguage(serie.language).label }}</span>
             </template>
@@ -45,10 +43,10 @@
       </div>
       <div class="mt-6 mb-5">
         <pagination
-          v-if="meta"
-          :current-page="meta.current_page"
-          :per-page="meta.per_page"
-          :total="meta.total"
+          v-if="meta  "
+          :current-page="meta.current_page  "
+          :per-page="meta.per_page  "
+          :total="meta.total  "
         />
       </div>
     </section>

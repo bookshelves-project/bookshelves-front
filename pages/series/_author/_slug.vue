@@ -15,14 +15,10 @@
         :href="serie.download"
         :size="serie.size"
         :type="`ZIP`"
-      >
-        {{ serie.count }} eBooks
-      </blocks-button-download>
+      >{{ serie.count }} eBooks</blocks-button-download>
       <template #content>
         <div v-if="serie.tags && serie.tags.length" class="lg:flex">
-          <h2 class="mr-1">
-            Tags:
-          </h2>
+          <h2 class="mr-1">Tags:</h2>
           <ul>
             <li v-for="(tag, id) in serie.tags" :key="id" class="inline-block dark:text-gray-100">
               <span>{{ tag.name }}</span>
@@ -36,9 +32,7 @@
       </template>
     </app-header>
     <div>
-      <blocks-divider v-if="books">
-        Books
-      </blocks-divider>
+      <blocks-divider v-if="books">Books</blocks-divider>
       <div v-if="books" class="space-y-6 display-grid sm:space-y-0">
         <blocks-entity-card
           v-for="book in books"
@@ -52,23 +46,19 @@
             params: { author: book.meta.author, slug: book.meta.slug },
           }"
         >
-          <template #primary>
-            {{ $overflow(book.title, 50) }}
-          </template>
-          <template #secondary>
+          <template #title>{{ $overflow(book.title, 50) }}</template>
+          <template #subtitle>
             <span v-for="(author, authorId) in book.authors" :key="authorId">
               {{ author.name }}
               <span
                 v-if="
                   book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
+                  authorId !== book.authors.length - 1
                 "
               >,</span>
             </span>
           </template>
-          <template #tertiary>
-            Vol. {{ book.volume }}
-          </template>
+          <template #extra>Vol. {{ book.volume }}</template>
         </blocks-entity-card>
       </div>
       <div class="mt-6 mb-5">

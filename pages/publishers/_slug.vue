@@ -15,30 +15,25 @@
               params: { author: book.meta.author, slug: book.meta.slug },
             }"
           >
-            <template #primary>
-              {{ $overflow(book.title, 50) }}
-            </template>
-            <template #secondary>
+            <template #title>{{ $overflow(book.title, 50) }}</template>
+            <template #subtitle>
               <div v-for="(author, authorId) in book.authors" :key="authorId">
                 {{ author.name }}
                 <span
                   v-if="
                     book.authors.length > 1 &&
-                      authorId !== book.authors.length - 1
+                    authorId !== book.authors.length - 1
                   "
-                >
-                  &
-                </span>
+                >&</span>
               </div>
             </template>
-            <template #tertiary>
+            <template #extra>
               <div v-if="book.serie" class="italic">
-                {{ book.serie.title }},<br />
+                {{ book.serie.title }},
+                <br />
                 vol. {{ book.volume }}
               </div>
-              <div class="mt-1">
-                {{ formatLanguage(book.language).label }}
-              </div>
+              <div class="mt-1">{{ formatLanguage(book.language).label }}</div>
             </template>
           </entity-card>
         </div>

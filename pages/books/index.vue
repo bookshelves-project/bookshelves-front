@@ -1,11 +1,12 @@
 <template>
   <main class="main-content relative">
     <app-header :title="title" :subtitle="description" :border="false">
-      <!-- <template #filters>
+      <template #filters>
         <blocks-filters has-serie languages :sort="sortOptions" paginate />
-      </template>-->
+      </template>
     </app-header>
-    <div class="space-y-6 display-grid sm:space-y-0">
+
+    <div role="list" class="display-grid">
       <EntityCard
         v-for="(book,id) in books"
         :key="id"
@@ -17,13 +18,13 @@
           params: { author: book.meta.author, slug: book.meta.slug },
         }"
       >
-        <template #primary>
+        <template #title>
           <span>{{ overflow(book.title, 50) }}</span>
         </template>
-        <template #secondary>
+        <template #subtitle>
           <span>{{ formatAuthors(book.authors) }}</span>
         </template>
-        <template #tertiary>
+        <template #extra>
           <span v-if="book.serie" class="italic">
             {{ book.serie.title }},
             <br />
@@ -89,10 +90,11 @@ useMeta(() => ({
 
 <script lang="ts">
 export default defineComponent({
+  middleware: ['paginate'],
   async asyncData({ query, $repository }) {
     const api: BooksApiPaginateResponse = await $repository(ApiEndpoint.Book).index({
       page: query.page as string || '1',
-      perPage: '132',
+      perPage: '32',
       ...query
     })
 

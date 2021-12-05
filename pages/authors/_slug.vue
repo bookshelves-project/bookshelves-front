@@ -14,13 +14,11 @@
         :href="author.download"
         :size="author.size"
         :type="`ZIP`"
-      >
-        {{ author.count }} eBooks
-      </blocks-button-download>
+      >{{ author.count }} eBooks</blocks-button-download>
     </app-header>
     <div>
       <section v-if="series.data.length">
-        <blocks-divider> Series </blocks-divider>
+        <blocks-divider>Series</blocks-divider>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
             v-for="serie in series.data"
@@ -34,15 +32,9 @@
               params: { author: serie.meta.author, slug: serie.meta.slug },
             }"
           >
-            <template #primary>
-              {{ $overflow(serie.title, 50) }}
-            </template>
-            <template v-if="serie.count" #secondary>
-              {{ serie.count }} books
-            </template>
-            <template v-if="serie.language" #tertiary>
-              {{ formatLanguage(serie.language).label }}
-            </template>
+            <template #title>{{ $overflow(serie.title, 50) }}</template>
+            <template v-if="serie.count" #subtitle>{{ serie.count }} books</template>
+            <template v-if="serie.language" #extra>{{ formatLanguage(serie.language).label }}</template>
           </entity-card>
         </div>
         <div class="mt-14 mb-5">
@@ -55,9 +47,7 @@
         </div>
       </section>
       <section v-if="books.data.length">
-        <blocks-divider class="mt-16">
-          Books
-        </blocks-divider>
+        <blocks-divider class="mt-16">Books</blocks-divider>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
             v-for="book in books.data"
@@ -71,16 +61,13 @@
               params: { author: book.meta.author, slug: book.meta.slug },
             }"
           >
-            <template #primary>
-              {{ $overflow(book.title, 50) }}
-            </template>
-            <template v-if="book.serie" #secondary>
-              {{ book.serie.title }},<br />
+            <template #title>{{ $overflow(book.title, 50) }}</template>
+            <template v-if="book.serie" #subtitle>
+              {{ book.serie.title }},
+              <br />
               vol. {{ book.volume }}
             </template>
-            <template v-if="book.language" #tertiary>
-              {{ formatLanguage(book.language).label }}
-            </template>
+            <template v-if="book.language" #extra>{{ formatLanguage(book.language).label }}</template>
           </entity-card>
         </div>
         <div class="mt-14 mb-5">
