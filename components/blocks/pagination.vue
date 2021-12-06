@@ -1,14 +1,18 @@
 <template>
-  <div></div>
-  <!-- <nav class="flex justify-between px-4 border-t border-gray-200 dark:border-gray-700 sm:px-0">
+  <nav class="flex justify-between px-4 border-t border-gray-200 dark:border-gray-700 sm:px-0">
     <div class="hidden sm:flex flex-1 w-0 -mt-px item-ext">
       <nuxt-link v-slot="{ navigate }" :to="linkGen(1)" custom>
-        <component :is="getTag(1)" class="external-pagination" :to="linkGen(1)" @click="navigate">
+        <component
+          :is="getTag(1)"
+          class="external-pagination"
+          :to="linkGen(1)"
+          @click="navigate"
+        >
           <svg-icon
             name="arrow-narrow-right"
             class="w-5 h-5 mr-3 text-gray-400 rotate-180 my-auto"
           />
-          <span class="mb-1">First</span>
+          First
         </component>
       </nuxt-link>
     </div>
@@ -22,15 +26,28 @@
             title="Previous"
             aria-label="Previous"
             @click="navigate"
-          >‹</component>
+          >
+            ‹
+          </component>
         </nuxt-link>
       </div>
       <div
-        class="mx-2 inline-flex items-center px-4 pt-4 text-sm font-medium text-gray-500 border-t-2 border-transparent dark:text-gray-100"
+        class="
+          mx-2
+          inline-flex
+          items-center
+          px-4
+          pt-4
+          text-sm
+          font-medium
+          text-gray-500
+          border-t-2 border-transparent
+          dark:text-gray-100
+        "
       >
         Page
         <span class="ml-1">
-          <span v-if="page">{{ page }}</span>
+          <span v-if="$route.query.page">{{ $route.query.page }}</span>
           <span v-else>1</span>
         </span>
       </div>
@@ -43,7 +60,9 @@
             title="Next"
             aria-label="Next"
             @click="navigate"
-          >›</component>
+          >
+            ›
+          </component>
         </nuxt-link>
       </div>
     </div>
@@ -57,7 +76,9 @@
             title="Previous"
             aria-label="Previous"
             @click="navigate"
-          >‹</component>
+          >
+            ‹
+          </component>
         </nuxt-link>
       </div>
       <div v-if="showFirstDots" class="item">
@@ -78,11 +99,9 @@
             aria-label="Next"
             @click="navigate"
           >
-            <em class="border-none" style="padding: 0">
-              {{
-                pageNum + startNumber - 1
-              }}
-            </em>
+            <em class="border-none" style="padding: 0">{{
+              pageNum + startNumber - 1
+            }}</em>
           </component>
         </nuxt-link>
       </div>
@@ -98,7 +117,9 @@
             :title="`Page ${pages}`"
             aria-label="Next"
             @click="navigate"
-          >{{ pages }}</component>
+          >
+            {{ pages }}
+          </component>
         </nuxt-link>
       </div>
       <div class="item">
@@ -110,7 +131,9 @@
             title="Next"
             aria-label="Next"
             @click="navigate"
-          >›</component>
+          >
+            ›
+          </component>
         </nuxt-link>
       </div>
     </div>
@@ -122,172 +145,142 @@
           :to="linkGen(pages)"
           @click="navigate"
         >
-          <span class="mb-1">Last</span>
-          <svg-icon name="arrow-narrow-right" class="w-5 h-5 ml-3 text-gray-400" />
+          Last
+          <svg-icon
+            name="arrow-narrow-right"
+            class="w-5 h-5 ml-3 text-gray-400"
+          />
         </component>
       </nuxt-link>
     </div>
-  </nav>-->
+  </nav>
 </template>
 
-<script lang="ts" setup>import { Query } from '~/types'
+<script>
+export default {
+  props: {
+    pages: {
+      type: Number,
+      default: 1
+    },
+    currentPage: {
+      type: Number,
+      default: 1
+    }
+  },
+  data() {
+    return {
+      ellipsesThreshold: 3,
+      limit: 5
+    }
+  },
+  computed: {
+    displayLastPage() {
+      let limit = this.limit
+      limit = limit - 2
+      if (this.currentPage <= this.pages - limit) {
+        return true
+      }
 
-const props = defineProps({
-  currentPage: {
-    type: Number,
-    required: true
+      return false
+    },
+    showAllPages() {
+      return this.pages <= this.limit
+    },
+    nearFromBeginning() {
+      return (
+        !this.showAllPages &&
+        this.currentPage < this.limit - 1 &&
+        this.limit > this.ellipsesThreshold
+      )
+    },
+    nearFromEnd() {
+      return (
+        !this.showAllPages &&
+        !this.nearFromBeginning &&
+        this.pages - this.currentPage + 2 < this.limit &&
+        this.limit > this.ellipsesThreshold
+      )
+    },
+    isOnTheMiddle() {
+      return (
+        !this.showAllPages &&
+        !this.nearFromBeginning &&
+        !this.nearFromEnd &&
+        this.limit > this.ellipsesThreshold
+      )
+    },
+    showFirstDots() {
+      return this.nearFromEnd || this.isOnTheMiddle
+    },
+    showLastDots() {
+      return this.nearFromBeginning || this.isOnTheMiddle
+    },
+    startNumber() {
+      let startNumber = 1
+
+      if (this.nearFromEnd) {
+        startNumber = this.pages - this.numberOfLinks + 1
+      } else if (this.isOnTheMiddle) {
+        startNumber = this.currentPage - Math.floor(this.numberOfLinks / 2)
+      }
+
+      if (startNumber < 1) {
+        return 1
+      }
+
+      if (startNumber > this.pages - this.numberOfLinks) {
+        return this.pages - this.numberOfLinks + 1
+      }
+      return startNumber
+    },
+    numberOfLinks() {
+      if (this.showAllPages) {
+        return this.pages
+      }
+      if (this.nearFromBeginning || this.nearFromEnd) {
+        return parseInt(this.limit, 10) - 1
+      }
+      if (this.isOnTheMiddle) {
+        // return this.limit - 2
+        return parseInt(this.limit, 10)
+      }
+      return parseInt(this.limit, 10)
+    }
   },
-  perPage: {
-    type: [Number, String],
-    required: true
+  created() {
+    if (this.pages >= 8) {
+      const limit = this.pages / 3
+      if (limit <= 8) {
+        this.limit = limit
+      } else {
+        this.limit = 8
+      }
+    }
   },
-  total: {
-    type: Number,
-    required: true
-  },
-  limit: {
-    type: Number,
-    default: 6
-  },
-  ellipsesThreshold: {
-    type: Number,
-    default: 3
+  methods: {
+    linkGen(pageNum) {
+      const route = this.$route
+      const newQuery = { ...route.query }
+      newQuery.page = pageNum.toString()
+      const newRoute = {
+        name: route.name || 'index',
+        query: { ...newQuery }
+      }
+
+      return newRoute
+    },
+    isActive(pageNum) {
+      return this.currentPage === pageNum
+    },
+    getTag(pageNum) {
+      return this.isActive(pageNum) ? 'span' : 'nuxt-link'
+    }
   }
-})
-
-const route = useContext().route.value
-const page = useRoute().value.query.page
-
-const linkGen = (pageNum: number) => {
-  const newQuery: Query = { ...route.query }
-  newQuery.page = pageNum.toString()
-  const newRoute = {
-    name: route.name || 'index',
-    query: { ...newQuery }
-  }
-
-  return newRoute
 }
-
-const isActive = (pageNum: number) => {
-  return props.currentPage === pageNum
-}
-const getTag = (pageNum: number) => {
-  return isActive(pageNum) ? 'span' : 'nuxt-link'
-}
-
-const pages = computed((): number => {
-  let page = props.perPage
-  if (typeof page === 'string') {
-    page = parseInt(page, 10)
-  }
-  return Math.ceil(props.total / page)
-})
-const displayLastPage = computed(() => {
-  let limited = props.limit
-  limited = limited - 2
-  if (props.currentPage <= pages.value - limited) {
-    return true
-  }
-
-  return false
-})
-const showAllPages = computed(() => {
-  return pages.value <= props.limit
-})
-const nearFromBeginning = computed(() => {
-  return (
-    !showAllPages.value &&
-    props.currentPage < props.limit - 1 &&
-    props.limit > props.ellipsesThreshold
-  )
-})
-const nearFromEnd = computed(() => {
-  return (
-    !showAllPages.value &&
-    !nearFromBeginning.value &&
-    pages.value - props.currentPage + 2 < props.limit &&
-    props.limit > props.ellipsesThreshold
-  )
-})
-const isOnTheMiddle = computed(() => {
-  return (
-    !showAllPages.value &&
-    !nearFromBeginning.value &&
-    !nearFromEnd.value &&
-    props.limit > props.ellipsesThreshold
-  )
-})
-const showFirstDots = computed(() => {
-  return nearFromEnd.value || isOnTheMiddle.value
-})
-const showLastDots = computed(() => {
-  return nearFromBeginning.value || isOnTheMiddle.value
-})
-const numberOfLinks = computed(() => {
-  if (showAllPages.value) {
-    return pages.value
-  }
-  if (nearFromBeginning.value || nearFromEnd.value) {
-    return props.limit - 1
-  }
-  if (isOnTheMiddle.value) {
-    return props.limit - 2
-  }
-  return props.limit
-})
-const startNumber = computed(() => {
-  let startNumber = 1
-  if (nearFromEnd.value) {
-    startNumber = pages.value - numberOfLinks.value + 1
-  } else if (isOnTheMiddle.value) {
-    startNumber = props.currentPage - Math.floor(numberOfLinks.value / 2)
-  }
-  if (startNumber < 1) {
-    return 1
-  }
-  if (startNumber > pages.value - numberOfLinks.value) {
-    return pages.value - numberOfLinks.value + 1
-  }
-  return startNumber
-})
 </script>
 
 <style lang="postcss" scoped>
-/* .link {
-  @apply mr-1 mb-1 px-4 py-3 text-sm leading-4 border border-primary-300 rounded;
-
-  svg {
-    @apply h-4 w-4;
-  }
-
-  &[disabled] {
-    @apply cursor-not-allowed;
-
-/* .link {
-  @apply mr-1 mb-1 px-4 py-3 text-sm leading-4 border border-primary-300 rounded;
-
-  svg {
-    @apply h-4 w-4;
-  }
-
-  &[disabled] {
-    @apply cursor-not-allowed;
-
-    &:not(.active) {
-      @apply opacity-25;
-    }
-  }
-
-  &:not([disabled]) {
-    @apply hover:bg-white focus:border-primary-500 focus:text-primary-500;
-  }
-
-  &.active {
-    @apply bg-primary-600 text-white;
-  }
-} */
-
 .rotate-180 {
   transform: rotate(180deg);
 }
@@ -295,9 +288,12 @@ em {
   font-style: normal;
 }
 .external-pagination {
-  @apply inline-flex items-center text-gray-500 dark:text-gray-400 pt-4 border-t-2 border-transparent;
+  @apply inline-flex items-center text-gray-500 pt-4 border-t-2 border-transparent;
   & span {
     @apply opacity-50;
+  }
+  & a {
+    @apply hover:text-gray-700 hover:border-gray-300;
   }
 }
 .item-ext {
@@ -309,7 +305,7 @@ em {
     @apply opacity-50;
   }
   & a {
-    @apply hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-300 dark:hover:border-gray-600;
+    @apply hover:text-gray-700 hover:border-gray-300;
   }
 }
 .item {
@@ -321,7 +317,7 @@ em {
     @apply opacity-50;
   }
   & a {
-    @apply hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-300 dark:hover:border-gray-600;
+    @apply hover:text-gray-700 hover:border-gray-300;
   }
 
   &.active {
@@ -334,3 +330,4 @@ em {
     }
   }
 }
+</style>
