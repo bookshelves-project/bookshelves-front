@@ -16,7 +16,7 @@ declare module '@nuxt/types' {
 
 const repository: Plugin = (ctx) => {
   ctx.$repository = (endpoint: ApiEndpoint) => {
-    return new Repository(ctx.$axios, endpoint)
+    return new Repository(ctx.$axios, ctx.error, endpoint)
   }
   ctx.$notification = (notification?: Notification) => {
     const notif = {
