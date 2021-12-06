@@ -110,7 +110,10 @@ export default {
   computed: {
     ...mapGetters({
       storeQueries: 'filters/queries'
-    })
+    }),
+    currentQuery() {
+      return this.$route.query
+    }
   },
   watch: {
     checkboxes: {
@@ -127,6 +130,9 @@ export default {
     },
     switchValue(newValue) {
       this.filterBy(newValue)
+    },
+    currentQuery(newValue) {
+      this.checkCurrentQuery(newValue)
     }
   },
   async created() {
@@ -140,12 +146,22 @@ export default {
       this.optionsData = this.options
     }
   },
+  mounted() {
+    this.checkCurrentQuery(this.currentQuery)
+  },
   methods: {
     isEmpty,
     ...mapMutations({
       setQueries: 'filters/setQueries',
       setClear: 'filters/setClear'
     }),
+    checkCurrentQuery(query) {
+      if (Object.prototype.hasOwnProperty.call(query, this.filter)) {
+        if (this.type === 'switch') {
+          this.switchValue = JSON.parse(query[this.filter])
+        }
+      }
+    },
     setCheckboxesValues() {
       // eslint-disable-next-line no-unused-vars
       for (const [key, option] of Object.entries(this.optionsData)) {

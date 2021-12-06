@@ -53,7 +53,7 @@ export default {
     isEmpty,
     filterName (query) {
       const filters = {
-        'filter[has_serie]': 'has series',
+        'filter[allow_serie]': 'allow series',
         sort: 'sort by',
         'filter[languages]': 'languages',
         'filter[negligible]': 'hide negligible',

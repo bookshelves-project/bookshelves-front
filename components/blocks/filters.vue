@@ -16,7 +16,7 @@
             />
             <button
               v-if="$route.query.sort"
-              class="p-2 ml-1 rounded-md transition-colors duration-75 hover:bg-gray-200"
+              class="p-2 ml-1 rounded-md transition-colors duration-75 hover:bg-gray-200 dark:hover:bg-gray-700"
               @click="reverseSort($route.query.sort.includes('-'))"
             >
               <svg-icon
@@ -38,7 +38,7 @@
               <div class="flex items-center space-x-4">
                 <blocks-filters-option
                   v-if="hasSerie"
-                  filter="filter[has_serie]"
+                  filter="filter[allow_serie]"
                   label="Allow series"
                   :options="seriesOptions"
                   type="switch"
