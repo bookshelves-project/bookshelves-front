@@ -23,3 +23,9 @@ watch(() => $colorMode.value, (newVal) => {
   }
 })
 </script>
+
+<style lang="css" scoped>
+>>> .toggle-disabled {
+  @apply text-gray-500;
+}
+</style>

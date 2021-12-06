@@ -24,14 +24,14 @@
           class="absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
           aria-hidden="true"
         >
-          <svg-icon :name="disabled" class="h-3 w-3 text-gray-400 dark:text-gray-700" />
+          <svg-icon :name="disabled" class="h-3 w-3 text-gray-400 dark:text-gray-700 toggle-disabled" />
         </span>
         <span
           :class="toggled ? 'opacity-100 ease-in duration-200' : 'opacity-0 ease-out duration-100'"
           class="absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
           aria-hidden="true"
         >
-          <svg-icon :name="enabled" class="h-3 w-3 text-primary-600" />
+          <svg-icon :name="enabled" class="h-3 w-3 text-primary-600 toggle-enabled" />
         </span>
       </span>
     </button>
