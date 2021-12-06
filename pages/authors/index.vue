@@ -25,11 +25,10 @@
         </div>
       </div>
       <div class="mt-6 mb-5">
-        <pagination
+        <Pagination
           v-if="meta"
           :current-page="meta.current_page"
-          :per-page="meta.per_page"
-          :total="meta.total"
+          :pages="meta.last_page"
         />
       </div>
     </section>

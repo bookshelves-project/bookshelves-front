@@ -36,11 +36,16 @@
     </div>
 
     <div class="mt-14 mb-5">
-      <Pagination
+      <!-- <Pagination
         v-if="meta"
         :current-page="meta.current_page"
         :per-page="meta.per_page"
         :total="meta.total"
+      /> -->
+      <Pagination
+        v-if="meta"
+        :current-page="meta.current_page"
+        :pages="meta.last_page"
       />
     </div>
   </main>
@@ -54,6 +59,17 @@ import EntityCard from '~/components/blocks/entity-card.vue'
 import Pagination from '~/components/blocks/pagination.vue'
 
 const { $config, route } = useContext()
+const router = useRouter()
+if (!route.value.query.perPage) {
+  router.replace({
+    query: {
+      perPage: '32',
+      page: '1',
+      'filter[allow_serie]': 'true',
+      sort: 'title_sort'
+    }
+  })
+}
 
 const books = ref<Book[]>()
 const meta = ref<ApiMeta>()
@@ -90,7 +106,6 @@ useMeta(() => ({
 
 <script lang="ts">
 export default defineComponent({
-  middleware: ['paginate'],
   async asyncData({ query, $repository }) {
     const api: BooksApiPaginateResponse = await $repository(ApiEndpoint.Book).index({
       page: query.page as string || '1',
@@ -104,7 +119,7 @@ export default defineComponent({
     }
   },
   head: {},
-  watchQuery: ['page', 'filter[has_serie]', 'filter[languages]', 'sort']
+  watchQuery: ['page', 'filter[allow_serie]', 'filter[languages]', 'sort']
   // jsonld() {
   //   const breadcrumbs = [
   //     {

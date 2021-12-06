@@ -25,8 +25,8 @@
                 {{ author.name }}
                 <span
                   v-if="
-                serie.authors.length > 1 &&
-                authorId !== serie.authors.length - 1
+                    serie.authors.length > 1 &&
+                      authorId !== serie.authors.length - 1
                   "
                 >&</span>
               </span>
@@ -34,7 +34,7 @@
             <template #extra>
               <span>{{ serie.count }} books</span>
               <span
-                v-if="serie.language  "
+                v-if="serie.language "
                 class="mt-1 block"
               >{{ formatLanguage(serie.language).label }}</span>
             </template>
@@ -42,11 +42,10 @@
         </div>
       </div>
       <div class="mt-6 mb-5">
-        <pagination
-          v-if="meta  "
-          :current-page="meta.current_page  "
-          :per-page="meta.per_page  "
-          :total="meta.total  "
+        <Pagination
+          v-if="meta"
+          :current-page="meta.current_page"
+          :pages="meta.last_page"
         />
       </div>
     </section>
