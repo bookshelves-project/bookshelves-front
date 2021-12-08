@@ -38,7 +38,7 @@ import { ApiResponse, HomePage } from '~/types'
     try {
       const homePage: HomePage = await ctx.$axios
         .$get(`/cms/home-page?${stringify({ lang: ctx.i18n.locale })}`)
-        .then((e: ApiResponse) => e.data)
+        .then((e: ApiResponse<HomePage>) => e.data)
 
       return {
         homePage

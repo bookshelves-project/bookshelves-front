@@ -10,8 +10,8 @@
       <EntityCard
         v-for="(book,id) in books"
         :key="id"
-        :cover="book.cover.thumbnail"
-        :color="book.cover.color"
+        :cover="book.cover?.thumbnail"
+        :color="book.cover?.color"
         :title="book.title"
         :route="{
           name: 'books-author-slug',

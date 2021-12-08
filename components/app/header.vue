@@ -34,7 +34,7 @@
                 :alt="title"
                 :title="title"
                 class="object-cover w-20 h-20 rounded-md"
-                class-img="rounded-md"
+                override="rounded-md"
               />
             </component>
           </div>

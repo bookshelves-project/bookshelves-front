@@ -1,8 +1,9 @@
 <template>
-  <blocks-book-slider
-    :books="books"
+  <BookSlider
+    v-if="book.serie"
+    :entities="entities"
     :loaded="loaded"
-    :link="{
+    :route="{
       name: 'series-author-slug',
       params: {
         author: book.serie.meta.author,
@@ -16,41 +17,36 @@
     <template #subtitle>
       Current: vol. {{ book.volume }}, limited to 10 next volumes.
     </template>
-  </blocks-book-slider>
+  </BookSlider>
 </template>
 
-<script>
-export default {
-  name: 'BookSerie',
-  props: {
-    book: {
-      type: Object,
-      default: () => {}
-    }
-  },
-  data() {
-    return {
-      books: [],
-      loaded: false
-    }
-  },
-  async mounted() {
-    await this.loadSerie()
-  },
-  methods: {
-    async loadSerie() {
-      if (this.book.serie !== null) {
-        try {
-          const books = await this.$axios.$get(
-            `/series/books/${this.book.volume}/${this.book.serie.meta.author}/${this.book.serie.meta.slug}`
-          )
-          this.books = books.data
-          this.loaded = true
-        } catch (error) {
-          console.error(error)
-        }
-      }
-    }
+<script setup lang="ts">
+import BookSlider from './slider.vue'
+import { ApiEndpoint } from '~/composables/repository'
+import { ApiResponse, Book, Entity } from '~/types'
+
+const props = defineProps<{
+  book: Book
+}>()
+
+const { $repository } = useContext()
+const entities = ref<Entity[]>()
+const loaded = ref(false)
+
+const loadSerie = () => {
+  if (props.book.serie !== null) {
+    $repository(ApiEndpoint.SerieBook, false).index({}, [
+      props.book.volume?.toString(10) as string,
+      props.book.serie?.meta.author as string,
+      props.book.serie?.meta.slug as string
+    ]).then((e: ApiResponse<Entity[]>) => {
+      entities.value = e.data
+      loaded.value = true
+    })
   }
 }
+
+onMounted(async () => {
+  await loadSerie()
+})
 </script>

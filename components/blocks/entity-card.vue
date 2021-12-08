@@ -19,6 +19,7 @@
   </li>-->
   <div
     class="relative rounded-sm shadow-sm flex items-center space-x-3 h-56 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-75 focus"
+    :title="title"
   >
     <div class="flex-shrink-0 h-full">
       <app-img class="w-36 h-full object-cover" :src="cover" :color="color" :alt="title" />

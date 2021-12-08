@@ -1,12 +1,13 @@
 // eslint-disable-next-line import/named
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { NuxtError } from '@nuxt/types'
-import { AxiosInstance, AxiosResponse, AxiosError } from 'axios'
+import { AxiosResponse } from 'axios'
 import { stringify } from 'qs'
 import { ApiPaginateResponse, ApiResponse, Query } from '~/types'
 
 export enum ApiEndpoint {
   Book = '/books',
+  BookRelated = '/books/related',
   Serie = '/series',
   SerieBook = '/series/books',
   Author = '/authors',
@@ -14,12 +15,14 @@ export enum ApiEndpoint {
 export class Repository {
   axios: NuxtAxiosInstance
   error: (param: NuxtError) => void
+  handleError: boolean
   endpoint?: ApiEndpoint
   response?: AxiosResponse
 
-  constructor(axios: NuxtAxiosInstance, error: (param: NuxtError) => void, endpoint: ApiEndpoint = ApiEndpoint.Book, response?: AxiosResponse) {
+  constructor(axios: NuxtAxiosInstance, error: (param: NuxtError) => void, handleError: boolean, endpoint: ApiEndpoint = ApiEndpoint.Book, response?: AxiosResponse) {
     this.axios = axios
     this.error = error
+    this.handleError = handleError
     this.endpoint = endpoint
     this.response = response
   }
@@ -37,14 +40,16 @@ export class Repository {
   /**
    * Get all entities
    */
-  index(query?: Query, params?: string | string[]) {
+  index(query?: Query, params?: string | string[]): Promise<ApiPaginateResponse<any>> {
     const url = `${this.url(params)}?${stringify({ ...query })}`
 
     return this.axios.$get(url)
       .then((response: ApiPaginateResponse<any>) => response)
       .catch((e) => {
         console.error(e)
-        this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
+        if (this.handleError) {
+          this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
+        }
         return {} as ApiPaginateResponse<any>
       })
   }
@@ -54,8 +59,10 @@ export class Repository {
       .then((response: ApiResponse<any>) => response)
       .catch((e) => {
         console.error(e)
-        this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
-        return {} as ApiResponse<any>
+        if (this.handleError) {
+          this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
+        }
+        return {} as ApiPaginateResponse<any>
       })
   }
 

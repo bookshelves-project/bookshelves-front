@@ -16,6 +16,7 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
+    "jsx": "preserve",
     "noEmit": true,
     "baseUrl": ".",
     "importsNotUsedAsValues": "preserve",
@@ -38,7 +39,8 @@
       "nuxt-windicss",
       "@nuxtjs/color-mode",
       "@pinia/nuxt",
-      "cookie-universal-nuxt"
+      "cookie-universal-nuxt",
+      "@types/swiper"
     ],
   },
   "vueCompilerOptions": {

@@ -26,16 +26,18 @@
           <transition name="fade">
             <app-img
               v-if="$auth.$state.loggedIn"
-              class="w-8 h-8 rounded-full"
+              class="w-8 h-8"
               :src="
                 $auth.$state.user.data ? $auth.$state.user.data.avatar : null
               "
+              override="rounded-full"
               invisible
             />
             <app-img
               v-else
               src="/images/user.svg"
-              class="w-8 h-8 rounded-full"
+              class="w-8 h-8"
+              override="rounded-full"
               invisible
             />
           </transition>

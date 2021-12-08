@@ -147,6 +147,18 @@ const links = [
     description: 'Documentation',
     url: 'https://v3.nuxtjs.org/docs/usage/data-fetching',
     img: 'https://nuxtjs.org/design-kit/colored-logo.svg'
+  },
+  {
+    label: 'Vue 3 Composition API',
+    description: 'Documentation',
+    url: 'https://v3.vuejs.org/guide/composition-api-introduction.html',
+    img: 'https://v3.vuejs.org/logo.png'
+  },
+  {
+    label: 'Vue 3 Lifecycle Hooks',
+    description: 'Documentation',
+    url: 'https://v3.vuejs.org/guide/composition-api-lifecycle-hooks.html',
+    img: 'https://v3.vuejs.org/logo.png'
   }
 ]
 
