@@ -111,5 +111,28 @@ export default defineComponent({
     }
   },
   head: {}
+  // const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+  // const serie = this.book.serie
+  //   ? ` · ${this.book.serie.title}, vol. ${this.book.volume} `
+  //   : ''
+  // const authors = this.formatAuthors(this.book.authors)
+  // const title = `${this.book.title} ${serie}by ${authors}`
+  // return {
+  //   title,
+  //   description: this.book.summary,
+  //   image: this.book.cover.og,
+  //   meta: [
+  //     ...dynamicMetadata.default({
+  //       title,
+  //       url: this.$nuxt.$route.path,
+  //       bookISBN: this.book.identifier
+  //         ? this.book.identifier.isbn13 || this.book.identifier.isbn
+  //         : null,
+  //       bookAuthor: authors,
+  //       bookReleaseDate: this.book.publishDate,
+  //       bookTag: this.formatTags(this.book.tags)
+  //     })
+  //   ]
+  // }
 })
 </script>
