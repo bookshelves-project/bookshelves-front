@@ -9,14 +9,14 @@ declare module '@nuxt/types' {
     /**
      * A Repository can execute requests
      */
-    $repository(endpoint: ApiEndpoint): Repository
+    $repository(endpoint: ApiEndpoint, handleError?: boolean): Repository
     $notification(notification?: Notification): void
   }
 }
 
 const repository: Plugin = (ctx) => {
-  ctx.$repository = (endpoint: ApiEndpoint) => {
-    return new Repository(ctx.$axios, ctx.error, endpoint)
+  ctx.$repository = (endpoint: ApiEndpoint, handleError = true) => {
+    return new Repository(ctx.$axios, ctx.error, handleError, endpoint)
   }
   ctx.$notification = (notification?: Notification) => {
     const notif = {

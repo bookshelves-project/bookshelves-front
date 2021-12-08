@@ -47,6 +47,7 @@ export interface ApiFormated<T> {
 export interface Query {
     perPage?: string
     page?: string,
+    limit?: string,
     'filter[allow_serie]'?: string,
     'filter[languages]'?: string,
     sort?: string
