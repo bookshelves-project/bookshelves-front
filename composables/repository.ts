@@ -3,11 +3,12 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { NuxtError } from '@nuxt/types'
 import { AxiosInstance, AxiosResponse, AxiosError } from 'axios'
 import { stringify } from 'qs'
-import { ApiPaginateResponse, Query } from '~/types'
+import { ApiPaginateResponse, ApiResponse, Query } from '~/types'
 
 export enum ApiEndpoint {
   Book = '/books',
   Serie = '/series',
+  SerieBook = '/series/books',
   Author = '/authors',
 }
 export class Repository {
@@ -23,27 +24,39 @@ export class Repository {
     this.response = response
   }
 
-  executeRequest() {
-    console.log('request')
+  url(params: string | string[] | undefined) {
+    let url = `${this.endpoint}`
+    if (params) {
+      const routeParams = params instanceof Array ? params.join('/') : params
+      url = `${url}/${routeParams}`
+    }
+
+    return url
   }
 
   /**
    * Get all entities
    */
-  index(params?: Query): Promise<ApiPaginateResponse> {
-    const query = `?${stringify({ ...params })}`
-    const path = `${this.endpoint}`
-    return this.axios.$get(`${path}${query}`)
-      .then((response: ApiPaginateResponse) => response)
+  index(query?: Query, params?: string | string[]) {
+    const url = `${this.url(params)}?${stringify({ ...query })}`
+
+    return this.axios.$get(url)
+      .then((response: ApiPaginateResponse<any>) => response)
       .catch((e) => {
         console.error(e)
-        this.error({ statusCode: 500, message: `Request failed on ${path}.` })
-        return {}
+        this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
+        return {} as ApiPaginateResponse<any>
       })
   }
 
-  show(slug: string) {
-    // return this.axios.$get(`${resource}/${id}`)
+  show(params: string | string[]): Promise<ApiResponse<any>> {
+    return this.axios.$get(this.url(params))
+      .then((response: ApiResponse<any>) => response)
+      .catch((e) => {
+        console.error(e)
+        this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
+        return {} as ApiResponse<any>
+      })
   }
 
   create(payload: object) {

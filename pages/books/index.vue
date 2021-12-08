@@ -41,25 +41,23 @@
         :current-page="meta.current_page"
         :per-page="meta.per_page"
         :total="meta.total"
-      /> -->
-      <Pagination
-        v-if="meta"
-        :current-page="meta.current_page"
-        :pages="meta.last_page"
-      />
+      />-->
+      <Pagination v-if="meta" :current-page="meta.current_page" :pages="meta.last_page" />
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
 import { ApiEndpoint } from '~/composables/repository'
-import { formatLanguage, overflow, formatAuthors } from '~/plugins/utils/methods'
-import { Book, BooksApiPaginateResponse, ApiMeta } from '~/types'
+import { overflow } from '@/plugins/utils/methods'
+import { formatLanguage, formatAuthors } from '~/plugins/utils/entities'
+import { Book, ApiMeta, ApiPaginateResponse } from '~/types'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import Pagination from '~/components/blocks/pagination.vue'
 
 const { $config, route } = useContext()
 const router = useRouter()
+
 if (!route.value.query.perPage) {
   router.replace({
     query: {
@@ -97,17 +95,13 @@ const sortOptions = [
 
 useMeta(() => ({
   title
-  // meta: [{
-  //   name: 'message',
-  //   content: computedMessage.value
-  // }]
 }))
 </script>
 
 <script lang="ts">
 export default defineComponent({
   async asyncData({ query, $repository }) {
-    const api: BooksApiPaginateResponse = await $repository(ApiEndpoint.Book).index({
+    const api = await $repository(ApiEndpoint.Book).index({
       page: query.page as string || '1',
       perPage: '32',
       ...query

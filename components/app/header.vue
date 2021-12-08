@@ -104,7 +104,7 @@
           </div>
         </div>
       </div>
-      <div v-if="$slots.default" class="mt-6 mb-3 lg:mt-0 lg:mb-0 flex">
+      <div v-if="$slots.default" class="mt-6 mb-3 lg:mt-0 lg:mb-0">
         <slot />
       </div>
     </div>

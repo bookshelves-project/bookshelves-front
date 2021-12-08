@@ -22,12 +22,12 @@ export interface ApiMeta {
     total: number;
 }
 
-export interface ApiResponse {
-    data: any;
+export interface ApiResponse<T> {
+    data: T;
 }
 
-export interface ApiPaginateResponse {
-    data?: any[];
+export interface ApiPaginateResponse<T> {
+    data: T[];
     links?: Links;
     meta?: ApiMeta;
 }
@@ -39,12 +39,15 @@ export interface Pagination {
     total?: number
 }
 
-export interface ApiFormated {
-    data?: any[];
+export interface ApiFormated<T> {
+    data: T[];
     pagination?: Pagination;
 }
 
 export interface Query {
     perPage?: string
-    page?: string
+    page?: string,
+    'filter[allow_serie]'?: string,
+    'filter[languages]'?: string,
+    sort?: string
 }

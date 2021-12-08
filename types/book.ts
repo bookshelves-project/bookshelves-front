@@ -1,20 +1,4 @@
-import { ApiPaginateResponse } from '.'
-
-export interface AuthorMeta {
-  slug?: string
-  show?: string
-}
-
-export interface Author {
-  name?: string
-  meta?: AuthorMeta
-}
-
-export interface Cover {
-  thumbnail?: string
-  simple?: string
-  color?: string
-}
+import { Author, Cover } from './shared'
 
 export interface BookMeta {
   slug: string
@@ -22,7 +6,7 @@ export interface BookMeta {
   show: string
 }
 
-export interface Serie {
+export interface BookSerie {
   title?: string
   meta?: BookMeta
 }
@@ -36,14 +20,5 @@ export interface Book {
   publishDate?: Date
   cover: Cover
   volume: number
-  serie: Serie
-}
-
-export interface QueryBooks {
-  perPage?: string
-  page?: string
-}
-
-export interface BooksApiPaginateResponse extends ApiPaginateResponse {
-  data?: Book[]
+  serie: BookSerie
 }

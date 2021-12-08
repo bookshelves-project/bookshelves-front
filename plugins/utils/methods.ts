@@ -1,280 +1,246 @@
-// Generate random string
-export const randomString = (L) => {
-  let s = ''
-  const randomchar = function () {
-    const n = Math.floor(Math.random() * 62)
-    if (n < 10) { return n } // 1-10
-    if (n < 36) { return String.fromCharCode(n + 55) } // A-Z
-    return String.fromCharCode(n + 61) // a-z
-  }
-  while (s.length < L) { s += randomchar() }
-  return s
-}
+// // Generate random string
+// export const randomString = (L) => {
+//   let s = ''
+//   const randomchar = function () {
+//     const n = Math.floor(Math.random() * 62)
+//     if (n < 10) { return n } // 1-10
+//     if (n < 36) { return String.fromCharCode(n + 55) } // A-Z
+//     return String.fromCharCode(n + 61) // a-z
+//   }
+//   while (s.length < L) { s += randomchar() }
+//   return s
+// }
 
-// get language flag url or label from slug
-export const formatLanguage = (slug: string) => {
-  const available = [
-    {
-      slug: 'fr',
-      id: 'fr',
-      label: 'French',
-      flag: '🇫🇷'
-    },
-    {
-      slug: 'en',
-      id: 'gb',
-      label: 'English',
-      flag: '🇬🇧'
-    }
-  ]
+import { Author } from '~/types/shared'
 
-  return available.find(lang => lang.slug === slug)
-}
+// // get all authors into a string from array of object
+// export const formatTags = (tags) => {
+//   if (tags) {
+//     let entitiesToString = ''
+//     tags.forEach((tag, tagId) => {
+//       entitiesToString += `${tag.name}`
+//       if (tags.length > 1 && tagId !== tags.length - 1) {
+//         entitiesToString += ' & '
+//       }
+//     })
+//     return entitiesToString
+//   }
 
-// get all authors into a string from array of object
-export const formatAuthors = (authors) => {
-  if (authors) {
-    let authorsToString = ''
-    authors.forEach((author, authorId) => {
-      authorsToString += `${author.name}`
-      if (authors.length > 1 && authorId !== authors.length - 1) {
-        authorsToString += ' & '
-      }
-    })
-    return authorsToString
-  }
+//   return 'unknown'
+// }
 
-  return 'unknown'
-}
+// // get domain of URL
+// export const getHostname = (url) => {
+//   return new URL(url).hostname
+// }
 
-// get all authors into a string from array of object
-export const formatTags = (tags) => {
-  if (tags) {
-    let entitiesToString = ''
-    tags.forEach((tag, tagId) => {
-      entitiesToString += `${tag.name}`
-      if (tags.length > 1 && tagId !== tags.length - 1) {
-        entitiesToString += ' & '
-      }
-    })
-    return entitiesToString
-  }
+// // Check if an object in contain in an array
+// export const containsObject = (obj, list) => {
+//   let i
+//   for (i = 0; i < list.length; i++) {
+//     if (list[i] === obj) {
+//       return true
+//     }
+//   }
 
-  return 'unknown'
-}
+//   return false
+// }
 
-// get domain of URL
-export const getHostname = (url) => {
-  return new URL(url).hostname
-}
+// // Check if object is empty
+// export const objectIsEmpty = (obj) => {
+//   return obj && Object.keys(obj).length === 0 && obj.constructor === Object
+// }
 
-// Check if an object in contain in an array
-export const containsObject = (obj, list) => {
-  let i
-  for (i = 0; i < list.length; i++) {
-    if (list[i] === obj) {
-      return true
-    }
-  }
+// // Capitalize first character
+// export const capitalize = (string = '') =>
+//   [...string].map((char, index) => (index ? char : char.toUpperCase())).join('')
 
-  return false
-}
+// // Slugify string
+// export const slugify = (text) => {
+//   if (text !== null && text !== undefined) {
+//     return text
+//       .toString()
+//       .toLowerCase()
+//       .replace(/["']/i, '-')
+//       .replace(/\s+/g, '-')
+//       .normalize('NFD')
+//       .replace(/[\u0300-\u036F]/g, '')
+//   }
+// }
 
-// Check if object is empty
-export const objectIsEmpty = (obj) => {
-  return obj && Object.keys(obj).length === 0 && obj.constructor === Object
-}
+// // time difference in Days
+// function getDaysDiff(startDate = new Date(), endDate = new Date()) {
+//   if (startDate > endDate) { [startDate, endDate] = [endDate, startDate] }
 
-// Capitalize first character
-export const capitalize = (string = '') =>
-  [...string].map((char, index) => (index ? char : char.toUpperCase())).join('')
+//   const timeDiff = endDate - startDate
+//   const timeDiffInDays = Math.floor(timeDiff / (1000 * 3600 * 24))
 
-// Slugify string
-export const slugify = (text) => {
-  if (text !== null && text !== undefined) {
-    return text
-      .toString()
-      .toLowerCase()
-      .replace(/["']/i, '-')
-      .replace(/\s+/g, '-')
-      .normalize('NFD')
-      .replace(/[\u0300-\u036F]/g, '')
-  }
-}
+//   return timeDiffInDays
+// }
 
-// time difference in Days
-function getDaysDiff(startDate = new Date(), endDate = new Date()) {
-  if (startDate > endDate) { [startDate, endDate] = [endDate, startDate] }
+// // time difference in Months
+// // eslint-disable-next-line no-unused-vars
+// function getMonthsDiff(startDate = new Date(), endDate = new Date()) {
+//   const monthsOfFullYears = getYearsDiff(startDate, endDate) * 12
+//   let months = monthsOfFullYears
+//   // the variable below is not necessary, but I kept it for understanding of code
+//   // we can use "startDate" instead of it
+//   const yearsAfterStart = new Date(
+//     startDate.getFullYear() + getYearsDiff(startDate, endDate),
+//     startDate.getMonth(),
+//     startDate.getDate()
+//   )
+//   const isDayAhead = endDate.getDate() >= yearsAfterStart.getDate()
 
-  const timeDiff = endDate - startDate
-  const timeDiffInDays = Math.floor(timeDiff / (1000 * 3600 * 24))
+//   if (startDate.getMonth() === endDate.getMonth() && !isDayAhead) {
+//     months = 11
+//     return months
+//   }
 
-  return timeDiffInDays
-}
+//   if (endDate.getMonth() >= yearsAfterStart.getMonth()) {
+//     const diff = endDate.getMonth() - yearsAfterStart.getMonth()
+//     months += isDayAhead ? diff : diff - 1
+//   } else {
+//     months += isDayAhead
+//       ? 12 - (startDate.getMonth() - endDate.getMonth())
+//       : 12 - (startDate.getMonth() - endDate.getMonth()) - 1
+//   }
 
-// time difference in Months
-// eslint-disable-next-line no-unused-vars
-function getMonthsDiff(startDate = new Date(), endDate = new Date()) {
-  const monthsOfFullYears = getYearsDiff(startDate, endDate) * 12
-  let months = monthsOfFullYears
-  // the variable below is not necessary, but I kept it for understanding of code
-  // we can use "startDate" instead of it
-  const yearsAfterStart = new Date(
-    startDate.getFullYear() + getYearsDiff(startDate, endDate),
-    startDate.getMonth(),
-    startDate.getDate()
-  )
-  const isDayAhead = endDate.getDate() >= yearsAfterStart.getDate()
+//   return months
+// }
 
-  if (startDate.getMonth() === endDate.getMonth() && !isDayAhead) {
-    months = 11
-    return months
-  }
+// // time difference in Years
+// function getYearsDiff(startDate = new Date(), endDate = new Date()) {
+//   if (startDate > endDate) { [startDate, endDate] = [endDate, startDate] }
 
-  if (endDate.getMonth() >= yearsAfterStart.getMonth()) {
-    const diff = endDate.getMonth() - yearsAfterStart.getMonth()
-    months += isDayAhead ? diff : diff - 1
-  } else {
-    months += isDayAhead
-      ? 12 - (startDate.getMonth() - endDate.getMonth())
-      : 12 - (startDate.getMonth() - endDate.getMonth()) - 1
-  }
+//   const yearB4End = new Date(
+//     endDate.getFullYear() - 1,
+//     endDate.getMonth(),
+//     endDate.getDate()
+//   )
+//   let year = 0
+//   year =
+//     yearB4End > startDate
+//       ? yearB4End.getFullYear() - startDate.getFullYear()
+//       : 0
+//   const yearsAfterStart = new Date(
+//     startDate.getFullYear() + year + 1,
+//     startDate.getMonth(),
+//     startDate.getDate()
+//   )
 
-  return months
-}
+//   if (endDate >= yearsAfterStart) { year++ }
 
-// time difference in Years
-function getYearsDiff(startDate = new Date(), endDate = new Date()) {
-  if (startDate > endDate) { [startDate, endDate] = [endDate, startDate] }
+//   return year
+// }
 
-  const yearB4End = new Date(
-    endDate.getFullYear() - 1,
-    endDate.getMonth(),
-    endDate.getDate()
-  )
-  let year = 0
-  year =
-    yearB4End > startDate
-      ? yearB4End.getFullYear() - startDate.getFullYear()
-      : 0
-  const yearsAfterStart = new Date(
-    startDate.getFullYear() + year + 1,
-    startDate.getMonth(),
-    startDate.getDate()
-  )
+// // time difference in format: X years, Y months, Z days
+// export const calExactTimeDiff = (firstDate, secondDate = new Date()) => {
+//   firstDate = new Date(firstDate)
+//   secondDate = new Date(secondDate)
+//   if (firstDate > secondDate) { [firstDate, secondDate] = [secondDate, firstDate] }
 
-  if (endDate >= yearsAfterStart) { year++ }
+//   let monthDiff = 0
+//   const isDayAhead = secondDate.getDate() >= firstDate.getDate()
 
-  return year
-}
+//   if (secondDate.getMonth() >= firstDate.getMonth()) {
+//     const diff = secondDate.getMonth() - firstDate.getMonth()
+//     monthDiff += isDayAhead ? diff : diff - 1
+//   } else {
+//     monthDiff += isDayAhead
+//       ? 12 - (firstDate.getMonth() - secondDate.getMonth())
+//       : 12 - (firstDate.getMonth() - secondDate.getMonth()) - 1
+//   }
 
-// time difference in format: X years, Y months, Z days
-export const calExactTimeDiff = (firstDate, secondDate = new Date()) => {
-  firstDate = new Date(firstDate)
-  secondDate = new Date(secondDate)
-  if (firstDate > secondDate) { [firstDate, secondDate] = [secondDate, firstDate] }
+//   let dayDiff = 0
 
-  let monthDiff = 0
-  const isDayAhead = secondDate.getDate() >= firstDate.getDate()
+//   if (isDayAhead) {
+//     dayDiff = secondDate.getDate() - firstDate.getDate()
+//   } else {
+//     const b4EndDate = new Date(
+//       secondDate.getFullYear(),
+//       secondDate.getMonth() - 1,
+//       firstDate.getDate()
+//     )
+//     dayDiff = getDaysDiff(b4EndDate, secondDate)
+//   }
 
-  if (secondDate.getMonth() >= firstDate.getMonth()) {
-    const diff = secondDate.getMonth() - firstDate.getMonth()
-    monthDiff += isDayAhead ? diff : diff - 1
-  } else {
-    monthDiff += isDayAhead
-      ? 12 - (firstDate.getMonth() - secondDate.getMonth())
-      : 12 - (firstDate.getMonth() - secondDate.getMonth()) - 1
-  }
+//   if (firstDate.getMonth() === secondDate.getMonth() && !isDayAhead) { monthDiff = 11 }
 
-  let dayDiff = 0
+//   const exactTimeDiffUnits = {
+//     yrs: getYearsDiff(firstDate, secondDate),
+//     mths: monthDiff,
+//     dys: dayDiff
+//   }
 
-  if (isDayAhead) {
-    dayDiff = secondDate.getDate() - firstDate.getDate()
-  } else {
-    const b4EndDate = new Date(
-      secondDate.getFullYear(),
-      secondDate.getMonth() - 1,
-      firstDate.getDate()
-    )
-    dayDiff = getDaysDiff(b4EndDate, secondDate)
-  }
+//   if (exactTimeDiffUnits.yrs > 3) {
+//     const dateTimeLocale = firstDate.toLocaleString('fr', {
+//       year: 'numeric',
+//       month: 'numeric',
+//       day: 'numeric'
+//     })
+//     return dateTimeLocale
+//   }
 
-  if (firstDate.getMonth() === secondDate.getMonth() && !isDayAhead) { monthDiff = 11 }
+//   if (
+//     exactTimeDiffUnits.yrs === 0 &&
+//     exactTimeDiffUnits.mths === 0 &&
+//     exactTimeDiffUnits.dys === 0
+//   ) {
+//     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
+//     const hoursOptions = {
+//       timeZone,
+//       hour: 'numeric',
+//       minute: 'numeric'
+//     }
 
-  const exactTimeDiffUnits = {
-    yrs: getYearsDiff(firstDate, secondDate),
-    mths: monthDiff,
-    dys: dayDiff
-  }
+//     const timeToString = firstDate.toLocaleString('fr', hoursOptions)
 
-  if (exactTimeDiffUnits.yrs > 3) {
-    const dateTimeLocale = firstDate.toLocaleString('fr', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric'
-    })
-    return dateTimeLocale
-  }
+//     return `today at ${timeToString}`
+//   }
 
-  if (
-    exactTimeDiffUnits.yrs === 0 &&
-    exactTimeDiffUnits.mths === 0 &&
-    exactTimeDiffUnits.dys === 0
-  ) {
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
-    const hoursOptions = {
-      timeZone,
-      hour: 'numeric',
-      minute: 'numeric'
-    }
+//   let time = ''
+//   if (exactTimeDiffUnits.yrs > 0) {
+//     time += `${exactTimeDiffUnits.yrs} years`
+//   }
+//   if (exactTimeDiffUnits.mths > 0) {
+//     if (time !== '') {
+//       time += ', '
+//     }
+//     time += `${exactTimeDiffUnits.mths} months`
+//   }
+//   if (time !== '') {
+//     time += ', '
+//   }
+//   time += `${exactTimeDiffUnits.dys} days`
+//   // `${exactTimeDiffUnits.yrs} years, ${exactTimeDiffUnits.mths} months,
 
-    const timeToString = firstDate.toLocaleString('fr', hoursOptions)
+//   return time
+// }
 
-    return `today at ${timeToString}`
-  }
+// export const capitalizeEach = (string) => {
+//   const arr = string.split(' ')
 
-  let time = ''
-  if (exactTimeDiffUnits.yrs > 0) {
-    time += `${exactTimeDiffUnits.yrs} years`
-  }
-  if (exactTimeDiffUnits.mths > 0) {
-    if (time !== '') {
-      time += ', '
-    }
-    time += `${exactTimeDiffUnits.mths} months`
-  }
-  if (time !== '') {
-    time += ', '
-  }
-  time += `${exactTimeDiffUnits.dys} days`
-  // `${exactTimeDiffUnits.yrs} years, ${exactTimeDiffUnits.mths} months,
+//   for (let i = 0; i < arr.length; i++) {
+//     arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
+//   }
 
-  return time
-}
+//   return arr.join(' ')
+// }
 
-export const capitalizeEach = (string) => {
-  const arr = string.split(' ')
+// /**
+//  * Push in array if not exists
+//  * @param {array} array
+//  * @param {any} value
+//  */
+// export const pushIfNotExist = (array, value) => {
+//   const index = array.findIndex(x => x === value)
+//   if (index === -1) {
+//     array.push(value)
+//   }
+// }
 
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
-  }
-
-  return arr.join(' ')
-}
-
-/**
- * Push in array if not exists
- * @param {array} array
- * @param {any} value
- */
-export const pushIfNotExist = (array, value) => {
-  const index = array.findIndex(x => x === value)
-  if (index === -1) {
-    array.push(value)
-  }
-}
-
-export const overflow = (text, maxLength = 25) => {
+export const overflow = (text: string, maxLength = 25) => {
   if (text) {
     let overflow = text
     if (text.length > maxLength) {

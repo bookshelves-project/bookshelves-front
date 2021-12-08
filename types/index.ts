@@ -1,5 +1,6 @@
 import type { ApiResponse, ApiPaginateResponse, ApiFormated, ApiMeta, Pagination, Query } from './api'
-import type { BooksApiPaginateResponse, Book, QueryBooks, Author } from './book'
+import type { Book } from './book'
+import type { Serie } from './serie'
 import type { Content } from './content'
 import type { Application, HomePage } from './cms'
 import type { Route } from './nuxt'
@@ -13,11 +14,9 @@ export {
   ApiMeta,
   Pagination,
   Query,
-  // books
-  BooksApiPaginateResponse,
+  // etnties
   Book,
-  Author,
-  QueryBooks,
+  Serie,
   // content
   Content,
   // cms
