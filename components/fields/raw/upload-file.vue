@@ -3,7 +3,7 @@
     <div>
       <label v-if="label" :for="name" class="fr-label">
         {{ label }}
-        <span v-if="required" class="text-red-marianne"> * </span>
+        <span v-if="required" class="text-red-marianne">*</span>
         <span v-if="helper" class="fr-hint-text">{{ helper }}</span>
       </label>
     </div>
@@ -11,25 +11,15 @@
       <div class="fr-col-4 relative">
         <elements-media-image v-if="!preview" :src="file.url">
           <div v-if="file && file.name" class="italic">
-            <div>
-              {{ file.name }}
-            </div>
-            <div>
-              {{ file.size }}
-            </div>
+            <div>{{ file.name }}</div>
+            <div>{{ file.size }}</div>
           </div>
         </elements-media-image>
         <elements-media-image v-if="preview" :src="preview">
           <div class="italic">
-            <div v-if="file.fileType">
-              {{ $getFileType(file.fileType.type) }}
-            </div>
-            <div>
-              {{ file.name }}
-            </div>
-            <div>
-              {{ file.size }}
-            </div>
+            <div v-if="file.fileType">{{ $getFileType(file.fileType.type) }}</div>
+            <div>{{ file.name }}</div>
+            <div>{{ file.size }}</div>
           </div>
         </elements-media-image>
         <app-button
@@ -39,32 +29,20 @@
           :style="{ 'top: 0': !preview }"
           size="sm"
           @click="deleteFile()"
-        >
-          Supprimer
-        </app-button>
+        >Supprimer</app-button>
         <app-button
           v-if="fileUpoaded"
           icon="close-circle-line"
           class="delete-button"
           size="sm"
           @click="deletePreview()"
-        >
-          Supprimer
-        </app-button>
+        >Supprimer</app-button>
       </div>
     </div>
     <div class="fr-input-wrap">
-      <input
-        ref="file"
-        type="file"
-        style="display: none"
-        :accept="accept"
-        @change="fileUpload"
-      />
+      <input ref="file" type="file" style="display: none" :accept="accept" @change="fileUpload" />
       <div class="flex items-center fr-mt-2w">
-        <app-button @click="$refs.file.click()">
-          Téléverser
-        </app-button>
+        <app-button @click="$refs.file.click()">Téléverser</app-button>
         <app-button
           v-if="file && file.url"
           :href="file.url"
@@ -72,9 +50,7 @@
           rel="noopener noreferrer"
           class="fr-ml-1w"
           download
-        >
-          Télécharger le fichier existant
-        </app-button>
+        >Télécharger le fichier existant</app-button>
       </div>
     </div>
   </div>
@@ -188,9 +164,9 @@ export default {
           name: '',
           size: ''
         }
-        this.$notification({ preType: 'success' })
+        this.$toast({ preType: 'success' })
       } catch (error) {
-        this.$notification({ preType: 'error' })
+        this.$toast({ preType: 'error' })
       }
     },
     deletePreview() {

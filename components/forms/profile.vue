@@ -16,13 +16,8 @@
               :to="
                 localePath({ name: 'users-slug', params: { slug: user.slug } })
               "
-              class="
-                border-b border-gray-500
-                hover:text-gray-600 hover:border-gray-600
-              "
-            >
-              public profile
-            </nuxt-link>.
+              class="border-b border-gray-500 hover:text-gray-600 hover:border-gray-600"
+            >public profile</nuxt-link>.
           </fields-input-text>
         </div>
         <fields-input-text
@@ -54,11 +49,7 @@
         />
         <transition name="fade">
           <div v-if="!form.use_gravatar" class="col-span-6 md:col-span-4">
-            <label
-              class="block text-sm font-medium text-gray-700 dark:text-gray-200"
-            >
-              Avatar
-            </label>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Avatar</label>
             <div class="flex items-center mt-1">
               <div v-show="!avatarPreview">
                 <app-img
@@ -72,8 +63,8 @@
                   class="block w-12 h-12 rounded-full"
                   :style="
                     'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
-                      avatarPreview +
-                      '\');'
+                    avatarPreview +
+                    '\');'
                   "
                 />
               </div>
@@ -84,18 +75,12 @@
                 style="display: none"
                 accept="image/jpeg, image/png, image/webp"
                 @change="updateAvatarPreview"
-              >
+              />
               <div class="space-x-2 ml-4">
-                <app-button color="white" @click="selectNewAvatar">
-                  Change
-                </app-button>
-                <app-button color="danger" @click="deleteAvatar">
-                  Delete
-                </app-button>
+                <app-button color="white" @click="selectNewAvatar">Change</app-button>
+                <app-button color="danger" @click="deleteAvatar">Delete</app-button>
               </div>
-              <div v-if="isLoading" class="ml-3 italic text-gray-500">
-                {{ progress }}%
-              </div>
+              <div v-if="isLoading" class="ml-3 italic text-gray-500">{{ progress }}%</div>
             </div>
           </div>
         </transition>
@@ -104,25 +89,17 @@
         </div>
         <div class="col-span-6 md:col-span-4">
           <fieldset class="space-y-5">
-            <legend
-              class="text-base font-medium text-gray-900 dark:text-gray-200"
-            >
-              Options
-            </legend>
+            <legend class="text-base font-medium text-gray-900 dark:text-gray-200">Options</legend>
             <fields-checkbox
               v-model="form.use_gravatar"
               name="use_gravatar"
               label="Use gravatar"
-            >
-              Check this if you want to use gravatar for your avatar.
-            </fields-checkbox>
+            >Check this if you want to use gravatar for your avatar.</fields-checkbox>
             <fields-checkbox
               v-model="form.display_favorites"
               name="display_favorites"
               label="Display favorites"
-            >
-              Check this if you want to display your favorites publickly.
-            </fields-checkbox>
+            >Check this if you want to display your favorites publickly.</fields-checkbox>
             <fields-checkbox
               v-model="form.display_comments"
               name="display_comments"
@@ -159,16 +136,16 @@
 </template>
 
 <script>
-import { capitalize } from '~/plugins/utils/methods'
+import { capitalize } from '~/plugins/utils/methods.js'
 export default {
   name: 'FormsProfile',
   props: {
     user: {
       type: Object,
-      default: () => {}
+      default: () => { }
     }
   },
-  data () {
+  data() {
     return {
       form: {
         name: '',
@@ -187,7 +164,7 @@ export default {
       genders: []
     }
   },
-  async created () {
+  async created() {
     await this.getData()
     if (this.user) {
       this.form.name = this.user.name
@@ -202,7 +179,7 @@ export default {
   },
   methods: {
     capitalize,
-    async getData () {
+    async getData() {
       const genders = await this.$axios.$get('/users/genders')
       for (const [key, value] of Object.entries(genders.data)) {
         this.genders.push({
@@ -211,7 +188,7 @@ export default {
         })
       }
     },
-    async submit () {
+    async submit() {
       this.isLoading = true
       const data = new FormData()
       if (this.$refs.avatar && this.$refs.avatar.files[0]) {
@@ -230,22 +207,20 @@ export default {
 
       const config = {
         onUploadProgress: progressEvent =>
-          (this.progress = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total
-          ))
+          (this.progress = Math.round(progressEvent.loaded * 100) / progressEvent.total)
       }
       try {
         const user = await this.$axios.$post('/profile/update', data, config)
         this.$auth.setUser(user)
         this.isLoading = false
-        this.$nuxt.$emit('notification', {
+        this.$nuxt.$emit('toast', {
           title: 'Success!',
           text: 'Your profile has been updated.',
           type: 'success'
         })
       } catch (error) {
         console.error(error)
-        this.$nuxt.$emit('notification', {
+        this.$nuxt.$emit('toast', {
           title: 'Error',
           text: 'Something bad happened',
           type: 'error'
@@ -253,10 +228,10 @@ export default {
         this.isLoading = false
       }
     },
-    selectNewAvatar () {
+    selectNeAvatar() {
       this.$refs.avatar.click()
     },
-    updateAvatarPreview () {
+    updateAvatarreview() {
       const reader = new FileReader()
 
       reader.onload = (e) => {
@@ -265,13 +240,13 @@ export default {
 
       reader.readAsDataURL(this.$refs.avatar.files[0])
     },
-    async deleteAvatar () {
+    async deletAvatar() {
       try {
         const user = await this.$axios.$get('/profile/delete/avatar')
         this.avatarPreview = null
         this.form.avatar = null
         this.$auth.setUser(user)
-      } catch (error) {}
+      } catch (error) { }
     }
   }
 }

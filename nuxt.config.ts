@@ -77,7 +77,7 @@ const config: NuxtConfig = {
   // https://nuxtjs.org/docs/configuration-glossary/configuration-plugins
   plugins: [
     '~/plugins/utils/helpers.js', // helper methods: available in any component
-    '~/plugins/bus.client', // Global notifications
+    // '~/plugins/bus.client', // Global toasts
     '~/plugins/v-click-outside', // https://github.com/ndelvalle/v-click-outside
     '~/plugins/vue-scrollactive', // https://github.com/eddiemf/vue-scrollactive
     '~/plugins/jsonld', // https://github.com/ymmooot/nuxt-jsonld

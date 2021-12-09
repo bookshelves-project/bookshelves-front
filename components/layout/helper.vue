@@ -68,8 +68,9 @@
   </div>
 </template>
 
-<script setup lang="ts">import { wrapProperty } from '@nuxtjs/composition-api'
-import { Notification, NotificationType } from '~/types'
+<script setup lang="ts">
+import { wrapProperty } from '@nuxtjs/composition-api'
+import { ToastType } from '~/types'
 
 const ctx = useContext()
 // const useNuxt = wrapProperty('$nuxt', false)
@@ -103,11 +104,11 @@ const routes = () => {
     console.log('You have to set your routes with localePath().')
   }
 
-  ctx.$notification(new Notification(
+  ctx.$toast(
     'Check your console',
     'List of all routes is available.',
-    NotificationType.success
-  ))
+    ToastType.success
+  )
   isOpen.value = false
 }
 

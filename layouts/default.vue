@@ -2,7 +2,7 @@
   <div :class="dev ? 'debug-screens' : ''">
     <lazy-layout-overlay />
     <lazy-layout-helper />
-    <lazy-app-notifications />
+    <lazy-app-toasts />
     <div class="app mx-auto">
       <lazy-layout-layer />
       <layout-navbar />

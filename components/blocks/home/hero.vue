@@ -20,6 +20,7 @@
           :src="props.hero.picture"
           alt="Woman on books pile who is reading"
           class="h-64 md:h-[32rem]"
+          override="h-64 md:h-[32rem]"
           title="Woman on books pile who is reading"
         />
       </div>

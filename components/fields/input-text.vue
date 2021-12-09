@@ -6,16 +6,14 @@
       class="block text-sm font-medium text-gray-700 dark:text-gray-300"
     >
       {{ label }}
-      <span v-if="required" class="text-red-600 dark:text-red-500"> * </span>
+      <span v-if="required" class="text-red-600 dark:text-red-500">*</span>
     </label>
     <p
       v-if="helper || $slots.default"
       :id="`${name}-description`"
       class="mt-1 mb-2 text-sm text-gray-500 dark:text-gray-400"
     >
-      <span v-if="helper">
-        {{ helper }}
-      </span>
+      <span v-if="helper">{{ helper }}</span>
       <slot v-else />
     </p>
     <div class="mt-1 relative">
@@ -28,18 +26,7 @@
         rows="4"
         :minlength="minlength > 0 ? minlength : ''"
         :maxlength="maxlength > 0 ? maxlength : ''"
-        class="
-          shadow-sm
-          focus:ring-primary-500 focus:border-primary-500
-          block
-          w-full
-          sm:text-sm
-          rounded-md
-          border border-gray-300
-          dark:border-gray-700 dark:bg-gray-600 dark:text-white
-          placeholder-gray-900
-          dark:placeholder-gray-100
-        "
+        class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-600 dark:text-white placeholder-gray-900 dark:placeholder-gray-100 p-3"
         @input="$emit('input', $event.target.value)"
       ></textarea>
       <input
@@ -54,16 +41,7 @@
         :minlength="minlength > 0 ? minlength : ''"
         :maxlength="maxlength > 0 ? maxlength : '256'"
         :step="type === 'time' ? 1 : null"
-        class="
-          shadow-sm
-          focus:ring-primary-500 focus:border-primary-500
-          block
-          w-full
-          sm:text-sm
-          rounded-md
-          border-gray-300
-          dark:border-gray-700 dark:bg-gray-600 dark:text-white
-        "
+        class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-600 dark:text-white"
         @input="$emit('input', $event.target.value)"
       />
       <div v-if="type === 'search' && isLoading" class="eye">
@@ -83,11 +61,9 @@
         class="flex justify-between mt-1 text-sm text-gray-400"
       >
         <div>
-          <span v-if="minlength > 0"> Min. {{ minlength }} characters </span>
+          <span v-if="minlength > 0">Min. {{ minlength }} characters</span>
         </div>
-        <div v-if="maxlength > 0">
-          Currently {{ value.length }}/{{ maxlength }}
-        </div>
+        <div v-if="maxlength > 0">Currently {{ value.length }}/{{ maxlength }}</div>
       </div>
     </div>
     <p

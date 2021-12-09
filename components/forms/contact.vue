@@ -1,9 +1,6 @@
 <template>
   <div class="mt-6">
-    <form
-      class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-      @submit.prevent="sumbit"
-    >
+    <form class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" @submit.prevent="sumbit">
       <fields-input-text
         v-model="form.name"
         name="name"
@@ -42,12 +39,7 @@
       </fields-checkbox>
       <div class="sm:col-span-2">
         <div class="flex items-center space-x-2">
-          <app-button
-            type="submit"
-            color="primary"
-            align="center"
-            class="w-full"
-          >
+          <app-button type="submit" color="primary" align="center" class="w-full">
             <transition name="fade">
               <div v-if="!loading" class="flex items-center space-x-2">
                 <svg-icon name="airplane" class="w-5 h-5" />
@@ -121,7 +113,7 @@ export default {
           honeypot: false
         }
 
-        this.$nuxt.$emit('notification', {
+        this.$nuxt.$emit('toast', {
           title: 'Message sended!',
           text: 'Thanks you for your message.',
           type: 'success'
@@ -129,7 +121,7 @@ export default {
       } catch (e) {
         console.error(e)
         this.errors = true
-        this.$nuxt.$emit('notification', {
+        this.$nuxt.$emit('toast', {
           title: 'Error!',
           text: "We are sorry but your message can't be send, try in some time.",
           type: 'error'
