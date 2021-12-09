@@ -27,12 +27,12 @@ export default {
   props: {
     color: {
       type: String,
-      default: 'black',
+      default: 'black'
     },
     hover: {
       type: String,
-      default: 'text-gray-900',
-    },
-  },
+      default: 'text-gray-900'
+    }
+  }
 }
 </script>

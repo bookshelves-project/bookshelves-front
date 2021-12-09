@@ -14,19 +14,19 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     icon: {
       type: String,
-      default: null,
+      default: null
     },
     type: {
       type: String,
       default: 'success',
       validator(value) {
         return ['info', 'success', 'warning', 'danger'].includes(value)
-      },
-    },
+      }
+    }
   },
   computed: {
     iconName() {
@@ -36,11 +36,11 @@ export default {
           info: 'info',
           success: 'success',
           warning: 'warning',
-          danger: 'danger',
+          danger: 'danger'
         }[this.type]
       )
-    },
-  },
+    }
+  }
 }
 </script>
 

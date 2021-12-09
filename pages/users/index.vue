@@ -54,14 +54,14 @@ export default {
     const users = await app.$axios.$get('/users')
 
     return {
-      users: users.data,
+      users: users.data
     }
   },
   data() {
     return {
       title: 'All users',
-      subtitle: 'All Bookshelves users',
+      subtitle: 'All Bookshelves users'
     }
-  },
+  }
 }
 </script>

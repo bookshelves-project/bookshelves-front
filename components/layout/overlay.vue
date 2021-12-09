@@ -41,8 +41,7 @@
       <span
         class="hidden sm:inline-block sm:align-middle sm:h-screen"
         aria-hidden="true"
-        >&#8203;</span
-      >
+      >&#8203;</span>
     </div>
   </div>
 </template>
@@ -55,24 +54,24 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'LayoutOverlay',
   directives: {
-    clickOutside: vClickOutside.directive,
+    clickOutside: vClickOutside.directive
   },
   data() {
     return {
       visibleLayer: true,
-      visibleOverlay: true,
+      visibleOverlay: true
     }
   },
   computed: {
     ...mapGetters({
       layer: 'overlay/isVisibleLayer',
-      overlay: 'overlay/isVisibleOverlay',
-    }),
+      overlay: 'overlay/isVisibleOverlay'
+    })
   },
   watch: {
     layer(newValue, oldValue) {
       // console.log(newValue)
-    },
+    }
   },
   mounted() {
     // console.log(`layer: ${this.layer}, overlay: ${this.overlay}`)
@@ -80,7 +79,7 @@ export default {
   methods: {
     close() {
       this.$toggleOverlay(this.$store, false)
-    },
-  },
+    }
+  }
 }
 </script>

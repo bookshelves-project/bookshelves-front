@@ -2,32 +2,16 @@
   <transition name="fade">
     <section
       v-if="isDisplay && !isLoading"
-      class="
-        selected-books selected-entities-swiper
-        max-w-7xl
-        container
-        mx-auto
-      "
+      class="selected-books selected-entities-swiper max-w-7xl container mx-auto"
     >
       <div
         :class="orientation"
         class="text-sm font-semibold tracking-wide uppercase text-primary-600"
-      >
-        {{ eyebrow }}
-      </div>
+      >{{ eyebrow }}</div>
       <h2
         :class="orientation"
-        class="
-          mt-3
-          text-3xl
-          font-extrabold
-          text-gray-700
-          dark:text-gray-300
-          font-handlee
-        "
-      >
-        {{ title }}
-      </h2>
+        class="mt-3 text-3xl font-extrabold text-gray-700 dark:text-gray-300 font-handlee"
+      >{{ title }}</h2>
       <p
         :class="[orientation, { 'max-w-3xl': orientation === null }]"
         class="mt-5 text-lg text-gray-900 dark:text-gray-100"
@@ -37,16 +21,7 @@
       <div class="mt-10">
         <div
           v-if="isLoading"
-          class="
-            flex
-            items-center
-            h-64
-            w-full
-            animate-pulse
-            overflow-hidden
-            bg-gray-300
-            rounded-md
-          "
+          class="flex items-center h-64 w-full animate-pulse overflow-hidden bg-gray-300 rounded-md"
         ></div>
         <client-only v-else>
           <swiper
@@ -73,15 +48,9 @@
                 class="slide slide--thumbniail"
                 :class="`slide--${index}`"
               >
-                <template #primary>
-                  {{ $overflow(entity.title, 50) }}
-                </template>
-                <template #secondary>
-                  {{ capitalize(entity.meta.entity) }}
-                </template>
-                <template #tertiary>
-                  {{ formatAuthors(entity.authors) }}
-                </template>
+                <template #title>{{ $overflow(entity.title, 50) }}</template>
+                <template #subtitle>{{ capitalize(entity.meta.entity) }}</template>
+                <template #extra>{{ formatAuthors(entity.authors) }}</template>
               </blocks-entity-card>
             </swiper-slide>
             <div slot="button-prev" class="swiper-button-prev">
@@ -106,20 +75,20 @@ export default {
   props: {
     endpoint: {
       type: String,
-      default: '/books/selection',
+      default: '/books/selection'
     },
     orientation: {
       type: String,
-      default: null,
+      default: null
     },
     eyebrow: {
       type: String,
-      default: null,
+      default: null
     },
     title: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   data() {
     return {
@@ -136,28 +105,28 @@ export default {
         grabCursor: true,
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          prevEl: '.swiper-button-prev'
         },
         paginationClickable: true,
         pagination: {
           el: '.swiper-pagination',
-          clickable: true,
+          clickable: true
         },
         breakpoints: {
           500: {
             slidesPerView: 2,
-            slidesPerGroup: 2,
+            slidesPerGroup: 2
           },
           800: {
             slidesPerView: 3,
-            slidesPerGroup: 3,
+            slidesPerGroup: 3
           },
           1200: {
             slidesPerView: 4,
-            slidesPerGroup: 4,
-          },
-        },
-      },
+            slidesPerGroup: 4
+          }
+        }
+      }
     }
   },
   async mounted() {
@@ -176,8 +145,8 @@ export default {
         console.error(error)
         this.isDisplay = false
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -83,9 +83,10 @@
         />
       </div>
       <div class="ml-3 text-sm">
-        <label for="conditions" class="font-medium text-gray-700"
-          >Only series ?</label
-        >
+        <label
+          for="conditions"
+          class="font-medium text-gray-700"
+        >Only series ?</label>
       </div>
     </div>
     <div>
@@ -211,8 +212,8 @@ export default {
         author: null,
         languages: [],
         tags: [],
-        onlySerie: false,
-      },
+        onlySerie: false
+      }
     }
   },
   methods: {
@@ -252,7 +253,7 @@ export default {
 
       const search = {
         q: this.search,
-        'only-serie': this.form.onlySerie,
+        'only-serie': this.form.onlySerie
       }
 
       if (this.validAuthor) {
@@ -266,7 +267,7 @@ export default {
       }
 
       this.$emit('advancedSearch', search)
-    },
-  },
+    }
+  }
 }
 </script>

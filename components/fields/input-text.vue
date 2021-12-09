@@ -106,69 +106,69 @@ export default {
   props: {
     multiline: {
       type: Boolean,
-      default: false,
+      default: false
     },
     value: {
       type: [String, Number, Date],
-      default: '',
+      default: ''
     },
     name: {
       type: String,
-      default: 'name',
+      default: 'name'
     },
     label: {
       type: String,
-      default: '',
+      default: ''
     },
     type: {
       type: String,
-      default: 'text',
+      default: 'text'
     },
     autocomplete: {
       type: String,
-      default: 'name',
+      default: 'name'
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     placeholder: {
       type: String,
-      default: '',
+      default: ''
     },
     minlength: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     maxlength: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     helper: {
       type: String,
-      default: null,
+      default: null
     },
     icon: {
       type: String,
-      default: null,
+      default: null
     },
     mask: {
       type: String,
-      default: null,
+      default: null
     },
     loading: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
       obscureText: true,
-      isLoading: false,
+      isLoading: false
     }
   },
   computed: {
@@ -184,16 +184,16 @@ export default {
         return `fr-fi-${this.icon}`
       }
       return ''
-    },
+    }
   },
   watch: {
     loading(newValue, oldValue) {
       this.isLoading = newValue
-    },
+    }
   },
   mounted() {
     this.isLoading = this.loading
-  },
+  }
 }
 </script>
 

@@ -1,14 +1,18 @@
 <template>
   <div>
-    <blocks-filters-chip
+    <span
       v-for="item in queries"
       :key="item.id"
-      :filter-type="item.type"
-      :filter-value="item.value"
-      @remove="remove"
     >
-      {{ `${filterName(item.type)}: ${item.value}` }}
-    </blocks-filters-chip>
+      <blocks-filters-chip
+        v-if="item.type !== 'page' && item.type !== 'perPage'"
+        :filter-type="item.type"
+        :filter-value="item.value"
+        @remove="remove"
+      >
+        {{ `${filterName(item.type)}: ${item.value}` }}
+      </blocks-filters-chip>
+    </span>
   </div>
 </template>
 
@@ -20,50 +24,50 @@ export default {
   props: {
     refresh: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  data() {
+  data () {
     return {
-      queries: [],
+      queries: []
     }
   },
   computed: {
     ...mapGetters({
-      storeQueries: 'filters/queries',
+      storeQueries: 'filters/queries'
     }),
-    queryAvailable() {
+    queryAvailable () {
       const query = this.$route.query
       return !this.isEmpty(query)
-    },
+    }
   },
   watch: {
     storeQueries: {
-      handler(newValue, oldValue) {
+      handler (newValue, oldValue) {
         this.setQueries(newValue)
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
   methods: {
     isEmpty,
-    filterName(query) {
+    filterName (query) {
       const filters = {
-        'filter[has_serie]': 'has series',
+        'filter[allow_serie]': 'allow series',
         sort: 'sort by',
         'filter[languages]': 'languages',
         'filter[negligible]': 'hide negligible',
-        default: 'unknown',
+        default: 'unknown'
       }
-      return filters[query] || filters.default
+      return filters[query] || query
     },
-    setQueries(queries) {
+    setQueries (queries) {
       this.queries = []
       for (const [key, value] of Object.entries(queries)) {
         this.queries.push({ type: key, value })
       }
     },
-    remove(type) {
+    remove (type) {
       try {
         const query = Object.assign({}, this.$route.query)
         delete query[type]
@@ -73,7 +77,7 @@ export default {
       } catch (error) {
         console.log('Error on replace')
       }
-    },
-  },
+    }
+  }
 }
 </script>

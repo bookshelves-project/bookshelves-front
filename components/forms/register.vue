@@ -69,11 +69,11 @@ export default {
         email: '',
         password: '',
         password_confirmation: '',
-        terms: true,
+        terms: true
       },
       isDev: process.env.NODE_ENV !== 'production',
       errors: {},
-      isLoading: false,
+      isLoading: false
     }
   },
   methods: {
@@ -86,7 +86,7 @@ export default {
         email,
         password,
         password_confirmation: password,
-        terms: true,
+        terms: true
       }
     },
     async submit() {
@@ -98,7 +98,7 @@ export default {
         await this.$axios.$post('/register', this.form)
         this.$auth
           .loginWith(this.$auth.options.defaultStrategy, {
-            data: this.form,
+            data: this.form
           })
           .catch((error) => {
             console.error(error)
@@ -111,12 +111,12 @@ export default {
         this.$nuxt.$emit('notification', {
           title: 'Something unexpected happened',
           text,
-          type: 'error',
+          type: 'error'
         })
         // error.response.status
         this.isLoading = false
       }
-    },
-  },
+    }
+  }
 }
 </script>

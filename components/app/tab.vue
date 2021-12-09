@@ -18,25 +18,25 @@ export default {
   props: {
     name: {
       type: String,
-      default: null,
+      default: null
     },
     selected: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
-      isActive: false,
+      isActive: false
     }
   },
   computed: {
     href() {
       return '#' + this.name.toLowerCase().replace(/ /g, '-')
-    },
+    }
   },
   mounted() {
     this.isActive = this.selected
-  },
+  }
 }
 </script>

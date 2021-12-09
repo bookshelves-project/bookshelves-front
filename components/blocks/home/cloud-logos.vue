@@ -49,7 +49,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Logos } from '~/types/home-page/home-page'
+import { Logos } from '~/types/cms/home-page'
 
 @Component
 export default class HomeCloudLogos extends Vue {

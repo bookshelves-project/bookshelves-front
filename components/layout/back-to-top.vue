@@ -32,7 +32,7 @@ export default {
   name: 'BackToTop',
   data() {
     return {
-      displayBackToTop: false,
+      displayBackToTop: false
     }
   },
   beforeMount() {
@@ -51,7 +51,7 @@ export default {
     },
     scrollToTop() {
       return window.scrollTo({ top: 0, behavior: 'smooth' })
-    },
-  },
+    }
+  }
 }
 </script>

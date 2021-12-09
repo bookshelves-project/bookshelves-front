@@ -52,16 +52,16 @@ export default {
   props: {
     label: {
       type: String,
-      default: null,
+      default: null
     },
     opened: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
-      expanded: false,
+      expanded: false
     }
   },
   mounted() {
@@ -73,8 +73,8 @@ export default {
     switchSpoiler() {
       this.expanded = !this.expanded
       this.$emit('toggleCollapse', this.expanded)
-    },
-  },
+    }
+  }
 }
 </script>
 

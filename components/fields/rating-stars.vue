@@ -58,27 +58,27 @@ export default {
   props: {
     value: {
       type: Number,
-      default: null,
+      default: null
     },
     rating: {
       type: Number,
-      default: 0,
+      default: 0
     },
     max: {
       type: Number,
-      default: 5,
+      default: 5
     },
     disable: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
       stars: 0,
       current: 0,
       currentColor: [],
-      currentRating: 0,
+      currentRating: 0
     }
   },
   watch: {
@@ -87,7 +87,7 @@ export default {
     },
     value(newValue, oldValue) {
       this.currentRating = newValue
-    },
+    }
   },
   created() {
     this.stars = this.max
@@ -128,7 +128,7 @@ export default {
     save(id) {
       this.currentRating = id
       this.$emit('input', id)
-    },
-  },
+    }
+  }
 }
 </script>

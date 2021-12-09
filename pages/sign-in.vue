@@ -67,10 +67,10 @@ export default {
       meta: [
         ...dynamicMetadata.default({
           title,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
-  },
+  }
 }
 </script>

@@ -63,7 +63,7 @@ export default {
       loading: true,
       favorites: [],
       comments: [],
-      title: 'My profile',
+      title: 'My profile'
     }
   },
   head() {
@@ -76,9 +76,9 @@ export default {
         ...dynamicMetadata.default({
           title,
           description,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
   },
   mounted() {
@@ -93,7 +93,7 @@ export default {
           ),
           this.$axios.$get(
             `/comments/by-user/${this.$auth.$state.user.data.id}`
-          ),
+          )
         ])
         this.favorites = favorites.data
         this.comments = comments.data
@@ -118,7 +118,7 @@ export default {
           console.error('no type entity')
           break
       }
-    },
-  },
+    }
+  }
 }
 </script>

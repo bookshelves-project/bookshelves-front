@@ -128,14 +128,14 @@ export default {
       .fetch()
 
     return {
-      guides,
+      guides
     }
   },
   data() {
     return {
-      title: `Guides`,
-      description: `To know more about eBooks & eReaders`,
-      slugify,
+      title: 'Guides',
+      description: 'To know more about eBooks & eReaders',
+      slugify
     }
   },
   head() {
@@ -147,40 +147,40 @@ export default {
       meta: [
         ...dynamicMetadata.default({
           title,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
   },
   jsonld() {
     const breadcrumbs = [
       {
         url: this.$config.baseURL,
-        text: 'Home',
+        text: 'Home'
       },
       {
         url: `${this.$config.baseURL}/guides`,
-        text: 'Guides',
-      },
+        text: 'Guides'
+      }
     ]
     const items = breadcrumbs.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {
         '@id': item.url,
-        name: item.text,
-      },
+        name: item.text
+      }
     }))
     return {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      itemListElement: items,
+      itemListElement: items
     }
   },
   methods: {
     getPicture(guide) {
       return guide.category ? this.slugify(guide.category) : ''
-    },
-  },
+    }
+  }
 }
 </script>

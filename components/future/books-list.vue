@@ -13,14 +13,12 @@
             params: { author: book.meta.author, slug: book.meta.slug },
           }"
         >
-          <template #primary>
+          <template #title>
             <!-- {{ $overflow(book.title, 50) }} -->
             {{ book.title }}
           </template>
-          <template #secondary>
-            <span v-if="book.authors">
-              {{ formatAuthors(book.authors) }}
-            </span>
+          <template #subtitle>
+            <span v-if="book.authors">{{ formatAuthors(book.authors) }}</span>
             <!-- <span v-for="(author, authorId) in book.authors" :key="authorId">
                 {{ author.name }}
                 <span
@@ -31,11 +29,12 @@
                 >
                   &
                 </span>
-              </span> -->
+            </span>-->
           </template>
-          <template #tertiary>
+          <template #extra>
             <span v-if="book.serie" class="italic">
-              {{ book.serie.title }},<br />
+              {{ book.serie.title }},
+              <br />
               vol. {{ book.volume }}
             </span>
             <span class="mt-1 block">
@@ -50,13 +49,13 @@
 </template>
 
 <script setup lang="ts">
-import { Book } from '~/types/books/book'
-import { formatAuthors } from '@/utils/methods'
+import { formatAuthors } from '@/plugins/utils/methods'
+import { Book } from '~/types'
 
 defineProps({
   books: {
-    type: Array as () => Array<Book>,
-    required: true,
-  },
+    type: Array as () => Book[],
+    required: true
+  }
 })
 </script>

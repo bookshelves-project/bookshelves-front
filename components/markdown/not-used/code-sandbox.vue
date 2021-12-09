@@ -30,12 +30,12 @@ export default {
   props: {
     src: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
-      isIntersecting: false,
+      isIntersecting: false
     }
   },
   mounted() {
@@ -60,7 +60,7 @@ export default {
       this.__observer.disconnect()
       delete this.__observer
     }
-  },
+  }
 }
 </script>
 

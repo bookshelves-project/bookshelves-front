@@ -53,30 +53,43 @@ import { mapMutations, mapGetters } from 'vuex'
 import { isEmpty } from 'lodash'
 export default {
   name: 'FilterClear',
-  data() {
+  props: {
+    paginate: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
     return {
-      filterEnabled: false,
+      filterEnabled: false
     }
   },
   computed: {
     ...mapGetters({
-      clear: 'filters/clear',
+      clear: 'filters/clear'
     }),
-    queryAvailable() {
+    queryAvailable () {
       const query = this.$route.query
       return !this.isEmpty(query)
-    },
+    }
   },
   methods: {
     isEmpty,
     ...mapMutations({
       setQueries: 'filters/setQueries',
-      setClear: 'filters/setClear',
+      setClear: 'filters/setClear'
     }),
-    clearAll() {
+    clearAll () {
       this.setQueries({})
-      this.$router.replace({ name: this.$route.name, query: {} })
-    },
-  },
+      const query = {
+        perPage: '32',
+        page: '1'
+      }
+      this.$router.replace({
+        name: this.$route.name,
+        query: this.paginate ? query : {}
+      })
+    }
+  }
 }
 </script>

@@ -76,18 +76,18 @@
 </template>
 
 <script>
-import { capitalize, capitalizeEach } from '@/plugins/utils/methods'
+import { capitalize, capitalizeEach } from '~/plugins/utils/methods'
 export default {
   name: 'Breadcrumb',
   computed: {
-    crumbs() {
+    crumbs () {
       const fullPath = this.$route.fullPath
       let params = fullPath.startsWith('/')
         ? fullPath.substring(1).split('/')
         : fullPath.split('/')
       const crumbs = []
       let path = ''
-      params = params.filter((e) => e.length > 3)
+      params = params.filter(e => e.length > 3)
       params.forEach((param, index) => {
         path = `${path}/${param}`
         const match = this.$router.match(path)
@@ -97,7 +97,7 @@ export default {
           title = title.split('#')
           crumbs.push({
             title: capitalizeEach(title[0]),
-            ...match,
+            ...match
           })
         }
       })
@@ -105,16 +105,16 @@ export default {
         crumb.title = this.translateSlug(crumb.title)
       })
       return crumbs
-    },
+    }
   },
   methods: {
     capitalize,
-    translateSlug(slug) {
+    translateSlug (slug) {
       const slugs = {
-        'retours d experience': "retours d'experience",
+        'retours d experience': "retours d'experience"
       }
       return slugs[slug] || slug
-    },
-  },
+    }
+  }
 }
 </script>

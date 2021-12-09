@@ -103,7 +103,7 @@ import { filter, flow, values, partialRight, some, method } from 'lodash'
 export default {
   name: 'AutocompleteLanguages',
   directives: {
-    clickOutside: vClickOutside.directive,
+    clickOutside: vClickOutside.directive
   },
   data() {
     return {
@@ -112,7 +112,7 @@ export default {
       languages: [],
       fullLanguages: [],
       validate: true,
-      validLanguage: null,
+      validLanguage: null
     }
   },
   watch: {
@@ -124,7 +124,7 @@ export default {
         this.showList = false
         this.languages = []
       }
-    },
+    }
   },
   async created() {
     await this.formatLanguages()
@@ -146,7 +146,7 @@ export default {
     },
     async formatLanguages(query) {
       if (!this.languages.length) {
-        const languages = await this.$axios.$get(`/languages`)
+        const languages = await this.$axios.$get('/languages')
 
         this.fullLanguages = languages.data
       } else {
@@ -171,7 +171,7 @@ export default {
         this.validate = true
       }, 50)
       this.$emit('lang', this.validLanguage)
-    },
-  },
+    }
+  }
 }
 </script>

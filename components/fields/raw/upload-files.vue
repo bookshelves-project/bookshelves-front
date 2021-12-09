@@ -73,42 +73,42 @@ export default {
   props: {
     accept: {
       type: String,
-      default: 'image/*',
+      default: 'image/*'
     },
     value: {
       type: [Array, Object],
-      default: () => {},
+      default: () => {}
     },
     label: {
       type: String,
-      default: '',
+      default: ''
     },
     cta: {
       type: String,
-      default: '',
+      default: ''
     },
     helper: {
       type: String,
-      default: '',
+      default: ''
     },
     name: {
       type: String,
-      default: '',
+      default: ''
     },
     required: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
-      uploadedFiles: [],
+      uploadedFiles: []
     }
   },
   computed: {
     ...mapGetters({
       // uploadedFiles: 'gallery/getUploadFiles',
-    }),
+    })
   },
   methods: {
     ...mapMutations({
@@ -128,8 +128,8 @@ export default {
     },
     preview(newFile) {
       return URL.createObjectURL(newFile)
-    },
-  },
+    }
+  }
 }
 </script>
 

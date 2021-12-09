@@ -1,0 +1,38 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "vue-eslint-parser",
+  "extends": [
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/recommended"
+  ],
+  "rules": {
+    // "@typescript-eslint/explicit-function-return-type": [
+    //   "error"
+    // ],
+    "lines-between-class-members": [
+      "error",
+      "always",
+      {
+        "exceptAfterSingleLine": true
+      }
+    ],
+    "space-before-function-paren": "off",
+    "vue/multi-word-component-names": "off",
+    "no-console": "off",
+    "no-debugger": "off",
+    // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    "vue/no-v-html": "off",
+    "vue/space-before-function-parens": "off",
+    "no-unused-vars": "off",
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/multiline-html-element-content-newline": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "vue/html-self-closing": "off",
+  }
+}

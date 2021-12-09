@@ -48,13 +48,13 @@ export default {
     console.log(language)
 
     return {
-      language: language.data,
+      language: language.data
     }
   },
   data() {
     return {
       title: 'eBooks & series into',
-      description: 'Do you want to read an eBook or a series?',
+      description: 'Do you want to read an eBook or a series?'
     }
   },
   head() {
@@ -66,14 +66,14 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
   },
   mounted() {
     this.title = `${this.title} ${this.language.name}`
-  },
+  }
 }
 </script>
 

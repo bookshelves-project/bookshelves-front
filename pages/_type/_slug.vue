@@ -43,12 +43,12 @@ export default {
     }
 
     return {
-      document,
+      document
     }
   },
   data() {
     return {
-      capitalize,
+      capitalize
     }
   },
   head() {
@@ -66,9 +66,9 @@ export default {
           image: `${this.$config.baseURL}/images/home/ereaders.svg`,
           articlePublishedTime: this.document.createdAt,
           articleAuthor: this.$config.appName,
-          articleSection: this.$route.params.type,
-        }),
-      ],
+          articleSection: this.$route.params.type
+        })
+      ]
     }
   },
   computed: {
@@ -79,7 +79,7 @@ export default {
           : this.$route.params.slug
       const picture = `/images/${this.$route.params.type}/${name}.webp`
       return picture
-    },
-  },
+    }
+  }
 }
 </script>

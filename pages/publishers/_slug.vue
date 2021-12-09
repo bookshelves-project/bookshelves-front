@@ -15,10 +15,8 @@
               params: { author: book.meta.author, slug: book.meta.slug },
             }"
           >
-            <template #primary>
-              {{ $overflow(book.title, 50) }}
-            </template>
-            <template #secondary>
+            <template #title>{{ $overflow(book.title, 50) }}</template>
+            <template #subtitle>
               <div v-for="(author, authorId) in book.authors" :key="authorId">
                 {{ author.name }}
                 <span
@@ -26,19 +24,16 @@
                     book.authors.length > 1 &&
                     authorId !== book.authors.length - 1
                   "
-                >
-                  &
-                </span>
+                >&</span>
               </div>
             </template>
-            <template #tertiary>
+            <template #extra>
               <div v-if="book.serie" class="italic">
-                {{ book.serie.title }},<br />
+                {{ book.serie.title }},
+                <br />
                 vol. {{ book.volume }}
               </div>
-              <div class="mt-1">
-                {{ formatLanguage(book.language).label }}
-              </div>
+              <div class="mt-1">{{ formatLanguage(book.language).label }}</div>
             </template>
           </entity-card>
         </div>
@@ -66,20 +61,20 @@ export default {
   async asyncData({ app, params }) {
     const [publisher, books] = await Promise.all([
       app.$axios.$get(`/publishers/${params.slug}`),
-      app.$axios.$get(`/publishers/books/${params.slug}`),
+      app.$axios.$get(`/publishers/books/${params.slug}`)
     ])
 
     return {
       publisher: publisher.data,
-      books,
+      books
     }
   },
   data() {
     return {
       formatLanguage,
       formatAuthors,
-      title: `Books published by`,
-      description: `List of all books for publisher`,
+      title: 'Books published by',
+      description: 'List of all books for publisher'
     }
   },
   head() {
@@ -91,15 +86,15 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
   },
   methods: {
     load(data) {
       this.books.data = data
-    },
-  },
+    }
+  }
 }
 </script>

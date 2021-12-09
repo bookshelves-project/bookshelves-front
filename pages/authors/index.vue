@@ -2,7 +2,7 @@
   <main class="main-content">
     <app-header :title="title" :subtitle="description" :border="false">
       <template #filters>
-        <blocks-filters :sort="sortOptions" />
+        <blocks-filters :sort="sortOptions" paginate />
       </template>
     </app-header>
     <section v-if="!apiError">
@@ -19,21 +19,17 @@
               params: { slug: author.meta.slug },
             }"
           >
-            <template #primary>
-              {{ author.lastname }} {{ author.firstname }}
-            </template>
-            <template #tertiary> {{ author.count }} books </template>
+            <template #title>{{ author.lastname }} {{ author.firstname }}</template>
+            <template #extra>{{ author.count }} books</template>
           </entity-card>
         </div>
       </div>
       <div class="mt-6 mb-5">
-        <pagination
-          v-if="pages > 1"
-          :link-gen="linkGen"
-          :pages="pages"
-          :current-page="currentPage"
-        >
-        </pagination>
+        <Pagination
+          v-if="meta"
+          :current-page="meta.current_page"
+          :pages="meta.last_page"
+        />
       </div>
     </section>
     <api-error-message v-else />
@@ -41,11 +37,11 @@
 </template>
 
 <script>
-import qs from 'qs'
+import { stringify } from 'qs'
 
 import EntityCard from '~/components/blocks/entity-card.vue'
 import ApiErrorMessage from '~/components/special/api-error-message.vue'
-import Pagination from '~/components/special/pagination.vue'
+import Pagination from '~/components/blocks/pagination.vue'
 
 export default {
   name: 'AuthorsIndex',
@@ -54,52 +50,49 @@ export default {
     try {
       const queryList = { ...query }
       queryList.page = query.page || 1
-      queryList['per-page'] = 32
+      queryList.perPage = 32
 
       const [authors] = await Promise.all([
         app.$axios.$get(
-          `/authors?${qs.stringify({
-            ...queryList,
+          `/authors?${stringify({
+            ...queryList
           })}`
-        ),
+        )
       ])
 
       return {
         authors,
-        pages: authors.meta.last_page,
-        currentPage: authors.meta.current_page,
-        perPage: authors.meta.per_page,
-        total: authors.meta.total,
-        apiError: false,
+        meta: authors.meta,
+        apiError: false
       }
     } catch (error) {
       return {
-        apiError: true,
+        apiError: true
       }
     }
   },
   data() {
     return {
       page: this.$route.query.page ? parseInt(this.$route.query.page) : 1,
-      title: `Authors`,
-      description: `Want to find all books written by specific author?`,
+      title: 'Authors',
+      description: 'Want to find all books written by specific author?',
       sortOptions: [
         {
           label: 'By lastname (default)',
           query: { sort: 'lastname' },
-          value: 'lastname',
+          value: 'lastname'
         },
         {
           label: 'By firstname',
           query: { sort: 'firstname' },
-          value: 'firstname',
+          value: 'firstname'
         },
         {
           label: 'Newest created',
           query: { sort: '-created_at' },
-          value: '-created_at',
-        },
-      ],
+          value: '-created_at'
+        }
+      ]
     }
   },
   head() {
@@ -110,34 +103,34 @@ export default {
       meta: [
         ...dynamicMetadata.default({
           title,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
   },
   jsonld() {
     const breadcrumbs = [
       {
         url: this.$config.baseURL,
-        text: 'Home',
+        text: 'Home'
       },
       {
         url: `${this.$config.baseURL}/authors`,
-        text: 'Authors',
-      },
+        text: 'Authors'
+      }
     ]
     const items = breadcrumbs.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {
         '@id': item.url,
-        name: item.text,
-      },
+        name: item.text
+      }
     }))
     return {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      itemListElement: items,
+      itemListElement: items
     }
   },
   watchQuery: ['page', 'sort'],
@@ -147,10 +140,10 @@ export default {
       query.page = pageNum
       const route = {
         name: this.$route.name,
-        query: { ...query },
+        query: { ...query }
       }
       return route
-    },
-  },
+    }
+  }
 }
 </script>

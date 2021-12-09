@@ -38,12 +38,12 @@ export default {
   props: {
     entity: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
-      commentsList: [],
+      commentsList: []
     }
   },
   computed: {
@@ -56,7 +56,7 @@ export default {
       const avg = sum / ratings.length || 0
 
       return avg
-    },
+    }
   },
   created() {
     this.commentsList = this.entity.comments
@@ -70,7 +70,7 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    },
-  },
+    }
+  }
 }
 </script>

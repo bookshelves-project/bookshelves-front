@@ -5,9 +5,12 @@
         <div>
           {{ label }}
         </div>
-        <app-button type="button" size="sm" class="fr-ml-2w" @click="addItem"
-          >Ajouter</app-button
-        >
+        <app-button
+          type="button"
+          size="sm"
+          class="fr-ml-2w"
+          @click="addItem"
+        >Ajouter</app-button>
       </div>
       <span v-if="helper" class="fr-hint-text">{{ helper }}</span>
     </label>
@@ -61,29 +64,29 @@ export default {
   props: {
     value: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     name: {
       type: String,
-      default: 'name',
+      default: 'name'
     },
     label: {
       type: String,
-      default: '',
+      default: ''
     },
     helper: {
       type: String,
-      default: null,
+      default: null
     },
     config: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
       configData: {},
-      items: [],
+      items: []
     }
   },
   watch: {
@@ -94,14 +97,14 @@ export default {
       handler(newValue, oldValue) {
         this.$emit('input', newValue)
       },
-      deep: true,
+      deep: true
     },
     config: {
       handler(newValue, oldValue) {
         this.configData = newValue
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
   mounted() {
     if (this.value) {
@@ -121,8 +124,8 @@ export default {
     },
     removeItem(index) {
       this.items.splice(index, 1)
-    },
-  },
+    }
+  }
 }
 </script>
 

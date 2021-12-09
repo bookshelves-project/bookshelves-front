@@ -1,7 +1,6 @@
-import tailwind from '../../tailwind.config'
 import packageJson from '../../package.json'
 
-const color: string = tailwind.theme.extend.colors.primary[600]
+const color = '#564fcc'
 
 const app: string = process.env.APP_NAME || 'Bookshelves'
 const author: string = process.env.APP_AUTHOR || 'Bookshelves Team'
@@ -21,7 +20,7 @@ const metadata = {
     color,
     locale: 'en_US',
     lang: 'en',
-    googleToken: process.env.GOOGLE_SITE_VERIFICATION_TOKEN || null,
+    googleToken: process.env.GOOGLE_SITE_VERIFICATION_TOKEN || null
   },
   website: {
     title: 'Bookshelves',
@@ -33,19 +32,19 @@ const metadata = {
     publisher: app,
     copyright: license,
     language: 'english',
-    designer: author,
+    designer: author
   },
   og: {
     type: 'website',
-    siteName: app,
+    siteName: app
   },
   twitter: {
     creator: process.env.META_TWITTER_CREATOR || null,
     site: process.env.META_TWITTER_SITE || null,
     url: process.env.META_TWITTER_SITE
       ? `https://twitter.com/${twitterLink}`
-      : null,
-  },
+      : null
+  }
 }
 
 export default metadata

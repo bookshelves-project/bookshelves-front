@@ -1,6 +1,6 @@
 <template>
   <div v-click-outside="() => (open = false)" class="relative">
-    <button class="h-full rounded-md" @click="open = !open" type="button">
+    <button class="h-full rounded-md" type="button" @click="open = !open">
       <slot name="trigger" />
     </button>
 
@@ -38,26 +38,26 @@ import vClickOutside from 'v-click-outside'
 export default {
   name: 'Dropdown',
   directives: {
-    clickOutside: vClickOutside.directive,
+    clickOutside: vClickOutside.directive
   },
   props: {
     align: {
       type: String,
-      default: 'right',
+      default: 'right'
     },
     arrow: {
       type: Boolean,
-      default: false,
+      default: false
     },
     clickClose: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
 
   data() {
     return {
-      open: false,
+      open: false
     }
   },
 
@@ -70,7 +70,7 @@ export default {
       } else {
         return 'origin-top'
       }
-    },
+    }
   },
 
   created() {
@@ -94,6 +94,6 @@ export default {
     }
 
     document.removeEventListener('keydown', closeOnEscape)
-  },
+  }
 }
 </script>

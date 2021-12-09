@@ -65,16 +65,12 @@
             dark:border-gray-600
             rounded-md
           "
-          ><span class="sr-only">Press </span
-          ><kbd class="font-sans"
-            ><abbr title="Control" class="no-underline"
-              ><span class="mr-1" v-html="metaKey"></span> </abbr></kbd
-          ><span class="sr-only"> and </span
-          ><kbd class="font-sans uppercase" :title="searchKey">{{
-            searchKey
-          }}</kbd
-          ><span class="sr-only"> to search</span></span
-        >
+        ><span class="sr-only">Press </span><kbd class="font-sans"><abbr
+          title="Control"
+          class="no-underline"
+        ><span class="mr-1" v-html="metaKey"></span> </abbr></kbd><span class="sr-only"> and </span><kbd class="font-sans uppercase" :title="searchKey">{{
+          searchKey
+        }}</kbd><span class="sr-only"> to search</span></span>
       </div>
     </div>
   </div>
@@ -88,13 +84,13 @@ export default {
   data() {
     return {
       metaKey: 'Ctrl',
-      searchKey: 'k',
+      searchKey: 'k'
     }
   },
   computed: {
     ...mapState({
-      modalOpened: (state) => state.search.modalOpened,
-    }),
+      modalOpened: state => state.search.modalOpened
+    })
   },
   mounted() {
     window.addEventListener('keydown', this.shortcutOpen)
@@ -107,7 +103,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setModalOpened: 'search/setModalOpened',
+      setModalOpened: 'search/setModalOpened'
     }),
     isMacintosh() {
       if (navigator.userAgent.includes('Mac')) {
@@ -129,8 +125,8 @@ export default {
         e.preventDefault() // present "Save Page" from getting triggered.
         this.setModalOpened(false)
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

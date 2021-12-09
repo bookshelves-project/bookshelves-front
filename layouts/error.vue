@@ -43,7 +43,12 @@
               <span v-else>Something bad happened</span>
             </h1>
             <div class="mt-2 text-base text-gray-500">
-              These isn't the book you're looking for.
+              <span v-if="error.message" class="text-gray-500">
+                {{ error.message }}
+              </span>
+              <span v-else>
+                These isn't the book you're looking for.
+              </span>
             </div>
             <div class="mt-6">
               <nuxt-link
@@ -54,8 +59,9 @@
                   text-primary-600
                   hover:text-primary-500
                 "
-                >Go back home<span aria-hidden="true"> &rarr;</span></nuxt-link
               >
+                Go back home<span aria-hidden="true"> &rarr;</span>
+              </nuxt-link>
             </div>
           </div>
         </div>
@@ -66,8 +72,9 @@
             <nuxt-link
               :to="localePath({ name: 'contact' })"
               class="text-sm font-medium text-gray-500 hover:text-gray-600"
-              >Contact Support</nuxt-link
             >
+              Contact Support
+            </nuxt-link>
           </nav>
         </div>
       </footer>
@@ -86,9 +93,9 @@ export default {
   props: {
     error: {
       type: Object,
-      default: () => {},
-    },
-  },
+      default: () => {}
+    }
+  }
 }
 </script>
 

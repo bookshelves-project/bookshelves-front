@@ -1,25 +1,25 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ES2020",
-    "moduleResolution": "Node",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
     "lib": [
-      "ESNext",
-      "ESNext.AsyncIterable",
-      "DOM"
+      "esnext",
+      "esnext.asynciterable",
+      "dom",
+      "dom.iterable"
     ],
     "esModuleInterop": true,
+    "skipLibCheck": true, // https://github.com/antfu/unplugin-auto-import
+    "experimentalDecorators": true,
+    "resolveJsonModule": true, // parse json
     "allowJs": true,
-    "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
+    "jsx": "preserve",
     "noEmit": true,
-    "experimentalDecorators": true,
-    "noUnusedLocals": false,
-    "suppressImplicitAnyIndexErrors": true,
-    "strictNullChecks": false,
-    "strictPropertyInitialization": false,
     "baseUrl": ".",
+    "importsNotUsedAsValues": "preserve",
     "paths": {
       "~/*": [
         "./*"
@@ -31,23 +31,21 @@
     "types": [
       "@types/node",
       "@nuxt/types",
-      "@nuxt/http",
       "@nuxtjs/axios",
       "@nuxt/content",
       "unplugin-vue2-script-setup/types",
       "@nuxtjs/i18n",
       "@nuxtjs/auth-next",
+      "nuxt-windicss",
       "@nuxtjs/color-mode",
       "@pinia/nuxt",
-      "cookie-universal-nuxt"
+      "cookie-universal-nuxt",
+      "@types/swiper"
     ],
   },
   "vueCompilerOptions": {
     "experimentalCompatMode": 2
   },
-  "typeRoots": [
-    "plugins/global.d.ts"
-  ],
   "exclude": [
     "node_modules",
     ".nuxt",

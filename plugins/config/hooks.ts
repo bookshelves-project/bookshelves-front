@@ -6,7 +6,7 @@ const hooks: object = {
 
       document.readingTime = stats
     }
-  },
+  }
 }
 
 export default hooks

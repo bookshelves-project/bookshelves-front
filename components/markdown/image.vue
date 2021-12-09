@@ -41,8 +41,10 @@
           {{ legend }}
         </legend>
       </div>
-      <small v-if="from" class="mt-2"
-        >From
+      <small
+        v-if="from"
+        class="mt-2"
+      >From
         <a :href="from" target="_blank" rel="noopener noreferrer">
           {{ getHostname(from) }}
         </a>
@@ -75,20 +77,20 @@ export default {
   props: {
     src: {
       type: String,
-      default: null,
+      default: null
     },
     ext: {
       type: String,
-      default: 'webp',
+      default: 'webp'
     },
     from: {
       type: String,
-      default: null,
+      default: null
     },
     zoom: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   data() {
     return {
@@ -97,7 +99,7 @@ export default {
       hover: false,
       fullPath: null,
       legend: null,
-      getHostname,
+      getHostname
     }
   },
   mounted() {
@@ -120,8 +122,8 @@ export default {
       path.splice(0, 1)
       path = path.join('/')
       this.path = path
-    },
-  },
+    }
+  }
 }
 </script>
 

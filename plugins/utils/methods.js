@@ -3,11 +3,11 @@ export const randomString = (L) => {
   let s = ''
   const randomchar = function () {
     const n = Math.floor(Math.random() * 62)
-    if (n < 10) return n // 1-10
-    if (n < 36) return String.fromCharCode(n + 55) // A-Z
+    if (n < 10) { return n } // 1-10
+    if (n < 36) { return String.fromCharCode(n + 55) } // A-Z
     return String.fromCharCode(n + 61) // a-z
   }
-  while (s.length < L) s += randomchar()
+  while (s.length < L) { s += randomchar() }
   return s
 }
 
@@ -18,17 +18,17 @@ export const formatLanguage = (slug) => {
       slug: 'fr',
       id: 'fr',
       label: 'French',
-      flag: '🇫🇷',
+      flag: '🇫🇷'
     },
     {
       slug: 'en',
       id: 'gb',
       label: 'English',
-      flag: '🇬🇧',
-    },
+      flag: '🇬🇧'
+    }
   ]
 
-  return available.find((lang) => lang.slug === slug)
+  return available.find(lang => lang.slug === slug)
 }
 
 // get all authors into a string from array of object
@@ -103,8 +103,8 @@ export const slugify = (text) => {
 }
 
 // time difference in Days
-function getDaysDiff(startDate = new Date(), endDate = new Date()) {
-  if (startDate > endDate) [startDate, endDate] = [endDate, startDate]
+function getDaysDiff (startDate = new Date(), endDate = new Date()) {
+  if (startDate > endDate) { [startDate, endDate] = [endDate, startDate] }
 
   const timeDiff = endDate - startDate
   const timeDiffInDays = Math.floor(timeDiff / (1000 * 3600 * 24))
@@ -114,7 +114,7 @@ function getDaysDiff(startDate = new Date(), endDate = new Date()) {
 
 // time difference in Months
 // eslint-disable-next-line no-unused-vars
-function getMonthsDiff(startDate = new Date(), endDate = new Date()) {
+function getMonthsDiff (startDate = new Date(), endDate = new Date()) {
   const monthsOfFullYears = getYearsDiff(startDate, endDate) * 12
   let months = monthsOfFullYears
   // the variable below is not necessary, but I kept it for understanding of code
@@ -144,8 +144,8 @@ function getMonthsDiff(startDate = new Date(), endDate = new Date()) {
 }
 
 // time difference in Years
-function getYearsDiff(startDate = new Date(), endDate = new Date()) {
-  if (startDate > endDate) [startDate, endDate] = [endDate, startDate]
+function getYearsDiff (startDate = new Date(), endDate = new Date()) {
+  if (startDate > endDate) { [startDate, endDate] = [endDate, startDate] }
 
   const yearB4End = new Date(
     endDate.getFullYear() - 1,
@@ -163,7 +163,7 @@ function getYearsDiff(startDate = new Date(), endDate = new Date()) {
     startDate.getDate()
   )
 
-  if (endDate >= yearsAfterStart) year++
+  if (endDate >= yearsAfterStart) { year++ }
 
   return year
 }
@@ -172,7 +172,7 @@ function getYearsDiff(startDate = new Date(), endDate = new Date()) {
 export const calExactTimeDiff = (firstDate, secondDate = new Date()) => {
   firstDate = new Date(firstDate)
   secondDate = new Date(secondDate)
-  if (firstDate > secondDate) [firstDate, secondDate] = [secondDate, firstDate]
+  if (firstDate > secondDate) { [firstDate, secondDate] = [secondDate, firstDate] }
 
   let monthDiff = 0
   const isDayAhead = secondDate.getDate() >= firstDate.getDate()
@@ -199,20 +199,19 @@ export const calExactTimeDiff = (firstDate, secondDate = new Date()) => {
     dayDiff = getDaysDiff(b4EndDate, secondDate)
   }
 
-  if (firstDate.getMonth() === secondDate.getMonth() && !isDayAhead)
-    monthDiff = 11
+  if (firstDate.getMonth() === secondDate.getMonth() && !isDayAhead) { monthDiff = 11 }
 
   const exactTimeDiffUnits = {
     yrs: getYearsDiff(firstDate, secondDate),
     mths: monthDiff,
-    dys: dayDiff,
+    dys: dayDiff
   }
 
   if (exactTimeDiffUnits.yrs > 3) {
     const dateTimeLocale = firstDate.toLocaleString('fr', {
       year: 'numeric',
       month: 'numeric',
-      day: 'numeric',
+      day: 'numeric'
     })
     return dateTimeLocale
   }
@@ -226,7 +225,7 @@ export const calExactTimeDiff = (firstDate, secondDate = new Date()) => {
     const hoursOptions = {
       timeZone,
       hour: 'numeric',
-      minute: 'numeric',
+      minute: 'numeric'
     }
 
     const timeToString = firstDate.toLocaleString('fr', hoursOptions)
@@ -269,8 +268,20 @@ export const capitalizeEach = (string) => {
  * @param {any} value
  */
 export const pushIfNotExist = (array, value) => {
-  const index = array.findIndex((x) => x === value)
+  const index = array.findIndex(x => x === value)
   if (index === -1) {
     array.push(value)
   }
+}
+
+export const overflow = (text, maxLength = 25) => {
+  if (text) {
+    let overflow = text
+    if (text.length > maxLength) {
+      overflow = text.substring(0, maxLength)
+      overflow = `${overflow}...`
+    }
+    return overflow
+  }
+  return ''
 }

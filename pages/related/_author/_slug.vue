@@ -1,9 +1,6 @@
 <template>
   <main class="main-content">
-    <app-header
-      :title="`${title} ${currentBook.title}`"
-      :subtitle="description"
-    />
+    <app-header :title="`${title} ${currentBook.title}`" :subtitle="description" />
     <section>
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
@@ -24,25 +21,19 @@
               },
             }"
           >
-            <template #primary>
-              {{ $overflow(book.title, 50) }}
-            </template>
-            <template #secondary>
+            <template #title>{{ $overflow(book.title, 50) }}</template>
+            <template #subtitle>
               <div v-for="(author, authorId) in book.authors" :key="authorId">
                 {{ author.name }}
                 <span
                   v-if="
                     book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
+                      authorId !== book.authors.length - 1
                   "
-                >
-                  &
-                </span>
+                >&</span>
               </div>
             </template>
-            <template #tertiary>
-              {{ capitalize(book.meta.entity) }}
-            </template>
+            <template #extra>{{ capitalize(book.meta.entity) }}</template>
           </entity-card>
         </div>
       </div>
@@ -56,7 +47,7 @@ import {
   formatLanguage,
   objectIsEmpty,
   formatAuthors,
-  capitalize,
+  capitalize
 } from '~/plugins/utils/methods'
 
 export default {
@@ -66,12 +57,12 @@ export default {
   async asyncData({ app, params }) {
     const [currentBook, books] = await Promise.all([
       app.$axios.$get(`/books/${params.author}/${params.slug}`),
-      app.$axios.$get(`/books/related/${params.author}/${params.slug}`),
+      app.$axios.$get(`/books/related/${params.author}/${params.slug}`)
     ])
 
     return {
       currentBook: currentBook.data,
-      books: books.data,
+      books: books.data
     }
   },
   data() {
@@ -80,8 +71,8 @@ export default {
       objectIsEmpty,
       formatAuthors,
       capitalize,
-      title: `Related books & series for`,
-      description: `List of all results for related books & series...`,
+      title: 'Related books & series for',
+      description: 'List of all results for related books & series...'
     }
   },
   head() {
@@ -94,10 +85,10 @@ export default {
           title,
           description: this.description,
           url: this.$nuxt.$route.path,
-          image: this.currentBook.cover.og,
-        }),
-      ],
+          image: this.currentBook.cover.og
+        })
+      ]
     }
-  },
+  }
 }
 </script>

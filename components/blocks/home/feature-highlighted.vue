@@ -106,29 +106,29 @@ export default {
     positionImage: {
       type: String,
       default: 'right',
-      validator: (val) => ['left', 'right'].includes(val),
+      validator: val => ['left', 'right'].includes(val)
     },
     blockquote: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     icon: {
       type: String,
-      default: 'book',
+      default: 'book'
     },
     image: {
       type: String,
-      default: null,
+      default: null
     },
     title: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   computed: {
     text() {
       return this.$slots.text[0].text
-    },
-  },
+    }
+  }
 }
 </script>

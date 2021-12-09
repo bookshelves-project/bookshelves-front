@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       apiUrl: this.$config.apiURL,
-      apiStatusBoolean: false,
+      apiStatusBoolean: false
     }
   },
   created() {
@@ -45,7 +45,7 @@ export default {
       } catch (error) {
         this.apiStatusBoolean = false
       }
-    },
-  },
+    }
+  }
 }
 </script>

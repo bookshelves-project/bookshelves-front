@@ -113,7 +113,7 @@ import { filter, flow, values, partialRight, some, method } from 'lodash'
 export default {
   name: 'AutocompleteEntity',
   directives: {
-    clickOutside: vClickOutside.directive,
+    clickOutside: vClickOutside.directive
   },
   data() {
     return {
@@ -122,7 +122,7 @@ export default {
       entities: [],
       fullEntities: [],
       validate: true,
-      validEntity: null,
+      validEntity: null
     }
   },
   watch: {
@@ -134,7 +134,7 @@ export default {
         this.showList = false
         this.entities = []
       }
-    },
+    }
   },
   async created() {
     await this.getEntitys()
@@ -156,7 +156,7 @@ export default {
     },
     async getEntitys(query) {
       if (!this.entities.length) {
-        const entities = await this.$axios.$get(`/entities?limit=full`)
+        const entities = await this.$axios.$get('/entities?limit=full')
 
         this.fullEntities = entities.data
       } else {
@@ -181,7 +181,7 @@ export default {
         this.validate = true
       }, 50)
       this.$emit('entity', this.validEntity)
-    },
-  },
+    }
+  }
 }
 </script>

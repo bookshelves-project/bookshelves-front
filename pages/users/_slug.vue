@@ -50,15 +50,15 @@ export default {
     const user = await app.$axios.$get(`/users/${params.slug}`)
 
     return {
-      user: user.data,
+      user: user.data
     }
   },
   data() {
     return {
       loading: true,
-      title: `Profile of`,
+      title: 'Profile of',
       favorites: [],
-      comments: [],
+      comments: []
     }
   },
   head() {
@@ -70,9 +70,9 @@ export default {
         ...dynamicMetadata.default({
           title,
           url: this.$nuxt.$route.path,
-          image: this.user.avatar,
-        }),
-      ],
+          image: this.user.avatar
+        })
+      ]
     }
   },
   mounted() {
@@ -83,7 +83,7 @@ export default {
       try {
         const [favorites, comments] = await Promise.all([
           this.$axios.$get(`/users/favorites/${this.$route.params.slug}`),
-          this.$axios.$get(`/users/comments/${this.$route.params.slug}`),
+          this.$axios.$get(`/users/comments/${this.$route.params.slug}`)
         ])
         this.favorites = favorites.data
         this.comments = comments.data
@@ -92,7 +92,7 @@ export default {
         console.error(error)
         this.loading = false
       }
-    },
-  },
+    }
+  }
 }
 </script>

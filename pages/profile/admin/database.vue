@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       title: 'Admin: database',
-      description: '',
+      description: ''
     }
   },
   head() {
@@ -24,10 +24,10 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
-  },
+  }
 }
 </script>

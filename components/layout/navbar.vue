@@ -298,13 +298,13 @@ export default {
   name: 'Navbar',
   data() {
     return {
-      displayIfScrolled: false,
+      displayIfScrolled: false
     }
   },
   computed: {
     ...mapGetters({
-      navigation: 'nav/main',
-    }),
+      navigation: 'nav/main'
+    })
   },
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -331,7 +331,7 @@ export default {
         this.$store.commit('setSidebar', true)
         this.$store.commit('setLayerOpacity', true)
       }, 150)
-    },
-  },
+    }
+  }
 }
 </script>

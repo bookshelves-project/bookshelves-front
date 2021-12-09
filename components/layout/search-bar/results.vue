@@ -72,33 +72,33 @@ export default {
   props: {
     results: {
       type: [Object, Array],
-      default: () => {},
+      default: () => {}
     },
     title: {
       type: String,
-      default: null,
+      default: null
     },
     category: {
       type: String,
       default: 'relevant',
-      validator: (val) => ['relevant', 'other'].includes(val),
+      validator: val => ['relevant', 'other'].includes(val)
     },
     type: {
       type: String,
       default: 'authors',
-      validator: (val) => ['authors', 'series', 'books'].includes(val),
-    },
+      validator: val => ['authors', 'series', 'books'].includes(val)
+    }
   },
   methods: {
     capitalize,
     ...mapMutations({
-      setModalOpened: 'search/setModalOpened',
+      setModalOpened: 'search/setModalOpened'
     }),
     closeModal() {
       setTimeout(() => {
         this.setModalOpened(false)
       }, 500)
-    },
-  },
+    }
+  }
 }
 </script>

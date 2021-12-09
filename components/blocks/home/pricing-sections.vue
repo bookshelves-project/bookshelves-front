@@ -291,9 +291,9 @@ export default {
   props: {
     pricings: {
       type: Object,
-      default: () => {},
-    },
-  },
+      default: () => {}
+    }
+  }
 }
 </script>
 

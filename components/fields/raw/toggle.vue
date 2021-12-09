@@ -34,39 +34,39 @@ export default {
   props: {
     value: {
       type: [String, Boolean],
-      default: false,
+      default: false
     },
     label: {
       type: String,
-      default: '',
+      default: ''
     },
     name: {
       type: String,
-      default: 'toggle',
+      default: 'toggle'
     },
     helper: {
       type: String,
-      default: null,
+      default: null
     },
     position: {
       type: String,
       default: 'right',
-      validator: (val) => ['right', 'left'].includes(val),
+      validator: val => ['right', 'left'].includes(val)
     },
     border: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
-      enabled: false,
+      enabled: false
     }
   },
   watch: {
     value(newValue, oldValue) {
       this.enabled = newValue
-    },
+    }
   },
   mounted() {
     if (this.value) {
@@ -76,7 +76,7 @@ export default {
   methods: {
     switchValue($event) {
       this.$emit('input', $event.target.checked)
-    },
-  },
+    }
+  }
 }
 </script>

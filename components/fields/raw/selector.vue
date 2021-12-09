@@ -30,25 +30,25 @@ export default {
   props: {
     value: {
       type: [String, Object, Number],
-      default: '',
+      default: ''
     },
     name: {
       type: String,
-      default: 'name',
+      default: 'name'
     },
     label: {
       type: String,
-      default: '',
+      default: ''
     },
     options: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   data() {
     return {
       selected: null,
-      optionsData: [],
+      optionsData: []
     }
   },
   watch: {
@@ -59,8 +59,8 @@ export default {
       handler(newValue, oldValue) {
         this.optionsData = newValue
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
   created() {
     this.optionsData = this.options
@@ -69,6 +69,6 @@ export default {
     if (this.value) {
       this.selected = this.value
     }
-  },
+  }
 }
 </script>

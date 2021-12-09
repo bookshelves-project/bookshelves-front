@@ -5,17 +5,19 @@
       v-for="locale in availableLocales"
       :key="locale.code"
       :to="switchLocalePath(locale.code)"
-      >{{ locale.name }}</nuxt-link
     >
+      {{ locale.name }}
+    </nuxt-link>
     <a
       v-for="locale in availableLocales"
       :key="locale.code"
       href="#"
       @click.prevent.stop="$i18n.setLocale(locale.code)"
-      >{{ locale.name }}</a
-    >
+    >{{ locale.name }}</a>
     <dropdown-template align="right" :width="48">
-      <template #trigger> Language </template>
+      <template #trigger>
+        Language
+      </template>
       <template #content>
         <a
           v-for="locale in availableLocales"
@@ -23,8 +25,7 @@
           class="block"
           href="#"
           @click.prevent.stop="$i18n.setLocale(locale.code)"
-          >{{ locale.name }}</a
-        >
+        >{{ locale.name }}</a>
       </template>
     </dropdown-template>
   </div>
@@ -36,7 +37,7 @@ export default {
   computed: {
     availableLocales() {
       return this.$i18n.locales
-    },
-  },
+    }
+  }
 }
 </script>

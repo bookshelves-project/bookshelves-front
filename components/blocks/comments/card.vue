@@ -43,7 +43,7 @@
             "
             :class="overflow ? 'overflow-comment' : ''"
             v-html="comment.text"
-          ></div>
+          />
           <button
             v-if="comment.text.length > 300"
             type="button"
@@ -56,18 +56,15 @@
         </div>
         <div class="flex items-center mt-2 space-x-2 text-sm">
           <div>
-            <span class="font-medium text-gray-500"
-              >Posted from {{ calExactTimeDiff(comment.createdAt) }}</span
-            ><span
+            <span class="font-medium text-gray-500">Posted from {{ calExactTimeDiff(comment.createdAt) }}</span><span
               v-if="comment.createdAt !== comment.updatedAt"
               class="font-medium text-gray-500"
-              >, modified from {{ calExactTimeDiff(comment.updatedAt) }}</span
-            >
+            >, modified from {{ calExactTimeDiff(comment.updatedAt) }}</span>
           </div>
           <button
             v-if="
               $auth.$state.loggedIn &&
-              comment.user.id === $auth.$state.user.data.id
+                comment.user.id === $auth.$state.user.data.id
             "
             type="button"
             class="
@@ -89,30 +86,30 @@
 </template>
 
 <script>
-import { calExactTimeDiff } from '@/plugins/utils/methods'
+import { calExactTimeDiff } from '~/plugins/utils/methods'
 
 export default {
   name: 'CommentsCard',
   props: {
     comment: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
-  data() {
+  data () {
     return {
-      overflow: true,
+      overflow: true
     }
   },
   methods: {
     calExactTimeDiff,
-    toggleFullComment(refId, originalText) {
+    toggleFullComment (refId, originalText) {
       this.overflow = !this.overflow
     },
-    deleteComment(id) {
+    deleteComment (id) {
       this.$emit('destroy', id)
-    },
-  },
+    }
+  }
 }
 </script>
 

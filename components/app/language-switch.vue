@@ -49,13 +49,13 @@ export default {
   props: {
     size: {
       type: String,
-      default: 'w-10 h-10',
-    },
+      default: 'w-10 h-10'
+    }
   },
   computed: {
     availableLocales() {
       return this.$i18n.locales
-    },
-  },
+    }
+  }
 }
 </script>

@@ -26,16 +26,18 @@
           <transition name="fade">
             <app-img
               v-if="$auth.$state.loggedIn"
-              class="w-8 h-8 rounded-full"
+              class="w-8 h-8"
               :src="
                 $auth.$state.user.data ? $auth.$state.user.data.avatar : null
               "
+              override="rounded-full"
               invisible
             />
             <app-img
               v-else
               src="/images/user.svg"
-              class="w-8 h-8 rounded-full"
+              class="w-8 h-8"
+              override="rounded-full"
               invisible
             />
           </transition>
@@ -149,14 +151,14 @@ export default {
   name: 'AccountDropdown',
   data() {
     return {
-      accountDropdownOpened: false,
+      accountDropdownOpened: false
     }
   },
   computed: {
     ...mapGetters({
       auth: 'nav/auth',
-      guest: 'nav/guest',
-    }),
+      guest: 'nav/guest'
+    })
     // authNav() {
     //   const nav = this.$store.state.nav.authNavigationTrue
     //   if (this.$auth.$state.user.data.isAdmin) {
@@ -185,7 +187,7 @@ export default {
     },
     closeAccountDropdown() {
       this.accountDropdownOpened = false
-    },
-  },
+    }
+  }
 }
 </script>

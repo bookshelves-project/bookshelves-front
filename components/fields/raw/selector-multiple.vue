@@ -36,24 +36,24 @@ export default {
   props: {
     data: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     value: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     label: {
       type: String,
-      default: null,
+      default: null
     },
     name: {
       type: String,
-      default: 'name',
-    },
+      default: 'name'
+    }
   },
   data() {
     return {
-      selected: [],
+      selected: []
     }
   },
   watch: {
@@ -61,11 +61,11 @@ export default {
       handler(newValue, oldValue) {
         this.selected = newValue
       },
-      deep: true,
+      deep: true
     },
     selected(newValue, oldValue) {
       this.$emit('input', this.selected)
-    },
+    }
   },
   methods: {
     toggleItem(value) {
@@ -77,8 +77,8 @@ export default {
       } else {
         this.selected.push(value)
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

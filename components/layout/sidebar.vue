@@ -254,14 +254,14 @@ import vClickOutside from 'v-click-outside'
 export default {
   name: 'Sidebar',
   directives: {
-    clickOutside: vClickOutside.directive,
+    clickOutside: vClickOutside.directive
   },
   computed: {
     ...mapGetters({
       navigation: 'nav/main',
       auth: 'nav/auth',
-      guest: 'nav/guest',
-    }),
+      guest: 'nav/guest'
+    })
   },
   methods: {
     async logout() {
@@ -284,8 +284,8 @@ export default {
       setTimeout(() => {
         this.$store.commit('setLayer', false)
       }, 150)
-    },
-  },
+    }
+  }
 }
 </script>
 

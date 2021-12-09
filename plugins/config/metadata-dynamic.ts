@@ -1,8 +1,8 @@
 import metadata from './metadata'
 
-const baseUrl: string = `${process.env.BASE_URL}`
-const homeUrl: string = `${baseUrl}/`
-const homeImage: string = `${process.env.BASE_URL}/default.jpg`
+const baseUrl = `${process.env.BASE_URL}`
+const homeUrl = `${baseUrl}/`
+const homeImage = `${process.env.BASE_URL}/default.jpg`
 
 const metadataDynamic = (meta?: any) => {
   return [...getMeta(meta), ...getOpenGraph(meta), ...getTwitterCard(meta)]
@@ -21,8 +21,8 @@ function getMeta(meta: any) {
     {
       hid: 'description',
       name: 'description',
-      content: metaDesc,
-    },
+      content: metaDesc
+    }
   ]
 }
 function getOpenGraph(meta: any) {
@@ -31,34 +31,34 @@ function getOpenGraph(meta: any) {
     {
       hid: 'og:type',
       property: 'og:type',
-      content: metaLocal.type ? metaLocal.type : metadata.og.type,
+      content: metaLocal.type ? metaLocal.type : metadata.og.type
     },
     {
       hid: 'og:url',
       property: 'og:url',
-      content: metaLocal.url ? `${baseUrl}${metaLocal.url}` : homeUrl,
+      content: metaLocal.url ? `${baseUrl}${metaLocal.url}` : homeUrl
     },
     {
       hid: 'og:title',
       property: 'og:title',
-      content: metaLocal.title ? metaLocal.title : metadata.website.title,
+      content: metaLocal.title ? metaLocal.title : metadata.website.title
     },
     {
       hid: 'og:description',
       property: 'og:description',
       content: metaLocal.description
         ? metaLocal.description
-        : metadata.website.description,
+        : metadata.website.description
     },
     {
       hid: 'og:image',
       property: 'og:image',
-      content: metaLocal.image ? metaLocal.image : homeImage,
+      content: metaLocal.image ? metaLocal.image : homeImage
     },
     {
       hid: 'og:image:alt',
       property: 'og:image:alt',
-      content: metaLocal.title ? metaLocal.title : metadata.website.title,
+      content: metaLocal.title ? metaLocal.title : metadata.website.title
     },
     additionalOpenGraph(
       metaLocal.articlePublishedTime,
@@ -71,7 +71,7 @@ function getOpenGraph(meta: any) {
     additionalOpenGraph(metaLocal.bookReleaseDate, 'book:release_date'),
     additionalOpenGraph(metaLocal.bookTag, 'book:tag'),
     additionalOpenGraph(metaLocal.profileFirstName, 'profile:first_name'),
-    additionalOpenGraph(metaLocal.profileLastName, 'profile:last_name'),
+    additionalOpenGraph(metaLocal.profileLastName, 'profile:last_name')
   ]
 }
 
@@ -81,20 +81,20 @@ function getTwitterCard(meta: any) {
     {
       hid: 'twitter:title',
       name: 'twitter:title',
-      content: metaLocal.title ? metaLocal.title : metadata.website.title,
+      content: metaLocal.title ? metaLocal.title : metadata.website.title
     },
     {
       hid: 'twitter:description',
       name: 'twitter:description',
       content: metaLocal.description
         ? metaLocal.description
-        : metadata.website.description,
+        : metadata.website.description
     },
     {
       hid: 'twitter:image',
       name: 'twitter:image',
-      content: metaLocal.image ? metaLocal.image : homeImage,
-    },
+      content: metaLocal.image ? metaLocal.image : homeImage
+    }
   ]
 }
 
@@ -103,7 +103,7 @@ function additionalOpenGraph(customMeta: string, hid: string) {
     ? {
         hid,
         property: hid,
-        content: customMeta,
+        content: customMeta
       }
     : ''
 }

@@ -113,7 +113,7 @@ import { filter, flow, values, partialRight, some, method } from 'lodash'
 export default {
   name: 'AutocompleteAuthors',
   directives: {
-    clickOutside: vClickOutside.directive,
+    clickOutside: vClickOutside.directive
   },
   data() {
     return {
@@ -122,7 +122,7 @@ export default {
       authors: [],
       fullAuthors: [],
       validate: true,
-      validAuthor: null,
+      validAuthor: null
     }
   },
   watch: {
@@ -134,7 +134,7 @@ export default {
         this.showList = false
         this.authors = []
       }
-    },
+    }
   },
   async created() {
     await this.formatAuthors()
@@ -156,7 +156,7 @@ export default {
     },
     async formatAuthors(query) {
       if (!this.authors.length) {
-        const authors = await this.$axios.$get(`/authors?limit=full`)
+        const authors = await this.$axios.$get('/authors?limit=full')
 
         this.fullAuthors = authors.data
       } else {
@@ -181,7 +181,7 @@ export default {
         this.validate = true
       }, 50)
       this.$emit('author', this.validAuthor)
-    },
-  },
+    }
+  }
 }
 </script>

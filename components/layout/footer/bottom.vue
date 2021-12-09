@@ -50,10 +50,8 @@
               hover:text-gray-500
               dark:hover:text-gray-300
             "
-            >{{ team }}</nuxt-link
-          >
-          <span class="hidden mx-1 md:block">·</span
-          ><nuxt-link
+          >{{ team }}</nuxt-link>
+          <span class="hidden mx-1 md:block">·</span><nuxt-link
             v-if="packageJson"
             :to="
               localePath({
@@ -62,9 +60,7 @@
               })
             "
             class="block md:flex"
-            >{{ packageJson.license }} license</nuxt-link
-          ><span class="hidden md:block">,</span
-          ><nuxt-link
+          >{{ packageJson.license }} license</nuxt-link><span class="hidden md:block">,</span><nuxt-link
             v-if="packageJson"
             :to="
               localePath({
@@ -73,8 +69,7 @@
               })
             "
             class="block md:flex italic md:ml-1"
-            >v{{ packageJson.version }}</nuxt-link
-          ><span class="hidden md:block">.</span>
+          >v{{ packageJson.version }}</nuxt-link><span class="hidden md:block">.</span>
         </span>
       </span>
     </div>
@@ -97,17 +92,17 @@ export default {
       licenses: [
         {
           label: 'Creative Commons',
-          name: `creative-commons/cc`,
+          name: 'creative-commons/cc'
         },
         {
           label: 'Creative Commons By',
-          name: `creative-commons/by`,
+          name: 'creative-commons/by'
         },
         {
           label: 'Creative Commons Nc',
-          name: `creative-commons/nc`,
-        },
-      ],
+          name: 'creative-commons/nc'
+        }
+      ]
     }
   },
   methods: {
@@ -119,7 +114,7 @@ export default {
         return begin
       }
       return year
-    },
-  },
+    }
+  }
 }
 </script>

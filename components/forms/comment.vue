@@ -107,8 +107,8 @@ export default {
     return {
       form: {
         text: '',
-        rating: 0,
-      },
+        rating: 0
+      }
     }
   },
   methods: {
@@ -122,17 +122,17 @@ export default {
         this.$nuxt.$emit('notification', {
           title: 'Success!',
           text: 'Thanks you for your comment.',
-          type: 'success',
+          type: 'success'
         })
       } catch (error) {
         this.$nuxt.$emit('notification', {
           title: 'Error',
           text: error.response.data.error,
-          type: 'error',
+          type: 'error'
         })
       }
       this.$emit('refresh', slug)
-    },
-  },
+    }
+  }
 }
 </script>

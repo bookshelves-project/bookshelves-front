@@ -52,8 +52,7 @@
                 'py-2': link.depth === 2,
                 'ml-2 pb-2': link.depth === 3,
               }"
-              >{{ link.text }}</a
-            >
+            >{{ link.text }}</a>
           </li>
         </scrollactive>
       </nav>
@@ -68,18 +67,18 @@ export default {
   props: {
     toc: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   data() {
     return {
       settings: {
-        layout: 'single',
-      },
+        layout: 'single'
+      }
     }
   },
   computed: {
     // ...mapGetters(['settings']),
-  },
+  }
 }
 </script>

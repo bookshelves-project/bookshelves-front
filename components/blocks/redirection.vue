@@ -14,7 +14,9 @@
         yourself.
       </p>
       <div class="flex mt-6">
-        <app-button :to="to" class="mx-auto"> Manually redirect </app-button>
+        <app-button :to="to" class="mx-auto">
+          Manually redirect
+        </app-button>
       </div>
     </div>
   </div>
@@ -26,8 +28,8 @@ export default {
   props: {
     to: {
       type: Object,
-      default: () => {},
-    },
-  },
+      default: () => {}
+    }
+  }
 }
 </script>

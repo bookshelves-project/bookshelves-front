@@ -37,7 +37,7 @@ export default {
       const languages = await app.$axios.$get('languages')
 
       return {
-        languages: languages.data,
+        languages: languages.data
       }
     } catch (error) {}
   },
@@ -46,7 +46,7 @@ export default {
       formatLanguage,
       title: 'Languages of eBooks and series',
       description:
-        'You can read your eBooks in many languages, browse each possibilities!',
+        'You can read your eBooks in many languages, browse each possibilities!'
     }
   },
   head() {
@@ -58,10 +58,10 @@ export default {
       meta: [
         ...dynamicMetadata.default({
           title,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
-  },
+  }
 }
 </script>

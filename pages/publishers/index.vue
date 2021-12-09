@@ -30,13 +30,13 @@ export default {
     )
 
     return {
-      publishers: publishers.data,
+      publishers: publishers.data
     }
   },
   data() {
     return {
       title: 'Publishers',
-      description: 'Find your favorite publisher!',
+      description: 'Find your favorite publisher!'
     }
   },
   head() {
@@ -48,11 +48,11 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
+          url: this.$nuxt.$route.path
+        })
+      ]
     }
   },
-  watchQuery: ['filter[negligible]'],
+  watchQuery: ['filter[negligible]']
 }
 </script>

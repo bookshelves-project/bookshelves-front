@@ -1,4 +1,4 @@
-<template functional>
+<template>
   <div class="px-4 py-6 flex space-x-4">
     <div
       class="w-20 h-20 rounded-md animate-pulse bg-gray-300 dark:bg-gray-400"
@@ -38,6 +38,6 @@
 
 <script>
 export default {
-  name: 'CardLoading',
+  name: 'CardLoading'
 }
 </script>
