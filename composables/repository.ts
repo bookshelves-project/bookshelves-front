@@ -11,6 +11,7 @@ export enum ApiEndpoint {
   Serie = '/series',
   SerieBook = '/series/books',
   Author = '/authors',
+  AuthorBook = '/authors/books',
 }
 export class Repository {
   axios: NuxtAxiosInstance

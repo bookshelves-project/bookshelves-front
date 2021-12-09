@@ -52,7 +52,6 @@
         </blocks-entity-card>
       </div>
       <div class="mt-6 mb-5">
-        <!-- <pagination v-if="meta" :current-page="meta.current_page" :pages="meta.last_page" /> -->
         <pagination-load
           v-if="meta"
           :current-page="meta.current_page"
@@ -69,7 +68,6 @@
 <script setup lang="ts">
 import { ApiEndpoint } from '~/composables/repository'
 import { ApiMeta, Book, Serie } from '~/types'
-import Pagination from '~/components/blocks/pagination.vue'
 import { overflow } from '@/plugins/utils/methods'
 import { formatLanguage, formatAuthors } from '@/plugins/utils/entities'
 import PaginationLoad from '~/components/blocks/pagination-load.vue'
@@ -123,3 +121,79 @@ const load = (data: any[]) => {
 //   ]
 // }
 </script>
+
+<!-- <script lang="ts">
+export default defineComponent({
+  async asyncData({ params, query, $repository }) {
+    const [
+      serie,
+      books
+    ] = await Promise.all([
+      $repository(ApiEndpoint.Serie).show([
+        params.author,
+        params.slug
+      ]),
+      $repository(ApiEndpoint.SerieBook).index({
+        page: query.page as string || '1',
+        perPage: '32'
+      }, [
+        params.author,
+        params.slug
+      ])
+    ])
+
+    return {
+      serie: serie.data,
+      books: books.data,
+      meta: books.meta
+    }
+  },
+  head: {},
+  watchQuery: ['page']
+  // jsonld() {
+  //     const breadcrumbs = [
+  //       {
+  //         url: this.$config.baseURL,
+  //         text: 'Home'
+  //       },
+  //       {
+  //         url: `${this.$config.baseURL}/series`,
+  //         text: 'Series'
+  //       },
+  //       {
+  //         url: `${this.$config.baseURL}/series/${this.$route.params.author}/${this.$route.params.slug}`,
+  //         text: this.entity.title
+  //       }
+  //     ]
+  //     const authors = this.entity.authors.map((author, index) => ({
+  //       '@type': 'Person',
+  //       familyName: author.lastname,
+  //       givenName: author.firstname,
+  //       name: author.name,
+  //       url: `${this.$config.baseURL}/authors/${author.meta.slug}`
+  //     }))
+
+  //     const items = breadcrumbs.map((item, index) => ({
+  //       '@type': 'ListItem',
+  //       position: index + 1,
+  //       item: {
+  //         '@id': item.url,
+  //         name: item.text
+  //       }
+  //     }))
+  //     return {
+  //       '@context': 'https://schema.org',
+  //       '@type': 'WebPage',
+  //       itemListElement: items,
+  //       mainEntity: {
+  //         '@type': 'BookSeries',
+  //         author: authors,
+  //         bookFormat: 'http://schema.org/BookSeries',
+  //         image: this.entity.cover.thumbnail,
+  //         inLanguage: formatLanguage(this.entity.language).label,
+  //         name: this.entity.title
+  //       }
+  //     }
+  //   }
+})
+</script> -->
