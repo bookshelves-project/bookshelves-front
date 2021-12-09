@@ -1,12 +1,12 @@
 import type { ApiResponse, ApiPaginateResponse, ApiFormated, ApiMeta, Pagination, Query } from './api'
 import type { Book } from './book'
 import type { Serie } from './serie'
-import { Entity } from './entity'
+import type { Entity } from './entity'
 import type { Content } from './content'
 import type { Application, HomePage } from './cms'
 import type { Route } from './nuxt'
-import { NotificationType, Notification } from './notification'
-import { SwiperElement } from './swiper'
+import { Toast, ToastAuto, ToastType } from './toast'
+import type { SwiperElement } from './swiper'
 
 export {
   // api
@@ -27,9 +27,10 @@ export {
   HomePage,
   // nuxt
   Route,
-  // notification
-  Notification,
-  NotificationType,
+  // toast
+  Toast,
+  ToastAuto,
+  ToastType,
   // modules
   SwiperElement
 }

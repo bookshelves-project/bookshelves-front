@@ -1,8 +1,8 @@
 import { Plugin } from '@nuxt/types'
 import { wrapProperty } from '@nuxtjs/composition-api'
 import { ApiEndpoint, Repository } from '~/composables/repository'
-import { Notification, NotificationType } from '~/types'
-import { namespace, actionType } from '~/store/notification'
+import { namespace, actionType } from '~/store/toast'
+import { Toast, ToastAuto, ToastType } from '~/types'
 
 declare module '@nuxt/types' {
   interface Context {
@@ -10,7 +10,10 @@ declare module '@nuxt/types' {
      * A Repository can execute requests
      */
     $repository(endpoint: ApiEndpoint, handleError?: boolean): Repository
-    $notification(notification?: Notification): void
+    /**
+     * Send a toast
+     */
+    $toast(title?: string, text?: string, type?: ToastType, auto?: ToastAuto): void
   }
 }
 
@@ -18,18 +21,23 @@ const repository: Plugin = (ctx) => {
   ctx.$repository = (endpoint: ApiEndpoint, handleError = true) => {
     return new Repository(ctx.$axios, ctx.error, handleError, endpoint)
   }
-  ctx.$notification = (notification?: Notification) => {
-    const notif = {
-      title: notification ? notification.title : 'Demo notification',
-      text: notification ? notification.text : '',
-      type: notification ? notification.type : NotificationType.default
+  ctx.$toast = (title?: string, text?: string, type?: ToastType, auto?: ToastAuto) => {
+    if (auto) {
+      if (ToastAuto.success) {
+        title = 'Success'
+        type = ToastType.success
+      } else if (ToastAuto.error) {
+        title = 'Error'
+        type = ToastType.error
+      }
     }
-    ctx.store.dispatch(`${namespace}/${actionType.DISPLAY_NOTIFICATION}`, new Notification(
-      'Check your console',
-      'List of all routes is available.',
-      NotificationType.success
-    ))
-    // nuxt.$emit('notification', notif)
+    const toastData: Toast = {
+      title: title || 'Toast',
+      text: text || '',
+      type: type || ToastType.default
+    }
+    ctx.store.dispatch(`${namespace}/${actionType.DISPLAY_TOAST}`, toastData)
+    // nuxt.$emit('toast', toastData)
   }
 }
 

@@ -6,11 +6,11 @@
     <div class="p-4">
       <div class="flex items-start">
         <div class="flex-shrink-0">
-          <svg-icon :name="`notification/${notification.type}`" :class="color" class="w-6 h-6" />
+          <svg-icon :name="`toast/${toast.type}`" :class="color" class="w-6 h-6" />
         </div>
         <div class="ml-3 w-0 flex-1 pt-0.5">
-          <p class="text-sm font-medium text-gray-900 dark:text-gray-200">{{ notification.title }}</p>
-          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ notification.text }}</p>
+          <p class="text-sm font-medium text-gray-900 dark:text-gray-200">{{ toast.title }}</p>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ toast.text }}</p>
         </div>
         <div class="ml-4 flex-shrink-0 flex">
           <button
@@ -27,16 +27,16 @@
 </template>
 
 <script setup lang="ts">
-import { Notification } from '~/types'
-import { namespace, actionType } from '~/store/notification'
+import { namespace, actionType } from '~/store/toast'
+import { Toast } from '~/types'
 
 const props = defineProps<{
-  notification: Notification
+  toast: Toast
 }>()
 
 const ctx = useContext()
 
-const type = props.notification.type ? props.notification.type : 'default'
+const type = props.toast.type ? props.toast.type : 'default'
 const bgColor = computed(() => {
   const colors = {
     success: 'bg-green-100',
@@ -58,6 +58,6 @@ const color = computed(() => {
   return colors[type]
 })
 const clear = () => {
-  ctx.store.dispatch(`${namespace}/${actionType.REMOVE_NOTIFICATION}`, props.notification)
+  ctx.store.dispatch(`${namespace}/${actionType.REMOVE_TOAST}`, props.toast)
 }
 </script>
