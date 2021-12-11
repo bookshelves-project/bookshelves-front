@@ -36,6 +36,7 @@
     "array-bracket-newline": "error",
     "array-callback-return": "error",
     "array-element-newline": "error",
+    "@typescript-eslint/no-empty-function": "off",
     "vue/html-self-closing": "off"
   }
 }
