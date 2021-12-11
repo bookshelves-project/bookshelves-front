@@ -4,7 +4,7 @@
       name="router"
       class="fixed z-50 bottom-0 right-0 bg-gray-700 p-2 rounded-tl-md hover:bg-gray-600 transition-colors duration-100"
       type="button"
-      @click="() => (isOpen = !isOpen)"
+      @click="() => (isOpen.value = !isOpen)"
     >
       <span
         class="flex items-center text-sm font-medium transition-all duration-100 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
@@ -46,10 +46,10 @@
               rel="noopener noreferrer"
               type="button"
               class="flex col-span-1 w-full text-left"
-              @click="item.method ? item.method() : isOpen = false"
+              @click="item.method ? item.method() : isOpen.value = false"
             >
               <div
-                class="flex-shrink-0 flex items-center justify-center w-16 text-sm font-medium rounded-l-md"
+                class="shrink-0 flex items-center justify-center w-16 text-sm font-medium rounded-l-md"
               >
                 <svg-icon v-if="item.icon" :name="item.icon" class="w-6 h-6 dark:text-white" />
                 <img v-else-if="item.img" :src="item.img" :alt="item.label" class="w-6 h-6" />

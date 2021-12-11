@@ -36,9 +36,8 @@
       "unplugin-vue2-script-setup/types",
       "@nuxtjs/i18n",
       "@nuxtjs/auth-next",
-      "nuxt-windicss",
       "@nuxtjs/color-mode",
-      "@pinia/nuxt",
+      // "@pinia/nuxt",
       "cookie-universal-nuxt",
       "@types/swiper"
     ],

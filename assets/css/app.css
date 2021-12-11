@@ -1,7 +1,12 @@
-@import './app/swiper';
-@import './app/vue';
+/* @import './app/swiper';
+@import './app/vue'; */
 
-@font-face {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+/* @font-face {
   font-family: Handlee;
   src: url('../fonts/Handlee-Regular.ttf');
 }
@@ -19,16 +24,10 @@ button {
   @apply focus: outline-none focus:ring focus:border-primary-300;
 }
 
-/* navigation */
-.nuxt-link-exact-active {
-  /* @apply bg-gray-200; */
-}
-
 .nuxt-link-active {
   @apply text-gray-900 border-primary-500 dark: text-white;
 }
 
-/* Grid Auto Flow */
 .display-grid {
   @apply grid grid-cols-1 gap-4 sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
 }
@@ -52,4 +51,4 @@ button {
 
 .main-content {
   @apply container !max-w-7xl lg: pt-6 pt-5 min-h-screen text-black dark:text-white;
-}
+} */

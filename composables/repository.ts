@@ -3,16 +3,8 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { NuxtError } from '@nuxt/types'
 import { AxiosResponse } from 'axios'
 import { stringify } from 'qs'
-import { ApiPaginateResponse, ApiResponse, Query } from '~/types'
+import { ApiEndpoint, ApiPaginateResponse, ApiResponse, Query } from '~/types'
 
-export enum ApiEndpoint {
-  Book = '/books',
-  BookRelated = '/books/related',
-  Serie = '/series',
-  SerieBook = '/series/books',
-  Author = '/authors',
-  AuthorBook = '/authors/books',
-}
 export class Repository {
   axios: NuxtAxiosInstance
   error: (param: NuxtError) => void

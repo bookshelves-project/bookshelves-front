@@ -1,50 +1,13 @@
 <template>
   <div :class="dev ? 'debug-screens' : ''">
-    <lazy-layout-overlay />
-    <lazy-layout-helper />
-    <lazy-app-toasts />
-    <div class="app mx-auto">
-      <lazy-layout-layer />
-      <layout-navbar />
-      <lazy-layout-sidebar />
-      <div style="padding-top: 4rem" />
-      <nuxt class="min-height-content" />
-      <lazy-layout-footer />
-    </div>
+    <Helper />
+    <Nuxt />
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  defineComponent,
-  useMeta,
-  computed,
-  ref,
-  useContext
-} from '@nuxtjs/composition-api'
-import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Application } from '~/types'
+import Helper from '~/components/layout/helper.vue'
 
-const dev: boolean = useContext().isDev
-const ctx = useContext()
-const app: Application = ctx.$cookies.get('app')
-
-useMeta(() => ({
-  title: app.name,
-  titleTemplate: app.title_template,
-  link: [{ rel: 'icon', type: 'image/svg+xml', href: app.favicon }]
-}))
+const { isDev } = useContext()
+const dev: boolean = isDev
 </script>
-
-<script lang="ts">
-export default {
-  middleware: ['init'],
-  head: {}
-}
-</script>
-
-<style lang="postcss">
-.min-height-content {
-  min-height: 70vh;
-}
-</style>

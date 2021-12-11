@@ -1,12 +1,14 @@
 import type { ApiResponse, ApiPaginateResponse, ApiFormated, ApiMeta, Pagination, Query } from './api'
-import type { Book } from './book'
-import type { Serie } from './serie'
-import type { Entity } from './entity'
-import type { Content } from './content'
+import type { Book } from './entities/book'
+import type { Serie } from './entities/serie'
+import type { Author } from './entities/author'
+import type { Entity } from './entities/index'
+import type { Content } from './nuxt/content'
 import type { Application, HomePage } from './cms'
 import type { Route } from './nuxt'
-import { Toast, ToastAuto, ToastType } from './toast'
-import type { SwiperElement } from './swiper'
+import { Toast, ToastAuto, ToastType } from './nuxt/toast'
+import type { SwiperElement } from './nuxt/swiper'
+import { ApiEndpoint } from './api/endpoints'
 
 export {
   // api
@@ -16,8 +18,9 @@ export {
   ApiMeta,
   Pagination,
   Query,
-  // etnties
+  // entities
   Book,
+  Author,
   Serie,
   Entity,
   // content
@@ -32,5 +35,7 @@ export {
   ToastAuto,
   ToastType,
   // modules
-  SwiperElement
+  SwiperElement,
+  // endpoints
+  ApiEndpoint
 }

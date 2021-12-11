@@ -1,5 +1,5 @@
 import { defineNuxtMiddleware } from '@nuxtjs/composition-api'
-import { useUserStore } from '~/types/nuxt3/stores/user'
+import { useUserStore } from '~/archive/nuxt3/stores/user'
 import { ApiResponse, Application } from '~/types'
 
 export default defineNuxtMiddleware((ctx) => {

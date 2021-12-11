@@ -209,14 +209,44 @@ module.exports = {
       typography: ['dark'],
       display: ['dark'],
       opacity: ['dark'],
-      width: ['hover', 'focus'],
-      textColor: ['responsive', 'hover', 'focus', 'group-hover', 'dark'],
-      scale: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+      width: [
+        'hover',
+        'focus'
+      ],
+      textColor: [
+        'responsive',
+        'hover',
+        'focus',
+        'group-hover',
+        'dark'
+      ],
+      scale: [
+        'responsive',
+        'hover',
+        'focus',
+        'active',
+        'group-hover'
+      ],
       boxShadow: ['dark'],
-      translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
-      backgroundColor: ['hover', 'focus', 'group-hover', 'dark'],
+      translate: [
+        'responsive',
+        'hover',
+        'focus',
+        'active',
+        'group-hover'
+      ],
+      backgroundColor: [
+        'hover',
+        'focus',
+        'group-hover',
+        'dark'
+      ],
       backgroundOpacity: ['dark'],
-      borderColor: ['hover', 'focus', 'group-hover'],
+      borderColor: [
+        'hover',
+        'focus',
+        'group-hover'
+      ],
       borderRadius: ['dark']
     }
   },
