@@ -24,8 +24,9 @@ const config: NuxtConfig = {
   },
   // https://nuxtjs.org/docs/configuration-glossary/configuration-css
   css: [
-    '~/assets/css/app.css'
-    // '~/assets/css/markdown'
+    '~/assets/css/tailwind.css',
+    '~/assets/css/app.css',
+    '~/assets/css/markdown'
   ],
   // Auto import components (https://go.nuxtjs.dev/config-components)
   // GitHub: https://github.com/nuxt/components

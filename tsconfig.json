@@ -16,7 +16,6 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
-    "jsx": "preserve",
     "noEmit": true,
     "baseUrl": ".",
     "importsNotUsedAsValues": "preserve",
