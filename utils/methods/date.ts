@@ -1,109 +1,4 @@
-// Generate random string
-export const randomString = (L) => {
-  let s = ''
-  const randomchar = function () {
-    const n = Math.floor(Math.random() * 62)
-    if (n < 10) { return n } // 1-10
-    if (n < 36) { return String.fromCharCode(n + 55) } // A-Z
-    return String.fromCharCode(n + 61) // a-z
-  }
-  while (s.length < L) { s += randomchar() }
-  return s
-}
-
-// get language flag url or label from slug
-export const formatLanguage = (slug) => {
-  const available = [
-    {
-      slug: 'fr',
-      id: 'fr',
-      label: 'French',
-      flag: '🇫🇷'
-    },
-    {
-      slug: 'en',
-      id: 'gb',
-      label: 'English',
-      flag: '🇬🇧'
-    }
-  ]
-
-  return available.find(lang => lang.slug === slug)
-}
-
-// get all authors into a string from array of object
-export const formatAuthors = (authors) => {
-  if (authors) {
-    let authorsToString = ''
-    authors.forEach((author, authorId) => {
-      authorsToString += `${author.name}`
-      if (authors.length > 1 && authorId !== authors.length - 1) {
-        authorsToString += ' & '
-      }
-    })
-    return authorsToString
-  }
-
-  return 'unknown'
-}
-
-// get all authors into a string from array of object
-export const formatTags = (tags) => {
-  if (tags) {
-    let entitiesToString = ''
-    tags.forEach((tag, tagId) => {
-      entitiesToString += `${tag.name}`
-      if (tags.length > 1 && tagId !== tags.length - 1) {
-        entitiesToString += ' & '
-      }
-    })
-    return entitiesToString
-  }
-
-  return 'unknown'
-}
-
-// get domain of URL
-export const getHostname = (url) => {
-  return new URL(url).hostname
-}
-
-// Check if an object in contain in an array
-export const containsObject = (obj, list) => {
-  let i
-  for (i = 0; i < list.length; i++) {
-    if (list[i] === obj) {
-      return true
-    }
-  }
-
-  return false
-}
-
-// Check if object is empty
-export const objectIsEmpty = (obj) => {
-  return obj && Object.keys(obj).length === 0 && obj.constructor === Object
-}
-
-// Capitalize first character
-export const capitalize = (string = '') =>
-  [...string].map((char, index) => (index ? char : char.toUpperCase())).join('')
-
-// Slugify string
-export const slugify = (text) => {
-  if (text !== null && text !== undefined) {
-    return text
-      .toString()
-      .toLowerCase()
-      .replace(/["']/i, '-')
-      .replace(/\s+/g, '-')
-      .normalize('NFD')
-      .replace(/[\u0300-\u036F]/g, '')
-  }
-}
-
-// time difference in Days
-function getDaysDiff (startDate = new Date(), endDate = new Date()) {
+function getDaysDiff(startDate = new Date(), endDate = new Date()) {
   if (startDate > endDate) {
     [
       startDate,
@@ -122,7 +17,7 @@ function getDaysDiff (startDate = new Date(), endDate = new Date()) {
 
 // time difference in Months
 // eslint-disable-next-line no-unused-vars
-function getMonthsDiff (startDate = new Date(), endDate = new Date()) {
+function getMonthsDiff(startDate = new Date(), endDate = new Date()) {
   const monthsOfFullYears = getYearsDiff(startDate, endDate) * 12
   let months = monthsOfFullYears
   // the variable below is not necessary, but I kept it for understanding of code
@@ -152,7 +47,7 @@ function getMonthsDiff (startDate = new Date(), endDate = new Date()) {
 }
 
 // time difference in Years
-function getYearsDiff (startDate = new Date(), endDate = new Date()) {
+function getYearsDiff(startDate = new Date(), endDate = new Date()) {
   if (startDate > endDate) {
     [
       startDate,
@@ -185,7 +80,7 @@ function getYearsDiff (startDate = new Date(), endDate = new Date()) {
 }
 
 // time difference in format: X years, Y months, Z days
-export const calExactTimeDiff = (firstDate, secondDate = new Date()) => {
+export const calExactTimeDiff = (firstDate: Date, secondDate = new Date()) => {
   firstDate = new Date(firstDate)
   secondDate = new Date(secondDate)
   if (firstDate > secondDate) {
@@ -274,38 +169,4 @@ export const calExactTimeDiff = (firstDate, secondDate = new Date()) => {
   // `${exactTimeDiffUnits.yrs} years, ${exactTimeDiffUnits.mths} months,
 
   return time
-}
-
-export const capitalizeEach = (string) => {
-  const arr = string.split(' ')
-
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
-  }
-
-  return arr.join(' ')
-}
-
-/**
- * Push in array if not exists
- * @param {array} array
- * @param {any} value
- */
-export const pushIfNotExist = (array, value) => {
-  const index = array.findIndex(x => x === value)
-  if (index === -1) {
-    array.push(value)
-  }
-}
-
-export const overflow = (text, maxLength = 25) => {
-  if (text) {
-    let overflow = text
-    if (text.length > maxLength) {
-      overflow = text.substring(0, maxLength)
-      overflow = `${overflow}...`
-    }
-    return overflow
-  }
-  return ''
 }

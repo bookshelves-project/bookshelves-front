@@ -2,7 +2,7 @@ import type { ApiResponse, ApiPaginateResponse, ApiFormated, ApiMeta, Pagination
 import type { Book } from './entities/book'
 import type { Serie } from './entities/serie'
 import type { Author } from './entities/author'
-import type { Entity } from './entities/index'
+import type { Entity, Tag } from './entities/index'
 import type { Content } from './nuxt/content'
 import type { Application, HomePage } from './cms'
 import type { Route } from './nuxt'
@@ -23,6 +23,7 @@ export {
   Author,
   Serie,
   Entity,
+  Tag,
   // content
   Content,
   // cms

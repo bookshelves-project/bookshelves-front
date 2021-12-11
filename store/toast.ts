@@ -28,7 +28,10 @@ export const mutationType = {
 
 export const mutations: MutationTree<ToastState> = {
   displayToast(state, payload: Toast) {
-    state.toasts = [...state.toasts, { ...payload }]
+    state.toasts = [
+      ...state.toasts,
+      { ...payload }
+    ]
   },
   removeToast(state, payload: Toast) {
     let toasts = [...state.toasts]
