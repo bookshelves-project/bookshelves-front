@@ -160,6 +160,12 @@ const links = [
     description: 'Documentation',
     url: 'https://v3.vuejs.org/guide/composition-api-lifecycle-hooks.html',
     img: 'https://v3.vuejs.org/logo.png'
+  },
+  {
+    label: 'Vue 3 Lifecycle Hooks',
+    description: 'Documentation',
+    url: 'https://www.thisdot.co/author/lindsay-wardell',
+    img: 'https://v3.vuejs.org/logo.png'
   }
 ]
 
