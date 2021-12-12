@@ -45,6 +45,7 @@ export interface ApiFormated<T> {
 }
 
 export interface Query {
+    lang?: string,
     perPage?: string
     page?: string,
     limit?: string,
