@@ -162,7 +162,7 @@ const links = [
     img: 'https://v3.vuejs.org/logo.png'
   },
   {
-    label: 'Vue 3 Lifecycle Hooks',
+    label: 'lindsay-wardell blog',
     description: 'Documentation',
     url: 'https://www.thisdot.co/author/lindsay-wardell',
     img: 'https://v3.vuejs.org/logo.png'
