@@ -8,7 +8,9 @@
       <layout-navbar />
       <lazy-layout-sidebar />
       <div style="padding-top: 4rem" />
-      <nuxt class="min-height-content" />
+      <div class="min-height-content">
+        <nuxt />
+      </div>
       <lazy-layout-footer />
     </div>
   </div>
@@ -20,7 +22,7 @@ import {
   useMeta,
   computed,
   ref,
-  useContext
+  useContext,
 } from '@nuxtjs/composition-api'
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { Application } from '~/types'
@@ -32,14 +34,14 @@ const app: Application = ctx.$cookies.get('app')
 useMeta(() => ({
   title: app.name,
   titleTemplate: app.title_template,
-  link: [{ rel: 'icon', type: 'image/svg+xml', href: app.favicon }]
+  link: [{ rel: 'icon', type: 'image/svg+xml', href: app.favicon }],
 }))
 </script>
 
 <script lang="ts">
 export default {
   middleware: ['init'],
-  head: {}
+  head: {},
 }
 </script>
 
