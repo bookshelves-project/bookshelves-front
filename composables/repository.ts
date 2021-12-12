@@ -30,6 +30,20 @@ export class Repository {
     return url
   }
 
+  find(query?: Query, params?: string | string[]): Promise<ApiResponse<any>> {
+    const url = `${this.url(params)}?${stringify({ ...query })}`
+
+    return this.axios.$get(url)
+      .then((response: ApiResponse<any>) => response)
+      .catch((e) => {
+        console.error(e)
+        if (this.handleError) {
+          this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
+        }
+        return {} as ApiResponse<any>
+      })
+  }
+
   /**
    * Get all entities
    */

@@ -56,7 +56,7 @@ const content = {
   markdown: {
     prism: {
       // https://github.com/PrismJS/prism-themes
-      theme: 'assets/css/app/code'
+      theme: 'assets/css/code'
     }
   }
 }
