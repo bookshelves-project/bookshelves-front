@@ -1,58 +1,83 @@
 <template>
-  <div>
+  <div v-if="homePage">
     <lazy-blocks-home-hero :hero="homePage.hero" class="pt-5" />
     <lazy-blocks-home-statistics :statistics="homePage.statistics" />
     <lazy-blocks-home-cloud-logos :logos="homePage.logos" />
-    <!--
     <lazy-blocks-selected-entities
       class="mt-8 lg:mt-16"
       eyebrow="Want to read a good book?"
       title="Selection of books & series"
-    >
-      If you search a new book to read, check this selection of eBooks by the
-      {{ $config.appName }} Team.
-    </lazy-blocks-selected-entities>
-    <lazy-blocks-home-features />
+      text="If you search a new book to read, check this selection of eBooks."
+    />
+    <lazy-blocks-home-features :features="homePage.features" />
     <lazy-blocks-selected-entities
+      class="mt-8 lg:mt-16"
       endpoint="/books/latest"
-      orientation="text-right"
-      class="mb-8 lg:mb-16"
-      eyebrow="Hyped by new books?"
-      title="Latest books & series"
-    >
-      You check new books & series on {{ $config.appName }}? Here you have
-      latest books!
-    </lazy-blocks-selected-entities>
-    <lazy-blocks-home-features-highlight />
-    <lazy-blocks-home-cta />-->
+      eyebrow="Want to read a good book?"
+      title="Selection of books & series"
+      text="You check new books & series? Here you have latest books!"
+    />
+    <lazy-blocks-home-features-highlights :highlights="homePage.highlights" />
+    <lazy-blocks-home-cta />
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
-import { stringify } from 'qs'
-import { ApiResponse, HomePage } from '~/types'
+import { Component, Vue } from 'nuxt-property-decorator'
+import type { MetaInfo } from 'vue-meta'
+import { ApiEndpoint, ApiResponse, Application, HomePage } from '~/types'
 
 @Component({
-  async asyncData(ctx) {
-    try {
-      const homePage: HomePage = await ctx.$axios
-        .$get(`/cms/home-page?${stringify({ lang: ctx.i18n.locale })}`)
-        .then((e: ApiResponse<HomePage>) => e.data)
+  async asyncData({ $repository, $cookies, i18n }) {
+    const api: ApiResponse<HomePage> = await $repository(
+      ApiEndpoint.CmsHomePage,
+      false
+    ).find({ lang: i18n.locale })
+    const app: Application = $cookies.get('app')
 
-      return {
-        homePage
-      }
-    } catch (error) {
-      console.log(error)
-
-      return {
-        homePage: {}
-      }
+    return {
+      homePage: api.data,
+      app,
     }
-  }
+  },
+  head(this: PageIndex): MetaInfo {
+    return {
+      title: this.app.meta_title,
+      titleTemplate: '',
+    }
+  },
 })
-export default class PageHome extends Vue {
+export default class PageIndex extends Vue {
+  app: Application = {}
   homePage: HomePage = {}
+
+  get computedMessage(): HomePage {
+    return this.homePage
+  }
 }
+
+/**
+ * Composition API
+ */
+// export default defineComponent({
+//   async asyncData({ $repository }) {
+//     const api: ApiResponse<HomePage> = await $repository(
+//       ApiEndpoint.CmsHomePage
+//     ).find()
+
+//     return {
+//       homePage: api.data,
+//     }
+//   },
+// })
+
+/**
+ * Composition API `script setup`
+ */
+// const { $repository } = useContext()
+// const data = useAsync(
+//   async () => await $repository(ApiEndpoint.CmsHomePage).find(),
+//   'homePage'
+// )
+// const homePage = computed<HomePage>(() => data.value?.data)
 </script>
