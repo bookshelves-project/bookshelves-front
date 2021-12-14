@@ -1,14 +1,19 @@
 <template>
   <div>
-    <div class="flex items-center space-x-10">
-      <nuxt-link :to="localePath('/')" class="flex items-center lg:mx-0 w-max group">
+    <div v-if="app" class="flex items-center space-x-10">
+      <nuxt-link
+        :to="localePath('/')"
+        class="flex items-center lg:mx-0 w-max group"
+      >
         <svg-icon
           name="book"
           class="w-12 h-12 text-gray-400 transition-colors duration-100 dark:text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300"
         />
         <div
           class="mt-2 ml-3 text-2xl text-gray-400 transition-colors duration-100 md:text-xl font-handlee dark:text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300"
-        >{{ app.name }}</div>
+        >
+          {{ app.name }}
+        </div>
       </nuxt-link>
       <layout-color-mode />
     </div>
@@ -16,7 +21,7 @@
     <div class="flex items-center space-x-6">
       <div class="flex space-x-6">
         <a
-          v-for="(feature,id) in features"
+          v-for="(feature, id) in features"
           :key="id"
           :href="feature.link"
           target="_blank"
@@ -51,20 +56,20 @@ const features = [
     icon: 'feed',
     label: 'OPDS',
     title: 'OPDS: Open Publication Distribution System',
-    link: `${apiUrlBase('/features/opds')}`
+    link: `${apiUrlBase('/features/opds')}`,
   },
   {
     icon: 'catalog',
     label: 'Catalog',
     title: 'Catalog: simple interface for eReader browser',
-    link: `${apiUrlBase('/features/catalog')}`
+    link: `${apiUrlBase('/features/catalog')}`,
   },
   {
     icon: 'ereader',
     label: 'Webreader',
     title: 'Webreader: to read an eBook directly in your browser',
-    link: `${apiUrlBase('/features/webreader')}`
-  }
+    link: `${apiUrlBase('/features/webreader')}`,
+  },
 ]
 const desc = computed(() => metadata.website.description)
 </script>

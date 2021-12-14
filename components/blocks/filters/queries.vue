@@ -78,7 +78,7 @@ export default {
 
         this.setQueries(query)
       } catch (error) {
-        console.log('Error on replace')
+        console.error('Error on replace')
       }
     }
   }

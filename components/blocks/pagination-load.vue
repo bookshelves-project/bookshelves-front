@@ -50,7 +50,6 @@ const pending = ref(false)
 const newPage = ref('1')
 
 const load = async () => {
-  console.log('load')
   let currentPage = props.currentPage
   currentPage++
   newPage.value = currentPage.toString(10)

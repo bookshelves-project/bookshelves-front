@@ -5,19 +5,19 @@
       class="selected-books selected-entities-swiper max-w-7xl container mx-auto"
     >
       <div
-        :class="orientation"
+        :class="right ? 'text-right' : 'text-left'"
         class="text-sm font-semibold tracking-wide uppercase text-primary-600"
       >
         {{ eyebrow }}
       </div>
       <h2
-        :class="orientation"
+        :class="right ? 'text-right' : 'text-left'"
         class="mt-3 text-3xl font-extrabold text-gray-700 dark:text-gray-300 font-handlee"
       >
         {{ title }}
       </h2>
       <p
-        :class="[orientation, { 'max-w-3xl': orientation === null }]"
+        :class="right ? 'text-right' : 'text-left'"
         class="mt-5 text-lg text-gray-900 dark:text-gray-100"
       >
         {{ text }}
@@ -52,7 +52,7 @@
                 class="slide slide--thumbniail"
                 :class="`slide--${index}`"
               >
-                <template #title>{{ $truncate(entity.title, 50) }}</template>
+                <template #title>{{ overflow(entity.title, 50) }}</template>
                 <template #subtitle>
                   {{ capitalize(entity.meta.entity) }}
                 </template>
@@ -60,7 +60,7 @@
               </blocks-entity-card>
             </swiper-slide>
             <div slot="button-prev" class="swiper-button-prev">
-              <svg-icon name="chevron-right" />
+              <svg-icon name="chevron-right" class="rotate-180" />
             </div>
             <div slot="button-next" class="swiper-button-next">
               <svg-icon name="chevron-right" />
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { capitalize, formatAuthors } from '~/utils/methods'
+import { capitalize, formatAuthors, overflow } from '~/utils/methods'
 
 export default {
   name: 'SelectedEntities',
@@ -83,9 +83,9 @@ export default {
       type: String,
       default: '/books/selection',
     },
-    orientation: {
-      type: String,
-      default: null,
+    right: {
+      type: Boolean,
+      default: false,
     },
     eyebrow: {
       type: String,
@@ -143,6 +143,7 @@ export default {
   methods: {
     capitalize,
     formatAuthors,
+    overflow,
     async load() {
       try {
         const entities = await this.$axios.$get(this.endpoint)

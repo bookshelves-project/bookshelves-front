@@ -1,5 +1,8 @@
 <template>
-  <li v-if="data.meta" class="relative grid grid-cols-6 bg-white dark:bg-gray-800">
+  <li
+    v-if="data.meta"
+    class="relative grid grid-cols-6 bg-white dark:bg-gray-800"
+  >
     <nuxt-link
       :to="
         localePath({
@@ -19,7 +22,11 @@
       :class="canDelete ? 'col-span-5' : 'col-span-6'"
     >
       <div class="shrink-0">
-        <app-img :src="data.cover" class="object-cover w-16 h-16 rounded-md" :alt="data.title" />
+        <app-img
+          :src="data.cover"
+          class="object-cover w-16 h-16 rounded-md"
+          :alt="data.title"
+        />
       </div>
       <div class="w-full">
         <div class="flex justify-between space-x-3">
@@ -27,17 +34,20 @@
             <div class="block focus:outline-none">
               <div
                 class="text-base font-semibold text-gray-900 truncate dark:text-gray-100 max-w-[15rem] text-ellipsis"
-              >{{ data.title }}</div>
-              <div
-                class="text-sm text-gray-500 truncate dark:text-gray-400"
-              >{{ capitalize(data.meta.for) }}</div>
+              >
+                {{ data.title }}
+              </div>
+              <div class="text-sm text-gray-500 truncate dark:text-gray-400">
+                {{ capitalize(data.meta.for) }}
+              </div>
             </div>
           </div>
           <div class="hidden lg:block">
             <time
               :datetime="data.createdAt"
               class="shrink-0 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap"
-            >{{ $formatDate(data.createdAt) }}</time>
+              >{{ $date(data.createdAt) }}</time
+            >
           </div>
         </div>
         <div v-if="data.text" class="hidden mt-1 lg:block">
@@ -55,7 +65,10 @@
         aria-label="Delete"
         @click="destroy(data)"
       >
-        <svg-icon name="trash" class="w-6 h-6 m-auto text-gray-400 dark:text-gray-300" />
+        <svg-icon
+          name="trash"
+          class="w-6 h-6 m-auto text-gray-400 dark:text-gray-300"
+        />
       </button>
     </div>
   </li>
@@ -68,18 +81,18 @@ export default {
   props: {
     data: {
       type: Object,
-      default: () => { }
+      default: () => {},
     },
     canDelete: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     capitalize,
     destroy(data) {
       this.$emit('destroy', data)
-    }
-  }
+    },
+  },
 }
 </script>
