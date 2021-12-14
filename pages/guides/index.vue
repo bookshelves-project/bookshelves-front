@@ -15,7 +15,9 @@
         :aria-label="guide.title"
         class="block col-span-1 px-3 py-2 overflow-hidden transition-colors duration-100 bg-white rounded-md shadow lg:px-6 lg:py-4 h-36 hover:bg-gray-50 dark:bg-gray-800"
       >
-        <div class="flex items-center h-full px-2 py-2 lg:px-4 lg:py-4 lg:h-auto sm:px-6">
+        <div
+          class="flex items-center h-full px-2 py-2 lg:px-4 lg:py-4 lg:h-auto sm:px-6"
+        >
           <div class="flex items-center flex-1 min-w-0">
             <div class="shrink-0">
               <app-img
@@ -25,29 +27,29 @@
               />
             </div>
             <div class="flex-1 min-w-0 px-4 md:grid md:grid-cols-2 md:gap-4">
-              <h2 class="my-auto text-xl font-medium text-primary-600">{{ guide.title }}</h2>
+              <h2 class="my-auto text-xl font-medium text-primary-600">
+                {{ guide.title }}
+              </h2>
               <div class="hidden md:block">
                 <div>
                   <div class="text-sm text-gray-500 dark:text-gray-100">
                     <span v-if="guide.updatedAt">
                       <time :datetime="guide.updatedAt">
-                        {{
-                          $formatDate(guide.updatedAt)
-                        }}
+                        {{ $date(guide.updatedAt) }}
                       </time>
                     </span>
                     <span v-else>
                       <time :datetime="guide.createdAt">
-                        {{
-                          $formatDate(guide.createdAt)
-                        }}
+                        {{ $date(guide.createdAt) }}
                       </time>
                     </span>
                   </div>
                   <div></div>
                   <p
                     class="flex items-start mt-2 text-sm italic text-gray-800 dark:text-gray-300 line-clamp-2"
-                  >{{ guide.description }}</p>
+                  >
+                    {{ guide.description }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -80,23 +82,20 @@ export default {
   name: 'GuidesIndex',
   async asyncData({ $content }) {
     const guides = await $content('guides', { deep: true })
-      .without([
-        'toc',
-        'body'
-      ])
+      .without(['toc', 'body'])
       .where({ draft: false })
       .sortBy('position')
       .fetch()
 
     return {
-      guides
+      guides,
     }
   },
   data() {
     return {
       title: 'Guides',
       description: 'To know more about eBooks & eReaders',
-      slugify
+      slugify,
     }
   },
   head() {
@@ -108,40 +107,40 @@ export default {
       meta: [
         ...dynamicMetadata.default({
           title,
-          url: this.$nuxt.$route.path
-        })
-      ]
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
   jsonld() {
     const breadcrumbs = [
       {
         url: this.$config.baseURL,
-        text: 'Home'
+        text: 'Home',
       },
       {
         url: `${this.$config.baseURL}/guides`,
-        text: 'Guides'
-      }
+        text: 'Guides',
+      },
     ]
     const items = breadcrumbs.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {
         '@id': item.url,
-        name: item.text
-      }
+        name: item.text,
+      },
     }))
     return {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      itemListElement: items
+      itemListElement: items,
     }
   },
   methods: {
     getPicture(guide) {
       return guide.category ? this.slugify(guide.category) : ''
-    }
-  }
+    },
+  },
 }
 </script>

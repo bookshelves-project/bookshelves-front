@@ -1,5 +1,6 @@
 <template>
   <div v-if="homePage">
+    <!-- <img src="/images/home/ereaders.svg" alt="" class="h-64" /> -->
     <lazy-blocks-home-hero :hero="homePage.hero" class="pt-5" />
     <lazy-blocks-home-statistics :statistics="homePage.statistics" />
     <lazy-blocks-home-cloud-logos :logos="homePage.logos" />
@@ -12,10 +13,11 @@
     <lazy-blocks-home-features :features="homePage.features" />
     <lazy-blocks-selected-entities
       class="mt-8 lg:mt-16"
-      endpoint="/books/latest"
-      eyebrow="Want to read a good book?"
-      title="Selection of books & series"
-      text="You check new books & series? Here you have latest books!"
+      :endpoint="apiEndpoint.BookLatest"
+      eyebrow="Hyped by new books?"
+      title="Latest books & series"
+      text="You check new books & series on? Here you have latest books!"
+      right
     />
     <lazy-blocks-home-features-highlights :highlights="homePage.highlights" />
     <lazy-blocks-home-cta />
@@ -28,7 +30,7 @@ import type { MetaInfo } from 'vue-meta'
 import { ApiEndpoint, ApiResponse, Application, HomePage } from '~/types'
 
 @Component({
-  async asyncData({ $repository, $cookies, i18n }) {
+  async asyncData({ $repository, $cookies, i18n, $pinia }) {
     const api: ApiResponse<HomePage> = await $repository(
       ApiEndpoint.CmsHomePage,
       false
@@ -50,6 +52,7 @@ import { ApiEndpoint, ApiResponse, Application, HomePage } from '~/types'
 export default class PageIndex extends Vue {
   app: Application = {}
   homePage: HomePage = {}
+  apiEndpoint = ApiEndpoint
 
   get computedMessage(): HomePage {
     return this.homePage
