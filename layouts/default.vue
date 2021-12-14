@@ -1,10 +1,10 @@
 <template>
   <div :class="dev ? 'debug-screens' : ''">
-    <lazy-layout-overlay />
+    <!-- <lazy-layout-overlay /> -->
     <lazy-layout-helper />
     <lazy-app-toasts />
     <div class="app mx-auto">
-      <lazy-layout-layer />
+      <!-- <lazy-layout-layer /> -->
       <layout-navbar />
       <lazy-layout-sidebar />
       <div style="padding-top: 4rem" />
@@ -17,14 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import {
-  defineComponent,
-  useMeta,
-  computed,
-  ref,
-  useContext,
-} from '@nuxtjs/composition-api'
-import { Vue, Component, Prop } from 'vue-property-decorator'
 import { Application } from '~/types'
 
 const dev: boolean = useContext().isDev
@@ -40,7 +32,6 @@ useMeta(() => ({
 
 <script lang="ts">
 export default {
-  middleware: ['init'],
   head: {},
 }
 </script>

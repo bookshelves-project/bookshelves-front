@@ -20,16 +20,6 @@
         sm:block sm:p-0
       "
     >
-      <!--
-      Background overlay, show/hide based on modal state.
-
-      Entering: "ease-out duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "ease-in duration-200"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
       <transition name="fade">
         <div
           v-if="overlay"
@@ -37,7 +27,6 @@
           aria-hidden="true"
         ></div>
       </transition>
-      <!-- This element is to trick the browser into centering the modal contents. -->
       <span
         class="hidden sm:inline-block sm:align-middle sm:h-screen"
         aria-hidden="true"
@@ -67,14 +56,6 @@ export default {
       layer: 'overlay/isVisibleLayer',
       overlay: 'overlay/isVisibleOverlay'
     })
-  },
-  watch: {
-    layer(newValue, oldValue) {
-      // console.log(newValue)
-    }
-  },
-  mounted() {
-    // console.log(`layer: ${this.layer}, overlay: ${this.overlay}`)
   },
   methods: {
     close() {

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const colors = require('tailwindcss/colors')
 const plugin = require('tailwindcss/plugin')
-const { theme } = require('./archive/tailwind.config')
 
 module.exports = {
   content: [

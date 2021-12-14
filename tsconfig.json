@@ -36,7 +36,7 @@
       "@nuxtjs/i18n",
       "@nuxtjs/auth-next",
       "@nuxtjs/color-mode",
-      // "@pinia/nuxt",
+      "@pinia/nuxt",
       "cookie-universal-nuxt",
       "@types/swiper"
     ],

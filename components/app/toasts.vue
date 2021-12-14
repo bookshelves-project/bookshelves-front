@@ -10,11 +10,12 @@
 
 <script setup lang="ts">
 import { Toast } from '~/types'
-import { namespace, getterType, mutationType, actionType } from '~/store/toast'
+import { useToastStore } from '~/stores'
 
 // from: https://blog.aspiresys.pl/technology/toast-toasts-in-vue/
 const ctx = useContext()
-const toasts = computed(() => (ctx.store.state.toast.toasts as Toast[]))
+const toastStore = useToastStore(ctx.$pinia)
+const toasts = computed(() => (toastStore.toasts as Toast[]))
 </script>
 
 <!-- <script>

@@ -9,7 +9,11 @@
             :to="localePath('/')"
             class="shrink-0 flex hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-75 p-2 rounded-md ml-2"
           >
-            <img class="block h-8 w-8 m-auto" src="/icon.svg" :alt="$config.appName" />
+            <img
+              class="block h-8 w-8 m-auto"
+              src="/icon.svg"
+              :alt="$config.appName"
+            />
           </nuxt-link>
           <div class="hidden lg:block lg:ml-4 h-full">
             <div class="flex space-x-6 h-full">
@@ -24,7 +28,9 @@
                 class="inline-flex items-center px-1 pt-1 text-sm font-semibold text-gray-400 transition-colors duration-100 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700 dark:hover:text-white dark:text-gray-400"
                 aria-current="page"
               >
-                <span class="font-semibold">{{ $t(`nav.${booksNav.label}`) }}</span>
+                <span class="font-semibold">{{
+                  $t(`nav.${booksNav.label}`)
+                }}</span>
               </nuxt-link>
             </div>
           </div>
@@ -36,7 +42,7 @@
           <button
             type="button"
             aria-label="Open side menu"
-            class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors duration-75 p-2 rounded-md inline-flex items-center justify-center hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-600 focus:ring-white"
+            class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors duration-75 p-2 rounded-md inline-flex items-center justify-center hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-600 focus:ring-white dark:focus:ring-gray-900"
             @click="openSidebar"
           >
             <svg-icon name="menu" class="block w-6 h-6" />
@@ -54,17 +60,18 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { useIndexStore } from '~/stores'
 export default {
   name: 'Navbar',
   data() {
     return {
-      displayIfScrolled: false
+      displayIfScrolled: false,
     }
   },
   computed: {
     ...mapGetters({
-      navigation: 'nav/main'
-    })
+      navigation: 'nav/main',
+    }),
   },
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -81,17 +88,9 @@ export default {
       }
     },
     openSidebar() {
-      this.$store.commit('setLayer', true)
-      // if (process.client) {
-      //   const body = document.getElementsByTagName('body')[0]
-      //   body.classList.add('scroll-prevent')
-      // }
-
-      setTimeout(() => {
-        this.$store.commit('setSidebar', true)
-        this.$store.commit('setLayerOpacity', true)
-      }, 150)
-    }
-  }
+      const store = useIndexStore()
+      store.toggleSidebar()
+    },
+  },
 }
 </script>

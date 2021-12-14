@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 import { namespace, actionType } from '~/store/toast'
+import { useToastStore } from '~/stores'
 import { Toast } from '~/types'
 
 const props = defineProps<{
@@ -58,6 +59,7 @@ const color = computed(() => {
   return colors[type]
 })
 const clear = () => {
-  ctx.store.dispatch(`${namespace}/${actionType.REMOVE_TOAST}`, props.toast)
+  const toast = useToastStore()
+  toast.deleteToast(props.toast)
 }
 </script>
