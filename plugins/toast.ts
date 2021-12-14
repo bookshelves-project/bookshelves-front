@@ -1,18 +1,35 @@
 import { Plugin } from '@nuxt/types'
-import { namespace, actionType } from '~/store/toast'
+import { actionType, namespace } from '~/store/toast'
+import { useToastStore } from '~/stores'
 import { Toast, ToastAuto, ToastType } from '~/types'
 
-declare module '@nuxt/types' {
-  interface Context {
-    /**
-     * Send a toast
-     */
+declare module 'vue/types/vue' {
+  // this.$toast inside Vue components
+  interface Vue {
     $toast(title?: string, text?: string, type?: ToastType, auto?: ToastAuto): void
   }
 }
 
-const repository: Plugin = (ctx) => {
-  ctx.$toast = (title?: string, text?: string, type?: ToastType, auto?: ToastAuto) => {
+declare module '@nuxt/types' {
+  // nuxtContext.app.$toast inside asyncData, fetch, plugins, middleware, nuxtServerInit
+  interface NuxtAppOptions {
+    $toast(title?: string, text?: string, type?: ToastType, auto?: ToastAuto): void
+  }
+  // nuxtContext.$toast
+  interface Context {
+    $toast(title?: string, text?: string, type?: ToastType, auto?: ToastAuto): void
+  }
+}
+
+declare module 'vuex/types/index' {
+  // this.$toast inside Vuex stores
+  interface Store<S> {
+    $toast(title?: string, text?: string, type?: ToastType, auto?: ToastAuto): void
+  }
+}
+
+const toast: Plugin = (context, inject) => {
+  inject('toast', (title?: string, text?: string, type?: ToastType, auto?: ToastAuto) => {
     if (auto) {
       if (ToastAuto.success) {
         title = 'Success'
@@ -25,11 +42,14 @@ const repository: Plugin = (ctx) => {
     const toastData: Toast = {
       title: title || 'Toast',
       text: text || '',
-      type: type || ToastType.default
+      type: type || ToastType.default,
+      date: new Date(),
+      id: Math.random().toString(36).substr(2)
     }
-    ctx.store.dispatch(`${namespace}/${actionType.DISPLAY_TOAST}`, toastData)
+    const toastPinia = useToastStore()
+    toastPinia.addToast(toastData)
     // nuxt.$emit('toast', toastData)
-  }
+  })
 }
 
-export default repository
+export default toast
