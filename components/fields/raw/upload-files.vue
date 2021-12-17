@@ -76,7 +76,10 @@ export default {
       default: 'image/*'
     },
     value: {
-      type: [Array, Object],
+      type: [
+        Array,
+        Object
+      ],
       default: () => {}
     },
     label: {

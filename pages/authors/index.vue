@@ -5,7 +5,7 @@
         <blocks-filters :sort="sortOptions" paginate />
       </template>
     </app-header>
-    <section v-if="!apiError">
+    <section>
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
@@ -25,14 +25,9 @@
         </div>
       </div>
       <div class="mt-6 mb-5">
-        <Pagination
-          v-if="meta"
-          :current-page="meta.current_page"
-          :pages="meta.last_page"
-        />
+        <Pagination v-if="meta" :current-page="meta.current_page" :pages="meta.last_page" />
       </div>
     </section>
-    <api-error-message v-else />
   </main>
 </template>
 
@@ -40,12 +35,11 @@
 import { stringify } from 'qs'
 
 import EntityCard from '~/components/blocks/entity-card.vue'
-import ApiErrorMessage from '~/components/special/api-error-message.vue'
 import Pagination from '~/components/blocks/pagination.vue'
 
 export default {
   name: 'AuthorsIndex',
-  components: { EntityCard, ApiErrorMessage, Pagination },
+  components: { EntityCard, Pagination },
   async asyncData({ app, query }) {
     try {
       const queryList = { ...query }
@@ -62,8 +56,7 @@ export default {
 
       return {
         authors,
-        meta: authors.meta,
-        apiError: false
+        meta: authors.meta
       }
     } catch (error) {
       return {
@@ -96,7 +89,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = this.title
     return {
       title,
@@ -133,7 +126,10 @@ export default {
       itemListElement: items
     }
   },
-  watchQuery: ['page', 'sort'],
+  watchQuery: [
+    'page',
+    'sort'
+  ],
   methods: {
     linkGen(pageNum) {
       const query = { ...this.$route.query }

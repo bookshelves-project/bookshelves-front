@@ -1,11 +1,7 @@
 <template>
   <div class="main-content">
     <app-header :title="title" :subtitle="description" :border="false" />
-    <blocks-content-list
-      :items="languages"
-      name="languages"
-      route-name="languages-slug"
-    />
+    <blocks-content-list :items="languages" name="languages" route-name="languages-slug" />
     <!-- <div>
       <section class="flex flex-wrap items-center">
         <chip
@@ -24,12 +20,12 @@
           </span>
         </chip>
       </section>
-    </div> -->
+    </div>-->
   </div>
 </template>
 
 <script>
-import { formatLanguage } from '~/plugins/utils/methods'
+import { formatLanguage } from '~/utils/methods'
 export default {
   name: 'PageLanguages',
   async asyncData({ app }) {
@@ -39,7 +35,7 @@ export default {
       return {
         languages: languages.data
       }
-    } catch (error) {}
+    } catch (error) { }
   },
   data() {
     return {
@@ -50,7 +46,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = this.title
     return {
       title,

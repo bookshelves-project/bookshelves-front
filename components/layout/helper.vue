@@ -49,7 +49,7 @@
               @click="item.method ? item.method() : isOpen = false"
             >
               <div
-                class="flex-shrink-0 flex items-center justify-center w-16 text-sm font-medium rounded-l-md"
+                class="shrink-0 flex items-center justify-center w-16 text-sm font-medium rounded-l-md"
               >
                 <svg-icon v-if="item.icon" :name="item.icon" class="w-6 h-6 dark:text-white" />
                 <img v-else-if="item.img" :src="item.img" :alt="item.label" class="w-6 h-6" />
@@ -68,8 +68,9 @@
   </div>
 </template>
 
-<script setup lang="ts">import { wrapProperty } from '@nuxtjs/composition-api'
-import { Notification, NotificationType } from '~/types'
+<script setup lang="ts">
+import { wrapProperty } from '@nuxtjs/composition-api'
+import { ToastType } from '~/types'
 
 const ctx = useContext()
 // const useNuxt = wrapProperty('$nuxt', false)
@@ -103,11 +104,11 @@ const routes = () => {
     console.log('You have to set your routes with localePath().')
   }
 
-  ctx.$notification(new Notification(
+  ctx.$toast(
     'Check your console',
     'List of all routes is available.',
-    NotificationType.success
-  ))
+    ToastType.success
+  )
   isOpen.value = false
 }
 
@@ -158,6 +159,12 @@ const links = [
     label: 'Vue 3 Lifecycle Hooks',
     description: 'Documentation',
     url: 'https://v3.vuejs.org/guide/composition-api-lifecycle-hooks.html',
+    img: 'https://v3.vuejs.org/logo.png'
+  },
+  {
+    label: 'lindsay-wardell blog',
+    description: 'Documentation',
+    url: 'https://www.thisdot.co/author/lindsay-wardell',
     img: 'https://v3.vuejs.org/logo.png'
   }
 ]

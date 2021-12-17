@@ -13,7 +13,7 @@
           {{ label }}
           <svg-icon
             name="chevron-right"
-            class="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500 transform rotate-90"
+            class="shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500 transform rotate-90"
           />
         </div>
       </template>
@@ -62,7 +62,7 @@
 <script>
 import { mapMutations, mapGetters } from 'vuex'
 import { isEmpty } from 'lodash'
-import { pushIfNotExist } from '~/plugins/utils/methods'
+import { pushIfNotExist } from '~/utils/methods'
 export default {
   name: 'FiltersOption',
   props: {
@@ -83,13 +83,21 @@ export default {
       default: ''
     },
     options: {
-      type: [Array, Function],
+      type: [
+        Array,
+        Function
+      ],
       default: () => []
     },
     type: {
       type: String,
       default: 'checkbox',
-      validator: val => ['checkbox', 'radio', 'button', 'switch'].includes(val)
+      validator: val => [
+        'checkbox',
+        'radio',
+        'button',
+        'switch'
+      ].includes(val)
     },
     clickClose: {
       type: Boolean,
@@ -164,7 +172,10 @@ export default {
     },
     setCheckboxesValues() {
       // eslint-disable-next-line no-unused-vars
-      for (const [key, option] of Object.entries(this.optionsData)) {
+      for (const [
+        key,
+        option
+      ] of Object.entries(this.optionsData)) {
         if (option.enabled) {
           pushIfNotExist(this.checkboxes, option.value)
         }

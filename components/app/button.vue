@@ -29,14 +29,22 @@ export default {
       type: String,
       default: 'secondary',
       validator: val =>
-        ['secondary', 'primary', 'white', 'danger'].includes(val)
+        [
+          'secondary',
+          'primary',
+          'white',
+          'danger'
+        ].includes(val)
     },
     href: {
       type: String,
       default: null
     },
     to: {
-      type: [String, Object],
+      type: [
+        String,
+        Object
+      ],
       default: null
     },
     // Only for true hackers & trickers
@@ -55,7 +63,11 @@ export default {
     type: {
       type: String,
       default: 'button',
-      validator: val => ['button', 'reset', 'submit'].includes(val)
+      validator: val => [
+        'button',
+        'reset',
+        'submit'
+      ].includes(val)
     },
     external: {
       type: Boolean,
@@ -64,7 +76,11 @@ export default {
     align: {
       type: String,
       default: 'left',
-      validator: val => ['left', 'center', 'right'].includes(val)
+      validator: val => [
+        'left',
+        'center',
+        'right'
+      ].includes(val)
     },
     download: {
       type: Boolean,

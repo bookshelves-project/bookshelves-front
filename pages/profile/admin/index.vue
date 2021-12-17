@@ -8,14 +8,10 @@
       :image="$auth.$state.user.data.avatar"
     />
     <main>
-      <nuxt-link :to="localePath({ name: 'admin-database' })">
-        Admin database
-      </nuxt-link>
+      <nuxt-link :to="localePath({ name: 'admin-database' })">Admin database</nuxt-link>
       <div class="py-5">
         <div class="flex items-center space-x-6">
-          <app-button @click="updateNewEbooks">
-            Update for new eBooks
-          </app-button>
+          <app-button @click="updateNewEbooks">Update for new eBooks</app-button>
           <transition name="fade">
             <span v-if="loading" class="flex items-center space-x-1">
               <svg-icon name="load" class="w-5 h-5 text-gray-300" />
@@ -24,16 +20,19 @@
           </transition>
         </div>
         <div class="max-w-md mt-3 ml-1">
-          If you add new eBooks to <span class="font-mono">books-raw</span> you
+          If you add new eBooks to
+          <span class="font-mono">books-raw</span>
+          you
           can activate generation of new Books on {{ $config.appName }} with
           this action.
         </div>
       </div>
       <div class="py-5">
-        <app-button> Regenerate database </app-button>
+        <app-button>Regenerate database</app-button>
         <div class="max-w-md mt-3 ml-1">
-          <b class="text-red-600">DANGEROUS METHOD</b><br />
-          Regenerate all database from <span class="font-mono">books-raw</span>.
+          <b class="text-red-600">DANGEROUS METHOD</b>
+          <br />Regenerate all database from
+          <span class="font-mono">books-raw</span>.
           All users which aren't into seeds, all comments and favorites will be
           erased, even you have an account into seeds, you will be disconnected
           and your password reset. This action can take some minutes before you
@@ -58,7 +57,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = this.title
     return {
       title,

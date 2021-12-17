@@ -39,11 +39,10 @@
 </template>
 
 <script setup lang="ts">
-import { ApiEndpoint } from '~/composables/repository'
-import { ApiMeta, Serie } from '~/types'
+import { ApiEndpoint, ApiMeta, Serie } from '~/types'
 import Pagination from '~/components/blocks/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
-import { formatLanguage, formatAuthors } from '@/plugins/utils/entities'
+import { formatLanguage, formatAuthors } from '~/utils/methods'
 
 const { $config, route } = useContext()
 const router = useRouter()
@@ -84,7 +83,7 @@ const sortOptions = [
 useMeta(() => ({
   title
 }))
-// const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+// const dynamicMetadata = require('~/utils/metadata/dynamic')
 // const title = this.title
 // return {
 //   title,
@@ -113,7 +112,11 @@ export default defineComponent({
     }
   },
   head: {},
-  watchQuery: ['page', 'filter[languages]', 'sort']
+  watchQuery: [
+    'page',
+    'filter[languages]',
+    'sort'
+  ]
   // jsonld() {
   //   const breadcrumbs = [
   //     {

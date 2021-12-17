@@ -2,16 +2,12 @@
   <div class="p-4 mt-4 mb-4 border-l-4 alert" :class="`alert-${type}`">
     <div>
       <div class="flex items-center mb-3">
-        <div class="flex-shrink-0">
+        <div class="shrink-0">
           <svg-icon :name="icon" class="w-6 h-6 mt-px alert-icon" />
         </div>
         <div class="flex-grow ml-2 overflow-auto font-semibold alert-content">
-          <span v-if="title">
-            {{ title }}
-          </span>
-          <span v-else class="uppercase">
-            {{ type }}
-          </span>
+          <span v-if="title">{{ title }}</span>
+          <span v-else class="uppercase">{{ type }}</span>
         </div>
       </div>
       <div class="flex-grow ml-2 overflow-auto alert-content">
@@ -28,7 +24,13 @@ export default {
       type: String,
       default: 'info',
       validator(value) {
-        return ['info', 'success', 'warning', 'danger', 'required'].includes(
+        return [
+          'info',
+          'success',
+          'warning',
+          'danger',
+          'required'
+        ].includes(
           value
         )
       }

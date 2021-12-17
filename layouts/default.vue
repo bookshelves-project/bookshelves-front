@@ -1,28 +1,22 @@
 <template>
   <div :class="dev ? 'debug-screens' : ''">
-    <lazy-layout-overlay />
+    <!-- <lazy-layout-overlay /> -->
     <lazy-layout-helper />
-    <lazy-app-notifications />
+    <lazy-app-toasts />
     <div class="app mx-auto">
-      <lazy-layout-layer />
+      <!-- <lazy-layout-layer /> -->
       <layout-navbar />
       <lazy-layout-sidebar />
       <div style="padding-top: 4rem" />
-      <nuxt class="min-height-content" />
+      <div class="min-height-content">
+        <nuxt />
+      </div>
       <lazy-layout-footer />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  defineComponent,
-  useMeta,
-  computed,
-  ref,
-  useContext
-} from '@nuxtjs/composition-api'
-import { Vue, Component, Prop } from 'vue-property-decorator'
 import { Application } from '~/types'
 
 const dev: boolean = useContext().isDev
@@ -32,14 +26,13 @@ const app: Application = ctx.$cookies.get('app')
 useMeta(() => ({
   title: app.name,
   titleTemplate: app.title_template,
-  link: [{ rel: 'icon', type: 'image/svg+xml', href: app.favicon }]
+  link: [{ rel: 'icon', type: 'image/svg+xml', href: app.favicon }],
 }))
 </script>
 
 <script lang="ts">
 export default {
-  middleware: ['init'],
-  head: {}
+  head: {},
 }
 </script>
 

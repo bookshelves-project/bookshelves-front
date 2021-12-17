@@ -26,7 +26,7 @@
 
 <script>
 import qs from 'qs'
-import { objectIsEmpty } from '~/plugins/utils/methods'
+import { objectIsEmpty } from '~/utils/methods'
 
 export default {
   name: 'LoadMore',
@@ -45,7 +45,7 @@ export default {
     },
     queries: {
       type: Object,
-      default: () => {}
+      default: () => { }
     }
   },
   data() {

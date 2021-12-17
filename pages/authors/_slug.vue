@@ -85,10 +85,10 @@
 </template>
 
 <script>
-import qs from 'qs'
+import { stringify } from 'qs'
 import entityCard from '~/components/blocks/entity-card.vue'
 import favorites from '~/mixins/favorites'
-import { formatLanguage, getHostname } from '~/plugins/utils/methods'
+import { getHostname, formatLanguage } from '~/utils/methods'
 import LoadMore from '~/components/special/load-more.vue'
 
 export default {
@@ -97,16 +97,20 @@ export default {
   mixins: [favorites],
   async asyncData({ app, params, query }) {
     const page = query.page
-    const [author, series, books] = await Promise.all([
+    const [
+      author,
+      series,
+      books
+    ] = await Promise.all([
       app.$axios.$get(`/authors/${params.slug}`),
       app.$axios.$get(
-        `/authors/series/${params.slug}?${qs.stringify({
+        `/authors/series/${params.slug}?${stringify({
           page: page || 1,
           perPage: 32
         })}`
       ),
       app.$axios.$get(
-        `/authors/books/${params.slug}?${qs.stringify({
+        `/authors/books/${params.slug}?${stringify({
           page: page || 1,
           perPage: 32,
           standalone: true
@@ -122,13 +126,11 @@ export default {
   },
   data() {
     return {
-      formatLanguage,
-      getHostname,
       breadcrumbs: []
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = `${this.author.name}`
     return {
       title,
@@ -162,6 +164,8 @@ export default {
     ]
   },
   methods: {
+    getHostname,
+    formatLanguage,
     loadSeries(data) {
       this.series.data = data
     },

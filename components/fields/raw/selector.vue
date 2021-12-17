@@ -29,7 +29,11 @@ export default {
   name: 'Selector',
   props: {
     value: {
-      type: [String, Object, Number],
+      type: [
+        String,
+        Object,
+        Number
+      ],
       default: ''
     },
     name: {

@@ -10,10 +10,7 @@
     <layout-breadcrumb class="mb-6" />
     <div class="lg:flex lg:items-center lg:justify-between">
       <div class="sm:items-center sm:flex sm:justify-between">
-        <div
-          :class="{ 'lg:flex lg:items-center': image }"
-          class="mx-auto lg:mx-0"
-        >
+        <div :class="{ 'lg:flex lg:items-center': image }" class="mx-auto lg:mx-0">
           <div class="flex">
             <component
               :is="imageOriginal ? 'a' : 'span'"
@@ -42,16 +39,8 @@
             <div class="sm:flex">
               <h1
                 id="message-heading"
-                class="
-                  text-2xl
-                  font-extrabold font-handlee
-                  text-primary-600 text-center
-                  lg:text-left
-                  w-full
-                "
-              >
-                {{ title }}
-              </h1>
+                class="text-2xl font-extrabold font-handlee text-primary-600 text-center lg:text-left w-full"
+              >{{ title }}</h1>
               <div class="flex">
                 <button
                   v-if="favorite && $auth.$state.loggedIn"
@@ -63,25 +52,11 @@
                   <svg-icon
                     v-if="isFavorite"
                     name="heart-full"
-                    class="
-                      w-5
-                      h-5
-                      text-red-600
-                      hover:text-gray-600
-                      transition-colors
-                      duration-100
-                    "
+                    class="w-5 h-5 text-red-600 hover:text-gray-600 transition-colors duration-100"
                   />
                   <svg-icon
                     v-else
-                    class="
-                      w-5
-                      h-5
-                      text-gray-600
-                      hover:text-red-600
-                      transition-colors
-                      duration-100
-                    "
+                    class="w-5 h-5 text-gray-600 hover:text-red-600 transition-colors duration-100"
                     name="heart"
                   />
                 </button>
@@ -90,16 +65,8 @@
             <div class="mt-1 text-sm">
               <blocks-authors-links v-if="authors" :authors="authors" />
               <h2
-                class="
-                  text-gray-500
-                  overflow-hidden overflow-ellipsis
-                  mt-1
-                  text-center
-                  lg:text-left
-                "
-              >
-                {{ subtitle }}
-              </h2>
+                class="text-gray-500 overflow-hidden text-ellipsis mt-1 text-center lg:text-left"
+              >{{ subtitle }}</h2>
             </div>
           </div>
         </div>
@@ -113,16 +80,7 @@
     </div>
     <div
       v-if="text"
-      class="
-        max-w-full
-        prose
-        word-wraping
-        dark:text-gray-100
-        text-gray-500
-        mt-3
-        italic
-        line-clamp-3
-      "
+      class="max-w-full prose word-wraping dark:text-gray-100 text-gray-500 mt-3 italic line-clamp-3"
     >
       <div v-html="text" />
     </div>
@@ -144,7 +102,7 @@
 </template>
 
 <script>
-import { getHostname } from '~/plugins/utils/methods'
+import { getHostname } from '~/utils/methods'
 import favorites from '~/mixins/favorites'
 
 export default {
@@ -189,29 +147,29 @@ export default {
     },
     entity: {
       type: Object,
-      default: () => {}
+      default: () => { }
     },
     color: {
       type: String,
       default: '#ffffff'
     }
   },
-  data () {
+  data() {
     return {
       isFavorite: false,
       favoritesList: []
     }
   },
-  mounted () {
+  mounted() {
     this.isFavoriteCheck()
     this.favoritesList = this.favorites
   },
   methods: {
     getHostname,
-    isFavoriteCheck () {
+    isFavoriteCheck() {
       this.isFavorite = this.entity ? this.entity.isFavorite : null
     },
-    async toggleFavorite () {
+    async toggleFavorite() {
       const entity = this.$route.name.split('-')[0].slice(0, -1)
       this.isFavorite = !this.isFavorite
       const slug = this.$route.params.slug
@@ -221,7 +179,7 @@ export default {
         console.error(error)
       }
     },
-    async deleteFavorite (model, slug) {
+    async deleteFavorite(model, slug) {
       try {
         await this.$axios.$post(`/favorites/toggle/${model}/${slug}`)
       } catch (error) {

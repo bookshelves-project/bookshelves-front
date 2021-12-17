@@ -26,10 +26,7 @@
               <div v-for="(author, authorId) in book.authors" :key="authorId">
                 {{ author.name }}
                 <span
-                  v-if="
-                    book.authors.length > 1 &&
-                      authorId !== book.authors.length - 1
-                  "
+                  v-if="book.authors.length > 1 && authorId !== book.authors.length - 1"
                 >&</span>
               </div>
             </template>
@@ -43,19 +40,17 @@
 
 <script>
 import EntityCard from '~/components/blocks/entity-card.vue'
-import {
-  formatLanguage,
-  objectIsEmpty,
-  formatAuthors,
-  capitalize
-} from '~/plugins/utils/methods'
+import { objectIsEmpty, capitalize, formatLanguage, formatAuthors } from '~/utils/methods'
 
 export default {
   name: 'PageRelatedSlug',
   // eslint-disable-next-line vue/no-unused-components
   components: { EntityCard },
   async asyncData({ app, params }) {
-    const [currentBook, books] = await Promise.all([
+    const [
+      currentBook,
+      books
+    ] = await Promise.all([
       app.$axios.$get(`/books/${params.author}/${params.slug}`),
       app.$axios.$get(`/books/related/${params.author}/${params.slug}`)
     ])
@@ -67,16 +62,12 @@ export default {
   },
   data() {
     return {
-      formatLanguage,
-      objectIsEmpty,
-      formatAuthors,
-      capitalize,
       title: 'Related books & series for',
       description: 'List of all results for related books & series...'
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = `${this.title} ${this.currentBook.title}`
     return {
       title,
@@ -89,6 +80,12 @@ export default {
         })
       ]
     }
+  },
+  methods: {
+    formatLanguage,
+    objectIsEmpty,
+    formatAuthors,
+    capitalize
   }
 }
 </script>

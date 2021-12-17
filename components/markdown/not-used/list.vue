@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(item, i) in items" :key="i" class="flex mt-3">
-      <span :class="`list-${type}`" class="flex-shrink-0 mt-px mr-3">
+      <span :class="`list-${type}`" class="shrink-0 mt-px mr-3">
         <svg-icon :name="iconName" class="w-6 h-6" />
       </span>
       {{ item }}
@@ -24,7 +24,12 @@ export default {
       type: String,
       default: 'success',
       validator(value) {
-        return ['info', 'success', 'warning', 'danger'].includes(value)
+        return [
+          'info',
+          'success',
+          'warning',
+          'danger'
+        ].includes(value)
       }
     }
   },

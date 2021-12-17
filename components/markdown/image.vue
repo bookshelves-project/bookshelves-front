@@ -14,21 +14,10 @@
         <div
           v-if="zoom"
           :class="hover ? 'opacity-100' : 'opacity-0'"
-          class="
-            absolute
-            top-0
-            right-0
-            z-10
-            p-3
-            leading-5
-            transition-opacity
-            duration-300
-            bg-gray-300 bg-opacity-60
-          "
+          class="absolute top-0 right-0 z-10 p-3 leading-5 transition-opacity duration-300 bg-gray-300 bg-opacity-60"
         >
           Click on image
-          <br />
-          to open it in new tab
+          <br />to open it in new tab
         </div>
         <img
           v-lazy-load
@@ -37,33 +26,24 @@
           :title="legend ? legend : src"
           class="mx-auto my-auto rounded-sm shadow-sm"
         />
-        <legend v-if="legend" class="mt-2 mb-3 text-sm italic text-center">
-          {{ legend }}
-        </legend>
+        <legend v-if="legend" class="mt-2 mb-3 text-sm italic text-center">{{ legend }}</legend>
       </div>
-      <small
-        v-if="from"
-        class="mt-2"
-      >From
-        <a :href="from" target="_blank" rel="noopener noreferrer">
-          {{ getHostname(from) }}
-        </a>
+      <small v-if="from" class="mt-2">
+        From
+        <a :href="from" target="_blank" rel="noopener noreferrer">{{ getHostname(from) }}</a>
       </small>
     </div>
-    <div
-      v-else
-      class="p-5 mx-auto border border-red-400 rounded-md shadow-lg bg-gray-50"
-    >
+    <div v-else class="p-5 mx-auto border border-red-400 rounded-md shadow-lg bg-gray-50">
       <div>
         <div class="text-6xl text-center text-red-600">Image not found</div>
-        <div class="my-3 text-lg text-center">
-          {{ legend ? legend : src }}
-        </div>
+        <div class="my-3 text-lg text-center">{{ legend ? legend : src }}</div>
         <small>
           Search if image exist on:
-          <span class="px-1 py-1 bg-gray-200">{{
-            `static/${path}/${src}.${ext}`
-          }}</span>
+          <span class="px-1 py-1 bg-gray-200">
+            {{
+              `static/${path}/${src}.${ext}`
+            }}
+          </span>
         </small>
       </div>
     </div>
@@ -71,7 +51,7 @@
 </template>
 
 <script>
-import { getHostname } from '~/plugins/utils/methods'
+import { getHostname } from '~/utils/methods'
 export default {
   name: 'MarkdownImage',
   props: {

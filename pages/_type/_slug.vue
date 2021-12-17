@@ -12,18 +12,8 @@
         <nuxt-content :document="document" />
       </div>
       <div class="relative block w-full lg:mx-auto lg:w-1/4 lg:max-w-prose">
-        <div
-          class="
-            lg:sticky lg:top-20
-            h-full
-            lg:h-auto lg:max-h-(screen-5)
-            max-w-xl
-            lg:mx-auto
-          "
-        >
-          <blocks-content-table-of-content
-            :toc="document.toc"
-          ></blocks-content-table-of-content>
+        <div class="lg:sticky lg:top-20 h-full lg:h-auto lg:max-h-(screen-5) max-w-xl lg:mx-auto">
+          <blocks-content-table-of-content :toc="document.toc"></blocks-content-table-of-content>
         </div>
       </div>
     </div>
@@ -31,7 +21,7 @@
 </template>
 
 <script>
-import { capitalize } from '~/plugins/utils/methods'
+import { capitalize } from '~/utils/methods'
 
 export default {
   name: 'ContentPage',
@@ -52,7 +42,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = `${this.document.title} · ${this.capitalize(
       this.$route.params.type
     )}`

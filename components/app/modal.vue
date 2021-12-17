@@ -73,7 +73,13 @@ export default {
     size: {
       type: String,
       default: 'sm',
-      validator: val => ['sm', 'md', 'lg', 'xl', '2xl'].includes(val)
+      validator: val => [
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        '2xl'
+      ].includes(val)
     }
   },
   data() {

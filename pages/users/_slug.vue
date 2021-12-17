@@ -1,10 +1,6 @@
 <template>
   <div class="main-content">
-    <app-header
-      :title="`${title} ${user.name}`"
-      :image="user.avatar"
-      :text="user.about"
-    />
+    <app-header :title="`${title} ${user.name}`" :image="user.avatar" :text="user.about" />
 
     <!-- Main 2 column grid -->
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
@@ -19,9 +15,10 @@
           icon="heart"
           :loading="loading"
         />
-        <div v-else class="italic text-gray-400 dark:text-gray-500">
-          {{ user.name }} don't want to show comments.
-        </div>
+        <div
+          v-else
+          class="italic text-gray-400 dark:text-gray-500"
+        >{{ user.name }} don't want to show comments.</div>
       </div>
 
       <!-- Right column -->
@@ -35,9 +32,10 @@
           icon="comment"
           :loading="loading"
         />
-        <div v-else class="italic text-gray-400 dark:text-gray-500">
-          {{ user.name }} don't want to show favorites.
-        </div>
+        <div
+          v-else
+          class="italic text-gray-400 dark:text-gray-500"
+        >{{ user.name }} don't want to show favorites.</div>
       </div>
     </div>
   </div>
@@ -62,7 +60,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = `${this.title} ${this.user.name}`
     return {
       title,
@@ -81,7 +79,10 @@ export default {
   methods: {
     async getData() {
       try {
-        const [favorites, comments] = await Promise.all([
+        const [
+          favorites,
+          comments
+        ] = await Promise.all([
           this.$axios.$get(`/users/favorites/${this.$route.params.slug}`),
           this.$axios.$get(`/users/comments/${this.$route.params.slug}`)
         ])

@@ -11,19 +11,14 @@
       },
     }"
   >
-    <template #title>
-      {{ book.serie.title }}'s series
-    </template>
-    <template #subtitle>
-      Current: vol. {{ book.volume }}, limited to 10 next volumes.
-    </template>
+    <template #title>{{ book.serie.title }}'s series</template>
+    <template #subtitle>Current: vol. {{ book.volume }}, limited to 10 next volumes.</template>
   </BookSlider>
 </template>
 
 <script setup lang="ts">
 import BookSlider from './slider.vue'
-import { ApiEndpoint } from '~/composables/repository'
-import { ApiResponse, Book, Entity } from '~/types'
+import { ApiEndpoint, ApiResponse, Book, Entity } from '~/types'
 
 const props = defineProps<{
   book: Book

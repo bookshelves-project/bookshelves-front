@@ -14,15 +14,7 @@
     >
       <div
         v-show="open"
-        class="
-          absolute
-          z-50
-          mt-2
-          rounded-md
-          shadow-lg
-          dark:rounded-none
-          ring-1 ring-primary-600 ring-opacity-5
-        "
+        class="absolute z-50 mt-2 rounded-md shadow-lg dark:rounded-none ring-1 ring-primary-600 ring-opacity-5"
         :class="[alignmentClasses]"
         style="display: none"
         @click="clickClose ? (open = false) : ''"
@@ -81,7 +73,6 @@ export default {
     }
 
     if (process.client) {
-      // eslint-disable-next-line nuxt/no-globals-in-created
       document.addEventListener('keydown', closeOnEscape)
     }
   },

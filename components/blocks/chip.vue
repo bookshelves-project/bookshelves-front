@@ -13,7 +13,10 @@ export default {
   name: 'Chip',
   props: {
     to: {
-      type: [String, Object],
+      type: [
+        String,
+        Object
+      ],
       default: () => {}
     },
     order: {
@@ -23,7 +26,14 @@ export default {
   },
   data() {
     return {
-      colors: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
+      colors: [
+        'red',
+        'orange',
+        'yellow',
+        'green',
+        'blue',
+        'purple'
+      ],
       color: 'red'
     }
   },

@@ -13,48 +13,17 @@
         "
         :title="guide.title"
         :aria-label="guide.title"
-        class="
-          block
-          col-span-1
-          px-3
-          py-2
-          overflow-hidden
-          transition-colors
-          duration-100
-          bg-white
-          rounded-md
-          shadow
-          lg:px-6 lg:py-4
-          h-36
-          hover:bg-gray-50
-          dark:bg-gray-800
-        "
+        class="block col-span-1 px-3 py-2 overflow-hidden transition-colors duration-100 bg-white rounded-md shadow lg:px-6 lg:py-4 h-36 hover:bg-gray-50 dark:bg-gray-800"
       >
         <div
-          class="
-            flex
-            items-center
-            h-full
-            px-2
-            py-2
-            lg:px-4 lg:py-4 lg:h-auto
-            sm:px-6
-          "
+          class="flex items-center h-full px-2 py-2 lg:px-4 lg:py-4 lg:h-auto sm:px-6"
         >
           <div class="flex items-center flex-1 min-w-0">
-            <div class="flex-shrink-0">
+            <div class="shrink-0">
               <app-img
                 :src="`/images/guides/${guide.category.toLowerCase()}.webp`"
                 :alt="`${guide.slug} picture`"
-                class="
-                  object-cover
-                  w-12
-                  h-12
-                  text-opacity-50
-                  rounded-full
-                  fill-current
-                  text-primary-600
-                "
+                class="object-cover w-12 h-12 text-opacity-50 rounded-full fill-current text-primary-600"
               />
             </div>
             <div class="flex-1 min-w-0 px-4 md:grid md:grid-cols-2 md:gap-4">
@@ -65,28 +34,19 @@
                 <div>
                   <div class="text-sm text-gray-500 dark:text-gray-100">
                     <span v-if="guide.updatedAt">
-                      <time :datetime="guide.updatedAt">{{
-                        $formatDate(guide.updatedAt)
-                      }}</time>
+                      <time :datetime="guide.updatedAt">
+                        {{ $date(guide.updatedAt) }}
+                      </time>
                     </span>
                     <span v-else>
-                      <time :datetime="guide.createdAt">{{
-                        $formatDate(guide.createdAt)
-                      }}</time>
+                      <time :datetime="guide.createdAt">
+                        {{ $date(guide.createdAt) }}
+                      </time>
                     </span>
                   </div>
                   <div></div>
                   <p
-                    class="
-                      flex
-                      items-start
-                      mt-2
-                      text-sm
-                      italic
-                      text-gray-800
-                      dark:text-gray-300
-                      line-clamp-2
-                    "
+                    class="flex items-start mt-2 text-sm italic text-gray-800 dark:text-gray-300 line-clamp-2"
                   >
                     {{ guide.description }}
                   </p>
@@ -116,7 +76,7 @@
 </template>
 
 <script>
-import { slugify } from '~/plugins/utils/methods'
+import { slugify } from '~/utils/methods'
 
 export default {
   name: 'GuidesIndex',
@@ -128,18 +88,18 @@ export default {
       .fetch()
 
     return {
-      guides
+      guides,
     }
   },
   data() {
     return {
       title: 'Guides',
       description: 'To know more about eBooks & eReaders',
-      slugify
+      slugify,
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = this.title
     return {
       title,
@@ -147,40 +107,40 @@ export default {
       meta: [
         ...dynamicMetadata.default({
           title,
-          url: this.$nuxt.$route.path
-        })
-      ]
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
   jsonld() {
     const breadcrumbs = [
       {
         url: this.$config.baseURL,
-        text: 'Home'
+        text: 'Home',
       },
       {
         url: `${this.$config.baseURL}/guides`,
-        text: 'Guides'
-      }
+        text: 'Guides',
+      },
     ]
     const items = breadcrumbs.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {
         '@id': item.url,
-        name: item.text
-      }
+        name: item.text,
+      },
     }))
     return {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      itemListElement: items
+      itemListElement: items,
     }
   },
   methods: {
     getPicture(guide) {
       return guide.category ? this.slugify(guide.category) : ''
-    }
-  }
+    },
+  },
 }
 </script>

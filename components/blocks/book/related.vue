@@ -11,9 +11,7 @@
       },
     }"
   >
-    <template #title>
-      Related books & series
-    </template>
+    <template #title>Related books & series</template>
     <template #subtitle>
       Based on tags & genre, not in same series. Limited to 10 first
       results.
@@ -23,8 +21,7 @@
 
 <script setup lang="ts">
 import BookSlider from './slider.vue'
-import { ApiEndpoint } from '~/composables/repository'
-import { ApiPaginateResponse, Book, Entity } from '~/types'
+import { ApiEndpoint, ApiPaginateResponse, Book, Entity } from '~/types'
 
 const props = defineProps<{
   book: Book

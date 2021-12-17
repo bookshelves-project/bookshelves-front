@@ -8,9 +8,7 @@
       autocomplete="email"
       required
     >
-      <template v-if="errors.email" #error>
-        {{ errors.email[0] }}
-      </template>
+      <template v-if="errors.email" #error>{{ errors.email[0] }}</template>
     </fields-input-text>
     <fields-input-text
       v-model="form.password"
@@ -19,28 +17,22 @@
       type="password"
       required
     >
-      <template v-if="errors.password" #error>
-        {{ errors.password[0] }}
-      </template>
+      <template v-if="errors.password" #error>{{ errors.password[0] }}</template>
     </fields-input-text>
 
     <div class="justify-between md:flex md:items-center">
-      <fields-checkbox
-        v-model="form.remember"
-        name="remember_me"
-        label="Remember me"
-      />
+      <fields-checkbox v-model="form.remember" name="remember_me" label="Remember me" />
       <!-- <div class="mt-6 text-sm md:mt-0">
         <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
           Forgot your password?
         </a>
-      </div> -->
+      </div>-->
     </div>
 
     <div class="flex items-center justify-center space-x-2">
       <app-button type="submit" align="center" color="primary" class="w-full">
         <transition name="fade">
-          <span v-if="!isLoading"> Sign in </span>
+          <span v-if="!isLoading">Sign in</span>
           <span v-else class="flex items-center space-x-1">
             <app-loading class="w-5 h-5 text-white" />
             <div>Processing</div>
@@ -126,7 +118,7 @@ export default {
             } catch (error) {
               console.error(error)
             }
-            this.$nuxt.$emit('notification', {
+            this.$nuxt.$emit('toast', {
               title,
               text,
               type: 'error'

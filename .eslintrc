@@ -29,10 +29,46 @@
     "vue/no-v-html": "off",
     "vue/space-before-function-parens": "off",
     "no-unused-vars": "off",
-    "vue/singleline-html-element-content-newline": "off",
-    "vue/multiline-html-element-content-newline": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "vue/html-self-closing": "off",
+    // "array-bracket-newline": "error",
+    // "array-callback-return": "error",
+    // "array-element-newline": "error",
+    "arrow-parens": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "vue/html-indent": "off",
+    "vue/html-closing-bracket-newline": "off",
+    // "vue/html-closing-bracket-newline": [
+    //   "error",
+    //   {
+    //     "singleline": "never",
+    //     "multiline": "always"
+    //   }
+    // ],
+    // "vue/multiline-html-element-content-newline": [
+    //   "error",
+    //   {
+    //     "ignoreWhenEmpty": true,
+    //     "ignores": [
+    //       "pre",
+    //       "textarea"
+    //     ],
+    //     "allowEmptyLines": false
+    //   }
+    // ],
+    "vue/singleline-html-element-content-newline": "off",
+    // "vue/singleline-html-element-content-newline": [
+    //   "error",
+    //   {
+    //     "ignoreWhenNoAttributes": true,
+    //     "ignoreWhenEmpty": true,
+    //     "ignores": [
+    //       "pre",
+    //       "textarea"
+    //     ]
+    //   }
+    // ],
+    "comma-dangle": "off",
+    "vue/html-self-closing": "off"
   }
 }

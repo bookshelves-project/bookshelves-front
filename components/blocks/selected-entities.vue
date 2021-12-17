@@ -5,18 +5,22 @@
       class="selected-books selected-entities-swiper max-w-7xl container mx-auto"
     >
       <div
-        :class="orientation"
+        :class="right ? 'text-right' : 'text-left'"
         class="text-sm font-semibold tracking-wide uppercase text-primary-600"
-      >{{ eyebrow }}</div>
+      >
+        {{ eyebrow }}
+      </div>
       <h2
-        :class="orientation"
+        :class="right ? 'text-right' : 'text-left'"
         class="mt-3 text-3xl font-extrabold text-gray-700 dark:text-gray-300 font-handlee"
-      >{{ title }}</h2>
+      >
+        {{ title }}
+      </h2>
       <p
-        :class="[orientation, { 'max-w-3xl': orientation === null }]"
+        :class="right ? 'text-right' : 'text-left'"
         class="mt-5 text-lg text-gray-900 dark:text-gray-100"
       >
-        <slot />
+        {{ text }}
       </p>
       <div class="mt-10">
         <div
@@ -48,13 +52,15 @@
                 class="slide slide--thumbniail"
                 :class="`slide--${index}`"
               >
-                <template #title>{{ $overflow(entity.title, 50) }}</template>
-                <template #subtitle>{{ capitalize(entity.meta.entity) }}</template>
+                <template #title>{{ overflow(entity.title, 50) }}</template>
+                <template #subtitle>
+                  {{ capitalize(entity.meta.entity) }}
+                </template>
                 <template #extra>{{ formatAuthors(entity.authors) }}</template>
               </blocks-entity-card>
             </swiper-slide>
             <div slot="button-prev" class="swiper-button-prev">
-              <svg-icon name="chevron-right" />
+              <svg-icon name="chevron-right" class="rotate-180" />
             </div>
             <div slot="button-next" class="swiper-button-next">
               <svg-icon name="chevron-right" />
@@ -68,32 +74,34 @@
 </template>
 
 <script>
-import { capitalize, formatAuthors } from '~/plugins/utils/methods'
+import { capitalize, formatAuthors, overflow } from '~/utils/methods'
 
 export default {
   name: 'SelectedEntities',
   props: {
     endpoint: {
       type: String,
-      default: '/books/selection'
+      default: '/books/selection',
     },
-    orientation: {
-      type: String,
-      default: null
+    right: {
+      type: Boolean,
+      default: false,
     },
     eyebrow: {
       type: String,
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
+    text: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {
-      capitalize,
-      formatAuthors,
       isLoading: true,
       entities: null,
       isDisplay: true,
@@ -105,34 +113,37 @@ export default {
         grabCursor: true,
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          prevEl: '.swiper-button-prev',
         },
         paginationClickable: true,
         pagination: {
           el: '.swiper-pagination',
-          clickable: true
+          clickable: true,
         },
         breakpoints: {
           500: {
             slidesPerView: 2,
-            slidesPerGroup: 2
+            slidesPerGroup: 2,
           },
           800: {
             slidesPerView: 3,
-            slidesPerGroup: 3
+            slidesPerGroup: 3,
           },
           1200: {
             slidesPerView: 4,
-            slidesPerGroup: 4
-          }
-        }
-      }
+            slidesPerGroup: 4,
+          },
+        },
+      },
     }
   },
   async mounted() {
     await this.load()
   },
   methods: {
+    capitalize,
+    formatAuthors,
+    overflow,
     async load() {
       try {
         const entities = await this.$axios.$get(this.endpoint)
@@ -145,8 +156,8 @@ export default {
         console.error(error)
         this.isDisplay = false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -1,18 +1,19 @@
 <template>
-  <span>
-    {{ formatLanguage(lang).flag }}
-  </span>
+  <span>{{ formatLanguage(lang).flag }}</span>
 </template>
 
 <script>
-import { formatLanguage } from '~/plugins/utils/methods'
+import { formatLanguage } from '~/utils/methods'
 export default {
   name: 'Flag',
   props: {
     lang: {
       type: String,
       default: 'en',
-      validator: val => ['en', 'fr'].includes(val)
+      validator: val => [
+        'en',
+        'fr'
+      ].includes(val)
     }
   },
   data() {

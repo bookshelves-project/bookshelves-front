@@ -1,17 +1,10 @@
 <template>
   <section aria-labelledby="book-main">
     <div
-      class="
-        space-y-8
-        lg:grid lg:gap-x-4 lg:gap-y-8 lg:space-y-0 lg:grid-cols-2
-        pb-6
-      "
+      class="space-y-8 lg:grid lg:gap-x-4 lg:gap-y-8 lg:space-y-0 lg:grid-cols-2 pb-6"
     >
       <dl
-        class="
-          space-y-8
-          md:grid md:gap-x-4 md:gap-y-8 md:space-y-0 md:grid-cols-2
-        "
+        class="space-y-8 md:grid md:gap-x-4 md:gap-y-8 md:space-y-0 md:grid-cols-2"
       >
         <div v-if="book.authors" class="sm:col-span-1">
           <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -32,13 +25,15 @@
                     })
                   "
                   class="internal-link"
-                >{{ author.name }}</nuxt-link>
+                  >{{ author.name }}</nuxt-link
+                >
                 <span
                   v-if="
                     book.authors.length > 1 &&
-                      authorId !== book.authors.length - 1
+                    authorId !== book.authors.length - 1
                   "
-                >&</span>
+                  >&</span
+                >
               </span>
             </h2>
           </dd>
@@ -90,7 +85,7 @@
             Published at
           </dt>
           <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
-            {{ $formatDate(book.publishDate) }}
+            {{ $date(book.publishDate) }}
           </dd>
         </div>
         <div v-if="book.language" class="sm:col-span-1">
@@ -134,13 +129,7 @@
             Page count
           </dt>
           <dd
-            class="
-              flex
-              items-center
-              mt-1
-              text-sm text-gray-900
-              dark:text-gray-100
-            "
+            class="flex items-center mt-1 text-sm text-gray-900 dark:text-gray-100"
           >
             {{ book.pageCount }}
           </dd>
@@ -161,10 +150,11 @@
                   })
                 "
                 class="internal-link"
-              >{{ genre.name }}</nuxt-link><span
-                v-if="genreId !== book.genres.length - 1"
-                class="mr-1"
-              >,</span>
+                >{{ genre.name }}</nuxt-link
+              >
+              <span v-if="genreId !== book.genres.length - 1" class="mr-1"
+                >,</span
+              >
             </span>
           </dd>
         </div>
@@ -184,7 +174,9 @@
                   })
                 "
                 class="internal-link"
-              >{{ tag.name }}</nuxt-link><span v-if="tagId !== book.tags.length - 1" class="mr-1">,</span>
+                >{{ tag.name }}</nuxt-link
+              >
+              <span v-if="tagId !== book.tags.length - 1" class="mr-1">,</span>
             </span>
           </dd>
         </div>
@@ -201,13 +193,7 @@
           ></dd>
           <dd
             v-else
-            class="
-              mt-1
-              text-sm text-gray-900
-              dark:text-gray-100
-              word-wraping
-              italic
-            "
+            class="mt-1 text-sm text-gray-900 dark:text-gray-100 word-wraping italic"
           >
             No abstract.
           </dd>
@@ -218,19 +204,19 @@
 </template>
 
 <script>
-import { formatLanguage } from '~/plugins/utils/methods'
+import { formatLanguage } from '~/utils/methods'
 export default {
   name: 'BookMain',
   props: {
     book: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
-      formatLanguage
+      formatLanguage,
     }
-  }
+  },
 }
 </script>

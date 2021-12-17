@@ -68,7 +68,11 @@ export default {
   name: 'FieldRadios',
   props: {
     value: {
-      type: [String, Number, Boolean],
+      type: [
+        String,
+        Number,
+        Boolean
+      ],
       default: 0
     },
     name: {

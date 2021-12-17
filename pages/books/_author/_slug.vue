@@ -11,7 +11,6 @@
       :entity="book"
       favorite
     >
-
       <div class="space-y-3 mx-auto">
         <div>
           <blocks-button-download
@@ -33,27 +32,22 @@
     </app-header>
     <blocks-book-main :book="book" class="mb-6" />
     <div
-      class="
-        lg:grid lg:grid-cols-2
-        divide-x divide-transparent
-        lg:divide-gray-200 lg:dark:divide-gray-600
-      "
+      class="lg:grid lg:grid-cols-2 divide-x divide-transparent lg:divide-gray-200 lg:dark:divide-gray-600"
     >
-      <blocks-book-serie
-        v-if="book.serie !== null"
+      <blocks-book-serie v-if="book.serie !== null" :book="book" class="lg:pr-10" />
+      <blocks-book-related
+        v-if="book.tags?.length || book.genres?.length"
         :book="book"
-        class="lg:pr-10"
+        :class="book.serie ? 'lg:pl-10' : ''"
       />
-      <blocks-book-related v-if="book.tags?.length || book.genres?.length" :book="book" :class="book.serie ? 'lg:pl-10' : ''" />
     </div>
     <blocks-comments-template :entity="book" class="mt-6" />
   </main>
 </template>
 
 <script setup lang="ts">
-import { ApiEndpoint } from '~/composables/repository'
-import { Book } from '~/types'
-import { formatLanguage, formatAuthors } from '@/plugins/utils/entities'
+import { ApiEndpoint, Book } from '~/types'
+import { formatLanguage, formatAuthors } from '~/utils/methods'
 
 const { title, meta } = useMeta()
 
@@ -103,7 +97,6 @@ export default defineComponent({
       : ''
     const authors = formatAuthors(data.authors)
     const pageTitle = `${data.title} ${serie}by ${authors}`
-    console.log(pageTitle)
 
     return {
       book: api.data,
@@ -111,7 +104,7 @@ export default defineComponent({
     }
   },
   head: {}
-  // const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+  // const dynamicMetadata = require('~/utils/metadata/dynamic')
   // const serie = this.book.serie
   //   ? ` · ${this.book.serie.title}, vol. ${this.book.volume} `
   //   : ''

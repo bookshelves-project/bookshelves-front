@@ -33,7 +33,10 @@ export default {
   name: 'FieldRange',
   props: {
     value: {
-      type: [String, Number],
+      type: [
+        String,
+        Number
+      ],
       default: 0
     },
     name: {
@@ -48,7 +51,11 @@ export default {
   data() {
     return {
       range: 5,
-      list: ['woman', 'non-binary', 'man']
+      list: [
+        'woman',
+        'non-binary',
+        'man'
+      ]
     }
   },
   computed: {

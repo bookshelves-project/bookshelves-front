@@ -45,11 +45,7 @@
 
 <script>
 import EntityCard from './entity-card.vue'
-import {
-  capitalize,
-  formatLanguage,
-  formatAuthors
-} from '~/plugins/utils/methods'
+import { capitalize, formatLanguage, formatAuthors } from '~/utils/methods'
 
 export default {
   name: 'SearchResults',
@@ -58,7 +54,11 @@ export default {
     entityType: {
       type: String,
       default: 'book',
-      validator: val => ['book', 'serie', 'author'].includes(val)
+      validator: val => [
+        'book',
+        'serie',
+        'author'
+      ].includes(val)
     },
     entities: {
       type: Array,

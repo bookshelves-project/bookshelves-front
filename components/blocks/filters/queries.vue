@@ -63,7 +63,10 @@ export default {
     },
     setQueries (queries) {
       this.queries = []
-      for (const [key, value] of Object.entries(queries)) {
+      for (const [
+        key,
+        value
+      ] of Object.entries(queries)) {
         this.queries.push({ type: key, value })
       }
     },
@@ -75,7 +78,7 @@ export default {
 
         this.setQueries(query)
       } catch (error) {
-        console.log('Error on replace')
+        console.error('Error on replace')
       }
     }
   }

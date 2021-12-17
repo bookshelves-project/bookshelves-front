@@ -5,11 +5,7 @@
         <blocks-filters negligible />
       </template>
     </app-header>
-    <blocks-content-list
-      :items="publishers"
-      name="publishers"
-      route-name="publishers-slug"
-    />
+    <blocks-content-list :items="publishers" name="publishers" route-name="publishers-slug" />
   </div>
 </template>
 
@@ -40,7 +36,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = this.title
     return {
       title,

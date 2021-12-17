@@ -18,24 +18,10 @@
       "
       :title="data.title"
       :aria-label="data.title"
-      class="
-        flex
-        items-center
-        w-full
-        py-5
-        pl-4
-        pr-1
-        space-x-6
-        hover:bg-gray-50
-        dark:hover:bg-gray-700
-        focus-within:ring-2
-        focus-within:ring-inset
-        focus-within:ring-primary-600
-        overflow-x-hidden
-      "
+      class="flex items-center w-full py-5 pl-4 pr-1 space-x-6 hover:bg-gray-50 dark:hover:bg-gray-700 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-600 overflow-x-hidden"
       :class="canDelete ? 'col-span-5' : 'col-span-6'"
     >
-      <div class="flex-shrink-0">
+      <div class="shrink-0">
         <app-img
           :src="data.cover"
           class="object-cover w-16 h-16 rounded-md"
@@ -47,15 +33,7 @@
           <div class="flex-1 min-w-0">
             <div class="block focus:outline-none">
               <div
-                class="
-                  text-base
-                  font-semibold
-                  text-gray-900
-                  truncate
-                  dark:text-gray-100
-                  max-w-[15rem]
-                  overflow-ellipsis
-                "
+                class="text-base font-semibold text-gray-900 truncate dark:text-gray-100 max-w-[15rem] text-ellipsis"
               >
                 {{ data.title }}
               </div>
@@ -67,13 +45,9 @@
           <div class="hidden lg:block">
             <time
               :datetime="data.createdAt"
-              class="
-                flex-shrink-0
-                text-sm text-gray-500
-                dark:text-gray-400
-                whitespace-nowrap
-              "
-            >{{ $formatDate(data.createdAt) }}</time>
+              class="shrink-0 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap"
+              >{{ $date(data.createdAt) }}</time
+            >
           </div>
         </div>
         <div v-if="data.text" class="hidden mt-1 lg:block">
@@ -86,16 +60,7 @@
     <div v-if="canDelete" class="col-span-1">
       <button
         type="button"
-        class="
-          flex
-          w-full
-          h-full
-          px-4
-          py-4
-          text-gray-400
-          hover:text-gray-500 hover:bg-gray-100
-          dark:hover:bg-gray-700 dark:hover:text-gray-300
-        "
+        class="flex w-full h-full px-4 py-4 text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300"
         title="Delete"
         aria-label="Delete"
         @click="destroy(data)"
@@ -110,24 +75,24 @@
 </template>
 
 <script>
-import { capitalize } from '~/plugins/utils/methods'
+import { capitalize } from '~/utils/methods'
 export default {
   name: 'DataListCard',
   props: {
     data: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     canDelete: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     capitalize,
     destroy(data) {
       this.$emit('destroy', data)
-    }
-  }
+    },
+  },
 }
 </script>

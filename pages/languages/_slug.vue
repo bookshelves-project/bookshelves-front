@@ -38,14 +38,7 @@
 export default {
   name: 'PageLanguagesSlug',
   async asyncData({ app, params }) {
-    console.log(params)
-    // const queryList = { ...query }
-    // if (isEmpty(queryList)) {
-    //   queryList['filter[negligible]'] = false
-    // }
-
     const language = await app.$axios.$get(`/languages/${params.slug}`)
-    console.log(language)
 
     return {
       language: language.data
@@ -58,7 +51,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = this.title
     return {
       title,

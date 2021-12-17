@@ -3,17 +3,7 @@
     <div
       v-for="option in options"
       :key="option.id"
-      class="
-        relative
-        flex
-        items-start
-        py-2
-        px-3
-        hover:bg-gray-200
-        dark:hover:bg-gray-700
-        transition-colors
-        duration-75
-      "
+      class="relative flex items-start py-2 px-3 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-75"
     >
       <div class="absolute inset-0" @click="toggleCheckbox(option.value)" />
       <div class="flex items-center h-5">
@@ -23,30 +13,21 @@
           type="checkbox"
           :name="option.value"
           :value="option.value"
-          class="
-            focus:ring-primary-500
-            h-4
-            w-4
-            text-primary-600
-            border-gray-300
-            rounded
-          "
-        >
+          class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded"
+        />
       </div>
       <div class="ml-3 text-sm w-full">
         <label
           :for="option.value"
           class="font-medium text-gray-700 dark:text-gray-300 block w-full"
-        >
-          {{ option.label }}
-        </label>
+        >{{ option.label }}</label>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { pushIfNotExist } from '~/plugins/utils/methods'
+import { pushIfNotExist } from '~/utils/methods'
 export default {
   name: 'CheckboxesFilter',
   props: {

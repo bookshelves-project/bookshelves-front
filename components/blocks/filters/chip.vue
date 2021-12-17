@@ -8,7 +8,7 @@
     </span>
     <span
       type="button"
-      class="flex-shrink-0 ml-1 h-4 w-4 p-1 rounded-full inline-flex text-gray-400 group-hover:bg-gray-200 group-hover:text-gray-500 transition-colors duration-75"
+      class="shrink-0 ml-1 h-4 w-4 p-1 rounded-full inline-flex text-gray-400 group-hover:bg-gray-200 group-hover:text-gray-500 transition-colors duration-75"
     >
       <span class="sr-only">Remove filter for Objects</span>
       <svg class="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
@@ -27,7 +27,11 @@ export default {
       default: null
     },
     filterValue: {
-      type: [String, Number, Boolean],
+      type: [
+        String,
+        Number,
+        Boolean
+      ],
       default: null
     }
   },

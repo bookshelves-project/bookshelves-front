@@ -22,7 +22,7 @@
                 <span
                   v-if="
                     book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
+                      authorId !== book.authors.length - 1
                   "
                 >&</span>
               </div>
@@ -52,14 +52,17 @@
 
 <script>
 import EntityCard from '~/components/blocks/entity-card.vue'
-import { formatLanguage, formatAuthors } from '~/plugins/utils/methods'
+import { formatLanguage, formatAuthors } from '~/utils/methods'
 import LoadMore from '~/components/special/load-more.vue'
 
 export default {
   name: 'PageRelatedSlug',
   components: { EntityCard, LoadMore },
   async asyncData({ app, params }) {
-    const [publisher, books] = await Promise.all([
+    const [
+      publisher,
+      books
+    ] = await Promise.all([
       app.$axios.$get(`/publishers/${params.slug}`),
       app.$axios.$get(`/publishers/books/${params.slug}`)
     ])
@@ -78,7 +81,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = `${this.title} ${this.publisher.name}`
     return {
       title,

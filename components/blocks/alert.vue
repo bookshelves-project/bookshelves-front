@@ -1,14 +1,5 @@
 <template>
-  <div
-    class="
-      fixed
-      z-50
-      transform
-      -translate-x-1/2 -translate-y-1/2
-      top-1/2
-      left-1/2
-    "
-  >
+  <div class="fixed z-50 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
     <transition name="fade">
       <div
         v-if="$store.state.showAlert"
@@ -21,16 +12,7 @@
       >
         <button
           type="button"
-          class="
-            absolute
-            text-gray-400
-            transition-colors
-            duration-100
-            rounded
-            top-2
-            right-2
-            hover:bg-gray-50
-          "
+          class="absolute text-gray-400 transition-colors duration-100 rounded top-2 right-2 hover:bg-gray-50"
           aria-label="Close"
           @click="close"
         >
@@ -53,20 +35,13 @@
           ]"
           class="flex"
         >
-          <div class="flex-shrink-0">
-            <svg-icon
-              :name="`icon-${$store.state.alert.type}`"
-              class="w-10 h-10"
-            />
+          <div class="shrink-0">
+            <svg-icon :name="`icon-${$store.state.alert.type}`" class="w-10 h-10" />
           </div>
           <div class="mt-1 ml-5">
-            <h3 class="text-3xl font-handlee">
-              {{ $store.state.alert.title }}
-            </h3>
+            <h3 class="text-3xl font-handlee">{{ $store.state.alert.title }}</h3>
             <div class="mt-2 text-lg">
-              <p>
-                {{ $store.state.alert.message }}
-              </p>
+              <p>{{ $store.state.alert.message }}</p>
             </div>
           </div>
         </div>

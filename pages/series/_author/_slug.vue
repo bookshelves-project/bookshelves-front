@@ -38,8 +38,8 @@
           v-for="(book,id) in books"
           :key="id"
           :data="book"
-          :cover="book.cover.thumbnail"
-          :color="book.cover.color"
+          :cover="book.cover?.thumbnail"
+          :color="book.cover?.color"
           :title="book.title"
           :route="{
             name: 'books-author-slug',
@@ -52,7 +52,13 @@
         </blocks-entity-card>
       </div>
       <div class="mt-6 mb-5">
-        <pagination v-if="meta" :current-page="meta.current_page" :pages="meta.last_page" />
+        <pagination-load
+          v-if="meta"
+          :current-page="meta.current_page"
+          :pages="meta.last_page"
+          :endpoint="ApiEndpoint.SerieBook"
+          @load="load"
+        />
       </div>
     </div>
     <blocks-comments-template :entity="serie" />
@@ -60,17 +66,45 @@
 </template>
 
 <script setup lang="ts">
-import { ApiEndpoint } from '~/composables/repository'
-import { ApiMeta, Book, Serie } from '~/types'
-import Pagination from '~/components/blocks/pagination.vue'
-import { overflow } from '@/plugins/utils/methods'
-import { formatLanguage, formatAuthors } from '@/plugins/utils/entities'
+import { ApiEndpoint, ApiMeta, Book, Serie } from '~/types'
+import { overflow, formatLanguage, formatAuthors } from '@/utils/methods'
+import PaginationLoad from '~/components/blocks/pagination-load.vue'
+
+const { $repository, route } = useContext()
+const params = route.value.params
+const query = route.value.query
 
 const serie = ref<Serie>()
 const books = ref<Book[]>()
 const meta = ref<ApiMeta>()
 
-// const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+useAsync(async () => {
+  const [
+    serieApi,
+    booksApi
+  ] = await Promise.all([
+    $repository(ApiEndpoint.Serie).show([
+      params.author,
+      params.slug
+    ]),
+    $repository(ApiEndpoint.SerieBook).index({
+      page: query.page as string || '1',
+      perPage: '32'
+    }, [
+      params.author,
+      params.slug
+    ])
+  ])
+  serie.value = serieApi.data
+  books.value = booksApi.data
+  meta.value = booksApi.meta
+})
+
+const load = (data: any[]) => {
+  books.value = books.value?.concat(data)
+}
+
+// const dynamicMetadata = require('~/utils/metadata/dynamic')
 // const title = `${this.serie.title} by ${this.authors}`
 // return {
 //   title,
@@ -86,7 +120,7 @@ const meta = ref<ApiMeta>()
 // }
 </script>
 
-<script lang="ts">
+<!-- <script lang="ts">
 export default defineComponent({
   async asyncData({ params, query, $repository }) {
     const [
@@ -160,4 +194,4 @@ export default defineComponent({
   //     }
   //   }
 })
-</script>
+</script> -->

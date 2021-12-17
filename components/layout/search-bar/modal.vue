@@ -152,7 +152,10 @@ export default {
     async searchResults(input) {
       this.loading = true
       const types = []
-      for (const [key, value] of Object.entries(this.form)) {
+      for (const [
+        key,
+        value
+      ] of Object.entries(this.form)) {
         if (value) {
           types.push(key)
         }

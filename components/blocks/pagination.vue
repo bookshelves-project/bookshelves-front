@@ -2,17 +2,11 @@
   <nav class="flex justify-between px-4 border-t border-gray-200 dark:border-gray-700 sm:px-0">
     <div class="hidden sm:flex flex-1 w-0 -mt-px item-ext">
       <nuxt-link v-slot="{ navigate }" :to="linkGen(1)" custom>
-        <component
-          :is="getTag(1)"
-          class="external-pagination"
-          :to="linkGen(1)"
-          @click="navigate"
-        >
+        <component :is="getTag(1)" class="external-pagination" :to="linkGen(1)" @click="navigate">
           <svg-icon
             name="arrow-narrow-right"
             class="w-5 h-5 mr-3 text-gray-400 rotate-180 my-auto"
-          />
-          First
+          />First
         </component>
       </nuxt-link>
     </div>
@@ -26,24 +20,11 @@
             title="Previous"
             aria-label="Previous"
             @click="navigate"
-          >
-            ‹
-          </component>
+          >‹</component>
         </nuxt-link>
       </div>
       <div
-        class="
-          mx-2
-          inline-flex
-          items-center
-          px-4
-          pt-4
-          text-sm
-          font-medium
-          text-gray-500
-          border-t-2 border-transparent
-          dark:text-gray-100
-        "
+        class="mx-2 inline-flex items-center px-4 pt-4 text-sm font-medium text-gray-500 border-t-2 border-transparent dark:text-gray-100"
       >
         Page
         <span class="ml-1">
@@ -60,9 +41,7 @@
             title="Next"
             aria-label="Next"
             @click="navigate"
-          >
-            ›
-          </component>
+          >›</component>
         </nuxt-link>
       </div>
     </div>
@@ -76,9 +55,7 @@
             title="Previous"
             aria-label="Previous"
             @click="navigate"
-          >
-            ‹
-          </component>
+          >‹</component>
         </nuxt-link>
       </div>
       <div v-if="showFirstDots" class="item">
@@ -99,9 +76,11 @@
             aria-label="Next"
             @click="navigate"
           >
-            <em class="border-none" style="padding: 0">{{
-              pageNum + startNumber - 1
-            }}</em>
+            <em class="border-none" style="padding: 0">
+              {{
+                pageNum + startNumber - 1
+              }}
+            </em>
           </component>
         </nuxt-link>
       </div>
@@ -117,9 +96,7 @@
             :title="`Page ${pages}`"
             aria-label="Next"
             @click="navigate"
-          >
-            {{ pages }}
-          </component>
+          >{{ pages }}</component>
         </nuxt-link>
       </div>
       <div class="item">
@@ -131,9 +108,7 @@
             title="Next"
             aria-label="Next"
             @click="navigate"
-          >
-            ›
-          </component>
+          >›</component>
         </nuxt-link>
       </div>
     </div>
@@ -146,10 +121,7 @@
           @click="navigate"
         >
           Last
-          <svg-icon
-            name="arrow-narrow-right"
-            class="w-5 h-5 ml-3 text-gray-400"
-          />
+          <svg-icon name="arrow-narrow-right" class="w-5 h-5 ml-3 text-gray-400" />
         </component>
       </nuxt-link>
     </div>

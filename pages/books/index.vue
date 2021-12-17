@@ -48,10 +48,8 @@
 </template>
 
 <script setup lang="ts">
-import { ApiEndpoint } from '~/composables/repository'
-import { overflow } from '@/plugins/utils/methods'
-import { formatLanguage, formatAuthors } from '~/plugins/utils/entities'
-import { Book, ApiMeta, ApiPaginateResponse } from '~/types'
+import { overflow, formatLanguage, formatAuthors } from '@/utils/methods'
+import { Book, ApiMeta, ApiPaginateResponse, ApiEndpoint } from '~/types'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import Pagination from '~/components/blocks/pagination.vue'
 
@@ -113,7 +111,12 @@ export default defineComponent({
     }
   },
   head: {},
-  watchQuery: ['page', 'filter[allow_serie]', 'filter[languages]', 'sort']
+  watchQuery: [
+    'page',
+    'filter[allow_serie]',
+    'filter[languages]',
+    'sort'
+  ]
   // jsonld() {
   //   const breadcrumbs = [
   //     {

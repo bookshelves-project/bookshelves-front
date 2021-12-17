@@ -136,7 +136,14 @@ export default {
     return {
       itemsGroupByChar: [],
       bestCount: null,
-      colors: ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
+      colors: [
+        'red',
+        'orange',
+        'yellow',
+        'green',
+        'blue',
+        'purple'
+      ]
     }
   },
   watch: {

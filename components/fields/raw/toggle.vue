@@ -33,7 +33,10 @@ export default {
   name: 'Toggle',
   props: {
     value: {
-      type: [String, Boolean],
+      type: [
+        String,
+        Boolean
+      ],
       default: false
     },
     label: {
@@ -51,7 +54,10 @@ export default {
     position: {
       type: String,
       default: 'right',
-      validator: val => ['right', 'left'].includes(val)
+      validator: val => [
+        'right',
+        'left'
+      ].includes(val)
     },
     border: {
       type: Boolean,

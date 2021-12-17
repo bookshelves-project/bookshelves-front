@@ -1,4 +1,5 @@
 {
+  "typescript.tsdk": "node_modules/typescript/lib"
   //   "editor.defaultFormatter": "johnsoncodehk.volar",
   //   "editor.formatOnSave": true,
   //   "editor.formatOnSaveMode": "file",

@@ -14,9 +14,7 @@
             params: { slug: $auth.user.data.meta.slug },
           })
         "
-      >
-        See my public profile
-      </app-button>
+      >See my public profile</app-button>
     </app-header>
     <!-- Main 2 column grid -->
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
@@ -56,7 +54,10 @@ import favorites from '~/mixins/favorites'
 import comments from '~/mixins/comments'
 export default {
   name: 'PageProfile',
-  mixins: [favorites, comments],
+  mixins: [
+    favorites,
+    comments
+  ],
   middleware: 'auth',
   data() {
     return {
@@ -67,7 +68,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = 'My profile'
     const description = 'An overview of all your activities.'
     return {
@@ -87,7 +88,10 @@ export default {
   methods: {
     async getData() {
       try {
-        const [favorites, comments] = await Promise.all([
+        const [
+          favorites,
+          comments
+        ] = await Promise.all([
           this.$axios.$get(
             `/favorites/by-user/${this.$auth.$state.user.data.id}`
           ),

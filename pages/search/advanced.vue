@@ -8,29 +8,15 @@
     <section class="mt-6">
       <transition name="fade">
         <div v-if="search && search.length">
-          <search-results
-            v-if="authors.length"
-            :entity-type="`author`"
-            :entities="authors"
-          />
-          <search-results
-            v-if="series.length"
-            :entity-type="`serie`"
-            :entities="series"
-          />
-          <search-results
-            v-if="books.length"
-            :entity-type="`book`"
-            :entities="books"
-          />
+          <search-results v-if="authors.length" :entity-type="`author`" :entities="authors" />
+          <search-results v-if="series.length" :entity-type="`serie`" :entities="series" />
+          <search-results v-if="books.length" :entity-type="`book`" :entities="books" />
         </div>
       </transition>
       <transition name="fade">
         <skeleton v-if="pending" />
       </transition>
-      <div v-if="empty" class="italic text-gray-500">
-        No result
-      </div>
+      <div v-if="empty" class="italic text-gray-500">No result</div>
     </section>
   </main>
 </template>
@@ -40,7 +26,7 @@ import qs from 'qs'
 
 import SearchResults from '~/components/blocks/search-results.vue'
 import Skeleton from '~/components/special/skeleton.vue'
-import { objectIsEmpty } from '~/plugins/utils/methods'
+import { objectIsEmpty } from '~/utils/methods'
 
 export default {
   name: 'PageSearchAdvanced',
@@ -60,7 +46,7 @@ export default {
     }
   },
   head() {
-    const dynamicMetadata = require('~/plugins/config/metadata-dynamic')
+    const dynamicMetadata = require('~/utils/metadata/dynamic')
     const title = this.title
     return {
       title,

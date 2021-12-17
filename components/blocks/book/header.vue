@@ -1,13 +1,11 @@
 <template>
   <section aria-labelledby="book-header">
     <div class="overflow-hidden bg-white rounded-lg shadow dark:bg-gray-800">
-      <h2 id="profile-overview-title" class="sr-only">
-        Profile Overview
-      </h2>
+      <h2 id="profile-overview-title" class="sr-only">Profile Overview</h2>
       <div class="p-6 bg-white dark:bg-gray-800">
         <div class="sm:flex sm:items-center sm:justify-between">
           <div class="sm:flex sm:space-x-5">
-            <div v-if="book.cover" class="flex-shrink-0">
+            <div v-if="book.cover" class="shrink-0">
               <app-img
                 :src="book.cover.thumbnail"
                 :color="book.cover.color"
@@ -18,36 +16,21 @@
             </div>
             <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
               <p
-                class="
-                  text-xl
-                  font-semibold
-                  text-gray-900
-                  sm:text-2xl
-                  dark:text-gray-100
-                "
-              >
-                {{ book.title }}
-              </p>
+                class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-gray-100"
+              >{{ book.title }}</p>
               <p
                 v-if="book.serie"
                 class="text-sm font-medium text-gray-600 dark:text-gray-300"
-              >
-                {{ book.serie.title }}, vol. {{ book.volume }}
-              </p>
+              >{{ book.serie.title }}, vol. {{ book.volume }}</p>
               <p
                 v-if="book.epub"
-                class="
-                  flex
-                  items-center
-                  text-sm
-                  font-medium
-                  text-gray-600
-                  dark:text-gray-300
-                "
+                class="flex items-center text-sm font-medium text-gray-600 dark:text-gray-300"
               >
                 <svg-icon name="epub" class="w-4 h-4" />
-                <span class="ml-1">EPUB {{ book.epub.size }} into
-                  {{ formatLanguage(book.language).label }}</span>
+                <span class="ml-1">
+                  EPUB {{ book.epub.size }} into
+                  {{ formatLanguage(book.language).label }}
+                </span>
               </p>
             </div>
           </div>
@@ -55,15 +38,7 @@
       </div>
       <div
         :class="$auth.$state.loggedIn ? 'md:grid-cols-4' : 'md:grid-cols-3'"
-        class="
-          grid grid-cols-1
-          border-t border-gray-200
-          divide-y divide-gray-200
-          dark:border-gray-700 dark:divide-gray-700
-          bg-gray-50
-          dark:bg-gray-800
-          md:divide-y-0 md:divide-x
-        "
+        class="grid grid-cols-1 border-t border-gray-200 divide-y divide-gray-200 dark:border-gray-700 dark:divide-gray-700 bg-gray-50 dark:bg-gray-800 md:divide-y-0 md:divide-x"
       >
         <component
           :is="book.cover ? 'a' : 'span'"
@@ -124,7 +99,7 @@
 
 <script>
 import favorites from '~/mixins/favorites'
-import { formatLanguage } from '~/plugins/utils/methods'
+import { formatLanguage } from '~/utils/methods'
 
 export default {
   name: 'BookHeader',
@@ -132,7 +107,7 @@ export default {
   props: {
     book: {
       type: Object,
-      default: () => {}
+      default: () => { }
     }
   },
   data() {

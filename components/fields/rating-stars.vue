@@ -106,16 +106,34 @@ export default {
       let full = []
       switch (this.current) {
         case 5:
-          full = [1, 2, 3, 4, 5]
+          full = [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
           break
         case 4:
-          full = [1, 2, 3, 4]
+          full = [
+            1,
+            2,
+            3,
+            4
+          ]
           break
         case 3:
-          full = [1, 2, 3]
+          full = [
+            1,
+            2,
+            3
+          ]
           break
         case 2:
-          full = [1, 2]
+          full = [
+            1,
+            2
+          ]
           break
         case 1:
           full = [1]

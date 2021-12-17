@@ -7,15 +7,7 @@
             <nuxt-link :to="localePath({ name: 'index' })">
               <!-- Heroicon name: solid/home -->
               <svg
-                class="
-                  flex-shrink-0
-                  h-5
-                  w-5
-                  text-gray-400
-                  hover:text-gray-500
-                  transition-colors
-                  duration-100
-                "
+                class="shrink-0 h-5 w-5 text-gray-400 hover:text-gray-500 transition-colors duration-100"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -32,32 +24,17 @@
 
         <li v-for="(link, id) in crumbs" :key="id">
           <div class="flex items-center">
-            <svg-icon
-              name="chevron-right"
-              class="flex-shrink-0 h-5 w-5 text-gray-300"
-            />
+            <svg-icon name="chevron-right" class="shrink-0 h-5 w-5 text-gray-300" />
             <component
               :is="id >= crumbs.length - 1 ? 'span' : 'nuxt-link'"
               :to="localePath(link.path)"
-              class="
-                ml-1
-                text-sm
-                font-medium
-                text-gray-500
-                dark:text-gray-400
-                transition-colors
-                duration-100
-                p-1
-                rounded-md
-              "
+              class="ml-1 text-sm font-medium text-gray-500 dark:text-gray-400 transition-colors duration-100 p-1 rounded-md"
               :class="
                 id >= crumbs.length - 1
                   ? ''
                   : 'hover:text-gray-700 hover:bg-gray-200 dark:hover:text-gray-100 dark:hover:bg-gray-700'
               "
-            >
-              {{ capitalize(link.title) }}
-            </component>
+            >{{ capitalize(link.title) }}</component>
           </div>
         </li>
       </ol>
@@ -66,21 +43,18 @@
       :to="localePath({ name: 'index' })"
       class="flex md:hidden items-center font-semibold text-xl"
     >
-      <svg-icon
-        name="arrow-narrow-right"
-        class="w-5 h-5 transform rotate-180"
-      />
+      <svg-icon name="arrow-narrow-right" class="w-5 h-5 transform rotate-180" />
       <span class="ml-2 mb-1">Home</span>
     </nuxt-link>
   </div>
 </template>
 
 <script>
-import { capitalize, capitalizeEach } from '~/plugins/utils/methods'
+import { capitalize, capitalizeEach } from '~/utils/methods'
 export default {
   name: 'Breadcrumb',
   computed: {
-    crumbs () {
+    crumbs() {
       const fullPath = this.$route.fullPath
       let params = fullPath.startsWith('/')
         ? fullPath.substring(1).split('/')
@@ -109,7 +83,7 @@ export default {
   },
   methods: {
     capitalize,
-    translateSlug (slug) {
+    translateSlug(slug) {
       const slugs = {
         'retours d experience': "retours d'experience"
       }

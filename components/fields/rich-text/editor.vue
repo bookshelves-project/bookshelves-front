@@ -148,7 +148,10 @@ export default {
   },
   mounted() {
     this.editor = new Editor({
-      extensions: [StarterKit, Typography],
+      extensions: [
+        StarterKit,
+        Typography
+      ],
       editorProps: {
         attributes: {
           spellcheck: 'false',

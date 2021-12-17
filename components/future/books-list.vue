@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { formatAuthors } from '@/plugins/utils/methods'
+import { formatAuthors } from '~/utils/methods'
 import { Book } from '~/types'
 
 defineProps({

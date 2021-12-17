@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     url() {
-      return this.base ? this.$apiUrlBase() : this.$config.apiURL
+      return this.base ? this.$config.apiURL.replace('/api', '') : this.$config.apiURL
     }
   },
   mounted() {
