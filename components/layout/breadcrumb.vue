@@ -34,7 +34,9 @@
                   ? ''
                   : 'hover:text-gray-700 hover:bg-gray-200 dark:hover:text-gray-100 dark:hover:bg-gray-700'
               "
-            >{{ capitalize(link.title) }}</component>
+            >
+{{ capitalize(link.title) }}
+</component>
           </div>
         </li>
       </ol>

@@ -8,7 +8,9 @@
             <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
             <p
               class="mt-1 text-sm text-gray-600 dark:text-gray-400"
-            >Use a permanent address where you can receive mail.</p>
+            >
+Use a permanent address where you can receive mail.
+</p>
           </div>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
@@ -29,7 +31,9 @@
             <h3 class="text-lg font-medium leading-6 text-gray-900">Update password</h3>
             <p
               class="mt-1 text-sm text-gray-600 dark:text-gray-400"
-            >You need to have current password to change it.</p>
+            >
+You need to have current password to change it.
+</p>
           </div>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">

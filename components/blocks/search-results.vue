@@ -1,6 +1,8 @@
 <template>
   <div>
-    <blocks-divider>{{ entities.length }} {{ capitalize(entityType) }}s</blocks-divider>
+    <blocks-divider
+      >{{ entities.length }} {{ capitalize(entityType) }}s</blocks-divider
+    >
     <div class="space-y-6 display-grid sm:space-y-0">
       <entity-card
         v-for="entity in entities"
@@ -26,8 +28,12 @@
           <div>
             <div>{{ capitalize(entity.meta.entity) }}</div>
             <div>
-              <div v-if="entity.authors" class="mt-3">{{ formatAuthors(entity.authors) }}</div>
-              <div v-if="entity.language" class="mt-3">{{ formatLanguage(entity.language).label }}</div>
+              <div v-if="entity.authors" class="mt-3">
+                {{ formatAuthors(entity.authors) }}
+              </div>
+              <div v-if="entity.language" class="mt-3">
+                {{ formatLanguage(entity.language) }}
+              </div>
             </div>
           </div>
         </template>
@@ -54,23 +60,19 @@ export default {
     entityType: {
       type: String,
       default: 'book',
-      validator: val => [
-        'book',
-        'serie',
-        'author'
-      ].includes(val)
+      validator: (val) => ['book', 'serie', 'author'].includes(val),
     },
     entities: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
       capitalize,
       formatLanguage,
-      formatAuthors
+      formatAuthors,
     }
-  }
+  },
 }
 </script>

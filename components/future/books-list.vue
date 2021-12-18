@@ -55,7 +55,7 @@ import { Book } from '~/types'
 defineProps({
   books: {
     type: Array as () => Book[],
-    required: true
-  }
+    required: true,
+  },
 })
 </script>

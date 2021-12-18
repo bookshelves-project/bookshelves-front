@@ -1,6 +1,6 @@
 <template>
   <main class="main-content">
-    <app-header :title="title" :subtitle="description" :border="false">
+    <app-header :title="title" :subtitle="description">
       <template #filters>
         <blocks-filters languages :sort="sortOptions" paginate />
       </template>
@@ -9,7 +9,7 @@
       <div>
         <div class="space-y-6 display-grid sm:space-y-0">
           <EntityCard
-            v-for="(serie,id) in series"
+            v-for="(serie, id) in series"
             :key="id"
             :cover="serie.cover?.thumbnail"
             :color="serie.cover?.color"
@@ -23,16 +23,19 @@
             <template #subtitle>{{ formatAuthors(serie.authors) }}</template>
             <template #extra>
               <span>{{ serie.count }} books</span>
-              <span
-                v-if="serie.language"
-                class="mt-1 block"
-              >{{ formatLanguage(serie.language)?.label }}</span>
+              <span v-if="serie.language" class="mt-1 block">
+                {{ formatLanguage(serie.language) }}
+              </span>
             </template>
           </EntityCard>
         </div>
       </div>
       <div class="mt-6 mb-5">
-        <Pagination v-if="meta" :current-page="meta.current_page" :pages="meta.last_page" />
+        <Pagination
+          v-if="meta"
+          :current-page="meta.current_page"
+          :pages="meta.last_page"
+        />
       </div>
     </section>
   </main>
@@ -52,8 +55,8 @@ if (!route.value.query.perPage) {
     query: {
       perPage: '32',
       page: '1',
-      sort: 'title_sort'
-    }
+      sort: 'title_sort',
+    },
   })
 }
 
@@ -61,27 +64,27 @@ const series = ref<Serie[]>()
 const meta = ref<ApiMeta>()
 
 const title = `All series available on ${$config.appName}`
-const description = 'Discover books grouped by their serie\'s name'
+const description = "Discover books grouped by their serie's name"
 const sortOptions = [
   {
     label: "By series' title (default)",
     query: { sort: 'title_sort' },
-    value: 'title_sort'
+    value: 'title_sort',
   },
   {
     label: 'By title',
     query: { sort: 'title' },
-    value: 'title'
+    value: 'title',
   },
   {
     label: 'Newest uploaded',
     query: { sort: '-created_at' },
-    value: '-created_at'
-  }
+    value: '-created_at',
+  },
 ]
 
 useMeta(() => ({
-  title
+  title,
 }))
 // const dynamicMetadata = require('~/utils/metadata/dynamic')
 // const title = this.title
@@ -101,22 +104,18 @@ useMeta(() => ({
 export default defineComponent({
   async asyncData({ query, $repository }) {
     const api = await $repository(ApiEndpoint.Serie).index({
-      page: query.page as string || '1',
+      page: (query.page as string) || '1',
       perPage: '32',
-      ...query
+      ...query,
     })
 
     return {
       series: api.data,
-      meta: api.meta
+      meta: api.meta,
     }
   },
   head: {},
-  watchQuery: [
-    'page',
-    'filter[languages]',
-    'sort'
-  ]
+  watchQuery: ['page', 'filter[languages]', 'sort'],
   // jsonld() {
   //   const breadcrumbs = [
   //     {

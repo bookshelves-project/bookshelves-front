@@ -1,6 +1,6 @@
 <template>
   <main class="main-content">
-    <app-header :title="title" :subtitle="description" :border="false">
+    <app-header :title="title" :subtitle="description">
       <template #filters>
         <blocks-filters :sort="sortOptions" paginate />
       </template>

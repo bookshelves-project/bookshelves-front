@@ -20,7 +20,9 @@
             title="Previous"
             aria-label="Previous"
             @click="navigate"
-          >‹</component>
+          >
+‹
+</component>
         </nuxt-link>
       </div>
       <div
@@ -41,7 +43,9 @@
             title="Next"
             aria-label="Next"
             @click="navigate"
-          >›</component>
+          >
+›
+</component>
         </nuxt-link>
       </div>
     </div>
@@ -55,7 +59,9 @@
             title="Previous"
             aria-label="Previous"
             @click="navigate"
-          >‹</component>
+          >
+‹
+</component>
         </nuxt-link>
       </div>
       <div v-if="showFirstDots" class="item">
@@ -96,7 +102,9 @@
             :title="`Page ${pages}`"
             aria-label="Next"
             @click="navigate"
-          >{{ pages }}</component>
+          >
+{{ pages }}
+</component>
         </nuxt-link>
       </div>
       <div class="item">
@@ -108,7 +116,9 @@
             title="Next"
             aria-label="Next"
             @click="navigate"
-          >›</component>
+          >
+›
+</component>
         </nuxt-link>
       </div>
     </div>

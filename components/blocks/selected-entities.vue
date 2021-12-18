@@ -60,7 +60,7 @@
               </blocks-entity-card>
             </swiper-slide>
             <div slot="button-prev" class="swiper-button-prev">
-              <svg-icon name="chevron-right" class="rotate-180" />
+              <svg-icon name="chevron-right" />
             </div>
             <div slot="button-next" class="swiper-button-next">
               <svg-icon name="chevron-right" />
@@ -161,26 +161,46 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .selected-entities-swiper::v-deep {
   & .swiper-button-prev {
     left: unset !important;
-    @apply right-14 transform rotate-180 !important;
+    @apply right-14 transform rotate-180;
   }
   & .swiper-button-prev,
   & .swiper-button-next {
-    @apply absolute w-10 bottom-0 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-100 rounded-md !important;
+    @apply absolute w-10 bottom-0 hover:bg-gray-300 transition-colors duration-100 rounded-md;
     & .icon {
-      @apply w-8 h-8 m-auto text-gray-900 dark:text-gray-400 !important;
+      @apply w-8 h-8 m-auto text-gray-900;
     }
   }
   & .swiper-pagination {
     @apply cursor-default bottom-1;
     & .swiper-pagination-bullet {
-      @apply bg-primary-600 dark:bg-primary-600 dark:opacity-60;
+      @apply bg-primary-600;
     }
     & .swiper-pagination-bullet-active {
-      @apply bg-primary-600 dark:bg-primary-300 dark:opacity-100;
+      @apply bg-primary-600;
+    }
+  }
+}
+
+.dark {
+  & .selected-entities-swiper::v-deep {
+    & .swiper-button-prev,
+    & .swiper-button-next {
+      @apply hover:bg-gray-700;
+      & .icon {
+        @apply text-gray-400;
+      }
+    }
+    & .swiper-pagination {
+      & .swiper-pagination-bullet {
+        @apply bg-primary-600 opacity-60;
+      }
+      & .swiper-pagination-bullet-active {
+        @apply bg-primary-300 opacity-100;
+      }
     }
   }
 }

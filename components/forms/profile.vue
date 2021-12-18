@@ -17,7 +17,9 @@
                 localePath({ name: 'users-slug', params: { slug: user.slug } })
               "
               class="border-b border-gray-500 hover:text-gray-600 hover:border-gray-600"
-            >public profile</nuxt-link>.
+            >
+public profile
+</nuxt-link>.
           </fields-input-text>
         </div>
         <fields-input-text
@@ -94,12 +96,16 @@
               v-model="form.use_gravatar"
               name="use_gravatar"
               label="Use gravatar"
-            >Check this if you want to use gravatar for your avatar.</fields-checkbox>
+            >
+Check this if you want to use gravatar for your avatar.
+</fields-checkbox>
             <fields-checkbox
               v-model="form.display_favorites"
               name="display_favorites"
               label="Display favorites"
-            >Check this if you want to display your favorites publickly.</fields-checkbox>
+            >
+Check this if you want to display your favorites publickly.
+</fields-checkbox>
             <fields-checkbox
               v-model="form.display_comments"
               name="display_comments"

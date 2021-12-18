@@ -29,14 +29,18 @@
           :style="{ 'top: 0': !preview }"
           size="sm"
           @click="deleteFile()"
-        >Supprimer</app-button>
+        >
+Supprimer
+</app-button>
         <app-button
           v-if="fileUpoaded"
           icon="close-circle-line"
           class="delete-button"
           size="sm"
           @click="deletePreview()"
-        >Supprimer</app-button>
+        >
+Supprimer
+</app-button>
       </div>
     </div>
     <div class="fr-input-wrap">
@@ -50,7 +54,9 @@
           rel="noopener noreferrer"
           class="fr-ml-1w"
           download
-        >Télécharger le fichier existant</app-button>
+        >
+Télécharger le fichier existant
+</app-button>
       </div>
     </div>
   </div>

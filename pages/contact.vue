@@ -71,14 +71,7 @@
         <div>
           <div class="text-center">
             <h1
-              class="
-                text-3xl
-                font-extrabold
-                tracking-tight
-                font-handlee
-                text-primary-600
-                sm:text-4xl
-              "
+              class="text-3xl font-extrabold tracking-tight font-handlee text-primary-600 dark:text-primary-500 sm:text-4xl"
             >
               Leave us a short note
             </h1>
@@ -110,7 +103,7 @@ export default {
   name: 'Contact',
   data() {
     return {
-      title: 'Contact us'
+      title: 'Contact us',
     }
   },
   head() {
@@ -122,10 +115,10 @@ export default {
           title: this.title,
           description:
             "If you want to contact us, don't hesitate to send us a small message!",
-          url: this.$nuxt.$route.path
-        })
-      ]
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
-  }
+  },
 }
 </script>

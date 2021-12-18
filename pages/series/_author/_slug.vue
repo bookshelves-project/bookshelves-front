@@ -7,7 +7,6 @@
       :authors="serie.authors"
       :cta="serie.link"
       :text="serie.description"
-      :border="false"
       :entity="serie"
       favorite
     >
@@ -15,18 +14,27 @@
         :href="serie.download"
         :size="serie.size"
         :type="`ZIP`"
-      >{{ serie.count }} eBooks</blocks-button-download>
-      <div class="mt-2 text-right">Language: {{ formatLanguage(serie.language)?.label }}</div>
+      >
+        {{ serie.count }} eBooks
+      </blocks-button-download>
+      <div class="mt-2 text-right">
+        Language: {{ formatLanguage(serie.language) }}
+      </div>
       <template #content>
         <div v-if="serie.tags && serie.tags.length" class="lg:flex">
           <h2 class="mr-1">Tags:</h2>
           <ul>
-            <li v-for="(tag, id) in serie.tags" :key="id" class="inline-block dark:text-gray-100">
+            <li
+              v-for="(tag, id) in serie.tags"
+              :key="id"
+              class="inline-block dark:text-gray-100"
+            >
               <span>{{ tag.name }}</span>
               <span
                 v-if="serie.tags.length > 1 && id !== serie.tags.length - 1"
                 class="mr-1 text-gray-900 dark:text-gray-100"
-              >,</span>
+                >,</span
+              >
             </li>
           </ul>
         </div>
@@ -35,7 +43,7 @@
     <div>
       <div v-if="books" class="space-y-6 display-grid sm:space-y-0">
         <blocks-entity-card
-          v-for="(book,id) in books"
+          v-for="(book, id) in books"
           :key="id"
           :data="book"
           :cover="book.cover?.thumbnail"
@@ -79,21 +87,15 @@ const books = ref<Book[]>()
 const meta = ref<ApiMeta>()
 
 useAsync(async () => {
-  const [
-    serieApi,
-    booksApi
-  ] = await Promise.all([
-    $repository(ApiEndpoint.Serie).show([
-      params.author,
-      params.slug
-    ]),
-    $repository(ApiEndpoint.SerieBook).index({
-      page: query.page as string || '1',
-      perPage: '32'
-    }, [
-      params.author,
-      params.slug
-    ])
+  const [serieApi, booksApi] = await Promise.all([
+    $repository(ApiEndpoint.Serie).show([params.author, params.slug]),
+    $repository(ApiEndpoint.SerieBook).index(
+      {
+        page: (query.page as string) || '1',
+        perPage: '32',
+      },
+      [params.author, params.slug]
+    ),
   ])
   serie.value = serieApi.data
   books.value = booksApi.data
@@ -188,7 +190,7 @@ export default defineComponent({
   //         author: authors,
   //         bookFormat: 'http://schema.org/BookSeries',
   //         image: this.entity.cover.thumbnail,
-  //         inLanguage: formatLanguage(this.entity.language).label,
+  //         inLanguage: formatLanguage(this.entity.language),
   //         name: this.entity.title
   //       }
   //     }

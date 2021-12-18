@@ -3,13 +3,7 @@
     <div
       v-if="label"
       :id="`label-${name}`"
-      class="
-        text-base
-        font-medium
-        text-gray-900
-        sm:text-sm sm:text-gray-700
-        dark:text-gray-300
-      "
+      class="text-base font-medium text-gray-900 sm:text-sm sm:text-gray-700 dark:text-gray-300"
     >
       {{ label }}
     </div>
@@ -35,24 +29,11 @@
               :value="option.value"
               :name="name"
               type="radio"
-              class="
-                focus:ring-primary-500
-                h-4
-                w-4
-                text-primary-600
-                border-gray-300
-              "
+              class="focus:ring-primary-500 h-4 w-4 text-primary-600 dark:text-primary-500 border-gray-300"
             />
             <label
               :for="option.value"
-              class="
-                ml-3
-                block
-                text-sm
-                font-medium
-                text-gray-700
-                dark:text-gray-300
-              "
+              class="ml-3 block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               {{ option.label }}
             </label>
@@ -68,50 +49,46 @@ export default {
   name: 'FieldRadios',
   props: {
     value: {
-      type: [
-        String,
-        Number,
-        Boolean
-      ],
-      default: 0
+      type: [String, Number, Boolean],
+      default: 0,
     },
     name: {
       type: String,
-      default: ''
+      default: '',
     },
     label: {
       type: String,
-      default: ''
+      default: '',
     },
     helper: {
       type: String,
-      default: ''
+      default: '',
     },
     flex: {
       type: Boolean,
-      default: false
+      default: false,
     },
     hover: {
       type: Boolean,
-      default: false
+      default: false,
     },
     options: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
-      radioValue: 'UNKNOWN'
+      radioValue: 'UNKNOWN',
     }
   },
   watch: {
     value(newValue, oldValue) {
       this.radioValue = newValue
-    }
+    },
   },
   mounted() {
     this.radioValue = this.value
-  }
+  },
 }
 </script>

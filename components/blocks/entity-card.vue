@@ -22,10 +22,18 @@
     :title="title"
   >
     <div class="shrink-0 h-full">
-      <app-img class="w-36 h-full object-cover" :src="cover" :color="color" :alt="title" />
+      <app-img
+        class="w-36 h-full object-cover"
+        :src="cover"
+        :color="color"
+        :alt="title"
+      />
     </div>
     <div class="flex-1 min-w-0 h-full mt-2">
-      <nuxt-link :to="ctx.localePath(route)" class="focus:outline-none">
+      <nuxt-link
+        :to="ctx.localePath(route)"
+        class="focus:outline-none text-black dark:text-gray-100"
+      >
         <span class="absolute inset-0" aria-hidden="true"></span>
         <h2 class="font-semibold">
           <slot name="title" />
@@ -66,34 +74,35 @@ import { Location } from 'vue-router'
 const props = defineProps({
   cover: {
     type: String,
-    default: '/images/no-cover.webp'
+    default: '/images/no-cover.webp',
   },
   color: {
     type: String,
-    default: ''
+    default: '',
   },
   title: {
     type: String,
-    default: ''
+    default: '',
   },
   route: {
-    type: [
-      Object,
-      String
-    ] as PropType<Location>,
-    default: '/'
-  }
+    type: [Object, String] as PropType<Location>,
+    default: '/',
+  },
 })
 
 const ctx = useContext()
-
 </script>
 
 <style lang="css" scoped>
 .focus {
-  @apply focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 dark:focus-within:ring-primary-800 dark:focus-within:ring-offset-gray-900;
+  @apply focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500;
 }
->>> .app-img {
+.dark {
+  & .focus::v-deep {
+    @apply focus-within:ring-primary-800 focus-within:ring-offset-gray-900;
+  }
+}
+::v-deep .app-img {
   box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.75);
 }
 </style>

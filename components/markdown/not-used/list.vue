@@ -14,24 +14,19 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     icon: {
       type: String,
-      default: null
+      default: null,
     },
     type: {
       type: String,
       default: 'success',
       validator(value) {
-        return [
-          'info',
-          'success',
-          'warning',
-          'danger'
-        ].includes(value)
-      }
-    }
+        return ['info', 'success', 'warning', 'danger'].includes(value)
+      },
+    },
   },
   computed: {
     iconName() {
@@ -41,22 +36,22 @@ export default {
           info: 'info',
           success: 'success',
           warning: 'warning',
-          danger: 'danger'
+          danger: 'danger',
         }[this.type]
       )
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="postcss">
+<style lang="css">
 /* Primary */
 .list-primary {
-  @apply text-primary-600;
+  @apply text-primary-600 dark:text-primary-500;
 }
 /* Info */
 .list-info {
-  @apply text-primary-600;
+  @apply text-primary-600 dark:text-primary-500;
 }
 /* Success */
 .list-success {

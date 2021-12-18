@@ -1,6 +1,6 @@
 <template>
   <main class="main-content relative">
-    <app-header :title="title" :subtitle="description" :border="false">
+    <app-header :title="title" :subtitle="description">
       <template #filters>
         <blocks-filters has-serie languages :sort="sortOptions" paginate />
       </template>
@@ -8,7 +8,7 @@
 
     <div role="list" class="display-grid">
       <EntityCard
-        v-for="(book,id) in books"
+        v-for="(book, id) in books"
         :key="id"
         :cover="book.cover?.thumbnail"
         :color="book.cover?.color"
@@ -30,7 +30,9 @@
             <br />
             vol. {{ book.volume }}
           </span>
-          <span class="mt-1 block">{{ formatLanguage(book.language)?.label }}</span>
+          <span class="mt-1 block">
+            {{ formatLanguage(book.language) }}
+          </span>
         </template>
       </EntityCard>
     </div>
@@ -42,105 +44,104 @@
         :per-page="meta.per_page"
         :total="meta.total"
       />-->
-      <Pagination v-if="meta" :current-page="meta.current_page" :pages="meta.last_page" />
+      <Pagination
+        v-if="meta"
+        :current-page="meta.current_page"
+        :pages="meta.last_page"
+      />
     </div>
   </main>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import { useIndexStore } from '~/stores'
+import {
+  ApiEndpoint,
+  ApiMeta,
+  Application,
+  Book,
+  MetaInfo,
+  FormatLanguageType,
+} from '~/types'
 import { overflow, formatLanguage, formatAuthors } from '@/utils/methods'
-import { Book, ApiMeta, ApiPaginateResponse, ApiEndpoint } from '~/types'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import Pagination from '~/components/blocks/pagination.vue'
 
-const { $config, route } = useContext()
-const router = useRouter()
-
-if (!route.value.query.perPage) {
-  router.replace({
-    query: {
-      perPage: '32',
-      page: '1',
-      'filter[allow_serie]': 'true',
-      sort: 'title_sort'
-    }
-  })
-}
-
-const books = ref<Book[]>()
-const meta = ref<ApiMeta>()
-
-const title = `All books available on ${$config.appName}`
-const description = 'Discover all available books sorted by title and serie\'s title'
-const sortOptions = [
-  {
-    label: "By series' title (default)",
-    value: 'title_sort'
-  },
-  {
-    label: 'By title',
-    value: 'title'
-  },
-  {
-    label: 'Most recently published',
-    value: '-date'
-  },
-  {
-    label: 'Newest uploaded',
-    value: '-created_at'
-  }
-]
-
-useMeta(() => ({
-  title
-}))
-</script>
-
-<script lang="ts">
-export default defineComponent({
-  async asyncData({ query, $repository }) {
+@Component({
+  async asyncData({ query, $repository, $pinia }) {
     const api = await $repository(ApiEndpoint.Book).index({
-      page: query.page as string || '1',
+      page: (query.page as string) || '1',
       perPage: '32',
-      ...query
+      ...query,
     })
+    const store = useIndexStore()
+    const application = store.application as Application
+    const title = `All books available on ${application.name}`
 
     return {
       books: api.data,
-      meta: api.meta
+      meta: api.meta,
+      application,
+      title,
     }
   },
-  head: {},
-  watchQuery: [
-    'page',
-    'filter[allow_serie]',
-    'filter[languages]',
-    'sort'
-  ]
-  // jsonld() {
-  //   const breadcrumbs = [
-  //     {
-  //       url: this.$config.baseURL,
-  //       text: 'Home'
-  //     },
-  //     {
-  //       url: `${this.$config.baseURL}/books`,
-  //       text: 'Books'
-  //     }
-  //   ]
-  //   const items = breadcrumbs.map((item, index) => ({
-  //     '@type': 'ListItem',
-  //     position: index + 1,
-  //     item: {
-  //       '@id': item.url,
-  //       name: item.text
-  //     }
-  //   }))
-  //   return {
-  //     '@context': 'https://schema.org',
-  //     '@type': 'WebPage',
-  //     itemListElement: items
-  //   }
-  // }
+  head(this: PageBooksIndex): MetaInfo {
+    return {
+      title: this.title,
+    }
+  },
+  watchQuery: ['page', 'filter[allow_serie]', 'filter[languages]', 'sort'],
+  methods: {
+    overflow,
+    formatLanguage,
+    formatAuthors,
+  },
+  components: {
+    EntityCard,
+    Pagination,
+  },
 })
+export default class PageBooksIndex extends Vue {
+  books: Book[] = []
+  meta!: ApiMeta
+  application!: Application
+  title!: string
+  overflow!: typeof overflow
+  formatLanguage!: typeof formatLanguage
+  formatAuthors!: typeof formatAuthors
+
+  description = "Discover all available books sorted by title and serie's title"
+  sortOptions = [
+    {
+      label: "By series' title (default)",
+      value: 'title_sort',
+    },
+    {
+      label: 'By title',
+      value: 'title',
+    },
+    {
+      label: 'Most recently published',
+      value: '-date',
+    },
+    {
+      label: 'Newest uploaded',
+      value: '-created_at',
+    },
+  ]
+
+  mounted() {
+    if (!this.$route.query.perPage) {
+      this.$router.replace({
+        query: {
+          perPage: '32',
+          page: '1',
+          'filter[allow_serie]': 'true',
+          sort: 'title_sort',
+        },
+      })
+    }
+  }
+}
 </script>

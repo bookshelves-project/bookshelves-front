@@ -30,7 +30,7 @@
                   </div>
                 </div>
                 <h3
-                  class="mt-5 text-lg font-medium tracking-tight text-gray-900"
+                  class="mt-5 text-lg font-medium tracking-tight text-gray-900 dark:text-gray-100"
                 >
                   {{ feature.title }}
                 </h3>

@@ -32,7 +32,9 @@
       <div class="p-5">
         <h2
           class="text-gray-500 dark:text-gray-400 text-xs font-medium uppercase tracking-wide"
-        >Helper</h2>
+        >
+Helper
+</h2>
         <ul role="list" class="mt-3 grid grid-cols-1 space-y-4">
           <li
             v-for="(item,id) in links"

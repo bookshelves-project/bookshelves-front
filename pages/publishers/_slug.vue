@@ -22,9 +22,10 @@
                 <span
                   v-if="
                     book.authors.length > 1 &&
-                      authorId !== book.authors.length - 1
+                    authorId !== book.authors.length - 1
                   "
-                >&</span>
+                  >&</span
+                >
               </div>
             </template>
             <template #extra>
@@ -33,7 +34,7 @@
                 <br />
                 vol. {{ book.volume }}
               </div>
-              <div class="mt-1">{{ formatLanguage(book.language).label }}</div>
+              <div class="mt-1">{{ formatLanguage(book.language) }}</div>
             </template>
           </entity-card>
         </div>
@@ -59,17 +60,14 @@ export default {
   name: 'PageRelatedSlug',
   components: { EntityCard, LoadMore },
   async asyncData({ app, params }) {
-    const [
-      publisher,
-      books
-    ] = await Promise.all([
+    const [publisher, books] = await Promise.all([
       app.$axios.$get(`/publishers/${params.slug}`),
-      app.$axios.$get(`/publishers/books/${params.slug}`)
+      app.$axios.$get(`/publishers/books/${params.slug}`),
     ])
 
     return {
       publisher: publisher.data,
-      books
+      books,
     }
   },
   data() {
@@ -77,7 +75,7 @@ export default {
       formatLanguage,
       formatAuthors,
       title: 'Books published by',
-      description: 'List of all books for publisher'
+      description: 'List of all books for publisher',
     }
   },
   head() {
@@ -89,15 +87,15 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path
-        })
-      ]
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
   methods: {
     load(data) {
       this.books.data = data
-    }
-  }
+    },
+  },
 }
 </script>

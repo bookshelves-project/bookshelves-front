@@ -8,14 +8,7 @@
         :aria-describedby="`${name}-description`"
         :name="name"
         type="checkbox"
-        class="
-          focus:ring-primary-500
-          h-4
-          w-4
-          text-primary-600
-          border-gray-300
-          rounded
-        "
+        class="focus:ring-primary-500 h-4 w-4 text-primary-600 dark:text-primary-500 border-gray-300 rounded"
         :value="valueData"
       />
     </div>
@@ -38,28 +31,25 @@ export default {
   name: 'Checkbox',
   props: {
     value: {
-      type: [
-        Boolean,
-        Array
-      ],
-      default: false
+      type: [Boolean, Array],
+      default: false,
     },
     name: {
       type: String,
-      default: null
+      default: null,
     },
     label: {
       type: String,
-      default: null
+      default: null,
     },
     valueData: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      checkbox: false
+      checkbox: false,
     }
   },
   watch: {
@@ -68,10 +58,10 @@ export default {
     },
     checkbox(newValue, oldValue) {
       this.$emit('input', this.checkbox)
-    }
+    },
   },
   created() {
     this.checkbox = this.value
-  }
+  },
 }
 </script>

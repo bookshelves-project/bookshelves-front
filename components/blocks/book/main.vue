@@ -12,29 +12,7 @@
           </dt>
           <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
             <h2>
-              <span
-                v-for="(author, authorId) in book.authors"
-                :key="authorId"
-                class="mr-1"
-              >
-                <nuxt-link
-                  :to="
-                    localePath({
-                      name: 'authors-slug',
-                      params: { slug: author.meta.slug },
-                    })
-                  "
-                  class="internal-link"
-                  >{{ author.name }}</nuxt-link
-                >
-                <span
-                  v-if="
-                    book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
-                  "
-                  >&</span
-                >
-              </span>
+              <blocks-authors-links :authors="book.authors" short />
             </h2>
           </dd>
         </div>
@@ -102,7 +80,7 @@
               "
               class="internal-link"
             >
-              {{ formatLanguage(book.language).label }}
+              {{ formatLanguage(book.language) }}
             </nuxt-link>
           </dd>
         </div>

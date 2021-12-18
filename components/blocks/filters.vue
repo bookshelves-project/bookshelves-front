@@ -31,7 +31,9 @@
           <button
             type="button"
             class="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden"
-          >Filters</button>
+          >
+Filters
+</button>
 
           <div class="hidden sm:block">
             <div class="flow-root">

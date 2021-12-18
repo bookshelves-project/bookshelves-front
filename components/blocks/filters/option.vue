@@ -32,7 +32,9 @@
                     $route.query[filter] === option.value,
                 }"
                 @click="filterBy(option.value)"
-              >{{ option.label }}</button>
+              >
+{{ option.label }}
+</button>
             </div>
             <div v-else>
               <div v-if="type === 'radio'">

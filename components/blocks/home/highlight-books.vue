@@ -5,15 +5,7 @@
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8">
         <div class="space-y-5 sm:space-y-4">
           <h2
-            class="
-              text-3xl
-              font-bold
-              tracking-tight
-              text-primary-600
-              dark:text-primary-500
-              font-handlee
-              sm:text-4xl
-            "
+            class="text-3xl font-bold tracking-tight text-primary-600 dark:text-primary-500 font-handlee sm:text-4xl"
           >
             Highlight on last eBooks
           </h2>
@@ -24,11 +16,7 @@
         </div>
         <div class="lg:col-span-2">
           <ul
-            class="
-              space-y-12
-              sm:grid sm:grid-cols-2 sm:gap-12 sm:space-y-0
-              lg:gap-x-8
-            "
+            class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-12 sm:space-y-0 lg:gap-x-8"
           >
             <li v-for="person in people" :key="person.name">
               <div class="flex items-center space-x-4 lg:space-x-6">
@@ -38,7 +26,7 @@
                 />
                 <div class="space-y-1 text-lg font-medium leading-6">
                   <h3>{{ person.name }}</h3>
-                  <div class="text-primary-600">
+                  <div class="text-primary-600 dark:text-primary-500">
                     {{ person.role }}
                   </div>
                 </div>
@@ -61,11 +49,11 @@ export default {
           name: 'Leslie Alexander',
           role: 'Co-Founder / CEO',
           imageUrl:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-        }
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        },
         // More people...
-      ]
+      ],
     }
-  }
+  },
 }
 </script>

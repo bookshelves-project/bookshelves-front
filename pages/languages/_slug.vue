@@ -1,6 +1,6 @@
 <template>
   <div v-if="language" class="main-content">
-    <app-header :title="title" :subtitle="description" :border="false" />
+    <app-header :title="title" :subtitle="description" />
     <div class="lg:grid lg:grid-cols-2 lg:gap-4 space-y-2 lg:space-y-0">
       <nuxt-link
         :to="
@@ -41,13 +41,13 @@ export default {
     const language = await app.$axios.$get(`/languages/${params.slug}`)
 
     return {
-      language: language.data
+      language: language.data,
     }
   },
   data() {
     return {
       title: 'eBooks & series into',
-      description: 'Do you want to read an eBook or a series?'
+      description: 'Do you want to read an eBook or a series?',
     }
   },
   head() {
@@ -59,14 +59,14 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path
-        })
-      ]
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
   mounted() {
     this.title = `${this.title} ${this.language.name}`
-  }
+  },
 }
 </script>
 

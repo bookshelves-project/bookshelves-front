@@ -103,12 +103,21 @@ export default {
 }
 </script>
 
-<style scoped>
-.search-bar::v-deep abbr {
-  @apply no-underline;
+<style lang="css" scoped>
+.search-bar::v-deep {
+  & abbr {
+    @apply no-underline;
+  }
+  & .search {
+    @apply block w-full py-2 pl-10 pr-3 border rounded-md leading-5 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm;
+    @apply border-gray-200 text-gray-900 placeholder-gray-500 focus:ring-offset-primary-600 focus:ring-white focus:border-white;
+  }
 }
-
-.search-bar::v-deep .search {
-  @apply block w-full py-2 pl-10 pr-3 border border-gray-200 dark:border-gray-600 rounded-md leading-5 text-gray-900 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-600 focus:ring-white dark:focus:ring-offset-primary-400 dark:focus:ring-gray-900 focus:border-white dark:focus:border-gray-900 sm:text-sm dark:text-gray-100;
+.dark {
+  & .search-bar::v-deep {
+    & .search {
+      @apply bg-gray-700 border-gray-600 placeholder-gray-400 focus:ring-offset-primary-400 focus:ring-gray-900 focus:border-gray-900 text-gray-100;
+    }
+  }
 }
 </style>

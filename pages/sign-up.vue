@@ -17,7 +17,9 @@
         </div>
         <h1
           class="text-3xl font-extrabold text-center text-gray-900 font-handlee"
-        >Create your account</h1>
+        >
+Create your account
+</h1>
         <div class="relative mt-6">
           <div class="absolute inset-0 flex items-center" aria-hidden="true">
             <div class="w-full border-t border-gray-300"></div>
@@ -26,7 +28,9 @@
             <nuxt-link
               :to="localePath({ name: 'sign-in' })"
               class="px-2 text-gray-500 bg-white dark:bg-gray-900 hover:text-gray-800"
-            >Do you have an account?</nuxt-link>
+            >
+Do you have an account?
+</nuxt-link>
           </div>
         </div>
         <div class="mt-8">

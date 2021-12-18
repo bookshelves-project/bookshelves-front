@@ -7,14 +7,15 @@
       :cta="author.link"
       :text="author.description"
       :entity="author"
-      :border="false"
       favorite
     >
       <blocks-button-download
         :href="author.download"
         :size="author.size"
         :type="`ZIP`"
-      >{{ author.count }} eBooks</blocks-button-download>
+      >
+        {{ author.count }} eBooks
+      </blocks-button-download>
     </app-header>
     <div>
       <section v-if="series.data.length">
@@ -33,8 +34,12 @@
             }"
           >
             <template #title>{{ $overflow(serie.title, 50) }}</template>
-            <template v-if="serie.count" #subtitle>{{ serie.count }} books</template>
-            <template v-if="serie.language" #extra>{{ formatLanguage(serie.language).label }}</template>
+            <template v-if="serie.count" #subtitle>
+              {{ serie.count }} books
+            </template>
+            <template v-if="serie.language" #extra>
+              {{ formatLanguage(serie.language) }}
+            </template>
           </entity-card>
         </div>
         <div class="mt-14 mb-5">
@@ -67,7 +72,9 @@
               <br />
               vol. {{ book.volume }}
             </template>
-            <template v-if="book.language" #extra>{{ formatLanguage(book.language).label }}</template>
+            <template v-if="book.language" #extra>
+              {{ formatLanguage(book.language) }}
+            </template>
           </entity-card>
         </div>
         <div class="mt-14 mb-5">
@@ -97,36 +104,32 @@ export default {
   mixins: [favorites],
   async asyncData({ app, params, query }) {
     const page = query.page
-    const [
-      author,
-      series,
-      books
-    ] = await Promise.all([
+    const [author, series, books] = await Promise.all([
       app.$axios.$get(`/authors/${params.slug}`),
       app.$axios.$get(
         `/authors/series/${params.slug}?${stringify({
           page: page || 1,
-          perPage: 32
+          perPage: 32,
         })}`
       ),
       app.$axios.$get(
         `/authors/books/${params.slug}?${stringify({
           page: page || 1,
           perPage: 32,
-          standalone: true
+          standalone: true,
         })}`
-      )
+      ),
     ])
 
     return {
       author: author.data,
       series,
-      books
+      books,
     }
   },
   data() {
     return {
-      breadcrumbs: []
+      breadcrumbs: [],
     }
   },
   head() {
@@ -142,25 +145,25 @@ export default {
           image: this.author.cover.og,
           url: this.$nuxt.$route.path,
           profileFirstName: this.author.firstname,
-          profileLastName: this.author.firstname
-        })
-      ]
+          profileLastName: this.author.firstname,
+        }),
+      ],
     }
   },
   created() {
     this.breadcrumbs = [
       {
         url: this.$config.baseURL,
-        text: 'Home'
+        text: 'Home',
       },
       {
         url: `${this.$config.baseURL}/authors`,
-        text: 'Authors'
+        text: 'Authors',
       },
       {
         url: `${this.$config.baseURL}/authors/${this.$route.params.slug}`,
-        text: this.author.name
-      }
+        text: this.author.name,
+      },
     ]
   },
   methods: {
@@ -171,7 +174,7 @@ export default {
     },
     loadBooks(data) {
       this.books.data = data
-    }
+    },
   },
   jsonld() {
     const items = this.breadcrumbs.map((item, index) => ({
@@ -179,8 +182,8 @@ export default {
       position: index + 1,
       item: {
         '@id': item.url,
-        name: item.text
-      }
+        name: item.text,
+      },
     }))
     return {
       '@context': 'https://schema.org',
@@ -191,9 +194,9 @@ export default {
         image: this.author.cover.thumbnail,
         jobTitle: 'Author',
         name: this.author.name,
-        url: this.author.link
-      }
+        url: this.author.link,
+      },
     }
-  }
+  },
 }
 </script>

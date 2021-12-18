@@ -34,7 +34,11 @@
     <div
       class="lg:grid lg:grid-cols-2 divide-x divide-transparent lg:divide-gray-200 lg:dark:divide-gray-600"
     >
-      <blocks-book-serie v-if="book.serie !== null" :book="book" class="lg:pr-10" />
+      <blocks-book-serie
+        v-if="book.serie !== null"
+        :book="book"
+        class="lg:pr-10"
+      />
       <blocks-book-related
         v-if="book.tags?.length || book.genres?.length"
         :book="book"
@@ -56,10 +60,8 @@ const pageTitle = ref<string>()
 // const subtitle = computed(() => {
 // })
 const subtitle = (book: Book) => {
-  const lang = formatLanguage(book.language)?.label
-  const serie = book.serie
-    ? `${book.serie.title}, vol. ${book.volume}, `
-    : ''
+  const lang = formatLanguage(book.language)
+  const serie = book.serie ? `${book.serie.title}, vol. ${book.volume}, ` : ''
   return `${serie}into ${lang}`
 }
 
@@ -77,9 +79,9 @@ title.value = book.value?.title
 
 useMeta({
   bodyAttrs: {
-    itemtype: 'http://schema.org/WebPage'
+    itemtype: 'http://schema.org/WebPage',
   },
-  meta: [{ hid: 'description', name: 'description', content: 'page desc' }]
+  meta: [{ hid: 'description', name: 'description', content: 'page desc' }],
 })
 </script>
 
@@ -88,7 +90,7 @@ export default defineComponent({
   async asyncData({ params, $repository }) {
     const api = await $repository(ApiEndpoint.Book).show([
       params.author,
-      params.slug
+      params.slug,
     ])
 
     const data = api.data
@@ -100,10 +102,10 @@ export default defineComponent({
 
     return {
       book: api.data,
-      pageTitle
+      pageTitle,
     }
   },
-  head: {}
+  head: {},
   // const dynamicMetadata = require('~/utils/metadata/dynamic')
   // const serie = this.book.serie
   //   ? ` · ${this.book.serie.title}, vol. ${this.book.volume} `

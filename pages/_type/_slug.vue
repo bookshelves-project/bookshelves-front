@@ -5,15 +5,18 @@
       :subtitle="document.category ? `Into: ${document.category}` : ''"
       :text="document.description"
       :image="picture"
-      :border="false"
     />
     <div class="flex flex-wrap-reverse w-full xl:col-span-3">
-      <div class="prose prose-lg dark:prose-light">
+      <div class="prose prose-lg dark:prose-invert">
         <nuxt-content :document="document" />
       </div>
       <div class="relative block w-full lg:mx-auto lg:w-1/4 lg:max-w-prose">
-        <div class="lg:sticky lg:top-20 h-full lg:h-auto lg:max-h-(screen-5) max-w-xl lg:mx-auto">
-          <blocks-content-table-of-content :toc="document.toc"></blocks-content-table-of-content>
+        <div
+          class="lg:sticky lg:top-20 h-full lg:h-auto lg:max-h-(screen-5) max-w-xl lg:mx-auto"
+        >
+          <blocks-content-table-of-content
+            :toc="document.toc"
+          ></blocks-content-table-of-content>
         </div>
       </div>
     </div>
@@ -33,12 +36,12 @@ export default {
     }
 
     return {
-      document
+      document,
     }
   },
   data() {
     return {
-      capitalize
+      capitalize,
     }
   },
   head() {
@@ -56,9 +59,9 @@ export default {
           image: `${this.$config.baseURL}/images/home/ereaders.svg`,
           articlePublishedTime: this.document.createdAt,
           articleAuthor: this.$config.appName,
-          articleSection: this.$route.params.type
-        })
-      ]
+          articleSection: this.$route.params.type,
+        }),
+      ],
     }
   },
   computed: {
@@ -69,7 +72,7 @@ export default {
           : this.$route.params.slug
       const picture = `/images/${this.$route.params.type}/${name}.webp`
       return picture
-    }
-  }
+    },
+  },
 }
 </script>
