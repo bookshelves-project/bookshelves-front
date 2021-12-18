@@ -8,23 +8,12 @@ export const useNavigationStore = defineStore({
         label: 'books',
         route: {
           name: 'books',
-          query: {
-            perPage: '32',
-            page: '1',
-            'filter[allow_serie]': 'true',
-            sort: 'title_sort',
-          }
         }
       },
       {
         label: 'series',
         route: {
           name: 'series',
-          query: {
-            perPage: '32',
-            page: '1',
-            sort: 'title_sort',
-          }
         }
       },
       { label: 'authors', route: { name: 'authors' } },
@@ -90,6 +79,12 @@ export const useNavigationStore = defineStore({
             label: 'publishers',
             route: {
               name: 'publishers'
+            }
+          },
+          {
+            label: 'sitemap',
+            route: {
+              name: 'sitemap'
             }
           }
         ]
