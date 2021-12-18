@@ -1,14 +1,17 @@
 import type { Plugin } from '@nuxt/types'
 import { date, FormatDate } from './helpers/date'
+import { Route } from '~/types'
 
 type Truncater = (text: string) => string
 type Overlay = (status: boolean) => void
+type LocalePath = (route: Route) => void
 
 declare module 'vue/types/vue' {
   interface Vue {
     $truncate: Truncater,
     $overlay: Overlay,
-    $date: FormatDate
+    $date: FormatDate,
+    // $localePath: LocalePath
   }
 }
 
@@ -30,6 +33,10 @@ const helperPlugin: Plugin = (_context, inject) => {
     }
   })
   inject('date', date)
+  // inject('localePath', (route: Route) => {
+  //   console.log(route)
+  //   return '/'
+  // })
 }
 
 export default helperPlugin

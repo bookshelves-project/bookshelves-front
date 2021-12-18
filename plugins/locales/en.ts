@@ -24,6 +24,7 @@ export default async () => {
       publishers: 'Publishers',
       legality: 'Legality',
       privacy: 'Privacy',
+      sitemap: 'Sitemap',
       search: {
         placeholder: 'Search for a book, a series or an author'
       }
