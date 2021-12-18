@@ -48,7 +48,7 @@ module.exports = {
     plugin(function ({ addComponents, theme }) {
       addComponents({
         '.main-content': {
-          '@apply container !max-w-7xl lg:pt-6 pt-5 min-h-screen text-black dark:text-white':
+          '@apply container !max-w-7xl lg:pt-6 pt-5 min-h-[70vh] text-black dark:text-white':
             {},
         },
         '.internal-link': {

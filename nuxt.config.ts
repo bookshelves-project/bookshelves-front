@@ -20,7 +20,7 @@ const config: NuxtConfig = {
         tailwindcss: {},
         autoprefixer: {}
       }
-    }
+    },
   },
   // https://nuxtjs.org/docs/configuration-glossary/configuration-css
   css: [
@@ -92,11 +92,10 @@ const config: NuxtConfig = {
   // https://nuxtjs.org/docs/configuration-glossary/configuration-plugins
   plugins: [
     // '~/plugins/bus.client', // Global toasts
-    '~/plugins/helper.ts', // global methods
-    '~/plugins/jsonld', // https://github.com/ymmooot/nuxt-jsonld
+    '~/plugins/helper', // global methods
+    // '~/plugins/jsonld', // https://github.com/ymmooot/nuxt-jsonld
     '~/plugins/repository', // repository pattern
     '~/plugins/toast', // toast alerts
-    '~/plugins/truncate',
     '~/plugins/v-click-outside', // https://github.com/ndelvalle/v-click-outside
     '~/plugins/vue-awesome-swiper.client.js', // https://github.com/surmon-china/vue-awesome-swiper
     '~/plugins/vue-scrollactive' // https://github.com/eddiemf/vue-scrollactive
