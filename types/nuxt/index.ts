@@ -6,3 +6,7 @@ export interface Route {
     params?: Dictionary<string | undefined>,
     query?: Query
 }
+
+export interface ObjectLiteral {
+    [key: string]: any;
+}

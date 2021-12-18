@@ -17,3 +17,24 @@ export interface Application {
   meta_twitter_Creator?: string
   meta_twitter_site?: string
 }
+
+export interface Enums {
+  genders?: string[]
+}
+
+interface Meta {
+  slug?: string;
+}
+
+export interface Language {
+  name?: string;
+  firstChar?: string;
+  count?: number;
+  meta?: Meta;
+}
+
+export interface AppInit {
+  enums: Enums
+  languages: Language[],
+  application: Application
+}
