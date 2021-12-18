@@ -1,7 +1,7 @@
 export enum ApiEndpoint {
   Book = '/books',
   BookRelated = '/books/related',
-  BookSelection = 'books/selection',
+  BookSelection = '/books/selection',
   BookLatest = '/books/latest',
   Serie = '/series',
   SerieBook = '/series/books',

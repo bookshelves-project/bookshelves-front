@@ -18,19 +18,13 @@
           <div class="hidden lg:block lg:ml-4 h-full">
             <div class="flex space-x-6 h-full">
               <nuxt-link
-                v-for="(booksNav, booksNavId) in navigation"
-                :key="booksNavId"
-                :to="
-                  localePath({
-                    name: booksNav.route,
-                  })
-                "
+                v-for="(link, id) in navigation"
+                :key="id"
+                :to="localePath(link.route)"
                 class="inline-flex items-center px-1 pt-1 text-sm font-semibold text-gray-400 transition-colors duration-100 border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700 dark:hover:text-white dark:text-gray-400"
                 aria-current="page"
               >
-                <span class="font-semibold">{{
-                  $t(`nav.${booksNav.label}`)
-                }}</span>
+                <span class="font-semibold">{{ $t(`nav.${link.label}`) }}</span>
               </nuxt-link>
             </div>
           </div>
@@ -39,14 +33,13 @@
           <layout-search-bar />
         </div>
         <div class="flex lg:hidden pr-4">
-          <button
-            type="button"
+          <app-button
+            color="white"
             aria-label="Open side menu"
-            class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors duration-75 p-2 rounded-md inline-flex items-center justify-center hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-600 focus:ring-white dark:focus:ring-gray-900"
             @click="openSidebar"
           >
             <svg-icon name="menu" class="block w-6 h-6" />
-          </button>
+          </app-button>
         </div>
         <div class="hidden lg:block pr-4">
           <div class="flex items-center">
@@ -58,39 +51,21 @@
   </nav>
 </template>
 
-<script>
-import { mapGetters } from 'vuex'
+<script setup lang="ts">
 import { useIndexStore } from '~/stores'
-export default {
-  name: 'Navbar',
-  data() {
-    return {
-      displayIfScrolled: false,
-    }
-  },
-  computed: {
-    ...mapGetters({
-      navigation: 'nav/main',
-    }),
-  },
-  beforeMount() {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll)
-  },
-  methods: {
-    handleScroll() {
-      if (window.scrollY > 50) {
-        this.displayIfScrolled = true
-      } else {
-        this.displayIfScrolled = false
-      }
-    },
-    openSidebar() {
-      const store = useIndexStore()
-      store.toggleSidebar()
-    },
-  },
+import { useNavigationStore } from '~/stores/navigation'
+
+const storeNavigation = useNavigationStore()
+const navigation = storeNavigation.main
+
+const openSidebar = () => {
+  const store = useIndexStore()
+  store.toggleSidebar()
 }
 </script>
+
+<style lang="css" scoped>
+.nuxt-link-exact-active {
+  @apply border-primary-500 text-primary-500 dark:border-white dark:text-gray-100;
+}
+</style>

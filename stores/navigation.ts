@@ -4,10 +4,31 @@ export const useNavigationStore = defineStore({
   id: 'navigation',
   state: () => ({
     main: [
-      { label: 'books', route: 'books' },
-      { label: 'series', route: 'series' },
-      { label: 'authors', route: 'authors' },
-      { label: 'genres-tags', route: 'tags' }
+      {
+        label: 'books',
+        route: {
+          name: 'books',
+          query: {
+            perPage: '32',
+            page: '1',
+            'filter[allow_serie]': 'true',
+            sort: 'title_sort',
+          }
+        }
+      },
+      {
+        label: 'series',
+        route: {
+          name: 'series',
+          query: {
+            perPage: '32',
+            page: '1',
+            sort: 'title_sort',
+          }
+        }
+      },
+      { label: 'authors', route: { name: 'authors' } },
+      { label: 'genres-tags', route: { name: 'tags' } }
     ],
     footer: {
       project: {
@@ -97,13 +118,13 @@ export const useNavigationStore = defineStore({
       {
         label: 'My profile',
         icon: 'user-circle',
-        route: 'profile',
+        route: { name: 'profile' },
         isAdmin: false
       },
       {
         label: 'Settings',
         icon: 'cog',
-        route: 'profile-settings',
+        route: { name: 'profile-settings' },
         isAdmin: false
       }
     ],
@@ -111,13 +132,13 @@ export const useNavigationStore = defineStore({
       {
         label: 'Admin',
         icon: 'control',
-        route: 'profile-admin',
+        route: { name: 'profile-admin' },
         isAdmin: true
       }
     ],
     guest: [
-      { label: 'Sign in', icon: 'login', route: 'sign-in' },
-      { label: 'Sign up', icon: 'register', route: 'sign-up' }
+      { label: 'Sign in', icon: 'login', route: { name: 'sign-in' } },
+      { label: 'Sign up', icon: 'register', route: { name: 'sign-up' } }
     ]
   }),
 })
