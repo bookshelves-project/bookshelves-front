@@ -38,7 +38,8 @@
       "@nuxtjs/color-mode",
       "@pinia/nuxt",
       "cookie-universal-nuxt",
-      "@types/swiper"
+      "@types/swiper",
+      "@types/tailwindcss"
     ],
   },
   "vueCompilerOptions": {

@@ -5,34 +5,34 @@
     & a {
       @apply text-gray-100;
     }
-  }
 
-  & h1,
-  & h2,
-  & h3 {
-    @apply text-white;
-  }
+    & h1,
+    & h2,
+    & h3 {
+      @apply text-white;
+    }
 
-  & code,
-  & pre,
-  & strong {
-    @apply text-white;
-  }
+    & code,
+    & pre,
+    & strong {
+      @apply text-white;
+    }
 
-  & a {
-    @apply transition-colors duration-100 text-gray-100 hover:text-gray-400;
-  }
+    & a {
+      @apply transition-colors duration-100 text-gray-100 hover:text-gray-400;
+    }
 
-  & code {
-    @apply bg-gray-800;
-  }
+    & code {
+      @apply bg-gray-800;
+    }
 
-  & pre {
-    @apply bg-gray-800;
-  }
+    & pre {
+      @apply bg-gray-800;
+    }
 
-  & blockquote {
-    @apply text-gray-400;
+    & blockquote {
+      @apply text-gray-400;
+    }
   }
 }
 
