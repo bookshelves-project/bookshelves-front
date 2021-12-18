@@ -130,18 +130,5 @@ export default class PageBooksIndex extends Vue {
       value: '-created_at',
     },
   ]
-
-  mounted() {
-    if (!this.$route.query.perPage) {
-      this.$router.replace({
-        query: {
-          perPage: '32',
-          page: '1',
-          'filter[allow_serie]': 'true',
-          sort: 'title_sort',
-        },
-      })
-    }
-  }
 }
 </script>

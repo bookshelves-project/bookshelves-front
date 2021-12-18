@@ -5,19 +5,10 @@
     <lazy-blocks-home-cloud-logos :logos="homePage.logos" />
     <lazy-blocks-selected-entities
       class="mt-8 lg:mt-16"
-      eyebrow="Want to read a good book?"
-      title="Selection of books & series"
-      text="If you search a new book to read, check this selection of eBooks."
+      :selection="selection"
     />
     <lazy-blocks-home-features :features="homePage.features" />
-    <lazy-blocks-selected-entities
-      class="mt-8 lg:mt-16"
-      :endpoint="apiEndpoint.BookLatest"
-      eyebrow="Hyped by new books?"
-      title="Latest books & series"
-      text="You check new books & series on? Here you have latest books!"
-      right
-    />
+    <lazy-blocks-selected-entities class="mt-8 lg:mt-16" :selection="latest" />
     <lazy-blocks-home-features-highlights :highlights="homePage.highlights" />
     <lazy-blocks-home-cta />
   </div>
@@ -31,6 +22,7 @@ import {
   Application,
   HomePage,
   MetaInfo,
+  SelectedEntities,
 } from '~/types'
 
 @Component({
@@ -57,6 +49,21 @@ export default class PageIndex extends Vue {
   app: Application = {}
   homePage: HomePage = {}
   apiEndpoint = ApiEndpoint
+  latest: SelectedEntities = {
+    endpoint: ApiEndpoint.BookLatest,
+    eyebrow: 'Hyped by new books?',
+    right: true,
+    title: 'Latest books & series',
+    text: 'You check new books & series on? Here you have latest books!',
+  }
+
+  selection: SelectedEntities = {
+    endpoint: ApiEndpoint.BookSelection,
+    eyebrow: 'Want to read a good book?',
+    right: false,
+    title: 'Selection of books & series',
+    text: 'If you search a new book to read, check this selection of eBooks.',
+  }
 
   get computedMessage(): HomePage {
     return this.homePage

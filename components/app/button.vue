@@ -109,7 +109,8 @@ export default {
 
 <style lang="css" scoped>
 .btn {
-  @apply inline-flex items-center px-4 py-2 text-base font-semibold rounded-md transition-colors duration-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 border !important;
+  @apply inline-flex items-center px-4 py-2 text-base font-semibold rounded-md transition-colors duration-100 border !important;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 dark:focus:ring-gray-900;
 }
 .secondary {
   @apply text-primary-600 bg-primary-100 dark:bg-primary-700 dark:hover:bg-primary-800 border-transparent hover:bg-primary-200 hover:text-primary-600 dark:text-gray-200 !important;

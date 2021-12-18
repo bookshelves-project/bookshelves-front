@@ -47,18 +47,7 @@ import Pagination from '~/components/blocks/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import { formatLanguage, formatAuthors } from '~/utils/methods'
 
-const { $config, route } = useContext()
-const router = useRouter()
-
-if (!route.value.query.perPage) {
-  router.replace({
-    query: {
-      perPage: '32',
-      page: '1',
-      sort: 'title_sort',
-    },
-  })
-}
+const { $config } = useContext()
 
 const series = ref<Serie[]>()
 const meta = ref<ApiMeta>()

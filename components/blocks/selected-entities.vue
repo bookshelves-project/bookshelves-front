@@ -1,26 +1,26 @@
 <template>
   <transition name="fade">
     <section
-      v-if="isDisplay && !isLoading"
+      v-if="isDisplay && !isLoading && entities"
       class="selected-books selected-entities-swiper max-w-7xl container mx-auto"
     >
       <div
-        :class="right ? 'text-right' : 'text-left'"
+        :class="selection.right ? 'text-right' : 'text-left'"
         class="text-sm font-semibold tracking-wide uppercase text-primary-600"
       >
-        {{ eyebrow }}
+        {{ selection.eyebrow }}
       </div>
       <h2
-        :class="right ? 'text-right' : 'text-left'"
+        :class="selection.right ? 'text-right' : 'text-left'"
         class="mt-3 text-3xl font-extrabold text-gray-700 dark:text-gray-300 font-handlee"
       >
-        {{ title }}
+        {{ selection.title }}
       </h2>
       <p
-        :class="right ? 'text-right' : 'text-left'"
+        :class="selection.right ? 'text-right' : 'text-left'"
         class="mt-5 text-lg text-gray-900 dark:text-gray-100"
       >
-        {{ text }}
+        {{ selection.text }}
       </p>
       <div class="mt-10">
         <div
@@ -36,8 +36,8 @@
           >
             <swiper-slide v-for="(entity, index) in entities" :key="index">
               <blocks-entity-card
-                :cover="entity.cover.thumbnail"
-                :color="entity.cover.color"
+                :cover="entity.cover?.thumbnail"
+                :color="entity.cover?.color"
                 :title="entity.title"
                 :route="{
                   name:
@@ -52,7 +52,11 @@
                 class="slide slide--thumbniail"
                 :class="`slide--${index}`"
               >
-                <template #title>{{ overflow(entity.title, 50) }}</template>
+                <template #title>
+                  <div class="line-clamp-2">
+                    {{ entity.title }}
+                  </div>
+                </template>
                 <template #subtitle>
                   {{ capitalize(entity.meta.entity) }}
                 </template>
@@ -73,92 +77,70 @@
   </transition>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ApiEndpoint, ApiResponse, Entity, SelectedEntities } from '~/types'
 import { capitalize, formatAuthors, overflow } from '~/utils/methods'
 
-export default {
-  name: 'SelectedEntities',
-  props: {
-    endpoint: {
-      type: String,
-      default: '/books/selection',
-    },
-    right: {
-      type: Boolean,
-      default: false,
-    },
-    eyebrow: {
-      type: String,
-      default: null,
-    },
-    title: {
-      type: String,
-      default: null,
-    },
-    text: {
-      type: String,
-      default: null,
-    },
+const props = defineProps<{
+  selection: SelectedEntities
+}>()
+
+const { $repository } = useContext()
+
+const isLoading = ref(true)
+const entities = ref<Entity[]>()
+const isDisplay = ref(true)
+const main = {
+  loop: false,
+  spaceBetween: 10,
+  slidesPerView: 1,
+  slidesPerGroup: 1,
+  grabCursor: true,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
   },
-  data() {
-    return {
-      isLoading: true,
-      entities: null,
-      isDisplay: true,
-      main: {
-        loop: false,
-        spaceBetween: 10,
-        slidesPerView: 1,
-        slidesPerGroup: 1,
-        grabCursor: true,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        paginationClickable: true,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        breakpoints: {
-          500: {
-            slidesPerView: 2,
-            slidesPerGroup: 2,
-          },
-          800: {
-            slidesPerView: 3,
-            slidesPerGroup: 3,
-          },
-          1200: {
-            slidesPerView: 4,
-            slidesPerGroup: 4,
-          },
-        },
-      },
-    }
+  paginationClickable: true,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
   },
-  async mounted() {
-    await this.load()
-  },
-  methods: {
-    capitalize,
-    formatAuthors,
-    overflow,
-    async load() {
-      try {
-        const entities = await this.$axios.$get(this.endpoint)
-        this.entities = entities.data
-        if (!this.entities.length) {
-          this.isDisplay = false
-        }
-        this.isLoading = false
-      } catch (error) {
-        console.error(error)
-        this.isDisplay = false
-      }
+  breakpoints: {
+    500: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+    },
+    800: {
+      slidesPerView: 3,
+      slidesPerGroup: 3,
+    },
+    1200: {
+      slidesPerView: 4,
+      slidesPerGroup: 4,
     },
   },
 }
+
+const load = async () => {
+  try {
+    const api: ApiResponse<Entity[]> = await $repository(
+      props.selection.endpoint as ApiEndpoint
+    ).find()
+    entities.value = api.data
+
+    if (!entities.value.length) {
+      isDisplay.value = false
+    }
+    isLoading.value = false
+  } catch (error) {
+    console.error(error)
+    isDisplay.value = false
+  }
+}
+
+onMounted(() => {
+  load()
+})
 </script>
 
 <style lang="css" scoped>
