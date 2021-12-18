@@ -33,32 +33,43 @@
         <h2
           class="text-gray-500 dark:text-gray-400 text-xs font-medium uppercase tracking-wide"
         >
-Helper
-</h2>
+          Helper
+        </h2>
         <ul role="list" class="mt-3 grid grid-cols-1 space-y-4">
           <li
-            v-for="(item,id) in links"
+            v-for="(item, id) in links"
             :key="id"
             class="shadow-sm rounded-md border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-75"
           >
             <component
-              :is="item.method ? 'button' : 'a'"
-              target="_blank"
-              :href="item.url"
-              rel="noopener noreferrer"
+              :is="item.method ? 'button' : 'nuxt-link'"
+              :to="localePath(item.route)"
               type="button"
               class="flex col-span-1 w-full text-left"
-              @click="item.method ? item.method() : isOpen = false"
+              @click.native="item.method ? item.method() : (isOpen = false)"
             >
               <div
                 class="shrink-0 flex items-center justify-center w-16 text-sm font-medium rounded-l-md"
               >
-                <svg-icon v-if="item.icon" :name="item.icon" class="w-6 h-6 dark:text-white" />
-                <img v-else-if="item.img" :src="item.img" :alt="item.label" class="w-6 h-6" />
+                <svg-icon
+                  v-if="item.icon"
+                  :name="item.icon"
+                  class="w-6 h-6 dark:text-white"
+                />
+                <img
+                  v-else-if="item.img"
+                  :src="item.img"
+                  :alt="item.label"
+                  class="w-6 h-6"
+                />
               </div>
-              <div class="flex-1 flex items-center justify-between rounded-r-md truncate">
+              <div
+                class="flex-1 flex items-center justify-between rounded-r-md truncate"
+              >
                 <div class="flex-1 py-2 text-sm truncate">
-                  <div class="text-gray-900 dark:text-gray-100 font-medium">{{ item.label }}</div>
+                  <div class="text-gray-900 dark:text-gray-100 font-medium">
+                    {{ item.label }}
+                  </div>
                   <p class="text-gray-500">{{ item.description }}</p>
                 </div>
               </div>
@@ -71,11 +82,9 @@ Helper
 </template>
 
 <script setup lang="ts">
-import { wrapProperty } from '@nuxtjs/composition-api'
 import { ToastType } from '~/types'
 
 const ctx = useContext()
-// const useNuxt = wrapProperty('$nuxt', false)
 const isDev = ctx.isDev
 const router = useRouter()
 const isOpen = ref(false)
@@ -90,11 +99,11 @@ const routes = () => {
     router.options.routes.forEach((route) => {
       routes.push({
         name: route.name,
-        path: route.path
+        path: route.path,
       })
     })
     console.log('------------')
-    routes = routes.filter(e => e.name.includes('__en'))
+    routes = routes.filter((e) => e.name.includes('__en'))
     routes = routes.sort((a, b) =>
       a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
     )
@@ -119,56 +128,16 @@ const links = [
     label: 'Routes',
     description: 'Print all routes in console',
     method: routes,
-    icon: 'router'
+    icon: 'router',
   },
   {
-    label: 'Nuxt Typescript',
-    description: 'TypeScript Support for Nuxt.js',
-    url: 'https://typescript.nuxtjs.org/guide/introduction',
-    img: 'https://typescript.nuxtjs.org/icon.svg'
+    label: 'Upgrade',
+    description: 'A guide about Bookshelves upgrade',
+    route: {
+      name: 'type-slug',
+      params: { type: 'pages', slug: 'upgrade' },
+    },
+    img: 'https://nuxtjs.org/design-kit/colored-logo.svg',
   },
-  {
-    label: 'Nuxt Composition API',
-    description: 'Vue 3 Composition API in Nuxt',
-    url: 'https://composition-api.nuxtjs.org/getting-started/introduction',
-    img: 'https://v3.vuejs.org/logo.png'
-  },
-  {
-    label: 'Windi CSS',
-    description: 'Next generation utility-first CSS framework',
-    url: 'https://windicss.org/guide/',
-    img: 'https://windicss.org/assets/logo.svg'
-  },
-  {
-    label: 'Nuxt 2',
-    description: 'Documentation',
-    url: 'https://nuxtjs.org/docs/get-started/installation/',
-    img: 'https://nuxtjs.org/design-kit/colored-logo.svg'
-  },
-  {
-    label: 'Nuxt 3',
-    description: 'Documentation',
-    url: 'https://v3.nuxtjs.org/docs/usage/data-fetching',
-    img: 'https://nuxtjs.org/design-kit/colored-logo.svg'
-  },
-  {
-    label: 'Vue 3 Composition API',
-    description: 'Documentation',
-    url: 'https://v3.vuejs.org/guide/composition-api-introduction.html',
-    img: 'https://v3.vuejs.org/logo.png'
-  },
-  {
-    label: 'Vue 3 Lifecycle Hooks',
-    description: 'Documentation',
-    url: 'https://v3.vuejs.org/guide/composition-api-lifecycle-hooks.html',
-    img: 'https://v3.vuejs.org/logo.png'
-  },
-  {
-    label: 'lindsay-wardell blog',
-    description: 'Documentation',
-    url: 'https://www.thisdot.co/author/lindsay-wardell',
-    img: 'https://v3.vuejs.org/logo.png'
-  }
 ]
-
 </script>
