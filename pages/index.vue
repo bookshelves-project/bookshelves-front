@@ -1,6 +1,5 @@
 <template>
   <div v-if="homePage">
-    <!-- <img src="/images/home/ereaders.svg" alt="" class="h-64" /> -->
     <lazy-blocks-home-hero :hero="homePage.hero" class="pt-5" />
     <lazy-blocks-home-statistics :statistics="homePage.statistics" />
     <lazy-blocks-home-cloud-logos :logos="homePage.logos" />
@@ -26,8 +25,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import type { MetaInfo } from 'vue-meta'
-import { ApiEndpoint, ApiResponse, Application, HomePage } from '~/types'
+import {
+  ApiEndpoint,
+  ApiResponse,
+  Application,
+  HomePage,
+  MetaInfo,
+} from '~/types'
 
 @Component({
   async asyncData({ $repository, $cookies, i18n, $pinia }) {
