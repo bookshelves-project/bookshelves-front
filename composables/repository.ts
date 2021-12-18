@@ -20,20 +20,22 @@ export class Repository {
     this.response = response
   }
 
-  url(params: string | string[] | undefined) {
+  url(params: string | string[] | undefined, query?: Query) {
     let url = `${this.endpoint}`
+    let queryParams = ''
     if (params) {
       const routeParams = params instanceof Array ? params.join('/') : params
       url = `${url}/${routeParams}`
     }
+    if (query) {
+      queryParams = `?${stringify({ ...query })}`
+    }
 
-    return url
+    return `${url}${queryParams}`
   }
 
   find(query?: Query, params?: string | string[]): Promise<ApiResponse<any>> {
-    const url = `${this.url(params)}?${stringify({ ...query })}`
-
-    return this.axios.$get(url)
+    return this.axios.$get(this.url(params, query))
       .then((response: ApiResponse<any>) => response)
       .catch((e) => {
         console.error(e)
@@ -48,9 +50,7 @@ export class Repository {
    * Get all entities
    */
   index(query?: Query, params?: string | string[]): Promise<ApiPaginateResponse<any>> {
-    const url = `${this.url(params)}?${stringify({ ...query })}`
-
-    return this.axios.$get(url)
+    return this.axios.$get(this.url(params, query))
       .then((response: ApiPaginateResponse<any>) => response)
       .catch((e) => {
         console.error(e)
