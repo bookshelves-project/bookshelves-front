@@ -23,10 +23,21 @@ export interface Tag {
   meta?: TagMeta;
 }
 
+export interface EntityMeta {
+  entity?: string;
+  author?: string;
+  slug?: string;
+  show?: string;
+}
+
 export interface Entity {
+  meta: EntityMeta;
   title?: string;
   name?: string;
   authors?: Author[];
-  cover?: Cover;
+  serie?: string;
   language?: string;
+  volume?: number;
+  cover?: Cover;
+  firstChar?: null;
 }

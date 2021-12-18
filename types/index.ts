@@ -7,6 +7,7 @@ import type { Entity, Tag } from './entities/index'
 import type { Content } from './nuxt/content'
 import type { Application, HomePage, AppInit } from './cms'
 import type { Route, ObjectLiteral } from './nuxt'
+import type { SelectedEntities } from './nuxt/components'
 import { Toast, ToastAuto, ToastType } from './nuxt/toast'
 import type { SwiperElement } from './nuxt/swiper'
 import { ApiEndpoint } from './api/endpoints'
@@ -36,6 +37,7 @@ export {
   Route,
   MetaInfo,
   ObjectLiteral,
+  SelectedEntities,
   // toast
   Toast,
   ToastAuto,

@@ -1,6 +1,6 @@
 import { HomePage } from './home-page'
 
-export {
+export type {
   HomePage
 }
 export interface Application {
