@@ -91,7 +91,7 @@ import Pagination from '~/components/blocks/pagination.vue'
       title: this.title,
     }
   },
-  watchQuery: ['page', 'filter[allow_serie]', 'filter[languages]', 'sort'],
+  watchQuery: ['page', 'filter[disallow_serie]', 'filter[languages]', 'sort'],
   methods: {
     overflow,
     formatLanguage,
