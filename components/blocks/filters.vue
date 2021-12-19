@@ -23,7 +23,7 @@
             >
               <svg-icon
                 name="arrow-sm-right"
-                class="w-5 h-5 text-gray-500 transform"
+                class="w-5 h-5 text-gray-500 dark:text-gray-300 transform"
                 :class="
                   $route.query.sort.includes('-') ? '-rotate-90' : 'rotate-90'
                 "
@@ -49,12 +49,10 @@
                 />
                 <blocks-filters-option
                   v-if="negligible"
-                  filter="filter[negligible]"
-                  label="Negligible"
+                  filter="filter[show_negligible]"
+                  label="Show negligible"
                   :options="negligibleOptions"
-                  type="button"
-                  align="right"
-                  click-close
+                  type="switch"
                 />
                 <blocks-filters-option
                   v-if="languages"

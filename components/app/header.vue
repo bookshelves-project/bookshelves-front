@@ -42,7 +42,7 @@
             <div class="sm:flex">
               <h1
                 id="message-heading"
-                class="text-2xl font-extrabold font-handlee text-primary-600 text-center lg:text-left w-full"
+                class="text-2xl font-extrabold font-handlee text-primary-600 dark:text-primary-500 text-center lg:text-left w-full"
               >
                 {{ title }}
               </h1>

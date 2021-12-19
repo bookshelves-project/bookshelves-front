@@ -21,7 +21,9 @@
             "
             class="text-sm border-b border-gray-900 dark:border-gray-100"
           >
-            <span class="font-medium text-gray-900 dark:text-gray-100">{{ comment.user.name }}</span>
+            <span class="font-medium text-gray-900 dark:text-gray-100">{{
+              comment.user.name
+            }}</span>
           </nuxt-link>
         </div>
         <fields-rating-stars
@@ -30,7 +32,7 @@
           class="mt-2 mb-1"
           disable
         />
-        <div class="comment-text prose prose-lg dark:prose-light">
+        <div class="comment-text prose prose-lg dark:prose-invert">
           <div
             :ref="comment.id"
             class="mt-1 text-sm text-gray-700 dark:text-gray-300 light-md overflow-hidden"
@@ -49,16 +51,20 @@
         </div>
         <div class="flex items-center mt-2 space-x-2 text-sm">
           <div>
-            <span
-              class="font-medium text-gray-500"
-            >Posted from {{ calExactTimeDiff(comment.createdAt) }}</span>
+            <span class="font-medium text-gray-500"
+              >Posted from {{ calExactTimeDiff(comment.createdAt) }}</span
+            >
             <span
               v-if="comment.createdAt !== comment.updatedAt"
               class="font-medium text-gray-500"
-            >, modified from {{ calExactTimeDiff(comment.updatedAt) }}</span>
+              >, modified from {{ calExactTimeDiff(comment.updatedAt) }}</span
+            >
           </div>
           <button
-            v-if="$auth.$state.loggedIn && comment.user.id === $auth.$state.user.data.id"
+            v-if="
+              $auth.$state.loggedIn &&
+              comment.user.id === $auth.$state.user.data.id
+            "
             type="button"
             class="text-gray-300 dark:text-gray-200 hover:text-gray-400 dark:hover:text-gray-300"
             title="Delete"
@@ -81,12 +87,12 @@ export default {
   props: {
     comment: {
       type: Object,
-      default: () => { }
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
-      overflow: true
+      overflow: true,
     }
   },
   methods: {
@@ -96,8 +102,8 @@ export default {
     },
     deleteComment(id) {
       this.$emit('destroy', id)
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -118,7 +124,7 @@ export default {
   }
 
   & .comment-text .overflow-comment p:after {
-    content: "\A";
+    content: '\A';
     white-space: pre;
   }
 }

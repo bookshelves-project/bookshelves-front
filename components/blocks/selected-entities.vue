@@ -128,10 +128,12 @@ const load = async () => {
     ).find()
     entities.value = api.data
 
-    if (!entities.value.length) {
-      isDisplay.value = false
+    if (entities.value) {
+      if (!entities.value.length) {
+        isDisplay.value = false
+      }
+      isLoading.value = false
     }
-    isLoading.value = false
   } catch (error) {
     console.error(error)
     isDisplay.value = false

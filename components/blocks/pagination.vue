@@ -1,8 +1,16 @@
 <template>
-  <nav class="flex justify-between px-4 border-t border-gray-200 dark:border-gray-700 sm:px-0">
+  <nav
+    class="flex justify-between px-4 border-t border-gray-200 dark:border-gray-700 sm:px-0"
+  >
     <div class="hidden sm:flex flex-1 w-0 -mt-px item-ext">
       <nuxt-link v-slot="{ navigate }" :to="linkGen(1)" custom>
-        <component :is="getTag(1)" class="external-pagination" :to="linkGen(1)" @click="navigate">
+        <component
+          :is="getTag(1)"
+          class="external-pagination"
+          :to="linkGen(1)"
+          title="First"
+          @click="navigate"
+        >
           <svg-icon
             name="arrow-narrow-right"
             class="w-5 h-5 mr-3 text-gray-400 rotate-180 my-auto"
@@ -21,8 +29,8 @@
             aria-label="Previous"
             @click="navigate"
           >
-‹
-</component>
+            ‹
+          </component>
         </nuxt-link>
       </div>
       <div
@@ -44,8 +52,8 @@
             aria-label="Next"
             @click="navigate"
           >
-›
-</component>
+            ›
+          </component>
         </nuxt-link>
       </div>
     </div>
@@ -60,8 +68,8 @@
             aria-label="Previous"
             @click="navigate"
           >
-‹
-</component>
+            ‹
+          </component>
         </nuxt-link>
       </div>
       <div v-if="showFirstDots" class="item">
@@ -83,9 +91,7 @@
             @click="navigate"
           >
             <em class="border-none" style="padding: 0">
-              {{
-                pageNum + startNumber - 1
-              }}
+              {{ pageNum + startNumber - 1 }}
             </em>
           </component>
         </nuxt-link>
@@ -103,8 +109,8 @@
             aria-label="Next"
             @click="navigate"
           >
-{{ pages }}
-</component>
+            {{ pages }}
+          </component>
         </nuxt-link>
       </div>
       <div class="item">
@@ -117,8 +123,8 @@
             aria-label="Next"
             @click="navigate"
           >
-›
-</component>
+            ›
+          </component>
         </nuxt-link>
       </div>
     </div>
@@ -128,10 +134,14 @@
           :is="getTag(pages)"
           class="external-pagination"
           :to="linkGen(pages)"
+          title="Last"
           @click="navigate"
         >
           Last
-          <svg-icon name="arrow-narrow-right" class="w-5 h-5 ml-3 text-gray-400" />
+          <svg-icon
+            name="arrow-narrow-right"
+            class="w-5 h-5 ml-3 text-gray-400"
+          />
         </component>
       </nuxt-link>
     </div>
@@ -143,17 +153,17 @@ export default {
   props: {
     pages: {
       type: Number,
-      default: 1
+      default: 1,
     },
     currentPage: {
       type: Number,
-      default: 1
-    }
+      default: 1,
+    },
   },
   data() {
     return {
       ellipsesThreshold: 3,
-      limit: 5
+      limit: 5,
     }
   },
   computed: {
@@ -228,7 +238,7 @@ export default {
         return parseInt(this.limit, 10)
       }
       return parseInt(this.limit, 10)
-    }
+    },
   },
   created() {
     if (this.pages >= 8) {
@@ -247,7 +257,7 @@ export default {
       newQuery.page = pageNum.toString()
       const newRoute = {
         name: route.name || 'index',
-        query: { ...newQuery }
+        query: { ...newQuery },
       }
 
       return newRoute
@@ -257,12 +267,12 @@ export default {
     },
     getTag(pageNum) {
       return this.isActive(pageNum) ? 'span' : 'nuxt-link'
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .rotate-180 {
   transform: rotate(180deg);
 }
@@ -287,19 +297,19 @@ em {
     @apply opacity-50;
   }
   & a {
-    @apply hover:text-gray-700 hover:border-gray-300;
+    @apply hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-100;
   }
 }
 .item {
   & a,
   & span {
-    @apply inline-flex items-center px-4 pt-4 text-sm font-medium text-gray-500 border-t-2 border-transparent dark:text-gray-100;
+    @apply inline-flex items-center px-4 pt-4 text-sm font-medium text-gray-500 border-t-2 border-transparent dark:text-gray-400;
   }
   & span {
     @apply opacity-50;
   }
   & a {
-    @apply hover:text-gray-700 hover:border-gray-300;
+    @apply hover:text-gray-700 hover:border-gray-300 dark:hover:text-gray-100;
   }
 
   &.active {
