@@ -65,7 +65,7 @@ const openSidebar = () => {
 </script>
 
 <style lang="css" scoped>
-.nuxt-link-exact-active {
+.nuxt-link-active {
   @apply border-primary-500 text-primary-500 dark:border-white dark:text-gray-100;
 }
 </style>

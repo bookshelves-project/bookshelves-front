@@ -31,7 +31,7 @@
         <nuxt-link
           to="/"
           class="inline-flex items-center w-auto h-8"
-          exact-active-class="active-logo"
+          active-class="active-logo"
         >
           <span class="inline-flex items-center" @click="closeSidebar">
             <img
@@ -48,7 +48,7 @@
       <div class="flex-1 h-0 mt-5 overflow-y-auto">
         <nav class="px-2">
           <div class="space-y-1">
-            <nuxt-link to="/" class="link group">
+            <nuxt-link to="/" class="link group" active-class="active-logo">
               <span
                 class="w-full px-2 py-4 font-semibold"
                 @click="closeSidebar"
@@ -201,7 +201,7 @@ const logout = () => {
 .link {
   @apply flex items-center text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700;
 }
-.nuxt-link-exact-active {
+.nuxt-link-active {
   @apply text-black bg-gray-200 dark:text-white dark:bg-gray-600;
 }
 </style>

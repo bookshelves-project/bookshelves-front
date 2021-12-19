@@ -46,7 +46,7 @@
               :to="localePath(item.route)"
               type="button"
               class="flex col-span-1 w-full text-left"
-              @click.native="item.method ? item.method() : (isOpen = false)"
+              @click="item.method ? item.method() : (isOpen = false)"
             >
               <div
                 class="shrink-0 flex items-center justify-center w-16 text-sm font-medium rounded-l-md"
@@ -131,11 +131,11 @@ const links = [
     icon: 'router',
   },
   {
-    label: 'Upgrade',
-    description: 'A guide about Bookshelves upgrade',
+    label: 'Roadmap',
+    description: 'A guide about Bookshelves roadmap',
     route: {
       name: 'type-slug',
-      params: { type: 'pages', slug: 'upgrade' },
+      params: { type: 'pages', slug: 'roadmap' },
     },
     img: 'https://nuxtjs.org/design-kit/colored-logo.svg',
   },
