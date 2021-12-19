@@ -34,42 +34,42 @@ export class Repository {
     return `${url}${queryParams}`
   }
 
-  find(query?: Query, params?: string | string[]): Promise<ApiResponse<any>> {
+  find<T>(query?: Query, params?: string | string[]): Promise<ApiResponse<T>> {
     return this.axios.$get(this.url(params, query))
-      .then((response: ApiResponse<any>) => response)
+      .then((response: ApiResponse<T>) => response)
       .catch((e) => {
         console.error(e)
         if (this.handleError) {
           this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
         }
-        return {} as ApiResponse<any>
+        return {} as ApiResponse<T>
       })
   }
 
   /**
    * Get all entities
    */
-  index(query?: Query, params?: string | string[]): Promise<ApiPaginateResponse<any>> {
+  index<T>(query?: Query, params?: string | string[]): Promise<ApiPaginateResponse<T>> {
     return this.axios.$get(this.url(params, query))
-      .then((response: ApiPaginateResponse<any>) => response)
+      .then((response: ApiPaginateResponse<T>) => response)
       .catch((e) => {
         console.error(e)
         if (this.handleError) {
           this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
         }
-        return {} as ApiPaginateResponse<any>
+        return {} as ApiPaginateResponse<T>
       })
   }
 
-  show(params: string | string[]): Promise<ApiResponse<any>> {
+  show<T>(params: string | string[]): Promise<ApiResponse<T>> {
     return this.axios.$get(this.url(params))
-      .then((response: ApiResponse<any>) => response)
+      .then((response: ApiResponse<T>) => response)
       .catch((e) => {
         console.error(e)
         if (this.handleError) {
           this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
         }
-        return {} as ApiPaginateResponse<any>
+        return {} as ApiResponse<T>
       })
   }
 
