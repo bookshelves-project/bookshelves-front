@@ -67,6 +67,11 @@
             </swiper-slide>
             <div slot="pagination" class="swiper-pagination"></div>
           </swiper>
+          <div v-if="route" class="mt-6">
+            <app-button :to="route" class="w-full" color="white" align="center">
+              View all results
+            </app-button>
+          </div>
         </section>
       </client-only>
     </div>
