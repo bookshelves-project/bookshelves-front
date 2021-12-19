@@ -1,18 +1,16 @@
+import { NuxtConfig } from '@nuxt/types'
 import metadata from '.'
+import { HeadElement, HeadMeta } from '~/types'
 
-const baseUrl = `${process.env.BASE_URL}`
-const homeUrl = `${baseUrl}/`
-const homeImage = `${process.env.BASE_URL}/default.jpg`
-
-const metadataDynamic = (meta?: any) => {
+const metadataDynamic = (meta?: HeadMeta, config?: NuxtConfig): HeadElement[] => {
   return [
-    ...getMeta(meta),
-    ...getOpenGraph(meta),
-    ...getTwitterCard(meta)
+    ...basic(meta),
+    ...openGraph(meta, config),
+    ...twitterCard(meta, config)
   ]
 }
 
-function getMeta(meta: any) {
+const basic = (meta?: HeadMeta): HeadElement[] => {
   const metaLocal = meta || {}
   let metaDesc = metaLocal.description
     ? metaLocal.description
@@ -29,7 +27,7 @@ function getMeta(meta: any) {
     }
   ]
 }
-function getOpenGraph(meta: any) {
+const openGraph = (meta?: HeadMeta, config?: NuxtConfig): HeadElement[] => {
   const metaLocal = meta || {}
   return [
     {
@@ -40,7 +38,7 @@ function getOpenGraph(meta: any) {
     {
       hid: 'og:url',
       property: 'og:url',
-      content: metaLocal.url ? `${baseUrl}${metaLocal.url}` : homeUrl
+      content: metaLocal.route ? `${config?.baseURL}${metaLocal.route}` : `${config?.baseURL}/`
     },
     {
       hid: 'og:title',
@@ -57,29 +55,29 @@ function getOpenGraph(meta: any) {
     {
       hid: 'og:image',
       property: 'og:image',
-      content: metaLocal.image ? metaLocal.image : homeImage
+      content: metaLocal.image ? metaLocal.image : `${config?.baseURL}/default.jpg`
     },
     {
       hid: 'og:image:alt',
       property: 'og:image:alt',
       content: metaLocal.title ? metaLocal.title : metadata.website.title
     },
-    additionalOpenGraph(
-      metaLocal.articlePublishedTime,
-      'article:published_time'
-    ),
-    additionalOpenGraph(metaLocal.articleAuthor, 'article:author'),
-    additionalOpenGraph(metaLocal.articleSection, 'article:section'),
-    additionalOpenGraph(metaLocal.bookISBN, 'book:isbn'),
-    additionalOpenGraph(metaLocal.bookAuthor, 'book:author'),
-    additionalOpenGraph(metaLocal.bookReleaseDate, 'book:release_date'),
-    additionalOpenGraph(metaLocal.bookTag, 'book:tag'),
-    additionalOpenGraph(metaLocal.profileFirstName, 'profile:first_name'),
-    additionalOpenGraph(metaLocal.profileLastName, 'profile:last_name')
+    // additionalOpenGraph(
+    //   metaLocal.articlePublishedTime,
+    //   'article:published_time'
+    // ),
+    // additionalOpenGraph(metaLocal.articleAuthor, 'article:author'),
+    // additionalOpenGraph(metaLocal.articleSection, 'article:section'),
+    // additionalOpenGraph(metaLocal.bookISBN, 'book:isbn'),
+    // additionalOpenGraph(metaLocal.bookAuthor, 'book:author'),
+    // additionalOpenGraph(metaLocal.bookReleaseDate, 'book:release_date'),
+    // additionalOpenGraph(metaLocal.bookTag, 'book:tag'),
+    // additionalOpenGraph(metaLocal.profileFirstName, 'profile:first_name'),
+    // additionalOpenGraph(metaLocal.profileLastName, 'profile:last_name')
   ]
 }
 
-function getTwitterCard(meta: any) {
+const twitterCard = (meta?: HeadMeta, config?: NuxtConfig): HeadElement[] => {
   const metaLocal = meta || {}
   return [
     {
@@ -97,13 +95,13 @@ function getTwitterCard(meta: any) {
     {
       hid: 'twitter:image',
       name: 'twitter:image',
-      content: metaLocal.image ? metaLocal.image : homeImage
+      content: metaLocal.image ? metaLocal.image : `${config?.baseURL}/default.jpg`
     }
   ]
 }
 
-function additionalOpenGraph(customMeta: string, hid: string) {
-  return customMeta ? { hid, property: hid, content: customMeta } : ''
+const additionalOpenGraph = (customMeta?: string, hid?: string): HeadElement | null => {
+  return customMeta ? { hid, property: hid, content: customMeta } : null
 }
 
 export default metadataDynamic

@@ -94,6 +94,7 @@ const config: NuxtConfig = {
     // '~/plugins/bus.client', // Global toasts
     '~/plugins/helper', // global methods
     // '~/plugins/jsonld', // https://github.com/ymmooot/nuxt-jsonld
+    '~/plugins/metadata',
     '~/plugins/repository', // repository pattern
     '~/plugins/toast', // toast alerts
     '~/plugins/v-click-outside', // https://github.com/ndelvalle/v-click-outside

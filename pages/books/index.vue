@@ -19,7 +19,9 @@
         }"
       >
         <template #title>
-          <span>{{ overflow(book.title, 50) }}</span>
+          <span class="line-clamp-2">
+            {{ book.title }}
+          </span>
         </template>
         <template #subtitle>
           <span>{{ formatAuthors(book.authors) }}</span>
@@ -56,21 +58,14 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { useIndexStore } from '~/stores'
-import {
-  ApiEndpoint,
-  ApiMeta,
-  Application,
-  Book,
-  MetaInfo,
-  FormatLanguageType,
-} from '~/types'
-import { overflow, formatLanguage, formatAuthors } from '@/utils/methods'
+import { ApiEndpoint, ApiMeta, Application, Book, MetaInfo } from '~/types'
+import { formatLanguage, formatAuthors } from '@/utils/methods'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import Pagination from '~/components/blocks/pagination.vue'
 
 @Component({
-  async asyncData({ query, $repository, $pinia }) {
-    const api = await $repository(ApiEndpoint.Book).index({
+  async asyncData({ query, $repository }) {
+    const api = await $repository(ApiEndpoint.Book).index<Book>({
       page: (query.page as string) || '1',
       perPage: '32',
       ...query,
@@ -89,11 +84,14 @@ import Pagination from '~/components/blocks/pagination.vue'
   head(this: PageBooksIndex): MetaInfo {
     return {
       title: this.title,
+      meta: this.$metadata({
+        title: this.title,
+        description: this.description,
+      }),
     }
   },
   watchQuery: ['page', 'filter[disallow_serie]', 'filter[languages]', 'sort'],
   methods: {
-    overflow,
     formatLanguage,
     formatAuthors,
   },
@@ -103,11 +101,10 @@ import Pagination from '~/components/blocks/pagination.vue'
   },
 })
 export default class PageBooksIndex extends Vue {
-  books: Book[] = []
+  books!: Book[]
   meta!: ApiMeta
   application!: Application
   title!: string
-  overflow!: typeof overflow
   formatLanguage!: typeof formatLanguage
   formatAuthors!: typeof formatAuthors
 

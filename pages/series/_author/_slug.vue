@@ -2,7 +2,8 @@
   <main v-if="serie" class="main-content">
     <app-header
       :title="serie.title"
-      :image="serie.cover ? serie.cover.thumbnail : null"
+      :image="serie.cover?.thumbnail"
+      :color="serie.cover?.color"
       :subtitle="`${serie.count} eBooks`"
       :authors="serie.authors"
       :cta="serie.link"
@@ -21,23 +22,7 @@
         Language: {{ formatLanguage(serie.language) }}
       </div>
       <template #content>
-        <div v-if="serie.tags && serie.tags.length" class="lg:flex">
-          <h2 class="mr-1">Tags:</h2>
-          <ul>
-            <li
-              v-for="(tag, id) in serie.tags"
-              :key="id"
-              class="inline-block dark:text-gray-100"
-            >
-              <span>{{ tag.name }}</span>
-              <span
-                v-if="serie.tags.length > 1 && id !== serie.tags.length - 1"
-                class="mr-1 text-gray-900 dark:text-gray-100"
-                >,</span
-              >
-            </li>
-          </ul>
-        </div>
+        <blocks-tags-links :tags="serie.tags" />
       </template>
     </app-header>
     <div>
@@ -54,102 +39,90 @@
             params: { author: book.meta.author, slug: book.meta.slug },
           }"
         >
-          <template #title>{{ overflow(book.title, 50) }}</template>
+          <template #title>
+            <span class="line-clamp-2">
+              {{ book.title }}
+            </span>
+          </template>
           <template #subtitle>{{ formatAuthors(book.authors) }}</template>
           <template #extra>Vol. {{ book.volume }}</template>
         </blocks-entity-card>
       </div>
       <div class="mt-6 mb-5">
-        <pagination-load
+        <!-- <pagination-load
           v-if="meta"
           :current-page="meta.current_page"
           :pages="meta.last_page"
-          :endpoint="ApiEndpoint.SerieBook"
+          :endpoint="apiEndpoint.SerieBook"
           @load="load"
-        />
+        /> -->
       </div>
     </div>
     <blocks-comments-template :entity="serie" />
   </main>
 </template>
 
-<script setup lang="ts">
-import { ApiEndpoint, ApiMeta, Book, Serie } from '~/types'
-import { overflow, formatLanguage, formatAuthors } from '@/utils/methods'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import { ApiEndpoint, Book, MetaInfo, Serie } from '~/types'
+import { formatLanguage, formatAuthors } from '@/utils/methods'
 import PaginationLoad from '~/components/blocks/pagination-load.vue'
 
-const { $repository, route } = useContext()
-const params = route.value.params
-const query = route.value.query
-
-const serie = ref<Serie>()
-const books = ref<Book[]>()
-const meta = ref<ApiMeta>()
-
-useAsync(async () => {
-  const [serieApi, booksApi] = await Promise.all([
-    $repository(ApiEndpoint.Serie).show([params.author, params.slug]),
-    $repository(ApiEndpoint.SerieBook).index(
-      {
-        page: (query.page as string) || '1',
-        perPage: '32',
-      },
-      [params.author, params.slug]
-    ),
-  ])
-  serie.value = serieApi.data
-  books.value = booksApi.data
-  meta.value = booksApi.meta
-})
-
-const load = (data: any[]) => {
-  books.value = books.value?.concat(data)
-}
-
-// const dynamicMetadata = require('~/utils/metadata/dynamic')
-// const title = `${this.serie.title} by ${this.authors}`
-// return {
-//   title,
-//   meta: [
-//     ...dynamicMetadata.default({
-//       type: 'book',
-//       title,
-//       description: `Written by ${this.authors} with ${this.serie.count} books.`,
-//       url: this.$nuxt.$route.path,
-//       image: this.serie.cover.og
-//     })
-//   ]
-// }
-</script>
-
-<!-- <script lang="ts">
-export default defineComponent({
-  async asyncData({ params, query, $repository }) {
-    const [
-      serie,
-      books
-    ] = await Promise.all([
-      $repository(ApiEndpoint.Serie).show([
-        params.author,
-        params.slug
-      ]),
-      $repository(ApiEndpoint.SerieBook).index({
-        page: query.page as string || '1',
-        perPage: '32'
-      }, [
-        params.author,
-        params.slug
-      ])
+@Component({
+  async asyncData({ $repository, params, query }) {
+    const [api, booksApi] = await Promise.all([
+      $repository(ApiEndpoint.Serie).show<Serie>([params.author, params.slug]),
+      $repository(ApiEndpoint.SerieBook).index<Book>(
+        {
+          page: (query.page as string) || '1',
+          perPage: '32',
+        },
+        [params.author, params.slug]
+      ),
     ])
 
+    const serie = api.data
+    const authors = formatAuthors(serie.authors)
+    const title = `${serie.title} by ${authors}`
+    const description = `Written by ${authors} with ${serie.count} books.`
+
     return {
-      serie: serie.data,
-      books: books.data,
-      meta: books.meta
+      serie,
+      books: booksApi.data,
+      meta: booksApi.meta,
+      title,
+      description,
+      authors,
     }
   },
-  head: {},
-  watchQuery: ['page']
+  head(this: PageSerieSlug): MetaInfo {
+    return {
+      title: this.title,
+      meta: this.$metadata({
+        title: this.title,
+        description: this.description,
+      }),
+    }
+  },
+  methods: {
+    formatLanguage,
+    formatAuthors,
+  },
+  watchQuery: ['page'],
+})
+export default class PageSerieSlug extends Vue {
+  title!: string
+  description!: string
+  authors!: string
+
+  formatLanguage!: typeof formatLanguage
+  formatAuthors!: typeof formatAuthors
+  apiEndpoint!: typeof ApiEndpoint
+
+  serie!: Serie
+  books!: Book[]
+  // meta: booksApi.meta,
+
   // jsonld() {
   //     const breadcrumbs = [
   //       {
@@ -195,5 +168,5 @@ export default defineComponent({
   //       }
   //     }
   //   }
-})
-</script> -->
+}
+</script>

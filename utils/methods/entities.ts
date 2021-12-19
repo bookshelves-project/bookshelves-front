@@ -37,7 +37,7 @@ export const formatLanguage = (slug: string) => {
 }
 
 // get all authors into a string from array of object
-export const formatTags = (tags: Tag[]) => {
+export const formatTags = (tags?: Tag[]) => {
   if (tags) {
     let entitiesToString = ''
     tags.forEach((tag, tagId) => {

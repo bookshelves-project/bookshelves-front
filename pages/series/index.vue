@@ -41,94 +41,76 @@
   </main>
 </template>
 
-<script setup lang="ts">
-import { ApiEndpoint, ApiMeta, Serie } from '~/types'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import { useIndexStore } from '~/stores'
+import { ApiEndpoint, ApiMeta, Application, MetaInfo, Serie } from '~/types'
+import { formatLanguage, formatAuthors } from '~/utils/methods'
 import Pagination from '~/components/blocks/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
-import { formatLanguage, formatAuthors } from '~/utils/methods'
 
-const { $config } = useContext()
-
-const series = ref<Serie[]>()
-const meta = ref<ApiMeta>()
-
-const title = `All series available on ${$config.appName}`
-const description = "Discover books grouped by their serie's name"
-const sortOptions = [
-  {
-    label: "By series' title (default)",
-    query: { sort: 'title_sort' },
-    value: 'title_sort',
-  },
-  {
-    label: 'By title',
-    query: { sort: 'title' },
-    value: 'title',
-  },
-  {
-    label: 'Newest uploaded',
-    query: { sort: '-created_at' },
-    value: '-created_at',
-  },
-]
-
-useMeta(() => ({
-  title,
-}))
-// const dynamicMetadata = require('~/utils/metadata/dynamic')
-// const title = this.title
-// return {
-//   title,
-//   meta: [
-//     ...dynamicMetadata.default({
-//       title,
-//       description: this.description,
-//       url: this.$nuxt.$route.path
-//     })
-//   ]
-// }
-</script>
-
-<script lang="ts">
-export default defineComponent({
-  async asyncData({ query, $repository }) {
-    const api = await $repository(ApiEndpoint.Serie).index({
+@Component({
+  async asyncData({ $repository, query }) {
+    const api = await $repository(ApiEndpoint.Serie).index<Serie>({
       page: (query.page as string) || '1',
       perPage: '32',
       ...query,
     })
 
+    const store = useIndexStore()
+    const application = store.application as Application
+    const title = `All series available on ${application.name}`
+
     return {
       series: api.data,
       meta: api.meta,
+      title,
     }
   },
-  head: {},
+  head(this: PageSeriesIndex): MetaInfo {
+    return {
+      title: this.title,
+      meta: this.$metadata({
+        title: this.title,
+        description: this.description,
+      }),
+    }
+  },
+  methods: {
+    formatLanguage,
+    formatAuthors,
+  },
+  components: {
+    Pagination,
+    EntityCard,
+  },
   watchQuery: ['page', 'filter[languages]', 'sort'],
-  // jsonld() {
-  //   const breadcrumbs = [
-  //     {
-  //       url: this.$config.baseURL,
-  //       text: 'Home'
-  //     },
-  //     {
-  //       url: `${this.$config.baseURL}/series`,
-  //       text: 'Series'
-  //     }
-  //   ]
-  //   const items = breadcrumbs.map((item, index) => ({
-  //     '@type': 'ListItem',
-  //     position: index + 1,
-  //     item: {
-  //       '@id': item.url,
-  //       name: item.text
-  //     }
-  //   }))
-  //   return {
-  //     '@context': 'https://schema.org',
-  //     '@type': 'WebPage',
-  //     itemListElement: items
-  //   }
-  // },
 })
+export default class PageSeriesIndex extends Vue {
+  series!: Serie[]
+  meta!: ApiMeta
+
+  formatLanguage!: typeof formatLanguage
+  formatAuthors!: typeof formatAuthors
+
+  title!: string
+  description = 'Discover all series'
+  sortOptions = [
+    {
+      label: "By series' title (default)",
+      query: { sort: 'title_sort' },
+      value: 'title_sort',
+    },
+    {
+      label: 'By title',
+      query: { sort: 'title' },
+      value: 'title',
+    },
+    {
+      label: 'Newest uploaded',
+      query: { sort: '-created_at' },
+      value: '-created_at',
+    },
+  ]
+}
 </script>

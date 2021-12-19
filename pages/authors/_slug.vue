@@ -18,12 +18,12 @@
       </blocks-button-download>
     </app-header>
     <div>
-      <section v-if="series.data.length">
-        <blocks-divider>Series</blocks-divider>
+      <section v-if="series.length">
+        <blocks-divider> {{ series.length }} Series </blocks-divider>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
-            v-for="serie in series.data"
-            :key="serie.id"
+            v-for="(serie, id) in series"
+            :key="id"
             :data="serie"
             :cover="serie.cover ? serie.cover.thumbnail : null"
             :color="serie.cover ? serie.cover.color : null"
@@ -33,7 +33,11 @@
               params: { author: serie.meta.author, slug: serie.meta.slug },
             }"
           >
-            <template #title>{{ $overflow(serie.title, 50) }}</template>
+            <template #title>
+              <span class="line-clamp-2">
+                {{ serie.title }}
+              </span>
+            </template>
             <template v-if="serie.count" #subtitle>
               {{ serie.count }} books
             </template>
@@ -43,32 +47,38 @@
           </entity-card>
         </div>
         <div class="mt-14 mb-5">
-          <load-more
+          <!-- <load-more
             :last-page="series.meta.last_page"
             :endpoint="`authors/series/${$route.params.slug}`"
             :entities="series.data"
             @load="loadSeries"
-          />
+          /> -->
         </div>
       </section>
-      <section v-if="books.data.length">
-        <blocks-divider class="mt-16">Books</blocks-divider>
+      <section v-if="books.length">
+        <blocks-divider class="mt-16">
+          {{ books.length }} Books
+        </blocks-divider>
         <div class="space-y-6 display-grid sm:space-y-0">
           <entity-card
-            v-for="book in books.data"
-            :key="book.id"
+            v-for="(book, id) in books"
+            :key="id"
             :data="book"
-            :cover="book.cover.thumbnail"
-            :color="book.cover.color"
+            :cover="book.cover?.thumbnail"
+            :color="book.cover?.color"
             :title="book.title"
             :route="{
               name: 'books-author-slug',
               params: { author: book.meta.author, slug: book.meta.slug },
             }"
           >
-            <template #title>{{ $overflow(book.title, 50) }}</template>
+            <template #title>
+              <span class="line-clamp-2">
+                {{ book.title }}
+              </span>
+            </template>
             <template v-if="book.serie" #subtitle>
-              {{ book.serie.title }},
+              {{ book.serie?.title }},
               <br />
               vol. {{ book.volume }}
             </template>
@@ -78,12 +88,12 @@
           </entity-card>
         </div>
         <div class="mt-14 mb-5">
-          <load-more
+          <!-- <load-more
             :last-page="books.meta.last_page"
             :endpoint="`authors/books/${$route.params.slug}`"
             :entities="books.data"
             @load="loadBooks"
-          />
+          /> -->
         </div>
       </section>
     </div>
@@ -91,112 +101,131 @@
   </main>
 </template>
 
-<script>
-import { stringify } from 'qs'
-import entityCard from '~/components/blocks/entity-card.vue'
-import favorites from '~/mixins/favorites'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import { useIndexStore } from '~/stores'
+import {
+  ApiEndpoint,
+  Application,
+  Author,
+  Book,
+  MetaInfo,
+  Serie,
+} from '~/types'
 import { getHostname, formatLanguage } from '~/utils/methods'
-import LoadMore from '~/components/special/load-more.vue'
+import EntityCard from '~/components/blocks/entity-card.vue'
 
-export default {
-  name: 'AuthorsSlug',
-  components: { entityCard, LoadMore },
-  mixins: [favorites],
-  async asyncData({ app, params, query }) {
-    const page = query.page
-    const [author, series, books] = await Promise.all([
-      app.$axios.$get(`/authors/${params.slug}`),
-      app.$axios.$get(
-        `/authors/series/${params.slug}?${stringify({
-          page: page || 1,
-          perPage: 32,
-        })}`
+@Component({
+  async asyncData({ $repository, params, query }) {
+    const [api, seriesApi, booksApi] = await Promise.all([
+      $repository(ApiEndpoint.Author).show<Author>(params.slug),
+      $repository(ApiEndpoint.AuthorSerie).index<Book[]>(
+        {
+          page: (query.page as string) || '1',
+          perPage: '32',
+          ...query,
+        },
+        params.slug
       ),
-      app.$axios.$get(
-        `/authors/books/${params.slug}?${stringify({
-          page: page || 1,
-          perPage: 32,
-          standalone: true,
-        })}`
+      $repository(ApiEndpoint.AuthorBook).index<Serie[]>(
+        {
+          page: (query.page as string) || '1',
+          perPage: '32',
+          ...query,
+        },
+        params.slug
       ),
     ])
 
+    const store = useIndexStore()
+    const application = store.application as Application
+
+    const author = api.data
+    const title = `${author.name}`
+    const description = `${author.name} author on ${application.name} with ${author.count} books available.`
+
     return {
-      author: author.data,
-      series,
-      books,
-    }
-  },
-  data() {
-    return {
-      breadcrumbs: [],
-    }
-  },
-  head() {
-    const dynamicMetadata = require('~/utils/metadata/dynamic')
-    const title = `${this.author.name}`
-    return {
+      author,
+      series: seriesApi.data,
+      books: booksApi.data,
       title,
-      meta: [
-        ...dynamicMetadata.default({
-          title,
-          type: 'profile',
-          description: `${this.author.name} author on ${this.$config.appName} with ${this.author.count} books available.`,
-          image: this.author.cover.og,
-          url: this.$nuxt.$route.path,
-          profileFirstName: this.author.firstname,
-          profileLastName: this.author.firstname,
-        }),
-      ],
+      description,
     }
   },
-  created() {
-    this.breadcrumbs = [
-      {
-        url: this.$config.baseURL,
-        text: 'Home',
-      },
-      {
-        url: `${this.$config.baseURL}/authors`,
-        text: 'Authors',
-      },
-      {
-        url: `${this.$config.baseURL}/authors/${this.$route.params.slug}`,
-        text: this.author.name,
-      },
-    ]
+  head(this: PageAuthorsSlug): MetaInfo {
+    return {
+      title: this.title,
+      meta: this.$metadata({
+        title: this.title,
+        type: 'profile',
+        description: this.description,
+        image: this.author.cover?.og,
+        profileFirstName: this.author.firstname,
+        profileLastName: this.author.firstname,
+      }),
+    }
   },
   methods: {
     getHostname,
     formatLanguage,
-    loadSeries(data) {
-      this.series.data = data
-    },
-    loadBooks(data) {
-      this.books.data = data
-    },
   },
-  jsonld() {
-    const items = this.breadcrumbs.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      item: {
-        '@id': item.url,
-        name: item.text,
-      },
-    }))
-    return {
-      '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      itemListElement: items,
-      mainEntity: {
-        '@type': 'Person',
-        image: this.author.cover.thumbnail,
-        jobTitle: 'Author',
-        name: this.author.name,
-        url: this.author.link,
-      },
-    }
+  components: {
+    EntityCard,
   },
+})
+export default class PageAuthorsSlug extends Vue {
+  author!: Author
+  series!: Serie[]
+  books!: Book[]
+
+  getHostname!: typeof getHostname
+  formatLanguage!: typeof formatLanguage
+
+  title!: string
+  description!: string
+
+  loadSeries(data: any) {
+    this.series = data
+  }
+
+  loadBooks(data: any) {
+    this.books = data
+  }
+
+  // this.breadcrumbs = [
+  //       {
+  //         url: this.$config.baseURL,
+  //         text: 'Home',
+  //       },
+  //       {
+  //         url: `${this.$config.baseURL}/authors`,
+  //         text: 'Authors',
+  //       },
+  //       {
+  //         url: `${this.$config.baseURL}/authors/${this.$route.params.slug}`,
+  //         text: this.author.name,
+  //       },
+  //     ]
+  // jsonld() {
+  //   const items = this.breadcrumbs.map((item, index) => ({
+  //     '@type': 'ListItem',
+  //     position: index + 1,
+  //     item: {
+  //       '@id': item.url,
+  //       name: item.text,
+  //     },
+  //   }))
+  //   return {
+  //     '@context': 'https://schema.org',
+  //     '@type': 'WebPage',
+  //     itemListElement: items,
+  //     mainEntity: {
+  //       '@type': 'Person',
+  //       image: this.author.cover.thumbnail,
+  //       jobTitle: 'Author',
+  //       name: this.author.name,
+  //       url: this.author.link,
+  //     },
+  //   }
 }
 </script>

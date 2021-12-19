@@ -28,9 +28,6 @@ export default {
   name: 'TagsIndex',
   async asyncData({ app, query }) {
     const queryList = { ...query }
-    if (isEmpty(queryList)) {
-      queryList['filter[negligible]'] = false
-    }
 
     const [genres, tags] = await Promise.all([
       app.$axios.$get(
@@ -72,6 +69,6 @@ export default {
       ],
     }
   },
-  watchQuery: ['filter[negligible]'],
+  watchQuery: ['filter[show_negligible]'],
 }
 </script>
