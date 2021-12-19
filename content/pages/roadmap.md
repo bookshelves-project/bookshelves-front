@@ -1,7 +1,39 @@
 ---
-title: "Upgrade"
+title: "Roadmap"
 description: 'About upgrade project & useful links'
 ---
+
+## Roadmap
+
+- [ ] pagination related
+- [ ] api related more logic: not with books
+- [ ] book slug button couple in header color
+- [ ] metadata additional
+- [ ] button with svg
+- [ ] author slug books/series load more
+- [ ] author/book/serie slug mixin
+- [ ] jsonld
+
+<https://github.com/ymmooot/nuxt-jsonld>
+
+```vue
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  import { Jsonld } from 'nuxt-jsonld';
+
+  @Jsonld
+  @Component
+  export default class Sample extends Vue {
+    jsonld() {
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Product'
+        name: 'product name',
+      };
+    }
+  };
+</script>
+```
 
 ## Documentation links
 
@@ -13,6 +45,7 @@ description: 'About upgrade project & useful links'
 - [**Vue 3 Composition API**](https://v3.vuejs.org/guide/composition-api-introduction.html)
 - [**Vue 3 Lifecycle Hooks**](https://v3.vuejs.org/guide/composition-api-lifecycle-hooks.html)
 - [**lindsay-wardell blog**](https://www.thisdot.co/author/lindsay-wardell)
+- [**Vue 3 script setup props with typescript**](https://blog.ninja-squad.com/2021/09/30/script-setup-syntax-in-vue-3/)
 
 ## Nuxt2 with Typescript
 

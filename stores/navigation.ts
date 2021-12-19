@@ -8,16 +8,35 @@ export const useNavigationStore = defineStore({
         label: 'books',
         route: {
           name: 'books',
+          // query: {
+          //   sort: 'title_sort'
+          // }
         }
       },
       {
         label: 'series',
         route: {
           name: 'series',
+          // query: {
+          //   sort: 'title_sort'
+          // }
         }
       },
-      { label: 'authors', route: { name: 'authors' } },
-      { label: 'genres-tags', route: { name: 'tags' } }
+      {
+        label: 'authors',
+        route: {
+          name: 'authors',
+          // query: {
+          //   sort: 'lastname'
+          // }
+        }
+      },
+      {
+        label: 'genres-tags',
+        route: {
+          name: 'tags',
+        }
+      }
     ],
     footer: {
       project: {
