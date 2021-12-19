@@ -23,7 +23,11 @@
           },
         }"
       >
-        <template #title>{{ $overflow(entity.title, 50) }}</template>
+        <template #title>
+          <span class="line-clamp-2">
+            {{ entity.title }}
+          </span>
+        </template>
         <template #subtitle>
           <div>
             <div>{{ capitalize(entity.meta.entity) }}</div>

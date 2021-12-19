@@ -100,12 +100,6 @@ export const useNavigationStore = defineStore({
               name: 'publishers'
             }
           },
-          {
-            label: 'sitemap',
-            route: {
-              name: 'sitemap'
-            }
-          }
         ]
       },
       legal: {
