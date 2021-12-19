@@ -13,6 +13,8 @@ description: 'About upgrade project & useful links'
 - [ ] author slug books/series load more
 - [ ] author/book/serie slug mixin
 - [ ] jsonld
+- [ ] toast to replace old notification
+- [ ] serie/author load mounted books/series
 
 <https://github.com/ymmooot/nuxt-jsonld>
 
@@ -96,7 +98,8 @@ description: 'About upgrade project & useful links'
 
 ### Nuxt 3
 
-- <https://github.com/nuxt/nuxt.js/issues/5330>
+- [**medium.com**](https://medium.com/@AzilenTech/using-script-setup-for-vue-3-ec4b6173b7f4)
+- <https://github.com/nuxt/nuxt.js/issues/5330>: Vue 3 script setup review
 - <https://github.com/nuxt/nuxt.js/issues/7884>
 - <https://robsontenorio.github.io/vue-api-query/configuration>
 - <https://vueschool.io/articles/vuejs-tutorials/nuxt-composition-api/>

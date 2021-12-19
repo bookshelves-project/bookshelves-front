@@ -4,11 +4,13 @@
       class="max-w-md px-4 mx-auto text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
     >
       <h2
-        class="text-base font-semibold tracking-wider uppercase text-primary-600"
+        class="text-base font-semibold tracking-wider uppercase text-primary-600 dark:text-primary-500"
       >
         {{ features.title }}
       </h2>
-      <div class="mx-auto mt-5 text-xl text-gray-500 max-w-prose">
+      <div
+        class="mx-auto mt-5 text-xl text-gray-500 dark:text-gray-400 max-w-prose"
+      >
         {{ features.text }}
       </div>
       <div class="mt-12">
@@ -34,7 +36,7 @@
                 >
                   {{ feature.title }}
                 </h3>
-                <div class="mt-5 text-base text-gray-500">
+                <div class="mt-5 text-base text-gray-500 dark:text-gray-400">
                   {{ feature.text }}
                 </div>
               </div>

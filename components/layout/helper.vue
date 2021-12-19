@@ -47,6 +47,7 @@
               type="button"
               class="flex col-span-1 w-full text-left"
               @click="item.method ? item.method() : (isOpen = false)"
+              @click.native="item.method ? item.method() : (isOpen = false)"
             >
               <div
                 class="shrink-0 flex items-center justify-center w-16 text-sm font-medium rounded-l-md"
