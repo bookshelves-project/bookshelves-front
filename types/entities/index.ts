@@ -9,18 +9,18 @@ export interface Cover {
 }
 
 export interface TagMeta {
-  slug?: string;
+  slug: string;
   author?: string;
   show?: string;
   books?: string;
 }
 
 export interface Tag {
-  name?: string;
+  name: string;
   type?: string;
-  count?: null;
-  firstChar?: null;
-  meta?: TagMeta;
+  count?: string;
+  firstChar?: string;
+  meta: TagMeta;
 }
 
 export interface EntityMeta {
@@ -39,5 +39,5 @@ export interface Entity {
   language?: string;
   volume?: number;
   cover?: Cover;
-  firstChar?: null;
+  firstChar?: string;
 }

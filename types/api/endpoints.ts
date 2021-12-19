@@ -7,6 +7,7 @@ export enum ApiEndpoint {
   SerieBook = '/series/books',
   Author = '/authors',
   AuthorBook = '/authors/books',
+  AuthorSerie = '/authors/series',
   AppInit = '/app-init',
   CmsApplication = '/cms/application',
   CmsHomePage = '/cms/home-page'

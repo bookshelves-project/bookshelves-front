@@ -1,4 +1,5 @@
 import { Author } from '..'
+import { CommentData } from './comment'
 import { Cover, Tag } from '.'
 
 export interface BookMeta {
@@ -38,20 +39,20 @@ export interface Book {
   authors: Author[];
   summary?: string;
   language: string;
-  publishDate?: null;
+  publishDate?: Date;
   cover?: Cover;
   volume?: number;
   serie?: BookSerie;
-  description?: null;
+  description?: string;
   identifier?: Identifier;
-  pageCount?: null;
-  maturityRating?: null;
-  publisher?: null;
+  pageCount?: string;
+  maturityRating?: string;
+  publisher?: string;
   tags?: Tag[];
-  genres?: any[];
+  genres?: Tag[];
   epub?: Epub;
   webreader?: string;
   googleBook?: GoogleBook;
   isFavorite?: boolean;
-  comments?: any[];
+  comments?: CommentData[];
 }
