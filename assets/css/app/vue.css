@@ -30,3 +30,7 @@
   overflow-y: scroll;
   width: 100%;
 }
+
+body {
+  @apply bg-white dark:bg-gray-900;
+}
