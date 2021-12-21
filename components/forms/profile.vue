@@ -18,8 +18,8 @@
               "
               class="border-b border-gray-500 hover:text-gray-600 hover:border-gray-600"
             >
-public profile
-</nuxt-link>.
+              public profile </nuxt-link
+            >.
           </fields-input-text>
         </div>
         <fields-input-text
@@ -51,7 +51,10 @@ public profile
         />
         <transition name="fade">
           <div v-if="!form.use_gravatar" class="col-span-6 md:col-span-4">
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Avatar</label>
+            <label
+              class="block text-sm font-medium text-gray-700 dark:text-gray-200"
+              >Avatar</label
+            >
             <div class="flex items-center mt-1">
               <div v-show="!avatarPreview">
                 <app-img
@@ -65,8 +68,8 @@ public profile
                   class="block w-12 h-12 rounded-full"
                   :style="
                     'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
-                      avatarPreview +
-                      '\');'
+                    avatarPreview +
+                    '\');'
                   "
                 />
               </div>
@@ -79,10 +82,16 @@ public profile
                 @change="updateAvatarPreview"
               />
               <div class="space-x-2 ml-4">
-                <app-button color="white" @click="selectNewAvatar">Change</app-button>
-                <app-button color="danger" @click="deleteAvatar">Delete</app-button>
+                <app-button color="white" @click="selectNewAvatar"
+                  >Change</app-button
+                >
+                <app-button color="danger" @click="deleteAvatar"
+                  >Delete</app-button
+                >
               </div>
-              <div v-if="isLoading" class="ml-3 italic text-gray-500">{{ progress }}%</div>
+              <div v-if="isLoading" class="ml-3 italic text-gray-500">
+                {{ progress }}%
+              </div>
             </div>
           </div>
         </transition>
@@ -91,21 +100,25 @@ public profile
         </div>
         <div class="col-span-6 md:col-span-4">
           <fieldset class="space-y-5">
-            <legend class="text-base font-medium text-gray-900 dark:text-gray-200">Options</legend>
+            <legend
+              class="text-base font-medium text-gray-900 dark:text-gray-200"
+            >
+              Options
+            </legend>
             <fields-checkbox
               v-model="form.use_gravatar"
               name="use_gravatar"
               label="Use gravatar"
             >
-Check this if you want to use gravatar for your avatar.
-</fields-checkbox>
+              Check this if you want to use gravatar for your avatar.
+            </fields-checkbox>
             <fields-checkbox
               v-model="form.display_favorites"
               name="display_favorites"
               label="Display favorites"
             >
-Check this if you want to display your favorites publickly.
-</fields-checkbox>
+              Check this if you want to display your favorites publickly.
+            </fields-checkbox>
             <fields-checkbox
               v-model="form.display_comments"
               name="display_comments"
@@ -148,8 +161,8 @@ export default {
   props: {
     user: {
       type: Object,
-      default: () => { }
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -162,12 +175,12 @@ export default {
         display_favorites: false,
         display_comments: false,
         display_gender: false,
-        about: ''
+        about: '',
       },
       isLoading: false,
       progress: 0,
       avatarPreview: null,
-      genders: []
+      genders: [],
     }
   },
   async created() {
@@ -187,13 +200,10 @@ export default {
     capitalize,
     async getData() {
       const genders = await this.$axios.$get('/users/genders')
-      for (const [
-        key,
-        value
-      ] of Object.entries(genders.data)) {
+      for (const [key, value] of Object.entries(genders.data)) {
         this.genders.push({
           label: value,
-          value: key
+          value: key,
         })
       }
     },
@@ -215,8 +225,9 @@ export default {
       data.append('about', this.form.about)
 
       const config = {
-        onUploadProgress: progressEvent =>
-          (this.progress = Math.round(progressEvent.loaded * 100) / progressEvent.total)
+        onUploadProgress: (progressEvent) =>
+          (this.progress =
+            Math.round(progressEvent.loaded * 100) / progressEvent.total),
       }
       try {
         const user = await this.$axios.$post('/profile/update', data, config)
@@ -225,14 +236,14 @@ export default {
         this.$nuxt.$emit('toast', {
           title: 'Success!',
           text: 'Your profile has been updated.',
-          type: 'success'
+          type: 'success',
         })
       } catch (error) {
         console.error(error)
         this.$nuxt.$emit('toast', {
           title: 'Error',
           text: 'Something bad happened',
-          type: 'error'
+          type: 'error',
         })
         this.isLoading = false
       }
@@ -255,8 +266,8 @@ export default {
         this.avatarPreview = null
         this.form.avatar = null
         this.$auth.setUser(user)
-      } catch (error) { }
-    }
-  }
+      } catch (error) {}
+    },
+  },
 }
 </script>

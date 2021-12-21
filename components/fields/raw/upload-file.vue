@@ -17,7 +17,9 @@
         </elements-media-image>
         <elements-media-image v-if="preview" :src="preview">
           <div class="italic">
-            <div v-if="file.fileType">{{ $getFileType(file.fileType.type) }}</div>
+            <div v-if="file.fileType">
+              {{ $getFileType(file.fileType.type) }}
+            </div>
             <div>{{ file.name }}</div>
             <div>{{ file.size }}</div>
           </div>
@@ -30,8 +32,8 @@
           size="sm"
           @click="deleteFile()"
         >
-Supprimer
-</app-button>
+          Supprimer
+        </app-button>
         <app-button
           v-if="fileUpoaded"
           icon="close-circle-line"
@@ -39,12 +41,18 @@ Supprimer
           size="sm"
           @click="deletePreview()"
         >
-Supprimer
-</app-button>
+          Supprimer
+        </app-button>
       </div>
     </div>
     <div class="fr-input-wrap">
-      <input ref="file" type="file" style="display: none" :accept="accept" @change="fileUpload" />
+      <input
+        ref="file"
+        type="file"
+        style="display: none"
+        :accept="accept"
+        @change="fileUpload"
+      />
       <div class="flex items-center fr-mt-2w">
         <app-button @click="$refs.file.click()">Téléverser</app-button>
         <app-button
@@ -55,8 +63,8 @@ Supprimer
           class="fr-ml-1w"
           download
         >
-Télécharger le fichier existant
-</app-button>
+          Télécharger le fichier existant
+        </app-button>
       </div>
     </div>
   </div>
@@ -68,62 +76,56 @@ export default {
   props: {
     accept: {
       type: String,
-      default: 'image/*'
+      default: 'image/*',
     },
     label: {
       type: String,
-      default: 'Attach a file'
+      default: 'Attach a file',
     },
     // adding
     value: {
-      default: ''
+      default: '',
     },
     name: {
       type: String,
-      default: 'name'
+      default: 'name',
     },
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
     },
     autocomplete: {
       type: String,
-      default: 'name'
+      default: 'name',
     },
     required: {
       type: Boolean,
-      default: false
+      default: false,
     },
     placeholder: {
       type: String,
-      default: ''
+      default: '',
     },
     minlength: {
-      type: [
-        Number,
-        String
-      ],
-      default: 0
+      type: [Number, String],
+      default: 0,
     },
     maxlength: {
-      type: [
-        Number,
-        String
-      ],
-      default: 0
+      type: [Number, String],
+      default: 0,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     helper: {
       type: String,
-      default: null
+      default: null,
     },
     icon: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
@@ -133,9 +135,9 @@ export default {
         size: null,
         mime: null,
         url: null,
-        type: null
+        type: null,
       },
-      preview: null
+      preview: null,
     }
   },
   watch: {
@@ -148,12 +150,12 @@ export default {
             size: this.$humanFileSize(newValue.size),
             url: newValue.url,
             mime: newValue.mime,
-            fileType: newValue
+            fileType: newValue,
           }
         }
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   mounted() {
     if (this.value) {
@@ -163,7 +165,7 @@ export default {
         size: this.$humanFileSize(this.value.size),
         url: this.value.url,
         mime: this.value.mime,
-        fileType: this.value
+        fileType: this.value,
       }
     }
   },
@@ -174,7 +176,7 @@ export default {
         this.$emit('deleteFile')
         this.file = {
           name: '',
-          size: ''
+          size: '',
         }
         this.$toast({ preType: 'success' })
       } catch (error) {
@@ -197,8 +199,8 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
