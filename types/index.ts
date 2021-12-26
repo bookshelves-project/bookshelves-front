@@ -1,4 +1,5 @@
 import type { MetaInfo, MetaPropertyCharset, MetaPropertyEquiv, MetaPropertyName, MetaPropertyMicrodata, MetaPropertyProperty } from 'vue-meta'
+import type { Location } from 'vue-router'
 import type { ApiResponse, ApiPaginateResponse, ApiFormated, ApiMeta, Pagination, Query } from './api'
 import type { Book } from './entities/book'
 import type { Serie } from './entities/serie'
@@ -46,6 +47,7 @@ export {
   HeadMeta,
   HeadElement,
   SelectedEntities,
+  Location,
   // toast
   Toast,
   ToastAuto,
