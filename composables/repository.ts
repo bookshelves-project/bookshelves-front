@@ -3,7 +3,7 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { NuxtError } from '@nuxt/types'
 import { AxiosResponse } from 'axios'
 import { stringify } from 'qs'
-import { ApiEndpoint, ApiPaginateResponse, ApiResponse, Query } from '~/types'
+import { ApiEndpoint, ApiMessage, ApiPaginateResponse, ApiResponse, Query } from '~/types'
 
 export class Repository {
   axios: NuxtAxiosInstance
@@ -34,15 +34,16 @@ export class Repository {
     return `${url}${queryParams}`
   }
 
-  find<T>(query?: Query, params?: string | string[]): Promise<ApiResponse<T>> {
+  find<T>(query?: Query, params?: string | string[]): Promise<ApiResponse<T> | AxiosResponse> {
     return this.axios.$get(this.url(params, query))
       .then((response: ApiResponse<T>) => response)
       .catch((e) => {
         console.error(e)
+        const response: AxiosResponse = e.response
         if (this.handleError) {
           this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
         }
-        return {} as ApiResponse<T>
+        return response as AxiosResponse
       })
   }
 
@@ -73,8 +74,17 @@ export class Repository {
       })
   }
 
-  create(payload: object) {
-    // return this.axios.$post(`${resource}`, payload)
+  create<T>(payload: object, params?: string | string[]): Promise<AxiosResponse<ApiMessage>> {
+    return this.axios.post(this.url(params), payload)
+      .then((response: AxiosResponse) => response)
+      .catch((e) => {
+        console.error(e)
+        const response: AxiosResponse = e.response
+        if (this.handleError) {
+          this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
+        }
+        return response as AxiosResponse
+      })
   }
 
   update(slug: string, payload: object) {

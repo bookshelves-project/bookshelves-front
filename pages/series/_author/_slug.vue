@@ -1,72 +1,14 @@
-<template>
-  <main v-if="serie" class="main-content">
-    <app-header
-      :title="serie.title"
-      :image="serie.cover?.thumbnail"
-      :color="serie.cover?.color"
-      :subtitle="`${serie.count} eBooks`"
-      :authors="serie.authors"
-      :cta="serie.link"
-      :text="serie.description"
-      :entity="serie"
-      favorite
-    >
-      <blocks-button-download
-        :href="serie.download"
-        :size="serie.size"
-        :type="`ZIP`"
-      >
-        {{ serie.count }} eBooks
-      </blocks-button-download>
-      <div class="mt-2 text-right">
-        Language: {{ formatLanguage(serie.language) }}
-      </div>
-      <template #content>
-        <blocks-tags-links :tags="serie.tags" />
-      </template>
-    </app-header>
-    <div>
-      <div v-if="books" class="space-y-6 display-grid sm:space-y-0">
-        <blocks-entity-card
-          v-for="(book, id) in books"
-          :key="id"
-          :data="book"
-          :cover="book.cover?.thumbnail"
-          :color="book.cover?.color"
-          :title="book.title"
-          :route="{
-            name: 'books-author-slug',
-            params: { author: book.meta.author, slug: book.meta.slug },
-          }"
-        >
-          <template #title>
-            <span class="line-clamp-2">
-              {{ book.title }}
-            </span>
-          </template>
-          <template #subtitle>{{ formatAuthors(book.authors) }}</template>
-          <template #extra>Vol. {{ book.volume }}</template>
-        </blocks-entity-card>
-      </div>
-      <div class="mt-6 mb-5">
-        <!-- <pagination-load
-          v-if="meta"
-          :current-page="meta.current_page"
-          :pages="meta.last_page"
-          :endpoint="apiEndpoint.SerieBook"
-          @load="load"
-        /> -->
-      </div>
-    </div>
-    <blocks-comments-template :entity="serie" />
-  </main>
-</template>
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { ApiEndpoint, Book, MetaInfo, Serie } from '~/types'
+import {
+  ApiEndpoint,
+  ApiMeta,
+  ApiPaginateResponse,
+  Book,
+  MetaInfo,
+  Serie,
+} from '~/types'
 import { formatLanguage, formatAuthors } from '@/utils/methods'
-import PaginationLoad from '~/components/blocks/pagination-load.vue'
 
 @Component({
   async asyncData({ $repository, params, query }) {
@@ -118,7 +60,13 @@ export default class PageSerieSlug extends Vue {
 
   serie!: Serie
   books!: Book[]
-  // meta: booksApi.meta,
+  meta!: ApiMeta
+  booksEndpoint = ApiEndpoint.SerieBook
+
+  loadBooks(api: ApiPaginateResponse<Book>) {
+    this.books = [...this.books, ...api.data]
+    this.meta = api.meta
+  }
 
   // jsonld() {
   //     const breadcrumbs = [
@@ -167,3 +115,62 @@ export default class PageSerieSlug extends Vue {
   //   }
 }
 </script>
+
+<template>
+  <main v-if="serie" class="main-content">
+    <app-header
+      :title="serie.title"
+      :image="serie.cover?.thumbnail"
+      :color="serie.cover?.color"
+      :subtitle="`${serie.count} eBooks`"
+      :authors="serie.authors"
+      :cta="serie.link"
+      :text="serie.description"
+      :entity="serie"
+      favorite
+    >
+      <app-button :href="serie.download" color="primary" icon="download">
+        Download {{ serie.count }} eBooks (ZIP {{ serie.size }})
+      </app-button>
+      <div class="mt-2 text-right">
+        Language: {{ formatLanguage(serie.language) }}
+      </div>
+      <template #content>
+        <blocks-tags-links :tags="serie.tags" />
+      </template>
+    </app-header>
+    <div>
+      <blocks-divider> {{ serie.count }} Books </blocks-divider>
+      <div v-if="books" class="space-y-6 display-grid sm:space-y-0">
+        <blocks-entity-card
+          v-for="(book, id) in books"
+          :key="id"
+          :data="book"
+          :cover="book.cover?.thumbnail"
+          :color="book.cover?.color"
+          :title="book.title"
+          :route="{
+            name: 'books-author-slug',
+            params: { author: book.meta.author, slug: book.meta.slug },
+          }"
+        >
+          <template #title>
+            <span class="line-clamp-2">
+              {{ book.title }}
+            </span>
+          </template>
+          <template #subtitle>{{ formatAuthors(book.authors) }}</template>
+          <template #extra>Vol. {{ book.volume }}</template>
+        </blocks-entity-card>
+      </div>
+      <div class="mt-6 mb-5">
+        <blocks-pagination-load
+          :meta="meta"
+          :endpoint="booksEndpoint"
+          @load="loadBooks"
+        />
+      </div>
+    </div>
+    <blocks-comments-template :entity="serie" />
+  </main>
+</template>

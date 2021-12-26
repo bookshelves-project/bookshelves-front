@@ -5,29 +5,21 @@ import { Component, Vue } from 'nuxt-property-decorator'
   middleware: 'guest',
   head() {
     return this.$metadata({
-      title: 'Sign up',
+      title: 'Reset password',
     })
   },
 })
-export default class PageRegister extends Vue {}
+export default class PageResetPassword extends Vue {}
 </script>
 
 <template>
   <div class="grid xl:grid-cols-3 gap-4 main-content">
-    <div class="hidden xl:block col-span-2">
-      <app-img
-        src="/images/bookmark.svg"
-        class="h-full"
-        override="m-auto !object-contain"
-        alt="bibliophile"
-      />
-    </div>
-    <div class="h-full flex col-span-1">
+    <div class="h-full flex col-span-3">
       <div class="m-auto w-full md:max-w-md">
         <h1
           class="text-3xl font-extrabold text-center dark:text-gray-100 text-gray-900 font-handlee"
         >
-          Create your account
+          Reset your password
         </h1>
         <div class="relative mt-6">
           <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -37,15 +29,15 @@ export default class PageRegister extends Vue {}
           </div>
           <div class="relative flex justify-center text-sm">
             <nuxt-link
-              :to="localePath({ name: 'sign-in' })"
+              :to="localePath({ name: 'auth-forgot-password' })"
               class="px-2 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:text-gray-800"
             >
-              Do you have an account?
+              You have an error?
             </nuxt-link>
           </div>
         </div>
         <div class="mt-8">
-          <forms-register />
+          <forms-reset-password />
         </div>
       </div>
     </div>

@@ -8,13 +8,18 @@ export interface AuthorMeta {
   series?: string;
 }
 
+export interface AuthorCount {
+  books?: number;
+  series?: number;
+}
+
 export interface Author {
   name?: string;
   meta: AuthorMeta;
   lastname?: string;
   firstname?: string;
   cover?: Cover;
-  count?: number;
+  count?: AuthorCount;
   description?: string;
   link?: string;
   size?: string;

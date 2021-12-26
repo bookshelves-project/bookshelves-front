@@ -13,12 +13,14 @@
     >
       <div class="space-y-3 mx-auto">
         <div>
-          <blocks-button-download
+          <app-button
             v-if="book.epub && book.epub.download"
             :href="book.epub.download"
-            :size="book.epub ? book.epub.size : ''"
-            :type="`EPUB`"
-          />
+            color="primary"
+            icon="download"
+          >
+            Download (EPUB {{ book.epub.size }})
+          </app-button>
         </div>
         <div v-if="book.webreader">
           <!-- <app-button :href="book.webreader" class="w-full" external>

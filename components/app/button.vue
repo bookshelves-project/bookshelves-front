@@ -12,8 +12,11 @@
     :download="download"
     @click="$emit('click')"
   >
-    <span class="inline-block" :class="alignment">
-      <slot />
+    <span :class="[{ 'space-x-2': icon }, alignment]" class="flex items-center">
+      <svg-icon v-if="icon" :name="icon" class="w-5 h-5" />
+      <span class="inline-block">
+        <slot />
+      </span>
     </span>
     <span v-if="href" class="block ml-1">
       <svg-icon name="external-link" class="w-4 h-4" />
@@ -49,6 +52,7 @@ interface Props {
   to: Location
   disabled: boolean
   download: boolean
+  icon: string
 }
 const props = withDefaults(defineProps<Props>(), {
   color: ButtonColor.secondary,
@@ -58,6 +62,7 @@ const props = withDefaults(defineProps<Props>(), {
   to: undefined,
   disabled: false,
   download: false,
+  icon: undefined,
 })
 
 const tag = ref('button')

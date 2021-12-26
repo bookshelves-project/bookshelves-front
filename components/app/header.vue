@@ -91,7 +91,7 @@
     >
       <div v-html="text" />
     </div>
-    <div v-if="cta" class="dark:text-gray-100 text-gray-500">
+    <div v-if="cta" class="dark:text-gray-400 text-gray-500">
       <div class="pt-1 text-right">
         To have more informations:
         <a

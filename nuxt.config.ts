@@ -36,14 +36,17 @@ const config: NuxtConfig = {
     baseURL: process.env.BASE_URL,
     moduleSocial: process.env.MODULE_SOCIAL,
     moduleSocialRating: process.env.MODULE_SOCIAL_RATING,
-    apiURL: process.env.API_URL
+    apiURL: process.env.API_URL,
+    axios: {
+      baseURL: `${process.env.API_URL}/api`
+    }
   },
   privateRuntimeConfig: {},
   // https://nuxtjs.org/docs/configuration-glossary/configuration-servermiddleware
   // serverMiddleware: ['~/server-middleware/init'],
-  router: {
-    middleware: ['nuxt-server-init']
-  },
+  // router: {
+  //   middleware: ['nuxt-server-init']
+  // },
   // https://nuxtjs.org/docs/configuration-glossary/configuration-head
   head,
   loading,
@@ -71,21 +74,15 @@ const config: NuxtConfig = {
   // https://nuxtjs.org/docs/configuration-glossary/configuration-modules/
   modules: [
     '@nuxtjs/axios', // https://go.nuxtjs.dev/axios
-    '@nuxtjs/auth-next', // https://auth.nuxtjs.org/
+    // '@nuxtjs/auth-next', // https://auth.nuxtjs.org/
     '@nuxtjs/pwa', // https://go.nuxtjs.dev/pwa
     '@nuxtjs/i18n', // https://i18n.nuxtjs.org/
     '@nuxt/content', // https://go.nuxtjs.dev/content
     '@nuxtjs/markdownit', // https://www.npmjs.com/package/@nuxtjs/markdownit
-    [
-      'nuxt-lazy-load', // https://gitlab.com/broj42/nuxt-lazy-load
-      nuxtLazyLoad
-    ],
+    ['nuxt-lazy-load', nuxtLazyLoad], // https://gitlab.com/broj42/nuxt-lazy-load
     // '@nuxtjs/robots', // https://www.npmjs.com/package/@nuxtjs/robots
     // '@nuxtjs/sitemap', // https://sitemap.nuxtjs.org/
-    // [
-    //   'nuxt-matomo', // https://github.com/pimlie/nuxt-matomo
-    //   matomo
-    // ],
+    // ['nuxt-matomo', matomo], // https://github.com/pimlie/nuxt-matomo
     'cookie-universal-nuxt' // https://github.com/microcipcip/cookie-universal/tree/master/packages/cookie-universal-nuxt
   ],
   ...modules,

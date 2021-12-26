@@ -58,7 +58,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { useIndexStore } from '~/stores'
-import { ApiEndpoint, ApiMeta, Application, Book, MetaInfo } from '~/types'
+import { ApiEndpoint, ApiMeta, Application, Book } from '~/types'
 import { formatLanguage, formatAuthors } from '@/utils/methods'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import Pagination from '~/components/blocks/pagination.vue'
@@ -81,14 +81,11 @@ import Pagination from '~/components/blocks/pagination.vue'
       title,
     }
   },
-  head(this: PageBooksIndex): MetaInfo {
-    return {
+  head(this: PageBooksIndex) {
+    return this.$metadata({
       title: this.title,
-      meta: this.$metadata({
-        title: this.title,
-        description: this.description,
-      }),
-    }
+      description: this.description,
+    })
   },
   watchQuery: ['page', 'filter[disallow_serie]', 'filter[languages]', 'sort'],
   methods: {

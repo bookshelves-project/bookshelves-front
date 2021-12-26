@@ -39,7 +39,7 @@
       "@pinia/nuxt",
       "cookie-universal-nuxt",
       "@types/swiper",
-      "@types/tailwindcss"
+      "@types/tailwindcss",
     ],
   },
   "vueCompilerOptions": {

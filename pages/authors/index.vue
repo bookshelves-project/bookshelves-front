@@ -22,7 +22,13 @@
             <template #title
               >{{ author.lastname }} {{ author.firstname }}</template
             >
-            <template #extra>{{ author.count }} books</template>
+            <template #extra>
+              <span> {{ author.count?.books }} books </span>
+              <span v-if="author.count?.series && author.count?.series > 1">
+                &
+                {{ author.count?.series }} series
+              </span>
+            </template>
           </entity-card>
         </div>
       </div>

@@ -8,7 +8,16 @@ export enum ApiEndpoint {
   Author = '/authors',
   AuthorBook = '/authors/books',
   AuthorSerie = '/authors/series',
+
   AppInit = '/app-init',
+
   CmsApplication = '/cms/application',
-  CmsHomePage = '/cms/home-page'
+  CmsHomePage = '/cms/home-page',
+
+  AuthLogin = '/auth/login',
+  AuthRegister = '/auth/register',
+  AuthLogout = '/auth/logout',
+  AuthForgotPassword = '/auth/forgot-password',
+  AuthResetPassword = '/auth/reset-password',
+  AuthProfile = '/auth/profile',
 }

@@ -1,112 +1,16 @@
-<template>
-  <main class="main-content">
-    <app-header
-      :title="author.name"
-      :image="author.cover ? author.cover.thumbnail : null"
-      :subtitle="`${author.count} eBooks`"
-      :cta="author.link"
-      :text="author.description"
-      :entity="author"
-      favorite
-    >
-      <blocks-button-download
-        :href="author.download"
-        :size="author.size"
-        :type="`ZIP`"
-      >
-        {{ author.count }} eBooks
-      </blocks-button-download>
-    </app-header>
-    <div>
-      <section v-if="series.length">
-        <blocks-divider> {{ series.length }} Series </blocks-divider>
-        <div class="space-y-6 display-grid sm:space-y-0">
-          <entity-card
-            v-for="(serie, id) in series"
-            :key="id"
-            :data="serie"
-            :cover="serie.cover ? serie.cover.thumbnail : null"
-            :color="serie.cover ? serie.cover.color : null"
-            :title="serie.title"
-            :route="{
-              name: 'series-author-slug',
-              params: { author: serie.meta.author, slug: serie.meta.slug },
-            }"
-          >
-            <template #title>
-              <span class="line-clamp-2">
-                {{ serie.title }}
-              </span>
-            </template>
-            <template v-if="serie.count" #subtitle>
-              {{ serie.count }} books
-            </template>
-            <template v-if="serie.language" #extra>
-              {{ formatLanguage(serie.language) }}
-            </template>
-          </entity-card>
-        </div>
-        <div class="mt-14 mb-5">
-          <!-- <load-more
-            :last-page="series.meta.last_page"
-            :endpoint="`authors/series/${$route.params.slug}`"
-            :entities="series.data"
-            @load="loadSeries"
-          /> -->
-        </div>
-      </section>
-      <section v-if="books.length">
-        <blocks-divider class="mt-16">
-          {{ books.length }} Books
-        </blocks-divider>
-        <div class="space-y-6 display-grid sm:space-y-0">
-          <entity-card
-            v-for="(book, id) in books"
-            :key="id"
-            :data="book"
-            :cover="book.cover?.thumbnail"
-            :color="book.cover?.color"
-            :title="book.title"
-            :route="{
-              name: 'books-author-slug',
-              params: { author: book.meta.author, slug: book.meta.slug },
-            }"
-          >
-            <template #title>
-              <span class="line-clamp-2">
-                {{ book.title }}
-              </span>
-            </template>
-            <template v-if="book.serie" #subtitle>
-              {{ book.serie?.title }},
-              <br />
-              vol. {{ book.volume }}
-            </template>
-            <template v-if="book.language" #extra>
-              {{ formatLanguage(book.language) }}
-            </template>
-          </entity-card>
-        </div>
-        <div class="mt-14 mb-5">
-          <!-- <load-more
-            :last-page="books.meta.last_page"
-            :endpoint="`authors/books/${$route.params.slug}`"
-            :entities="books.data"
-            @load="loadBooks"
-          /> -->
-        </div>
-      </section>
-    </div>
-    <blocks-comments-template :entity="author" />
-  </main>
-</template>
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { useIndexStore } from '~/stores'
-import { ApiEndpoint, Application, Author, Book, Serie } from '~/types'
+import {
+  ApiEndpoint,
+  ApiMeta,
+  ApiPaginateResponse,
+  Application,
+  Author,
+  Book,
+  Serie,
+} from '~/types'
 import { getHostname, formatLanguage } from '~/utils/methods'
-import EntityCard from '~/components/blocks/entity-card.vue'
 
 @Component({
   async asyncData({ $repository, params, query }) {
@@ -140,7 +44,9 @@ import EntityCard from '~/components/blocks/entity-card.vue'
     return {
       author,
       series: seriesApi.data,
+      seriesMeta: seriesApi.meta,
       books: booksApi.data,
+      booksMeta: booksApi.meta,
       title,
       description,
     }
@@ -159,14 +65,15 @@ import EntityCard from '~/components/blocks/entity-card.vue'
     getHostname,
     formatLanguage,
   },
-  components: {
-    EntityCard,
-  },
 })
 export default class PageAuthorsSlug extends Vue {
   author!: Author
   series!: Serie[]
+  seriesMeta!: ApiMeta
   books!: Book[]
+  booksMeta!: ApiMeta
+  authorBooks = ApiEndpoint.AuthorBook
+  serieBooks = ApiEndpoint.SerieBook
 
   getHostname!: typeof getHostname
   formatLanguage!: typeof formatLanguage
@@ -174,12 +81,14 @@ export default class PageAuthorsSlug extends Vue {
   title!: string
   description!: string
 
-  loadSeries(data: any) {
-    this.series = data
+  loadSeries(api: ApiPaginateResponse<Serie>) {
+    this.series = [...this.series, ...api.data]
+    this.seriesMeta = api.meta
   }
 
-  loadBooks(data: any) {
-    this.books = data
+  loadBooks(api: ApiPaginateResponse<Book>) {
+    this.books = [...this.books, ...api.data]
+    this.booksMeta = api.meta
   }
 
   // this.breadcrumbs = [
@@ -219,3 +128,100 @@ export default class PageAuthorsSlug extends Vue {
   //   }
 }
 </script>
+
+<template>
+  <main class="main-content">
+    <app-header
+      :title="author.name"
+      :image="author.cover ? author.cover.thumbnail : null"
+      :subtitle="`${author.count} eBooks`"
+      :cta="author.link"
+      :text="author.description"
+      :entity="author"
+      favorite
+    >
+      <app-button :href="author.download" color="primary" icon="download">
+        Download {{ author.count?.books }} eBooks (ZIP {{ author.size }})
+      </app-button>
+    </app-header>
+    <div>
+      <section v-if="series.length">
+        <blocks-divider> {{ author.count?.series }} Series </blocks-divider>
+        <div class="space-y-6 display-grid sm:space-y-0">
+          <blocks-entity-card
+            v-for="(serie, id) in series"
+            :key="id"
+            :data="serie"
+            :cover="serie.cover ? serie.cover.thumbnail : null"
+            :color="serie.cover ? serie.cover.color : null"
+            :title="serie.title"
+            :route="{
+              name: 'series-author-slug',
+              params: { author: serie.meta.author, slug: serie.meta.slug },
+            }"
+          >
+            <template #title>
+              <span class="line-clamp-2">
+                {{ serie.title }}
+              </span>
+            </template>
+            <template v-if="serie.count" #subtitle>
+              {{ serie.count }} books
+            </template>
+            <template v-if="serie.language" #extra>
+              {{ formatLanguage(serie.language) }}
+            </template>
+          </blocks-entity-card>
+        </div>
+        <div class="mt-14 mb-5">
+          <blocks-pagination-load
+            :meta="seriesMeta"
+            :endpoint="serieBooks"
+            @load="loadSeries"
+          />
+        </div>
+      </section>
+      <section v-if="books.length">
+        <blocks-divider class="mt-16">
+          {{ author.count?.books }} Books
+        </blocks-divider>
+        <div class="space-y-6 display-grid sm:space-y-0">
+          <blocks-entity-card
+            v-for="(book, id) in books"
+            :key="id"
+            :data="book"
+            :cover="book.cover?.thumbnail"
+            :color="book.cover?.color"
+            :title="book.title"
+            :route="{
+              name: 'books-author-slug',
+              params: { author: book.meta.author, slug: book.meta.slug },
+            }"
+          >
+            <template #title>
+              <span class="line-clamp-2">
+                {{ book.title }}
+              </span>
+            </template>
+            <template v-if="book.serie" #subtitle>
+              {{ book.serie?.title }},
+              <br />
+              vol. {{ book.volume }}
+            </template>
+            <template v-if="book.language" #extra>
+              {{ formatLanguage(book.language) }}
+            </template>
+          </blocks-entity-card>
+        </div>
+        <div class="mt-14 mb-5">
+          <blocks-pagination-load
+            :meta="booksMeta"
+            :endpoint="authorBooks"
+            @load="loadBooks"
+          />
+        </div>
+      </section>
+    </div>
+    <blocks-comments-template :entity="author" />
+  </main>
+</template>
