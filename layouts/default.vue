@@ -1,10 +1,8 @@
 <template>
   <div :class="dev ? 'debug-screens' : ''">
-    <!-- <lazy-layout-overlay /> -->
     <lazy-layout-helper />
     <lazy-app-toasts />
     <div class="app mx-auto">
-      <!-- <lazy-layout-layer /> -->
       <layout-navbar />
       <lazy-layout-sidebar />
       <div style="padding-top: 4rem" />
@@ -22,6 +20,8 @@ import { Application } from '~/types'
 const dev: boolean = useContext().isDev
 const ctx = useContext()
 const app: Application = ctx.$cookies.get('app')
+  ? ctx.$cookies.get('app')
+  : { name: 'Bookshelves', title_template: '' }
 
 useMeta(() => ({
   title: app.name,
@@ -32,11 +32,12 @@ useMeta(() => ({
 
 <script lang="ts">
 export default {
+  middleware: 'nuxt-init',
   head: {},
 }
 </script>
 
-<style lang="postcss">
+<style lang="css">
 .min-height-content {
   min-height: 70vh;
 }
