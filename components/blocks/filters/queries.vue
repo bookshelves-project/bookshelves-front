@@ -1,9 +1,6 @@
 <template>
   <div>
-    <span
-      v-for="item in queries"
-      :key="item.id"
-    >
+    <span v-for="item in queries" :key="item.id">
       <blocks-filters-chip
         v-if="item.type !== 'page' && item.type !== 'perPage'"
         :filter-type="item.type"
@@ -17,60 +14,58 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'pinia'
 import { isEmpty } from 'lodash'
+import { useFilterStore } from '~/stores/filter'
 export default {
   name: 'FiltesQueries',
   props: {
     refresh: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  data () {
+  data() {
     return {
-      queries: []
+      queries: [],
     }
   },
   computed: {
-    ...mapGetters({
-      storeQueries: 'filters/queries'
+    ...mapState(useFilterStore, {
+      storeQueries: 'queries',
     }),
-    queryAvailable () {
+    queryAvailable() {
       const query = this.$route.query
       return !this.isEmpty(query)
-    }
+    },
   },
   watch: {
     storeQueries: {
-      handler (newValue, oldValue) {
+      handler(newValue, oldValue) {
         this.setQueries(newValue)
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   methods: {
     isEmpty,
-    filterName (query) {
+    filterName(query) {
       const filters = {
         'filter[allow_serie]': 'allow series',
         sort: 'sort by',
         'filter[languages]': 'languages',
         'filter[negligible]': 'hide negligible',
-        default: 'unknown'
+        default: 'unknown',
       }
       return filters[query] || query
     },
-    setQueries (queries) {
+    setQueries(queries) {
       this.queries = []
-      for (const [
-        key,
-        value
-      ] of Object.entries(queries)) {
+      for (const [key, value] of Object.entries(queries)) {
         this.queries.push({ type: key, value })
       }
     },
-    remove (type) {
+    remove(type) {
       try {
         const query = Object.assign({}, this.$route.query)
         delete query[type]
@@ -80,7 +75,7 @@ export default {
       } catch (error) {
         console.error('Error on replace')
       }
-    }
-  }
+    },
+  },
 }
 </script>

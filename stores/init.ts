@@ -7,14 +7,25 @@ import { Enums } from '~/types/cms'
 export const useInitStore = defineStore({
   id: 'init',
   actions: {
-    async nuxtServerInit(context: Context) {
-      await context.$axios.$get(ApiEndpoint.AppInit).then((e: ApiResponse<AppInit>) => {
-        const application: Application = e.data.application
-        context.$cookies.set('app', application)
+    async nuxtInit(context: Context) {
+      const store = useIndexStore()
+      console.log(store.application)
 
-        const store = useIndexStore()
-        store.init(e.data)
-      })
+      // if (!store.application) {
+      await context.$repository(ApiEndpoint.AppInit, false).find<AppInit>()
+        .then((e: ApiResponse<AppInit>) => {
+          console.log(e.data.application.name)
+
+          const application: Application = e.data.application
+          context.$cookies.set('app', application)
+
+          store.init(e.data)
+        })
+        .catch((e) => {
+          console.log(e)
+          console.log('init')
+        })
+      // }
     }
   }
 })

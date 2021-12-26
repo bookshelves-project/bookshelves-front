@@ -103,7 +103,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'pinia'
+import { useNavigationStore } from '~/stores/navigation'
 export default {
   name: 'AccountDropdown',
   data() {
@@ -112,9 +113,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      auth: 'nav/auth',
-      guest: 'nav/guest',
+    ...mapState(useNavigationStore, {
+      auth: 'auth',
+      guest: 'guest',
     }),
     // authNav() {
     //   const nav = this.$store.state.nav.authNavigationTrue

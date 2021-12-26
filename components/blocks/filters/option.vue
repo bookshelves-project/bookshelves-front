@@ -62,9 +62,10 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'pinia'
 import { isEmpty } from 'lodash'
 import { pushIfNotExist } from '~/utils/methods'
+import { useFilterStore } from '~/stores/filter'
 export default {
   name: 'FiltersOption',
   props: {
@@ -111,8 +112,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      storeQueries: 'filters/queries',
+    ...mapState(useFilterStore, {
+      storeQueries: 'queries',
     }),
     currentQuery() {
       return this.$route.query
@@ -154,9 +155,9 @@ export default {
   },
   methods: {
     isEmpty,
-    ...mapMutations({
-      setQueries: 'filters/setQueries',
-      setClear: 'filters/setClear',
+    ...mapActions(useFilterStore, {
+      setQueries: 'setQueries',
+      // setClear: 'filters/setClear',
     }),
     checkCurrentQuery(query) {
       if (Object.prototype.hasOwnProperty.call(query, this.filter)) {

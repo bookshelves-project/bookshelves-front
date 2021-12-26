@@ -43,7 +43,7 @@ const config: NuxtConfig = {
   },
   privateRuntimeConfig: {},
   // https://nuxtjs.org/docs/configuration-glossary/configuration-servermiddleware
-  // serverMiddleware: ['~/server-middleware/init'],
+  // serverMiddleware: ['~/server-middleware/server-init'],
   // router: {
   //   middleware: ['nuxt-server-init']
   // },
@@ -58,7 +58,7 @@ const config: NuxtConfig = {
     ],
     // '@nuxtjs/eslint-module', // https://go.nuxtjs.dev/eslint
     '@nuxtjs/composition-api/module', // https://composition-api.nuxtjs.org/
-    ['@pinia/nuxt', { disableVuex: false }], // https://github.com/posva/pinia
+    '@pinia/nuxt', // https://github.com/posva/pinia
     // 'unplugin-vue2-script-setup/nuxt', // https://github.com/antfu/unplugin-vue2-script-setup
     // '@nuxtjs/html-validator', // https://html-validator.nuxtjs.org/
     '@nuxt/postcss8', // https://github.com/nuxt/postcss8 & https://tailwindcss.com/docs/guides/nuxtjs

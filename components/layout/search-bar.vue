@@ -50,7 +50,8 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapActions, mapState } from 'pinia'
+import { useSearchStore } from '~/stores/search'
 
 export default {
   name: 'LayoutSearchBar',
@@ -61,8 +62,8 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      modalOpened: (state) => state.search.modalOpened,
+    ...mapState(useSearchStore, {
+      modalOpened: 'modalOpened',
     }),
   },
   mounted() {
@@ -75,8 +76,8 @@ export default {
     window.removeEventListener('keydown', this.shortcutClose)
   },
   methods: {
-    ...mapMutations({
-      setModalOpened: 'search/setModalOpened',
+    ...mapActions(useSearchStore, {
+      setModalOpened: 'setModalOpened',
     }),
     isMacintosh() {
       if (navigator.userAgent.includes('Mac')) {
