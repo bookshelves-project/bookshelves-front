@@ -53,6 +53,7 @@
     "@vue/runtime-dom": "^3.2.26",
     "@vueuse/core": "^7.3.0",
     "cookie-universal-nuxt": "^2.1.5",
+    "epubjs": "^0.3.90",
     "lodash": "^4.17.21",
     "nuxt": "^2.15.8",
     "nuxt-jsonld": "^1.5.2",

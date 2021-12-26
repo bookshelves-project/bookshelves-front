@@ -104,14 +104,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { useIndexStore } from '~/stores'
-import {
-  ApiEndpoint,
-  Application,
-  Author,
-  Book,
-  MetaInfo,
-  Serie,
-} from '~/types'
+import { ApiEndpoint, Application, Author, Book, Serie } from '~/types'
 import { getHostname, formatLanguage } from '~/utils/methods'
 import EntityCard from '~/components/blocks/entity-card.vue'
 
@@ -152,18 +145,15 @@ import EntityCard from '~/components/blocks/entity-card.vue'
       description,
     }
   },
-  head(this: PageAuthorsSlug): MetaInfo {
-    return {
+  head(this: PageAuthorsSlug) {
+    return this.$metadata({
       title: this.title,
-      meta: this.$metadata({
-        title: this.title,
-        type: 'profile',
-        description: this.description,
-        image: this.author.cover?.og,
-        profileFirstName: this.author.firstname,
-        profileLastName: this.author.firstname,
-      }),
-    }
+      type: 'profile',
+      description: this.description,
+      image: this.author.cover?.og,
+      profileFirstName: this.author.firstname,
+      profileLastName: this.author.firstname,
+    })
   },
   methods: {
     getHostname,

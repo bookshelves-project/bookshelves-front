@@ -95,14 +95,11 @@ import PaginationLoad from '~/components/blocks/pagination-load.vue'
       authors,
     }
   },
-  head(this: PageSerieSlug): MetaInfo {
-    return {
+  head(this: PageSerieSlug) {
+    return this.$metadata({
       title: this.title,
-      meta: this.$metadata({
-        title: this.title,
-        description: this.description,
-      }),
-    }
+      description: this.description,
+    })
   },
   methods: {
     formatLanguage,

@@ -15,6 +15,15 @@ description: 'About upgrade project & useful links'
 - [ ] jsonld
 - [ ] toast to replace old notification
 - [ ] serie/author load mounted books/series
+- [ ] catch axios to get status
+
+```js
+const { data, status } = this.$axios.$get('/api/books').then((e) => e).catch((e) => e)
+console.log(data)
+console.log(status)
+```
+
+- [ ] metadata with title with meta
 
 <https://github.com/ymmooot/nuxt-jsonld>
 

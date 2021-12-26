@@ -21,7 +21,20 @@
           />
         </div>
         <div v-if="book.webreader">
-          <app-button :href="book.webreader" class="w-full" external>
+          <!-- <app-button :href="book.webreader" class="w-full" external>
+            <div class="flex items-center space-x-1">
+              <svg-icon name="eye" class="w-5 h-5" />
+              <span>Webreader</span>
+            </div>
+          </app-button> -->
+          <app-button
+            :to="{
+              name: 'reader-author-slug',
+              params: { author: book.meta.author, slug: book.meta.slug },
+            }"
+            class="w-full"
+            external
+          >
             <div class="flex items-center space-x-1">
               <svg-icon name="eye" class="w-5 h-5" />
               <span>Webreader</span>
@@ -51,7 +64,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { ApiEndpoint, Book, MetaInfo } from '~/types'
+import { ApiEndpoint, Book } from '~/types'
 import { formatLanguage, formatAuthors, formatTags } from '~/utils/methods'
 
 @Component({
@@ -78,24 +91,21 @@ import { formatLanguage, formatAuthors, formatTags } from '~/utils/methods'
     formatAuthors,
     formatTags,
   },
-  head(this: PageBookAuthorSlug): MetaInfo {
+  head(this: PageBookAuthorSlug) {
     const authors = this.formatAuthors(this.book.authors)
     const isbn: string = this.book.identifier
       ? ((this.book.identifier.isbn13 || this.book.identifier.isbn) as string)
       : ''
 
-    return {
+    return this.$metadata({
       title: this.title,
-      meta: this.$metadata({
-        title: this.title,
-        description: this.book.summary,
-        image: this.book.cover?.og,
-        bookISBN: isbn,
-        bookAuthor: authors,
-        bookReleaseDate: this.book.publishDate?.toString(),
-        bookTag: formatTags(this.book.tags),
-      }),
-    }
+      description: this.book.summary,
+      image: this.book.cover?.og,
+      bookISBN: isbn,
+      bookAuthor: authors,
+      bookReleaseDate: this.book.publishDate?.toString(),
+      bookTag: formatTags(this.book.tags),
+    })
   },
 })
 export default class PageBookAuthorSlug extends Vue {

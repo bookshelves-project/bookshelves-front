@@ -44,7 +44,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { useIndexStore } from '~/stores'
-import { ApiEndpoint, ApiMeta, Application, MetaInfo, Serie } from '~/types'
+import { ApiEndpoint, ApiMeta, Application, Serie } from '~/types'
 import { formatLanguage, formatAuthors } from '~/utils/methods'
 import Pagination from '~/components/blocks/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
@@ -67,14 +67,11 @@ import EntityCard from '~/components/blocks/entity-card.vue'
       title,
     }
   },
-  head(this: PageSeriesIndex): MetaInfo {
-    return {
+  head(this: PageSeriesIndex) {
+    return this.$metadata({
       title: this.title,
-      meta: this.$metadata({
-        title: this.title,
-        description: this.description,
-      }),
-    }
+      description: this.description,
+    })
   },
   methods: {
     formatLanguage,

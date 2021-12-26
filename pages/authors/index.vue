@@ -62,14 +62,11 @@ import Pagination from '~/components/blocks/pagination.vue'
       title,
     }
   },
-  head(this: PageAuthorsIndex): MetaInfo {
-    return {
+  head(this: PageAuthorsIndex) {
+    return this.$metadata({
       title: this.title,
-      meta: this.$metadata({
-        title: this.title,
-        description: this.description,
-      }),
-    }
+      description: this.description,
+    })
   },
   watchQuery: ['page', 'sort'],
   components: {

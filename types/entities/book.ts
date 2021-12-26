@@ -14,9 +14,10 @@ export interface BookSerie {
 }
 
 export interface Epub {
-  name?: string;
-  size?: string;
-  download?: string;
+  name: string;
+  size: string;
+  path: string;
+  download: string;
 }
 
 export interface GoogleBook {
@@ -50,7 +51,7 @@ export interface Book {
   publisher?: string;
   tags?: Tag[];
   genres?: Tag[];
-  epub?: Epub;
+  epub: Epub;
   webreader?: string;
   googleBook?: GoogleBook;
   isFavorite?: boolean;
