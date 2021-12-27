@@ -1,5 +1,6 @@
 import type { MetaInfo, MetaPropertyCharset, MetaPropertyEquiv, MetaPropertyName, MetaPropertyMicrodata, MetaPropertyProperty } from 'vue-meta'
 import type { Location } from 'vue-router'
+import type { HTTPResponse } from '@nuxtjs/auth-next'
 import type { ApiResponse, ApiPaginateResponse, ApiFormated, ApiMeta, Pagination, Query, ApiMessage } from './api'
 import type { Book } from './entities/book'
 import type { Serie } from './entities/serie'
@@ -58,5 +59,6 @@ export {
   SwiperElement,
   // endpoints
   ApiEndpoint,
-  FormatLanguageType
+  FormatLanguageType,
+  HTTPResponse,
 }

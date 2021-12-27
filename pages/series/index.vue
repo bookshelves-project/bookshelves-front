@@ -48,6 +48,7 @@ import { ApiEndpoint, ApiMeta, Application, Serie } from '~/types'
 import { formatLanguage, formatAuthors } from '~/utils/methods'
 import Pagination from '~/components/blocks/pagination.vue'
 import EntityCard from '~/components/blocks/entity-card.vue'
+import { useApplicationStore } from '~/stores/application'
 
 @Component({
   async asyncData({ $repository, query }) {
@@ -57,7 +58,7 @@ import EntityCard from '~/components/blocks/entity-card.vue'
       ...query,
     })
 
-    const store = useIndexStore()
+    const store = useApplicationStore()
     const application = store.application as Application
     const title = `All series available on ${application.name}`
 

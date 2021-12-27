@@ -49,6 +49,7 @@ import { useIndexStore } from '~/stores'
 import { ApiEndpoint, ApiMeta, Application, Author, MetaInfo } from '~/types'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import Pagination from '~/components/blocks/pagination.vue'
+import { useApplicationStore } from '~/stores/application'
 
 @Component({
   async asyncData({ $repository, query }) {
@@ -58,7 +59,7 @@ import Pagination from '~/components/blocks/pagination.vue'
       ...query,
     })
 
-    const store = useIndexStore()
+    const store = useApplicationStore()
     const application = store.application as Application
     const title = `All authors available on ${application.name}`
 

@@ -9,13 +9,13 @@
 </template>
 
 <script setup lang="ts">
+import { useToastStore } from '~/stores/toast'
 import { Toast } from '~/types'
-import { useToastStore } from '~/stores'
 
 // from: https://blog.aspiresys.pl/technology/toast-toasts-in-vue/
 const ctx = useContext()
 const toastStore = useToastStore(ctx.$pinia)
-const toasts = computed(() => (toastStore.toasts as Toast[]))
+const toasts = computed(() => toastStore.toasts as Toast[])
 </script>
 
 <!-- <script>

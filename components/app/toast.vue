@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { useToastStore } from '~/stores'
+import { useToastStore } from '~/stores/toast'
 import { Toast } from '~/types'
 
 const props = defineProps<{

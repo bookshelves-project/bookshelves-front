@@ -43,7 +43,7 @@
         </div>
         <div class="hidden lg:block pr-4">
           <div class="flex items-center">
-            <!-- <blocks-account-dropdown /> -->
+            <blocks-account-dropdown />
           </div>
         </div>
       </div>

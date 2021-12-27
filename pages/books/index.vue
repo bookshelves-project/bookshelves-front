@@ -62,6 +62,7 @@ import { ApiEndpoint, ApiMeta, Application, Book } from '~/types'
 import { formatLanguage, formatAuthors } from '@/utils/methods'
 import EntityCard from '~/components/blocks/entity-card.vue'
 import Pagination from '~/components/blocks/pagination.vue'
+import { useApplicationStore } from '~/stores/application'
 
 @Component({
   async asyncData({ query, $repository }) {
@@ -70,7 +71,7 @@ import Pagination from '~/components/blocks/pagination.vue'
       perPage: '32',
       ...query,
     })
-    const store = useIndexStore()
+    const store = useApplicationStore()
     const application = store.application as Application
     const title = `All books available on ${application.name}`
 

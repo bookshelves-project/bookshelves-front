@@ -1,6 +1,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { useIndexStore } from '~/stores'
+import { useApplicationStore } from '~/stores/application'
 import {
   ApiEndpoint,
   ApiMeta,
@@ -34,7 +35,7 @@ import { getHostname, formatLanguage } from '~/utils/methods'
       ),
     ])
 
-    const store = useIndexStore()
+    const store = useApplicationStore()
     const application = store.application as Application
 
     const author = api.data

@@ -1,5 +1,5 @@
 import { Plugin } from '@nuxt/types'
-import { useToastStore } from '~/stores'
+import { useToastStore } from '~/stores/toast'
 import { Toast, ToastAuto, ToastType } from '~/types'
 
 declare module 'vue/types/vue' {

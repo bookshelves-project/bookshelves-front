@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ApiEndpoint, ToastType } from '~/types'
+import { HTTPResponse, ToastType } from '~/types'
 
 const { isDev, $auth, $toast, $apiMessage } = useContext()
 const router = useRouter()
@@ -26,41 +26,23 @@ const fillForm = () => {
 const submit = async () => {
   isLoading.value = true
 
-  // await $auth.loginWith($auth.options.defaultStrategy, { data: form.value })
-  let api
-  try {
-    api = await $auth.loginWith('local', {
+  await $auth
+    .loginWith($auth.options.defaultStrategy, {
       data: form.value,
     })
-    console.log(api)
-  } catch (error) {
-    console.error(error)
-    console.log(error.response)
-  }
-
-  isLoading.value = false
-  // console.log(api.data.token)
-  // $auth.setUserToken(api.data.token)
-  // $auth.fetchUser()
-  // console.log($auth.user)
-
-  // const api = await $repository(ApiEndpoint.AuthForgotPassword, false).create(
-  //   form.value
-  // )
-  // if (api.status === 200) {
-  //   $toast(
-  //     'Success',
-  //     'Check your mailbox to create a new password',
-  //     ToastType.success
-  //   )
-  // } else {
-  //   emailError.value = api.data.errors.email[0]
-  //   $toast(
-  //     'Error',
-  //     `${api.data.message} ${$apiMessage(api.data)}`,
-  //     ToastType.error
-  //   )
-  // }
+    .then((e) => {
+      // console.log(e)
+    })
+    .catch((e) => {
+      const response: HTTPResponse = e.response
+      $toast(
+        'Error',
+        // `${response.data.message} ${$apiMessage(response.data)}`,
+        `${response.data.message}`,
+        ToastType.error
+      )
+      isLoading.value = false
+    })
 }
 </script>
 

@@ -1,9 +1,9 @@
 import { Middleware } from '@nuxt/types'
-import { useInitStore } from '~/stores/init'
+import { useApplicationStore } from '~/stores/application'
 
 const nuxtInit: Middleware = async (context) => {
-  // const store = useInitStore(context.$pinia)
-  // await store.nuxtInit(context)
+  const store = useApplicationStore(context.$pinia)
+  await store.init(context)
 }
 
 export default nuxtInit

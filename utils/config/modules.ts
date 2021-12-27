@@ -24,91 +24,36 @@ const pwa = {
 }
 const auth: RecursivePartial<ModuleOptions> = {
   strategies: {
-    local: {
-      // url: `${process.env.API_URL}/api`,
-      // user: {
-      //   property: 'data'
-      // },
+    laravelSanctum: {
+      provider: 'laravel/sanctum',
+      url: `${process.env.API_URL}/api`,
       endpoints: {
-        login: { url: ApiEndpoint.AuthLogin, method: 'post' },
+        login: {
+          url: ApiEndpoint.AuthLogin,
+          method: 'post',
+          propertyName: 'access_token'
+        },
         logout: { url: ApiEndpoint.AuthLogout, method: 'post' },
-        user: { url: ApiEndpoint.AuthProfile, method: 'get' }
-      }
-    },
-    // token: {
-    //   property: 'access_token',
-    //   type: 'Bearer',
-    //   maxAge: 1800
-    // },
-    // refreshToken: {
-    //   property: 'refresh_token',
-    //   maxAge: 60 * 60 * 24 * 30
-    // },
-    cookie: {
-      // options: {
-      //   sameSite: 'lax',
-      //   maxAge: 86400
-      // },
-      cookie: {
-        name: 'XSRF-TOKEN',
+        user: { url: ApiEndpoint.Profile, method: 'get', propertyName: false }
       },
-      endpoints: {
-        csrf: {
-          url: '/sanctum/csrf-cookie'
-        }
-      }
-    },
-    // laravelSanctum: {
-    //   provider: 'laravel/sanctum',
-    //   url: 'http://localhost:8000/api',
-    //   endpoints: {
-    //     login: {
-    //       url: '/auth/login',
-    //       method: 'post',
-    //       propertyName: 'access_token'
-    //     },
-    //     logout: { url: '/auth/logout', method: 'post' },
-    //     user: { url: '/profile', method: 'get', propertyName: false }
-    //   },
-    // },
-    // redirect: {
-    //   login: '/sign-in',
-    //   logout: '/sign-in',
-    //   callback: '/',
-    //   home: '/profile'
-    // },
+      tokenRequired: true,
+      tokenType: 'Bearer',
+      globalToken: true
+    }
   },
-  // strategies: {
-  //   laravelSanctum: {
-  //     provider: 'laravel/sanctum',
-  //     url: process.env.API_URL,
-  // endpoints: {
-  //   login: {
-  //     url: '/login',
-  //     method: 'post',
-  //     propertyName: 'access_token'
-  //   },
-  //   logout: { url: '/auth/logout', method: 'post' },
-  //   user: { url: '/profile', method: 'get', propertyName: false }
-  // },
-  //     tokenRequired: true,
-  //     tokenType: 'Bearer',
-  //     globalToken: true
-  //   }
-  // },
-  // redirect: {
-  //   login: '/sign-in',
-  //   logout: '/sign-in',
-  //   callback: '/',
-  //   home: '/profile'
-  // },
-  // cookie: {
-  // options: {
-  //   sameSite: 'lax',
-  //   maxAge: 86400 // 24 hours
-  // }
-  // },
-  // plugins: ['~/plugins/modules/auth.js']
+  redirect: {
+    login: '/sign-in',
+    logout: '/sign-in',
+    callback: '/',
+    home: '/profile'
+  },
+  cookie: {
+    options: {
+      // sameSite: 'lax',
+      maxAge: 86400
+    }
+  },
+  plugins: ['~/plugins/modules/auth.js']
 }
 const content: IContentOptions = {
   liveEdit: false,
