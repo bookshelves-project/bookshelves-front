@@ -65,58 +65,54 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
-import { mapGetters, mapMutations } from 'vuex'
+// import { mapState, mapActions } from 'pinia'
 
 export default {
   name: 'UploadFiles',
   props: {
     accept: {
       type: String,
-      default: 'image/*'
+      default: 'image/*',
     },
     value: {
-      type: [
-        Array,
-        Object
-      ],
-      default: () => {}
+      type: [Array, Object],
+      default: () => {},
     },
     label: {
       type: String,
-      default: ''
+      default: '',
     },
     cta: {
       type: String,
-      default: ''
+      default: '',
     },
     helper: {
       type: String,
-      default: ''
+      default: '',
     },
     name: {
       type: String,
-      default: ''
+      default: '',
     },
     required: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
-      uploadedFiles: []
+      uploadedFiles: [],
     }
   },
   computed: {
-    ...mapGetters({
-      // uploadedFiles: 'gallery/getUploadFiles',
-    })
+    // ...mapState({
+    // uploadedFiles: 'gallery/getUploadFiles',
+    // }),
   },
   methods: {
-    ...mapMutations({
-      // setUploadFiles: 'gallery/setUploadFiles',
-    }),
+    // ...mapActions({
+    // setUploadFiles: 'gallery/setUploadFiles',
+    // }),
     addFile() {
       this.uploadedFiles.push(...this.$refs.file.files)
       this.$emit('upload', this.uploadedFiles)
@@ -131,8 +127,8 @@ export default {
     },
     preview(newFile) {
       return URL.createObjectURL(newFile)
-    }
-  }
+    },
+  },
 }
 </script>
 

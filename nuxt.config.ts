@@ -20,7 +20,7 @@ const config: NuxtConfig = {
         tailwindcss: {},
         autoprefixer: {}
       }
-    }
+    },
   },
   // https://nuxtjs.org/docs/configuration-glossary/configuration-css
   css: [
@@ -36,14 +36,17 @@ const config: NuxtConfig = {
     baseURL: process.env.BASE_URL,
     moduleSocial: process.env.MODULE_SOCIAL,
     moduleSocialRating: process.env.MODULE_SOCIAL_RATING,
-    apiURL: process.env.API_URL
+    apiURL: process.env.API_URL,
+    axios: {
+      baseURL: `${process.env.API_URL}/api`
+    }
   },
   privateRuntimeConfig: {},
   // https://nuxtjs.org/docs/configuration-glossary/configuration-servermiddleware
-  // serverMiddleware: ['~/server-middleware/init'],
-  router: {
-    middleware: ['nuxt-server-init']
-  },
+  // serverMiddleware: ['~/server-middleware/server-init'],
+  // router: {
+  //   middleware: ['nuxt-server-init']
+  // },
   // https://nuxtjs.org/docs/configuration-glossary/configuration-head
   head,
   loading,
@@ -55,7 +58,7 @@ const config: NuxtConfig = {
     ],
     // '@nuxtjs/eslint-module', // https://go.nuxtjs.dev/eslint
     '@nuxtjs/composition-api/module', // https://composition-api.nuxtjs.org/
-    ['@pinia/nuxt', { disableVuex: false }], // https://github.com/posva/pinia
+    '@pinia/nuxt', // https://github.com/posva/pinia
     // 'unplugin-vue2-script-setup/nuxt', // https://github.com/antfu/unplugin-vue2-script-setup
     // '@nuxtjs/html-validator', // https://html-validator.nuxtjs.org/
     '@nuxt/postcss8', // https://github.com/nuxt/postcss8 & https://tailwindcss.com/docs/guides/nuxtjs
@@ -71,32 +74,26 @@ const config: NuxtConfig = {
   // https://nuxtjs.org/docs/configuration-glossary/configuration-modules/
   modules: [
     '@nuxtjs/axios', // https://go.nuxtjs.dev/axios
-    '@nuxtjs/auth-next', // https://auth.nuxtjs.org/
+    // '@nuxtjs/auth-next', // https://auth.nuxtjs.org/
     '@nuxtjs/pwa', // https://go.nuxtjs.dev/pwa
     '@nuxtjs/i18n', // https://i18n.nuxtjs.org/
     '@nuxt/content', // https://go.nuxtjs.dev/content
     '@nuxtjs/markdownit', // https://www.npmjs.com/package/@nuxtjs/markdownit
-    [
-      'nuxt-lazy-load', // https://gitlab.com/broj42/nuxt-lazy-load
-      nuxtLazyLoad
-    ],
+    ['nuxt-lazy-load', nuxtLazyLoad], // https://gitlab.com/broj42/nuxt-lazy-load
     // '@nuxtjs/robots', // https://www.npmjs.com/package/@nuxtjs/robots
     // '@nuxtjs/sitemap', // https://sitemap.nuxtjs.org/
-    // [
-    //   'nuxt-matomo', // https://github.com/pimlie/nuxt-matomo
-    //   matomo
-    // ],
+    // ['nuxt-matomo', matomo], // https://github.com/pimlie/nuxt-matomo
     'cookie-universal-nuxt' // https://github.com/microcipcip/cookie-universal/tree/master/packages/cookie-universal-nuxt
   ],
   ...modules,
   // https://nuxtjs.org/docs/configuration-glossary/configuration-plugins
   plugins: [
     // '~/plugins/bus.client', // Global toasts
-    '~/plugins/helper.ts', // global methods
-    '~/plugins/jsonld', // https://github.com/ymmooot/nuxt-jsonld
+    '~/plugins/helper', // global methods
+    // '~/plugins/jsonld', // https://github.com/ymmooot/nuxt-jsonld
+    '~/plugins/metadata',
     '~/plugins/repository', // repository pattern
     '~/plugins/toast', // toast alerts
-    '~/plugins/truncate',
     '~/plugins/v-click-outside', // https://github.com/ndelvalle/v-click-outside
     '~/plugins/vue-awesome-swiper.client.js', // https://github.com/surmon-china/vue-awesome-swiper
     '~/plugins/vue-scrollactive' // https://github.com/eddiemf/vue-scrollactive

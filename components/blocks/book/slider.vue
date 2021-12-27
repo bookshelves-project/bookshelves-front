@@ -1,13 +1,5 @@
 <template>
-  <div
-    class="
-        books-slider
-        relative
-        book-books
-        max-w-full
-        overflow-hidden
-      "
-  >
+  <div class="books-slider relative book-books max-w-full overflow-hidden">
     <div class="py-5">
       <h2
         class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100"
@@ -21,18 +13,18 @@
     <div class="py-5">
       <div v-if="!isLoaded" class="pt-2 pb-2 animate-pulse">
         <div class="flex space-x-6">
-          <div class="bg-gray-300 h-96 w-64 rounded-md"></div>
+          <div class="bg-gray-300 dark:bg-gray-700 h-96 w-64 rounded-md"></div>
           <div class="mt-4 space-y-4">
-            <div class="h-8 w-48 rounded-md bg-gray-300"></div>
-            <div class="h-8 w-48 rounded-md bg-gray-300"></div>
-            <div class="h-8 w-48 rounded-md bg-gray-300"></div>
+            <div class="h-8 w-48 rounded-md bg-gray-300 dark:bg-gray-700"></div>
+            <div class="h-8 w-48 rounded-md bg-gray-300 dark:bg-gray-700"></div>
+            <div class="h-8 w-48 rounded-md bg-gray-300 dark:bg-gray-700"></div>
           </div>
         </div>
         <div class="mt-6 flex items-center space-x-6">
           <div
-            v-for="(i,id) in 5"
+            v-for="(i, id) in 5"
             :key="id"
-            class="bg-gray-300 h-20 w-20 rounded-md"
+            class="bg-gray-300 dark:bg-gray-700 h-20 w-20 rounded-md"
           ></div>
         </div>
       </div>
@@ -44,7 +36,7 @@
             class="h-96 w-full"
             @slideChange="mainChange"
           >
-            <swiper-slide v-for="(entity,id) in entities" :key="id">
+            <swiper-slide v-for="(entity, id) in entities" :key="id">
               <blocks-book-slider-card :book="entity" />
             </swiper-slide>
             <div slot="button-prev" class="swiper-button-prev">
@@ -75,6 +67,11 @@
             </swiper-slide>
             <div slot="pagination" class="swiper-pagination"></div>
           </swiper>
+          <div v-if="route" class="mt-6">
+            <app-button :to="route" class="w-full" color="white" align="center">
+              View all results
+            </app-button>
+          </div>
         </section>
       </client-only>
     </div>
@@ -87,18 +84,18 @@ import { Entity, Route, SwiperElement } from '~/types'
 const props = defineProps({
   entities: {
     type: Array as () => Entity[],
-    default: () => []
+    default: () => [],
   },
   loaded: {
     type: Boolean,
-    default: false
+    default: false,
   },
   route: {
     type: Object as () => Route,
     default: () => {
       return { name: 'index' }
-    }
-  }
+    },
+  },
 })
 
 const isLoaded = ref(false)
@@ -108,8 +105,8 @@ const main = {
   grabCursor: true,
   navigation: {
     nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev'
-  }
+    prevEl: '.swiper-button-prev',
+  },
 }
 const thumbs = {
   loop: false,
@@ -120,26 +117,29 @@ const thumbs = {
   paginationClickable: true,
   pagination: {
     el: '.swiper-pagination',
-    clickable: true
+    clickable: true,
   },
   breakpoints: {
     500: {
-      slidesPerView: 2
+      slidesPerView: 2,
     },
     800: {
-      slidesPerView: 3
+      slidesPerView: 3,
     },
     1200: {
-      slidesPerView: 5
-    }
-  }
+      slidesPerView: 5,
+    },
+  },
 }
 const swiperMain = ref<SwiperElement>()
 const swiperThumbs = ref<SwiperElement>()
 
-watch(() => props.loaded, (newVal) => {
-  isLoaded.value = newVal
-})
+watch(
+  () => props.loaded,
+  (newVal) => {
+    isLoaded.value = newVal
+  }
+)
 
 const mainChange = () => {
   const main = swiperMain.value?.$swiper
@@ -150,7 +150,7 @@ const thumbsChange = () => {
   const thumbs = swiperThumbs.value?.$swiper
   thumbsEvent(thumbs.activeIndex)
 }
-const thumbsEvent = (index:number) => {
+const thumbsEvent = (index: number) => {
   const main = swiperMain.value?.$swiper
   main.slideTo(index)
 }

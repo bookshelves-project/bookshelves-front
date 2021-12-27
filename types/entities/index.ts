@@ -9,24 +9,35 @@ export interface Cover {
 }
 
 export interface TagMeta {
-  slug?: string;
+  slug: string;
   author?: string;
   show?: string;
   books?: string;
 }
 
 export interface Tag {
-  name?: string;
+  name: string;
   type?: string;
-  count?: null;
-  firstChar?: null;
-  meta?: TagMeta;
+  count?: string;
+  firstChar?: string;
+  meta: TagMeta;
+}
+
+export interface EntityMeta {
+  entity?: string;
+  author?: string;
+  slug?: string;
+  show?: string;
 }
 
 export interface Entity {
+  meta: EntityMeta;
   title?: string;
   name?: string;
   authors?: Author[];
-  cover?: Cover;
+  serie?: string;
   language?: string;
+  volume?: number;
+  cover?: Cover;
+  firstChar?: string;
 }

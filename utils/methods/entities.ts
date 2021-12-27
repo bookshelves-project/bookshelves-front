@@ -1,3 +1,4 @@
+import { useIndexStore } from '~/stores'
 import { Author, Tag } from '~/types'
 
 // get all authors into a string from array of object
@@ -18,26 +19,26 @@ export const formatAuthors = (authors: Author[] | undefined) => {
 
 // get language flag url or label from slug
 export const formatLanguage = (slug: string) => {
-  const available = [
-    {
-      slug: 'fr',
-      id: 'fr',
-      label: 'French',
-      flag: '🇫🇷'
-    },
-    {
-      slug: 'en',
-      id: 'gb',
-      label: 'English',
-      flag: '🇬🇧'
-    }
-  ]
+  const store = useIndexStore()
+  // const language = store.languages.find(lang => lang.meta?.slug === slug)
 
-  return available.find(lang => lang.slug === slug)
+  // return language ? language[type] : 'unkown'
+  // const colors: ObjectLiteral = {
+  //   success: 'bg-emerald-100',
+  //   warning: 'bg-amber-100',
+  //   error: 'bg-red-100',
+  //   information: 'bg-sky-100',
+  //   default: 'bg-sky-100'
+  // }
+
+  // colors[typeData] || colors.default
+
+  // return language ? language.name : 'unkown'
+  return ''
 }
 
 // get all authors into a string from array of object
-export const formatTags = (tags: Tag[]) => {
+export const formatTags = (tags?: Tag[]) => {
   if (tags) {
     let entitiesToString = ''
     tags.forEach((tag, tagId) => {

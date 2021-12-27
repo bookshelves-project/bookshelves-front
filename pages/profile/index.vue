@@ -14,7 +14,9 @@
             params: { slug: $auth.user.data.meta.slug },
           })
         "
-      >See my public profile</app-button>
+      >
+See my public profile
+</app-button>
     </app-header>
     <!-- Main 2 column grid -->
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">

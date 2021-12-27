@@ -12,7 +12,9 @@
     }"
   >
     <template #title>{{ book.serie.title }}'s series</template>
-    <template #subtitle>Current: vol. {{ book.volume }}, limited to 10 next volumes.</template>
+    <template #subtitle>
+      Current: vol. {{ book.volume }}, limited to 10 next volumes.
+    </template>
   </BookSlider>
 </template>
 
@@ -30,14 +32,16 @@ const loaded = ref(false)
 
 const loadSerie = () => {
   if (props.book.serie !== null) {
-    $repository(ApiEndpoint.SerieBook, false).index({}, [
-      props.book.volume?.toString(10) as string,
-      props.book.serie?.meta.author as string,
-      props.book.serie?.meta.slug as string
-    ]).then((e: ApiResponse<Entity[]>) => {
-      entities.value = e.data
-      loaded.value = true
-    })
+    $repository(ApiEndpoint.SerieBook, false)
+      .find<Entity[]>({}, [
+        props.book.volume?.toString(10) as string,
+        props.book.serie?.meta.author as string,
+        props.book.serie?.meta.slug as string,
+      ])
+      .then((e) => {
+        entities.value = e.data
+        loaded.value = true
+      })
   }
 }
 

@@ -1,7 +1,9 @@
+import type { ColorModeOptions } from '@nuxtjs/color-mode/types/color-mode'
+
 const tailwindcss = {
   cssPath: '~/assets/css/tailwind'
 }
-const colorMode = {
+const colorMode: Partial<ColorModeOptions> = {
   classSuffix: ''
 }
 const htmlValidator = {

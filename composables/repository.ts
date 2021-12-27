@@ -3,7 +3,7 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { NuxtError } from '@nuxt/types'
 import { AxiosResponse } from 'axios'
 import { stringify } from 'qs'
-import { ApiEndpoint, ApiPaginateResponse, ApiResponse, Query } from '~/types'
+import { ApiEndpoint, ApiMessage, ApiPaginateResponse, ApiResponse, Query } from '~/types'
 
 export class Repository {
   axios: NuxtAxiosInstance
@@ -20,61 +20,71 @@ export class Repository {
     this.response = response
   }
 
-  url(params: string | string[] | undefined) {
+  url(params: string | string[] | undefined, query?: Query) {
     let url = `${this.endpoint}`
+    let queryParams = ''
     if (params) {
       const routeParams = params instanceof Array ? params.join('/') : params
       url = `${url}/${routeParams}`
     }
+    if (query) {
+      queryParams = `?${stringify({ ...query })}`
+    }
 
-    return url
+    return `${url}${queryParams}`
   }
 
-  find(query?: Query, params?: string | string[]): Promise<ApiResponse<any>> {
-    const url = `${this.url(params)}?${stringify({ ...query })}`
-
-    return this.axios.$get(url)
-      .then((response: ApiResponse<any>) => response)
+  find<T>(query?: Query, params?: string | string[]): Promise<ApiResponse<T> | AxiosResponse> {
+    return this.axios.$get(this.url(params, query))
+      .then((response: ApiResponse<T>) => response)
       .catch((e) => {
         console.error(e)
+        const response: AxiosResponse = e.response
         if (this.handleError) {
           this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
         }
-        return {} as ApiResponse<any>
+        return response as AxiosResponse
       })
   }
 
   /**
    * Get all entities
    */
-  index(query?: Query, params?: string | string[]): Promise<ApiPaginateResponse<any>> {
-    const url = `${this.url(params)}?${stringify({ ...query })}`
-
-    return this.axios.$get(url)
-      .then((response: ApiPaginateResponse<any>) => response)
+  index<T>(query?: Query, params?: string | string[]): Promise<ApiPaginateResponse<T>> {
+    return this.axios.$get(this.url(params, query))
+      .then((response: ApiPaginateResponse<T>) => response)
       .catch((e) => {
         console.error(e)
         if (this.handleError) {
           this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
         }
-        return {} as ApiPaginateResponse<any>
+        return {} as ApiPaginateResponse<T>
       })
   }
 
-  show(params: string | string[]): Promise<ApiResponse<any>> {
+  show<T>(params: string | string[]): Promise<ApiResponse<T>> {
     return this.axios.$get(this.url(params))
-      .then((response: ApiResponse<any>) => response)
+      .then((response: ApiResponse<T>) => response)
       .catch((e) => {
         console.error(e)
         if (this.handleError) {
           this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
         }
-        return {} as ApiPaginateResponse<any>
+        return {} as ApiResponse<T>
       })
   }
 
-  create(payload: object) {
-    // return this.axios.$post(`${resource}`, payload)
+  create<T>(payload: object, params?: string | string[]): Promise<AxiosResponse<ApiMessage>> {
+    return this.axios.post(this.url(params), payload)
+      .then((response: AxiosResponse) => response)
+      .catch((e) => {
+        console.error(e)
+        const response: AxiosResponse = e.response
+        if (this.handleError) {
+          this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
+        }
+        return response as AxiosResponse
+      })
   }
 
   update(slug: string, payload: object) {

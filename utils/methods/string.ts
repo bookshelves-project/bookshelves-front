@@ -1,4 +1,4 @@
-export const overflow = (text: string, maxLength = 25) => {
+export const overflow = (text?: string, maxLength = 25) => {
   if (text) {
     let overflow = text
     if (text.length > maxLength) {

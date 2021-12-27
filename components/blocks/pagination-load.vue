@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div v-if="meta.current_page !== meta.last_page" class="flex">
     <transition name="fade">
       <app-button
         v-if="!disabled"
@@ -25,21 +25,16 @@
 </template>
 
 <script setup lang="ts">
-import { ApiEndpoint, Query } from '~/types'
+import { ApiEndpoint, ApiMeta, Entity, Query } from '~/types'
 
-const props = defineProps({
-  pages: {
-    type: Number,
-    default: 1
-  },
-  currentPage: {
-    type: Number,
-    default: 1
-  },
-  endpoint: {
-    type: String as () => ApiEndpoint,
-    default: ApiEndpoint.Book
-  }
+interface Props {
+  meta: ApiMeta
+  perPage: string
+  endpoint: ApiEndpoint
+}
+const props = withDefaults(defineProps<Props>(), {
+  endpoint: ApiEndpoint.Book,
+  perPage: '32',
 })
 
 const { route, $repository } = useContext()
@@ -50,24 +45,30 @@ const pending = ref(false)
 const newPage = ref('1')
 
 const load = async () => {
-  let currentPage = props.currentPage
-  currentPage++
-  newPage.value = currentPage.toString(10)
-  const data = await request()
-  emit('load', data)
+  if (props.meta) {
+    let currentPage = props.meta.current_page
+    currentPage++
+    newPage.value = currentPage.toString(10)
+    const data = await request()
+    emit('load', data)
+  }
 }
 const request = async () => {
   pending.value = true
   const queries: Query = {
-    perPage: '32',
+    perPage: props.perPage,
     page: newPage.value,
-    ...route.value.query
+    ...route.value.query,
   }
-  const api = await $repository(props.endpoint, false).index(queries, Object.values(route.value.params))
-  if (api.meta?.current_page === api.meta?.last_page) {
+  const api = await $repository(props.endpoint, false).index<Entity>(
+    queries,
+    Object.values(route.value.params)
+  )
+  if (api.meta.current_page === api.meta.last_page) {
     disabled.value = true
   }
   pending.value = false
-  return api.data
+
+  return api
 }
 </script>

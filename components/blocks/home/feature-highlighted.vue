@@ -13,11 +13,12 @@
       >
         <div class="py-20">
           <div>
-            <div class="flex items-center">
-              <!-- <svg-icon :name="icon" class="w-12 h-12 text-primary-600" /> -->
+            <div
+              class="flex items-center text-primary-600 dark:text-primary-500"
+            >
               <img :src="highlight.icon" alt="" class="w-12 h-12" />
               <h2
-                class="ml-3 text-3xl font-extrabold tracking-tight text-primary-600 font-handlee"
+                class="ml-3 text-3xl font-extrabold tracking-tight font-handlee"
               >
                 {{ highlight.title }}
               </h2>

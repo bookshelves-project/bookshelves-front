@@ -11,7 +11,7 @@ const head: object = {
   },
   meta: [
     ...metadataStatic(),
-    ...metadataDynamic()
+    ...metadataDynamic({}, { baseURL: process.env.BASE_URL })
   ],
   link: [
     {

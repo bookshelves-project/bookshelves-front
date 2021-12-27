@@ -17,14 +17,8 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex'
-export default {
-  name: 'LayoutFooterNavigation',
-  computed: {
-    ...mapGetters({
-      navigation: 'nav/footer'
-    })
-  }
-}
+<script setup lang="ts">
+import { useNavigationStore } from '~/stores/navigation'
+const store = useNavigationStore()
+const navigation = store.footer
 </script>

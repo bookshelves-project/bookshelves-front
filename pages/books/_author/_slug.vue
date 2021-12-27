@@ -1,11 +1,11 @@
 <template>
-  <main v-if="book" class="main-content">
+  <main class="main-content">
     <app-header
       :title="book.title"
       :image="book.cover ? book.cover.thumbnail : null"
       :image-original="book.cover ? book.cover.original : null"
       :color="book.cover ? book.cover.color : ''"
-      :subtitle="subtitle(book)"
+      :subtitle="subtitle"
       :authors="book.authors"
       :text="book.description"
       :entity="book"
@@ -13,15 +13,30 @@
     >
       <div class="space-y-3 mx-auto">
         <div>
-          <blocks-button-download
+          <app-button
             v-if="book.epub && book.epub.download"
             :href="book.epub.download"
-            :size="book.epub ? book.epub.size : ''"
-            :type="`EPUB`"
-          />
+            color="primary"
+            icon="download"
+          >
+            Download (EPUB {{ book.epub.size }})
+          </app-button>
         </div>
         <div v-if="book.webreader">
-          <app-button :href="book.webreader" class="w-full" external>
+          <!-- <app-button :href="book.webreader" class="w-full" external>
+            <div class="flex items-center space-x-1">
+              <svg-icon name="eye" class="w-5 h-5" />
+              <span>Webreader</span>
+            </div>
+          </app-button> -->
+          <app-button
+            :to="{
+              name: 'reader-author-slug',
+              params: { author: book.meta.author, slug: book.meta.slug },
+            }"
+            class="w-full"
+            external
+          >
             <div class="flex items-center space-x-1">
               <svg-icon name="eye" class="w-5 h-5" />
               <span>Webreader</span>
@@ -34,7 +49,11 @@
     <div
       class="lg:grid lg:grid-cols-2 divide-x divide-transparent lg:divide-gray-200 lg:dark:divide-gray-600"
     >
-      <blocks-book-serie v-if="book.serie !== null" :book="book" class="lg:pr-10" />
+      <blocks-book-serie
+        v-if="book.serie !== null"
+        :book="book"
+        class="lg:pr-10"
+      />
       <blocks-book-related
         v-if="book.tags?.length || book.genres?.length"
         :book="book"
@@ -45,87 +64,64 @@
   </main>
 </template>
 
-<script setup lang="ts">
-import { ApiEndpoint, Book } from '~/types'
-import { formatLanguage, formatAuthors } from '~/utils/methods'
-
-const { title, meta } = useMeta()
-
-const book = ref<Book>()
-const pageTitle = ref<string>()
-// const subtitle = computed(() => {
-// })
-const subtitle = (book: Book) => {
-  const lang = formatLanguage(book.language)?.label
-  const serie = book.serie
-    ? `${book.serie.title}, vol. ${book.volume}, `
-    : ''
-  return `${serie}into ${lang}`
-}
-
-title.value = book.value?.title
-// meta.value.push({
-//   hid: 'ogTitle',
-//   name: 'og:title',
-//   content: post.value.title,
-// })
-// meta.value.push({
-//   hid: 'twitterTitle',
-//   name: 'twitter:title',
-//   content: post.value.title,
-// })
-
-useMeta({
-  bodyAttrs: {
-    itemtype: 'http://schema.org/WebPage'
-  },
-  meta: [{ hid: 'description', name: 'description', content: 'page desc' }]
-})
-</script>
-
 <script lang="ts">
-export default defineComponent({
-  async asyncData({ params, $repository }) {
-    const api = await $repository(ApiEndpoint.Book).show([
+import { Component, Vue } from 'vue-property-decorator'
+import { ApiEndpoint, Book } from '~/types'
+import { formatLanguage, formatAuthors, formatTags } from '~/utils/methods'
+
+@Component({
+  async asyncData({ $repository, params }) {
+    const api = await $repository(ApiEndpoint.Book).show<Book>([
       params.author,
-      params.slug
+      params.slug,
     ])
 
-    const data = api.data
-    const serie = data.serie
-      ? ` · ${data.serie.title}, vol. ${data.volume} `
+    const book = api.data
+    const serie = book.serie
+      ? ` · ${book.serie.title}, vol. ${book.volume} `
       : ''
-    const authors = formatAuthors(data.authors)
-    const pageTitle = `${data.title} ${serie}by ${authors}`
+    const authors = formatAuthors(book.authors)
+    const title = `${book.title} ${serie}by ${authors}`
 
     return {
-      book: api.data,
-      pageTitle
+      book,
+      title,
     }
   },
-  head: {}
-  // const dynamicMetadata = require('~/utils/metadata/dynamic')
-  // const serie = this.book.serie
-  //   ? ` · ${this.book.serie.title}, vol. ${this.book.volume} `
-  //   : ''
-  // const authors = this.formatAuthors(this.book.authors)
-  // const title = `${this.book.title} ${serie}by ${authors}`
-  // return {
-  //   title,
-  //   description: this.book.summary,
-  //   image: this.book.cover.og,
-  //   meta: [
-  //     ...dynamicMetadata.default({
-  //       title,
-  //       url: this.$nuxt.$route.path,
-  //       bookISBN: this.book.identifier
-  //         ? this.book.identifier.isbn13 || this.book.identifier.isbn
-  //         : null,
-  //       bookAuthor: authors,
-  //       bookReleaseDate: this.book.publishDate,
-  //       bookTag: this.formatTags(this.book.tags)
-  //     })
-  //   ]
-  // }
+  methods: {
+    formatLanguage,
+    formatAuthors,
+    formatTags,
+  },
+  head(this: PageBookAuthorSlug) {
+    const authors = this.formatAuthors(this.book.authors)
+    const isbn: string = this.book.identifier
+      ? ((this.book.identifier.isbn13 || this.book.identifier.isbn) as string)
+      : ''
+
+    return this.$metadata({
+      title: this.title,
+      description: this.book.summary,
+      image: this.book.cover?.og,
+      bookISBN: isbn,
+      bookAuthor: authors,
+      bookReleaseDate: this.book.publishDate?.toString(),
+      bookTag: formatTags(this.book.tags),
+    })
+  },
 })
+export default class PageBookAuthorSlug extends Vue {
+  book!: Book
+  formatLanguage!: typeof formatLanguage
+  formatAuthors!: typeof formatAuthors
+  title!: string
+
+  get subtitle() {
+    const lang = formatLanguage(this.book.language)
+    const serie = this.book.serie
+      ? `${this.book.serie.title}, vol. ${this.book.volume}, `
+      : ''
+    return `${serie}into ${lang}`
+  }
+}
 </script>

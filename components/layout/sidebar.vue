@@ -1,21 +1,10 @@
 <template>
-  <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
   <div
     v-if="layer"
     class="fixed inset-0 flex z-40 lg:hidden"
     role="dialog"
     aria-modal="true"
   >
-    <!--
-      Off-canvas menu overlay, show/hide based on off-canvas menu state.
-
-      Entering: "transition-opacity ease-linear duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "transition-opacity ease-linear duration-300"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
     <transition name="fade">
       <div
         v-if="overlay"
@@ -23,32 +12,11 @@
         aria-hidden="true"
       ></div>
     </transition>
-
-    <!--
-        Off-canvas menu, show/hide based on off-canvas menu state.
-
-        Entering: "transition ease-in-out duration-300 transform"
-          From: "-translate-x-full"
-        To: "translate-x-0"
-      Leaving: "transition ease-in-out duration-300 transform"
-        From: "translate-x-0"
-        To: "-translate-x-full"
-    -->
     <div
       ref="target"
       :class="sidebar ? 'translate-x-0' : '-translate-x-full'"
       class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-gray-100 dark:bg-gray-800 transition ease-in-out duration-300 transform"
     >
-      <!--
-        Close button, show/hide based on off-canvas menu state.
-
-        Entering: "ease-in-out duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "ease-in-out duration-300"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
       <div class="absolute top-0 right-0 -mr-12 pt-2">
         <button
           type="button"
@@ -60,14 +28,18 @@
         </button>
       </div>
       <div class="flex-shrink-0 flex items-center px-4">
-        <nuxt-link to="/" class="inline-flex items-center w-auto h-8">
+        <nuxt-link
+          to="/"
+          class="inline-flex items-center w-auto h-8"
+          active-class="active-logo"
+        >
           <span class="inline-flex items-center" @click="closeSidebar">
             <img
               class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
               src="/icon.svg"
               :alt="`${$config.appName} logo`"
             />
-            <div class="mt-2 ml-3 text-2xl font-handlee">
+            <div class="mt-2 ml-3 text-2xl font-handlee dark:text-gray-100">
               {{ $config.appName }}
             </div>
           </span>
@@ -76,10 +48,7 @@
       <div class="flex-1 h-0 mt-5 overflow-y-auto">
         <nav class="px-2">
           <div class="space-y-1">
-            <nuxt-link
-              to="/"
-              class="flex items-center text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 group"
-            >
+            <nuxt-link to="/" class="link group" active-class="active-logo">
               <span
                 class="w-full px-2 py-4 font-semibold"
                 @click="closeSidebar"
@@ -88,15 +57,15 @@
               </span>
             </nuxt-link>
             <nuxt-link
-              v-for="(booksNav, booksNavId) in navigation"
-              :key="booksNavId"
-              :to="localePath({ name: booksNav.route })"
-              class="flex items-center text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              v-for="(link, id) in navigation"
+              :key="id"
+              :to="localePath(link.route)"
+              class="link group"
             >
               <span
                 class="w-full px-2 py-4 font-semibold"
                 @click="closeSidebar"
-                >{{ $t(`nav.${booksNav.label}`) }}</span
+                >{{ $t(`nav.${link.label}`) }}</span
               >
             </nuxt-link>
           </div>
@@ -116,8 +85,8 @@
                 <nuxt-link
                   v-for="(link, id) in auth"
                   :key="id"
-                  :to="localePath({ name: link.route })"
-                  class="flex items-center w-full text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900 dark:hover:bg-gray-700"
+                  :to="localePath(link.route)"
+                  class="link group"
                   role="menuitem"
                 >
                   <span
@@ -132,7 +101,7 @@
                   </span>
                 </nuxt-link>
                 <button
-                  class="flex items-center w-full px-3 py-4 text-base font-semibold leading-5 text-gray-600 rounded-md dark:text-gray-100 group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900 dark:hover:bg-gray-700"
+                  class="link group w-full px-3 py-4"
                   type="button"
                   role="menuitem"
                   @click="logout"
@@ -148,8 +117,8 @@
                 <nuxt-link
                   v-for="(link, id) in guest"
                   :key="id"
-                  :to="localePath({ name: link.route })"
-                  class="flex items-center w-full text-base font-semibold leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-100 dark:hover:text-gray-900 dark:hover:bg-gray-700"
+                  :to="localePath(link.route)"
+                  class="link group"
                   role="menuitem"
                 >
                   <span
@@ -227,3 +196,12 @@ const logout = () => {
   ctx.$auth.logout()
 }
 </script>
+
+<style lang="css" scoped>
+.link {
+  @apply flex items-center text-base font-medium leading-5 text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700;
+}
+.nuxt-link-active {
+  @apply text-black bg-gray-200 dark:text-white dark:bg-gray-600;
+}
+</style>

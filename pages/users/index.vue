@@ -16,7 +16,9 @@
           <p class="text-sm font-medium text-gray-900 dark:text-gray-200">{{ user.name }}</p>
           <p
             class="text-sm text-gray-500 dark:text-gray-300 truncate"
-          >Comments: {{ user.commentsCount }}</p>
+          >
+Comments: {{ user.commentsCount }}
+</p>
         </div>
       </nuxt-link>
     </div>

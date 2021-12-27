@@ -1,30 +1,17 @@
 <template>
   <div v-if="toc.length" class="relative block">
     <div
-      class="
-        lg:sticky lg:top-5
-        overflow-y-auto
-        h-full
-        lg:h-auto lg:max-h-(screen-5)
-      "
+      class="lg:sticky lg:top-5 overflow-y-auto h-full lg:h-auto lg:max-h-(screen-5)"
     >
       <nav class="pb-3 px-2">
         <h3
-          class="
-            mb-3
-            text-sm
-            font-bold
-            tracking-wider
-            text-gray-500
-            uppercase
-            lg:mb-2 lg:text-xs
-          "
+          class="mb-3 text-sm font-bold tracking-wider text-gray-500 uppercase lg:mb-2 lg:text-xs"
         >
           On this page
         </h3>
         <scrollactive
           highlight-first-item
-          active-class="text-green-500"
+          active-class="text-primary-500"
           :offset="0"
           tag="ul"
         >
@@ -39,20 +26,13 @@
           >
             <a
               :href="`#${link.id}`"
-              class="
-                block
-                text-sm
-                duration-300
-                ease-in-out
-                scrollactive-item
-                transition-padding
-                hover:pl-1
-              "
+              class="block text-sm duration-300 ease-in-out scrollactive-item transition-padding hover:pl-1"
               :class="{
                 'py-2': link.depth === 2,
                 'ml-2 pb-2': link.depth === 3,
               }"
-            >{{ link.text }}</a>
+              >{{ link.text }}</a
+            >
           </li>
         </scrollactive>
       </nav>
@@ -67,18 +47,18 @@ export default {
   props: {
     toc: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
       settings: {
-        layout: 'single'
-      }
+        layout: 'single',
+      },
     }
   },
   computed: {
     // ...mapGetters(['settings']),
-  }
+  },
 }
 </script>

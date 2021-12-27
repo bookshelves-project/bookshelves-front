@@ -3,10 +3,13 @@
     <app-header
       :title="`${title} ${tag.name}`"
       :subtitle="`${description} ${tag.name}`"
-      :border="false"
     />
     <div>
-      <search-results v-if="books.data.length" :entity-type="`book`" :entities="books.data" />
+      <search-results
+        v-if="books.data.length"
+        :entity-type="`book`"
+        :entities="books.data"
+      />
       <div class="mt-14 mb-5">
         <load-more
           :last-page="books.meta.last_page"
@@ -26,23 +29,20 @@ export default {
   name: 'TagsSlug',
   components: { SearchResults, LoadMore },
   async asyncData({ app, params }) {
-    const [
-      tag,
-      books
-    ] = await Promise.all([
+    const [tag, books] = await Promise.all([
       app.$axios.$get(`/tags/${params.slug}`),
-      app.$axios.$get(`/tags/books/${params.slug}`)
+      app.$axios.$get(`/tags/books/${params.slug}`),
     ])
 
     return {
       tag: tag.data,
-      books
+      books,
     }
   },
   data() {
     return {
       title: 'Tag',
-      description: 'Books and series with tag'
+      description: 'Books and series with tag',
     }
   },
   head() {
@@ -54,15 +54,15 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path
-        })
-      ]
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
   methods: {
     load(data) {
       this.books.data = data
-    }
-  }
+    },
+  },
 }
 </script>

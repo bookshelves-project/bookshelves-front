@@ -10,7 +10,10 @@
     <layout-breadcrumb class="mb-6" />
     <div class="lg:flex lg:items-center lg:justify-between">
       <div class="sm:items-center sm:flex sm:justify-between">
-        <div :class="{ 'lg:flex lg:items-center': image }" class="mx-auto lg:mx-0">
+        <div
+          :class="{ 'lg:flex lg:items-center': image }"
+          class="mx-auto lg:mx-0"
+        >
           <div class="flex">
             <component
               :is="imageOriginal ? 'a' : 'span'"
@@ -39,8 +42,10 @@
             <div class="sm:flex">
               <h1
                 id="message-heading"
-                class="text-2xl font-extrabold font-handlee text-primary-600 text-center lg:text-left w-full"
-              >{{ title }}</h1>
+                class="text-2xl font-extrabold font-handlee text-primary-600 dark:text-primary-500 text-center lg:text-left w-full"
+              >
+                {{ title }}
+              </h1>
               <div class="flex">
                 <button
                   v-if="favorite && $auth.$state.loggedIn"
@@ -66,7 +71,9 @@
               <blocks-authors-links v-if="authors" :authors="authors" />
               <h2
                 class="text-gray-500 overflow-hidden text-ellipsis mt-1 text-center lg:text-left"
-              >{{ subtitle }}</h2>
+              >
+                {{ subtitle }}
+              </h2>
             </div>
           </div>
         </div>
@@ -84,7 +91,7 @@
     >
       <div v-html="text" />
     </div>
-    <div v-if="cta" class="dark:text-gray-100 text-gray-500">
+    <div v-if="cta" class="dark:text-gray-400 text-gray-500">
       <div class="pt-1 text-right">
         To have more informations:
         <a
@@ -92,7 +99,8 @@
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-gray-700 border-b border-gray-500"
-        >{{ getHostname(cta) }}</a>
+          >{{ getHostname(cta) }}</a
+        >
       </div>
     </div>
     <div class="mt-4">
@@ -111,53 +119,53 @@ export default {
   props: {
     title: {
       type: String,
-      default: ''
+      default: '',
     },
     subtitle: {
       type: String,
-      default: ''
+      default: '',
     },
     image: {
       type: String,
-      default: null
+      default: null,
     },
     imageOriginal: {
       type: String,
-      default: null
+      default: null,
     },
     border: {
       type: Boolean,
-      default: true
+      default: false,
     },
     cta: {
       type: String,
-      default: ''
+      default: '',
     },
     text: {
       type: String,
-      default: ''
+      default: '',
     },
     authors: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     favorite: {
       type: Boolean,
-      default: false
+      default: false,
     },
     entity: {
       type: Object,
-      default: () => { }
+      default: () => {},
     },
     color: {
       type: String,
-      default: '#ffffff'
-    }
+      default: '#ffffff',
+    },
   },
   data() {
     return {
       isFavorite: false,
-      favoritesList: []
+      favoritesList: [],
     }
   },
   mounted() {
@@ -185,8 +193,8 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

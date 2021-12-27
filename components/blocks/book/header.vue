@@ -17,11 +17,15 @@
             <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
               <p
                 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-gray-100"
-              >{{ book.title }}</p>
+              >
+                {{ book.title }}
+              </p>
               <p
                 v-if="book.serie"
                 class="text-sm font-medium text-gray-600 dark:text-gray-300"
-              >{{ book.serie.title }}, vol. {{ book.volume }}</p>
+              >
+                {{ book.serie.title }}, vol. {{ book.volume }}
+              </p>
               <p
                 v-if="book.epub"
                 class="flex items-center text-sm font-medium text-gray-600 dark:text-gray-300"
@@ -29,7 +33,7 @@
                 <svg-icon name="epub" class="w-4 h-4" />
                 <span class="ml-1">
                   EPUB {{ book.epub.size }} into
-                  {{ formatLanguage(book.language).label }}
+                  {{ formatLanguage(book.language) }}
                 </span>
               </p>
             </div>
@@ -107,15 +111,15 @@ export default {
   props: {
     book: {
       type: Object,
-      default: () => { }
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
       formatLanguage,
-      isFavorite: false
+      isFavorite: false,
     }
-  }
+  },
 }
 </script>
 

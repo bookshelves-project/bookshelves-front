@@ -38,7 +38,9 @@
         type="submit"
         color="primary"
         :disabled="passwordUpdate && !passwordsMatch"
-      >Change password</app-button>
+      >
+Change password
+</app-button>
     </div>
   </form>
 </template>

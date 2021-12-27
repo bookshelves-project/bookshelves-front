@@ -32,7 +32,9 @@
                     $route.query[filter] === option.value,
                 }"
                 @click="filterBy(option.value)"
-              >{{ option.label }}</button>
+              >
+                {{ option.label }}
+              </button>
             </div>
             <div v-else>
               <div v-if="type === 'radio'">
@@ -60,68 +62,62 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'pinia'
 import { isEmpty } from 'lodash'
 import { pushIfNotExist } from '~/utils/methods'
+import { useFilterStore } from '~/stores/filter'
 export default {
   name: 'FiltersOption',
   props: {
     align: {
       type: String,
-      default: 'left'
+      default: 'left',
     },
     icon: {
       type: String,
-      default: null
+      default: null,
     },
     label: {
       type: String,
-      default: null
+      default: null,
     },
     filter: {
       type: String,
-      default: ''
+      default: '',
     },
     options: {
-      type: [
-        Array,
-        Function
-      ],
-      default: () => []
+      type: [Array, Function],
+      default: () => [],
     },
     type: {
       type: String,
       default: 'checkbox',
-      validator: val => [
-        'checkbox',
-        'radio',
-        'button',
-        'switch'
-      ].includes(val)
+      validator: (val) =>
+        ['checkbox', 'radio', 'button', 'switch'].includes(val),
     },
     clickClose: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       languages: {
-        data: []
+        data: [],
       },
       optionsData: [],
       radio: null,
       checkboxes: [],
-      switchValue: false
+      switchValue: false,
     }
   },
   computed: {
-    ...mapGetters({
-      storeQueries: 'filters/queries'
+    ...mapState(useFilterStore, {
+      storeQueries: 'queries',
     }),
     currentQuery() {
       return this.$route.query
-    }
+    },
   },
   watch: {
     checkboxes: {
@@ -134,14 +130,14 @@ export default {
           this.filterBy(newQuery)
         }
       },
-      deep: true
+      deep: true,
     },
     switchValue(newValue) {
       this.filterBy(newValue)
     },
     currentQuery(newValue) {
       this.checkCurrentQuery(newValue)
-    }
+    },
   },
   async created() {
     /**
@@ -159,9 +155,9 @@ export default {
   },
   methods: {
     isEmpty,
-    ...mapMutations({
-      setQueries: 'filters/setQueries',
-      setClear: 'filters/setClear'
+    ...mapActions(useFilterStore, {
+      setQueries: 'setQueries',
+      // setClear: 'filters/setClear',
     }),
     checkCurrentQuery(query) {
       if (Object.prototype.hasOwnProperty.call(query, this.filter)) {
@@ -172,10 +168,7 @@ export default {
     },
     setCheckboxesValues() {
       // eslint-disable-next-line no-unused-vars
-      for (const [
-        key,
-        option
-      ] of Object.entries(this.optionsData)) {
+      for (const [key, option] of Object.entries(this.optionsData)) {
         if (option.enabled) {
           pushIfNotExist(this.checkboxes, option.value)
         }
@@ -193,14 +186,14 @@ export default {
 
       if (replace) {
         this.$router.replace({
-          query: { query: newQuery }
+          query: { query: newQuery },
         })
 
         this.updateStore(newQuery)
       } else {
         this.$router.push({
           name: this.$route.name,
-          query: { ...query, ...newQuery }
+          query: { ...query, ...newQuery },
         })
 
         this.updateStore({ ...query, ...newQuery })
@@ -217,7 +210,7 @@ export default {
     },
     updateStore(query) {
       this.setQueries({ ...query })
-    }
-  }
+    },
+  },
 }
 </script>

@@ -1,13 +1,17 @@
 <template>
   <div class="main-content">
-    <app-header :title="title" :subtitle="description" :border="false">
+    <app-header :title="title" :subtitle="description">
       <template #filters>
         <blocks-filters negligible />
       </template>
     </app-header>
     <div class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Genres</h2>
-      <blocks-content-list :items="genres" name="genres" route-name="tags-slug" />
+      <blocks-content-list
+        :items="genres"
+        name="genres"
+        route-name="tags-slug"
+      />
     </div>
     <div class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Tags</h2>
@@ -18,43 +22,37 @@
 
 <script>
 import { isEmpty } from 'lodash'
-import qs from 'qs'
+import { stringify } from 'qs'
 
 export default {
   name: 'TagsIndex',
   async asyncData({ app, query }) {
     const queryList = { ...query }
-    if (isEmpty(queryList)) {
-      queryList['filter[negligible]'] = false
-    }
 
-    const [
-      genres,
-      tags
-    ] = await Promise.all([
+    const [genres, tags] = await Promise.all([
       app.$axios.$get(
-        `/tags?${qs.stringify({
+        `/tags?${stringify({
           'filter[type]': 'genre',
-          ...queryList
+          ...queryList,
         })}`
       ),
       app.$axios.$get(
-        `/tags?${qs.stringify({
+        `/tags?${stringify({
           'filter[type]': 'tag',
-          ...queryList
+          ...queryList,
         })}`
-      )
+      ),
     ])
 
     return {
       genres: genres.data,
-      tags: tags.data
+      tags: tags.data,
     }
   },
   data() {
     return {
       title: 'Genres & Tags',
-      description: 'Find books and series by their genres and tags.'
+      description: 'Find books and series by their genres and tags.',
     }
   },
   head() {
@@ -66,11 +64,11 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path
-        })
-      ]
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
-  watchQuery: ['filter[negligible]']
+  watchQuery: ['filter[show_negligible]'],
 }
 </script>

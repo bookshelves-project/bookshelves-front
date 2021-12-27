@@ -8,17 +8,7 @@
     @click="close"
   >
     <div
-      class="
-        flex
-        items-end
-        justify-center
-        min-h-screen
-        pt-4
-        px-4
-        pb-20
-        text-center
-        sm:block sm:p-0
-      "
+      class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
     >
       <transition name="fade">
         <div
@@ -30,37 +20,36 @@
       <span
         class="hidden sm:inline-block sm:align-middle sm:h-screen"
         aria-hidden="true"
-      >&#8203;</span>
+        >&#8203;</span
+      >
     </div>
   </div>
 </template>
 
 <script>
 import vClickOutside from 'v-click-outside'
-// eslint-disable-next-line no-unused-vars
-import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'LayoutOverlay',
   directives: {
-    clickOutside: vClickOutside.directive
+    clickOutside: vClickOutside.directive,
   },
   data() {
     return {
       visibleLayer: true,
-      visibleOverlay: true
+      visibleOverlay: true,
     }
   },
   computed: {
-    ...mapGetters({
-      layer: 'overlay/isVisibleLayer',
-      overlay: 'overlay/isVisibleOverlay'
-    })
+    // ...mapState({
+    //   layer: 'overlay/isVisibleLayer',
+    //   overlay: 'overlay/isVisibleOverlay',
+    // }),
   },
   methods: {
     close() {
       this.$toggleOverlay(this.$store, false)
-    }
-  }
+    },
+  },
 }
 </script>

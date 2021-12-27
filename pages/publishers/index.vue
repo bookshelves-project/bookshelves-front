@@ -1,11 +1,15 @@
 <template>
   <div class="main-content">
-    <app-header :title="title" :subtitle="description" :border="false">
+    <app-header :title="title" :subtitle="description">
       <template #filters>
         <blocks-filters negligible />
       </template>
     </app-header>
-    <blocks-content-list :items="publishers" name="publishers" route-name="publishers-slug" />
+    <blocks-content-list
+      :items="publishers"
+      name="publishers"
+      route-name="publishers-slug"
+    />
   </div>
 </template>
 
@@ -26,13 +30,13 @@ export default {
     )
 
     return {
-      publishers: publishers.data
+      publishers: publishers.data,
     }
   },
   data() {
     return {
       title: 'Publishers',
-      description: 'Find your favorite publisher!'
+      description: 'Find your favorite publisher!',
     }
   },
   head() {
@@ -44,11 +48,11 @@ export default {
         ...dynamicMetadata.default({
           title,
           description: this.description,
-          url: this.$nuxt.$route.path
-        })
-      ]
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
-  watchQuery: ['filter[negligible]']
+  watchQuery: ['filter[negligible]'],
 }
 </script>

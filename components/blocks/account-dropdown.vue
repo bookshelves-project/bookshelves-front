@@ -3,24 +3,7 @@
     <app-dropdown align="right" click-close>
       <template #trigger>
         <span
-          class="
-            flex
-            items-center
-            text-sm
-            font-medium
-            leading-4
-            text-gray-500
-            transition
-            duration-150
-            ease-in-out
-            border border-transparent
-            rounded-md
-            hover:bg-gray-50
-            dark:hover:bg-gray-700 dark:focus:bg-gray-700
-            hover:text-gray-800
-            focus:outline-none focus:bg-gray-50
-            active:bg-gray-50
-          "
+          class="flex items-center text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out border border-transparent rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 dark:focus:bg-gray-700 hover:text-gray-800 focus:outline-none focus:bg-gray-50 active:bg-gray-50"
         >
           <span class="sr-only"> Account </span>
           <transition name="fade">
@@ -45,27 +28,16 @@
         </span>
       </template>
       <template #content>
-        <div class="w-48 bg-white dark:bg-gray-800">
+        <div class="w-48 bg-white dark:bg-gray-700">
           <div v-if="$auth.$state.loggedIn">
             <span v-for="link in auth" :key="link.id">
               <nuxt-link
-                :to="localePath({ name: link.route })"
-                class="
-                  flex
-                  items-center
-                  px-4
-                  py-2
-                  text-sm text-gray-700
-                  hover:bg-gray-200
-                  dark:hover:bg-gray-800
-                "
+                :to="localePath(link.route)"
+                class="link"
                 role="menuitem"
               >
                 <span class="flex items-center" @click="closeAccountDropdown">
-                  <svg-icon
-                    :name="link.icon"
-                    class="w-5 h-5 mr-1 text-gray-500 dark:text-gray-400"
-                  />
+                  <svg-icon :name="link.icon" class="w-5 h-5 mr-1" />
                   {{ link.label }}
                 </span>
               </nuxt-link>
@@ -99,41 +71,26 @@
             </span> -->
             <hr class="my-1 border-gray-200 dark:border-gray-600" />
             <button
-              class="
-                flex
-                items-center
-                w-full
-                px-4
-                py-2
-                text-sm text-left text-gray-700
-                dark:text-gray-100
-                hover:bg-gray-200
-                dark:hover:bg-gray-800
-              "
+              class="link w-full"
               role="menuitem"
               type="button"
               @click="logout"
             >
-              <svg-icon
-                name="logout"
-                class="w-5 h-5 mr-1 text-gray-500 dark:text-gray-400"
-              />
-              Sign out
+              <span class="flex items-center">
+                <svg-icon
+                  name="logout"
+                  class="w-5 h-5 mr-1 text-gray-500 dark:text-gray-400"
+                />
+                Sign out
+              </span>
             </button>
           </div>
           <div v-else>
             <nuxt-link
               v-for="link in guest"
               :key="link.id"
-              :to="localePath({ name: link.route })"
-              class="
-                block
-                px-4
-                py-2
-                text-sm text-gray-700
-                hover:bg-gray-200
-                dark:hover:bg-gray-800
-              "
+              :to="localePath(link.route)"
+              class="link"
               role="menuitem"
             >
               <span @click="closeAccountDropdown">{{ link.label }}</span>
@@ -146,19 +103,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'pinia'
+import { useNavigationStore } from '~/stores/navigation'
 export default {
   name: 'AccountDropdown',
   data() {
     return {
-      accountDropdownOpened: false
+      accountDropdownOpened: false,
     }
   },
   computed: {
-    ...mapGetters({
-      auth: 'nav/auth',
-      guest: 'nav/guest'
-    })
+    ...mapState(useNavigationStore, {
+      auth: 'auth',
+      guest: 'guest',
+    }),
     // authNav() {
     //   const nav = this.$store.state.nav.authNavigationTrue
     //   if (this.$auth.$state.user.data.isAdmin) {
@@ -187,7 +145,13 @@ export default {
     },
     closeAccountDropdown() {
       this.accountDropdownOpened = false
-    }
-  }
+    },
+  },
 }
 </script>
+
+<style lang="css" scoped>
+.link {
+  @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors duration-100;
+}
+</style>

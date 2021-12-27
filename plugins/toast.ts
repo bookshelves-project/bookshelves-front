@@ -1,28 +1,23 @@
 import { Plugin } from '@nuxt/types'
-import { actionType, namespace } from '~/store/toast'
 import { useToastStore } from '~/stores'
 import { Toast, ToastAuto, ToastType } from '~/types'
 
 declare module 'vue/types/vue' {
-  // this.$toast inside Vue components
   interface Vue {
     $toast(title?: string, text?: string, type?: ToastType, auto?: ToastAuto): void
   }
 }
 
 declare module '@nuxt/types' {
-  // nuxtContext.app.$toast inside asyncData, fetch, plugins, middleware, nuxtServerInit
   interface NuxtAppOptions {
     $toast(title?: string, text?: string, type?: ToastType, auto?: ToastAuto): void
   }
-  // nuxtContext.$toast
   interface Context {
     $toast(title?: string, text?: string, type?: ToastType, auto?: ToastAuto): void
   }
 }
 
 declare module 'vuex/types/index' {
-  // this.$toast inside Vuex stores
   interface Store<S> {
     $toast(title?: string, text?: string, type?: ToastType, auto?: ToastAuto): void
   }

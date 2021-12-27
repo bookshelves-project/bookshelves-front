@@ -3,7 +3,9 @@
     <div class="mx-auto sm:flex sm:items-center w-max">
       <div class="relative md:max-w-lg w-96">
         <label for="search" class="sr-only">Search</label>
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <div
+          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+        >
           <svg-icon name="magnify-glass" class="w-5 h-5 text-gray-300" />
         </div>
         <input
@@ -18,7 +20,9 @@
       <button
         type="submit"
         class="inline-flex items-center justify-center w-full px-4 py-2 mt-3 font-medium text-white bg-primary-600 border border-transparent rounded-md shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-      >Search</button>
+      >
+        Search
+      </button>
     </div>
     <div class="max-w-lg mx-auto mt-3 text-gray-400">
       On advanced search, you can define your search (any book's title, any
@@ -31,11 +35,15 @@
           v-model="form.onlySerie"
           name="conditions"
           type="checkbox"
-          class="w-4 h-4 border-gray-300 rounded text-primary-600 focus:ring-primary-600"
+          class="w-4 h-4 border-gray-300 rounded text-primary-600 dark:text-primary-500 focus:ring-primary-600"
         />
       </div>
       <div class="ml-3 text-sm">
-        <label for="conditions" class="font-medium text-gray-700">Only series ?</label>
+        <label
+for="conditions"
+class="font-medium text-gray-700"
+          >Only series ?</label
+        >
       </div>
     </div>
     <div>
@@ -46,7 +54,9 @@
       </div>
       <section class="grid grid-cols-3 gap-y-32">
         <div>
-          <div class="block mb-1 text-sm font-semibold text-gray-700">Author selected</div>
+          <div class="block mb-1 text-sm font-semibold text-gray-700">
+            Author selected
+          </div>
           <div class="flex items-center h-10 mt-2">
             <app-img
               :src="
@@ -65,7 +75,9 @@
           </div>
         </div>
         <div>
-          <div class="block mb-1 text-sm font-semibold text-gray-700">Languages selected</div>
+          <div class="block mb-1 text-sm font-semibold text-gray-700">
+            Languages selected
+          </div>
           <div class="flex items-center h-10 mt-2">
             <div class="font-semibold">
               <span v-if="validLanguages.length">
@@ -89,7 +101,9 @@
           </div>
         </div>
         <div>
-          <div class="block mb-1 text-sm font-semibold text-gray-700">Tags selected</div>
+          <div class="block mb-1 text-sm font-semibold text-gray-700">
+            Tags selected
+          </div>
           <div class="flex items-center h-10 mt-2">
             <div class="w-full font-semibold">
               <span v-if="validTags.length" class="block py-1 overflow-y-auto">
@@ -137,8 +151,8 @@ export default {
         author: null,
         languages: [],
         tags: [],
-        onlySerie: false
-      }
+        onlySerie: false,
+      },
     }
   },
   methods: {
@@ -178,7 +192,7 @@ export default {
 
       const search = {
         q: this.search,
-        'only-serie': this.form.onlySerie
+        'only-serie': this.form.onlySerie,
       }
 
       if (this.validAuthor) {
@@ -192,7 +206,7 @@ export default {
       }
 
       this.$emit('advancedSearch', search)
-    }
-  }
+    },
+  },
 }
 </script>

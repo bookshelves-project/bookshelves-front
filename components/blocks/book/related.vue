@@ -1,20 +1,19 @@
 <template>
   <BookSlider
-    v-if="book.serie"
+    v-if="book"
     :entities="entities"
     :loaded="loaded"
     :route="{
-      name: 'series-author-slug',
+      name: 'related-author-slug',
       params: {
-        author: book.serie.meta.author,
-        slug: book.serie.meta.slug,
+        author: book.meta.author,
+        slug: book.meta.slug,
       },
     }"
   >
     <template #title>Related books & series</template>
     <template #subtitle>
-      Based on tags & genre, not in same series. Limited to 10 first
-      results.
+      Based on tags & genre, not in same series. Limited to 10 first results.
     </template>
   </BookSlider>
 </template>
@@ -31,20 +30,19 @@ const { $repository } = useContext()
 const entities = ref<Entity[]>()
 const loaded = ref(false)
 
-const loadSerie = () => {
-  if (props.book.serie !== null) {
-    $repository(ApiEndpoint.BookRelated, false).index({ limit: '10' }, [
+const loadRelated = () => {
+  $repository(ApiEndpoint.BookRelated, false)
+    .find<Entity[]>({ limit: '10' }, [
       props.book.meta.author as string,
-      props.book.meta.slug as string
+      props.book.meta.slug as string,
     ])
-      .then((e: ApiPaginateResponse<Entity>) => {
-        entities.value = e.data
-        loaded.value = true
-      })
-  }
+    .then((e) => {
+      entities.value = e.data
+      loaded.value = true
+    })
 }
 
 onMounted(async () => {
-  await loadSerie()
+  await loadRelated()
 })
 </script>

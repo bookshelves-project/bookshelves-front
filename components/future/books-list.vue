@@ -5,8 +5,8 @@
         <blocks-entity-card
           v-for="(book, id) in books"
           :key="id"
-          :cover="book.cover.thumbnail"
-          :color="book.cover.color"
+          :cover="book.cover?.thumbnail"
+          :color="book.cover?.color"
           :title="book.title"
           :route="{
             name: 'books-author-slug',
@@ -14,22 +14,12 @@
           }"
         >
           <template #title>
-            <!-- {{ $overflow(book.title, 50) }} -->
-            {{ book.title }}
+            <span class="line-clamp-2">
+              {{ book.title }}
+            </span>
           </template>
           <template #subtitle>
             <span v-if="book.authors">{{ formatAuthors(book.authors) }}</span>
-            <!-- <span v-for="(author, authorId) in book.authors" :key="authorId">
-                {{ author.name }}
-                <span
-                  v-if="
-                    book.authors.length > 1 &&
-                    authorId !== book.authors.length - 1
-                  "
-                >
-                  &
-                </span>
-            </span>-->
           </template>
           <template #extra>
             <span v-if="book.serie" class="italic">
@@ -38,7 +28,7 @@
               vol. {{ book.volume }}
             </span>
             <span class="mt-1 block">
-              <!-- {{ formatLanguage(book.language).label }} -->
+              {{ formatLanguage(book.language) }}
             </span>
           </template>
         </blocks-entity-card>
@@ -49,13 +39,13 @@
 </template>
 
 <script setup lang="ts">
-import { formatAuthors } from '~/utils/methods'
+import { formatAuthors, formatLanguage } from '~/utils/methods'
 import { Book } from '~/types'
 
 defineProps({
   books: {
     type: Array as () => Book[],
-    required: true
-  }
+    required: true,
+  },
 })
 </script>

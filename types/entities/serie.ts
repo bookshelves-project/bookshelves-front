@@ -1,4 +1,5 @@
 import { Author } from '..'
+import { CommentData } from './comment'
 import { Cover, Tag } from '.'
 
 export interface SerieMeta {
@@ -18,9 +19,9 @@ export interface Serie {
   description?: string;
   link: string;
   tags?: Tag[];
-  genres?: any[];
+  genres?: Tag[];
   download?: string;
   size?: string;
   isFavorite?: boolean;
-  comments?: any[];
+  comments?: CommentData[];
 }

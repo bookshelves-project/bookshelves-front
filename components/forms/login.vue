@@ -1,3 +1,69 @@
+<script setup lang="ts">
+import { ApiEndpoint, ToastType } from '~/types'
+
+const { isDev, $auth, $toast, $apiMessage } = useContext()
+const router = useRouter()
+
+const form = ref({
+  email: '',
+  password: '',
+  remember: false,
+})
+const formTesting = ref({
+  email: 'admin@mail.com',
+  password: 'password',
+  remember: true,
+})
+const isLoading = ref(false)
+const errors = ref({
+  email: '',
+  password: '',
+})
+
+const fillForm = () => {
+  form.value = formTesting.value
+}
+const submit = async () => {
+  isLoading.value = true
+
+  // await $auth.loginWith($auth.options.defaultStrategy, { data: form.value })
+  let api
+  try {
+    api = await $auth.loginWith('local', {
+      data: form.value,
+    })
+    console.log(api)
+  } catch (error) {
+    console.error(error)
+    console.log(error.response)
+  }
+
+  isLoading.value = false
+  // console.log(api.data.token)
+  // $auth.setUserToken(api.data.token)
+  // $auth.fetchUser()
+  // console.log($auth.user)
+
+  // const api = await $repository(ApiEndpoint.AuthForgotPassword, false).create(
+  //   form.value
+  // )
+  // if (api.status === 200) {
+  //   $toast(
+  //     'Success',
+  //     'Check your mailbox to create a new password',
+  //     ToastType.success
+  //   )
+  // } else {
+  //   emailError.value = api.data.errors.email[0]
+  //   $toast(
+  //     'Error',
+  //     `${api.data.message} ${$apiMessage(api.data)}`,
+  //     ToastType.error
+  //   )
+  // }
+}
+</script>
+
 <template>
   <form class="space-y-6" @submit.prevent="submit">
     <fields-input-text
@@ -17,16 +83,25 @@
       type="password"
       required
     >
-      <template v-if="errors.password" #error>{{ errors.password[0] }}</template>
+      <template v-if="errors.password" #error>{{
+        errors.password[0]
+      }}</template>
     </fields-input-text>
 
     <div class="justify-between md:flex md:items-center">
-      <fields-checkbox v-model="form.remember" name="remember_me" label="Remember me" />
-      <!-- <div class="mt-6 text-sm md:mt-0">
-        <a href="#" class="font-medium text-primary-600 hover:text-primary-500">
+      <fields-checkbox
+        v-model="form.remember"
+        name="remember_me"
+        label="Remember me"
+      />
+      <div class="mt-6 text-sm md:mt-0">
+        <nuxt-link
+          :to="localePath({ name: 'auth-forgot-password' })"
+          class="font-medium text-primary-600 dark:text-primary-500 hover:text-primary-400 hover:underline"
+        >
           Forgot your password?
-        </a>
-      </div>-->
+        </nuxt-link>
+      </div>
     </div>
 
     <div class="flex items-center justify-center space-x-2">
@@ -45,91 +120,3 @@
     </div>
   </form>
 </template>
-
-<script>
-export default {
-  name: 'LoginForm',
-  data() {
-    return {
-      form: {
-        email: '',
-        password: '',
-        remember: false
-      },
-      formTesting: {
-        email: 'admin@mail.com',
-        password: 'password',
-        remember: true
-      },
-      isDev: process.env.NODE_ENV !== 'production',
-      errors: {},
-      isLoading: false
-    }
-  },
-  methods: {
-    fillForm() {
-      for (const [key] of Object.entries(this.form)) {
-        this.form[key] = this.formTesting[key]
-      }
-    },
-    async logout() {
-      try {
-        await this.$axios.$post('/logout')
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    submit() {
-      this.isLoading = true
-      try {
-        this.$auth
-          .loginWith(this.$auth.options.defaultStrategy, { data: this.form })
-          .then(() => {
-            // if we are remembering the user, we
-            // need to set the remember cookie
-            if (this.form.remember_me) {
-              this.$auth.$storage.setCookie(
-                `_remember.${this.$auth.options.defaultStrategy}`,
-                this.$auth.strategy.token.get(),
-                { maxAge: 2147483647 }
-              )
-            }
-          })
-          .catch((error) => {
-            console.error(error)
-
-            let title = 'Something unexpected happened'
-            let text =
-              "Seems you can't sign-in currently, we work on it, please try later"
-            try {
-              switch (error.response.status) {
-                case 404:
-                  title = 'Check your credentials'
-                  text = 'This account not exist in our database.'
-                  break
-                case 422:
-                  title = 'Check your credentials'
-                  text = error.response.data.errors.email[0] || text
-                  break
-
-                default:
-                  break
-              }
-            } catch (error) {
-              console.error(error)
-            }
-            this.$nuxt.$emit('toast', {
-              title,
-              text,
-              type: 'error'
-            })
-
-            this.isLoading = false
-          })
-      } catch (error) {
-        console.error(error)
-      }
-    }
-  }
-}
-</script>

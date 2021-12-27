@@ -3,7 +3,9 @@
     <section aria-labelledby="filter-heading">
       <h2 id="filter-heading" class="sr-only">Filters</h2>
 
-      <div class="relative z-10 border-b border-gray-200 dark:border-gray-700 pb-2">
+      <div
+        class="relative z-10 border-b border-gray-200 dark:border-gray-700 pb-2"
+      >
         <div class="max-w-7xl mx-auto flex items-center justify-between">
           <div class="relative flex items-center text-left">
             <blocks-filters-option
@@ -21,7 +23,7 @@
             >
               <svg-icon
                 name="arrow-sm-right"
-                class="w-5 h-5 text-gray-500 transform"
+                class="w-5 h-5 text-gray-500 dark:text-gray-300 transform"
                 :class="
                   $route.query.sort.includes('-') ? '-rotate-90' : 'rotate-90'
                 "
@@ -31,26 +33,26 @@
           <button
             type="button"
             class="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden"
-          >Filters</button>
+          >
+            Filters
+          </button>
 
           <div class="hidden sm:block">
             <div class="flow-root">
               <div class="flex items-center space-x-4">
                 <blocks-filters-option
                   v-if="hasSerie"
-                  filter="filter[allow_serie]"
-                  label="Allow series"
+                  filter="filter[disallow_serie]"
+                  label="Disallow series"
                   :options="seriesOptions"
                   type="switch"
                 />
                 <blocks-filters-option
                   v-if="negligible"
-                  filter="filter[negligible]"
-                  label="Negligible"
+                  filter="filter[show_negligible]"
+                  label="Show negligible"
                   :options="negligibleOptions"
-                  type="button"
-                  align="right"
-                  click-close
+                  type="switch"
                 />
                 <blocks-filters-option
                   v-if="languages"
@@ -66,7 +68,9 @@
         </div>
       </div>
       <div class="max-w-7xl mx-auto py-2 sm:flex sm:items-center">
-        <h3 class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+        <h3
+          class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400"
+        >
           Filters
           <span class="sr-only">, active</span>
         </h3>
@@ -96,58 +100,58 @@ export default {
   props: {
     hasSerie: {
       type: Boolean,
-      default: false
+      default: false,
     },
     languages: {
       type: Boolean,
-      default: false
+      default: false,
     },
     negligible: {
       type: Boolean,
-      default: false
+      default: false,
     },
     paginate: {
       type: Boolean,
-      default: false
+      default: false,
     },
     sort: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
       seriesOptions: [
         {
           label: 'No series',
-          value: 'false'
+          value: 'false',
         },
         {
           label: 'Only series',
-          value: 'true'
+          value: 'true',
         },
         {
           label: 'Any',
-          value: 'any'
-        }
+          value: 'any',
+        },
       ],
       negligibleOptions: [
         {
           label: 'All',
-          value: 'true'
+          value: 'true',
         },
         {
           label: 'Hide (default)',
-          value: 'false'
-        }
-      ]
+          value: 'false',
+        },
+      ],
     }
   },
   computed: {
     queryAvailable() {
       const query = this.$route.query
       return !this.isEmpty(query)
-    }
+    },
   },
   mounted() {
     // if (this.paginate && Object.keys(this.$route.query).length === 0) {
@@ -162,7 +166,7 @@ export default {
   methods: {
     isEmpty,
     ...mapMutations({
-      setQueries: 'filters/setQueries'
+      setQueries: 'filters/setQueries',
     }),
     async languagesOptions() {
       const languages = await this.$axios.$get('/languages')
@@ -176,7 +180,7 @@ export default {
           query: { 'filter[languages]': el.meta.slug },
           enabled: queryLanguages
             ? queryLanguages.includes(el.meta.slug)
-            : false
+            : false,
         })
       })
       return languagesData
@@ -196,7 +200,7 @@ export default {
       this.$router.replace({ query: { ...query } })
 
       this.setQueries({ ...query })
-    }
-  }
+    },
+  },
 }
 </script>

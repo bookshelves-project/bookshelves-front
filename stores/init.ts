@@ -1,18 +1,31 @@
 import { Context } from '@nuxt/types'
 import { defineStore } from 'pinia'
 import { useIndexStore } from '.'
-import { ApiEndpoint, ApiResponse, Application } from '~/types'
+import { ApiEndpoint, ApiResponse, AppInit, Application } from '~/types'
+import { Enums } from '~/types/cms'
 
 export const useInitStore = defineStore({
   id: 'init',
   actions: {
-    async nuxtServerInit(context: Context) {
-      await context.$axios.$get(ApiEndpoint.CmsApplication).then((e: ApiResponse<Application>) => {
-        const application: Application = e.data
-        context.$cookies.set('app', application)
-        const applicationStore = useIndexStore()
-        applicationStore.setApplication(application)
-      })
+    async nuxtInit(context: Context) {
+      const store = useIndexStore()
+      console.log(store.application)
+
+      // if (!store.application) {
+      await context.$repository(ApiEndpoint.AppInit, false).find<AppInit>()
+        .then((e: ApiResponse<AppInit>) => {
+          console.log(e.data.application.name)
+
+          const application: Application = e.data.application
+          context.$cookies.set('app', application)
+
+          store.init(e.data)
+        })
+        .catch((e) => {
+          console.log(e)
+          console.log('init')
+        })
+      // }
     }
   }
 })

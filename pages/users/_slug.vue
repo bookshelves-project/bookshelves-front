@@ -18,7 +18,9 @@
         <div
           v-else
           class="italic text-gray-400 dark:text-gray-500"
-        >{{ user.name }} don't want to show comments.</div>
+        >
+{{ user.name }} don't want to show comments.
+</div>
       </div>
 
       <!-- Right column -->
@@ -35,7 +37,9 @@
         <div
           v-else
           class="italic text-gray-400 dark:text-gray-500"
-        >{{ user.name }} don't want to show favorites.</div>
+        >
+{{ user.name }} don't want to show favorites.
+</div>
       </div>
     </div>
   </div>

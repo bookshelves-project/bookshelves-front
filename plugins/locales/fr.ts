@@ -24,6 +24,7 @@ export default async () => {
       publishers: 'Éditeurs',
       legality: 'Légalité',
       privacy: 'Vie privée',
+      sitemap: 'Plan du site',
       search: {
         placeholder: 'Rechercher un livre, une série ou un auteur'
       }
