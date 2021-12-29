@@ -28,7 +28,7 @@
         </span>
       </template>
       <template #content>
-        <div class="w-48 bg-white dark:bg-gray-700">
+        <div class="w-48 bg-white dark:bg-gray-700 rounded-md">
           <div v-if="$auth.$state.loggedIn">
             <span v-for="link in auth" :key="link.id">
               <nuxt-link
@@ -69,7 +69,7 @@
                 </span>
               </nuxt-link>
             </span> -->
-            <hr class="my-1 border-gray-200 dark:border-gray-600" />
+            <hr class="border-gray-200 dark:border-gray-600" />
             <button
               class="link w-full"
               role="menuitem"
@@ -152,6 +152,6 @@ export default {
 
 <style lang="css" scoped>
 .link {
-  @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors duration-100;
+  @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors duration-100 rounded-md;
 }
 </style>

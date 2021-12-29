@@ -17,16 +17,27 @@ export const useApplicationStore = defineStore({
   actions: {
     async init(context: Context) {
       if (Object.keys(this.application).length === 0) {
-        console.log('request')
-        const api = await context.$repository(ApiEndpoint.AppInit, false)
-          .find<AppInit>() as ApiResponse<AppInit>
-        console.log(this.application)
+        if (context.$cookies.get('application')) {
+          const data: AppInit = context.$cookies.get('application')
 
-        this.$patch({
-          application: api.data.application,
-          enums: api.data.enums,
-          languages: api.data.languages
-        })
+          this.$patch({
+            application: data.application,
+            enums: data.enums,
+            languages: data.languages
+          })
+        } else {
+          const api = await context.$repository(ApiEndpoint.AppInit, false)
+            .find<AppInit>() as ApiResponse<AppInit>
+          const data = api.data
+
+          context.$cookies.set('application', data)
+
+          this.$patch({
+            application: data.application,
+            enums: data.enums,
+            languages: data.languages
+          })
+        }
       }
     }
   },

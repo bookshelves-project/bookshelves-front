@@ -41,10 +41,12 @@
 
 <script setup lang="ts">
 import metadata from '@/utils/metadata'
+import { useApplicationStore } from '~/stores/application'
 import { Application } from '~/types'
 
 const ctx = useContext()
-const app: Application = ctx.$cookies.get('app')
+const store = useApplicationStore()
+const app: Application = store.application
 
 const apiUrlBase = (endpoint: string) => {
   const api = ctx.$config.apiURL.replace('/api', '')

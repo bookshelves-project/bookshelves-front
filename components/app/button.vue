@@ -6,7 +6,7 @@
     :target="href ? (download ? '' : '_blank') : null"
     :rel="href ? 'noopener noreferrer' : null"
     :type="tag === 'button' ? type : null"
-    :class="[color, { disabled: disabled }]"
+    :class="[color, { disabled: disabled }, size]"
     class="btn relative"
     :disabled="disabled"
     :download="download"
@@ -43,11 +43,17 @@ enum ButtonAlignment {
   center = 'center',
   right = 'right',
 }
+enum ButtonSize {
+  sm = 'sm',
+  md = 'md',
+  lg = 'lg',
+}
 
 interface Props {
   color: ButtonColor
   type: ButtonType
   align: ButtonAlignment
+  size: ButtonSize
   href: string
   to: Location
   disabled: boolean
@@ -58,6 +64,7 @@ const props = withDefaults(defineProps<Props>(), {
   color: ButtonColor.secondary,
   type: ButtonType.button,
   align: ButtonAlignment.left,
+  size: ButtonSize.md,
   href: undefined,
   to: undefined,
   disabled: false,
@@ -96,8 +103,18 @@ onMounted(() => {
 </script>
 
 <style lang="css" scoped>
+.sm {
+  @apply px-2 py-1;
+}
+.md {
+  @apply px-4 py-2;
+}
+.lg {
+  @apply px-5 py-3;
+}
+
 .btn {
-  @apply inline-flex items-center px-4 py-2 text-base font-semibold rounded-md transition-colors duration-100 border;
+  @apply inline-flex items-center text-base font-semibold rounded-md transition-colors duration-100 border;
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600;
   @apply dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800;
 }

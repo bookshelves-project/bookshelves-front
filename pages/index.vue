@@ -26,7 +26,7 @@ import {
 } from '~/types'
 
 @Component({
-  async asyncData({ $repository, $cookies, i18n, $pinia }) {
+  async asyncData({ $repository, i18n, $pinia }) {
     const api: ApiResponse<HomePage> = await $repository(
       ApiEndpoint.CmsHomePage,
       false

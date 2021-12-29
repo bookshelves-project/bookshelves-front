@@ -10,7 +10,7 @@
         >
           <span
             class="block text-primary-600 dark:text-primary-400 xl:inline"
-            >{{ app.name }}</span
+            >{{ application.name }}</span
           ><span class="hidden xl:inline">,</span
           ><span class="block xl:inline">{{ props.hero.title }}</span>
         </h1>
@@ -39,17 +39,19 @@ import { useContext } from '@nuxtjs/composition-api'
 import { NuxtConfig } from '@nuxt/types'
 import { Hero } from '~/types/cms/home-page'
 import { Application } from '~/types'
+import { useApplicationStore } from '~/stores/application'
 
 const props = defineProps<{
   hero: Hero
 }>()
 
 const ctx = useContext()
-const app: Application = ctx.$cookies.get('app')
+const store = useApplicationStore()
+const application: Application = store.application
 const $config: NuxtConfig = ctx.$config
 </script>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .hero::v-deep {
   & img {
     object-fit: contain !important;

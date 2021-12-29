@@ -15,8 +15,8 @@
           })
         "
       >
-See my public profile
-</app-button>
+        See my public profile
+      </app-button>
     </app-header>
     <!-- Main 2 column grid -->
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
@@ -56,17 +56,14 @@ import favorites from '~/mixins/favorites'
 import comments from '~/mixins/comments'
 export default {
   name: 'PageProfile',
-  mixins: [
-    favorites,
-    comments
-  ],
+  mixins: [favorites, comments],
   middleware: 'auth',
   data() {
     return {
       loading: true,
       favorites: [],
       comments: [],
-      title: 'My profile'
+      title: 'My profile',
     }
   },
   head() {
@@ -79,9 +76,9 @@ export default {
         ...dynamicMetadata.default({
           title,
           description,
-          url: this.$nuxt.$route.path
-        })
-      ]
+          url: this.$nuxt.$route.path,
+        }),
+      ],
     }
   },
   mounted() {
@@ -90,16 +87,9 @@ export default {
   methods: {
     async getData() {
       try {
-        const [
-          favorites,
-          comments
-        ] = await Promise.all([
-          this.$axios.$get(
-            `/favorites/by-user/${this.$auth.$state.user.data.id}`
-          ),
-          this.$axios.$get(
-            `/comments/by-user/${this.$auth.$state.user.data.id}`
-          )
+        const [favorites, comments] = await Promise.all([
+          this.$axios.$get(`/favorites/${this.$auth.$state.user.data.id}`),
+          this.$axios.$get(`/comments/${this.$auth.$state.user.data.id}`),
         ])
         this.favorites = favorites.data
         this.comments = comments.data
@@ -124,7 +114,7 @@ export default {
           console.error('no type entity')
           break
       }
-    }
-  }
+    },
+  },
 }
 </script>

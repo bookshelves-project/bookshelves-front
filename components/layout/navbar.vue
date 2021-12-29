@@ -4,7 +4,7 @@
   >
     <div class="max-w-7xl mx-auto">
       <div class="relative h-16 flex items-center justify-between">
-        <div class="px-2 flex items-center lg:px-0 h-full">
+        <div class="hidden px-2 sm:flex items-center lg:px-0 h-full">
           <nuxt-link
             :to="localePath('/')"
             class="shrink-0 flex hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-75 p-2 rounded-md ml-2"
@@ -32,9 +32,10 @@
         <div class="flex-1 px-2 flex justify-center lg:ml-6 lg:justify-end">
           <layout-search-bar />
         </div>
-        <div class="flex lg:hidden pr-4">
+        <div class="flex lg:hidden pr-2 sm:pr-4">
           <app-button
             color="white"
+            size="sm"
             aria-label="Open side menu"
             @click="openSidebar"
           >

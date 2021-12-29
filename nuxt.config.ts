@@ -52,10 +52,7 @@ const config: NuxtConfig = {
   loading,
   // https://nuxtjs.org/docs/configuration-glossary/configuration-modules#buildmodules
   buildModules: [
-    [
-      '@nuxt/typescript-build', // https://typescript.nuxtjs.org
-      { typeCheck: false }
-    ],
+    ['@nuxt/typescript-build', { typeCheck: false }], // https://typescript.nuxtjs.org
     // '@nuxtjs/eslint-module', // https://go.nuxtjs.dev/eslint
     '@nuxtjs/composition-api/module', // https://composition-api.nuxtjs.org/
     ['@pinia/nuxt', { disableVuex: false }], // https://github.com/posva/pinia
@@ -64,10 +61,7 @@ const config: NuxtConfig = {
     '@nuxt/postcss8', // https://github.com/nuxt/postcss8 & https://tailwindcss.com/docs/guides/nuxtjs
     '@nuxtjs/color-mode', // https://color-mode.nuxtjs.org/
     '@nuxtjs/svg-sprite', // https://github.com/nuxt-community/svg-sprite-module
-    [
-      'unplugin-auto-import/nuxt', // https://github.com/antfu/unplugin-auto-import
-      { imports: ['@nuxtjs/composition-api'] }
-    ],
+    ['unplugin-auto-import/nuxt', { imports: ['@nuxtjs/composition-api'] }], // https://github.com/antfu/unplugin-auto-import
   ],
   ...buildModules,
   // https://nuxtjs.org/docs/configuration-glossary/configuration-modules/

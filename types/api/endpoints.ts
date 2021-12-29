@@ -19,5 +19,8 @@ export enum ApiEndpoint {
   AuthLogout = '/auth/logout',
   AuthForgotPassword = '/auth/forgot-password',
   AuthResetPassword = '/auth/reset-password',
+
+  FavoriteUser = '/favorites',
+
   Profile = '/profile',
 }

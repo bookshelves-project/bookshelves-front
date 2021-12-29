@@ -15,13 +15,12 @@
 </template>
 
 <script setup lang="ts">
+import { useApplicationStore } from '~/stores/application'
 import { Application } from '~/types'
 
 const dev: boolean = useContext().isDev
-const ctx = useContext()
-const app: Application = ctx.$cookies.get('app')
-  ? ctx.$cookies.get('app')
-  : { name: 'Bookshelves', title_template: '' }
+const store = useApplicationStore()
+const app: Application = store.application
 
 useMeta(() => ({
   title: app.name,
@@ -37,7 +36,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .min-height-content {
   min-height: 70vh;
 }
