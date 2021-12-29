@@ -1,6 +1,6 @@
 <template>
   <div class="fr-form-group">
-    <fieldset class="fr-fieldset" :class="{ 'fr-fieldset--inline': inline }">
+    <fieldet class="fr-fieldset" :class="{ 'fr-fieldset--inline': inline }">
       <legend id="radio-legend" class="fr-fieldset__legend fr-text--regular">
         {{ legend }}
         <span v-if="required" class="text-red-marianne"> * </span>
@@ -23,7 +23,7 @@
           </label>
         </div>
       </div>
-    </fieldset>
+    </fieldet>
   </div>
 </template>
 
@@ -33,45 +33,45 @@ export default {
   props: {
     value: {
       type: String,
-      default: ''
+      default: '',
     },
     inline: {
       type: Boolean,
-      default: false
+      default: false,
     },
     legend: {
       type: String,
-      default: null
+      default: null,
     },
     helper: {
       type: String,
-      default: null
+      default: null,
     },
     name: {
       type: String,
-      default: null
+      default: null,
     },
     required: {
       type: Boolean,
-      default: false
+      default: false,
     },
     config: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
-      radioValue: null
+      radioValue: null,
     }
   },
   watch: {
     value(newValue, oldValue) {
       this.radioValue = newValue
-    }
+    },
   },
   mounted() {
     this.radioValue = this.value
-  }
+  },
 }
 </script>

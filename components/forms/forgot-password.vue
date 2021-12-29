@@ -41,7 +41,7 @@ const submit = async () => {
 
 <template>
   <form class="space-y-6" @submit.prevent="submit">
-    <fields-input-text
+    <field-text-input
       v-model="form.email"
       name="email"
       label="Email"
@@ -50,7 +50,7 @@ const submit = async () => {
       required
     >
       <template v-if="emailError" #error>{{ emailError }}</template>
-    </fields-input-text>
+    </field-text-input>
 
     <div class="flex items-center justify-center space-x-2">
       <app-button type="submit" align="center" color="primary" class="w-full">

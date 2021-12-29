@@ -8,14 +8,6 @@
       {{ label }}
       <span v-if="required" class="text-red-600 dark:text-red-500">*</span>
     </label>
-    <p
-      v-if="helper || $slots.default"
-      :id="`${name}-description`"
-      class="mt-1 mb-2 text-sm text-gray-500 dark:text-gray-400"
-    >
-      <span v-if="helper">{{ helper }}</span>
-      <slot v-else />
-    </p>
     <div class="mt-1 relative">
       <textarea
         v-if="multiline"
@@ -63,9 +55,19 @@
         <div>
           <span v-if="minlength > 0">Min. {{ minlength }} characters</span>
         </div>
-        <div v-if="maxlength > 0">Currently {{ value.length }}/{{ maxlength }}</div>
+        <div v-if="maxlength > 0">
+          Currently {{ value.length }}/{{ maxlength }}
+        </div>
       </div>
     </div>
+    <p
+      v-if="helper || $slots.default"
+      :id="`${name}-description`"
+      class="mt-2 mb-2 text-sm text-gray-500 dark:text-gray-400"
+    >
+      <span v-if="helper">{{ helper }}</span>
+      <slot v-else />
+    </p>
     <p
       v-if="$slots.error"
       :id="`${name}-error`"
@@ -78,83 +80,73 @@
 
 <script>
 export default {
-  name: 'InputText',
+  name: 'TextInput',
   props: {
     multiline: {
       type: Boolean,
-      default: false
+      default: false,
     },
     value: {
-      type: [
-        String,
-        Number,
-        Date
-      ],
-      default: ''
+      type: [String, Number, Date],
+      default: '',
     },
     name: {
       type: String,
-      default: 'name'
+      default: 'name',
     },
     label: {
       type: String,
-      default: ''
+      default: '',
     },
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
     },
     autocomplete: {
       type: String,
-      default: 'name'
+      default: 'name',
     },
     required: {
       type: Boolean,
-      default: false
+      default: false,
     },
     placeholder: {
       type: String,
-      default: ''
+      default: '',
     },
     minlength: {
-      type: [
-        Number,
-        String
-      ],
-      default: 0
+      type: [Number, String],
+      default: 0,
     },
     maxlength: {
-      type: [
-        Number,
-        String
-      ],
-      default: 0
+      type: [Number, String],
+      default: 0,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     helper: {
       type: String,
-      default: null
+      default: null,
     },
     icon: {
       type: String,
-      default: null
+      default: null,
     },
     mask: {
       type: String,
-      default: null
+      default: null,
     },
     loading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       obscureText: true,
-      isLoading: false
+      isLoading: false,
     }
   },
   computed: {
@@ -170,16 +162,16 @@ export default {
         return `fr-fi-${this.icon}`
       }
       return ''
-    }
+    },
   },
   watch: {
     loading(newValue, oldValue) {
       this.isLoading = newValue
-    }
+    },
   },
   mounted() {
     this.isLoading = this.loading
-  }
+  },
 }
 </script>
 

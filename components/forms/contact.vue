@@ -1,7 +1,10 @@
 <template>
   <div class="mt-6">
-    <form class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8" @submit.prevent="sumbit">
-      <fields-input-text
+    <form
+      class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+      @submit.prevent="sumbit"
+    >
+      <field-text-input
         v-model="form.name"
         name="name"
         label="Name"
@@ -9,7 +12,7 @@
         class="sm:col-span-2"
         required
       />
-      <fields-input-text
+      <field-text-input
         v-model="form.email"
         name="email"
         label="Email"
@@ -17,7 +20,7 @@
         class="sm:col-span-2"
         required
       />
-      <fields-input-text
+      <field-text-input
         v-model="form.message"
         name="message"
         label="Message"
@@ -27,7 +30,7 @@
         class="sm:col-span-2"
         required
       />
-      <fields-checkbox
+      <field-checkbox
         v-model="form.honeypot"
         name="conditions"
         label="Accept conditions"
@@ -36,10 +39,15 @@
         Accept conditions about data privacy about
         {{ $config.appName }} to send your message to
         {{ $config.appName }} Team.
-      </fields-checkbox>
+      </field-checkbox>
       <div class="sm:col-span-2">
         <div class="flex items-center space-x-2">
-          <app-button type="submit" color="primary" align="center" class="w-full">
+          <app-button
+            type="submit"
+            color="primary"
+            align="center"
+            class="w-full"
+          >
             <transition name="fade">
               <div v-if="!loading" class="flex items-center space-x-2">
                 <svg-icon name="airplane" class="w-5 h-5" />
@@ -73,15 +81,15 @@ export default {
         name: '',
         email: '',
         message: '',
-        honeypot: false
+        honeypot: false,
       },
       formTesting: {
         name: 'Ewilan',
         email: 'ewilan@dotslashplay.it',
         message:
           'Dolor pariatur exercitation duis dolore eu ut commodo quis incididunt ad voluptate sit. Do est nulla adipisicing ut dolore amet dolore nostrud labore. Magna laborum aliqua duis eiusmod quis aliquip officia veniam adipisicing est magna nostrud culpa. Laborum nisi nisi sit Lorem fugiat aute deserunt ea reprehenderit sint sint nulla ad labore.',
-        honeypot: false
-      }
+        honeypot: false,
+      },
     }
   },
   mounted() {
@@ -110,13 +118,13 @@ export default {
           name: '',
           email: '',
           message: '',
-          honeypot: false
+          honeypot: false,
         }
 
         this.$nuxt.$emit('toast', {
           title: 'Message sended!',
           text: 'Thanks you for your message.',
-          type: 'success'
+          type: 'success',
         })
       } catch (e) {
         console.error(e)
@@ -124,12 +132,12 @@ export default {
         this.$nuxt.$emit('toast', {
           title: 'Error!',
           text: "We are sorry but your message can't be send, try in some time.",
-          type: 'error'
+          type: 'error',
         })
       }
       this.loading = false
-    }
-  }
+    },
+  },
 }
 </script>
 

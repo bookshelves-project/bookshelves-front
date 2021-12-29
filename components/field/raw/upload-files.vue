@@ -20,7 +20,7 @@
         {{ cta }}
       </app-button>
     </div>
-    <!-- <fields-uploaded-files-list :files="uploadedFiles" @deleted="deleted" /> -->
+    <!-- <field-uploaded-files-list :files="uploadedFiles" @deleted="deleted" /> -->
     <div v-if="uploadedFiles.length" class="upload-files-list">
       <div>
         <h3>Fichiers à téléverser</h3>

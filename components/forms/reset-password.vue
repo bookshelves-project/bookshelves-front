@@ -49,7 +49,7 @@ const submit = async () => {
 
 <template>
   <form class="space-y-6" @submit.prevent="submit">
-    <fields-input-text
+    <field-text-input
       v-model="form.email"
       name="email"
       label="Email"
@@ -58,16 +58,16 @@ const submit = async () => {
       required
     >
       <template v-if="emailError" #error>{{ emailError }}</template>
-    </fields-input-text>
+    </field-text-input>
 
-    <fields-input-text
+    <field-text-input
       v-model="form.password"
       name="password"
       label="Password"
       type="password"
       required
     />
-    <fields-input-text
+    <field-text-input
       v-model="form.password_confirmation"
       name="password_confirmation"
       label="Confirm password"

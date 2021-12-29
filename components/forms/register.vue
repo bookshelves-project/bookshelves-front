@@ -1,6 +1,6 @@
 <template>
   <form class="space-y-6" @submit.prevent="submit">
-    <fields-input-text
+    <field-text-input
       v-model="form.email"
       name="email"
       label="Email"
@@ -9,8 +9,8 @@
       required
     >
       <template v-if="errors.email" #error>{{ errors.email[0] }}</template>
-    </fields-input-text>
-    <fields-input-text
+    </field-text-input>
+    <field-text-input
       v-model="form.password"
       name="password"
       label="Password"
@@ -20,8 +20,8 @@
       <template v-if="errors.password" #error>{{
         errors.password[0]
       }}</template>
-    </fields-input-text>
-    <fields-input-text
+    </field-text-input>
+    <field-text-input
       v-model="form.password_confirmation"
       name="password_confirmation"
       label="Confirm password"
@@ -31,7 +31,7 @@
       <template v-if="errors.password_confirmation" #error>{{
         errors.password_confirmation[0]
       }}</template>
-    </fields-input-text>
+    </field-text-input>
 
     <div class="flex items-center space-x-2">
       <app-button type="submit" color="primary" align="center" class="w-full">

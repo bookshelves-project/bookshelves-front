@@ -48,7 +48,7 @@ const submit = async () => {
 
 <template>
   <form class="space-y-6" @submit.prevent="submit">
-    <fields-input-text
+    <field-text-input
       v-model="form.email"
       name="email"
       label="Email"
@@ -57,8 +57,8 @@ const submit = async () => {
       required
     >
       <template v-if="errors.email" #error>{{ errors.email[0] }}</template>
-    </fields-input-text>
-    <fields-input-text
+    </field-text-input>
+    <field-text-input
       v-model="form.password"
       name="password"
       label="Password"
@@ -68,10 +68,10 @@ const submit = async () => {
       <template v-if="errors.password" #error>{{
         errors.password[0]
       }}</template>
-    </fields-input-text>
+    </field-text-input>
 
     <div class="justify-between md:flex md:items-center">
-      <fields-checkbox
+      <field-checkbox
         v-model="form.remember"
         name="remember_me"
         label="Remember me"

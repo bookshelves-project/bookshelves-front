@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="submitPassword">
     <div class="grid grid-cols-6 gap-6">
-      <fields-input-text
+      <field-text-input
         v-model="form.current_password"
         name="current_password"
         label="Current password"
@@ -9,7 +9,7 @@
         class="col-span-6 md:col-span-4"
         required
       />
-      <fields-input-text
+      <field-text-input
         v-model="form.password"
         name="password"
         label="New password"
@@ -17,7 +17,7 @@
         class="col-span-6 md:col-span-4"
         required
       />
-      <fields-input-text
+      <field-text-input
         v-model="form.password_confirmation"
         name="password_confirmation"
         label="New password confirm"
@@ -28,7 +28,9 @@
     </div>
     <div class="mt-1 text-gray-700 dark:text-gray-200">
       <div v-if="passwordUpdate">
-        <span v-if="passwordsMatch" class="text-green-600">Yours passwords match.</span>
+        <span v-if="passwordsMatch" class="text-green-600"
+          >Yours passwords match.</span
+        >
         <span v-else class="text-red-600">Yours passwords not match.</span>
       </div>
       <br v-else />
@@ -39,8 +41,8 @@
         color="primary"
         :disabled="passwordUpdate && !passwordsMatch"
       >
-Change password
-</app-button>
+        Change password
+      </app-button>
     </div>
   </form>
 </template>
@@ -53,11 +55,11 @@ export default {
       form: {
         current_password: '',
         password: '',
-        password_confirmation: ''
+        password_confirmation: '',
       },
       isLoading: false,
       passwordUpdate: false,
-      passwordsMatch: false
+      passwordsMatch: false,
     }
   },
   watch: {
@@ -67,7 +69,7 @@ export default {
     'form.password_confirmation'(newValue, oldValue) {
       this.passwordUpdate = true
       this.checkPasswords()
-    }
+    },
   },
   methods: {
     async submitPassword() {
@@ -76,19 +78,19 @@ export default {
         this.form = {
           current_password: '',
           password: '',
-          password_confirmation: ''
+          password_confirmation: '',
         }
         this.$nuxt.$emit('toast', {
           title: 'Success!',
           text: 'Your password has been updated.',
-          type: 'success'
+          type: 'success',
         })
       } catch (error) {
         console.error(error)
         this.$nuxt.$emit('toast', {
           title: 'Error!',
           text: 'An error happened.',
-          type: 'error'
+          type: 'error',
         })
       }
     },
@@ -98,7 +100,7 @@ export default {
       } else {
         this.passwordsMatch = false
       }
-    }
-  }
+    },
+  },
 }
 </script>

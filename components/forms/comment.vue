@@ -12,7 +12,7 @@
         </div>
         <div class="flex-1 min-w-0">
           <form @submit.prevent="submit">
-            <fields-input-text
+            <field-text-input
               id="text"
               v-model="form.text"
               name="text"
@@ -20,8 +20,8 @@
               maxlength="1500"
               placeholder="Add a comment*"
               multiline
-            ></fields-input-text>
-            <fields-rating-stars
+            ></field-text-input>
+            <field-rating-stars
               v-if="$config.moduleSocialRating"
               v-model="form.rating"
               class="mt-1 mb-1"
@@ -49,13 +49,15 @@
                 class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
                 :disabled="form.text === ''"
               >
-Comment
-</button>
+                Comment
+              </button>
             </div>
           </form>
         </div>
       </div>
-      <div v-else class="text-gray-400">You must be logged in to post a comment</div>
+      <div v-else class="text-gray-400">
+        You must be logged in to post a comment
+      </div>
     </transition>
   </div>
 </template>
@@ -67,8 +69,8 @@ export default {
     return {
       form: {
         text: '',
-        rating: 0
-      }
+        rating: 0,
+      },
     }
   },
   methods: {
@@ -82,17 +84,17 @@ export default {
         this.$nuxt.$emit('toast', {
           title: 'Success!',
           text: 'Thanks you for your comment.',
-          type: 'success'
+          type: 'success',
         })
       } catch (error) {
         this.$nuxt.$emit('toast', {
           title: 'Error',
           text: error.response.data.error,
-          type: 'error'
+          type: 'error',
         })
       }
       this.$emit('refresh', slug)
-    }
-  }
+    },
+  },
 }
 </script>

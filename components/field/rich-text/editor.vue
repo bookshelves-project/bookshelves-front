@@ -2,7 +2,7 @@
   <client-only>
     <div class="editor relative">
       <div v-if="editor" class="editor__actions">
-        <fields-rich-text-action
+        <field-rich-text-action
           v-for="button in buttons"
           :key="button.id"
           :editor="editor"
@@ -11,7 +11,7 @@
           :params="button.params"
         >
           {{ button.title }}
-        </fields-rich-text-action>
+        </field-rich-text-action>
       </div>
       <hr class="mx-4" />
       <editor-content :editor="editor" class="editor__body" />
@@ -26,13 +26,13 @@ import Typography from '@tiptap/extension-typography'
 
 export default {
   components: {
-    EditorContent
+    EditorContent,
   },
   props: {
     value: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data() {
     return {
@@ -41,123 +41,120 @@ export default {
         {
           title: 'Bold',
           action: 'bold',
-          method: 'toggleBold'
+          method: 'toggleBold',
         },
         {
           title: 'Italic',
           action: 'italic',
-          method: 'toggleItalic'
+          method: 'toggleItalic',
         },
         {
           title: 'Strike',
           action: 'strike',
-          method: 'toggleStrike'
+          method: 'toggleStrike',
         },
         {
           title: 'Code',
           action: 'code',
-          method: 'toggleCode'
+          method: 'toggleCode',
         },
         {
           title: 'Clear marks',
-          method: 'unsetAllMarks'
+          method: 'unsetAllMarks',
         },
         {
           title: 'Clear nodes',
-          method: 'clearNodes'
+          method: 'clearNodes',
         },
         {
           title: 'Paragraph',
           action: 'paragraph',
-          method: 'setParagraph'
+          method: 'setParagraph',
         },
         {
           title: 'H1',
           action: 'heading',
           method: 'toggleHeading',
-          params: { level: 1 }
+          params: { level: 1 },
         },
         {
           title: 'H2',
           action: 'heading',
           method: 'toggleHeading',
-          params: { level: 2 }
+          params: { level: 2 },
         },
         {
           title: 'H3',
           action: 'heading',
           method: 'toggleHeading',
-          params: { level: 3 }
+          params: { level: 3 },
         },
         {
           title: 'H4',
           action: 'heading',
           method: 'toggleHeading',
-          params: { level: 4 }
+          params: { level: 4 },
         },
         {
           title: 'H5',
           action: 'heading',
           method: 'toggleHeading',
-          params: { level: 5 }
+          params: { level: 5 },
         },
         {
           title: 'H6',
           action: 'heading',
           method: 'toggleHeading',
-          params: { level: 6 }
+          params: { level: 6 },
         },
         {
           title: 'Bullet list',
           action: 'bulletList',
-          method: 'toggleBulletList'
+          method: 'toggleBulletList',
         },
         {
           title: 'Ordered list',
           action: 'orderedList',
-          method: 'toggleOrderedList'
+          method: 'toggleOrderedList',
         },
         {
           title: 'Code block',
           action: 'codeBlock',
-          method: 'toggleCodeBlock'
+          method: 'toggleCodeBlock',
         },
         {
           title: 'Blockquote',
           action: 'blockquote',
-          method: 'toggleBlockquote'
+          method: 'toggleBlockquote',
         },
         {
           title: 'Horizontal rule',
-          method: 'setHorizontalRule'
+          method: 'setHorizontalRule',
         },
         {
           title: 'Break',
-          method: 'setHardBreak'
+          method: 'setHardBreak',
         },
         {
           title: 'Undo',
-          method: 'undo'
+          method: 'undo',
         },
         {
           title: 'Redo',
-          method: 'redo'
-        }
-      ]
+          method: 'redo',
+        },
+      ],
     }
   },
   mounted() {
     this.editor = new Editor({
-      extensions: [
-        StarterKit,
-        Typography
-      ],
+      extensions: [StarterKit, Typography],
       editorProps: {
         attributes: {
           spellcheck: 'false',
           class:
-            'prose prose-sm sm:prose lg:prose-lg p-4 mx-auto focus:outline-none max-h-screen overflow-auto scrollbar-thin dark:prose-light'
-        }
+            'prose prose-sm sm:prose lg:prose-lg p-4 mx-auto focus:outline-none max-h-screen overflow-auto scrollbar-thin dark:prose-light',
+        },
       },
       content: `
         <h2>
@@ -188,16 +185,16 @@ export default {
           <br />
           — Mom
         </blockquote>
-      `
+      `,
     })
   },
   beforeUnmount() {
     this.editor.destroy()
-  }
+  },
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 /* Basic editor styles */
 .editor::v-deep {
   @apply shadow-sm focus:ring-primary-500 focus:border-primary-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md;
