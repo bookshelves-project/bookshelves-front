@@ -6,6 +6,7 @@ import type { Book } from './entities/book'
 import type { Serie } from './entities/serie'
 import type { Author } from './entities/author'
 import type { Entity, Tag } from './entities/index'
+import type { Profile } from './entities/profile'
 import type { Content } from './nuxt/content'
 import type { Application, HomePage, AppInit } from './cms'
 import type { Route, ObjectLiteral, Keyable } from './nuxt'
@@ -31,6 +32,7 @@ export {
   Serie,
   Entity,
   Tag,
+  Profile,
   // content
   Content,
   // cms

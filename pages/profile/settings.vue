@@ -1,25 +1,23 @@
 <template>
-  <div></div>
+  <div class="main-content">
+    <forms-profile :user="user" />
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { ApiEndpoint } from '~/types'
+import { ApiEndpoint, ApiResponse, HTTPResponse, Profile } from '~/types'
 
 @Component({
-  async asyncData({ $auth }) {
-    const user = await $auth.fetchUser()
-    console.log(user)
+  async asyncData({ $repository }) {
+    const api = await $repository(ApiEndpoint.Profile).find<Profile>()
 
-    // const user = await $repository(ApiEndpoint.Profile).find()
-    // console.log(user)
-
-    // return {
-    //   user: user.data,
-    // }
+    return {
+      user: api.data,
+    }
   },
 })
-export default class PageProfileSettings extends Vue {}
+export default class PageProfileSettings extends Vue {
+  user!: Profile
+}
 </script>
-
-<style scoped></style>

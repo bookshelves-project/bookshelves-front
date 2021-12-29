@@ -40,6 +40,7 @@
       "cookie-universal-nuxt",
       "@types/swiper",
       "@types/tailwindcss",
+      "@types/lodash",
     ],
   },
   "vueCompilerOptions": {

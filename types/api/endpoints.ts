@@ -23,4 +23,5 @@ export enum ApiEndpoint {
   FavoriteUser = '/favorites',
 
   Profile = '/profile',
+  ProfileUpdate = '/profile/update',
 }

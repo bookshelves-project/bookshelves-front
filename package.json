@@ -48,6 +48,7 @@
     "@tiptap/extension-typography": "^2.0.0-beta.14",
     "@tiptap/starter-kit": "^2.0.0-beta.157",
     "@tiptap/vue-2": "^2.0.0-beta.71",
+    "@types/lodash": "^4.14.178",
     "@types/swiper": "^5.4.3",
     "@types/tailwindcss": "^2.2.4",
     "@vue/runtime-dom": "^3.2.26",

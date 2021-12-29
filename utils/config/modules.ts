@@ -8,15 +8,15 @@ import pwaData from './pwa'
 
 const axios: AxiosOptions = {
   baseURL: `${process.env.API_URL}/api`,
-  // credentials: true,
+  credentials: true,
   // // https: true,
-  // headers: {
-  //   common: {
-  //     'X-Requested-With': 'XMLHttpRequest',
-  //     'Access-Control-Allow-Origin': '*',
-  //     Accept: 'application/json, text/plain, */*'
-  //   }
-  // }
+  headers: {
+    common: {
+      'X-Requested-With': 'XMLHttpRequest',
+      'Access-Control-Allow-Origin': '*',
+      Accept: 'application/json, text/plain, */*'
+    }
+  }
 }
 const pwa = {
   meta: pwaData.meta,

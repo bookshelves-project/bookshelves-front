@@ -87,8 +87,17 @@ export class Repository {
       })
   }
 
-  update(slug: string, payload: object) {
-    // return this.axios.$post(`${resource}/${id}`, payload)
+  update<T>(payload: object, params?: string | string[]): Promise<AxiosResponse<ApiResponse<T>>> {
+    return this.axios.post(this.url(params), payload)
+      .then((response: AxiosResponse) => response)
+      .catch((e) => {
+        console.error(e)
+        const response: AxiosResponse = e.response
+        if (this.handleError) {
+          this.error({ statusCode: 500, message: `Request failed on ${this.endpoint}.` })
+        }
+        return response as AxiosResponse
+      })
   }
 
   delete(slug: string) {
