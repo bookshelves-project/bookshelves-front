@@ -26,7 +26,7 @@
             }}</span>
           </nuxt-link>
         </div>
-        <fields-rating-stars
+        <field-rating-stars
           v-if="$config.moduleSocialRating"
           :rating="comment.rating"
           class="mt-2 mb-1"

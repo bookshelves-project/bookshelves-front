@@ -8,17 +8,12 @@
       <div class="pt-5">
         <h2
           id="notes-title"
-          class="
-            text-2xl
-            font-handlee font-semibold
-            text-primary-600
-            dark:text-gray-100
-          "
+          class="text-2xl font-handlee font-semibold text-primary-600 dark:text-gray-100"
         >
           Comments
         </h2>
         <div v-if="$config.moduleSocialRating && commentsList.length > 5">
-          <fields-rating-stars :rating="avg" class="mt-2 mb-1" disable />
+          <field-rating-stars :rating="avg" class="mt-2 mb-1" disable />
         </div>
       </div>
       <div class="grid lg:grid-cols-2 lg:gap-4 mt-5">
@@ -38,12 +33,12 @@ export default {
   props: {
     entity: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
-      commentsList: []
+      commentsList: [],
     }
   },
   computed: {
@@ -56,7 +51,7 @@ export default {
       const avg = sum / ratings.length || 0
 
       return avg
-    }
+    },
   },
   created() {
     this.commentsList = this.entity.comments
@@ -70,7 +65,7 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    }
-  }
+    },
+  },
 }
 </script>

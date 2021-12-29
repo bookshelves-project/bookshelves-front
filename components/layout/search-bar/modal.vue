@@ -63,13 +63,9 @@
         class="mt-3 md:flex items-center justify-end space-y-3 md:space-y-0 md:space-x-3 text-gray-400"
       >
         <div>Keep results in types</div>
-        <fields-checkbox
-          v-model="form.authors"
-          name="authors"
-          label="Authors"
-        />
-        <fields-checkbox v-model="form.series" name="series" label="Series" />
-        <fields-checkbox v-model="form.books" name="books" label="Books" />
+        <field-checkbox v-model="form.authors" name="authors" label="Authors" />
+        <field-checkbox v-model="form.series" name="series" label="Series" />
+        <field-checkbox v-model="form.books" name="books" label="Books" />
       </div>
     </div>
     <div

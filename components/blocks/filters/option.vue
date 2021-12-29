@@ -1,7 +1,7 @@
 <template>
   <div class="relative inline-block text-left">
     <div v-if="type === 'switch'">
-      <fields-toggle v-model="switchValue" :label="label" />
+      <field-toggle v-model="switchValue" :label="label" />
     </div>
     <app-dropdown v-else :align="align" :click-close="clickClose">
       <template #trigger>
@@ -38,7 +38,7 @@
             </div>
             <div v-else>
               <div v-if="type === 'radio'">
-                <fields-radios
+                <field-radios
                   v-model="radio"
                   :options="optionsData"
                   :name="filter"
@@ -47,7 +47,7 @@
                 />
               </div>
               <div v-else-if="type === 'checkbox'">
-                <fields-checkboxes-filter
+                <field-checkboxes-filter
                   v-model="checkboxes"
                   :options="optionsData"
                   :filter="filter"

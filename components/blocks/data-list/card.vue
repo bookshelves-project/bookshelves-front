@@ -1,8 +1,5 @@
 <template>
-  <li
-    v-if="data.meta"
-    class="relative grid grid-cols-6 bg-white dark:bg-gray-800"
-  >
+  <li v-if="data.meta" class="relative bg-white dark:bg-gray-800 flex">
     <nuxt-link
       :to="
         localePath({
@@ -18,8 +15,7 @@
       "
       :title="data.title"
       :aria-label="data.title"
-      class="flex items-center w-full py-5 pl-4 pr-1 space-x-6 hover:bg-gray-50 dark:hover:bg-gray-700 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-600 overflow-x-hidden"
-      :class="canDelete ? 'col-span-5' : 'col-span-6'"
+      class="flex items-center w-full py-5 pl-4 pr-3 space-x-6 hover:bg-gray-50 dark:hover:bg-gray-700 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-600 overflow-x-hidden"
     >
       <div class="shrink-0">
         <app-img
@@ -58,20 +54,19 @@
         </div>
       </div>
     </nuxt-link>
-    <div v-if="canDelete" class="col-span-1">
-      <button
-        type="button"
-        class="flex w-full h-full px-4 py-4 text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-        title="Delete"
-        aria-label="Delete"
-        @click="destroy(data)"
-      >
-        <svg-icon
-          name="trash"
-          class="w-6 h-6 m-auto text-gray-400 dark:text-gray-300"
-        />
-      </button>
-    </div>
+    <button
+      v-if="canDelete"
+      type="button"
+      class="block w-20 flex-col py-5 px-4 text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+      title="Delete"
+      aria-label="Delete"
+      @click="destroy(data)"
+    >
+      <svg-icon
+        name="trash"
+        class="w-6 h-6 m-auto text-gray-400 dark:text-gray-300"
+      />
+    </button>
   </li>
 </template>
 
