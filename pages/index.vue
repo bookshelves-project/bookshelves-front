@@ -1,5 +1,5 @@
 <template>
-  <div v-if="homePage">
+  <main v-if="homePage">
     <lazy-blocks-home-hero :hero="homePage.hero" class="pt-5" />
     <lazy-blocks-home-statistics :statistics="homePage.statistics" />
     <lazy-blocks-home-cloud-logos :logos="homePage.logos" />
@@ -11,7 +11,7 @@
     <lazy-blocks-selected-entities class="mt-8 lg:mt-16" :selection="latest" />
     <lazy-blocks-home-features-highlights :highlights="homePage.highlights" />
     <lazy-blocks-home-cta />
-  </div>
+  </main>
 </template>
 
 <script lang="ts">

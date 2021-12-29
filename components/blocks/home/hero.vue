@@ -1,5 +1,5 @@
 <template>
-  <main
+  <div
     v-if="hero"
     class="px-4 mx-auto lg:flex lg:items-center max-w-7xl hero md:min-h-[34rem]"
   >
@@ -26,12 +26,12 @@
         <app-img
           :src="props.hero.picture"
           alt="Woman on books pile who is reading"
-          override="md:h-[32rem] object-top"
+          override="md:h-[32rem] lg:h-[36rem] object-center"
           title="Woman on books pile who is reading"
         />
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">

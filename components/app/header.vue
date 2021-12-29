@@ -39,7 +39,7 @@
             </component>
           </div>
           <div :class="{ 'sm:ml-5 mt-3 lg:mt-0': image }">
-            <div class="sm:flex">
+            <div class="md:flex">
               <h1
                 id="message-heading"
                 class="text-2xl font-extrabold font-handlee text-primary-600 dark:text-primary-500 text-center lg:text-left w-full"
@@ -49,7 +49,7 @@
               <div class="flex">
                 <button
                   v-if="favorite && $auth.$state.loggedIn"
-                  class="sm:ml-3 p-1 mx-auto"
+                  class="md:ml-3 p-1 mx-auto"
                   type="button"
                   aria-label="Favorite"
                   @click="toggleFavorite"
@@ -68,7 +68,11 @@
               </div>
             </div>
             <div class="mt-1 text-sm">
-              <blocks-authors-links v-if="authors" :authors="authors" />
+              <blocks-authors-links
+                v-if="authors"
+                :authors="authors"
+                class="text-center lg:text-left"
+              />
               <h2
                 class="text-gray-500 overflow-hidden text-ellipsis mt-1 text-center lg:text-left"
               >

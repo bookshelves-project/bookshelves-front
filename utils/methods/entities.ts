@@ -1,4 +1,5 @@
 import { useIndexStore } from '~/stores'
+import { useApplicationStore } from '~/stores/application'
 import { Author, Tag } from '~/types'
 
 // get all authors into a string from array of object
@@ -19,8 +20,8 @@ export const formatAuthors = (authors: Author[] | undefined) => {
 
 // get language flag url or label from slug
 export const formatLanguage = (slug: string) => {
-  const store = useIndexStore()
-  // const language = store.languages.find(lang => lang.meta?.slug === slug)
+  const store = useApplicationStore()
+  const language = store.languages.find(lang => lang.meta?.slug === slug)
 
   // return language ? language[type] : 'unkown'
   // const colors: ObjectLiteral = {
@@ -33,8 +34,8 @@ export const formatLanguage = (slug: string) => {
 
   // colors[typeData] || colors.default
 
-  // return language ? language.name : 'unkown'
-  return ''
+  return language ? language.name : 'unkown'
+  // return ''
 }
 
 // get all authors into a string from array of object

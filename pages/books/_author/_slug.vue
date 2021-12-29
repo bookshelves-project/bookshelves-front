@@ -11,38 +11,28 @@
       :entity="book"
       favorite
     >
-      <div class="space-y-3 mx-auto">
-        <div>
-          <app-button
-            v-if="book.epub && book.epub.download"
-            :href="book.epub.download"
-            color="primary"
-            icon="download"
-          >
-            Download (EPUB {{ book.epub.size }})
-          </app-button>
-        </div>
-        <div v-if="book.webreader">
-          <!-- <app-button :href="book.webreader" class="w-full" external>
-            <div class="flex items-center space-x-1">
-              <svg-icon name="eye" class="w-5 h-5" />
-              <span>Webreader</span>
-            </div>
-          </app-button> -->
-          <app-button
-            :to="{
-              name: 'reader-author-slug',
-              params: { author: book.meta.author, slug: book.meta.slug },
-            }"
-            class="w-full"
-            external
-          >
-            <div class="flex items-center space-x-1">
-              <svg-icon name="eye" class="w-5 h-5" />
-              <span>Webreader</span>
-            </div>
-          </app-button>
-        </div>
+      <div class="space-y-3 grid w-max mx-auto">
+        <app-button
+          v-if="book.epub && book.epub.download"
+          :href="book.epub.download"
+          color="primary"
+          class="w-full md:w-max mx-auto"
+          icon="download"
+        >
+          Download (EPUB {{ book.epub.size }})
+        </app-button>
+        <app-button
+          v-if="book.webreader"
+          :to="{
+            name: 'reader-author-slug',
+            params: { author: book.meta.author, slug: book.meta.slug },
+          }"
+          class="w-full md:w-max lg:w-full mx-auto"
+          icon="eye"
+          external
+        >
+          Webreader
+        </app-button>
       </div>
     </app-header>
     <blocks-book-main :book="book" class="mb-6" />
