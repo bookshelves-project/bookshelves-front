@@ -26,13 +26,9 @@ declare module 'vuex/types/index' {
 const toast: Plugin = (context, inject) => {
   inject('toast', (title?: string, text?: string, type?: ToastType, auto?: ToastAuto) => {
     if (auto) {
-      if (ToastAuto.success) {
-        title = 'Success'
-        type = ToastType.success
-      } else if (ToastAuto.error) {
-        title = 'Error'
-        type = ToastType.error
-      }
+      title = ToastAuto.success ? 'Success' : 'Error'
+      text = ToastAuto.success ? 'Your update has been saved!' : 'Oops! An error break something here!'
+      type = ToastAuto.success ? ToastType.success : ToastType.error
     }
     const toastData: Toast = {
       title: title || 'Toast',
