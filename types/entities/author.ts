@@ -2,6 +2,7 @@ import { CommentData } from './comment'
 import { Cover } from '.'
 
 export interface AuthorMeta {
+  entity: string
   slug?: string;
   show?: string;
   books?: string;

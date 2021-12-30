@@ -40,4 +40,5 @@ export interface Entity {
   volume?: number;
   cover?: Cover;
   firstChar?: string;
+  isFavorite?: boolean
 }

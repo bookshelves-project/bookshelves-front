@@ -9,6 +9,7 @@ export interface Profile {
   comments_count: number
   favorites_count: number
   avatar: string
+  banner: string
   use_gravatar: boolean
   display_comments: boolean
   display_favorites: boolean

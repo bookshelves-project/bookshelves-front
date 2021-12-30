@@ -3,6 +3,7 @@ import { CommentData } from './comment'
 import { Cover, Tag } from '.'
 
 export interface SerieMeta {
+  entity: string
   slug: string;
   author: string;
   show: string;
