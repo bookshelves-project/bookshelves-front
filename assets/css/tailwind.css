@@ -14,3 +14,8 @@ body {
 button {
   @apply focus:outline-none focus:ring focus:border-primary-300;
 }
+
+.dark [type='checkbox']:checked,
+.dark [type='radio']:checked {
+  background-color: currentColor !important;
+}
