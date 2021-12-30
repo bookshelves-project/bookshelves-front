@@ -28,7 +28,9 @@
     </div>
     <div class="mt-1 text-gray-700 dark:text-gray-200">
       <div v-if="passwordUpdate">
-        <span v-if="passwordsMatch" class="text-green-600"
+        <span
+v-if="passwordsMatch"
+class="text-green-600"
           >Yours passwords match.</span
         >
         <span v-else class="text-red-600">Yours passwords not match.</span>
