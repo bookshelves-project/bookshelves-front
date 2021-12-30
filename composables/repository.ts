@@ -87,7 +87,7 @@ export class Repository {
       })
   }
 
-  update<T>(payload: object, params?: string | string[]): Promise<AxiosResponse<ApiResponse<T>>> {
+  update<T>(payload?: object, params?: string | string[]): Promise<AxiosResponse<ApiResponse<T>>> {
     return this.axios.post(this.url(params), payload)
       .then((response: AxiosResponse) => response)
       .catch((e) => {
