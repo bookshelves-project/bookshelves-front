@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <section
-      v-if="isDisplay && !isLoading && entities"
+      v-if="isDisplay && !isLoading && entities && selection"
       class="selected-books selected-entities-swiper max-w-7xl container mx-auto"
     >
       <div

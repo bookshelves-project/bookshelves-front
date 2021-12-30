@@ -1,8 +1,15 @@
 <script setup lang="ts">
-import { ApiEndpoint } from '~/types'
+import useAuth from '~/composables/useAuth'
+import {
+  ApiEndpoint,
+  ApiResponse,
+  HTTPResponse,
+  ToastAuto,
+  ToastType,
+} from '~/types'
 import { randomString } from '~/utils/methods'
 
-const { isDev, $axios } = useContext()
+const { app, $repository, isDev } = useContext()
 const form = ref({
   name: '',
   email: '',
@@ -37,28 +44,10 @@ const submit = async () => {
   // const data = await $repository(ApiEndpoint.AuthRegister, false).create(
   //   form.value
   // )
-  try {
-    const data = await $axios.post(`${ApiEndpoint.AuthRegister}`, form.value)
-    console.log(data)
-  } catch (error) {
-    console.log(error)
-  }
-
-  // this.$auth
-  //   .loginWith(this.$auth.options.defaultStrategy, {
-  //     data: this.form,
-  //   })
-  //   .catch((error) => {
-  //     console.error(error)
-  //   })
-  // const text =
-  //   Object.values(error.response.data.errors)[0][0] ||
-  //   "Seems you can't sign-up currently, we work on it, please try later"
-  // this.$nuxt.$emit('toast', {
-  //   title: 'Something unexpected happened',
-  //   text,
-  //   type: 'error',
-  // })
+  const { registerAndLogin, register, login } = useAuth(app)
+  await register(form.value)
+  await login(form.value)
+  // await registerAndLogin(form.value)
 
   isLoading.value = false
 }

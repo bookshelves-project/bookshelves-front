@@ -8,6 +8,10 @@ import { ApiEndpoint, ApiMessage } from '~/types'
 //   }
 // }
 declare module '@nuxt/types' {
+  interface NuxtAppOptions {
+    $repository(endpoint: ApiEndpoint, handleError?: boolean): Repository
+    $apiMessage(apiMessage: ApiMessage): string
+  }
   interface Context {
     /**
      * A Repository can execute requests
@@ -29,15 +33,17 @@ const repository: Plugin = (context, inject) => {
   })
   inject('apiMessage', (apiMessage: ApiMessage): string => {
     let errors = ''
-    Object.values(apiMessage.errors).forEach(error => {
-      if (error instanceof Array) {
-        error = error[0]
-      }
-      console.log(error)
-      errors += `${error} `
-    })
+    if (apiMessage.errors) {
+      Object.values(apiMessage.errors).forEach(error => {
+        if (error instanceof Array) {
+          error = error[0]
+        }
+        console.log(error)
+        errors += `${error} `
+      })
+    }
 
-    return `${errors.trimEnd()}.`
+    return `${apiMessage.message} ${errors.trimEnd()}.`
   })
 }
 

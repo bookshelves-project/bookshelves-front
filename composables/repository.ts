@@ -1,9 +1,8 @@
 // eslint-disable-next-line import/named
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { NuxtError } from '@nuxt/types'
-import { AxiosResponse } from 'axios'
 import { stringify } from 'qs'
-import { ApiEndpoint, ApiMessage, ApiPaginateResponse, ApiResponse, Query } from '~/types'
+import { ApiEndpoint, ApiMessage, ApiPaginateResponse, ApiResponse, AxiosResponse, Query } from '~/types'
 
 export class Repository {
   axios: NuxtAxiosInstance
@@ -74,7 +73,7 @@ export class Repository {
       })
   }
 
-  create<T>(payload: object, params?: string | string[]): Promise<AxiosResponse<ApiMessage>> {
+  create<T>(payload: object, params?: string | string[]): Promise<AxiosResponse<T>> {
     return this.axios.post(this.url(params), payload)
       .then((response: AxiosResponse) => response)
       .catch((e) => {

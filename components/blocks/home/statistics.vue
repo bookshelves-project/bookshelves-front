@@ -1,23 +1,15 @@
 <template>
-  <div class="relative mt-6 statistics">
+  <div v-if="statistics" class="relative mt-6 statistics">
     <div class="absolute bottom-0 w-full h-80">
       <div class="h-full">
         <img
           v-lazy-load
           class="object-cover w-full h-full opacity-25"
           src="/images/library.webp"
-        >
+        />
         <div
           aria-hidden="true"
-          class="
-            absolute
-            inset-x-0
-            top-0
-            h-32
-            bg-gradient-to-b
-            from-white
-            dark:from-gray-900
-          "
+          class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white dark:from-gray-900"
         />
       </div>
     </div>
@@ -29,14 +21,7 @@
           {{ statistics.eyebrow }}
         </h2>
         <p
-          class="
-            mt-3
-            text-3xl
-            font-extrabold
-            text-gray-700
-            dark:text-gray-300
-            font-handlee
-          "
+          class="mt-3 text-3xl font-extrabold text-gray-700 dark:text-gray-300 font-handlee"
         >
           {{ statistics.title }}
         </p>
@@ -44,43 +29,24 @@
           {{ statistics.text }}
         </div>
         <div
-          class="
-            grid grid-cols-1
-            mt-12
-            gap-y-12 gap-x-6
-            md:grid-cols-2
-            lg:grid-cols-3
-          "
+          class="grid grid-cols-1 mt-12 gap-y-12 gap-x-6 md:grid-cols-2 lg:grid-cols-3"
         >
           <div
             v-for="(metric, id) in statistics.list"
             :key="id"
-            class="
-              transition-colors
-              duration-100
-              rounded-md
-              hover:bg-gray-300
-              dark:hover:bg-gray-600
-              hover:bg-opacity-50
-            "
+            class="transition-colors duration-100 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 hover:bg-opacity-50"
           >
             <div class="block p-2">
               <span
-                class="
-                  block
-                  text-2xl
-                  font-bold
-                  text-gray-700
-                  dark:text-gray-300
-                "
+                class="block text-2xl font-bold text-gray-700 dark:text-gray-300"
               >
                 {{ metric.count }}
               </span>
               <span
                 class="block mt-1 text-base text-gray-900 dark:text-gray-100"
-              ><span class="font-medium text-gray-700 dark:text-gray-300">
-                {{ metric.label }}
-              </span>
+                ><span class="font-medium text-gray-700 dark:text-gray-300">
+                  {{ metric.label }}
+                </span>
               </span>
             </div>
           </div>
