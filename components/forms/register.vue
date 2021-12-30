@@ -1,3 +1,64 @@
+<script setup lang="ts">
+import { ApiEndpoint } from '~/types'
+import { randomString } from '~/utils/methods'
+
+const { isDev, $repository } = useContext()
+const form = ref({
+  name: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
+  terms: true,
+})
+const isLoading = ref(false)
+const errors = ref({
+  email: null,
+  password: null,
+})
+
+const fillForm = () => {
+  const name = randomString(6).toLowerCase()
+  const email = `${name}@mail.com`
+  const password = randomString(10)
+  form.value = {
+    name,
+    email,
+    password,
+    password_confirmation: password,
+    terms: true,
+  }
+}
+const submit = async () => {
+  const name = form.value.email.split('@')
+  form.value.name = name[0]
+
+  isLoading.value = true
+
+  const data = await $repository(ApiEndpoint.AuthRegister, false).create(
+    form.value
+  )
+  console.log(data)
+
+  // this.$auth
+  //   .loginWith(this.$auth.options.defaultStrategy, {
+  //     data: this.form,
+  //   })
+  //   .catch((error) => {
+  //     console.error(error)
+  //   })
+  // const text =
+  //   Object.values(error.response.data.errors)[0][0] ||
+  //   "Seems you can't sign-up currently, we work on it, please try later"
+  // this.$nuxt.$emit('toast', {
+  //   title: 'Something unexpected happened',
+  //   text,
+  //   type: 'error',
+  // })
+
+  isLoading.value = false
+}
+</script>
+
 <template>
   <form class="space-y-6" @submit.prevent="submit">
     <field-text-input
@@ -8,7 +69,7 @@
       autocomplete="email"
       required
     >
-      <template v-if="errors.email" #error>{{ errors.email[0] }}</template>
+      <!-- <template v-if="errors.email" #error>{{ errors.email[0] }}</template> -->
     </field-text-input>
     <field-text-input
       v-model="form.password"
@@ -17,9 +78,9 @@
       type="password"
       required
     >
-      <template v-if="errors.password" #error>{{
+      <!-- <template v-if="errors.password" #error>{{
         errors.password[0]
-      }}</template>
+      }}</template> -->
     </field-text-input>
     <field-text-input
       v-model="form.password_confirmation"
@@ -28,9 +89,9 @@
       type="password"
       required
     >
-      <template v-if="errors.password_confirmation" #error>{{
+      <!-- <template v-if="errors.password_confirmation" #error>{{
         errors.password_confirmation[0]
-      }}</template>
+      }}</template> -->
     </field-text-input>
 
     <div class="flex items-center space-x-2">
@@ -54,67 +115,3 @@
     </div>
   </form>
 </template>
-
-<script>
-import { randomString } from '~/utils/methods'
-
-export default {
-  name: 'RegisterForm',
-  data() {
-    return {
-      form: {
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
-        terms: true,
-      },
-      isDev: process.env.NODE_ENV !== 'production',
-      errors: {},
-      isLoading: false,
-    }
-  },
-  methods: {
-    fillForm() {
-      const name = randomString(6).toLowerCase()
-      const email = `${name}@mail.com`
-      const password = randomString(10)
-      this.form = {
-        name,
-        email,
-        password,
-        password_confirmation: password,
-        terms: true,
-      }
-    },
-    async submit() {
-      const name = this.form.email.split('@')
-      this.form.name = name[0]
-      this.isLoading = true
-
-      try {
-        await this.$axios.$post('/auth/register', this.form)
-        this.$auth
-          .loginWith(this.$auth.options.defaultStrategy, {
-            data: this.form,
-          })
-          .catch((error) => {
-            console.error(error)
-          })
-      } catch (error) {
-        console.error(error)
-        const text =
-          Object.values(error.response.data.errors)[0][0] ||
-          "Seems you can't sign-up currently, we work on it, please try later"
-        this.$nuxt.$emit('toast', {
-          title: 'Something unexpected happened',
-          text,
-          type: 'error',
-        })
-        // error.response.status
-        this.isLoading = false
-      }
-    },
-  },
-}
-</script>

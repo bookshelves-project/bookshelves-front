@@ -13,7 +13,15 @@
         <div v-if="helper" class="text-sm text-gray-500 dark:text-gray-400">
           {{ helper }}
         </div>
-        <div :class="[{ 'grid grid-cols-4 gap-4': flex }, { 'mt-4': label }]">
+        <div
+          :class="[
+            {
+              'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4':
+                flex,
+            },
+            { 'mt-4': label },
+          ]"
+        >
           <div
             v-for="(option, id) in options"
             :key="id"
