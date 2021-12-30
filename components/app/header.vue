@@ -8,7 +8,9 @@
     "
   >
     <layout-breadcrumb class="mb-6" />
+
     <div class="lg:flex lg:items-center lg:justify-between">
+      <!-- Main  -->
       <div class="sm:items-center sm:flex sm:justify-between">
         <div
           :class="{ 'lg:flex lg:items-center': image }"
@@ -33,8 +35,8 @@
                 :color="color"
                 :alt="title"
                 :title="title"
-                class="object-cover w-20 h-20 rounded-md"
-                override="rounded-md"
+                class="w-20 h-20"
+                override="rounded-md object-cover"
               />
             </component>
           </div>
@@ -46,9 +48,9 @@
               >
                 {{ title }}
               </h1>
-              <div class="flex">
+              <!-- Favoritable  -->
+              <div v-if="favorite && $auth.$state.loggedIn" class="flex">
                 <button
-                  v-if="favorite && $auth.$state.loggedIn"
                   class="md:ml-3 p-1 mx-auto"
                   type="button"
                   aria-label="Favorite"
@@ -67,9 +69,9 @@
                 </button>
               </div>
             </div>
-            <div class="mt-1 text-sm">
+            <!-- Authors  -->
+            <div v-if="authors.length" class="mt-1 text-sm">
               <blocks-authors-links
-                v-if="authors"
                 :authors="authors"
                 class="text-center lg:text-left"
               />
@@ -82,19 +84,23 @@
           </div>
         </div>
       </div>
+      <!-- Default  -->
       <div v-if="$slots.default" class="mt-6 mb-3 lg:mt-0 lg:mb-0">
         <slot />
       </div>
     </div>
+    <!-- Content  -->
     <div v-if="$slots.content" class="mt-6">
       <slot name="content" />
     </div>
+    <!-- About  -->
     <div
       v-if="text"
       class="max-w-full prose word-wraping dark:text-gray-100 text-gray-500 mt-3 italic line-clamp-3"
     >
       <div v-html="text" />
     </div>
+    <!-- External link  -->
     <div v-if="cta" class="dark:text-gray-400 text-gray-500">
       <div class="pt-1 text-right">
         To have more informations:
@@ -107,99 +113,44 @@
         >
       </div>
     </div>
+    <!-- Filters  -->
     <div class="mt-4">
       <slot name="filters" />
     </div>
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import useFavorite from '~/composables/useFavorite'
+import { Author, Entity } from '~/types'
 import { getHostname } from '~/utils/methods'
-import favorites from '~/mixins/favorites'
 
-export default {
-  name: 'AppHeading',
-  mixins: [favorites],
-  props: {
-    title: {
-      type: String,
-      default: '',
-    },
-    subtitle: {
-      type: String,
-      default: '',
-    },
-    image: {
-      type: String,
-      default: null,
-    },
-    imageOriginal: {
-      type: String,
-      default: null,
-    },
-    border: {
-      type: Boolean,
-      default: false,
-    },
-    cta: {
-      type: String,
-      default: '',
-    },
-    text: {
-      type: String,
-      default: '',
-    },
-    authors: {
-      type: Array,
-      default: () => [],
-    },
-    favorite: {
-      type: Boolean,
-      default: false,
-    },
-    entity: {
-      type: Object,
-      default: () => {},
-    },
-    color: {
-      type: String,
-      default: '#ffffff',
-    },
-  },
-  data() {
-    return {
-      isFavorite: false,
-      favoritesList: [],
-    }
-  },
-  mounted() {
-    this.isFavoriteCheck()
-    this.favoritesList = this.favorites
-  },
-  methods: {
-    getHostname,
-    isFavoriteCheck() {
-      this.isFavorite = this.entity ? this.entity.isFavorite : null
-    },
-    async toggleFavorite() {
-      const entity = this.$route.name.split('-')[0].slice(0, -1)
-      this.isFavorite = !this.isFavorite
-      const slug = this.$route.params.slug
-      try {
-        await this.$axios.$post(`/favorites/toggle/${entity}/${slug}`)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async deleteFavorite(model, slug) {
-      try {
-        await this.$axios.$post(`/favorites/toggle/${model}/${slug}`)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-  },
+interface Props {
+  title: string
+  subtitle: string
+  image: string
+  imageOriginal: string
+  border: boolean
+  cta: string
+  text: string
+  authors: Author[]
+  favorite: boolean
+  entity: Entity
+  color: string
 }
-</script>
+const props = withDefaults(defineProps<Props>(), {
+  title: undefined,
+  subtitle: undefined,
+  image: undefined,
+  imageOriginal: undefined,
+  border: false,
+  cta: undefined,
+  text: undefined,
+  authors: () => [],
+  favorite: false,
+  entity: undefined,
+  color: '#ffffff',
+})
 
-<style lang="postcss" scoped></style>
+const { isFavorite, toggleFavorite } = useFavorite(props.entity)
+</script>
