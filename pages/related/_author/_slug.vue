@@ -1,38 +1,36 @@
 <template>
   <main class="main-content">
     <app-header :title="`${title} ${book.title}`" :subtitle="description" />
-    <section>
-      <div class="space-y-6 display-grid sm:space-y-0">
-        <entity-card
-          v-for="(entity, id) in entities"
-          :key="id"
-          :cover="entity.cover?.thumbnail"
-          :color="entity.cover?.color"
-          :title="book.title"
-          :route="{
-            name:
-              entity.meta?.entity === 'author'
-                ? `authors-slug`
-                : `${entity.meta.entity}s-author-slug`,
-            params: {
-              author: entity.meta.author,
-              slug: entity.meta.slug,
-            },
-          }"
-        >
-          <template #title>
-            <span class="line-clamp-2">
-              {{ book.title }}
-            </span>
-          </template>
-          <template #subtitle>
-            {{ formatAuthors(entity.authors) }}
-          </template>
-          <template #extra>
-            {{ capitalize(entity.meta.entity) }}
-          </template>
-        </entity-card>
-      </div>
+    <section class="space-y-6 display-grid sm:space-y-0">
+      <entity-card
+        v-for="(entity, id) in entities"
+        :key="id"
+        :cover="entity.cover?.thumbnail"
+        :color="entity.cover?.color"
+        :title="book.title"
+        :route="{
+          name:
+            entity.meta?.entity === 'author'
+              ? `authors-slug`
+              : `${entity.meta.entity}s-author-slug`,
+          params: {
+            author: entity.meta.author,
+            slug: entity.meta.slug,
+          },
+        }"
+      >
+        <template #title>
+          <span class="line-clamp-2">
+            {{ book.title }}
+          </span>
+        </template>
+        <template #subtitle>
+          {{ formatAuthors(entity.authors) }}
+        </template>
+        <template #extra>
+          {{ capitalize(entity.meta.entity) }}
+        </template>
+      </entity-card>
     </section>
   </main>
 </template>

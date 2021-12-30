@@ -1,13 +1,17 @@
 <template>
   <div class="main-content">
-    <app-header :title="`${title} ${user.name}`" :image="user.avatar" :text="user.about" />
+    <app-header
+      :title="`${title} ${user.name}`"
+      :image="user.avatar"
+      :text="user.about"
+    />
 
     <!-- Main 2 column grid -->
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
       <!-- Left column -->
       <div class="grid grid-cols-1 gap-4 xl:col-span-1">
         <blocks-data-list-template
-          v-if="user.displayFavorites"
+          v-if="user.display_favorites"
           :data-list="favorites"
           title="Favorites list"
           subtitle="All your favorites will be here."
@@ -15,18 +19,15 @@
           icon="heart"
           :loading="loading"
         />
-        <div
-          v-else
-          class="italic text-gray-400 dark:text-gray-500"
-        >
-{{ user.name }} don't want to show comments.
-</div>
+        <div v-else class="italic text-gray-400 dark:text-gray-500">
+          {{ user.name }} don't want to show comments.
+        </div>
       </div>
 
       <!-- Right column -->
       <div class="grid grid-cols-1 gap-4 xl:col-span-1">
         <blocks-data-list-template
-          v-if="user.displayComments"
+          v-if="user.display_comments"
           :data-list="comments"
           title="Comments list"
           subtitle="All your comments will be here."
@@ -34,12 +35,9 @@
           icon="comment"
           :loading="loading"
         />
-        <div
-          v-else
-          class="italic text-gray-400 dark:text-gray-500"
-        >
-{{ user.name }} don't want to show favorites.
-</div>
+        <div v-else class="italic text-gray-400 dark:text-gray-500">
+          {{ user.name }} don't want to show favorites.
+        </div>
       </div>
     </div>
   </div>
@@ -52,7 +50,7 @@ export default {
     const user = await app.$axios.$get(`/users/${params.slug}`)
 
     return {
-      user: user.data
+      user: user.data,
     }
   },
   data() {
@@ -60,7 +58,7 @@ export default {
       loading: true,
       title: 'Profile of',
       favorites: [],
-      comments: []
+      comments: [],
     }
   },
   head() {
@@ -72,9 +70,9 @@ export default {
         ...dynamicMetadata.default({
           title,
           url: this.$nuxt.$route.path,
-          image: this.user.avatar
-        })
-      ]
+          image: this.user.avatar,
+        }),
+      ],
     }
   },
   mounted() {
@@ -83,12 +81,9 @@ export default {
   methods: {
     async getData() {
       try {
-        const [
-          favorites,
-          comments
-        ] = await Promise.all([
+        const [favorites, comments] = await Promise.all([
           this.$axios.$get(`/users/favorites/${this.$route.params.slug}`),
-          this.$axios.$get(`/users/comments/${this.$route.params.slug}`)
+          this.$axios.$get(`/users/comments/${this.$route.params.slug}`),
         ])
         this.favorites = favorites.data
         this.comments = comments.data
@@ -97,7 +92,7 @@ export default {
         console.error(error)
         this.loading = false
       }
-    }
-  }
+    },
+  },
 }
 </script>

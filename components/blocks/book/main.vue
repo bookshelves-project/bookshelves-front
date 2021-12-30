@@ -130,7 +130,9 @@
                 class="internal-link"
                 >{{ genre.name }}</nuxt-link
               >
-              <span v-if="genreId !== book.genres.length - 1" class="mr-1"
+              <span
+v-if="genreId !== book.genres.length - 1"
+class="mr-1"
                 >,</span
               >
             </span>

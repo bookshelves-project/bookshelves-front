@@ -1,8 +1,17 @@
-import { useIndexStore } from '~/stores'
 import { useApplicationStore } from '~/stores/application'
 import { Author, Tag } from '~/types'
 
-// get all authors into a string from array of object
+/**
+ * Get a `string` from `Author[]`
+ * @typeParam `Author[]`
+ * @returns `string`
+ *
+ * ```html
+ * <div>
+ *  {{ formatAuthors(book.authors) }}
+ * </div>
+ * ```
+ */
 export const formatAuthors = (authors: Author[] | undefined) => {
   if (authors?.length) {
     let authorsToString = ''
@@ -18,27 +27,23 @@ export const formatAuthors = (authors: Author[] | undefined) => {
   return 'unknown'
 }
 
-// get language flag url or label from slug
+/**
+ * Get Language from slug
+ * @typeParam `string` of Language.
+ * @returns `string`
+ */
 export const formatLanguage = (slug: string) => {
   const store = useApplicationStore()
   const language = store.languages.find(lang => lang.meta?.slug === slug)
 
-  // return language ? language[type] : 'unkown'
-  // const colors: ObjectLiteral = {
-  //   success: 'bg-emerald-100',
-  //   warning: 'bg-amber-100',
-  //   error: 'bg-red-100',
-  //   information: 'bg-sky-100',
-  //   default: 'bg-sky-100'
-  // }
-
-  // colors[typeData] || colors.default
-
   return language ? language.name : 'unkown'
-  // return ''
 }
 
-// get all authors into a string from array of object
+/**
+ * Get a `string` from `Tag[]`
+ * @typeParam `Tag[]`
+ * @returns `string`
+ */
 export const formatTags = (tags?: Tag[]) => {
   if (tags) {
     let entitiesToString = ''
