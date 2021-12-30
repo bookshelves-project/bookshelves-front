@@ -8,7 +8,7 @@
         :aria-describedby="`${name}-description`"
         :name="name"
         type="checkbox"
-        class="focus:ring-primary-500 h-4 w-4 text-primary-600 dark:text-primary-500 border-gray-300 rounded dark:bg-gray-600 dark:border-gray-600"
+        class="checkbox"
         :value="valueData"
       />
     </div>
@@ -65,3 +65,11 @@ export default {
   },
 }
 </script>
+
+<style lang="css" scoped>
+.checkbox {
+  @apply h-4 w-4 rounded;
+  @apply text-primary-600 border-gray-300 focus:ring-primary-500;
+  @apply dark:text-primary-600 dark:bg-gray-600 dark:border-gray-700 dark:focus:ring-primary-400;
+}
+</style>

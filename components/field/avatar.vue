@@ -15,7 +15,7 @@
       <div class="flex items-center mt-1">
         <div v-if="avatarPreview">
           <span
-            class="block w-12 h-12 rounded-full"
+            class="block w-16 h-16 rounded-full"
             :style="
               'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
               avatarPreview +
@@ -26,7 +26,7 @@
         <app-img
           v-else
           :src="avatarSrc"
-          override="object-cover w-12 h-12 rounded-full"
+          override="object-cover w-16 h-16 rounded-full"
         />
         <!-- <span
           class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100"
