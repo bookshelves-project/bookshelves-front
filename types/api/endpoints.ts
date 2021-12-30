@@ -15,7 +15,7 @@ export enum ApiEndpoint {
   CmsHomePage = '/cms/home-page',
 
   AuthLogin = '/auth/login',
-  AuthRegister = '/auth/register',
+  AuthRegister = '/register',
   AuthLogout = '/auth/logout',
   AuthForgotPassword = '/auth/forgot-password',
   AuthResetPassword = '/auth/reset-password',

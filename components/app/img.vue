@@ -24,33 +24,40 @@
 const props = defineProps({
   src: {
     type: String,
-    default: null
+    default: null,
   },
   title: {
     type: String,
-    default: null
+    default: null,
   },
   legend: {
     type: String,
-    default: null
+    default: null,
   },
   placeholder: {
     type: String,
-    default: 'bg-gray-100 dark:bg-gray-800'
+    default: 'bg-gray-100 dark:bg-gray-800',
   },
   color: {
     type: String,
-    default: null
+    default: null,
   },
   override: {
     type: String,
-    default: null
+    default: null,
   },
   invisible: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
+
+watch(
+  () => props.src,
+  (newVal) => {
+    loading.value = true
+  }
+)
 
 const loading = ref(true)
 const meta = ref('')
@@ -60,6 +67,3 @@ const load = () => {
   meta.value = props.title
 }
 </script>
-
-<style scoped>
-</style>

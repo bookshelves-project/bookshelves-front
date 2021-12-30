@@ -12,7 +12,7 @@
               {{ error.statusCode }} error
             </p>
             <h1
-              class="mt-2 text-4xl font-semibold font-handlee text-gray-900 dark:text-gray-100 tracking-tight sm:text-5xl"
+              class="mt-2 text-2xl sm:text-4xl font-semibold font-handlee text-gray-900 dark:text-gray-100 tracking-tight md:text-5xl"
             >
               <span v-if="error.statusCode === 404">Page not found</span>
               <span v-else-if="error.statusCode === 500"

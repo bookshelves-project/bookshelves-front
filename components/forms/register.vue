@@ -2,7 +2,7 @@
 import { ApiEndpoint } from '~/types'
 import { randomString } from '~/utils/methods'
 
-const { isDev, $repository } = useContext()
+const { isDev, $axios } = useContext()
 const form = ref({
   name: '',
   email: '',
@@ -34,10 +34,15 @@ const submit = async () => {
 
   isLoading.value = true
 
-  const data = await $repository(ApiEndpoint.AuthRegister, false).create(
-    form.value
-  )
-  console.log(data)
+  // const data = await $repository(ApiEndpoint.AuthRegister, false).create(
+  //   form.value
+  // )
+  try {
+    const data = await $axios.post(`${ApiEndpoint.AuthRegister}`, form.value)
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+  }
 
   // this.$auth
   //   .loginWith(this.$auth.options.defaultStrategy, {
