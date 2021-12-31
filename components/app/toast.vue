@@ -7,7 +7,7 @@
       <div class="flex items-start">
         <div class="shrink-0">
           <svg-icon
-            :name="`toast/${toast.type}`"
+            :name="toast.type ? `toast/${toast.type}` : 'information'"
             :class="color"
             class="w-6 h-6"
           />

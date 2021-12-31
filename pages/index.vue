@@ -31,21 +31,26 @@ import {
       ApiEndpoint.CmsHomePage,
       false
     ).find({ lang: i18n.locale })
-    const store = useApplicationStore($pinia)
+    if (api) {
+      const store = useApplicationStore($pinia)
 
-    return {
-      homePage: api.data,
-      application: store.application,
+      return {
+        homePage: api.data,
+        application: store.application,
+      }
     }
   },
   head(this: PageIndex) {
     return this.$metadata({
-      title: this.application.name,
+      // title: this.application.name,
     })
   },
 })
 export default class PageIndex extends Vue {
-  application: Application = {}
+  application: Application = {
+    name: 'Bookshelves',
+  }
+
   homePage: HomePage = {}
   axios = this.$axios
   latest: SelectedEntities = {

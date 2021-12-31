@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { HTTPResponse, ToastType } from '~/types'
+import useAuth from '~/composables/useAuth'
+import useFavorite from '~/composables/useFavorite'
+import { Entity, HTTPResponse, ToastType } from '~/types'
 
-const { isDev, $auth, $toast, $apiMessage } = useContext()
+const context = useContext()
 const router = useRouter()
+
+const isDev = context.isDev
 
 const form = ref({
   email: '',
@@ -26,23 +30,54 @@ const fillForm = () => {
 const submit = async () => {
   isLoading.value = true
 
-  await $auth
-    .loginWith($auth.options.defaultStrategy, {
-      data: form.value,
-    })
-    .then((e) => {
-      // console.log(e)
-    })
-    .catch((e) => {
-      const response: HTTPResponse = e.response
-      $toast(
-        'Error',
-        // `${response.data.message} ${$apiMessage(response.data)}`,
-        `${response.data.message}`,
-        ToastType.error
-      )
-      isLoading.value = false
-    })
+  // if (form.value.remember) {
+  //   $auth.options.cookie = {
+  //     prefix: 'auth.',
+  //     options: {
+  //       path: '/',
+  //       expires: 30,
+  //       maxAge: 2628288,
+  //       secure: true,
+  //     },
+  //   }
+  // }
+
+  // try {
+  //   const sanctumData = await $axios.get(
+  //     'http://localhost:8000/api/sanctum/csrf-cookie'
+  //   )
+  //   console.log(sanctumData)
+
+  //   const loginData = await $axios.post(
+  //     'http://localhost:8000/api/login',
+  //     form.value
+  //   )
+  //   console.log(loginData)
+
+  //   // router.push('/profile')
+  // } catch (error) {
+  //   console.error(error)
+  //   isLoading.value = false
+  // }
+
+  const { login } = useAuth(context.app)
+  await login(form.value)
+
+  // await $auth
+  //   .loginWith($auth.options.defaultStrategy, {
+  //     data: form.value,
+  //   })
+  //   .catch((e) => {
+  //     const response: HTTPResponse = e.response
+  //     $toast(
+  //       'Error',
+  //       // `${response.data.message} ${$apiMessage(response.data)}`,
+  //       `${response.data.message}`,
+  //       ToastType.error
+  //     )
+  //     isLoading.value = false
+  //   })
+  isLoading.value = false
 }
 </script>
 
@@ -78,7 +113,7 @@ const submit = async () => {
       />
       <div class="mt-6 text-sm md:mt-0">
         <nuxt-link
-          :to="localePath({ name: 'auth-forgot-password' })"
+          :to="localePath({ name: 'sign-in-forgot-password' })"
           class="font-medium text-primary-600 dark:text-primary-500 hover:text-primary-400 hover:underline"
         >
           Forgot your password?

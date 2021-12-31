@@ -124,7 +124,8 @@ const main = {
 const load = async () => {
   try {
     const api: ApiResponse<Entity[]> = await $repository(
-      props.selection.endpoint as ApiEndpoint
+      props.selection.endpoint as ApiEndpoint,
+      false
     ).find()
     entities.value = api.data
 

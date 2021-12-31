@@ -24,7 +24,6 @@ const submit = async () => {
   emailError.value = ''
   form.value.token = query.value.token as string
 
-  console.log(form.value)
   const api = await $repository(ApiEndpoint.AuthResetPassword, false).create(
     form.value
   )
@@ -35,10 +34,10 @@ const submit = async () => {
       ToastType.success
     )
   } else {
-    emailError.value = api.data.errors.email ? api.data.errors.email[0] : ''
+    // emailError.value = api.data.errors.email ? api.data.errors.email[0] : ''
     $toast(
       'Error',
-      `${api.data.message} ${$apiMessage(api.data)}`,
+      // `${api.data.message} ${$apiMessage(api.data)}`,
       ToastType.error
     )
   }

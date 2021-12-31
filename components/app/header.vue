@@ -1,3 +1,38 @@
+<script setup lang="ts">
+import useFavorite from '~/composables/useFavorite'
+import { Author, Entity } from '~/types'
+import { getHostname } from '~/utils/methods'
+
+interface Props {
+  title: string
+  subtitle: string
+  image: string
+  imageOriginal: string
+  border: boolean
+  cta: string
+  text: string
+  authors: Author[]
+  favorite: boolean
+  entity: Entity
+  color: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  title: undefined,
+  subtitle: undefined,
+  image: undefined,
+  imageOriginal: undefined,
+  border: false,
+  cta: undefined,
+  text: undefined,
+  authors: () => [],
+  favorite: false,
+  entity: undefined,
+  color: '#ffffff',
+})
+
+const { isFavorite, toggleFavorite } = useFavorite(props.entity)
+</script>
+
 <template>
   <div
     class="mb-3 border-b"
@@ -119,38 +154,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import useFavorite from '~/composables/useFavorite'
-import { Author, Entity } from '~/types'
-import { getHostname } from '~/utils/methods'
-
-interface Props {
-  title: string
-  subtitle: string
-  image: string
-  imageOriginal: string
-  border: boolean
-  cta: string
-  text: string
-  authors: Author[]
-  favorite: boolean
-  entity: Entity
-  color: string
-}
-const props = withDefaults(defineProps<Props>(), {
-  title: undefined,
-  subtitle: undefined,
-  image: undefined,
-  imageOriginal: undefined,
-  border: false,
-  cta: undefined,
-  text: undefined,
-  authors: () => [],
-  favorite: false,
-  entity: undefined,
-  color: '#ffffff',
-})
-
-const { isFavorite, toggleFavorite } = useFavorite(props.entity)
-</script>

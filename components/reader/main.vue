@@ -96,18 +96,9 @@ const showEpub = () => {
 
   rendition.themes.register('dark', 'themes.css')
   rendition.themes.register('light', 'themes.css')
-  // rendition.themes.register('tan', 'themes.css')
 
   rendition.themes.select('dark')
   rendition.themes.fontSize('100%')
-  // book.css('column-count', '2', true)
-
-  // this.book = Epub(DOWNLOAD_URL)
-  //
-  // const book = Epub(DOWNLOAD_URL)
-  // console.log('🎹', book)
-  // const rendition = book.renderTo('area', { width: 600, height: 400 })
-  // rendition.display()
 }
 
 onMounted(() => {

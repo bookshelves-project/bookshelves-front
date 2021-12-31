@@ -200,7 +200,6 @@ const dragleave = (event: any) => {
 }
 const drop = (event: any) => {
   event.preventDefault()
-  console.log(fileUpload.value)
   if (fileUpload.value) {
     fileUpload.value.files = event.dataTransfer.files
     onChange(event) // Trigger the onChange event manually

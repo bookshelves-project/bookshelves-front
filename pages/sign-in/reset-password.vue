@@ -29,7 +29,7 @@ export default class PageResetPassword extends Vue {}
           </div>
           <div class="relative flex justify-center text-sm">
             <nuxt-link
-              :to="localePath({ name: 'auth-forgot-password' })"
+              :to="localePath({ name: 'sign-in-forgot-password' })"
               class="px-2 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:text-gray-800"
             >
               You have an error?

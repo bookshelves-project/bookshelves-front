@@ -26,7 +26,7 @@ const errors = ref({
 const fillForm = () => {
   const name = randomString(6).toLowerCase()
   const email = `${name}@mail.com`
-  const password = randomString(10)
+  const password = 'password'
   form.value = {
     name,
     email,
@@ -45,9 +45,7 @@ const submit = async () => {
   //   form.value
   // )
   const { registerAndLogin, register, login } = useAuth(app)
-  await register(form.value)
-  await login(form.value)
-  // await registerAndLogin(form.value)
+  await registerAndLogin(form.value)
 
   isLoading.value = false
 }

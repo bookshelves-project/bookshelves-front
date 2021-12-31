@@ -1,5 +1,5 @@
 <template>
-  <div class="relative py-16 sm:py-24 lg:py-32">
+  <div v-if="features" class="relative py-16 sm:py-24 lg:py-32">
     <div
       class="max-w-md px-4 mx-auto text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl"
     >

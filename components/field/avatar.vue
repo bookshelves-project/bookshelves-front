@@ -149,7 +149,6 @@ const humanFileSize = (bytes: number, si = false, dp = 1) => {
 
 onMounted(() => {
   if (props.value) {
-    console.log(avatarSrc.value)
     avatarSrc.value = props.value
   }
 })

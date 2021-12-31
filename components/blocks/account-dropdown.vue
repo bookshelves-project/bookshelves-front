@@ -30,7 +30,7 @@
       <template #content>
         <div class="w-48 bg-white dark:bg-gray-700 rounded-md">
           <div v-if="$auth.$state.loggedIn">
-            <span v-for="link in auth" :key="link.id">
+            <span v-for="(link, id) in auth" :key="id">
               <nuxt-link
                 :to="localePath(link.route)"
                 class="link"
@@ -87,8 +87,8 @@
           </div>
           <div v-else>
             <nuxt-link
-              v-for="link in guest"
-              :key="link.id"
+              v-for="(link, id) in guest"
+              :key="id"
               :to="localePath(link.route)"
               class="link"
               role="menuitem"
@@ -102,51 +102,21 @@
   </div>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup lang="ts">
+import useAuth from '~/composables/useAuth'
 import { useNavigationStore } from '~/stores/navigation'
-export default {
-  name: 'AccountDropdown',
-  data() {
-    return {
-      accountDropdownOpened: false,
-    }
-  },
-  computed: {
-    ...mapState(useNavigationStore, {
-      auth: 'auth',
-      guest: 'guest',
-    }),
-    // authNav() {
-    //   const nav = this.$store.state.nav.authNavigationTrue
-    //   if (this.$auth.$state.user.data.isAdmin) {
-    //     return nav
-    //   } else {
-    //     return nav.filter((item) => !item.data.isAdmin)
-    //   }
-    // },
-    // authAdmin() {
-    //   const nav = this.$store.state.nav.authNavigationAdmin
-    //   if (this.$auth.$state.user.data.isAdmin) {
-    //     return nav
-    //   } else {
-    //     return nav.filter((item) => !item.data.isAdmin)
-    //   }
-    // },
-  },
-  methods: {
-    async logout() {
-      try {
-        this.accountDropdownOpened = false
-        await this.$auth.logout()
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    closeAccountDropdown() {
-      this.accountDropdownOpened = false
-    },
-  },
+
+const { app } = useContext()
+
+const store = useNavigationStore()
+const auth = store.auth
+const guest = store.guest
+
+const accountDropdownOpened = ref(false)
+const { logout } = useAuth(app)
+
+const closeAccountDropdown = () => {
+  accountDropdownOpened.value = false
 }
 </script>
 

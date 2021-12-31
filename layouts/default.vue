@@ -17,15 +17,22 @@
 <script setup lang="ts">
 import { useApplicationStore } from '~/stores/application'
 import { Application } from '~/types'
+import metadata from '~/utils/metadata'
 
 const dev: boolean = useContext().isDev
 const store = useApplicationStore()
 const app: Application = store.application
 
 useMeta(() => ({
-  title: app.name,
-  titleTemplate: app.title_template,
-  link: [{ rel: 'icon', type: 'image/svg+xml', href: app.favicon }],
+  title: app ? app.name : metadata.website.title,
+  titleTemplate: app ? app.title_template : metadata.website.titleTemplate,
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/svg+xml',
+      href: app ? app.favicon : '/favicon.svg',
+    },
+  ],
 }))
 </script>
 

@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import useAuth from '~/composables/useAuth'
 import { ApiEndpoint, ToastType } from '~/types'
 
-const { isDev, $repository, $toast, $apiMessage } = useContext()
+const { isDev, app } = useContext()
 const form = ref({
   email: '',
 })
@@ -17,23 +18,8 @@ const submit = async () => {
   isLoading.value = true
   emailError.value = ''
 
-  const api = await $repository(ApiEndpoint.AuthForgotPassword, false).create(
-    form.value
-  )
-  if (api.status === 200) {
-    $toast(
-      'Success',
-      'Check your mailbox to create a new password',
-      ToastType.success
-    )
-  } else {
-    emailError.value = api.data.errors.email[0]
-    $toast(
-      'Error',
-      `${api.data.message} ${$apiMessage(api.data)}`,
-      ToastType.error
-    )
-  }
+  const { passwordForgot } = useAuth(app)
+  await passwordForgot(form.value)
 
   isLoading.value = false
 }
