@@ -3,10 +3,9 @@ import useAuth from '~/composables/useAuth'
 import useFavorite from '~/composables/useFavorite'
 import { Entity, HTTPResponse, ToastType } from '~/types'
 
-const context = useContext()
+const { isDev, $auth } = useContext()
 const router = useRouter()
-
-const isDev = context.isDev
+const { login } = useAuth($auth)
 
 const form = ref({
   email: '',
@@ -29,18 +28,7 @@ const fillForm = () => {
 }
 const submit = async () => {
   isLoading.value = true
-
-  // if (form.value.remember) {
-  //   $auth.options.cookie = {
-  //     prefix: 'auth.',
-  //     options: {
-  //       path: '/',
-  //       expires: 30,
-  //       maxAge: 2628288,
-  //       secure: true,
-  //     },
-  //   }
-  // }
+  await login(form.value)
 
   // try {
   //   const sanctumData = await $axios.get(
@@ -60,8 +48,8 @@ const submit = async () => {
   //   isLoading.value = false
   // }
 
-  const { login } = useAuth(context.app)
-  await login(form.value)
+  // const { login } = useAuth()
+  // await login(form.value)
 
   // await $auth
   //   .loginWith($auth.options.defaultStrategy, {

@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import useAuth from '~/composables/useAuth'
 import { ApiEndpoint, ToastType } from '~/types'
 
-const { isDev, $repository, $toast, $apiMessage, query } = useContext()
+const { isDev, $auth, query } = useContext()
+const { passwordReset, login } = useAuth($auth)
+
 const form = ref({
   token: '',
   email: '',
@@ -24,23 +27,12 @@ const submit = async () => {
   emailError.value = ''
   form.value.token = query.value.token as string
 
-  const api = await $repository(ApiEndpoint.AuthResetPassword, false).create(
-    form.value
-  )
-  if (api.status === 200) {
-    $toast(
-      'Success',
-      'Check your mailbox to create a new password',
-      ToastType.success
-    )
-  } else {
-    // emailError.value = api.data.errors.email ? api.data.errors.email[0] : ''
-    $toast(
-      'Error',
-      // `${api.data.message} ${$apiMessage(api.data)}`,
-      ToastType.error
-    )
-  }
+  await passwordReset(form.value)
+  await login({
+    email: form.value.email,
+    password: form.value.password,
+    remember: true,
+  })
 
   isLoading.value = false
 }

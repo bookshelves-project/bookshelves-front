@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import useAuth from '~/composables/useAuth'
+import useForm from '~/composables/useForm'
 import { ApiEndpoint, ToastType } from '~/types'
 
-const { isDev, app } = useContext()
+const { isDev, $auth } = useContext()
+const { passwordForgot } = useAuth($auth)
+const { reset } = useForm()
+
 const form = ref({
   email: '',
 })
@@ -18,8 +22,8 @@ const submit = async () => {
   isLoading.value = true
   emailError.value = ''
 
-  const { passwordForgot } = useAuth(app)
   await passwordForgot(form.value)
+  reset(form.value)
 
   isLoading.value = false
 }

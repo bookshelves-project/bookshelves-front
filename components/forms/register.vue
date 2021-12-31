@@ -9,13 +9,15 @@ import {
 } from '~/types'
 import { randomString } from '~/utils/methods'
 
-const { app, $repository, isDev } = useContext()
+const { $auth, isDev } = useContext()
+const { registerAndLogin } = useAuth($auth)
+
 const form = ref({
   name: '',
   email: '',
   password: '',
   password_confirmation: '',
-  terms: true,
+  // terms: true,
 })
 const isLoading = ref(false)
 const errors = ref({
@@ -32,7 +34,7 @@ const fillForm = () => {
     email,
     password,
     password_confirmation: password,
-    terms: true,
+    // terms: true,
   }
 }
 const submit = async () => {
@@ -41,10 +43,6 @@ const submit = async () => {
 
   isLoading.value = true
 
-  // const data = await $repository(ApiEndpoint.AuthRegister, false).create(
-  //   form.value
-  // )
-  const { registerAndLogin, register, login } = useAuth(app)
   await registerAndLogin(form.value)
 
   isLoading.value = false

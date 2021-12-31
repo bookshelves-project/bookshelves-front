@@ -8,11 +8,9 @@
           <span class="sr-only"> Account </span>
           <transition name="fade">
             <app-img
-              v-if="$auth.$state.loggedIn"
+              v-if="loggedIn"
               class="w-8 h-8"
-              :src="
-                $auth.$state.user.data ? $auth.$state.user.data.avatar : null
-              "
+              :src="user ? user.avatar : null"
               override="rounded-full"
               invisible
             />
@@ -29,7 +27,7 @@
       </template>
       <template #content>
         <div class="w-48 bg-white dark:bg-gray-700 rounded-md">
-          <div v-if="$auth.$state.loggedIn">
+          <div v-if="loggedIn">
             <span v-for="(link, id) in auth" :key="id">
               <nuxt-link
                 :to="localePath(link.route)"
@@ -105,15 +103,19 @@
 <script setup lang="ts">
 import useAuth from '~/composables/useAuth'
 import { useNavigationStore } from '~/stores/navigation'
+import { Profile } from '~/types'
 
-const { app } = useContext()
+const { $auth } = useContext()
 
 const store = useNavigationStore()
 const auth = store.auth
 const guest = store.guest
 
+const loggedIn = computed(() => $auth.loggedIn)
+const user = computed(() => $auth.user?.data as Profile)
+
 const accountDropdownOpened = ref(false)
-const { logout } = useAuth(app)
+const { logout } = useAuth($auth)
 
 const closeAccountDropdown = () => {
   accountDropdownOpened.value = false
