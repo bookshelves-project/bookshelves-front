@@ -16,7 +16,7 @@ export const useApplicationStore = defineStore({
   },
   actions: {
     async init(context: Context) {
-      if (Object.keys(this.application).length === 0) {
+      if (this.application === undefined || Object.keys(this.application).length === 0) {
         if (context.$cookies.get('application')) {
           const data: AppInit = context.$cookies.get('application')
 
@@ -28,15 +28,17 @@ export const useApplicationStore = defineStore({
         } else {
           const api = await context.$repository(ApiEndpoint.AppInit, false)
             .find<AppInit>() as ApiResponse<AppInit>
-          const data = api.data
+          if (api) {
+            const data = api.data
 
-          context.$cookies.set('application', data)
+            context.$cookies.set('application', data)
 
-          this.$patch({
-            application: data.application,
-            enums: data.enums,
-            languages: data.languages
-          })
+            this.$patch({
+              application: data.application,
+              enums: data.enums,
+              languages: data.languages
+            })
+          }
         }
       }
     }

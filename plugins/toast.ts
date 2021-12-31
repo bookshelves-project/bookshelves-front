@@ -45,7 +45,6 @@ const toast: Plugin = (context, inject) => {
       date: new Date(),
       id: Math.random().toString(36).substr(2)
     }
-    console.log(toastData)
     const toastPinia = useToastStore()
     toastPinia.addToast(toastData)
     // nuxt.$emit('toast', toastData)

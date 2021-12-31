@@ -33,10 +33,6 @@ const helperPlugin: Plugin = (_context, inject) => {
     }
   })
   inject('date', date)
-  // inject('localePath', (route: Route) => {
-  //   console.log(route)
-  //   return '/'
-  // })
 }
 
 export default helperPlugin

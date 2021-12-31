@@ -38,7 +38,6 @@ const repository: Plugin = (context, inject) => {
         if (error instanceof Array) {
           error = error[0]
         }
-        console.log(error)
         errors += `${error} `
       })
     }

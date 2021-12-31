@@ -14,11 +14,11 @@ export enum ApiEndpoint {
   CmsApplication = '/cms/application',
   CmsHomePage = '/cms/home-page',
 
-  AuthLogin = '/auth/login',
+  AuthLogin = '/login',
   AuthRegister = '/register',
-  AuthLogout = '/auth/logout',
-  AuthForgotPassword = '/auth/forgot-password',
-  AuthResetPassword = '/auth/reset-password',
+  AuthLogout = '/logout',
+  AuthPasswordForgot = '/password/forgot',
+  AuthPasswordReset = '/password/reset',
 
   FavoriteUser = '/favorites',
 

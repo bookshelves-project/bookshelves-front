@@ -9,7 +9,7 @@ import pwaData from './pwa'
 const axios: AxiosOptions = {
   baseURL: `${process.env.API_URL}/api`,
   credentials: true,
-  // // https: true,
+  // https: true,
   headers: {
     common: {
       'X-Requested-With': 'XMLHttpRequest',
@@ -48,12 +48,19 @@ const auth: RecursivePartial<ModuleOptions> = {
     home: '/profile'
   },
   cookie: {
+    prefix: 'auth.',
     options: {
-      // sameSite: 'lax',
-      maxAge: 86400
+      path: '/',
+      expires: 30,
+      // 86400 // one day
+      // 604800 // one week
+      // 2628288 // one month
+      // 31536000 // one year
+      maxAge: 86400,
+      secure: true
     }
   },
-  plugins: ['~/plugins/modules/auth.js']
+  plugins: ['~/plugins/modules/auth']
 }
 const content: IContentOptions = {
   liveEdit: false,
