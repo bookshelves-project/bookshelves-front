@@ -10,7 +10,7 @@
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
       <!-- Left column -->
       <div class="grid grid-cols-1 gap-4 xl:col-span-1">
-        <blocks-data-list-template
+        <block-data-list-template
           v-if="user.display_favorites"
           :data-list="favorites"
           title="Favorites list"
@@ -26,7 +26,7 @@
 
       <!-- Right column -->
       <div class="grid grid-cols-1 gap-4 xl:col-span-1">
-        <blocks-data-list-template
+        <block-data-list-template
           v-if="user.display_comments"
           :data-list="comments"
           title="Comments list"

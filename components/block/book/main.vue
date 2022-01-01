@@ -12,7 +12,7 @@
           </dt>
           <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
             <h2>
-              <blocks-authors-links :authors="book.authors" short />
+              <block-authors-links :authors="book.authors" short />
             </h2>
           </dd>
         </div>
@@ -130,9 +130,7 @@
                 class="internal-link"
                 >{{ genre.name }}</nuxt-link
               >
-              <span
-v-if="genreId !== book.genres.length - 1"
-class="mr-1"
+              <span v-if="genreId !== book.genres.length - 1" class="mr-1"
                 >,</span
               >
             </span>

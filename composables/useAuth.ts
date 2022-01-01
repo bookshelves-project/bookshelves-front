@@ -41,24 +41,25 @@ const useAuth = ($auth: Auth) => {
     const data = await $auth
       .loginWith($auth.options.defaultStrategy, {
         data: form,
-      }).catch(e => console.log(e))
-
-    if (data && data.status !== 200) {
-      // $toast(
-      //   'Error',
-      //   $apiMessage(data.data),
-      //   ToastType.error
-      // )
-    }
+      }).catch(e => {
+        console.error(e)
+        $toast(
+          'Error',
+          e.response.data.message,
+          ToastType.error
+        )
+        return e
+      })
 
     return data as HTTPResponse
   }
 
-  const register = async (form: RegisterForm): Promise<AxiosResponse> => {
-    const data = await $repository(ApiEndpoint.AuthRegister, false)
-      .create<ApiMessage>(form)
+  const register = async (form: RegisterForm): Promise<HTTPResponse> => {
+    // const data = await $repository(ApiEndpoint.AuthRegister, false)
+    //   .create<ApiMessage>(form)
+    const data = await $axios.post(ApiEndpoint.AuthRegister, form).catch((e) => console.error(e))
 
-    if (data.status !== 200) {
+    if (data && data.status !== 200) {
       $toast(
         'Error',
         $apiMessage(data.data),
@@ -66,14 +67,15 @@ const useAuth = ($auth: Auth) => {
       )
     }
 
-    return data
+    return data as HTTPResponse
   }
 
-  const registerAndLogin = async (form: RegisterForm) => {
-    const data = await register(form)
+  const registerAndLogin = async (form: RegisterForm): Promise<HTTPResponse> => {
+    let data = await register(form)
     if (data.status === 200) {
-      await login(form)
+      data = await login(form)
     }
+    return data
   }
 
   const logout = async () => {
@@ -81,21 +83,23 @@ const useAuth = ($auth: Auth) => {
       console.error(e)
       $toast(
         'Error',
-        // $apiMessage(data.data),
+        e.response.data.message,
         ToastType.error
       )
     })
   }
 
-  const passwordForgot = async (form: PasswordForgotForm) => {
-    await $axios.post(ApiEndpoint.AuthPasswordForgot, form)
+  const passwordForgot = async (form: PasswordForgotForm): Promise<HTTPResponse> => {
+    // await $axios.get(ApiEndpoint.AuthPasswordForgot).catch((e) => console.error(e))
+    const data = await $axios.post(ApiEndpoint.AuthPasswordForgot, form)
       .then((e) => {
-        console.log(e)
         $toast(
           'Success',
-          'Check your mailbox to create a new password',
+          // 'Check your mailbox to create a new password',
+          e.data.message,
           ToastType.success
         )
+        return e
       }).catch((e) => {
         console.error(e)
         $toast(
@@ -103,28 +107,35 @@ const useAuth = ($auth: Auth) => {
           e.response.data.message,
           ToastType.error
         )
+        return e
       })
+
+    return data as HTTPResponse
   }
 
-  const passwordReset = async (form: PasswordResetForm) => {
-    await $axios.post(ApiEndpoint.AuthPasswordReset, form)
+  const passwordReset = async (form: PasswordResetForm): Promise<HTTPResponse> => {
+    const data = await $axios.post(ApiEndpoint.AuthPasswordReset, form)
       .then((e) => {
         console.log(e)
         $toast(
           'Success',
-          'Check your mailbox to create a new password',
+          // 'Check your mailbox to create a new password',
+          e.data.message,
           ToastType.success
         )
+        return e
       }).catch((e) => {
         console.error(e)
         // emailError.value = api.data.errors.email[0]
         $toast(
           'Error',
           // `${api.data.message} ${$apiMessage(api.data)}`,
-          '',
+          e.response.data.message,
           ToastType.error
         )
       })
+
+    return data as HTTPResponse
   }
 
   return {

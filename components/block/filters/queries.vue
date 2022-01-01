@@ -1,14 +1,14 @@
 <template>
   <div>
     <span v-for="item in queries" :key="item.id">
-      <blocks-filters-chip
+      <block-filters-chip
         v-if="item.type !== 'page' && item.type !== 'perPage'"
         :filter-type="item.type"
         :filter-value="item.value"
         @remove="remove"
       >
         {{ `${filterName(item.type)}: ${item.value}` }}
-      </blocks-filters-chip>
+      </block-filters-chip>
     </span>
   </div>
 </template>

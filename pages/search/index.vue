@@ -35,7 +35,7 @@
 <script>
 import qs from 'qs'
 
-import SearchResults from '~/components/blocks/search-results.vue'
+import SearchResults from '~/components/block/search-results.vue'
 import Skeleton from '~/components/special/skeleton.vue'
 import { objectIsEmpty } from '~/utils/methods'
 

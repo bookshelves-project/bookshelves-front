@@ -41,12 +41,12 @@
 } */
 
 .nuxt-content img {
-  margin:auto;
+  margin: auto;
 }
 
 .nuxt-content {
   & a {
-    text-decoration:none !important;
+    text-decoration: none !important;
   }
 
   /* common text  */
@@ -54,16 +54,16 @@
 
   & p {
     @apply my-5 text-justify !important;
-    -webkit-hyphens:auto !important;
-    -moz-hyphens:auto !important;
-    -ms-hyphens:auto !important;
-    hyphens:auto !important;
+    -webkit-hyphens: auto !important;
+    -moz-hyphens: auto !important;
+    -ms-hyphens: auto !important;
+    hyphens: auto !important;
   }
 
   /* links  */
   & a {
     @apply text-black transition-colors duration-100 border-b-2 border-primary-500;
-    --border-opacity:0.25;
+    --border-opacity: 0.25;
   }
 
   & a:hover {
@@ -79,17 +79,17 @@
     }
 
     /* Style filename span added by @nuxt/content */
-    &>.filename {
+    & > .filename {
       @apply absolute top-0 right-0 z-10 mt-3 mr-4 text-sm leading-none tracking-tight text-gray-100 bg-gray-800 bg-opacity-50;
     }
 
-    /* Add top padding to code blocks with filename */
-    &>.filename+pre[class*='language-'] {
+    /* Add top padding to code block with filename */
+    & > .filename + pre[class*='language-'] {
       @apply pt-8;
     }
 
     /* Style copy button added in `pages/_.vue` */
-    &>.copy {
+    & > .copy {
       @apply absolute top-0 right-0 px-2 py-2 mt-3 mr-3 text-sm font-semibold leading-none text-white uppercase transition-opacity duration-300 bg-gray-800 bg-opacity-75 border border-white rounded-md shadow-lg opacity-0;
 
       &:hover {
@@ -102,7 +102,7 @@
     }
 
     &:hover {
-      &>.copy {
+      & > .copy {
         @apply opacity-100;
       }
     }
@@ -118,12 +118,12 @@
   }
 
   & code::before {
-    content:'' !important;
+    content: '' !important;
   }
 
   & code::after {
     @apply hidden !important;
-    content:'' !important;
+    content: '' !important;
   }
 
   & pre {
@@ -162,34 +162,34 @@
   }
 
   & h2::after {
-    content:' ';
-    width:80%;
-    display:block;
-    --border-opacity:1;
-    margin-top:0.5rem;
-    margin-bottom:0.25rem;
-    border-radius:0.25rem;
-    border:2px solid #108775;
+    content: ' ';
+    width: 80%;
+    display: block;
+    --border-opacity: 1;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    border-radius: 0.25rem;
+    border: 2px solid #108775;
   }
 
   & h3 {
     @apply font-handlee w-max;
-    position:relative;
-    display:table;
-    margin-top:2rem;
-    margin-bottom:2rem;
+    position: relative;
+    display: table;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     @apply text-xl font-bold;
   }
 
   & h3::after {
-    content:' ';
-    width:80%;
-    display:block;
-    --border-opacity:1;
-    margin-top:0.5rem;
-    margin-bottom:0.25rem;
-    border-radius:0.25rem;
-    border:1px dashed #108775;
+    content: ' ';
+    width: 80%;
+    display: block;
+    --border-opacity: 1;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    border-radius: 0.25rem;
+    border: 1px dashed #108775;
   }
 
   /* list  */
@@ -199,17 +199,17 @@
 }
 
 .title::after {
-  content:' ';
-  width:80%;
-  display:block;
-  --border-opacity:1;
-  margin-top:0.5rem;
-  margin-bottom:0.25rem;
-  border-radius:0.25rem;
-  border:2px solid #108775;
-  border-top-color:rgb(16, 135, 117);
-  border-right-color:rgb(16, 135, 117);
-  border-bottom-color:rgb(16, 135, 117);
-  border-left-color:rgb(16, 135, 117);
-  border-color:rgba(16, 135, 117, var(--border-opacity));
+  content: ' ';
+  width: 80%;
+  display: block;
+  --border-opacity: 1;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.25rem;
+  border: 2px solid #108775;
+  border-top-color: rgb(16, 135, 117);
+  border-right-color: rgb(16, 135, 117);
+  border-bottom-color: rgb(16, 135, 117);
+  border-left-color: rgb(16, 135, 117);
+  border-color: rgba(16, 135, 117, var(--border-opacity));
 }

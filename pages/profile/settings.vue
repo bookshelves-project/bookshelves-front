@@ -1,6 +1,6 @@
 <template>
   <div class="main-content">
-    <forms-profile :user="user" />
+    <form-profile :user="user" />
   </div>
 </template>
 

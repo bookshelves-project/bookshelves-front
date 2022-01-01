@@ -2,7 +2,7 @@
   <div>
     <transition name="fade">
       <div v-if="books.length" class="space-y-6 display-grid sm:space-y-0">
-        <blocks-entity-card
+        <block-entity-card
           v-for="(book, id) in books"
           :key="id"
           :cover="book.cover?.thumbnail"
@@ -31,7 +31,7 @@
               {{ formatLanguage(book.language) }}
             </span>
           </template>
-        </blocks-entity-card>
+        </block-entity-card>
       </div>
       <div v-else>Loading...</div>
     </transition>

@@ -1,6 +1,6 @@
 <template>
   <div class="relative pt-16 pb-16 overflow-hidden px-4">
-    <blocks-home-feature-highlighted
+    <block-home-feature-highlighted
       v-for="(highlight, id) in highlights"
       :key="id"
       :highlight="highlight"

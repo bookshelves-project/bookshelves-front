@@ -37,7 +37,7 @@ export default class PageLogin extends Vue {}
           </div>
         </div>
         <div class="mt-8">
-          <forms-login />
+          <form-login />
         </div>
       </div>
     </div>

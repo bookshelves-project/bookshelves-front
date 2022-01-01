@@ -1,16 +1,16 @@
 <template>
   <main v-if="homePage">
-    <lazy-blocks-home-hero :hero="homePage.hero" class="pt-5" />
-    <lazy-blocks-home-statistics :statistics="homePage.statistics" />
-    <lazy-blocks-home-cloud-logos :logos="homePage.logos" />
-    <lazy-blocks-selected-entities
+    <lazy-block-home-hero :hero="homePage.hero" class="pt-5" />
+    <lazy-block-home-statistics :statistics="homePage.statistics" />
+    <lazy-block-home-cloud-logos :logos="homePage.logos" />
+    <lazy-block-selected-entities
       class="mt-8 lg:mt-16"
       :selection="selection"
     />
-    <lazy-blocks-home-features :features="homePage.features" />
-    <lazy-blocks-selected-entities class="mt-8 lg:mt-16" :selection="latest" />
-    <lazy-blocks-home-features-highlights :highlights="homePage.highlights" />
-    <lazy-blocks-home-cta />
+    <lazy-block-home-features :features="homePage.features" />
+    <lazy-block-selected-entities class="mt-8 lg:mt-16" :selection="latest" />
+    <lazy-block-home-features-highlights :highlights="homePage.highlights" />
+    <lazy-block-home-cta />
   </main>
 </template>
 

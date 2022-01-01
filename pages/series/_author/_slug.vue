@@ -136,13 +136,13 @@ export default class PageSerieSlug extends Vue {
         Language: {{ formatLanguage(serie.language) }}
       </div>
       <template #content>
-        <blocks-tags-links :tags="serie.tags" />
+        <block-tags-links :tags="serie.tags" />
       </template>
     </app-header>
     <div>
-      <blocks-divider> {{ serie.count }} Books </blocks-divider>
+      <block-divider> {{ serie.count }} Books </block-divider>
       <div v-if="books" class="space-y-6 display-grid sm:space-y-0">
-        <blocks-entity-card
+        <block-entity-card
           v-for="(book, id) in books"
           :key="id"
           :data="book"
@@ -161,16 +161,16 @@ export default class PageSerieSlug extends Vue {
           </template>
           <template #subtitle>{{ formatAuthors(book.authors) }}</template>
           <template #extra>Vol. {{ book.volume }}</template>
-        </blocks-entity-card>
+        </block-entity-card>
       </div>
       <div class="mt-6 mb-5">
-        <blocks-pagination-load
+        <block-pagination-load
           :meta="meta"
           :endpoint="booksEndpoint"
           @load="loadBooks"
         />
       </div>
     </div>
-    <blocks-comments-template :entity="serie" />
+    <block-comments-template :entity="serie" />
   </main>
 </template>

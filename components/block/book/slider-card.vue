@@ -24,7 +24,7 @@
           >Authors
         </span>
         <h3 class="font-semibold">
-          <blocks-authors-links :authors="book.authors" short />
+          <block-authors-links :authors="book.authors" short />
         </h3>
       </div>
       <div v-if="book.volume">

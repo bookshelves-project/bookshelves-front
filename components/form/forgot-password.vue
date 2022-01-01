@@ -1,0 +1,38 @@
+<script setup lang="ts">
+import useAuth from '~/composables/useAuth'
+import { useFormStore } from '~/stores/form'
+
+const { $auth } = useContext()
+const { passwordForgot } = useAuth($auth)
+const store = useFormStore()
+
+const form = ref({
+  email: '',
+})
+const test = ref({
+  email: 'admin@mail.com',
+})
+
+store.init(form, test)
+store.setButton('Get new password')
+store.setMethod(passwordForgot)
+
+const response = computed(() => store.response)
+
+const emailError = ref<string>()
+</script>
+
+<template>
+  <form-layout>
+    <field-text-input
+      v-model="form.email"
+      name="email"
+      label="Email"
+      type="email"
+      autocomplete="email"
+      required
+    >
+      <template v-if="emailError" #error>{{ emailError }}</template>
+    </field-text-input>
+  </form-layout>
+</template>

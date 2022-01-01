@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import EntityCard from '~/components/blocks/entity-card.vue'
+import EntityCard from '~/components/block/entity-card.vue'
 import { formatLanguage, formatAuthors } from '~/utils/methods'
 import LoadMore from '~/components/special/load-more.vue'
 

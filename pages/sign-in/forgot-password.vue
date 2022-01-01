@@ -37,7 +37,7 @@ export default class PageForgotPassword extends Vue {}
           </div>
         </div>
         <div class="mt-8">
-          <forms-forgot-password />
+          <form-forgot-password />
         </div>
       </div>
     </div>

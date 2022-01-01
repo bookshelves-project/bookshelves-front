@@ -1,7 +1,7 @@
 <template>
   <div class="main-content">
     <app-header :title="title" :subtitle="description" />
-    <blocks-content-list
+    <block-content-list
       :items="languages"
       name="languages"
       route-name="languages-slug"

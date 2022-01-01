@@ -22,7 +22,7 @@
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
       <!-- Left column -->
       <div class="grid grid-cols-1 gap-4 xl:col-span-1">
-        <blocks-data-list-template
+        <block-data-list-template
           :data-list="favorites"
           title="Favorites list"
           subtitle="All your favorites will be here."
@@ -36,7 +36,7 @@
 
       <!-- Right column -->
       <div class="grid grid-cols-1 gap-4 xl:col-span-1">
-        <blocks-data-list-template
+        <block-data-list-template
           :data-list="comments"
           title="Comments list"
           subtitle="All your comments will be here."

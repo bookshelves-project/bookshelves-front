@@ -35,22 +35,22 @@
         </app-button>
       </div>
     </app-header>
-    <blocks-book-main :book="book" class="mb-6" />
+    <block-book-main :book="book" class="mb-6" />
     <div
       class="lg:grid lg:grid-cols-2 divide-x divide-transparent lg:divide-gray-200 lg:dark:divide-gray-600"
     >
-      <blocks-book-serie
+      <block-book-serie
         v-if="book.serie !== null"
         :book="book"
         class="lg:pr-10"
       />
-      <blocks-book-related
+      <block-book-related
         v-if="book.tags?.length || book.genres?.length"
         :book="book"
         :class="book.serie ? 'lg:pl-10' : ''"
       />
     </div>
-    <blocks-comments-template :entity="book" class="mt-6" />
+    <block-comments-template :entity="book" class="mt-6" />
   </main>
 </template>
 

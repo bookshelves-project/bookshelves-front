@@ -2,7 +2,7 @@
   <main class="main-content relative">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <blocks-filters has-serie languages :sort="sortOptions" paginate />
+        <block-filters has-serie languages :sort="sortOptions" paginate />
       </template>
     </app-header>
 
@@ -60,8 +60,8 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import { useIndexStore } from '~/stores'
 import { ApiEndpoint, ApiMeta, Application, Book } from '~/types'
 import { formatLanguage, formatAuthors } from '@/utils/methods'
-import EntityCard from '~/components/blocks/entity-card.vue'
-import Pagination from '~/components/blocks/pagination.vue'
+import EntityCard from '~/components/block/entity-card.vue'
+import Pagination from '~/components/block/pagination.vue'
 import { useApplicationStore } from '~/stores/application'
 
 @Component({

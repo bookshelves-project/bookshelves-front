@@ -17,11 +17,11 @@
         </div>
       </div>
       <div class="grid lg:grid-cols-2 lg:gap-4 mt-5">
-        <blocks-comments-list
+        <block-comments-list
           :comments="commentsList"
           class="order-2 lg:order-1"
         />
-        <forms-comment class="order-1 lg:order-2" @refresh="refresh" />
+        <form-comment class="order-1 lg:order-2" @refresh="refresh" />
       </div>
     </div>
   </section>

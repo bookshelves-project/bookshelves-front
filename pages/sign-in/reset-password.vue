@@ -37,7 +37,7 @@ export default class PageResetPassword extends Vue {}
           </div>
         </div>
         <div class="mt-8">
-          <forms-reset-password />
+          <form-reset-password />
         </div>
       </div>
     </div>

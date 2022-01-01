@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import SearchResults from '~/components/blocks/search-results.vue'
+import SearchResults from '~/components/block/search-results.vue'
 import LoadMore from '~/components/special/load-more.vue'
 export default {
   name: 'TagsSlug',

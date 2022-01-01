@@ -8,7 +8,7 @@
       >
         <div class="max-w-7xl mx-auto flex items-center justify-between">
           <div class="relative flex items-center text-left">
-            <blocks-filters-option
+            <block-filters-option
               v-if="sort.length"
               filter="sort"
               label="Sort"
@@ -40,21 +40,21 @@
           <div class="hidden sm:block">
             <div class="flow-root">
               <div class="flex items-center space-x-4">
-                <blocks-filters-option
+                <block-filters-option
                   v-if="hasSerie"
                   filter="filter[disallow_serie]"
                   label="Disallow series"
                   :options="seriesOptions"
                   type="switch"
                 />
-                <blocks-filters-option
+                <block-filters-option
                   v-if="negligible"
                   filter="filter[show_negligible]"
                   label="Show negligible"
                   :options="negligibleOptions"
                   type="switch"
                 />
-                <blocks-filters-option
+                <block-filters-option
                   v-if="languages"
                   filter="filter[languages]"
                   label="Languages"
@@ -83,8 +83,8 @@
         <div class="mt-2 sm:mt-0 sm:ml-4">
           <div class="-m-1 flex flex-wrap items-center">
             <div v-if="!queryAvailable" class="italic text-gray-300">None.</div>
-            <blocks-filters-clear :paginate="paginate" />
-            <blocks-filters-queries />
+            <block-filters-clear :paginate="paginate" />
+            <block-filters-queries />
           </div>
         </div>
       </div>

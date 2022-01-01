@@ -147,9 +147,9 @@ export default class PageAuthorsSlug extends Vue {
     </app-header>
     <div>
       <section v-if="series.length">
-        <blocks-divider> {{ author.count?.series }} Series </blocks-divider>
+        <block-divider> {{ author.count?.series }} Series </block-divider>
         <div class="space-y-6 display-grid sm:space-y-0">
-          <blocks-entity-card
+          <block-entity-card
             v-for="(serie, id) in series"
             :key="id"
             :data="serie"
@@ -172,10 +172,10 @@ export default class PageAuthorsSlug extends Vue {
             <template v-if="serie.language" #extra>
               {{ formatLanguage(serie.language) }}
             </template>
-          </blocks-entity-card>
+          </block-entity-card>
         </div>
         <div class="mt-14 mb-5">
-          <blocks-pagination-load
+          <block-pagination-load
             :meta="seriesMeta"
             :endpoint="serieBooks"
             @load="loadSeries"
@@ -183,11 +183,11 @@ export default class PageAuthorsSlug extends Vue {
         </div>
       </section>
       <section v-if="books.length">
-        <blocks-divider class="mt-16">
+        <block-divider class="mt-16">
           {{ author.count?.books }} Books
-        </blocks-divider>
+        </block-divider>
         <div class="space-y-6 display-grid sm:space-y-0">
-          <blocks-entity-card
+          <block-entity-card
             v-for="(book, id) in books"
             :key="id"
             :data="book"
@@ -212,10 +212,10 @@ export default class PageAuthorsSlug extends Vue {
             <template v-if="book.language" #extra>
               {{ formatLanguage(book.language) }}
             </template>
-          </blocks-entity-card>
+          </block-entity-card>
         </div>
         <div class="mt-14 mb-5">
-          <blocks-pagination-load
+          <block-pagination-load
             :meta="booksMeta"
             :endpoint="authorBooks"
             @load="loadBooks"
@@ -223,6 +223,6 @@ export default class PageAuthorsSlug extends Vue {
         </div>
       </section>
     </div>
-    <blocks-comments-template :entity="author" />
+    <block-comments-template :entity="author" />
   </main>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <blocks-redirection
+  <block-redirection
     :to="
       localePath({
         name: 'books-author-slug',

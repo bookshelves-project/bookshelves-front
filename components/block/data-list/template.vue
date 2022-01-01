@@ -20,21 +20,21 @@
       </div>
     </div>
     <div v-if="isLoading">
-      <blocks-data-list-card-loading />
+      <block-data-list-card-loading />
     </div>
     <div v-else>
       <ul
         v-if="list.length"
         class="divide-y divide-gray-200 dark:divide-gray-700 max-h-[50rem] overflow-x-hidden overflow-y-auto scrollbar-thin"
       >
-        <blocks-data-list-card
+        <block-data-list-card
           v-for="(data, id) in list"
           :key="id"
           :data="data"
           :class="id === list.length - 1 ? 'rounded-b-md' : ''"
           :can-delete="canDelete"
           @destroy="destroy"
-        ></blocks-data-list-card>
+        ></block-data-list-card>
       </ul>
       <div v-else class="flex flex-wrap items-center p-4 text-gray-400">
         {{ emptyList }}

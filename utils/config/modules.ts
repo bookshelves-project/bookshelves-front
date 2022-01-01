@@ -12,9 +12,9 @@ const axios: AxiosOptions = {
   // https: true,
   headers: {
     common: {
-      'X-Requested-With': 'XMLHttpRequest',
-      'Access-Control-Allow-Origin': '*',
-      Accept: 'application/json, text/plain, */*'
+      // 'X-Requested-With': 'XMLHttpRequest',
+      // 'Access-Control-Allow-Origin': '*',
+      Accept: 'application/json'
     }
   }
 }

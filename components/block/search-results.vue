@@ -1,7 +1,7 @@
 <template>
   <div>
-    <blocks-divider
-      >{{ entities.length }} {{ capitalize(entityType) }}s</blocks-divider
+    <block-divider
+      >{{ entities.length }} {{ capitalize(entityType) }}s</block-divider
     >
     <div class="space-y-6 display-grid sm:space-y-0">
       <entity-card

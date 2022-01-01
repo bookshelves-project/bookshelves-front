@@ -2,10 +2,10 @@
   <div class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <blocks-filters negligible />
+        <block-filters negligible />
       </template>
     </app-header>
-    <blocks-content-list
+    <block-content-list
       :items="publishers"
       name="publishers"
       route-name="publishers-slug"

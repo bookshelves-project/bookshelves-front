@@ -38,7 +38,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { ApiEndpoint, ApiMeta, Book, Entity } from '~/types'
-import EntityCard from '~/components/blocks/entity-card.vue'
+import EntityCard from '~/components/block/entity-card.vue'
 import { capitalize, formatLanguage, formatAuthors } from '~/utils/methods'
 
 @Component({

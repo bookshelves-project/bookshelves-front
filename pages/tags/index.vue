@@ -2,12 +2,12 @@
   <div class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <blocks-filters negligible />
+        <block-filters negligible />
       </template>
     </app-header>
     <div class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Genres</h2>
-      <blocks-content-list
+      <block-content-list
         :items="genres"
         name="genres"
         route-name="tags-slug"
@@ -15,7 +15,7 @@
     </div>
     <div class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Tags</h2>
-      <blocks-content-list :items="tags" name="tags" route-name="tags-slug" />
+      <block-content-list :items="tags" name="tags" route-name="tags-slug" />
     </div>
   </div>
 </template>

@@ -14,9 +14,9 @@
         <div
           class="lg:sticky lg:top-20 h-full lg:h-auto lg:max-h-(screen-5) max-w-xl lg:mx-auto"
         >
-          <blocks-content-table-of-content
+          <block-content-table-of-content
             :toc="document.toc"
-          ></blocks-content-table-of-content>
+          ></block-content-table-of-content>
         </div>
       </div>
     </div>

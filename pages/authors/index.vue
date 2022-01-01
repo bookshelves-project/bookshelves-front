@@ -2,7 +2,7 @@
   <main class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <blocks-filters :sort="sortOptions" paginate />
+        <block-filters :sort="sortOptions" paginate />
       </template>
     </app-header>
     <section>
@@ -47,8 +47,8 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { useIndexStore } from '~/stores'
 import { ApiEndpoint, ApiMeta, Application, Author, MetaInfo } from '~/types'
-import EntityCard from '~/components/blocks/entity-card.vue'
-import Pagination from '~/components/blocks/pagination.vue'
+import EntityCard from '~/components/block/entity-card.vue'
+import Pagination from '~/components/block/pagination.vue'
 import { useApplicationStore } from '~/stores/application'
 
 @Component({

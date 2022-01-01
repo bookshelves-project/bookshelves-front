@@ -35,7 +35,7 @@
             class="h-64 w-full"
           >
             <swiper-slide v-for="(entity, index) in entities" :key="index">
-              <blocks-entity-card
+              <block-entity-card
                 :cover="entity.cover?.thumbnail"
                 :color="entity.cover?.color"
                 :title="entity.title"
@@ -61,7 +61,7 @@
                   {{ capitalize(entity.meta.entity) }}
                 </template>
                 <template #extra>{{ formatAuthors(entity.authors) }}</template>
-              </blocks-entity-card>
+              </block-entity-card>
             </swiper-slide>
             <div slot="button-prev" class="swiper-button-prev">
               <svg-icon name="chevron-right" />

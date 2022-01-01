@@ -5,7 +5,7 @@
       class="overflow-y-auto max-h-96 scrollbar-thin"
     >
       <transition-group name="list" tag="li">
-        <blocks-comments-card
+        <block-comments-card
           v-for="comment in commentsList"
           :key="comment.id"
           :comment="comment"
@@ -13,9 +13,7 @@
         />
       </transition-group>
     </ul>
-    <div v-else class="italic text-gray-400">
-      No comments available
-    </div>
+    <div v-else class="italic text-gray-400">No comments available</div>
   </div>
 </template>
 
@@ -25,25 +23,25 @@ export default {
   props: {
     comments: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
-      commentsList: []
+      commentsList: [],
     }
   },
   watch: {
     comments(newValue, oldValue) {
       this.commentsList = newValue
-    }
+    },
   },
   mounted() {
     this.commentsList = this.comments
   },
   methods: {
     async deleteComment(id) {
-      const comments = this.commentsList.filter(comment => comment.id !== id)
+      const comments = this.commentsList.filter((comment) => comment.id !== id)
       this.commentsList = comments
 
       try {
@@ -51,7 +49,7 @@ export default {
       } catch (error) {
         console.error(error)
       }
-    }
-  }
+    },
+  },
 }
 </script>

@@ -106,7 +106,7 @@ const { isFavorite, toggleFavorite } = useFavorite(props.entity)
             </div>
             <!-- Authors  -->
             <div v-if="authors.length" class="mt-1 text-sm">
-              <blocks-authors-links
+              <block-authors-links
                 :authors="authors"
                 class="text-center lg:text-left"
               />

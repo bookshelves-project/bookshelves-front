@@ -88,7 +88,7 @@
               </div>
             </div>
           </div>
-          <forms-contact />
+          <form-contact />
         </div>
         <div class="hidden lg:block">
           <app-img src="/images/pages/contact.webp" />

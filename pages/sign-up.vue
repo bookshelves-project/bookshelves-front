@@ -45,7 +45,7 @@ export default class PageRegister extends Vue {}
           </div>
         </div>
         <div class="mt-8">
-          <forms-register />
+          <form-register />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <blocks-redirection :to="localePath('/')" />
+  <block-redirection :to="localePath('/')" />
 </template>
 
 <script lang="ts">

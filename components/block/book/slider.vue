@@ -37,7 +37,7 @@
             @slideChange="mainChange"
           >
             <swiper-slide v-for="(entity, id) in entities" :key="id">
-              <blocks-book-slider-card :book="entity" />
+              <block-book-slider-card :book="entity" />
             </swiper-slide>
             <div slot="button-prev" class="swiper-button-prev">
               <svg-icon name="chevron-right" />
