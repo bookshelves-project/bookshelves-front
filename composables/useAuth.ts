@@ -23,22 +23,10 @@ interface PasswordResetForm {
 }
 
 const useAuth = ($auth: Auth) => {
-  const { $repository, $axios, $toast, $apiMessage } = useContext()
+  const { $repository, $axios, $toast, $cookies } = useContext()
 
   const login = async (form: LoginForm): Promise<HTTPResponse> => {
-    if (form.remember) {
-      $auth.options.cookie = {
-        prefix: 'auth.',
-        options: {
-          path: '/',
-          expires: 30,
-          maxAge: 2628288,
-          secure: true,
-        },
-      }
-    }
-
-    const data = await $auth
+    const data: HTTPResponse = await $auth
       .loginWith($auth.options.defaultStrategy, {
         data: form,
       }).catch(e => {
@@ -51,21 +39,34 @@ const useAuth = ($auth: Auth) => {
         return e
       })
 
-    return data as HTTPResponse
+    if (data && data.status === 200) {
+      // if (form.remember) {
+      //   const token = $cookies.get('XSRF-TOKEN')
+      //   const today = new Date()
+      //   const expires = new Date()
+      //   expires.setDate(today.getDate() + 30)
+      //   $cookies.set('XSRF-TOKEN', token, {
+      //     expires
+      //   })
+      // }
+    }
+
+    return data
   }
 
   const register = async (form: RegisterForm): Promise<HTTPResponse> => {
     // const data = await $repository(ApiEndpoint.AuthRegister, false)
     //   .create<ApiMessage>(form)
-    const data = await $axios.post(ApiEndpoint.AuthRegister, form).catch((e) => console.error(e))
-
-    if (data && data.status !== 200) {
+    const data = await $axios.post(ApiEndpoint.AuthRegister, form).catch((e) => {
+      console.error(e)
       $toast(
         'Error',
-        $apiMessage(data.data),
+        // $apiMessage(e.data),
+        e.response.data.message,
         ToastType.error
       )
-    }
+      return e
+    })
 
     return data as HTTPResponse
   }

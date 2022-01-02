@@ -20,6 +20,7 @@
       <div class="shrink-0">
         <app-img
           :src="data.cover"
+          :color="data.color"
           class="object-cover w-16 h-16"
           override="rounded-md"
           :alt="data.title"

@@ -48,7 +48,7 @@ const auth: RecursivePartial<ModuleOptions> = {
     home: '/profile'
   },
   cookie: {
-    prefix: 'auth.',
+    prefix: 'bookshelves.',
     options: {
       path: '/',
       expires: 30,
@@ -56,7 +56,8 @@ const auth: RecursivePartial<ModuleOptions> = {
       // 604800 // one week
       // 2628288 // one month
       // 31536000 // one year
-      maxAge: 86400,
+      maxAge: 31536000,
+      domain: process.env.BASE_URL,
       secure: true
     }
   },

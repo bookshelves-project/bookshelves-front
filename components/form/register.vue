@@ -36,7 +36,7 @@ const emailError = ref<string>()
 </script>
 
 <template>
-  <form-layout>
+  <form-layout :loaded="false">
     <field-text-input
       v-model="form.email"
       name="email"

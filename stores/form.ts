@@ -14,7 +14,8 @@ export const useFormStore = defineStore({
     init(form: object, test: object) {
       this.$patch({
         form,
-        test
+        test,
+        response: {}
       })
     },
     fillForm() {
@@ -51,7 +52,7 @@ export const useFormStore = defineStore({
         response
       })
     },
-    getResponse(): HTTPResponse | void {
+    getResponse(): HTTPResponse {
       return this.response
     },
     request(form: any): HTTPResponse {

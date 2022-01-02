@@ -17,7 +17,7 @@ store.init(form, test)
 store.setButton('Get new password')
 store.setMethod(passwordForgot)
 
-const response = computed(() => store.response)
+const response = computed(() => store.getResponse())
 
 const emailError = ref<string>()
 </script>
@@ -34,5 +34,10 @@ const emailError = ref<string>()
     >
       <template v-if="emailError" #error>{{ emailError }}</template>
     </field-text-input>
+    <template #extra>
+      <!-- <div v-if="response && response.status === 200" class="mt-3 text-center">
+        {{ response.data.message }}
+      </div> -->
+    </template>
   </form-layout>
 </template>

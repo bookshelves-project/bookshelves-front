@@ -24,6 +24,13 @@
 <script setup lang="ts">
 import { useFormStore } from '~/stores/form'
 
+interface Props {
+  loaded: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  loaded: true,
+})
+
 const { isDev } = useContext()
 const isLoading = ref(false)
 
@@ -39,10 +46,16 @@ const fill = () => {
 const submit = async () => {
   isLoading.value = true
   const api = await store.request(form.value)
-  store.setResponse(api)
-  if (api.status === 200) {
-    store.resetForm()
+  if (api) {
+    store.setResponse(api)
+    if (api.status === 200) {
+      store.resetForm()
+    }
   }
-  isLoading.value = false
+  if (props.loaded) {
+    isLoading.value = false
+  } else if (!api || (api && api.status !== 200)) {
+    isLoading.value = false
+  }
 }
 </script>

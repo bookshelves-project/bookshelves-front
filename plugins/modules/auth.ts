@@ -1,23 +1,27 @@
 // export default function ({ $auth }) {
-//   const remember = $auth.$storage.getCookie(
-//     `_remember.${$auth.options.defaultStrategy}`
-//   )
-
-//   if (typeof remember !== 'undefined') {
-//     if ($auth.strategy.token.get() !== remember) {
-//       $auth.setUserToken(remember)
-//     }
+//   if (!$auth.loggedIn) {
+//     return
 //   }
+
+//   const username = $auth
+//   console.log($auth)
 // }
 
-// import { Middleware } from '@nuxt/types'
+import { Middleware } from '@nuxt/types'
 
-// const guest: Middleware = (context) => {
-//   if (context.$auth.loggedIn) {
-//     // context.redirect(context.localePath({
-//     //   name: 'dashboard',
-//     // }))
-//   }
-// }
+const auth: Middleware = ({ $auth, $cookies }) => {
+  if (!$auth.loggedIn) {
+    // console.log(context.$auth.loggedIn)
+    return
+  }
+  console.log('auth')
+  // const token = $cookies.get('XSRF-TOKEN')
+  // const today = new Date()
+  // const expires = new Date()
+  // expires.setDate(today.getDate() + 30)
+  // $cookies.set('XSRF-TOKEN', token, {
+  //   expires
+  // })
+}
 
-// export default guest
+export default auth
