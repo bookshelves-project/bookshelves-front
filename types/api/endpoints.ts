@@ -14,16 +14,19 @@ export enum ApiEndpoint {
   CmsApplication = '/cms/application',
   CmsHomePage = '/cms/home-page',
 
+  Sanctum = '/sanctum/csrf-cookie',
   AuthLogin = '/login',
   AuthRegister = '/register',
   AuthLogout = '/logout',
   AuthPasswordForgot = '/password/forgot',
   AuthPasswordReset = '/password/reset',
+  AuthPasswordUpdate = '/password/update',
 
   FavoriteUser = '/favorites',
 
   Profile = '/profile',
   ProfileUpdate = '/profile/update',
+  ProfileDelete = '/profile/delete',
 
   FavoriteToggle = '/favorites/toggle'
 }

@@ -1,9 +1,24 @@
 <template>
   <form @submit.prevent="submit">
     <div class="space-y-6">
-      <div class="shadow px-4 py-5 sm:rounded-lg sm:p-6">
-        <div class="md:grid md:grid-cols-3 md:gap-6">
-          <div class="md:col-span-1">
+      <div class="px-4 py-5 md:rounded-lg md:p-6">
+        <div v-if="profile" class="mb-10 text-gray-500 dark:text-gray-400">
+          Your current user permalink is {{ profile.slug }}, you can access to
+          your
+          <nuxt-link
+            :to="
+              localePath({
+                name: 'users-slug',
+                params: { slug: profile.slug },
+              })
+            "
+            class="border-b border-gray-500 hover:text-gray-600 hover:border-gray-600"
+          >
+            public profile.
+          </nuxt-link>
+        </div>
+        <div class="lg:grid lg:grid-cols-3 lg:gap-6">
+          <div class="lg:col-span-1">
             <h3
               class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100"
             >
@@ -14,7 +29,7 @@
               share.
             </p>
           </div>
-          <div class="mt-5 md:mt-0 md:col-span-2">
+          <div class="mt-5 lg:mt-0 lg:col-span-2">
             <div class="space-y-6">
               <div class="grid grid-cols-6 gap-6">
                 <field-text-input
@@ -22,22 +37,8 @@
                   label="Name"
                   name="name"
                   required
-                  class="col-span-6 sm:col-span-3"
-                >
-                  Your current user permalink is {{ user.slug }}, you can access
-                  to your
-                  <nuxt-link
-                    :to="
-                      localePath({
-                        name: 'users-slug',
-                        params: { slug: user.slug },
-                      })
-                    "
-                    class="border-b border-gray-500 hover:text-gray-600 hover:border-gray-600"
-                  >
-                    public profile
-                  </nuxt-link>
-                </field-text-input>
+                  class="col-span-6 md:col-span-3"
+                />
 
                 <field-text-input
                   v-model="form.email"
@@ -45,7 +46,7 @@
                   name="email"
                   type="email"
                   required
-                  class="col-span-6 sm:col-span-3"
+                  class="col-span-6 md:col-span-3"
                 />
               </div>
 
@@ -66,14 +67,22 @@
                 name="banner"
                 label="Banner"
               />
+              <field-radios
+                v-model="form.gender"
+                name="notifications"
+                label="Gender"
+                helper="Choose your gender between these."
+                :options="store.enums.genders"
+                flex
+              />
             </div>
           </div>
         </div>
       </div>
 
-      <div class="shadow px-4 py-5 sm:rounded-lg sm:p-6">
-        <div class="md:grid md:grid-cols-3 md:gap-6">
-          <div class="md:col-span-1">
+      <div class="px-4 py-5 md:rounded-lg md:p-6">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-6">
+          <div class="lg:col-span-1">
             <h3
               class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100"
             >
@@ -83,11 +92,11 @@
               You can protect your data if you want to keep it for you.
             </p>
           </div>
-          <div class="mt-5 md:mt-0 md:col-span-2">
+          <div class="mt-5 lg:mt-0 lg:col-span-2">
             <div class="space-y-6">
               <fieldset>
                 <legend
-                  class="text-base font-medium text-gray-900 dark:text-gray-100"
+                  class="text-base font-medium text-gray-900 dark:text-gray-100 sr-only"
                 >
                   Do you want to display on your profile?
                 </legend>
@@ -122,14 +131,6 @@
                   </field-checkbox>
                 </div>
               </fieldset>
-              <field-radios
-                v-model="form.gender"
-                name="notifications"
-                label="Gender"
-                helper="Choose your gender between these."
-                :options="store.enums.genders"
-                flex
-              />
             </div>
           </div>
         </div>
@@ -151,7 +152,7 @@
 
 <script setup lang="ts">
 import { useApplicationStore } from '~/stores/application'
-import { ApiEndpoint, Keyable, Profile, ToastType } from '~/types'
+import { ApiEndpoint, ApiResponse, Keyable, Profile, ToastType } from '~/types'
 
 const props = defineProps<{
   user: Profile
@@ -159,6 +160,8 @@ const props = defineProps<{
 
 const { $repository, $auth, $toast } = useContext()
 const store = useApplicationStore()
+
+const profile = ref<Profile>()
 
 const isLoading = ref(false)
 const genders = ref<string[]>()
@@ -221,7 +224,11 @@ const submit = async () => {
 
   try {
     await $repository(ApiEndpoint.ProfileUpdate).update<Profile>(formData)
-    $auth.fetchUser()
+    const api = await $auth.fetchUser()
+    if (api) {
+      profile.value = api.data.data
+    }
+
     $toast('Success!', 'Your profile has been updated.', ToastType.success)
   } catch (error) {
     $toast('Error', 'Something bad happened', ToastType.error)
@@ -232,5 +239,6 @@ const submit = async () => {
 
 onMounted(() => {
   form.value = props.user
+  profile.value = props.user
 })
 </script>

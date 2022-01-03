@@ -1,6 +1,7 @@
 import { NuxtAppOptions } from '@nuxt/types'
 import type { Auth, HTTPResponse } from '@nuxtjs/auth-next'
 import { AxiosResponse } from 'axios'
+import useSanctum from './useSanctum'
 import { ApiEndpoint, ApiMessage, ToastType } from '~/types'
 
 interface LoginForm {
@@ -24,6 +25,7 @@ interface PasswordResetForm {
 
 const useAuth = ($auth: Auth) => {
   const { $repository, $axios, $toast, $cookies } = useContext()
+  const { sanctum } = useSanctum()
 
   const login = async (form: LoginForm): Promise<HTTPResponse> => {
     const data: HTTPResponse = await $auth
@@ -57,6 +59,7 @@ const useAuth = ($auth: Auth) => {
   const register = async (form: RegisterForm): Promise<HTTPResponse> => {
     // const data = await $repository(ApiEndpoint.AuthRegister, false)
     //   .create<ApiMessage>(form)
+    await sanctum()
     const data = await $axios.post(ApiEndpoint.AuthRegister, form).catch((e) => {
       console.error(e)
       $toast(
@@ -92,6 +95,7 @@ const useAuth = ($auth: Auth) => {
 
   const passwordForgot = async (form: PasswordForgotForm): Promise<HTTPResponse> => {
     // await $axios.get(ApiEndpoint.AuthPasswordForgot).catch((e) => console.error(e))
+    await sanctum()
     const data = await $axios.post(ApiEndpoint.AuthPasswordForgot, form)
       .then((e) => {
         $toast(
@@ -115,6 +119,7 @@ const useAuth = ($auth: Auth) => {
   }
 
   const passwordReset = async (form: PasswordResetForm): Promise<HTTPResponse> => {
+    await sanctum()
     const data = await $axios.post(ApiEndpoint.AuthPasswordReset, form)
       .then((e) => {
         console.log(e)

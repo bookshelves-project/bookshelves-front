@@ -10,6 +10,7 @@
         type="checkbox"
         class="checkbox"
         :value="valueData"
+        :required="required"
       />
     </div>
     <div class="ml-3 text-sm w-full">
@@ -18,6 +19,7 @@
         class="font-medium text-gray-700 dark:text-gray-300 block w-full"
       >
         {{ label }}
+        <span v-if="required" class="text-red-600 dark:text-red-500">*</span>
       </label>
       <div :id="`${name}-description`" class="text-gray-500 dark:text-gray-400">
         <slot />
@@ -45,6 +47,10 @@ export default {
     valueData: {
       type: String,
       default: null,
+    },
+    required: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {

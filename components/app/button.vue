@@ -135,7 +135,7 @@ onMounted(() => {
 }
 
 .disabled {
-  @apply opacity-70 !important;
+  @apply !opacity-50;
   pointer-events: none;
 }
 </style>
