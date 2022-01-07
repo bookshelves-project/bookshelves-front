@@ -11,7 +11,7 @@
 🎨 [**bookshelves-front**](https://gitlab.com/bookshelves-project/bookshelves-front) : front-end of Bookshelves (current repository)  
 
 💻 [**bookshelves.ink**](https://bookshelves.ink): front demo  
-📚 [**bookshelves.ink/features/wiki**](https://bookshelves.ink/features/wiki): back-end wiki  
+📚 [**documentation.bookshelves.ink**](https://documentation.bookshelves.ink): back-end wiki  
 
 **Table of contents**
 
