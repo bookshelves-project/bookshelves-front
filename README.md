@@ -13,7 +13,7 @@
 💻 [**bookshelves.ink**](https://bookshelves.ink): front demo  
 📚 [**documentation.bookshelves.ink**](https://documentation.bookshelves.ink): back-end wiki  
 
-**Table of contents**
+## **Table of contents** <!-- omit in toc -->
 
 - [**I. Setup**](#i-setup)
   - [*I. a. Modify API*](#i-a-modify-api)
