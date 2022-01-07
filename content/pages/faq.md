@@ -6,7 +6,7 @@ description: 'Frequently Asked Questions'
 
 ## Bug report
 
-If you find any bugs, don't hesitate to let us know through the [**contact form**](/contact) or to create an issue on project repository [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front/-/issues).
+If you find any bugs, don't hesitate to let us know through the [**contact form**](/contact) or to create an issue on project repository [**bookshelves-front**](https://gitlab.com/bookshelves-project/bookshelves-front/-/issues).
 
 ## How to participate ?
 
@@ -22,7 +22,7 @@ If your are an author and you found your books here, you can ask us to remove it
 
 ## I want to host my <markdown-app-name></markdown-app-name> app
 
-You can setup <markdown-app-name></markdown-app-name> on your personal server from repositories [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front) & [**bookshelves-back**](https://gitlab.com/ewilan-riviere/bookshelves-back). You can consult <markdown-api-link endpoint="/wiki">official Wiki</markdown-api-link> to know more about <markdown-app-name></markdown-app-name> setup.
+You can setup <markdown-app-name></markdown-app-name> on your personal server from repositories [**bookshelves-front**](https://gitlab.com/bookshelves-project/bookshelves-front) & [**bookshelves-back**](https://gitlab.com/bookshelves-project/bookshelves-back). You can consult <markdown-api-link endpoint="/wiki">official Wiki</markdown-api-link> to know more about <markdown-app-name></markdown-app-name> setup.
 
 If you want, you can contact us to add eBooks on our collection.
 

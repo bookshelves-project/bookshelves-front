@@ -14,10 +14,10 @@
     }
   ],
   "license": "BSD 2-Clause",
-  "homepage": "https://gitlab.com/ewilan-riviere/bookshelves-front",
+  "homepage": "https://gitlab.com/bookshelves-project/bookshelves-front",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/ewilan-riviere/bookshelves-front"
+    "url": "https://gitlab.com/bookshelves-project/bookshelves-front"
   },
   "scripts": {
     "dev": "nuxt",

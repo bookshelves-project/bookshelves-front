@@ -7,8 +7,8 @@
 [![NodeJS](https://img.shields.io/static/v1?label=NodeJS&message=v16.13&color=339933&style=flat-square&logo=node.js&logoColor=ffffff)](https://nodejs.org/en)
 [![npm](https://img.shields.io/static/v1?label=NPM&message=v8&color=CB3837&style=flat-square&logo=npm&logoColor=CB3837)](https://docs.npmjs.com/cli/)
 
-📀 [**bookshelves-back**](https://gitlab.com/ewilan-riviere/bookshelves-back) : back-end of Bookshelves  
-🎨 [**bookshelves-front**](https://gitlab.com/ewilan-riviere/bookshelves-front) : front-end of Bookshelves (current repository)  
+📀 [**bookshelves-back**](https://gitlab.com/bookshelves-project/bookshelves-back) : back-end of Bookshelves  
+🎨 [**bookshelves-front**](https://gitlab.com/bookshelves-project/bookshelves-front) : front-end of Bookshelves (current repository)  
 
 💻 [**bookshelves.ink**](https://bookshelves.ink): front demo  
 📚 [**bookshelves.ink/features/wiki**](https://bookshelves.ink/features/wiki): back-end wiki  
