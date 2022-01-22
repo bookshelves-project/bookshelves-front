@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-white dark:bg-gray-900 min-h-screen flex flex-col lg:relative">
+  <div class="bg-white dark:bg-gray-900 min-h-screen flex flex-col xl:relative">
     <div class="flex-grow flex flex-col">
       <main class="flex-grow flex flex-col">
         <div
-          class="flex-grow mx-auto max-w-7xl w-full flex flex-col px-4 sm:px-6 lg:px-8"
+          class="flex-grow mx-auto max-w-7xl w-full flex flex-col px-4 sm:px-6 xl:px-8"
         >
           <div class="shrink-0 my-auto py-16 sm:py-32">
             <p
@@ -39,7 +39,7 @@
         </div>
       </main>
       <footer class="shrink-0 bg-gray-50 dark:bg-gray-900">
-        <div class="mx-auto max-w-7xl w-full px-4 py-16 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl w-full px-4 py-16 sm:px-6 xl:px-8">
           <nav class="flex space-x-4">
             <nuxt-link
               :to="localePath({ name: 'contact' })"
@@ -51,7 +51,7 @@
         </div>
       </footer>
     </div>
-    <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+    <div class="hidden xl:block xl:absolute xl:inset-y-0 xl:right-0 xl:w-1/2">
       <app-img
         class="absolute inset-0 h-full w-full object-cover"
         src="/images/library-mess.webp"

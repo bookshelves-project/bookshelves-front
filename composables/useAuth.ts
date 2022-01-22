@@ -23,37 +23,63 @@ interface PasswordResetForm {
   password_confirmation: string,
 }
 
-const useAuth = ($auth: Auth) => {
-  const { $repository, $axios, $toast, $cookies } = useContext()
+const useAuth = () => {
+  const { $repository, $axios, $toast, $cookies, $auth, $config } = useContext()
   const { sanctum } = useSanctum()
 
-  const login = async (form: LoginForm): Promise<HTTPResponse> => {
-    const data: HTTPResponse = await $auth
-      .loginWith($auth.options.defaultStrategy, {
-        data: form,
-      }).catch(e => {
-        console.error(e)
-        $toast(
-          'Error',
-          e.response.data.message,
-          ToastType.error
-        )
-        return e
-      })
+  const login = async (form: LoginForm): Promise<void> => {
+    try {
+      const axios = $axios
+      // axios.defaults.withCredentials = true
 
-    if (data && data.status === 200) {
-      // if (form.remember) {
-      //   const token = $cookies.get('XSRF-TOKEN')
-      //   const today = new Date()
-      //   const expires = new Date()
-      //   expires.setDate(today.getDate() + 30)
-      //   $cookies.set('XSRF-TOKEN', token, {
-      //     expires
-      //   })
-      // }
+      await axios.get(`${$config.apiURL}/sanctum/csrf-cookie`)
+        .then(async (e) => {
+          console.log(axios)
+          console.log($cookies.getAll())
+
+          await axios.post(`${$config.apiURL}/login`, form)
+        })
+        .then(async (e) => {
+          const axiosToken = axios
+          console.log($cookies.getAll())
+
+          // axiosToken.setToken =
+          await axiosToken.get(`${$config.apiURL}/api/user`)
+        })
+    } catch (error: any) {
+      console.log(error.response)
     }
 
-    return data
+    // const data: HTTPResponse = await $auth
+    //   .loginWith($auth.options.defaultStrategy, {
+    //     data: form,
+    //   }).catch(e => {
+    //     console.error(e)
+    //     if (e.response.status === 401) {
+    //       console.log('clean cookies')
+    //       $cookies.removeAll()
+    //     }
+    //     $toast(
+    //       'Error',
+    //       e.response.data.message,
+    //       ToastType.error
+    //     )
+    //     return e
+    //   })
+
+    // if (data && data.status === 200) {
+    // if (form.remember) {
+    //   const token = $cookies.get('XSRF-TOKEN')
+    //   const today = new Date()
+    //   const expires = new Date()
+    //   expires.setDate(today.getDate() + 30)
+    //   $cookies.set('XSRF-TOKEN', token, {
+    //     expires
+    //   })
+    // }
+    // }
+
+    // return data
   }
 
   const register = async (form: RegisterForm): Promise<HTTPResponse> => {
@@ -90,6 +116,9 @@ const useAuth = ($auth: Auth) => {
         e.response.data.message,
         ToastType.error
       )
+    }).then(e => {
+      $cookies.removeAll()
+      localStorage.clear()
     })
   }
 

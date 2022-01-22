@@ -115,7 +115,7 @@ const loggedIn = computed(() => $auth.loggedIn)
 const user = computed(() => $auth.user?.data as Profile)
 
 const accountDropdownOpened = ref(false)
-const { logout } = useAuth($auth)
+const { logout } = useAuth()
 
 const closeAccountDropdown = () => {
   accountDropdownOpened.value = false

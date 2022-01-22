@@ -37,8 +37,9 @@ const config: NuxtConfig = {
     moduleSocial: process.env.MODULE_SOCIAL,
     moduleSocialRating: process.env.MODULE_SOCIAL_RATING,
     apiURL: process.env.API_URL,
+    apiEndpoint: process.env.API_ENDPOINT,
     axios: {
-      baseURL: `${process.env.API_URL}/api`
+      baseURL: `${process.env.API_URL}${process.env.API_ENDPOINT}`
     }
   },
   privateRuntimeConfig: {},

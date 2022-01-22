@@ -3,7 +3,7 @@ import useAuth from '~/composables/useAuth'
 import { useFormStore } from '~/stores/form'
 
 const { $auth, query } = useContext()
-const { passwordReset } = useAuth($auth)
+const { passwordReset } = useAuth()
 const store = useFormStore()
 
 const form = ref({

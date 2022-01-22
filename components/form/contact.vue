@@ -1,15 +1,58 @@
+<script setup lang="ts">
+import useAuth from '~/composables/useAuth'
+import useForm from '~/composables/useForm'
+import { useFormStore } from '~/stores/form'
+import { ToastAuto } from '~/types'
+import { randomString } from '~/utils/methods'
+
+const { $axios, $toastAuto } = useContext()
+const { reset } = useForm()
+const store = useFormStore()
+
+const form = ref({
+  name: '',
+  email: '',
+  honeypot: false,
+  message: '',
+})
+const test = ref({
+  name: 'Name',
+  email: 'user@mail.com',
+  message: 'Message with some data.',
+})
+const errors = ref({
+  name: '',
+  email: '',
+  message: '',
+})
+
+store.init(form, test)
+store.setButton("Let's talk")
+const submit = async () => {
+  try {
+    await $axios.post('/submission', form.value)
+    reset(form.value)
+    $toastAuto(ToastAuto.success)
+  } catch (error) {
+    console.log(error)
+    $toastAuto(ToastAuto.error)
+  }
+}
+store.setMethod(submit)
+
+const response = store.getResponse()
+
+const emailError = ref<string>()
+</script>
+
 <template>
   <div class="mt-6">
-    <form
-      class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-      @submit.prevent="sumbit"
-    >
+    <form-layout>
       <field-text-input
         v-model="form.name"
         name="name"
         label="Name"
         autocomplete="name"
-        class="sm:col-span-2"
         required
       />
       <field-text-input
@@ -17,7 +60,6 @@
         name="email"
         label="Email"
         autocomplete="email"
-        class="sm:col-span-2"
         required
       />
       <field-text-input
@@ -27,20 +69,19 @@
         minlength="15"
         maxlength="1500"
         multiline
-        class="sm:col-span-2"
         required
       />
       <field-checkbox
         v-model="form.honeypot"
         name="conditions"
         label="Accept conditions"
-        class="hidden sm:col-span-2"
+        class="hidden"
       >
         Accept conditions about data privacy about
         {{ $config.appName }} to send your message to
         {{ $config.appName }} Team.
       </field-checkbox>
-      <div class="sm:col-span-2">
+      <!-- <div class="sm:col-span-2">
         <div class="flex items-center space-x-2">
           <app-button
             type="submit"
@@ -63,82 +104,7 @@
             <svg-icon name="test" class="w-5 h-5" />
           </app-button>
         </div>
-      </div>
-    </form>
+      </div> -->
+    </form-layout>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'ContactForm',
-  data() {
-    return {
-      loading: false,
-      success: false,
-      errors: false,
-      isDev: process.env.NODE_ENV !== 'production',
-      form: {
-        name: '',
-        email: '',
-        message: '',
-        honeypot: false,
-      },
-      formTesting: {
-        name: 'Ewilan',
-        email: 'ewilan@dotslashplay.it',
-        message:
-          'Dolor pariatur exercitation duis dolore eu ut commodo quis incididunt ad voluptate sit. Do est nulla adipisicing ut dolore amet dolore nostrud labore. Magna laborum aliqua duis eiusmod quis aliquip officia veniam adipisicing est magna nostrud culpa. Laborum nisi nisi sit Lorem fugiat aute deserunt ea reprehenderit sint sint nulla ad labore.',
-        honeypot: false,
-      },
-    }
-  },
-  mounted() {
-    if (this.$auth.$state.loggedIn) {
-      this.form.name = this.$auth.$state.user.data.name
-      this.form.email = this.$auth.$state.user.data.email
-    }
-  },
-  methods: {
-    fillForm() {
-      for (const [key] of Object.entries(this.form)) {
-        this.form[key] = this.formTesting[key]
-      }
-    },
-    async sumbit() {
-      this.loading = true
-
-      try {
-        if (!this.form.honeypot) {
-          await this.$axios.post('/submission', this.form)
-        }
-
-        this.success = true
-        this.errors = false
-        this.form = {
-          name: '',
-          email: '',
-          message: '',
-          honeypot: false,
-        }
-
-        this.$nuxt.$emit('toast', {
-          title: 'Message sended!',
-          text: 'Thanks you for your message.',
-          type: 'success',
-        })
-      } catch (e) {
-        console.error(e)
-        this.errors = true
-        this.$nuxt.$emit('toast', {
-          title: 'Error!',
-          text: "We are sorry but your message can't be send, try in some time.",
-          type: 'error',
-        })
-      }
-      this.loading = false
-    },
-  },
-}
-</script>
-
-<style lang="postcss" scoped></style>

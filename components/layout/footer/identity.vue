@@ -49,8 +49,7 @@ const store = useApplicationStore()
 const app: Application = store.application
 
 const apiUrlBase = (endpoint: string) => {
-  const api = ctx.$config.apiURL.replace('/api', '')
-  return `${api}${endpoint}`
+  return endpoint
 }
 
 const features = [

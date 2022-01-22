@@ -65,7 +65,7 @@ import { ApiEndpoint, ApiMessage, Profile, ToastType } from '~/types'
 
 const { $axios, $toast, $auth } = useContext()
 const { reset } = useForm()
-const { logout } = useAuth($auth)
+const { logout } = useAuth()
 
 const isLoading = ref(false)
 

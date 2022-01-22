@@ -1,7 +1,7 @@
 import { Context } from '@nuxt/types'
 import { defineStore } from 'pinia'
 import { ApiEndpoint, ApiResponse, Application } from '~/types'
-import { AppInit, Enums, Language } from '~/types/cms'
+import { CmsInitialization, Enums, Language } from '~/types/cms'
 
 export const useApplicationStore = defineStore({
   id: 'application',
@@ -18,7 +18,7 @@ export const useApplicationStore = defineStore({
     async init(context: Context) {
       if (this.application === undefined || Object.keys(this.application).length === 0) {
         if (context.$cookies.get('application')) {
-          const data: AppInit = context.$cookies.get('application')
+          const data: CmsInitialization = context.$cookies.get('application')
 
           this.$patch({
             application: data.application,
@@ -26,8 +26,8 @@ export const useApplicationStore = defineStore({
             languages: data.languages
           })
         } else {
-          const api = await context.$repository(ApiEndpoint.AppInit, false)
-            .find<AppInit>() as ApiResponse<AppInit>
+          const api = await context.$repository(ApiEndpoint.CmsInitialization, false)
+            .find<CmsInitialization>() as ApiResponse<CmsInitialization>
           if (api) {
             const data = api.data
 

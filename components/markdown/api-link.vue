@@ -1,9 +1,8 @@
 <template>
   <span v-if="button">
-    <app-button
-      :href="`${url}${endpoint}`"
-      color="primary"
-    ><slot /></app-button>
+    <app-button :href="`${url}${endpoint}`" color="primary"
+      ><slot
+    /></app-button>
   </span>
   <span v-else>
     <a
@@ -12,7 +11,8 @@
       target="_blank"
       rel="noopener noreferrer"
       class="link"
-    ><slot /></a>
+      ><slot
+    /></a>
   </span>
 </template>
 
@@ -22,31 +22,31 @@ export default {
   props: {
     endpoint: {
       type: String,
-      default: '/'
+      default: '/',
     },
     selfRefer: {
       type: Boolean,
-      default: false
+      default: false,
     },
     base: {
       type: Boolean,
-      default: true
+      default: true,
     },
     button: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     url() {
-      return this.base ? this.$config.apiURL.replace('/api', '') : this.$config.apiURL
-    }
+      return this.$config.apiURL
+    },
   },
   mounted() {
     if (this.selfRefer) {
       this.$refs.link.innerHTML = `${this.url}${this.endpoint}`
     }
-  }
+  },
 }
 </script>
 

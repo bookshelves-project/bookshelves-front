@@ -1,6 +1,6 @@
 <template>
   <section
-    class="max-w-sm bg-gray-100 dark:bg-gray-700 shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden lg:w-96 w-64 m-5"
+    class="max-w-sm bg-gray-100 dark:bg-gray-700 shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden sm:w-96 w-64 m-5"
     :class="bgColor"
   >
     <div class="p-4">

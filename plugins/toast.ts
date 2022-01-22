@@ -29,7 +29,7 @@ const toast: Plugin = (context, inject) => {
   inject('toastAuto', (auto: ToastAuto) => {
     const toastData: Toast = {
       title: auto === ToastAuto.success ? 'Success' : 'Error',
-      text: auto === ToastAuto.success ? 'Your update has been saved!' : 'Oops! An error break something here!',
+      text: auto === ToastAuto.success ? 'Everything works!' : 'Oops! An error break something here!',
       type: auto === ToastAuto.success ? ToastType.success : ToastType.error,
       date: new Date(),
       id: Math.random().toString(36).substr(2)

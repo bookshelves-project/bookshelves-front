@@ -33,7 +33,7 @@ export interface Language {
   meta?: Meta;
 }
 
-export interface AppInit {
+export interface CmsInitialization {
   enums: Enums
   languages: Language[],
   application: Application

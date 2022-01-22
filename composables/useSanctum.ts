@@ -4,10 +4,11 @@ import { AxiosResponse } from 'axios'
 import { ApiEndpoint, ApiMessage, ToastType } from '~/types'
 
 const useSanctum = () => {
-  const { $axios } = useContext()
+  const { $axios, $config } = useContext()
 
   const sanctum = async (): Promise<HTTPResponse> => {
-    const data = await $axios.get(ApiEndpoint.Sanctum).catch((e) => {
+    const api = `${$config.apiURL}${ApiEndpoint.Sanctum}`
+    const data = await $axios.get(api).catch((e) => {
       console.error(e)
     })
 

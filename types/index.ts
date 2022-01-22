@@ -9,7 +9,7 @@ import type { Author } from './entities/author'
 import type { Entity, Tag } from './entities/index'
 import type { Profile } from './entities/profile'
 import type { Content } from './nuxt/content'
-import type { Application, HomePage, AppInit } from './cms'
+import type { Application, HomePage, CmsInitialization } from './cms'
 import type { Route, ObjectLiteral, Keyable } from './nuxt'
 import type { HeadMeta, HeadElement } from './nuxt/head'
 import type { SelectedEntities } from './nuxt/components'
@@ -39,7 +39,7 @@ export {
   // cms
   Application,
   HomePage,
-  AppInit,
+  CmsInitialization,
   // nuxt
   Route,
   MetaInfo,

@@ -6,17 +6,19 @@ import metadata from '../metadata'
 import { ApiEndpoint } from '../../types/index'
 import pwaData from './pwa'
 
+const headers = {
+  common: {
+    'X-Requested-With': 'XMLHttpRequest',
+    'Access-Control-Allow-Origin': '*',
+    Accept: 'application/json'
+  }
+}
+
 const axios: AxiosOptions = {
-  baseURL: `${process.env.API_URL}/api`,
+  // baseURL: `${process.env.API_URL}/api`,
   credentials: true,
   // https: true,
-  headers: {
-    common: {
-      // 'X-Requested-With': 'XMLHttpRequest',
-      // 'Access-Control-Allow-Origin': '*',
-      Accept: 'application/json'
-    }
-  }
+  headers
 }
 const pwa = {
   meta: pwaData.meta,
@@ -26,15 +28,23 @@ const auth: RecursivePartial<ModuleOptions> = {
   strategies: {
     laravelSanctum: {
       provider: 'laravel/sanctum',
-      url: `${process.env.API_URL}/api`,
+      url: process.env.API_URL,
+      credentials: true,
+      headers,
       endpoints: {
         login: {
-          url: ApiEndpoint.AuthLogin,
+          url: `${process.env.API_ENDPOINT}${ApiEndpoint.AuthLogin}`,
           method: 'post',
-          propertyName: 'access_token'
+          propertyName: 'access_token',
         },
-        logout: { url: ApiEndpoint.AuthLogout, method: 'post' },
-        user: { url: ApiEndpoint.Profile, method: 'get', propertyName: false }
+        logout: {
+          url: `${process.env.API_ENDPOINT}${ApiEndpoint.AuthLogout}`,
+          method: 'post',
+        },
+        user: {
+          url: `${process.env.API_ENDPOINT}${ApiEndpoint.Profile}`,
+          method: 'get',
+        }
       },
       tokenRequired: true,
       tokenType: 'Bearer',
