@@ -28,7 +28,7 @@ const auth: RecursivePartial<ModuleOptions> = {
   strategies: {
     laravelSanctum: {
       provider: 'laravel/sanctum',
-      url: process.env.API_URL,
+      url: process.env.API_URL || 'http://localhost:8000',
       credentials: true,
       headers,
       endpoints: {
