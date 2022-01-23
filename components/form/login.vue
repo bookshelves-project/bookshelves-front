@@ -32,6 +32,7 @@ const emailError = ref<string>()
 
 <template>
   <form-layout :loaded="false">
+    {{ $auth.user }}
     <field-text-input
       v-model="form.email"
       name="email"

@@ -1,7 +1,7 @@
 export interface User {
   id?: number;
   name?: string;
-  slug?: string;
+  slug: string;
   avatar?: string;
   color?: string;
 }

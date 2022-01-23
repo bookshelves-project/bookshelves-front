@@ -28,44 +28,42 @@ const useAuth = () => {
   const { sanctum } = useSanctum()
 
   const login = async (form: LoginForm): Promise<void> => {
-    try {
-      const axios = $axios
-      // axios.defaults.withCredentials = true
+    // try {
+    //   const axios = $axios
+    //   await axios.get(`${$config.apiURL}/sanctum/csrf-cookie`)
+    //     .then(async (e) => {
+    //       console.log(axios)
+    //       console.log($cookies.getAll())
 
-      await axios.get(`${$config.apiURL}/sanctum/csrf-cookie`)
-        .then(async (e) => {
-          console.log(axios)
-          console.log($cookies.getAll())
+    //       await axios.post(ApiEndpoint.AuthLogin, form)
+    //     })
+    //     .then(async (e) => {
+    //       const axiosToken = axios
+    //       console.log($cookies.getAll())
 
-          await axios.post(`${$config.apiURL}/login`, form)
-        })
-        .then(async (e) => {
-          const axiosToken = axios
-          console.log($cookies.getAll())
+    //       // axiosToken.setToken =
+    //       await axiosToken.get(ApiEndpoint.AuthUser)
+    //     })
+    // } catch (error: any) {
+    //   console.log(error.response)
+    // }
 
-          // axiosToken.setToken =
-          await axiosToken.get(`${$config.apiURL}/api/user`)
-        })
-    } catch (error: any) {
-      console.log(error.response)
-    }
-
-    // const data: HTTPResponse = await $auth
-    //   .loginWith($auth.options.defaultStrategy, {
-    //     data: form,
-    //   }).catch(e => {
-    //     console.error(e)
-    //     if (e.response.status === 401) {
-    //       console.log('clean cookies')
-    //       $cookies.removeAll()
-    //     }
-    //     $toast(
-    //       'Error',
-    //       e.response.data.message,
-    //       ToastType.error
-    //     )
-    //     return e
-    //   })
+    const data: HTTPResponse = await $auth
+      .loginWith($auth.options.defaultStrategy, {
+        data: form,
+      }).catch(e => {
+        console.error(e)
+        if (e.response.status === 401) {
+          console.log('clean cookies')
+          $cookies.removeAll()
+        }
+        $toast(
+          'Error',
+          e.response.data.message,
+          ToastType.error
+        )
+        return e
+      })
 
     // if (data && data.status === 200) {
     // if (form.remember) {
@@ -109,17 +107,28 @@ const useAuth = () => {
   }
 
   const logout = async () => {
-    await $auth.logout().catch((e) => {
-      console.error(e)
-      $toast(
-        'Error',
-        e.response.data.message,
-        ToastType.error
-      )
-    }).then(e => {
-      $cookies.removeAll()
-      localStorage.clear()
-    })
+    // await $auth.logout().catch((e) => {
+    //   console.error(e)
+    //   $toast(
+    //     'Error',
+    //     e.response.data.message,
+    //     ToastType.error
+    //   )
+    // }).then(e => {
+    //   $cookies.removeAll()
+    //   localStorage.clear()
+    // })
+
+    const data: HTTPResponse = await $auth
+      .logout($auth.options.defaultStrategy).catch(e => {
+        console.error(e)
+        $toast(
+          'Error',
+          e.response.data.message,
+          ToastType.error
+        )
+        return e
+      })
   }
 
   const passwordForgot = async (form: PasswordForgotForm): Promise<HTTPResponse> => {

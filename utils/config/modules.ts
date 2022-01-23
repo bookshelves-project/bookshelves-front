@@ -15,7 +15,7 @@ const headers = {
 }
 
 const axios: AxiosOptions = {
-  // baseURL: `${process.env.API_URL}/api`,
+  baseURL: process.env.API_URL,
   credentials: true,
   // https: true,
   headers
@@ -25,53 +25,26 @@ const pwa = {
   manifest: pwaData.manifest
 }
 const auth: RecursivePartial<ModuleOptions> = {
+  redirect: {
+    login: '/sign-in',
+    logout: '/',
+    callback: '/sign-in',
+    home: '/profile'
+  },
   strategies: {
     laravelSanctum: {
       provider: 'laravel/sanctum',
-      url: process.env.API_URL || 'http://localhost:8000',
-      credentials: true,
-      headers,
+      url: process.env.API_URL,
       endpoints: {
-        login: {
-          url: `${process.env.API_ENDPOINT}${ApiEndpoint.AuthLogin}`,
-          method: 'post',
-          propertyName: 'access_token',
-        },
-        logout: {
-          url: `${process.env.API_ENDPOINT}${ApiEndpoint.AuthLogout}`,
-          method: 'post',
-        },
-        user: {
-          url: `${process.env.API_ENDPOINT}${ApiEndpoint.Profile}`,
-          method: 'get',
-        }
+        login: { url: '/api/v1/login', method: 'post' },
+        user: { url: '/api/v1/user', method: 'get' },
+        logout: { url: '/api/v1/logout', method: 'get' }
       },
-      tokenRequired: true,
-      tokenType: 'Bearer',
-      globalToken: true
+      tokenRequired: false,
+      tokenType: false
     }
   },
-  redirect: {
-    login: '/sign-in',
-    logout: '/sign-in',
-    callback: '/',
-    home: '/profile'
-  },
-  cookie: {
-    prefix: 'auth.',
-    options: {
-      path: '/',
-      expires: 30,
-      // 86400 // one day
-      // 604800 // one week
-      // 2628288 // one month
-      // 31536000 // one year
-      maxAge: 31536000,
-      // domain: process.env.BASE_URL,
-      secure: true
-    }
-  },
-  plugins: ['~/plugins/modules/auth']
+  localStorage: false
 }
 const content: IContentOptions = {
   liveEdit: false,
