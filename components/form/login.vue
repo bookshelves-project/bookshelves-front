@@ -12,7 +12,7 @@ const form = ref({
   remember: false,
 })
 const test = ref({
-  email: 'admin@mail.com',
+  email: 'superadmin@mail.com',
   password: 'password',
   remember: true,
 })
