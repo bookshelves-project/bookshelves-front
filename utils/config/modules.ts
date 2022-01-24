@@ -122,7 +122,7 @@ const i18n: Options = {
 const modules: object = {
   axios,
   pwa,
-  authToken,
+  auth: authSession,
   content,
   robots,
   sitemap,

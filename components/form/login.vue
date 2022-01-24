@@ -12,9 +12,10 @@ const form = ref({
   remember: false,
 })
 const test = ref({
-  email: 'superadmin@mail.com',
+  email: 'superadmin@example.com',
   password: 'password',
   remember: true,
+  device_name: 'web',
 })
 const errors = ref({
   email: '',
