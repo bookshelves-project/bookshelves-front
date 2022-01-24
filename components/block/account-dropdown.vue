@@ -72,7 +72,7 @@
               class="link w-full"
               role="menuitem"
               type="button"
-              @click="logout"
+              @click="logout()"
             >
               <span class="flex items-center">
                 <svg-icon

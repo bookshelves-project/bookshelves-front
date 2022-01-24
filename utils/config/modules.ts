@@ -15,7 +15,7 @@ const headers = {
 }
 
 const axios: AxiosOptions = {
-  baseURL: process.env.API_URL,
+  baseURL: process.env.API_URL || 'http://localhost:8000',
   credentials: true,
   // https: true,
   headers
@@ -24,7 +24,7 @@ const pwa = {
   meta: pwaData.meta,
   manifest: pwaData.manifest
 }
-const auth: RecursivePartial<ModuleOptions> = {
+const authToken: RecursivePartial<ModuleOptions> = {
   redirect: {
     login: '/sign-in',
     logout: '/',
@@ -34,17 +34,39 @@ const auth: RecursivePartial<ModuleOptions> = {
   strategies: {
     laravelSanctum: {
       provider: 'laravel/sanctum',
-      url: process.env.API_URL,
+      url: process.env.API_URL || 'http://localhost:8000',
       endpoints: {
-        login: { url: '/api/v1/login', method: 'post' },
+        login: { url: '/api/v1/login/token', method: 'post' },
         user: { url: '/api/v1/user', method: 'get' },
-        logout: { url: '/api/v1/logout', method: 'get' }
+        logout: { url: '/api/v1/logout/token', method: 'post' }
       },
       tokenRequired: false,
       tokenType: false
     }
   },
   localStorage: false
+}
+const authSession: RecursivePartial<ModuleOptions> = {
+  redirect: {
+    login: '/sign-in',
+    logout: '/',
+    callback: '/sign-in',
+    home: '/profile'
+  },
+  strategies: {
+    laravelSantum: {
+      provider: 'laravel/sanctum',
+      url: process.env.API_URL || 'http://localhost:8000',
+      endpoints: {
+        login: { url: '/api/v1/login', methods: 'post' },
+        user: { url: '/api/v1/user', methods: 'get' },
+        logout: { url: '/api/v1/logout', methods: 'post' }
+      },
+      user: {
+        property: false
+      }
+    }
+  }
 }
 const content: IContentOptions = {
   liveEdit: false,
@@ -100,7 +122,7 @@ const i18n: Options = {
 const modules: object = {
   axios,
   pwa,
-  auth,
+  authToken,
   content,
   robots,
   sitemap,
