@@ -64,9 +64,12 @@ const authSession: RecursivePartial<ModuleOptions> = {
       },
       user: {
         property: false
-      }
+      },
     }
-  }
+  },
+  cookie: {
+    prefix: 'web'
+  },
 }
 const content: IContentOptions = {
   liveEdit: false,

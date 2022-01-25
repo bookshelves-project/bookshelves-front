@@ -4,7 +4,7 @@ import { useFormStore } from '~/stores/form'
 import { randomString } from '~/utils/methods'
 
 const { $auth } = useContext()
-const { registerAndLogin } = useAuth($auth)
+const { registerAndLogin } = useAuth()
 const store = useFormStore()
 
 const form = ref({

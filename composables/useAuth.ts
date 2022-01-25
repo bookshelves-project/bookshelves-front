@@ -99,10 +99,8 @@ const useAuth = () => {
   }
 
   const registerAndLogin = async (form: RegisterForm): Promise<HTTPResponse> => {
-    let data = await register(form)
-    if (data.status === 200) {
-      data = await login(form)
-    }
+    const data = await register(form)
+    await login(form)
     return data
   }
 

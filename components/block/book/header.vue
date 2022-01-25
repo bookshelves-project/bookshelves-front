@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import favorites from '~/mixins/favorites'
+import favorites from '~/mixins/FavoriteMixin'
 import { formatLanguage } from '~/utils/methods'
 
 export default {
@@ -123,7 +123,7 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .header-action {
   @apply flex items-center space-x-1 py-5 text-sm font-semibold transition-colors duration-100 text-center text-gray-600 dark:text-gray-300 justify-center;
 }

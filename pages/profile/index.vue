@@ -1,7 +1,6 @@
 <template>
   <div class="main-content">
-    <!-- <app-header
-      v-if="$auth.$state.loggedIn"
+    <app-header
       :title="`${title}`"
       :subtitle="`Welcome ${user.name}`"
       :text="'user.about'"
@@ -17,12 +16,11 @@
       >
         See my public profile
       </app-button>
-    </app-header> -->
-    {{ user }}
+    </app-header>
     <!-- Main 2 column grid -->
     <div class="grid items-start grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-8">
       <!-- Left column -->
-      <!-- <div class="grid grid-cols-1 gap-4 xl:col-span-1">
+      <div class="grid grid-cols-1 gap-4 xl:col-span-1">
         <block-data-list-template
           :data-list="favorites"
           title="Favorites list"
@@ -33,10 +31,10 @@
           :can-delete="true"
           @destroy="destroy"
         />
-      </div> -->
+      </div>
 
       <!-- Right column -->
-      <!-- <div class="grid grid-cols-1 gap-4 xl:col-span-1">
+      <div class="grid grid-cols-1 gap-4 xl:col-span-1">
         <block-data-list-template
           :data-list="comments"
           title="Comments list"
@@ -47,14 +45,15 @@
           :can-delete="true"
           @destroy="destroy"
         />
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import type { Auth } from '@nuxtjs/auth-next'
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, mixins } from 'nuxt-property-decorator'
+import FavoriteMixin from '~/mixins/FavoriteMixin'
 import { ApiResponse } from '~/types'
 import { User } from '~/types/entities/user'
 
@@ -62,8 +61,8 @@ import { User } from '~/types/entities/user'
   asyncData({ $auth }) {
     const api = $auth.user as unknown as ApiResponse<User>
     return {
-      $auth,
       user: api.data,
+      title: 'My profile',
     }
   },
   head(this: PageProfile) {
@@ -74,18 +73,23 @@ import { User } from '~/types/entities/user'
   },
   middleware: 'auth',
 })
-export default class PageProfile extends Vue {
+export default class PageProfile extends mixins(FavoriteMixin) {
   user!: User
-  $auth!: Auth
-  title!: 'My profile'
+  title!: string
   // mixins: [favorites, comments]
   // middleware: 'auth'
-  // loading: true
-  // favorites: []
-  // comments: []
-  // title: 'My profile'
+  // mixins: [favorites, comments]
+  // middleware: 'auth'
+  loading = true
+  favorites: any[] = []
+  comments: any[] = []
+
   mounted() {
     this.getData()
+  }
+
+  public add() {
+    this.addToCart({ name: 'phone', quantity: 1 })
   }
 
   async getData() {
@@ -94,12 +98,12 @@ export default class PageProfile extends Vue {
         this.$axios.$get(`/favorites/${this.$auth.$state.user.data.id}`),
         this.$axios.$get(`/comments/${this.$auth.$state.user.data.id}`),
       ])
-      // this.favorites = favorites.data
-      // this.comments = comments.data
-      // this.loading = false
+      this.favorites = favorites.data
+      this.comments = comments.data
+      this.loading = false
     } catch (error) {
       console.error(error)
-      // this.loading = false
+      this.loading = false
     }
   }
 
