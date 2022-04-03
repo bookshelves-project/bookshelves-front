@@ -66,7 +66,6 @@ useMeta({
       :image-original="book.cover?.original"
       :color="book.cover?.color"
       :authors="book.authors"
-      :text="book.description"
       favorite
     >
       <div class="mx-auto grid w-max space-y-3">
@@ -75,7 +74,7 @@ useMeta({
     </app-header>
     <entity-book-main :book="book" class="mb-6" />
     <div
-      class="divide-x divide-transparent lg:grid lg:grid-cols-2 lg:divide-gray-200 lg:dark:divide-gray-600"
+      class="divide-x divide-transparent lg:grid lg:grid-cols-2 lg:divide-gray-200 dark:lg:divide-gray-600"
     >
       <entity-book-serie
         v-if="book.serie !== null"
