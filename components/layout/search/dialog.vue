@@ -192,7 +192,7 @@ onMounted(() => {
         />
       </div>
     </div>
-    <div v-if="results" class="hidden md:mx-6 md:my-4 md:block">
+    <!-- <div v-if="results" class="hidden md:mx-6 md:my-4 md:block">
       <div v-if="results.type" class="flex items-center">
         <div class="ml-auto mr-1 font-semibold">Powered by</div>
         <a
@@ -227,6 +227,6 @@ onMounted(() => {
           />
         </a>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
