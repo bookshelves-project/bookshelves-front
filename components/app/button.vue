@@ -1,106 +1,116 @@
-<template>
-  <component
-    :is="tag"
-    ref="btn"
-    :to="to ? localePath(to) : null"
-    :target="href ? (download ? '' : '_blank') : null"
-    :rel="href ? 'noopener noreferrer' : null"
-    :type="tag === 'button' ? type : null"
-    :class="[color, { disabled: disabled }, size]"
-    class="btn relative"
-    :disabled="disabled"
-    :download="download"
-    @click="$emit('click')"
-  >
-    <span :class="[{ 'space-x-2': icon }, alignment]" class="flex items-center">
-      <svg-icon v-if="icon" :name="icon" class="w-5 h-5" />
-      <span class="inline-block">
-        <slot />
-      </span>
-    </span>
-    <span v-if="href" class="block ml-1">
-      <svg-icon name="external-link" class="w-4 h-4" />
-    </span>
-  </component>
-</template>
-
 <script setup lang="ts">
-import { Location, ObjectLiteral } from '~/types'
-
-enum ButtonColor {
-  secondary = 'secondary',
-  primary = 'primary',
-  white = 'white',
-  danger = 'danger',
-}
-enum ButtonType {
-  button = 'button',
-  reset = 'reset',
-  submit = 'submit',
-}
-enum ButtonAlignment {
-  left = 'left',
-  center = 'center',
-  right = 'right',
-}
-enum ButtonSize {
-  sm = 'sm',
-  md = 'md',
-  lg = 'lg',
-}
+import SvgIcon from '@/components/svg-icon.vue'
 
 interface Props {
-  color: ButtonColor
-  type: ButtonType
-  align: ButtonAlignment
-  size: ButtonSize
-  href: string
-  to: Location
-  disabled: boolean
-  download: boolean
-  icon: string
+  color?: 'primary' | 'secondary' | 'white' | 'danger'
+  type?: 'button' | 'reset' | 'submit'
+  align?: 'left' | 'center' | 'right'
+  size?: 'sm' | 'md' | 'lg'
+  href?: string
+  to?: string | object
+  disabled?: boolean
+  download?: boolean
+  icon?: string
+  loading?: boolean
+  outlined?: boolean
+  hideLabel?: boolean
 }
+
 const props = withDefaults(defineProps<Props>(), {
-  color: ButtonColor.secondary,
-  type: ButtonType.button,
-  align: ButtonAlignment.left,
-  size: ButtonSize.md,
+  color: 'primary',
+  type: 'button',
+  align: 'left',
+  size: 'md',
   href: undefined,
   to: undefined,
   disabled: false,
   download: false,
   icon: undefined,
+  loading: false,
 })
 
+defineEmits(['click'])
+
 const tag = ref('button')
-const btn = ref(null)
+const btn = ref<HTMLElement>()
 
 if (props.href) {
   tag.value = 'a'
 }
 if (props.to) {
-  tag.value = 'nuxt-link'
+  tag.value = 'router-link'
 }
 
 const alignment = computed((): string => {
-  const alignements: ObjectLiteral = {
+  const alignements: Keyable = {
     left: 'mr-auto',
     center: 'mx-auto',
     right: 'ml-auto',
     default: 'mx-auto',
   }
-  return alignements[props.align] || alignements.default
+  let current = props.align
+  return alignements[current] || alignements.default
 })
 
 onMounted(() => {
   if (props.href) {
     const element: any = btn.value
     if (element instanceof HTMLElement) {
-      element.setAttribute('href', props.href)
+      let current = props.href
+      element.setAttribute('href', current)
     }
   }
 })
 </script>
+
+<template>
+  <component
+    :is="tag"
+    ref="btn"
+    :to="to !== undefined ? $localePath(to) : null"
+    :target="href ? (download ? '' : '_blank') : null"
+    :rel="href ? 'noopener noreferrer' : null"
+    :class="[color, { disabled: disabled }, size]"
+    class="btn relative"
+    :type="type"
+    :disabled="disabled"
+    :download="download"
+    @click.stop="$emit('click')"
+  >
+    <span class="absolute top-1/2 left-2 -translate-y-1/2 transform">
+      <svg
+        v-if="loading"
+        class="h-5 w-5 animate-spin"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+        ></circle>
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
+      </svg>
+    </span>
+    <span :class="[{ 'space-x-2': icon }, alignment]" class="flex items-center">
+      <svg-icon v-if="icon" :name="icon" class="h-5 w-5" />
+      <span class="inline-block">
+        <slot />
+      </span>
+    </span>
+    <span v-if="href" class="ml-1 block">
+      <svg-icon name="external-link" class="h-4 w-4" />
+    </span>
+  </component>
+</template>
 
 <style lang="css" scoped>
 .sm {
@@ -114,23 +124,23 @@ onMounted(() => {
 }
 
 .btn {
-  @apply inline-flex items-center text-base font-semibold rounded-md transition-colors duration-100 border;
-  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600;
+  @apply inline-flex items-center rounded-md border text-base font-semibold transition-colors duration-100;
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2;
   @apply dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800;
 }
 .secondary {
-  @apply text-primary-600 bg-primary-100 border-transparent hover:bg-primary-200 hover:text-primary-600;
-  @apply dark:bg-primary-200 dark:hover:bg-primary-300 dark:text-gray-800;
+  @apply border-transparent bg-primary-100 text-primary-600 hover:bg-primary-200 hover:text-primary-600;
+  @apply dark:bg-primary-200 dark:text-gray-800 dark:hover:bg-primary-300;
 }
 .primary {
-  @apply border-transparent shadow-sm text-white bg-primary-600 hover:bg-primary-500;
+  @apply border-transparent bg-primary-600 text-white shadow-sm hover:bg-primary-500;
 }
 .white {
-  @apply border-gray-300 shadow-sm text-gray-700 bg-white hover:bg-primary-100;
+  @apply border-gray-300 bg-white text-gray-700 shadow-sm hover:bg-primary-100;
   @apply dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700;
 }
 .danger {
-  @apply border-red-300 shadow-sm text-red-700 bg-white hover:bg-red-100;
+  @apply border-red-300 bg-white text-red-700 shadow-sm hover:bg-red-100;
   @apply dark:border-red-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-red-700;
 }
 

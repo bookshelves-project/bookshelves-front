@@ -1,44 +1,48 @@
 <script setup lang="ts">
-import useAuth from '~/composables/useAuth'
-import { useFormStore } from '~/stores/form'
+// import useAuth from '~/composables/useAuth'
 import { randomString } from '~/utils/methods'
+import { useFormStore } from '~~/store/form'
 
-const { $auth } = useContext()
-const { registerAndLogin } = useAuth()
-const store = useFormStore()
+// const { $auth } = useContext()
+// const { registerAndLogin } = useAuth()
 
-const form = ref({
+const data = ref({
   email: '',
   password: '',
   password_confirmation: '',
-  // terms: true,
 })
-const email = `${randomString(6).toLowerCase()}@mail.com`
-const password = 'password'
 const test = ref({
-  email,
-  password,
-  password_confirmation: password,
-  // terms: true,
+  email: `${randomString(6).toLowerCase()}@mail.com`,
+  password: 'password',
+  password_confirmation: 'password',
 })
-const errors = ref({
-  email: '',
-  password: '',
+// const errors = ref({
+//   email: '',
+//   password: '',
+// })
+
+const store = useFormStore()
+store.setForm({
+  data: data.value,
+  test: test.value,
+  loadingCanEnd: false,
 })
 
-store.init(form, test)
-store.setButton('Sign up')
-store.setMethod(registerAndLogin)
+const submit = async () => {
+  await store.setRequest({
+    endpoint: '/register',
+    method: 'POST',
+    body: data.value,
+  })
+}
 
-const response = store.getResponse()
-
-const emailError = ref<string>()
+// const emailError = ref<string>()
 </script>
 
 <template>
-  <form-layout :loaded="false">
-    <field-text-input
-      v-model="form.email"
+  <form-layout @submit="submit" title="Sign up">
+    <field-text
+      v-model="data.email"
       name="email"
       label="Email"
       type="email"
@@ -46,9 +50,9 @@ const emailError = ref<string>()
       required
     >
       <!-- <template v-if="errors.email" #error>{{ errors.email[0] }}</template> -->
-    </field-text-input>
-    <field-text-input
-      v-model="form.password"
+    </field-text>
+    <field-text
+      v-model="data.password"
       name="password"
       label="Password"
       type="password"
@@ -57,9 +61,9 @@ const emailError = ref<string>()
       <!-- <template v-if="errors.password" #error>{{
         errors.password[0]
       }}</template> -->
-    </field-text-input>
-    <field-text-input
-      v-model="form.password_confirmation"
+    </field-text>
+    <field-text
+      v-model="data.password_confirmation"
       name="password_confirmation"
       label="Confirm password"
       type="password"
@@ -68,6 +72,6 @@ const emailError = ref<string>()
       <!-- <template v-if="errors.password_confirmation" #error>{{
         errors.password_confirmation[0]
       }}</template> -->
-    </field-text-input>
+    </field-text>
   </form-layout>
 </template>

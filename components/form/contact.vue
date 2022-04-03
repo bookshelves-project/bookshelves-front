@@ -1,110 +1,81 @@
 <script setup lang="ts">
-import useAuth from '~/composables/useAuth'
-import useForm from '~/composables/useForm'
-import { useFormStore } from '~/stores/form'
-import { ToastAuto } from '~/types'
-import { randomString } from '~/utils/methods'
+import FormLayout from '@/components/form/layout.vue'
+import FieldText from '@/components/field/text.vue'
+import FieldSelect from '@/components/field/select.vue'
+import FieldCheckbox from '@/components/field/checkbox.vue'
+import { useFormStore } from '~~/store/form'
+import { useApplicationStore } from '~~/store/application'
 
-const { $axios, $toastAuto } = useContext()
-const { reset } = useForm()
-const store = useFormStore()
+const { enums } = useApplicationStore()
 
-const form = ref({
+const config = useRuntimeConfig()
+const data = ref({
   name: '',
   email: '',
-  honeypot: false,
+  reason: '',
   message: '',
+  honeypot: false,
 })
 const test = ref({
   name: 'Name',
   email: 'user@mail.com',
+  reason: 'other',
   message: 'Message with some data.',
+  honeypot: false,
 })
-const errors = ref({
-  name: '',
-  email: '',
-  message: '',
+const conditions = `Accept conditions about data privacy about ${config.appName} to send your message to ${config.appName} Team.`
+
+const store = useFormStore()
+
+store.setForm({
+  data: data.value,
+  test: test.value,
 })
 
-store.init(form, test)
-store.setButton("Let's talk")
 const submit = async () => {
-  try {
-    await $axios.post('/submission', form.value)
-    reset(form.value)
-    $toastAuto(ToastAuto.success)
-  } catch (error) {
-    console.log(error)
-    $toastAuto(ToastAuto.error)
-  }
+  // const { sanctum } = useFetchable()
+  // await sanctum()
+
+  await store.setRequest({
+    endpoint: '/submission/send',
+    method: 'POST',
+    body: data.value,
+  })
 }
-store.setMethod(submit)
-
-const response = store.getResponse()
-
-const emailError = ref<string>()
 </script>
 
 <template>
-  <div class="mt-6">
-    <form-layout>
-      <field-text-input
-        v-model="form.name"
-        name="name"
-        label="Name"
-        autocomplete="name"
-        required
-      />
-      <field-text-input
-        v-model="form.email"
-        name="email"
-        label="Email"
-        autocomplete="email"
-        required
-      />
-      <field-text-input
-        v-model="form.message"
-        name="message"
-        label="Message"
-        minlength="15"
-        maxlength="1500"
-        multiline
-        required
-      />
-      <field-checkbox
-        v-model="form.honeypot"
-        name="conditions"
-        label="Accept conditions"
-        class="hidden"
-      >
-        Accept conditions about data privacy about
-        {{ $config.appName }} to send your message to
-        {{ $config.appName }} Team.
-      </field-checkbox>
-      <!-- <div class="sm:col-span-2">
-        <div class="flex items-center space-x-2">
-          <app-button
-            type="submit"
-            color="primary"
-            align="center"
-            class="w-full"
-          >
-            <transition name="fade">
-              <div v-if="!loading" class="flex items-center space-x-2">
-                <svg-icon name="airplane" class="w-5 h-5" />
-                <div>Let's talk</div>
-              </div>
-              <div v-else class="flex items-center space-x-1">
-                <app-loading class="w-5 h-5 text-white" />
-                <div>Processing</div>
-              </div>
-            </transition>
-          </app-button>
-          <app-button v-if="isDev" type="button" @click="fillForm">
-            <svg-icon name="test" class="w-5 h-5" />
-          </app-button>
-        </div>
-      </div> -->
-    </form-layout>
-  </div>
+  <form-layout @submit="submit" title="Let's talk">
+    <field-text v-model="data.name" name="name" label="Name" required />
+    <field-text
+      v-model="data.email"
+      name="email"
+      label="Email"
+      type="email"
+      required
+    />
+    <field-select
+      v-model="data.reason"
+      name="reason"
+      label="Reason"
+      placeholder="Select a reason"
+      :options="enums.submissionsReasons"
+      required
+    />
+    <field-text
+      v-model="data.message"
+      name="message"
+      label="Message"
+      multiline
+      required
+    />
+    <field-checkbox
+      v-model="data.honeypot"
+      name="honeypot"
+      label="Conditions"
+      class="hidden"
+    >
+      {{ conditions }}
+    </field-checkbox>
+  </form-layout>
 </template>

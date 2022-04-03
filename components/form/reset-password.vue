@@ -1,55 +1,56 @@
 <script setup lang="ts">
-import useAuth from '~/composables/useAuth'
-import { useFormStore } from '~/stores/form'
+// import { useContext } from '@nuxtjs/composition-api'
+// import useAuth from '~/composables/useAuth'
+// import { useFormStore } from '~/store/form'
 
-const { $auth, query } = useContext()
-const { passwordReset } = useAuth()
-const store = useFormStore()
+const { query } = useRoute()
+// const { passwordReset } = useAuth()
+// const store = useFormStore()
 
-const form = ref({
+const data = ref({
   token: '',
   email: '',
   password: '',
   password_confirmation: '',
 })
 const test = ref({
-  token: query.value.token,
+  token: query.token,
   email: 'admin@mail.com',
   password: 'password2',
   password_confirmation: 'password2',
 })
 
-store.init(form, test)
-store.setButton('Reset password')
-store.setMethod(passwordReset)
+// store.init(form, test)
+// store.setButton('Reset password')
+// store.setMethod(passwordReset)
 
-const response = computed(() => store.response)
+// const response = computed(() => store.response)
 
-const emailError = ref<string>()
+// const emailError = ref<string>()
 </script>
 
 <template>
   <form-layout>
     <field-text-input
-      v-model="form.email"
+      v-model="data.email"
       name="email"
       label="Email"
       type="email"
       autocomplete="email"
       required
     >
-      <template v-if="emailError" #error>{{ emailError }}</template>
+      <!-- <template v-if="emailError" #error>{{ emailError }}</template> -->
     </field-text-input>
 
     <field-text-input
-      v-model="form.password"
+      v-model="data.password"
       name="password"
       label="Password"
       type="password"
       required
     />
     <field-text-input
-      v-model="form.password_confirmation"
+      v-model="data.password_confirmation"
       name="password_confirmation"
       label="Confirm password"
       type="password"
@@ -58,9 +59,12 @@ const emailError = ref<string>()
     <template #extra>
       <div class="mt-3 text-center">
         If you have reset your password, you can
-        <nuxt-link :to="localePath({ name: 'sign-in' })" class="internal-link"
-          >sign in</nuxt-link
+        <router-link
+          :to="$localePath({ name: 'sign-in' })"
+          class="internal-link"
         >
+          sign in
+        </router-link>
         with your new password.
       </div>
     </template>

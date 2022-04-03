@@ -1,58 +1,53 @@
+<script setup lang="ts">
+import AppHeader from '@/components/app/header.vue'
+import EntityRelationList from '@/components/relation/list.vue'
+import Filters from '@/components/filters/index.vue'
+
+const { nuxtAsyncData } = useFetchable()
+const route = useRoute()
+
+const response = ref<Publisher[]>()
+const load = async () => {
+  const list = await nuxtAsyncData<Publisher[]>('/publishers', [], {
+    full: true,
+    'filter[negligible]': false,
+  })
+
+  response.value = list
+}
+await load()
+
+watch(
+  () => route.query,
+  async (newVal) => {
+    await load()
+  }
+)
+
+const title = 'Publishers'
+const description = 'Discover your books by publisher'
+
+useMeta({
+  title,
+})
+</script>
+
 <template>
-  <div class="main-content">
+  <main class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <block-filters negligible />
+        <filters negligible />
       </template>
     </app-header>
-    <block-content-list
-      :items="publishers"
+    <entity-relation-list
+      :entities="response"
       name="publishers"
-      route-name="publishers-slug"
+      :route="{
+        name: 'publishers-slug',
+        paramsList: {
+          slug: 'meta.slug',
+        },
+      }"
     />
-  </div>
+  </main>
 </template>
-
-<script>
-import { isEmpty } from 'lodash'
-import qs from 'qs'
-
-export default {
-  name: 'PagePublishers',
-  async asyncData({ app, query }) {
-    const queryList = { ...query }
-    if (isEmpty(queryList)) {
-      queryList['filter[negligible]'] = false
-    }
-
-    const publishers = await app.$axios.$get(
-      `/publishers?${qs.stringify({ ...queryList })}`
-    )
-
-    return {
-      publishers: publishers.data,
-    }
-  },
-  data() {
-    return {
-      title: 'Publishers',
-      description: 'Find your favorite publisher!',
-    }
-  },
-  head() {
-    const dynamicMetadata = require('~/utils/metadata/dynamic')
-    const title = this.title
-    return {
-      title,
-      meta: [
-        ...dynamicMetadata.default({
-          title,
-          description: this.description,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
-    }
-  },
-  watchQuery: ['filter[negligible]'],
-}
-</script>

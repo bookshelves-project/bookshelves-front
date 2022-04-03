@@ -1,67 +1,46 @@
-<template>
-  <div class="main-content">
-    <app-header :title="title" :subtitle="description" />
-    <block-content-list
-      :items="languages"
-      name="languages"
-      route-name="languages-slug"
-    />
-    <!-- <div>
-      <section class="flex flex-wrap items-center">
-        <chip
-          v-for="language in languages"
-          :key="language.id"
-          :to="
-            localePath({
-              name: 'books',
-              query: { 'filter[languages]': language.meta.slug },
-            })
-          "
-        >
-          <span class="flex items-center space-x-2">
-            <span>{{ language.name }}</span>
-            {{ formatLanguage(language.meta.slug).flag }}
-          </span>
-        </chip>
-      </section>
-    </div>-->
-  </div>
-</template>
+<script setup lang="ts">
+import AppHeader from '@/components/app/header.vue'
+import EntityRelationList from '@/components/relation/list.vue'
 
-<script>
-import { formatLanguage } from '~/utils/methods'
-export default {
-  name: 'PageLanguages',
-  async asyncData({ app }) {
-    try {
-      const languages = await app.$axios.$get('languages')
+const { nuxtAsyncData } = useFetchable()
+const route = useRoute()
 
-      return {
-        languages: languages.data,
-      }
-    } catch (error) {}
-  },
-  data() {
-    return {
-      formatLanguage,
-      title: 'Languages of eBooks and series',
-      description:
-        'You can read your eBooks in many languages, browse each possibilities!',
-    }
-  },
-  head() {
-    const dynamicMetadata = require('~/utils/metadata/dynamic')
-    const title = this.title
-    return {
-      title,
-      description: this.description,
-      meta: [
-        ...dynamicMetadata.default({
-          title,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
-    }
-  },
+const response = ref<Language[]>()
+const load = async () => {
+  const list = await nuxtAsyncData<Language[]>('/languages')
+  response.value = list
 }
+await load()
+
+watch(
+  () => route.query,
+  async (newVal) => {
+    await load()
+  }
+)
+
+const title = 'Languages of books and series'
+const description =
+  'You can read your books in many languages, browse each possibilities!'
+
+useMeta({
+  title,
+})
 </script>
+
+<template>
+  <main class="main-content">
+    <app-header :title="title" :subtitle="description" />
+    <entity-relation-list
+      :entities="response"
+      name="languages"
+      :route="{
+        name: 'books',
+        queryList: {
+          'filter[languages]': 'meta.slug',
+        },
+      }"
+      group
+    />
+  </main>
+</template>

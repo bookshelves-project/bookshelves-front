@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import AppToast from '@/components/app/toast.vue'
+import { useToastStore } from '~/store/toast'
+
+// from: https://blog.aspiresys.pl/technology/toast-toasts-in-vue/
+const toastStore = useToastStore()
+const toasts = computed(() => toastStore.toasts as Toast[])
+</script>
+
 <template>
   <div class="fixed top-0 right-0 z-50">
     <transition-group name="list" tag="section">
@@ -7,41 +16,3 @@
     </transition-group>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useToastStore } from '~/stores/toast'
-import { Toast } from '~/types'
-
-// from: https://blog.aspiresys.pl/technology/toast-toasts-in-vue/
-const ctx = useContext()
-const toastStore = useToastStore(ctx.$pinia)
-const toasts = computed(() => toastStore.toasts as Toast[])
-</script>
-
-<!-- <script>
-export default {
-  name: 'AppToasts',
-  data() {
-    return {
-      toasts: [],
-      timeout: 4000
-    }
-  },
-  mounted() {
-    this.toasts = []
-    this.$nuxt.$on('toast', this.trigger)
-  },
-  beforeDestroy() {
-    this.$nuxt.$off('toast')
-  },
-  methods: {
-    trigger(notifData) {
-      notifData.date = Date.now()
-      this.toasts.push(notifData)
-      setTimeout(() => {
-        this.clear(notifData)
-      }, this.timeout)
-    },
-  }
-}
-</script> -->

@@ -1,24 +1,27 @@
+<script setup lang="ts">
+import LayoutFooterColumn from '@/components/layout/footer/column.vue'
+import { useNavigationStore } from '~~/store/navigation'
+
+const navigation = useNavigationStore()
+</script>
+
 <template>
-  <div>
+  <div
+    class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 xl:col-span-2 xl:mt-0"
+  >
     <div class="md:grid md:grid-cols-2 md:gap-8">
-      <layout-footer-column :navigation="navigation.project" />
+      <layout-footer-column :column="navigation.footerProject" />
       <layout-footer-column
         class="mt-12 md:mt-0"
-        :navigation="navigation.support"
+        :column="navigation.footerSupport"
       />
     </div>
     <div class="md:grid md:grid-cols-2 md:gap-8">
-      <layout-footer-column :navigation="navigation.advanced" />
+      <layout-footer-column :column="navigation.footerAdvanced" />
       <layout-footer-column
         class="mt-12 md:mt-0"
-        :navigation="navigation.legal"
+        :column="navigation.footerLegal"
       />
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useNavigationStore } from '~/stores/navigation'
-const store = useNavigationStore()
-const navigation = store.footer
-</script>

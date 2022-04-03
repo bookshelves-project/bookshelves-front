@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "johnsoncodehk.volar",
-    "esbenp.prettier-vscode"
+    "antfu.iconify",
+    "voorjaar.windicss-intellisense",
   ]
 }

@@ -1,6 +1,4 @@
-@import './app/swiper';
-@import './app/vue';
-@import './app/markdown';
+@import './app/vue.css';
 
 @font-face {
   font-family: Handlee;

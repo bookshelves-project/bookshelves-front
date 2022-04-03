@@ -1,69 +1,44 @@
-<template>
-  <div class="relative">
-    <transition name="fade">
-      <span
-        v-if="loading"
-        :class="placeholder"
-        class="absolute z-10 inset-0 transition-transform duration-100 block"
-        :style="color ? `background-color: ${color}` : ''"
-      ></span>
-    </transition>
-    <img
-      v-lazy-load
-      :data-src="src"
-      :alt="meta"
-      :title="meta"
-      :class="override"
-      class="!m-0 !w-full h-full object-cover app-img"
-      @load="load"
-    />
-  </div>
-</template>
-
 <script setup lang="ts">
-const props = defineProps({
-  src: {
-    type: String,
-    default: null,
-  },
-  title: {
-    type: String,
-    default: null,
-  },
-  legend: {
-    type: String,
-    default: null,
-  },
-  placeholder: {
-    type: String,
-    default: 'bg-gray-100 dark:bg-gray-800',
-  },
-  color: {
-    type: String,
-    default: null,
-  },
-  override: {
-    type: String,
-    default: null,
-  },
-  invisible: {
-    type: Boolean,
-    default: false,
-  },
-})
+interface Attribute {
+  alt?: string
+  class?: string
+  color?: string
+  src?: string
+}
+const attrs: Attribute = useAttrs()
 
-watch(
-  () => props.src,
-  (newVal) => {
-    loading.value = true
-  }
-)
+const props = defineProps<{
+  override?: string
+}>()
 
-const loading = ref(true)
+const loaded = ref(false)
+const placeholder = 'bg-gray-100 dark:bg-gray-800'
 const meta = ref('')
 
 const load = () => {
-  loading.value = false
-  meta.value = props.title
+  loaded.value = true
+  meta.value = attrs.alt ?? ''
 }
 </script>
+
+<template>
+  <div class="relative">
+    <!-- <transition name="fade">
+      <span
+        v-if="!loaded"
+        :class="placeholder"
+        class="absolute inset-0 z-10 block transition-transform duration-100"
+        :style="attrs.color ? `background-color: ${attrs.color}` : ''"
+      ></span>
+    </transition> -->
+    <img
+      :src="attrs.src"
+      :alt="meta"
+      :title="meta"
+      :class="override"
+      class="app-img !m-0 h-full !w-full object-cover"
+      @load="load"
+      loading="lazy"
+    />
+  </div>
+</template>

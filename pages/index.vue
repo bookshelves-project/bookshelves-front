@@ -1,101 +1,67 @@
-<template>
-  <main v-if="homePage">
-    <lazy-block-home-hero :hero="homePage.hero" class="pt-5" />
-    <lazy-block-home-statistics :statistics="homePage.statistics" />
-    <lazy-block-home-cloud-logos :logos="homePage.logos" />
-    <lazy-block-selected-entities
-      class="mt-8 lg:mt-16"
-      :selection="selection"
-    />
-    <lazy-block-home-features :features="homePage.features" />
-    <lazy-block-selected-entities class="mt-8 lg:mt-16" :selection="latest" />
-    <lazy-block-home-features-highlights :highlights="homePage.highlights" />
-    <lazy-block-home-cta />
-  </main>
-</template>
+<script lang="ts" setup>
+import HomeHero from '@/components/home/hero.vue'
+import HomeStatistics from '@/components/home/statistics.vue'
+import HomeCloudLogos from '@/components/home/cloud-logos.vue'
+import HomeSelectedEntities from '@/components/home/selected-entities.vue'
+import HomeFeatures from '@/components/home/features.vue'
+import HomeFeaturesHighlights from '@/components/home/features-highlights.vue'
+import HomeCta from '@/components/home/cta.vue'
 
-<script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-import { useApplicationStore } from '~/stores/application'
-import {
-  ApiEndpoint,
-  ApiResponse,
-  Application,
-  HomePage,
-  SelectedEntities,
-} from '~/types'
+import { objectIsEmpty } from '~/utils/methods'
+import { useApplicationStore } from '~~/store/application'
 
-@Component({
-  async asyncData({ $repository, i18n, $pinia }) {
-    const api: ApiResponse<HomePage> = await $repository(
-      ApiEndpoint.CmsHomePage,
-      false
-    ).find({ lang: i18n.locale })
-    if (api) {
-      const store = useApplicationStore($pinia)
+const { nuxtAsyncData } = useFetchable()
+const homePage = ref<CmsHomePage>()
 
-      return {
-        homePage: api.data,
-        application: store.application,
-      }
-    }
-  },
-  head(this: PageIndex) {
-    return this.$metadata({
-      // title: this.application.name,
-    })
-  },
-})
-export default class PageIndex extends Vue {
-  application: Application = {
-    name: 'Bookshelves',
-  }
+const store = useApplicationStore()
 
-  homePage: HomePage = {}
-  axios = this.$axios
-  latest: SelectedEntities = {
-    endpoint: ApiEndpoint.BookLatest,
-    eyebrow: 'Hyped by new books?',
-    right: true,
-    title: 'Latest books & series',
-    text: 'You check new books & series on? Here you have latest books!',
-  }
+if (!objectIsEmpty(store.homePage)) {
+  homePage.value = store.homePage
+} else {
+  const response = await nuxtAsyncData<CmsHomePage>('/cms/home-page')
 
-  selection: SelectedEntities = {
-    endpoint: ApiEndpoint.BookSelection,
-    eyebrow: 'Want to read a good book?',
-    right: false,
-    title: 'Selection of books & series',
-    text: 'If you search a new book to read, check this selection of eBooks.',
-  }
-
-  get computedMessage(): HomePage {
-    return this.homePage
-  }
+  store.setHomePage(response)
+  homePage.value = response
 }
 
-/**
- * Composition API
- */
-// export default defineComponent({
-//   async asyncData({ $repository }) {
-//     const api: ApiResponse<HomePage> = await $repository(
-//       ApiEndpoint.CmsHomePage
-//     ).find()
+const selection: SelectedEntities = {
+  key: 'selection',
+  endpoint: '/entities/selection',
+  eyebrow: 'Want to read a good book?',
+  right: false,
+  title: 'Selection of books & series',
+  text: 'If you search a new book to read, check this selection of eBooks.',
+}
+const latest: SelectedEntities = {
+  key: 'latest',
+  endpoint: '/entities/latest',
+  eyebrow: 'Hyped by new books?',
+  right: true,
+  title: 'Latest books & series',
+  text: 'You check new books & series on? Here you have latest books!',
+}
 
-//     return {
-//       homePage: api.data,
-//     }
-//   },
-// })
-
-/**
- * Composition API `script setup`
- */
-// const { $repository } = useContext()
-// const data = useAsync(
-//   async () => await $repository(ApiEndpoint.CmsHomePage).find(),
-//   'homePage'
-// )
-// const homePage = computed<HomePage>(() => data.value?.data)
+useMeta({
+  title: 'Home',
+})
 </script>
+
+<template>
+  <div>
+    <Suspense>
+      <div v-if="homePage">
+        <home-hero :hero="homePage.hero" class="pt-5" />
+        <home-statistics :statistics="homePage.statistics" />
+        <home-cloud-logos :logos="homePage.logos" />
+        <home-selected-entities class="mt-8 md:mt-16" :selection="selection" />
+        <!-- <home-features :features="homePage.features" /> -->
+        <!-- <home-selected-entities class="mt-8 lg:mt-16" :selection="latest" /> -->
+        <!-- <home-features-highlights :highlights="homePage.highlights" /> -->
+        <home-cta />
+      </div>
+      <template #fallback>
+        <span>Loading...</span>
+      </template>
+    </Suspense>
+  </div>
+</template>

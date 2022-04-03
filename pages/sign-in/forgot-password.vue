@@ -1,15 +1,12 @@
-<script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-
-@Component({
-  middleware: 'guest',
-  head() {
-    return this.$metadata({
-      title: 'Forgot password',
-    })
-  },
-})
-export default class PageForgotPassword extends Vue {}
+<script setup lang="ts">
+// @Component({
+//   middleware: 'guest',
+//   head() {
+//     return this.$metadata({
+//       title: 'Forgot password',
+//     })
+//   },
+// })
 </script>
 
 <template>
@@ -28,12 +25,12 @@ export default class PageForgotPassword extends Vue {}
             ></div>
           </div>
           <div class="relative flex justify-center text-sm">
-            <nuxt-link
-              :to="localePath({ name: 'sign-in' })"
+            <router-link
+              :to="$localePath({ name: 'sign-in' })"
               class="px-2 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:text-gray-800"
             >
               Do you want to sign-in?
-            </nuxt-link>
+            </router-link>
           </div>
         </div>
         <div class="mt-8">

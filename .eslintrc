@@ -10,6 +10,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:vue/recommended"
   ],
+  // "extends": "@antfu",
   "rules": {
     // "@typescript-eslint/explicit-function-return-type": [
     //   "error"

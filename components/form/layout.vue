@@ -1,61 +1,47 @@
-<template>
-  <form class="space-y-6" @submit.prevent="submit">
-    <slot />
-    <div class="flex items-center justify-center space-x-2">
-      <app-button type="submit" align="center" color="primary" class="w-full">
-        <transition name="fade">
-          <span v-if="!isLoading">
-            {{ button }}
-          </span>
-          <span v-else class="flex items-center space-x-1">
-            <app-loading class="w-5 h-5 text-white" />
-            <div>Processing</div>
-          </span>
-        </transition>
-      </app-button>
-      <app-button v-if="isDev" type="button" @click="fill">
-        <svg-icon name="test" class="w-6 h-6" />
-      </app-button>
-    </div>
-    <slot name="extra" />
-  </form>
-</template>
-
 <script setup lang="ts">
-import { useFormStore } from '~/stores/form'
+import AppButton from '@/components/app/button.vue'
+import SvgIcon from '@/components/svg-icon.vue'
+import { useFormStore } from '~/store/form'
 
-interface Props {
-  loaded: boolean
-}
-const props = withDefaults(defineProps<Props>(), {
-  loaded: true,
-})
+defineProps<{
+  title?: string
+  loaded?: boolean
+}>()
 
-const { isDev } = useContext()
-const isLoading = ref(false)
+const emit = defineEmits<{
+  (e: 'submit', status: boolean): void
+}>()
 
+const isDev = process.dev
 const store = useFormStore()
-
-const button = computed(() => store.button)
-const form = computed(() => store.form)
-const test = computed(() => store.test)
+const isLoading = computed(() => store.isLoading)
 
 const fill = () => {
-  store.fillForm()
+  store.fillData()
 }
 const submit = async () => {
-  isLoading.value = true
-  const api = await store.request(form.value)
-  if (api) {
-    store.setResponse(api)
-    if (api.status === 200) {
-      store.resetForm()
-    }
-  }
-  if (props.loaded) {
-    isLoading.value = false
-  } else if (!api || (api && api.status !== 200)) {
-    isLoading.value = false
-  }
+  store.toggleLoading()
+  emit('submit', true)
 }
 </script>
+
+<template>
+  <form @submit.prevent="submit">
+    <slot />
+    <div class="mt-10 flex items-center justify-center space-x-2">
+      <app-button
+        type="submit"
+        align="center"
+        color="primary"
+        class="w-full"
+        :loading="isLoading"
+      >
+        <span v-if="isLoading">Processing...</span>
+        <span v-else>{{ title ?? 'Submit' }}</span>
+      </app-button>
+      <app-button v-if="isDev" type="button" @click="fill">
+        <svg-icon name="test" class="h-6 w-6" />
+      </app-button>
+    </div>
+  </form>
+</template>

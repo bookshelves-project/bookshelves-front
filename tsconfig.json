@@ -1,54 +1,10 @@
 {
+  "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "lib": [
-      "esnext",
-      "esnext.asynciterable",
-      "dom",
-      "dom.iterable"
-    ],
-    "esModuleInterop": true,
-    "skipLibCheck": true, // https://github.com/antfu/unplugin-auto-import
-    "experimentalDecorators": true,
-    "resolveJsonModule": true, // parse json
-    "allowJs": true,
-    "sourceMap": true,
-    "strict": true,
-    "noEmit": true,
-    "baseUrl": ".",
-    "importsNotUsedAsValues": "preserve",
-    "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "@/*": [
-        "./*"
-      ]
-    },
+    "resolveJsonModule": true,
     "types": [
-      "@types/node",
-      "@nuxt/types",
-      "@nuxtjs/axios",
-      "@nuxt/content",
-      "unplugin-vue2-script-setup/types",
-      "@nuxtjs/i18n",
-      "@nuxtjs/auth-next",
-      "@nuxtjs/color-mode",
+      "nuxt-windicss",
       "@pinia/nuxt",
-      "cookie-universal-nuxt",
-      "@types/swiper",
-      "@types/tailwindcss",
-      "@types/lodash",
-    ],
-  },
-  "vueCompilerOptions": {
-    "experimentalCompatMode": 2
-  },
-  "exclude": [
-    "node_modules",
-    ".nuxt",
-    "dist"
-  ]
+    ]
+  }
 }

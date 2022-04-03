@@ -1,22 +1,19 @@
-<script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-
-@Component({
-  middleware: 'guest',
-  head() {
-    return this.$metadata({
-      title: 'Sign up',
-    })
-  },
-})
-export default class PageRegister extends Vue {}
+<script setup lang="ts">
+// @Component({
+//   middleware: 'guest',
+//   head() {
+//     return this.$metadata({
+//       title: 'Sign up',
+//     })
+//   },
+// })
 </script>
 
 <template>
   <div class="grid xl:grid-cols-3 gap-4 main-content">
     <div class="hidden xl:block col-span-2">
       <app-img
-        src="/images/bookmark.svg"
+        src="/images/pages/register.svg"
         class="h-full"
         override="m-auto !object-contain"
         alt="bibliophile"
@@ -36,12 +33,12 @@ export default class PageRegister extends Vue {}
             ></div>
           </div>
           <div class="relative flex justify-center text-sm">
-            <nuxt-link
-              :to="localePath({ name: 'sign-in' })"
+            <router-link
+              :to="$localePath({ name: 'sign-in' })"
               class="px-2 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:text-gray-800"
             >
               Do you have an account?
-            </nuxt-link>
+            </router-link>
           </div>
         </div>
         <div class="mt-8">

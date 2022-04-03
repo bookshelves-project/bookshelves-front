@@ -1,12 +1,6 @@
 function getDaysDiff(startDate = new Date(), endDate = new Date()) {
   if (startDate > endDate) {
-    [
-      startDate,
-      endDate
-    ] = [
-      endDate,
-      startDate
-    ]
+    ;[startDate, endDate] = [endDate, startDate]
   }
 
   const timeDiff = endDate - startDate
@@ -49,13 +43,7 @@ function getMonthsDiff(startDate = new Date(), endDate = new Date()) {
 // time difference in Years
 function getYearsDiff(startDate = new Date(), endDate = new Date()) {
   if (startDate > endDate) {
-    [
-      startDate,
-      endDate
-    ] = [
-      endDate,
-      startDate
-    ]
+    ;[startDate, endDate] = [endDate, startDate]
   }
 
   const yearB4End = new Date(
@@ -74,7 +62,9 @@ function getYearsDiff(startDate = new Date(), endDate = new Date()) {
     startDate.getDate()
   )
 
-  if (endDate >= yearsAfterStart) { year++ }
+  if (endDate >= yearsAfterStart) {
+    year++
+  }
 
   return year
 }
@@ -84,13 +74,7 @@ export const calExactTimeDiff = (firstDate: Date, secondDate = new Date()) => {
   firstDate = new Date(firstDate)
   secondDate = new Date(secondDate)
   if (firstDate > secondDate) {
-    [
-      firstDate,
-      secondDate
-    ] = [
-      secondDate,
-      firstDate
-    ]
+    ;[firstDate, secondDate] = [secondDate, firstDate]
   }
 
   let monthDiff = 0
@@ -118,19 +102,21 @@ export const calExactTimeDiff = (firstDate: Date, secondDate = new Date()) => {
     dayDiff = getDaysDiff(b4EndDate, secondDate)
   }
 
-  if (firstDate.getMonth() === secondDate.getMonth() && !isDayAhead) { monthDiff = 11 }
+  if (firstDate.getMonth() === secondDate.getMonth() && !isDayAhead) {
+    monthDiff = 11
+  }
 
   const exactTimeDiffUnits = {
     yrs: getYearsDiff(firstDate, secondDate),
     mths: monthDiff,
-    dys: dayDiff
+    dys: dayDiff,
   }
 
   if (exactTimeDiffUnits.yrs > 3) {
     const dateTimeLocale = firstDate.toLocaleString('fr', {
       year: 'numeric',
       month: 'numeric',
-      day: 'numeric'
+      day: 'numeric',
     })
     return dateTimeLocale
   }
@@ -144,7 +130,7 @@ export const calExactTimeDiff = (firstDate: Date, secondDate = new Date()) => {
     const hoursOptions = {
       timeZone,
       hour: 'numeric',
-      minute: 'numeric'
+      minute: 'numeric',
     }
 
     const timeToString = firstDate.toLocaleString('fr', hoursOptions)
@@ -169,4 +155,20 @@ export const calExactTimeDiff = (firstDate: Date, secondDate = new Date()) => {
   // `${exactTimeDiffUnits.yrs} years, ${exactTimeDiffUnits.mths} months,
 
   return time
+}
+
+export const date = (date: Date) => {
+  date = new Date(date)
+
+  let userLang = 'en'
+
+  if (process.client) {
+    userLang = navigator.language
+  }
+
+  return date.toLocaleString(userLang, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
 }

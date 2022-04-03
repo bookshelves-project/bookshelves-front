@@ -2,26 +2,26 @@ import metadata from '../metadata'
 
 const pwa = {
   meta: {
-    name: metadata.website.title,
-    author: metadata.website.author,
-    description: metadata.website.description,
-    theme_color: metadata.settings.color,
-    lang: metadata.settings.lang,
-    ogSiteName: metadata.og.siteName,
-    ogTitle: metadata.website.title,
-    ogDescription: metadata.website.description,
+    name: metadata.base.website.title,
+    author: metadata.base.website.author,
+    description: metadata.base.website.description,
+    theme_color: metadata.base.settings.color,
+    lang: metadata.base.settings.lang,
+    ogSiteName: metadata.base.og.siteName,
+    ogTitle: metadata.base.website.title,
+    ogDescription: metadata.base.website.description,
     ogImage: `${process.env.BASE_URL}/default.jpg`,
     ogUrl: process.env.BASE_URL,
-    twitterSite: metadata.twitter.site,
-    twitterCreator: metadata.twitter.creator
+    twitterSite: metadata.base.twitter.site,
+    twitterCreator: metadata.base.twitter.creator,
   },
   manifest: {
-    name: metadata.website.title,
-    short_name: metadata.og.siteName,
-    description: metadata.website.description,
+    name: metadata.base.website.title,
+    short_name: metadata.base.og.siteName,
+    description: metadata.base.website.description,
     display: 'browser',
-    lang: metadata.settings.lang
-  }
+    lang: metadata.base.settings.lang,
+  },
 }
 
 export default pwa

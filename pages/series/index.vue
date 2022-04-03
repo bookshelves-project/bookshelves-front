@@ -1,114 +1,63 @@
+<script setup lang="ts">
+import AppHeader from '@/components/app/header.vue'
+import Filters from '@/components/filters/index.vue'
+import EntityList from '@/components/entity/list.vue'
+import Pagination from '@/components/pagination/index.vue'
+
+const { nuxtAsyncList } = useFetchable()
+const route = useRoute()
+
+const response = ref<ApiPaginateResponse<Serie[]>>()
+
+const load = async () => {
+  response.value = await nuxtAsyncList<Serie>('/series')
+}
+await load()
+
+watch(
+  () => route.query,
+  async () => {
+    await load()
+  }
+)
+
+const title = 'All series available'
+const description = 'Discover all series'
+const sortOptions = [
+  {
+    label: "By series' title (default)",
+    query: { sort: 'title_sort' },
+    value: 'title_sort',
+  },
+  {
+    label: 'By title',
+    query: { sort: 'title' },
+    value: 'title',
+  },
+  {
+    label: 'Newest uploaded',
+    query: { sort: '-created_at' },
+    value: '-created_at',
+  },
+]
+
+useMeta({
+  title,
+})
+</script>
+
 <template>
-  <main class="main-content">
+  <div class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <block-filters languages :sort="sortOptions" paginate />
+        <filters language type :sort="sortOptions" paginate />
       </template>
     </app-header>
-    <section>
-      <div>
-        <div class="space-y-6 display-grid sm:space-y-0">
-          <EntityCard
-            v-for="(serie, id) in series"
-            :key="id"
-            :cover="serie.cover?.thumbnail"
-            :color="serie.cover?.color"
-            :title="serie.title"
-            :route="{
-              name: 'series-author-slug',
-              params: { author: serie.meta.author, slug: serie.meta.slug },
-            }"
-          >
-            <template #title>{{ serie.title }}</template>
-            <template #subtitle>{{ formatAuthors(serie.authors) }}</template>
-            <template #extra>
-              <span>{{ serie.count }} books</span>
-              <span v-if="serie.language" class="mt-1 block">
-                {{ formatLanguage(serie.language) }}
-              </span>
-            </template>
-          </EntityCard>
-        </div>
-      </div>
-      <div class="mt-6 mb-5">
-        <Pagination
-          v-if="meta"
-          :current-page="meta.current_page"
-          :pages="meta.last_page"
-        />
-      </div>
-    </section>
-  </main>
+    <entity-list :entities="response?.data" />
+    <pagination
+      v-if="response?.meta"
+      :pages="response?.meta.last_page"
+      :current="response?.meta.current_page"
+    />
+  </div>
 </template>
-
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { useIndexStore } from '~/stores'
-import { ApiEndpoint, ApiMeta, Application, Serie } from '~/types'
-import { formatLanguage, formatAuthors } from '~/utils/methods'
-import Pagination from '~/components/block/pagination.vue'
-import EntityCard from '~/components/block/entity-card.vue'
-import { useApplicationStore } from '~/stores/application'
-
-@Component({
-  async asyncData({ $repository, query }) {
-    const api = await $repository(ApiEndpoint.Serie).index<Serie>({
-      page: (query.page as string) || '1',
-      perPage: '32',
-      ...query,
-    })
-
-    const store = useApplicationStore()
-    const application = store.application as Application
-    const title = `All series available on ${application.name}`
-
-    return {
-      series: api.data,
-      meta: api.meta,
-      title,
-    }
-  },
-  head(this: PageSeriesIndex) {
-    return this.$metadata({
-      title: this.title,
-      description: this.description,
-    })
-  },
-  methods: {
-    formatLanguage,
-    formatAuthors,
-  },
-  components: {
-    Pagination,
-    EntityCard,
-  },
-  watchQuery: ['page', 'filter[languages]', 'sort'],
-})
-export default class PageSeriesIndex extends Vue {
-  series!: Serie[]
-  meta!: ApiMeta
-
-  formatLanguage!: typeof formatLanguage
-  formatAuthors!: typeof formatAuthors
-
-  title!: string
-  description = 'Discover all series'
-  sortOptions = [
-    {
-      label: "By series' title (default)",
-      query: { sort: 'title_sort' },
-      value: 'title_sort',
-    },
-    {
-      label: 'By title',
-      query: { sort: 'title' },
-      value: 'title',
-    },
-    {
-      label: 'Newest uploaded',
-      query: { sort: '-created_at' },
-      value: '-created_at',
-    },
-  ]
-}
-</script>

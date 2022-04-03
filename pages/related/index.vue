@@ -1,14 +1,19 @@
-<template>
-  <block-redirection :to="localePath('/')" />
-</template>
+<script setup lang="ts">
+import Redirection from '@/components/redirection.vue'
 
-<script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+const { params } = useRoute()
 
-@Component({
-  middleware({ redirect }) {
-    redirect('/')
+definePageMeta({
+  middleware(to, from) {
+    if (to.params.author) {
+      const app = useNuxtApp()
+      const router = useRouter()
+      router.push(app.$localePath('/'))
+    }
   },
 })
-export default class PageRelated extends Vue {}
 </script>
+
+<template>
+  <redirection :to="$localePath('/')" />
+</template>

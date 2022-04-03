@@ -1,74 +1,81 @@
+<script setup lang="ts">
+import AppHeader from '@/components/app/header.vue'
+import Filters from '@/components/filters/index.vue'
+import EntityRelationList from '@/components/relation/list.vue'
+
+import { useEntityStore } from '~~/store/entity'
+import { objectIsEmpty } from '~/utils/methods'
+
+const title = 'Genres & Tags'
+const description = 'Find books and series by their genres and tags.'
+
+const { nuxtAsyncData } = useFetchable()
+const route = useRoute()
+
+const tags = ref<Tag[]>()
+const genres = ref<Tag[]>()
+
+const load = async () => {
+  const [tagsData, genresData] = await Promise.all([
+    nuxtAsyncData<Tag[]>('/tags', [], {
+      'filter[type]': 'tag',
+      full: true,
+    }),
+    nuxtAsyncData<Tag[]>('/tags', [], {
+      'filter[type]': 'genre',
+      full: true,
+    }),
+  ])
+  tags.value = tagsData
+  genres.value = genresData
+}
+await load()
+
+watch(
+  () => route.query,
+  async (newVal) => {
+    await load()
+  }
+)
+
+useMeta({
+  title,
+})
+</script>
+
 <template>
   <div class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <block-filters negligible />
+        <filters negligible />
       </template>
     </app-header>
-    <div class="mb-10">
+    <div v-if="genres" class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Genres</h2>
-      <block-content-list
-        :items="genres"
+      <entity-relation-list
+        :entities="genres"
         name="genres"
-        route-name="tags-slug"
+        :route="{
+          name: 'tags-slug',
+          paramsList: {
+            slug: 'meta.slug',
+          },
+        }"
+        group
       />
     </div>
-    <div class="mb-10">
+    <div v-if="tags" class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">Tags</h2>
-      <block-content-list :items="tags" name="tags" route-name="tags-slug" />
+      <entity-relation-list
+        :entities="tags"
+        name="tags"
+        :route="{
+          name: 'tags-slug',
+          paramsList: {
+            slug: 'meta.slug',
+          },
+        }"
+      />
     </div>
   </div>
 </template>
-
-<script>
-import { isEmpty } from 'lodash'
-import { stringify } from 'qs'
-
-export default {
-  name: 'TagsIndex',
-  async asyncData({ app, query }) {
-    const queryList = { ...query }
-
-    const [genres, tags] = await Promise.all([
-      app.$axios.$get(
-        `/tags?${stringify({
-          'filter[type]': 'genre',
-          ...queryList,
-        })}`
-      ),
-      app.$axios.$get(
-        `/tags?${stringify({
-          'filter[type]': 'tag',
-          ...queryList,
-        })}`
-      ),
-    ])
-
-    return {
-      genres: genres.data,
-      tags: tags.data,
-    }
-  },
-  data() {
-    return {
-      title: 'Genres & Tags',
-      description: 'Find books and series by their genres and tags.',
-    }
-  },
-  head() {
-    const dynamicMetadata = require('~/utils/metadata/dynamic')
-    const title = this.title
-    return {
-      title,
-      meta: [
-        ...dynamicMetadata.default({
-          title,
-          description: this.description,
-          url: this.$nuxt.$route.path,
-        }),
-      ],
-    }
-  },
-  watchQuery: ['filter[show_negligible]'],
-}
-</script>

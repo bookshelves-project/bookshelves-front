@@ -1,36 +1,37 @@
 <script setup lang="ts">
-import useFavorite from '~/composables/useFavorite'
-import { Author, Entity } from '~/types'
+import LayoutBreadcrumb from '@/components/layout/breadcrumb.vue'
+import AppImg from '@/components/app/img.vue'
+import EntityAuthorsLinks from '@/components/entity/authors-links.vue'
 import { getHostname } from '~/utils/methods'
 
 interface Props {
-  title: string
-  subtitle: string
-  image: string
-  imageOriginal: string
-  border: boolean
-  cta: string
-  text: string
-  authors: Author[]
-  favorite: boolean
-  entity: Entity
-  color: string
+  title?: string
+  subtitle?: string
+  image?: string
+  imageOriginal?: string
+  border?: boolean
+  cta?: string
+  text?: string
+  type?: string
+  authors?: Author[]
+  favorite?: boolean
+  entity?: Entity | Author
+  color?: string
 }
-const props = withDefaults(defineProps<Props>(), {
-  title: undefined,
-  subtitle: undefined,
-  image: undefined,
-  imageOriginal: undefined,
-  border: false,
-  cta: undefined,
-  text: undefined,
-  authors: () => [],
-  favorite: false,
-  entity: undefined,
-  color: '#ffffff',
-})
-
-const { isFavorite, toggleFavorite } = useFavorite(props.entity)
+const {
+  title,
+  subtitle,
+  image,
+  imageOriginal,
+  border = false,
+  cta,
+  text,
+  type,
+  authors,
+  favorite = false,
+  entity,
+  color = '#ffffff',
+} = defineProps<Props>()
 </script>
 
 <template>
@@ -38,15 +39,14 @@ const { isFavorite, toggleFavorite } = useFavorite(props.entity)
     class="mb-3 border-b"
     :class="
       border
-        ? 'border-gray-200 dark:border-gray-600 md:mb-10 pb-6'
-        : 'border-transparent md:mb-4 pb-2'
+        ? 'border-gray-200 pb-6 dark:border-gray-600 md:mb-10'
+        : 'border-transparent pb-2 md:mb-4'
     "
   >
     <layout-breadcrumb class="mb-6" />
-
     <div class="lg:flex lg:items-center lg:justify-between">
       <!-- Main  -->
-      <div class="sm:items-center sm:flex sm:justify-between">
+      <div class="flex items-center justify-between">
         <div
           :class="{ 'lg:flex lg:items-center': image }"
           class="mx-auto lg:mx-0"
@@ -59,7 +59,7 @@ const { isFavorite, toggleFavorite } = useFavorite(props.entity)
               rel="noopener noreferrer"
               :class="
                 imageOriginal
-                  ? 'hover:shadow transition-shadow duration-100'
+                  ? 'transition-shadow duration-100 hover:shadow'
                   : ''
               "
               class="mx-auto"
@@ -70,21 +70,21 @@ const { isFavorite, toggleFavorite } = useFavorite(props.entity)
                 :color="color"
                 :alt="title"
                 :title="title"
-                class="w-20 h-20"
+                class="h-20 w-20"
                 override="rounded-md object-cover"
               />
             </component>
           </div>
-          <div :class="{ 'sm:ml-5 mt-3 lg:mt-0': image }">
+          <div :class="{ 'mt-3 sm:ml-5 lg:mt-0': image }">
             <div class="md:flex">
               <h1
                 id="message-heading"
-                class="text-2xl font-extrabold font-handlee text-primary-600 dark:text-primary-500 text-center lg:text-left w-full"
+                class="w-full text-center font-handlee text-2xl font-extrabold text-primary-600 dark:text-primary-500 lg:text-left"
               >
                 {{ title }}
               </h1>
               <!-- Favoritable  -->
-              <div v-if="favorite && $auth.$state.loggedIn" class="flex">
+              <!-- <div v-if="favorite && $auth.$state.loggedIn" class="flex">
                 <button
                   class="md:ml-3 p-1 mx-auto"
                   type="button"
@@ -102,20 +102,25 @@ const { isFavorite, toggleFavorite } = useFavorite(props.entity)
                     name="heart"
                   />
                 </button>
-              </div>
+              </div> -->
             </div>
             <!-- Authors  -->
-            <div v-if="authors.length" class="mt-1 text-sm">
-              <block-authors-links
+            <div
+              v-if="authors && authors.length"
+              class="mt-1 text-sm flex items-center"
+            >
+              <span v-if="type" class="mr-1 font-semibold">{{ type }}</span>
+              <entity-authors-links
                 :authors="authors"
                 class="text-center lg:text-left"
+                :lowercase="type !== null"
               />
-              <h2
-                class="text-gray-500 overflow-hidden text-ellipsis mt-1 text-center lg:text-left"
-              >
-                {{ subtitle }}
-              </h2>
             </div>
+            <h2
+              class="mt-1 overflow-hidden text-ellipsis text-center text-gray-500 lg:text-left"
+            >
+              {{ subtitle }}
+            </h2>
           </div>
         </div>
       </div>
@@ -131,19 +136,19 @@ const { isFavorite, toggleFavorite } = useFavorite(props.entity)
     <!-- About  -->
     <div
       v-if="text"
-      class="max-w-full prose word-wraping dark:text-gray-100 text-gray-500 mt-3 italic line-clamp-3"
+      class="word-wraping prose mt-3 max-w-full italic text-gray-500 line-clamp-3 dark:text-gray-100"
     >
       <div v-html="text" />
     </div>
     <!-- External link  -->
-    <div v-if="cta" class="dark:text-gray-400 text-gray-500">
+    <div v-if="cta" class="text-gray-500 dark:text-gray-400">
       <div class="pt-1 text-right">
         To have more informations:
         <a
           :href="cta"
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:text-gray-700 border-b border-gray-500"
+          class="border-b border-gray-500 hover:text-gray-700"
           >{{ getHostname(cta) }}</a
         >
       </div>

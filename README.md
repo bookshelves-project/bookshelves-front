@@ -1,24 +1,25 @@
-# Bookshelves Front <!-- omit in toc -->
+# Bookshelves · Front <!-- omit in toc -->
 
-[![nuxtjs](https://img.shields.io/static/v1?label=NuxtJS&message=v2.15&color=00C58E&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxtjs.org/)
+[![nuxtjs](https://img.shields.io/static/v1?label=Nuxt&message=v3&color=00C58E&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxtjs.org/)
+[![nuxtjs](https://img.shields.io/static/v1?label=Designed%20to%20be&message=SSR&color=00C58E&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxtjs.org/docs/concepts/server-side-rendering/)
 [![tailwindcss](https://img.shields.io/static/v1?label=Tailwind%20CSS&message=v3.0&color=38B2AC&style=flat-square&logo=tailwind-css&logoColor=ffffff)](https://tailwindcss.com/)
-[![nuxtjs](https://img.shields.io/static/v1?label=Designed%20to%20be&message=SSR&color=00C58E&style=flat-square&logo=nuxt.js&logoColor=ffffff)](https://nuxtjs.org/docs/2.x/concepts/server-side-rendering/)
 
 [![NodeJS](https://img.shields.io/static/v1?label=NodeJS&message=v16.13&color=339933&style=flat-square&logo=node.js&logoColor=ffffff)](https://nodejs.org/en)
-[![npm](https://img.shields.io/static/v1?label=NPM&message=v8&color=CB3837&style=flat-square&logo=npm&logoColor=CB3837)](https://docs.npmjs.com/cli/)
+[![pnpm](https://img.shields.io/static/v1?label=pnpm&message=v6.2&color=ffffff&style=flat-square&logo=pnpm)](https://pnpm.io)
 
-[**Repository**](https://gitlab.com/bookshelves-project)
-
+📀 [**bookshelves-project**](https://gitlab.com/bookshelves-project) : Bookshelves repository  
 💻 [**bookshelves.ink**](https://bookshelves.ink): demo  
-📚 [**documentation.bookshelves.ink**](https://documentation.bookshelves.ink): documentation  
+📚 [**documentation.bookshelves.ink**](https://bookshelves-documentation.netlify.app): documentation, if this link not work, you can check doc on [this repository](https://gitlab.com/bookshelves-project/bookshelves-doc)  
 
-## **Table of contents** <!-- omit in toc -->
+Works with [documentation](https://nuxtjs.org).
 
-- [**I. Setup**](#i-setup)
-  - [*I. a. Modify API*](#i-a-modify-api)
-- [**II. Production in SSR**](#ii-production-in-ssr)
+## Commands
 
-## **I. Setup**
+```bash
+npx nuxi upgrade
+```
+
+## **Setup**
 
 Setup local on <http://localhost:3000> with <https://bookshelves.ink> API
 
@@ -31,24 +32,24 @@ cp .env.example .env
 Node.js dependencies
 
 ```bash
-npm i
+pnpm i --shamefully-hoist
 ```
 
 Local serve
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
-### *I. a. Modify API*
+### *Update API*
 
-Modify `.env` on `API_URL` to use local API
+Update `.env` on `API_URL` to use local API
 
 ```yml
 API_URL=http://localhost:8000
 ```
 
-## **II. Production in SSR**
+## **Production in SSR**
 
 Update `.env`
 

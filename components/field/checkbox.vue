@@ -1,22 +1,43 @@
+<script setup lang="ts">
+const props = defineProps<{
+  modelValue?: boolean | string[]
+  name?: string
+  label?: string
+  currentValue?: string
+  required?: boolean
+  full?: boolean
+}>()
+
+const emit = defineEmits(['update:modelValue'])
+
+const value = computed<any>({
+  get() {
+    return props.modelValue
+  },
+  set(val) {
+    emit('update:modelValue', val)
+  },
+})
+</script>
+
 <template>
-  <div class="relative flex items-start">
-    <div class="absolute inset-0" @click="checkbox = !checkbox"></div>
-    <div class="flex items-center h-5">
+  <div :class="full ? 'w-full' : 'item-start'" class="relative flex">
+    <div class="flex h-5 items-center">
       <input
         :id="name"
-        v-model="checkbox"
+        v-model="value"
         :aria-describedby="`${name}-description`"
         :name="name"
         type="checkbox"
         class="checkbox"
-        :value="valueData"
+        :value="currentValue"
         :required="required"
       />
     </div>
-    <div class="ml-3 text-sm w-full">
+    <div class="ml-3 w-full text-sm">
       <label
         :for="name"
-        class="font-medium text-gray-700 dark:text-gray-300 block w-full"
+        class="block w-full font-medium text-gray-700 dark:text-gray-300"
       >
         {{ label }}
         <span v-if="required" class="text-red-600 dark:text-red-500">*</span>
@@ -28,54 +49,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Checkbox',
-  props: {
-    value: {
-      type: [Boolean, Array],
-      default: false,
-    },
-    name: {
-      type: String,
-      default: null,
-    },
-    label: {
-      type: String,
-      default: null,
-    },
-    valueData: {
-      type: String,
-      default: null,
-    },
-    required: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  data() {
-    return {
-      checkbox: false,
-    }
-  },
-  watch: {
-    value(newValue, oldValue) {
-      this.checkbox = newValue
-    },
-    checkbox(newValue, oldValue) {
-      this.$emit('input', this.checkbox)
-    },
-  },
-  created() {
-    this.checkbox = this.value
-  },
-}
-</script>
-
 <style lang="css" scoped>
 .checkbox {
   @apply h-4 w-4 rounded;
-  @apply text-primary-600 border-gray-300 focus:ring-primary-500;
-  @apply dark:text-primary-600 dark:bg-gray-600 dark:border-gray-700 dark:focus:ring-primary-400;
+  @apply border-gray-300 text-primary-600 focus:ring-primary-500;
+  @apply dark:border-gray-700 dark:bg-gray-600 dark:text-primary-600 dark:ring-offset-gray-800 dark:focus:ring-primary-400;
 }
 </style>

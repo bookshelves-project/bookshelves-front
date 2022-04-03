@@ -1,5 +1,6 @@
-import { useApplicationStore } from '~/stores/application'
-import { Author, Tag } from '~/types'
+// import { useApplicationStore } from '~/store/application'
+
+import { useApplicationStore } from '~~/store/application'
 
 /**
  * Get a `string` from `Author[]`
@@ -12,31 +13,36 @@ import { Author, Tag } from '~/types'
  * </div>
  * ```
  */
-export const formatAuthors = (authors: Author[] | undefined) => {
+export const formatAuthors = (authors: Author[] | undefined): string => {
+  let result = 'unknown'
   if (authors?.length) {
-    let authorsToString = ''
+    result = ''
     authors.forEach((author, authorId) => {
-      authorsToString += `${author.name}`
+      result += `${author.name}`
       if (authors.length > 1 && authorId !== authors.length - 1) {
-        authorsToString += ' & '
+        result += ' & '
       }
     })
-    return authorsToString
   }
 
-  return 'unknown'
+  return result
 }
 
 /**
  * Get Language from slug
- * @typeParam `string` of Language.
+ * @typeParam `slug` of Language.
  * @returns `string`
  */
-export const formatLanguage = (slug: string) => {
-  const store = useApplicationStore()
-  const language = store.languages.find(lang => lang.meta?.slug === slug)
+export const formatLanguage = (slug?: string) => {
+  const { languages } = useApplicationStore()
 
-  return language ? language.name : 'unkown'
+  let lang = slug
+  if (languages && languages.length) {
+    const language = languages.find((lang) => lang.meta?.slug === slug)
+    lang = language ? (language.name as string) : slug
+  }
+
+  return lang
 }
 
 /**
@@ -57,4 +63,35 @@ export const formatTags = (tags?: Tag[]) => {
   }
 
   return 'unknown'
+}
+
+/**
+ * Get BookType from slug
+ * @typeParam `slug` of BookType.
+ * @returns `string`
+ */
+export const formatType = (slug?: string) => {
+  const { enums } = useApplicationStore()
+
+  let type = slug
+  if (enums.bookTypes !== null && slug) {
+    const bookType = enums.bookTypes[slug]
+    type = bookType
+  }
+
+  return type
+}
+
+export const colorsList = () => {}
+
+export const instanceBook = (entity: EntityList): entity is Book => {
+  return entity.meta.entity === 'book'
+}
+
+export const instanceSerie = (entity: EntityList): entity is Serie => {
+  return entity.meta.entity === 'serie'
+}
+
+export const instanceAuthor = (entity: EntityList): entity is Author => {
+  return entity.meta.entity === 'author'
 }

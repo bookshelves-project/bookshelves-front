@@ -1,15 +1,12 @@
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-
-@Component({
-  middleware: 'guest',
-  head() {
-    return this.$metadata({
-      title: 'Reset password',
-    })
-  },
-})
-export default class PageResetPassword extends Vue {}
+// @Component({
+//   middleware: 'guest',
+//   head() {
+//     return this.$metadata({
+//       title: 'Reset password',
+//     })
+//   },
+// })
 </script>
 
 <template>
@@ -28,12 +25,12 @@ export default class PageResetPassword extends Vue {}
             ></div>
           </div>
           <div class="relative flex justify-center text-sm">
-            <nuxt-link
-              :to="localePath({ name: 'sign-in-forgot-password' })"
+            <router-link
+              :to="$localePath({ name: 'sign-in-forgot-password' })"
               class="px-2 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:text-gray-800"
             >
               You have an error?
-            </nuxt-link>
+            </router-link>
           </div>
         </div>
         <div class="mt-8">
