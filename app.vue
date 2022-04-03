@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import AppToasts from '@/components/app/toasts.vue'
 import AppHelper from '@/components/app/helper.vue'
+import Preview from '@/components/preview.vue'
 import LayoutNavbar from '@/components/layout/navbar.vue'
 import LayoutSidebar from '@/components/layout/sidebar.vue'
 import LayoutFooter from '@/components/layout/footer/index.vue'
@@ -15,6 +16,7 @@ const isDev = process.dev
   >
     <app-toasts />
     <app-helper v-if="isDev" />
+    <preview />
     <layout-navbar />
     <layout-sidebar />
     <div class="content-min-height pt-16">
