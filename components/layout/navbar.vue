@@ -23,9 +23,14 @@ const toggleSidebar = () => {
             :to="$localePath('/')"
             class="ml-2 flex shrink-0 rounded-md p-2 transition-colors duration-75 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
-            <img
+            <!-- <img
               class="m-auto block h-8 w-8"
               src="/favicon.svg"
+              :alt="config.appName"
+            /> -->
+            <img
+              class="m-auto block h-8 w-8"
+              src="/icon.png"
               :alt="config.appName"
             />
           </router-link>
