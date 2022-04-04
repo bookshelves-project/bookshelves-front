@@ -1,44 +1,60 @@
 <script setup lang="ts">
-interface Attribute {
-  alt?: string
-  class?: string
-  color?: string
-  src?: string
-}
-const attrs: Attribute = useAttrs()
+import lozad from 'lozad'
 
 const props = defineProps<{
-  override?: string
+  color?: string
+  src?: string
+  title?: string
 }>()
 
-const loaded = ref(false)
-const placeholder = 'bg-gray-100 dark:bg-gray-800'
-const meta = ref('')
+const source = ref<string>()
+const lazyMedia = ref<HTMLElement>()
+const media = ref<HTMLImageElement>()
+const display = ref(false)
+const attrs = useAttrs()
 
-const load = () => {
-  loaded.value = true
-  meta.value = attrs.alt ?? ''
-}
+onMounted(() => {
+  source.value = props.src
+  lozad(media.value, {
+    load(el: HTMLImageElement) {
+      el.src = el.dataset.src!
+      el.onload = () => (display.value = true)
+    },
+  }).observe()
+})
 </script>
 
 <template>
-  <div class="relative">
-    <!-- <transition name="fade">
-      <span
-        v-if="!loaded"
-        :class="placeholder"
-        class="absolute inset-0 z-10 block transition-transform duration-100"
-        :style="attrs.color ? `background-color: ${attrs.color}` : ''"
-      ></span>
-    </transition> -->
+  <div ref="lazyMedia" class="lazy-media">
+    <transition>
+      <div
+        v-if="!display"
+        v-bind="attrs"
+        class="placeholder bg-gray-50 dark:bg-gray-800"
+        :style="color ? `background-color: ${color};` : ''"
+      />
+    </transition>
     <img
-      :src="attrs.src"
-      :alt="meta"
-      :title="meta"
-      :class="override"
-      class="app-img !m-0 h-full !w-full object-cover"
-      @load="load"
+      ref="media"
+      v-bind="attrs"
+      :data-src="source"
+      :alt="display ? title : ''"
       loading="lazy"
     />
   </div>
 </template>
+
+<style scoped>
+.lazy-media {
+  position: relative;
+}
+.placeholder {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+img {
+  height: 100%;
+  width: 100%;
+}
+</style>

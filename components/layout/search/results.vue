@@ -46,8 +46,7 @@ const close = () => {
       >
         <app-img
           :src="entity.cover?.thumbnail"
-          class="h-14 w-14 object-cover"
-          override="rounded-md"
+          class="h-14 w-14 object-cover rounded-md"
         />
         <div class="ml-4 overflow-hidden dark:text-gray-400">
           <div class="wiki-title">
