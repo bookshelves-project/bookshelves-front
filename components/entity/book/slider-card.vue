@@ -29,7 +29,7 @@ defineProps<{
           {{ entity.title }}
         </h3>
       </div>
-      <div>
+      <div class="hidden lg:block">
         <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
           >Authors
         </span>
@@ -37,7 +37,7 @@ defineProps<{
           <entity-authors-links :authors="entity.authors" short />
         </h3>
       </div>
-      <div v-if="entity.volume">
+      <div v-if="entity.volume" class="hidden lg:block">
         <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
           >Volume
         </span>
