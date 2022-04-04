@@ -70,8 +70,7 @@ const {
                 :color="color"
                 :alt="title"
                 :title="title"
-                class="h-20 w-20"
-                override="rounded-md object-cover"
+                class="h-20 w-20 rounded-md object-cover"
               />
             </component>
           </div>
@@ -107,7 +106,7 @@ const {
             <!-- Authors  -->
             <div
               v-if="authors && authors.length"
-              class="mt-1 text-sm flex items-center"
+              class="mt-1 text-sm flex items-center mx-auto lg:mx-0 w-max lg:w-full"
             >
               <span v-if="type" class="mr-1 font-semibold">{{ type }}</span>
               <entity-authors-links

@@ -82,7 +82,9 @@ const files = computed((): DownloadList => {
           <entity-tags-links :tags="book.tags" short />
         </dd>
       </div>
-      <div class="large">
+    </dl>
+    <dl class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="small">
         <dt>Abstract</dt>
         <dd
           v-if="book.description"
@@ -91,7 +93,7 @@ const files = computed((): DownloadList => {
         ></dd>
         <dd v-else class="word-wraping italic">No abstract.</dd>
       </div>
-      <div class="large">
+      <div class="small">
         <dt>Formats</dt>
         <dd>
           <ul
@@ -134,13 +136,13 @@ const files = computed((): DownloadList => {
 
 <style lang="css" scoped>
 dt {
-  @apply text-sm font-medium text-gray-500 dark:text-gray-400;
+  @apply text-sm font-medium text-gray-500 dark:text-gray-400 text-center lg:text-left;
 }
 dd {
-  @apply mt-1 text-sm text-gray-900 dark:text-gray-100;
+  @apply mt-1 text-sm text-gray-900 dark:text-gray-100 text-center lg:text-left;
 }
 .group {
-  @apply grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3;
+  @apply grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
 }
 .small {
   @apply md:col-span-1;

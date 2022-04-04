@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="authors && authors.length" class="mt-2 dark:text-white lg:mt-0">
+  <div v-if="authors && authors.length" class="dark:text-white">
     <span v-if="!short">
       <span v-if="lowercase">by </span>
       <span v-else>By </span>
