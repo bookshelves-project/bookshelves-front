@@ -6,29 +6,46 @@ import PaginationLoadMore from '@/components/pagination/load-more.vue'
 const { nuxtAsyncData, nuxtAsyncList } = useFetchable()
 const { params } = useRoute()
 
-const [tag, entities] = await Promise.all([
-  nuxtAsyncData<Tag>('/tags', [params.slug]),
-  nuxtAsyncList<Entity>('/tags/books', [params.slug]),
-])
+const tag = ref<Tag>()
+const meta = ref<ApiMeta>()
+const list = ref<Entity[]>()
+const listRoute: Endpoint = '/tags/books'
 
-const title = `Tag ${tag.name}`
-const description = `Books and series with tag ${tag.name}`
+const title = ref<string>()
+const description = ref<string>()
 
-const load = () => {}
+const load = async () => {
+  const [entity, entities] = await Promise.all([
+    nuxtAsyncData<Tag>('/tags', [params.slug]),
+    nuxtAsyncList<Entity>(listRoute, [params.slug]),
+  ])
+
+  tag.value = entity
+  meta.value = entities.meta
+  list.value = entities.data
+  title.value = `Tag ${entity.name}`
+  description.value = `Books and series with tag ${entity.name}`
+}
+await load()
+
+const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
+  meta.value = payload.meta
+  list.value = list.value?.concat(payload.data)
+}
 </script>
 
 <template>
-  <div v-if="tag && entities" class="main-content">
+  <div v-if="tag" class="main-content">
     <app-header :title="title" :subtitle="description" />
     <div>
-      <entity-list :entities="entities?.data" />
-      <!-- <pagination-load-more
-        class="mt-14 mb-5"
-        :last-page="entities.meta.last_page"
-        :endpoint="`tags/books/${tag.meta.slug}`"
-        :entities="entities.data"
-        @load="load"
-      /> -->
+      <entity-list :entities="list" />
+      <div v-if="meta" class="mt-14 mb-5">
+        <pagination-load-more
+          :meta="meta"
+          :endpoint="listRoute"
+          @load="paginate"
+        />
+      </div>
     </div>
   </div>
 </template>

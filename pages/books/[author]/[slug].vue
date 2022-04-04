@@ -14,27 +14,17 @@ const route = useRoute()
 const title = ref<string>()
 const book = ref<Book>()
 
-// await nuxtAsync<ApiResponse<Book>>('book', '/books', [
-//   params.author,
-//   params.slug,
-// ]).then((e) => {
-//   const bookData = e?.data
-//   if (bookData) {
-//     const serie = bookData.serie
-//       ? ` · ${bookData.serie.title}, vol. ${bookData.volume} `
-//       : ''
-//     const authors = formatAuthors(bookData.authors)
-//     title.value = `${bookData.title} ${serie}by ${authors}`
-//     book.value = bookData
-//   }
-// })
-
 const load = async () => {
   const entity = await await nuxtAsyncData<Book>('/books', [
     route.params.author,
     route.params.slug,
   ])
   book.value = entity
+  const serie = entity.serie
+    ? ` · ${entity.serie.title}, vol. ${entity.volume} `
+    : ''
+  const authors = formatAuthors(entity.authors)
+  title.value = `${entity.title} ${serie}by ${authors}`
 }
 await load()
 
@@ -74,7 +64,7 @@ useMeta({
     </app-header>
     <entity-book-main :book="book" class="mb-6" />
     <div
-      class="divide-x divide-transparent lg:grid lg:grid-cols-2 lg:divide-gray-200 dark:lg:divide-gray-600"
+      class="divide-x divide-transparent xl:grid xl:grid-cols-2 xl:divide-gray-200 dark:xl:divide-gray-600"
     >
       <entity-book-serie
         v-if="book.serie !== null"
@@ -84,7 +74,7 @@ useMeta({
       <entity-book-related
         v-if="book.tags?.length || book.genres?.length"
         :book="book"
-        :class="book.serie ? 'lg:pl-10' : ''"
+        :class="book.serie ? 'xl:pl-10' : ''"
       />
     </div>
     <entity-comment :entity="book" class="mt-6" />

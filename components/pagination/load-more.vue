@@ -4,36 +4,34 @@ import AppLoading from '@/components/app/loading.vue'
 
 const props = defineProps<{
   meta: ApiMeta
+  endpoint: Endpoint
 }>()
 
-const { nuxtFetch } = useFetchable()
+const emit = defineEmits<{
+  (e: 'load', payload: ApiPaginateResponse<Entity[]>): void
+}>()
+
+const { nuxtFetchBase } = useFetchable()
 
 const pending = ref(false)
 const disabled = ref(false)
 
-const load = () => {
+const load = async () => {
   const currentPage = props.meta.current_page
   const lastPage = props.meta.last_page
   const nextPage = (
     lastPage !== currentPage ? currentPage + 1 : lastPage
   ).toString()
 
+  const list = await nuxtFetchBase<ApiPaginateResponse<Entity[]>>(
+    `${props.meta.path}?page=${nextPage}&size=${props.meta.per_page}`
+  )
   console.log(nextPage)
   console.log(props.meta)
-  const route = useRoute()
-  const router = useRouter()
-  console.log(router)
-  router.replace({
-    name: route.name!,
-    query: {
-      page: nextPage,
-    },
-  })
-}
+  console.log(list.data)
 
-defineEmits<{
-  (e: 'load', payload: ApiPaginateResponse<any>): void
-}>()
+  emit('load', list)
+}
 </script>
 
 <template>
@@ -42,7 +40,7 @@ defineEmits<{
       <transition name="fade">
         <app-button
           v-if="!disabled"
-          :color="`secondary`"
+          color="primary"
           class="w-full max-w-lg mx-auto"
           :disabled="disabled"
           align="center"

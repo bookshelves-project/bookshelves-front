@@ -7,15 +7,18 @@ const props = defineProps<{
   entities?: ApiPaginateResponse<Entity[]>
   count?: number
   name?: string
-  endpoint?: Endpoint
+  endpoint: Endpoint
 }>()
 
-const local = ref<ApiPaginateResponse<Entity[]>>()
-local.value = props.entities
+const meta = ref<ApiMeta>()
+const list = ref<Entity[]>()
 
-const load = (api: ApiPaginateResponse<Entity>) => {
-  // this.series = [...this.series, ...api.data]
-  // this.seriesMeta = api.meta
+meta.value = props.entities?.meta
+list.value = props.entities?.data
+
+const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
+  meta.value = payload.meta
+  list.value = list.value?.concat(payload.data)
 }
 </script>
 
@@ -23,17 +26,13 @@ const load = (api: ApiPaginateResponse<Entity>) => {
   <div>
     <app-divider> {{ count }} {{ name }} </app-divider>
     <div class="display-grid space-y-6 sm:space-y-0">
-      <entity-card
-        v-for="(entity, id) in local?.data"
-        :key="id"
-        :entity="entity"
-      />
+      <entity-card v-for="(entity, id) in list" :key="id" :entity="entity" />
     </div>
-    <div class="mt-14 mb-5">
+    <div v-if="meta" class="mt-14 mb-5">
       <pagination-load-more
-        :meta="entities?.meta"
+        :meta="meta"
         :endpoint="endpoint"
-        @load="load"
+        @load="paginate"
       />
     </div>
   </div>
