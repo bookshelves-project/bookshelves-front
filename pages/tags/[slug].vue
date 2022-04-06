@@ -38,7 +38,7 @@ const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
   <div v-if="tag" class="main-content">
     <app-header :title="title" :subtitle="description" />
     <div>
-      <entity-list :entities="list" />
+      <entity-list :entities="list" entity-name />
       <div v-if="meta" class="mt-14 mb-5">
         <pagination-load-more
           :meta="meta"
