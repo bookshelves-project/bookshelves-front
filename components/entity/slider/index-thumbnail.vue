@@ -2,7 +2,7 @@
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue'
 import { Pagination, Navigation, FreeMode, Thumbs } from 'swiper'
 import SvgIcon from '@/components/svg-icon.vue'
-import EntityBookSliderCard from '@/components/entity/book/slider-card.vue'
+import EntitySliderCardThumbnail from '@/components/entity/slider/card-thumbnail.vue'
 import AppImg from '@/components/app/img.vue'
 import AppButton from '@/components/app/button.vue'
 import { Swiper as SwiperInterface } from 'swiper/types'
@@ -37,13 +37,13 @@ const thumbs = {
     clickable: true,
   },
   breakpoints: {
-    500: {
+    600: {
       slidesPerView: 2,
     },
-    800: {
+    900: {
       slidesPerView: 5,
     },
-    1200: {
+    1300: {
       slidesPerView: 5,
     },
   },
@@ -110,7 +110,7 @@ watch(
                 :key="id"
                 class="swiper-lazy"
               >
-                <entity-book-slider-card :entity="entity" />
+                <entity-slider-card-thumbnail :entity="entity" />
               </swiper-slide>
               <div class="swiper-button swiper-button-prev">
                 <svg-icon name="chevron-right" />
