@@ -17,6 +17,7 @@ interface Props {
   favorite?: boolean
   entity?: Entity | Author
   color?: string
+  breadcrumb?: string
 }
 const {
   title,
@@ -43,7 +44,7 @@ const {
         : 'border-transparent pb-2 md:mb-4'
     "
   >
-    <layout-breadcrumb class="mb-6" />
+    <layout-breadcrumb class="mb-6" :title="breadcrumb" />
     <div class="lg:flex lg:items-center lg:justify-between">
       <!-- Main  -->
       <div class="flex items-center justify-between">

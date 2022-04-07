@@ -39,6 +39,7 @@ useMeta({
       :cta="author.link"
       :text="author.description"
       :entity="author"
+      :breadcrumb="title"
       favorite
     >
       <download-button :download="author.download" :files="author.files" />
@@ -57,6 +58,9 @@ useMeta({
         :endpoint="'/authors/series'"
       />
     </div>
-    <entity-comment :entity="author" />
+    <entity-comment
+      :entity="author"
+      class="border-t border-gray-400 dark:border-gray-700 pt-6 mt-10"
+    />
   </main>
 </template>

@@ -10,6 +10,7 @@ import EntityComment from '@/components/entity/comment/index.vue'
 const serie = ref<Serie>()
 const books = ref<ApiPaginateResponse<Entity[]>>()
 const booksList = ref<Entity[]>()
+const breadcrumb = ref<string>()
 
 const { nuxtAsync, nuxtAsyncList } = useFetchable()
 const route = useRoute()
@@ -26,6 +27,7 @@ const load = async () => {
   serie.value = entity
   books.value = list
   booksList.value = list.data
+  breadcrumb.value = `${entity.title} (${entity.type})`
 }
 await load()
 
@@ -54,6 +56,7 @@ useMeta({
       :cta="serie.link"
       :text="serie.description"
       :entity="serie"
+      :breadcrumb="breadcrumb"
       favorite
     >
       <div class="flex">
@@ -80,6 +83,9 @@ useMeta({
         class="mt-6 mb-5"
       />
     </div>
-    <entity-comment :entity="serie" />
+    <entity-comment
+      :entity="serie"
+      class="border-t border-gray-400 dark:border-gray-700 pt-6 mt-10"
+    />
   </main>
 </template>
