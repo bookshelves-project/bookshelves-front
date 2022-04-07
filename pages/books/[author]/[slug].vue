@@ -2,7 +2,7 @@
 import AppHeader from '@/components/app/header.vue'
 import EntityBookOverview from '@/components/entity/book/overview.vue'
 import DownloadButton from '@/components/entity/download-button.vue'
-import EntityComment from '@/components/entity/comment/index.vue'
+import EntityReview from '@/components/entity/review/index.vue'
 import { formatAuthors } from '~~/utils/methods'
 
 const { nuxtAsyncData } = useFetchable()
@@ -64,8 +64,8 @@ useMeta({
       </div>
     </app-header>
     <entity-book-overview :book="book" class="mb-6">
-      <template #comments>
-        <entity-comment :entity="book" />
+      <template #reviews>
+        <entity-review :entity="book" />
       </template>
     </entity-book-overview>
   </main>

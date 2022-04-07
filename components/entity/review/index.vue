@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import EntityCommentList from '@/components/entity/comment/list.vue'
-import FormComment from '@/components/form/comment.vue'
+import EntityReviewList from '@/components/entity/review/list.vue'
+import FormReview from '@/components/form/review.vue'
 import FieldRatingStars from '@/components/field/rating-stars.vue'
 
 const props = defineProps<{
@@ -9,15 +9,15 @@ const props = defineProps<{
 
 const { moduleSocial, moduleSocialRating } = useRuntimeConfig()
 const { nuxtFetchBase } = useFetchable()
-const comments = ref<CommentData[]>()
+const reviews = ref<Review[]>()
 
 const load = async () => {
-  if (props.entity.meta.comments) {
-    const response = await nuxtFetchBase<ApiPaginateResponse<CommentData[]>>(
-      props.entity.meta.comments
+  if (props.entity.meta.reviews) {
+    const response = await nuxtFetchBase<ApiPaginateResponse<Review[]>>(
+      props.entity.meta.reviews
     )
 
-    comments.value = response.data
+    reviews.value = response.data
   }
 }
 await load()
@@ -25,10 +25,10 @@ await load()
 const avg = computed(() => {
   let avg = undefined
   const ratings: any[] = []
-  if (comments.value) {
-    comments.value.forEach((comment) => {
-      if (comment.rating) {
-        ratings.push(comment.rating)
+  if (reviews.value) {
+    reviews.value.forEach((review) => {
+      if (review.rating) {
+        ratings.push(review.rating)
       }
     })
     const sum = ratings.reduce((a, b) => parseFloat(a) + parseFloat(b), 0)
@@ -40,8 +40,8 @@ const avg = computed(() => {
 const refresh = async (slug: string) => {
   // try {
   //   const entity = this.$route.name.split('-')[0].slice(0, -1)
-  //   const comments = await this.$axios.$get(`/comments/${entity}/${slug}`)
-  //   this.commentsList = comments.data
+  //   const reviews = await this.$axios.$get(`/reviews/${entity}/${slug}`)
+  //   this.reviewsList = reviews.data
   // } catch (error) {
   //   console.error(error)
   // }
@@ -49,25 +49,25 @@ const refresh = async (slug: string) => {
 </script>
 
 <template>
-  <section v-if="moduleSocial" aria-labelledby="book-comments" class="mt-6">
+  <section v-if="moduleSocial" aria-labelledby="book-reviews" class="mt-6">
     <h2
       id="book-heading"
       class="text-2xl font-handlee font-semibold text-primary-600 dark:text-gray-100"
     >
-      Comments
+      Reviews
     </h2>
     <div class="flex items-center space-x-3">
       <p class="text-gray-500 dark:text-gray-400">
-        {{ comments ? comments.length : '0' }} comments
+        {{ reviews ? reviews.length : '0' }} reviews
       </p>
-      <div v-if="moduleSocialRating && comments && comments.length > 5">
+      <div v-if="moduleSocialRating && reviews && reviews.length > 5">
         <field-rating-stars :rating="avg" disabled />
       </div>
     </div>
 
     <div class="grid lg:grid-cols-3 gap-8">
-      <entity-comment-list :comments="comments" class="col-span-2" />
-      <form-comment class="col-span-1" @refresh="refresh" />
+      <entity-review-list :reviews="reviews" class="col-span-2" />
+      <form-review class="col-span-1" @refresh="refresh" />
     </div>
   </section>
 </template>

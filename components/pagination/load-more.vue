@@ -8,7 +8,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'load', payload: ApiPaginateResponse<Entity[]>): void
+  (e: 'load', payload: ApiPaginateResponse<any[]>): void
 }>()
 
 const { nuxtFetchBase } = useFetchable()

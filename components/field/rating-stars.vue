@@ -106,6 +106,6 @@ const save = (id: number) => {
 
 <style>
 .star {
-  @apply text-yellow-300 dark:text-yellow-400;
+  @apply text-gray-900 dark:text-gray-100;
 }
 </style>

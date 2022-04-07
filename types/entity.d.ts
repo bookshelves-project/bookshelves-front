@@ -1,9 +1,9 @@
 declare interface EntityMeta {
   entity: EntityType
   author?: string
-  slug?: string
+  slug: string
   show?: string
-  comments?: string
+  reviews?: string
 }
 
 declare interface Entity {

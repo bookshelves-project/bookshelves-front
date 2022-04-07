@@ -5,7 +5,7 @@ import AppDivider from '@/components/app/divider.vue'
 import EntityList from '@/components/entity/list.vue'
 import EntityTagsLinks from '@/components/entity/tags-links.vue'
 import PaginationLoadMore from '@/components/pagination/load-more.vue'
-import EntityComment from '@/components/entity/comment/index.vue'
+import EntityReview from '@/components/entity/review/index.vue'
 
 const serie = ref<Serie>()
 const books = ref<ApiPaginateResponse<Entity[]>>()
@@ -83,7 +83,7 @@ useMeta({
         class="mt-6 mb-5"
       />
     </div>
-    <entity-comment
+    <entity-review
       :entity="serie"
       class="border-t border-gray-400 dark:border-gray-700 pt-6 mt-10"
     />

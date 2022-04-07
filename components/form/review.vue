@@ -12,12 +12,12 @@ const submit = async () => {
   // const slug = params.slug
   // try {
   // const entity = name.split('-')[0].slice(0, -1)
-  // await this.$axios.$post(`/comments/store/${entity}/${slug}`, this.form)
+  // await this.$axios.$post(`/reviews/store/${entity}/${slug}`, this.form)
   // form.value.text = ''
   // form.value.rating = 0
   // this.$nuxt.$emit('toast', {
   //   title: 'Success!',
-  //   text: 'Thanks you for your comment.',
+  //   text: 'Thanks you for your review.',
   //   type: 'success',
   // })
   // } catch (error) {
@@ -51,7 +51,7 @@ const submit = async () => {
               name="text"
               rows="3"
               maxlength="1500"
-              placeholder="Add a comment*"
+              placeholder="Add a review*"
               multiline
             ></field-text-input>
             <field-rating-stars
@@ -82,14 +82,14 @@ const submit = async () => {
                 class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600"
                 :disabled="form.text === ''"
               >
-                Comment
+                Review
               </button>
             </div>
           </form>
         </div> -->
       </div>
       <div v-else class="text-gray-400 italic">
-        You must be logged in to post a comment.
+        You must be logged in to post a review.
       </div>
     </transition>
   </div>

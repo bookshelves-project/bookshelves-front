@@ -4,7 +4,7 @@ declare interface AuthorMeta {
   show?: string
   books?: string
   series?: string
-  comments?: string
+  reviews?: string
 }
 
 declare interface AuthorCount {
@@ -24,5 +24,5 @@ declare interface Author {
   download?: DownloadFile
   files?: DownloadList
   isFavorite?: boolean
-  comments?: CommentData[]
+  reviews?: Review[]
 }

@@ -212,7 +212,7 @@ const success = (payload: boolean) => {
       />
     </div>
     <div class="lg:col-span-2 lg:pr-8">
-      <slot name="comments" />
+      <slot name="reviews" />
     </div>
   </div>
 </template>
