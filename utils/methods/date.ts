@@ -3,7 +3,7 @@ function getDaysDiff(startDate = new Date(), endDate = new Date()) {
     ;[startDate, endDate] = [endDate, startDate]
   }
 
-  const timeDiff = endDate - startDate
+  const timeDiff = endDate.getTime() - startDate.getTime()
   const timeDiffInDays = Math.floor(timeDiff / (1000 * 3600 * 24))
 
   return timeDiffInDays
@@ -70,7 +70,10 @@ function getYearsDiff(startDate = new Date(), endDate = new Date()) {
 }
 
 // time difference in format: X years, Y months, Z days
-export const calExactTimeDiff = (firstDate: Date, secondDate = new Date()) => {
+export const calExactTimeDiff = (firstDate?: Date, secondDate = new Date()) => {
+  if (!firstDate) {
+    return ''
+  }
   firstDate = new Date(firstDate)
   secondDate = new Date(secondDate)
   if (firstDate > secondDate) {
@@ -126,14 +129,11 @@ export const calExactTimeDiff = (firstDate: Date, secondDate = new Date()) => {
     exactTimeDiffUnits.mths === 0 &&
     exactTimeDiffUnits.dys === 0
   ) {
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
-    const hoursOptions = {
-      timeZone,
+    const timeToString = firstDate.toLocaleString('fr', {
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       hour: 'numeric',
       minute: 'numeric',
-    }
-
-    const timeToString = firstDate.toLocaleString('fr', hoursOptions)
+    })
 
     return `today at ${timeToString}`
   }
@@ -157,7 +157,10 @@ export const calExactTimeDiff = (firstDate: Date, secondDate = new Date()) => {
   return time
 }
 
-export const date = (date: Date) => {
+export const date = (date?: Date) => {
+  if (!date) {
+    return ''
+  }
   date = new Date(date)
 
   let userLang = 'en'
