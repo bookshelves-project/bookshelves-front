@@ -114,7 +114,7 @@ onMounted(() => {
 
 <style lang="css" scoped>
 .sm {
-  @apply px-2 py-1;
+  @apply px-3 py-1;
 }
 .md {
   @apply px-4 py-2;

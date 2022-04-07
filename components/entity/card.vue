@@ -87,7 +87,7 @@ const {
     <div class="mt-2 h-full min-w-0 flex-1">
       <div
         v-if="type !== null && !noType"
-        class="absolute top-0 left-0 bg-gray-900 z-10 p-2 rounded-br-md text-sm font-semibold bg-opacity-60"
+        class="absolute top-0 left-0 bg-gray-900 p-2 rounded-br-md text-sm font-semibold bg-opacity-60 text-white dark:text-white"
       >
         {{ type }}
       </div>
