@@ -20,6 +20,8 @@ build-job:
   script:
     - pnpm i
     - pnpm build
+  only:
+    - main
 
 deploy-job:
   stage: deploy
