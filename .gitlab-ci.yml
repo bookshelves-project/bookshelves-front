@@ -18,6 +18,7 @@ build-job:
     paths:
       - node_modules/
   script:
+    - npm i -g pnpm
     - pnpm i
     - pnpm build
   only:
