@@ -7,16 +7,12 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="authors && authors.length" class="dark:text-white">
+  <div v-if="authors && authors.length">
     <span v-if="!short">
       <span v-if="lowercase">by </span>
       <span v-else>By </span>
     </span>
-    <span
-      v-for="(author, authorId) in authors"
-      :key="authorId"
-      class="mr-1 dark:text-gray-100"
-    >
+    <span v-for="(author, authorId) in authors" :key="authorId" class="mr-1">
       <router-link
         :to="
           $localePath({
@@ -27,10 +23,7 @@ defineProps<{
         class="internal-link"
         >{{ author.name }}</router-link
       >
-      <span
-        v-if="authors.length > 1 && authorId !== authors.length - 1"
-        class="text-gray-900 dark:text-gray-100"
-      >
+      <span v-if="authors.length > 1 && authorId !== authors.length - 1">
         &</span
       >
     </span>
