@@ -1,58 +1,38 @@
+<script setup lang="ts">
+import EntityCommentCard from '@/components/entity/comment/card.vue'
+
+const props = defineProps<{
+  comments?: CommentData[]
+}>()
+
+const list = ref<CommentData[]>()
+list.value = props.comments
+
+const remove = (id: number) => {
+  list.value = list.value?.filter((comment) => comment.id !== id)
+  // try {
+  //   await this.$axios.$post(`/comments/destroy/${id}`)
+  // } catch (error) {
+  //   console.error(error)
+  // }
+}
+</script>
+
 <template>
-  <div>TODO comment-list</div>
-</template>
-<!-- <template>
-  <div class="py-2 lg:pr-4">
-    <ul
-      v-if="commentsList.length > 0"
+  <div class="space-y-10">
+    <div
+      v-if="comments && comments.length > 0"
       class="overflow-y-auto max-h-96 scrollbar-thin"
     >
       <transition-group name="list" tag="li">
-        <block-comments-card
-          v-for="comment in commentsList"
+        <entity-comment-card
+          v-for="comment in list"
           :key="comment.id"
           :comment="comment"
-          @destroy="deleteComment"
+          @destroy="remove"
         />
       </transition-group>
-    </ul>
-    <div v-else class="italic text-gray-400">No comments available</div>
+    </div>
+    <div v-else class="italic text-gray-400 mt-2">No comments available</div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'CommentsList',
-  props: {
-    comments: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  data() {
-    return {
-      commentsList: [],
-    }
-  },
-  watch: {
-    comments(newValue, oldValue) {
-      this.commentsList = newValue
-    },
-  },
-  mounted() {
-    this.commentsList = this.comments
-  },
-  methods: {
-    async deleteComment(id) {
-      const comments = this.commentsList.filter((comment) => comment.id !== id)
-      this.commentsList = comments
-
-      try {
-        await this.$axios.$post(`/comments/destroy/${id}`)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-  },
-}
-</script> -->
