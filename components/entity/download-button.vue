@@ -32,7 +32,8 @@ getOtherFormats()
   <div v-if="download">
     <app-button-group :action="download.url" :deployable="deployable">
       <svg-icon name="download" class="w-6 h-6 mr-1" />
-      Download {{ download.count ? download.count : '' }}
+      <span class="hidden md:block mr-1">Download</span>
+      {{ download.count ? download.count : '' }}
       {{ download?.format.toUpperCase() }} ({{ download.isZip ? 'ZIP' : '' }}
       {{ download.size }})
       <template #content>
@@ -45,7 +46,8 @@ getOtherFormats()
               class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-75 block px-4 py-2 text-sm"
               role="menuitem"
             >
-              Download {{ file.count ? file.count : '' }}
+              <span class="hidden md:block mr-1">Download</span>
+              {{ file.count ? file.count : '' }}
               {{ file.format.toUpperCase() }} ({{ file.isZip ? 'ZIP' : '' }}
               {{ file.size }})
             </a>

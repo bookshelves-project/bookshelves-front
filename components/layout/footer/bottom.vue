@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
 import packageJson from '~/package.json'
+import LayoutFooterBackToTop from '@/components/layout/footer/back-to-top.vue'
+import LayoutFooterCreativeCommons from '@/components/layout/footer/creative-commons.vue'
 
 const config = useRuntimeConfig()
 const date = (begin: number) => {
@@ -11,20 +12,6 @@ const date = (begin: number) => {
   }
   return year
 }
-const licenses = [
-  {
-    label: 'Creative Commons',
-    name: 'creative-commons/cc',
-  },
-  {
-    label: 'Creative Commons By',
-    name: 'creative-commons/by',
-  },
-  {
-    label: 'Creative Commons Nc',
-    name: 'creative-commons/nc',
-  },
-]
 </script>
 
 <template>
@@ -43,15 +30,7 @@ const licenses = [
           aria-label="Creative commons"
           class="mx-auto flex items-center space-x-2 transition-colors duration-100"
         >
-          <span class="flex space-x-1">
-            <svg-icon
-              v-for="(license, index) in licenses"
-              :key="index"
-              :alt="license.label"
-              :name="license.name"
-              class="hidden h-5 w-5 md:block"
-            ></svg-icon>
-          </span>
+          <layout-footer-creative-commons />
           <span>{{ date(2020) }}</span>
         </a>
       </div>
@@ -86,7 +65,7 @@ const licenses = [
       </span>
     </div>
     <div class="mt-6 flex lg:mt-0">
-      <!-- <layout-back-to-top class="mx-auto" /> -->
+      <layout-footer-back-to-top class="mx-auto" />
     </div>
   </div>
 </template>

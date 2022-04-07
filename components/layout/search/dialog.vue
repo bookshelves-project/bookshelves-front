@@ -40,6 +40,7 @@ const fetchResults = async (input: string) => {
 
   try {
     firstSearch.value = true
+    results.value = {}
     const data = await nuxtAsyncData<Search>('/entities/search', [], {
       q: input,
       types: types.join(','),
@@ -65,7 +66,7 @@ const list = computed(() => [
   },
   {
     key: results.value?.relevant?.books,
-    title: 'More relevant authors',
+    title: 'More relevant books',
   },
   {
     key: results.value?.other?.authors,

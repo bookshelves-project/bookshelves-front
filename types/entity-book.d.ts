@@ -3,6 +3,7 @@ declare interface BookMeta {
   slug: string
   author: string
   show: string
+  reviews?: string
 }
 
 declare interface BookSerie {
@@ -58,5 +59,5 @@ declare interface Book {
   webreader?: string
   googleBook?: GoogleBook
   isFavorite?: boolean
-  comments?: CommentData[]
+  reviewsCount?: number
 }

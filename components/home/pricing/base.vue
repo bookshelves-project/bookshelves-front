@@ -24,7 +24,7 @@ const account: CmsPricing = {
   description: `You like ${config.appName} so much that you want extra features with an account?`,
   features: [
     'Get a list of your favorite eBooks',
-    'Leave ratings and comments',
+    'Leave ratings and reviews',
     'Propose your eBooks',
   ],
   cta: 'Sign up',

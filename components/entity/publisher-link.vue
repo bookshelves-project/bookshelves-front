@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="publisher" class="mt-2 dark:text-white lg:mt-0">
+  <div v-if="publisher" class="dark:text-white">
     <router-link
       :to="
         $localePath({

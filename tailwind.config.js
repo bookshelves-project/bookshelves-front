@@ -50,6 +50,10 @@ module.exports = {
           '@apply container !max-w-7xl lg:pt-6 pt-5 text-black dark:text-white':
             {},
         },
+        '.main-block': {
+          '@apply mx-auto max-w-md px-6 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8':
+            {},
+        },
         '.content-min-height': {
           '@apply min-h-[70vh]': {},
         },

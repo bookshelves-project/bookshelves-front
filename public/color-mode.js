@@ -1,12 +1,12 @@
-if (
-  localStorage.getItem('color-scheme') ||
-  'auto' === 'dark' ||
-  (window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches &&
-    localStorage.getItem('color-scheme')) ||
-  'auto' !== 'light'
-) {
-  document.documentElement.classList.toggle('dark', true)
+const colorScheme = localStorage.getItem('color-scheme')
+
+if (colorScheme) {
+  document.documentElement.classList.toggle(colorScheme, true)
 } else {
-  document.documentElement.classList.toggle('light', true)
+  const system =
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light'
+  document.documentElement.classList.toggle(system, true)
 }

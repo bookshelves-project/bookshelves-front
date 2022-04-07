@@ -78,6 +78,12 @@ export const useFetchable = () => {
     return Math.random().toString(36).substr(2)
   }
 
+  const nuxtFetchBase = async <T>(endpoint: string): Promise<T> => {
+    const { data, error } = await useFetch<T>(endpoint)
+
+    return data.value
+  }
+
   const nuxtFetch = async <T>(
     endpoint: Endpoint,
     params: Params = [],
@@ -124,6 +130,7 @@ export const useFetchable = () => {
 
   return {
     fullUrl,
+    nuxtFetchBase,
     nuxtFetch,
     // nuxtAsyncList,
     // nuxtAsync,

@@ -1,52 +1,77 @@
 <script setup lang="ts">
-import EntityBookSlider from '@/components/entity/book/slider.vue'
+import EntitySlider from '@/components/entity/slider/index.vue'
+import AppButton from '@/components/app/button.vue'
 
 const props = defineProps<{
   book: Book
 }>()
 
-const { nuxtAsyncData } = useFetchable()
-const entities = ref<Entity[]>()
+// const { nuxtAsyncData } = useFetchable()
+// const entities = ref<Entity[]>()
+// const isAvailable = ref(true)
+// const loaded = ref(false)
+
+const emit = defineEmits<{
+  (e: 'success', payload: boolean): void
+}>()
+
+// const load = async () => {
+//   if (props.book !== null) {
+//     const list = await nuxtAsyncData<Entity[]>('/entities/related', [
+//       props.book.meta.author as string,
+//       props.book.meta.slug as string,
+//     ])
+//       .then((e) => {
+//         entities.value = e
+//         loaded.value = true
+//       })
+//       .catch(() => {
+//         isAvailable.value = false
+//       })
+//   }
+// }
+
+// onMounted(async () => {
+//   await load()
+// })
+
 const isAvailable = ref(true)
-const loaded = ref(false)
 
-const load = async () => {
-  if (props.book !== null) {
-    const list = await nuxtAsyncData<Entity[]>('/entities/related', [
-      props.book.meta.author as string,
-      props.book.meta.slug as string,
-    ])
-      .then((e) => {
-        entities.value = e
-        loaded.value = true
-      })
-      .catch(() => {
-        isAvailable.value = false
-      })
-  }
+const related: SelectedEntities = {
+  key: 'selection',
+  endpoint: '/entities/related',
+  paramsList: [props.book.meta.author, props.book.meta.slug],
+  eyebrow: 'Do you want more?',
+  right: false,
+  title: 'Related books & series',
+  text: 'Based on tags & genre, not in same series. Limited to 10 first results.',
 }
-
-onMounted(async () => {
-  await load()
-})
+const success = (payload: boolean) => {
+  isAvailable.value = payload
+  emit('success', payload)
+}
 </script>
 
 <template>
-  <entity-book-slider
-    v-if="book && isAvailable"
-    :entities="entities"
-    :loaded="loaded"
-    :route="{
-      name: 'related-author-slug',
-      params: {
-        author: book.meta.author,
-        slug: book.meta.slug,
-      },
-    }"
-  >
-    <template #title>Related books & series</template>
-    <template #subtitle>
-      Based on tags & genre, not in same series. Limited to 10 first results.
-    </template>
-  </entity-book-slider>
+  <div class="mt-8">
+    <div v-if="isAvailable">
+      <entity-slider v-if="book" :selection="related" @success="success" />
+      <div class="mt-6 flex">
+        <app-button
+          :to="{
+            name: 'related-author-slug',
+            params: {
+              author: book.meta.author,
+              slug: book.meta.slug,
+            },
+          }"
+          class="mx-auto"
+          color="white"
+          align="center"
+        >
+          View all results
+        </app-button>
+      </div>
+    </div>
+  </div>
 </template>

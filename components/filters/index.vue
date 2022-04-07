@@ -136,7 +136,7 @@ const queryAvailable = computed(() => {
                   <filters-option
                     v-if="serie"
                     :filter="filterSerie.type"
-                    label="Disallow series"
+                    label="Remove series"
                     type="switch"
                   />
                   <filters-option

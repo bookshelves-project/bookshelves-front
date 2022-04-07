@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppHeader from '@/components/app/header.vue'
 import EntityBlock from '@/components/entity/block.vue'
-import EntityComment from '@/components/entity/comment/index.vue'
+import EntityReview from '@/components/entity/review/index.vue'
 import DownloadButton from '@/components/entity/download-button.vue'
 const { params } = useRoute()
 const { nuxtAsyncData, nuxtAsyncList } = useFetchable()
@@ -39,6 +39,7 @@ useMeta({
       :cta="author.link"
       :text="author.description"
       :entity="author"
+      :breadcrumb="title"
       favorite
     >
       <download-button :download="author.download" :files="author.files" />
@@ -57,6 +58,9 @@ useMeta({
         :endpoint="'/authors/series'"
       />
     </div>
-    <entity-comment :entity="author" />
+    <entity-review
+      :entity="author"
+      class="border-t border-gray-400 dark:border-gray-700 pt-6 mt-10"
+    />
   </main>
 </template>

@@ -26,6 +26,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "lozad": "^1.16.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.13",
     "qs": "^6.10.3",
@@ -39,6 +40,7 @@
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/line-clamp": "^0.3.1",
     "@tailwindcss/typography": "^0.5.2",
+    "@types/lozad": "^1.16.1",
     "@types/qs": "^6.9.7",
     "@vueuse/nuxt": "^8.2.4",
     "eslint": "^8.12.0",

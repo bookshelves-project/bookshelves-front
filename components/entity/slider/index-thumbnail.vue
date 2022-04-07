@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue'
-import { Pagination, Navigation } from 'swiper'
+import { Pagination, Navigation, FreeMode, Thumbs } from 'swiper'
 import SvgIcon from '@/components/svg-icon.vue'
-import EntityBookSliderCard from '@/components/entity/book/slider-card.vue'
+import EntitySliderCardThumbnail from '@/components/entity/slider/card-thumbnail.vue'
 import AppImg from '@/components/app/img.vue'
 import AppButton from '@/components/app/button.vue'
 import { Swiper as SwiperInterface } from 'swiper/types'
@@ -10,7 +10,7 @@ import { Swiper as SwiperInterface } from 'swiper/types'
 const props = defineProps<{
   entities?: Entity[]
   loaded: boolean
-  route: object
+  route: Route
 }>()
 
 const isLoaded = ref(false)
@@ -18,7 +18,7 @@ const main = {
   loop: false,
   spaceBetween: 10,
   grabCursor: true,
-  modules: [Navigation],
+  modules: [FreeMode, Navigation, Thumbs],
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
@@ -31,25 +31,29 @@ const thumbs = {
   slidesPerView: 1,
   grabCursor: true,
   paginationClickable: true,
-  modules: [Pagination],
+  modules: [Pagination, FreeMode, Navigation, Thumbs],
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
   },
   breakpoints: {
-    500: {
+    600: {
       slidesPerView: 2,
     },
-    800: {
-      slidesPerView: 3,
+    900: {
+      slidesPerView: 5,
     },
-    1200: {
+    1300: {
       slidesPerView: 5,
     },
   },
 }
 const swiperMain = ref<SwiperInterface>()
 const swiperThumbs = ref<SwiperInterface>()
+const thumbsSwiper = ref<SwiperInterface>()
+const setThumbsSwiper = (swiper: SwiperInterface) => {
+  thumbsSwiper.value = swiper
+}
 
 watch(
   () => props.loaded,
@@ -57,22 +61,6 @@ watch(
     isLoaded.value = newVal
   }
 )
-
-const mainChange = () => {
-  // if (swiperMain.value && swiperThumbs.value) {
-  //   swiperThumbs.value.slideTo(swiperMain.value.activeIndex)
-  // }
-}
-const thumbsChange = () => {
-  if (swiperThumbs.value) {
-    thumbsEvent(swiperThumbs.value.activeIndex)
-  }
-}
-const thumbsEvent = (index: number) => {
-  if (swiperMain.value) {
-    swiperMain.value.slideTo(index)
-  }
-}
 </script>
 
 <template>
@@ -110,19 +98,19 @@ const thumbsEvent = (index: number) => {
           <section class="books-slider-swiper">
             <swiper
               ref="swiperMain"
-              :space-between="main.spaceBetween"
-              grab-cursor
+              :loop="main.loop"
+              :spaceBetween="main.spaceBetween"
               :navigation="main.navigation"
+              :thumbs="{ swiper: thumbsSwiper }"
               :modules="main.modules"
               class="h-96 w-full"
-              @slideChange="mainChange"
             >
               <swiper-slide
                 v-for="(entity, id) in entities"
                 :key="id"
                 class="swiper-lazy"
               >
-                <entity-book-slider-card :entity="entity" />
+                <entity-slider-card-thumbnail :entity="entity" />
               </swiper-slide>
               <div class="swiper-button swiper-button-prev">
                 <svg-icon name="chevron-right" />
@@ -133,14 +121,15 @@ const thumbsEvent = (index: number) => {
             </swiper>
             <swiper
               ref="swiperThumbs"
-              :space-between="thumbs.spaceBetween"
-              grab-cursor
-              :pagination="thumbs.pagination"
-              :modules="thumbs.modules"
+              @swiper="setThumbsSwiper"
+              :loop="thumbs.loop"
+              :spaceBetween="thumbs.spaceBetween"
+              :slidesPerView="thumbs.slidesPerView"
               :breakpoints="thumbs.breakpoints"
-              class="h-28 w-full thumbs mt-6"
-              @click-slide="thumbsEvent"
-              @slideChange="thumbsChange"
+              :freeMode="true"
+              :watchSlidesProgress="true"
+              :modules="thumbs.modules"
+              class="h-28 w-full thumbs mt-6 hidden md:block"
             >
               <swiper-slide
                 v-for="(entity, id) in entities"

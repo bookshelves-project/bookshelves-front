@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/svg-icon.vue'
 import EntityCard from '@/components/entity/card.vue'
-import { capitalize, formatAuthors } from '~/utils/methods'
-import { Swiper as SwiperType } from 'swiper/types'
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination, Navigation } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -11,9 +9,14 @@ import 'swiper/css/navigation'
 
 const props = defineProps<{
   selection: SelectedEntities
+  right?: boolean
 }>()
 
 const { nuxtAsyncData } = useFetchable()
+const attrs = useAttrs()
+const emit = defineEmits<{
+  (e: 'success', payload: boolean): void
+}>()
 
 const isAvailable = ref(true)
 const isLoading = ref(true)
@@ -25,7 +28,7 @@ const getData = async () => {
   isLoading.value = true
   slides.value = await nuxtAsyncData<Entity[]>(
     props.selection.endpoint,
-    [],
+    props.selection.paramsList ? props.selection.paramsList : [],
     {}
   ).then((e) => {
     if (e) {
@@ -35,6 +38,7 @@ const getData = async () => {
       isAvailable.value = false
     }
   })
+  emit('success', isAvailable.value)
 }
 
 const main = {
@@ -68,10 +72,6 @@ const main = {
   },
 }
 
-const previous = () => {
-  // swiper.value.slidePrev()
-}
-
 onMounted(async () => {
   await getData()
 })
@@ -80,23 +80,21 @@ onMounted(async () => {
 <template>
   <div v-if="isAvailable">
     <client-only>
-      <section
-        class="selected-books selected-entities-swiper container relative mx-auto max-w-7xl"
-      >
+      <section class="selected-books selected-entities-swiper relative mx-auto">
         <div
-          :class="selection.right ? 'text-right' : 'text-left'"
+          :class="right ? 'text-right' : 'text-left'"
           class="text-sm font-semibold uppercase tracking-wide text-primary-600"
         >
           {{ selection.eyebrow }}
         </div>
         <h2
-          :class="selection.right ? 'text-right' : 'text-left'"
+          :class="right ? 'text-right' : 'text-left'"
           class="mt-3 font-handlee text-3xl font-extrabold text-gray-700 dark:text-gray-300"
         >
           {{ selection.title }}
         </h2>
         <p
-          :class="selection.right ? 'text-right' : 'text-left'"
+          :class="right ? 'text-right' : 'text-left'"
           class="mt-5 text-lg text-gray-900 dark:text-gray-100"
         >
           {{ selection.text }}
@@ -119,7 +117,7 @@ onMounted(async () => {
               <swiper-slide
                 v-for="(slide, index) in slides"
                 :key="index"
-                class="swiper-lazy"
+                class="swiper-lazy text-left"
               >
                 <entity-card :entity="slide" />
               </swiper-slide>

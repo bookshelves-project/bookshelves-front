@@ -4,6 +4,7 @@ declare interface SerieMeta {
   author: string
   show: string
   books?: string
+  reviews?: string
 }
 
 declare interface Serie {
@@ -21,5 +22,5 @@ declare interface Serie {
   download?: DownloadFile
   files?: DownloadList
   isFavorite?: boolean
-  comments?: CommentData[]
+  reviews?: Review[]
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import EntityBookSlider from '@/components/entity/book/slider.vue'
+import EntitySliderThumbnail from '@/components/entity/slider/index-thumbnail.vue'
 
 const props = defineProps<{
   book: Book
@@ -33,7 +33,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <entity-book-slider
+  <entity-slider-thumbnail
     v-if="book.serie"
     :loaded="loaded"
     :entities="entities"
@@ -49,5 +49,5 @@ onMounted(async () => {
     <template #subtitle>
       Current: vol. {{ book.volume }}, limited to 10 next volumes.
     </template>
-  </entity-book-slider>
+  </entity-slider-thumbnail>
 </template>
