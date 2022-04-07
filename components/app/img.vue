@@ -31,7 +31,7 @@ onMounted(() => {
         v-if="!display"
         v-bind="attrs"
         class="placeholder bg-gray-50 dark:bg-gray-800"
-        :style="color ? `background-color: ${color};` : ''"
+        :style="color !== '#ffffff' ? `background-color: ${color};` : ''"
       />
     </transition>
     <img
