@@ -4,6 +4,7 @@ declare interface SerieMeta {
   author: string
   show: string
   books?: string
+  comments?: string
 }
 
 declare interface Serie {

@@ -5,12 +5,20 @@ declare interface CommentMeta {
   slug?: string
 }
 
+declare interface CommentUser {
+  id: number
+  name: string
+  slug: string
+  avatar: string
+  color: string
+}
+
 declare interface CommentData {
   meta?: CommentMeta
-  id?: number
-  text?: string
+  id: number
+  text: string
   rating?: number
-  user?: User
+  user: CommentUser
   createdAt?: Date
   updatedAt?: Date
   title?: string

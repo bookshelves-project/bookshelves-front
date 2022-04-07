@@ -3,6 +3,7 @@ declare interface EntityMeta {
   author?: string
   slug?: string
   show?: string
+  comments?: string
 }
 
 declare interface Entity {

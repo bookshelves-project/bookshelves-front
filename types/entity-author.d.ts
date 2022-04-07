@@ -4,6 +4,7 @@ declare interface AuthorMeta {
   show?: string
   books?: string
   series?: string
+  comments?: string
 }
 
 declare interface AuthorCount {

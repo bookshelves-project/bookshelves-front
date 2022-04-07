@@ -43,23 +43,6 @@ declare interface Route {
   queryList?: Keyable
 }
 
-declare interface Query {
-  lang?: string
-  size?: string
-  page?: string
-  limit?: string
-  'filter[allow_serie]'?: boolean
-  'filter[languages]'?: string
-  'filter[types]'?: string
-  'filter[type]'?: string
-  'filter[negligible]'?: boolean
-  alpha?: string
-  full?: boolean
-  sort?: string
-  q?: string
-  types?: string
-}
-
 declare interface FetchParams {
   endpoint: Endpoint
   params?: Params

@@ -30,6 +30,7 @@ declare type Endpoint =
   | '/entities/selection'
   | '/entities/latest'
   | '/entities/related'
+  | '/entities/comments'
   | '/languages'
   | '/publishers'
   | '/publishers/books'
