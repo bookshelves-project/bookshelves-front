@@ -2,9 +2,13 @@
 import SvgIcon from '@/components/svg-icon.vue'
 import { capitalize, capitalizeEach } from '~/utils/methods'
 
+const props = defineProps<{
+  title?: string
+}>()
+
 interface Link {
   title: string
-  route: object
+  route?: object
 }
 
 const crumbs = computed((): Link[] => {
@@ -40,6 +44,11 @@ const crumbs = computed((): Link[] => {
   crumbs.forEach((crumb: any) => {
     crumb.title = translateSlug(crumb.title)
   })
+  if (props.title) {
+    crumbs.splice(-1, 1, {
+      title: props.title,
+    })
+  }
 
   return crumbs
 })
