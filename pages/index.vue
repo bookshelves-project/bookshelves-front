@@ -2,7 +2,7 @@
 import HomeHero from '@/components/home/hero.vue'
 import HomeStatistics from '@/components/home/statistics.vue'
 import HomeCloudLogos from '@/components/home/cloud-logos.vue'
-import HomeSelectedEntities from '@/components/home/selected-entities.vue'
+import EntitySlider from '@/components/entity/slider/index.vue'
 import HomeFeatures from '@/components/home/features.vue'
 import HomeFeaturesHighlights from '@/components/home/features-highlights.vue'
 import HomeCta from '@/components/home/cta.vue'
@@ -53,7 +53,10 @@ useMeta({
         <home-hero :hero="homePage.hero" class="pt-5" />
         <home-statistics :statistics="homePage.statistics" />
         <home-cloud-logos :logos="homePage.logos" />
-        <home-selected-entities class="mt-8 md:mt-16" :selection="selection" />
+        <entity-slider
+          class="mt-8 md:mt-16 container max-w-7xl"
+          :selection="selection"
+        />
         <!-- <home-features :features="homePage.features" /> -->
         <!-- <home-selected-entities class="mt-8 lg:mt-16" :selection="latest" /> -->
         <!-- <home-features-highlights :highlights="homePage.highlights" /> -->
