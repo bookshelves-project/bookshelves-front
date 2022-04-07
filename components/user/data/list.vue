@@ -17,16 +17,17 @@ const { nuxtFetch } = useFetchable()
 const route = useRoute()
 
 const meta = ref<ApiMeta>()
-const list = ref<Favoritable[] | Review[]>()
+const list = ref<UserData[]>()
 const isLoading = ref(true)
 
 const emit = defineEmits(['destroy'])
 
 const load = async () => {
   try {
-    const response = await nuxtFetch<
-      ApiPaginateResponse<Favoritable[] | Review[]>
-    >(props.endpoint, [route.params.slug])
+    const response = await nuxtFetch<ApiPaginateResponse<UserData[]>>(
+      props.endpoint,
+      [route.params.slug]
+    )
     meta.value = response.meta
     list.value = response.data
     isLoading.value = false
@@ -39,15 +40,15 @@ const load = async () => {
 onMounted(() => {
   load()
 })
-const destroy = (data: Favoritable | Review) => {
-  // if (data) {
-  //   list.value = list.value.filter(
-  //     (item: Favoritable | Review) => item.meta.slug !== data.meta.slug
-  //   )
-  //   emit('destroy', { data })
-  // }
+const destroy = (data: UserData) => {
+  if (list.value) {
+    list.value = list.value.filter(
+      (item: UserData) => item.meta.slug !== data.meta.slug
+    )
+    emit('destroy', { data })
+  }
 }
-const paginate = (payload: ApiPaginateResponse<Favoritable[] | Review[]>) => {
+const paginate = (payload: ApiPaginateResponse<UserData[]>) => {
   meta.value = payload.meta
   list.value = list.value?.concat(payload.data)
 }
@@ -78,8 +79,9 @@ const paginate = (payload: ApiPaginateResponse<Favoritable[] | Review[]>) => {
       <user-data-loading />
     </div>
     <div v-else>
-      <ul
+      <transition-group
         v-if="list && list.length"
+        tag="ul"
         class="divide-y divide-gray-200 dark:divide-gray-700 max-h-[50rem] overflow-x-hidden overflow-y-auto scrollbar-thin"
       >
         <user-data-card
@@ -97,7 +99,7 @@ const paginate = (payload: ApiPaginateResponse<Favoritable[] | Review[]>) => {
             @load="paginate"
           />
         </div>
-      </ul>
+      </transition-group>
       <div v-else class="flex flex-wrap items-center p-4 text-gray-400">
         {{ empty }}
       </div>
