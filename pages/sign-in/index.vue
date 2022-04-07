@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import FormLogin from '@/components/form/login.vue'
+import AppImg from '@/components/app/img.vue'
+
 // @Component({
 //   middleware: 'guest',
 //   head() {

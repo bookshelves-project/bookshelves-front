@@ -5,7 +5,7 @@ import AppButton from '@/components/app/button.vue'
 <template>
   <section class="pt-2">
     <div
-      class="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:max-w-7xl lg:flex lg:items-center lg:justify-between lg:py-20 lg:px-8"
+      class="mx-auto py-12 md:max-w-7xl lg:flex lg:items-center lg:justify-between lg:py-20 container"
     >
       <h2
         class="font-handlee text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 md:text-4xl"

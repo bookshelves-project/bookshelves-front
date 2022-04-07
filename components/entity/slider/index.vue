@@ -9,6 +9,7 @@ import 'swiper/css/navigation'
 
 const props = defineProps<{
   selection: SelectedEntities
+  right?: boolean
 }>()
 
 const { nuxtAsyncData } = useFetchable()
@@ -79,24 +80,21 @@ onMounted(async () => {
 <template>
   <div v-if="isAvailable">
     <client-only>
-      <section
-        class="selected-books selected-entities-swiper relative mx-auto max-w-7xl"
-        v-bind="attrs"
-      >
+      <section class="selected-books selected-entities-swiper relative mx-auto">
         <div
-          :class="selection.right ? 'text-right' : 'text-left'"
+          :class="right ? 'text-right' : 'text-left'"
           class="text-sm font-semibold uppercase tracking-wide text-primary-600"
         >
           {{ selection.eyebrow }}
         </div>
         <h2
-          :class="selection.right ? 'text-right' : 'text-left'"
+          :class="right ? 'text-right' : 'text-left'"
           class="mt-3 font-handlee text-3xl font-extrabold text-gray-700 dark:text-gray-300"
         >
           {{ selection.title }}
         </h2>
         <p
-          :class="selection.right ? 'text-right' : 'text-left'"
+          :class="right ? 'text-right' : 'text-left'"
           class="mt-5 text-lg text-gray-900 dark:text-gray-100"
         >
           {{ selection.text }}
@@ -119,7 +117,7 @@ onMounted(async () => {
               <swiper-slide
                 v-for="(slide, index) in slides"
                 :key="index"
-                class="swiper-lazy"
+                class="swiper-lazy text-left"
               >
                 <entity-card :entity="slide" />
               </swiper-slide>
