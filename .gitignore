@@ -1,6 +1,6 @@
 node_modules
 *.log
-dist
-.output
 .nuxt
+nuxt.d.ts
+.output
 .env
