@@ -5,6 +5,7 @@ const props = defineProps<{
   color?: string
   src?: string
   title?: string
+  alt?: string
 }>()
 
 const source = ref<string>()
@@ -38,7 +39,7 @@ onMounted(() => {
       ref="media"
       v-bind="attrs"
       :data-src="source"
-      :alt="display ? title : ''"
+      :alt="display ? (alt ? alt : title) : ''"
       loading="lazy"
     />
   </div>
