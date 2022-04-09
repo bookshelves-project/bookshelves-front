@@ -5,8 +5,12 @@ import Preview from '@/components/preview.vue'
 import LayoutNavbar from '@/components/layout/navbar.vue'
 import LayoutSidebar from '@/components/layout/sidebar.vue'
 import LayoutFooter from '@/components/layout/footer/index.vue'
+import { useApplicationStore } from './store/application'
 
 const isDev = process.dev
+
+const { nuxtInit } = useApplicationStore()
+nuxtInit()
 </script>
 
 <template>
