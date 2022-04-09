@@ -33,6 +33,9 @@ const getData = async () => {
   ).then((e) => {
     if (e) {
       isLoading.value = false
+      if (e.length === 0) {
+        isAvailable.value = false
+      }
       return e
     } else {
       isAvailable.value = false
