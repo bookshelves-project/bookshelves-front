@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FormLayout from '@/components/form/layout.vue'
+import FormLayout from '@/components/form/layout/index.vue'
 import FieldText from '@/components/field/text.vue'
 import FieldSelect from '@/components/field/select.vue'
 import FieldCheckbox from '@/components/field/checkbox.vue'

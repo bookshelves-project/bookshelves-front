@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import useAuth from '~/composables/useAuth'
-import FormLayout from '@/components/form/layout.vue'
+import FormLayout from '@/components/form/layout/index.vue'
 import FieldText from '@/components/field/text.vue'
 import FieldCheckbox from '@/components/field/checkbox.vue'
 import { useFormStore } from '~~/store/form'

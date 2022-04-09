@@ -5,6 +5,7 @@ const props = defineProps<{
   color?: string
   src?: string
   title?: string
+  alt?: string
 }>()
 
 const source = ref<string>()
@@ -31,14 +32,14 @@ onMounted(() => {
         v-if="!display"
         v-bind="attrs"
         class="placeholder bg-gray-50 dark:bg-gray-800"
-        :style="color ? `background-color: ${color};` : ''"
+        :style="color !== '#ffffff' ? `background-color: ${color};` : ''"
       />
     </transition>
     <img
       ref="media"
       v-bind="attrs"
       :data-src="source"
-      :alt="display ? title : ''"
+      :alt="display ? (alt ? alt : title) : ''"
       loading="lazy"
     />
   </div>
