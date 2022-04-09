@@ -1,5 +1,8 @@
 <script setup lang="ts">
 // import useAuth from '~/composables/useAuth'
+import FormLayout from '@/components/form/layout/index.vue'
+import FieldText from '@/components/field/text.vue'
+import FieldCheckbox from '@/components/field/checkbox.vue'
 import { randomString } from '~/utils/methods'
 import { useFormStore } from '~~/store/form'
 
