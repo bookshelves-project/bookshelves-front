@@ -22,7 +22,7 @@ const appName: string = config.appName || 'Bookshelves'
           <span
             class="block text-primary-600 dark:text-primary-400 xl:inline"
             >{{ appName }}</span
-          ><span class="hidden xl:inline">,</span
+          ><span class="hidden xl:inline">, </span
           ><span class="block xl:inline">{{ hero.title }}</span>
         </h1>
         <p
