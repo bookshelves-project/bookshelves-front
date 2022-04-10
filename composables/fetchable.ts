@@ -84,6 +84,7 @@ export const useFetchable = () => {
     return await $fetch(`${apiURL}${endpoint}`)
   }
 
+  // https://github.com/unjs/ohmyfetch
   const request = async (
     fetchParams: FetchParams
   ): Promise<FetchResponse<any>> => {
@@ -115,12 +116,14 @@ export const useFetchable = () => {
         },
       }
     )
+    // @ts-ignore
     return data
   }
 
   const nuxtFetchBase = async <T>(endpoint: string): Promise<T> => {
     const { data } = await useFetch<T>(endpoint)
 
+    // @ts-ignore
     return data.value
   }
 
@@ -131,6 +134,7 @@ export const useFetchable = () => {
   ): Promise<T> => {
     const { data } = await useFetch<T>(fullUrl(endpoint, params, query))
 
+    // @ts-ignore
     return data.value
   }
 
