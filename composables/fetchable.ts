@@ -1,5 +1,6 @@
 import { stringify } from 'qs'
 import { objectIsEmpty } from '~/utils/methods'
+import type { FetchResponse } from 'ohmyfetch'
 
 export const useFetchable = () => {
   const { apiURL, apiEndpoint } = useRuntimeConfig()
@@ -85,20 +86,36 @@ export const useFetchable = () => {
 
   const request = async (
     fetchParams: FetchParams
-  ): Promise<Response | false> => {
-    let response: Response
-    try {
-      response = await $fetch(
-        fullUrl(fetchParams.endpoint, fetchParams.params, fetchParams.query),
-        {
-          method: fetchParams.method,
-          body: fetchParams.body,
-        }
-      )
-      return response
-    } catch (error) {
-      return false
-    }
+  ): Promise<FetchResponse<any>> => {
+    let data: FetchResponse<any>
+    await $fetch(
+      fullUrl(fetchParams.endpoint, fetchParams.params, fetchParams.query),
+      {
+        method: fetchParams.method,
+        body: fetchParams.body,
+        async onResponse({ request, response, options }) {
+          // Log response
+          console.log(
+            '[fetch response]',
+            request,
+            response.status,
+            response.body
+          )
+          data = response
+        },
+        async onResponseError({ request, response, options }) {
+          // Log error
+          console.log(
+            '[fetch response error]',
+            request,
+            response.status,
+            response.body
+          )
+          data = response
+        },
+      }
+    )
+    return data
   }
 
   const nuxtFetchBase = async <T>(endpoint: string): Promise<T> => {
