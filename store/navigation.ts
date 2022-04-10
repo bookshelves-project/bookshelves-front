@@ -127,6 +127,23 @@ export const useNavigationStore = defineStore('navigation', {
       { label: 'Sign up', icon: 'register', route: { name: 'sign-up' } },
     ] as RouteLink[],
   }),
+  getters: {
+    getFooterProject: (state) => state.footerProject,
+    getFooterSupport(state) {
+      const { moduleContact } = useRuntimeConfig()
+      const support = state.footerSupport
+      if (!moduleContact) {
+        const links = state.footerSupport.links.filter(
+          (e) => e.label !== 'contact'
+        )
+        state.footerSupport.links = links
+      }
+
+      return support
+    },
+    getFooterAdvanced: (state) => state.footerAdvanced,
+    getFooterLegal: (state) => state.footerLegal,
+  },
   actions: {
     toggleSidebar(): boolean {
       this.$patch({

@@ -1,9 +1,20 @@
 declare module '@nuxt/schema' {
   interface PublicRuntimeConfig {
+    /**
+     * URL of front-end
+     */
     baseURL: string
+    /**
+     * URL of API
+     */
     apiURL: string
+    /**
+     * `api` by default
+     */
     apiEndpoint: string
-    apiEndpoint: string
+    /**
+     * Name of app
+     */
     appName: string
     metaTitle: string
     metaDescription: string
@@ -16,6 +27,7 @@ declare module '@nuxt/schema' {
     googleSiteVerificationToken: string
     moduleSocial: boolean
     moduleSocialRating: boolean
+    moduleContact: boolean
     matomoUrl: string
     matomoSiteId: string
     linkLicense: string
@@ -31,18 +43,6 @@ declare module '@nuxt/schema' {
     primaryColor900: string
   }
   interface PrivateRuntimeConfig {}
-}
-
-declare module '#app' {
-  interface NuxtApp {
-    $toast(title?: string, text?: string, type?: ToastType): void
-  }
-}
-
-declare module '@vue/runtime-core' {
-  interface ComponentCustomProperties {
-    $toast(title?: string, text?: string, type?: ToastType): void
-  }
 }
 
 export {}

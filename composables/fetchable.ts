@@ -28,57 +28,6 @@ export const useFetchable = () => {
     return `${url}${queryParams}`
   }
 
-  // const fetch = async <T>(
-  //   endpoint: Endpoint,
-  //   params: Params = [],
-  //   query?: Query
-  // ): Promise<ApiResponse<T>> => {
-  //   const { data, error } = await vueUseFetch<ApiResponse<T>>(
-  //     fullUrl(endpoint, params, query)
-  //   ).json()
-
-  //   return data.value
-  // }
-
-  // const nuxtAsyncList = async <T>(
-  //   endpoint: Endpoint,
-  //   params: Params = [],
-  //   query?: Query
-  // ): Promise<ApiPaginateResponse<T[]>> => {
-  //   query = {
-  //     ...query,
-  //     ...getRoute.value.query,
-  //   }
-
-  //   const { data } = await vueUseFetch<ApiPaginateResponse<T[]>>(
-  //     fullUrl(endpoint, params, query)
-  //   ).json()
-
-  //   return data.value
-  // }
-
-  // const nuxtAsync = async <T>(
-  //   key: string,
-  //   endpoint: Endpoint,
-  //   params: Params = [],
-  //   query?: Query
-  // ): Promise<T> => {
-  //   query = {
-  //     ...query,
-  //     ...getRoute.value.query,
-  //   }
-
-  //   const { data } = await useAsyncData<T>(key, () =>
-  //     $fetch(fullUrl(endpoint, params, query))
-  //   )
-
-  //   return data.value as unknown as T
-  // }
-
-  const token = () => {
-    return Math.random().toString(36).substr(2)
-  }
-
   const sanctum = async (): Promise<Response> => {
     const endpoint: Endpoint = '/sanctum/csrf-cookie'
     return await $fetch(`${apiURL}${endpoint}`)

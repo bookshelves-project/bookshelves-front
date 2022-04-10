@@ -5,6 +5,10 @@ export default defineNuxtPlugin(() => {
     provide: {
       localePath: (route: string | Route | any) => route,
       t: (path: string) => path,
+      // toast: {
+      //   push: (title?: string, text?: string, type?: ToastType) => {
+      //   },
+      // },
     },
   }
 })

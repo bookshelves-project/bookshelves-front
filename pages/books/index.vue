@@ -43,8 +43,9 @@ const sortOptions: FilterOption[] = [
   },
 ]
 
-useHead({
-  title,
+const { setHead } = useMetadata()
+setHead({
+  title: title,
 })
 </script>
 

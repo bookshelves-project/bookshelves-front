@@ -8,7 +8,7 @@ import { formatAuthors } from '~~/utils/methods'
 const { nuxtAsyncData } = useFetchable()
 const route = useRoute()
 
-const title = ref<string>()
+const title = ref<string>('')
 const breadcrumb = ref<string>()
 const book = ref<Book>()
 
@@ -28,8 +28,11 @@ const load = async () => {
 }
 await load()
 
-useHead({
+const { setHead } = useMetadata()
+setHead({
   title: title.value,
+  description: book.value?.description,
+  image: book.value?.cover?.simple,
 })
 
 // const authors = this.formatAuthors(this.book.authors)
