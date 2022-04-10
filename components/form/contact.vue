@@ -33,8 +33,8 @@ store.setForm({
 })
 
 const submit = async () => {
-  // const { sanctum } = useFetchable()
-  // await sanctum()
+  const { sanctum } = useFetchable()
+  await sanctum()
 
   await store.setRequest({
     endpoint: '/submission/send',

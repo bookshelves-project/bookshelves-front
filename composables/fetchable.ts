@@ -78,14 +78,27 @@ export const useFetchable = () => {
     return Math.random().toString(36).substr(2)
   }
 
-  const request = async (fetchParams: FetchParams): Promise<Response> => {
-    return await $fetch(
-      fullUrl(fetchParams.endpoint, fetchParams.params, fetchParams.query),
-      {
-        method: fetchParams.method,
-        body: fetchParams.body,
-      }
-    )
+  const sanctum = async (): Promise<Response> => {
+    const endpoint: Endpoint = '/sanctum/csrf-cookie'
+    return await $fetch(`${apiURL}${endpoint}`)
+  }
+
+  const request = async (
+    fetchParams: FetchParams
+  ): Promise<Response | false> => {
+    let response: Response
+    try {
+      response = await $fetch(
+        fullUrl(fetchParams.endpoint, fetchParams.params, fetchParams.query),
+        {
+          method: fetchParams.method,
+          body: fetchParams.body,
+        }
+      )
+      return response
+    } catch (error) {
+      return false
+    }
   }
 
   const nuxtFetchBase = async <T>(endpoint: string): Promise<T> => {
@@ -140,6 +153,7 @@ export const useFetchable = () => {
 
   return {
     fullUrl,
+    sanctum,
     request,
     nuxtFetchBase,
     nuxtFetch,

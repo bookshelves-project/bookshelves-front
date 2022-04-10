@@ -62,14 +62,12 @@ export const useFormStore = defineStore('data', {
         method: this.fetchParams.method,
         body: this.fetchParams.body,
       })
-      if (response.ok) {
+      if (!response || !response.ok) {
         $toast('Error', 'Oops, an error happened here!', 'error')
       } else {
-        $toast('Success', response.body, 'success')
+        $toast('Success', '', 'success')
         this.resetData()
       }
-      console.log(this.loadingCanEnd)
-
       if (this.loadingCanEnd) {
         this.toggleLoading()
       }
