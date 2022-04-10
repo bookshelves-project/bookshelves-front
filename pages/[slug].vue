@@ -8,12 +8,12 @@ const route = useRoute()
 const title = ref('')
 const summary = ref<string | undefined>()
 
-const post = ref<Post>()
+const page = ref<Page>()
 
-await nuxtAsyncData<Post>('/posts', [route.params.slug]).then((e) => {
+await nuxtAsyncData<Page>('/pages', [route.params.slug]).then((e) => {
   title.value = e.title
   summary.value = e.summary
-  post.value = e
+  page.value = e
 })
 
 useHead({
@@ -22,13 +22,13 @@ useHead({
 </script>
 
 <template>
-  <main v-if="post" class="main-content">
+  <main v-if="page" class="main-content">
     <app-header
-      :title="post.title"
-      :subtitle="post.category"
-      :text="post.summary"
-      :image="post.cover"
+      :title="page.title"
+      :text="page.summary"
+      :image="page.cover"
+      :breadcrumb="title"
     />
-    <app-content :body="post.body" />
+    <app-content :body="page.body" />
   </main>
 </template>
