@@ -137,15 +137,15 @@ const socialtags: ModuleOptions = {
   enabled: true,
   url: process.env.BASE_URL,
   title: process.env.APP_NAME,
-  author: '',
-  site_name: '',
-  description: '',
-  theme_color: '#2222',
+  author: process.env.META_AUTHOR,
+  site_name: process.env.APP_NAME,
+  description: process.env.META_DESCRIPTION,
+  // theme_color: '#2222',
   img: '/default.jpg',
-  locale: '',
+  // locale: '',
   opengraph: true,
   twitter: true,
-  twitter_user: '',
+  twitter_user: process.env.META_TWITTER_CREATOR,
 }
 // From https://nuxt-social-tags.netlify.app/options/
 const nuxtTypedRouter: ModuleOptions = {

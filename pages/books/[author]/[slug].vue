@@ -28,8 +28,7 @@ const load = async () => {
 }
 await load()
 
-const { setHead } = useMetadata()
-setHead({
+useMetadata({
   title: title.value,
   description: book.value?.description,
   image: book.value?.cover?.simple,

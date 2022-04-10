@@ -38,9 +38,7 @@ const latest: SelectedEntities = {
   title: 'Latest books & series',
   text: 'You check new books & series on? Here you have latest books!',
 }
-
-const { setHead } = useMetadata()
-setHead({
+useMetadata({
   title: 'APP_NAME, reading in complete tranquility',
 })
 </script>
