@@ -43,8 +43,8 @@ const date = (begin: number) => {
             class="transition-colors duration-100"
             >{{ team }}</router-link
           > -->
-          {{ config.metaAuthor }}
-          <span class="mx-1 hidden md:block">·</span
+          <span class="mx-auto">{{ config.metaAuthor }}</span>
+          <span class="mx-1 hidden md:block text-center">·</span
           ><a
             v-if="config.linkLicense"
             :href="config.linkLicense"
@@ -58,7 +58,7 @@ const date = (begin: number) => {
             :href="config.linkChangelog"
             target="_blank"
             rel="noopener noreferrer"
-            class="block italic md:ml-1 md:flex"
+            class="block italic md:ml-1 md:flex text-center"
             >v{{ packageJson.version }}</a
           ><span class="hidden md:block">.</span>
         </span>
