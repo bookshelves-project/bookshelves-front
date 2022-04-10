@@ -1,7 +1,20 @@
 <script setup lang="ts">
-import LayoutBreadcrumb from '@/components/layout/breadcrumb.vue'
 import FormLayoutSide from '@/components/form/layout/side.vue'
 import FormContact from '@/components/form/contact.vue'
+
+const { updateSocialTags } = useSocialTags()
+
+updateSocialTags({ title: 'Contact', img: '/images/pages/contact.svg' })
+useHead({
+  title: 'Contact',
+  meta: [
+    {
+      hid: 'twitter:card',
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    },
+  ],
+})
 </script>
 
 <template>

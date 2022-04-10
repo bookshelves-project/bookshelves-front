@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   modelValue?: string
   label?: string
   name?: string
@@ -13,6 +13,13 @@ const emit = defineEmits(['update:modelValue'])
 const selectOption = () => {
   emit('update:modelValue', selected.value)
 }
+
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    selected.value = newVal
+  }
+)
 </script>
 
 <template>

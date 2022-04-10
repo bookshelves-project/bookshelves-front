@@ -78,8 +78,18 @@ export const useFetchable = () => {
     return Math.random().toString(36).substr(2)
   }
 
+  const request = async (fetchParams: FetchParams): Promise<Response> => {
+    return await $fetch(
+      fullUrl(fetchParams.endpoint, fetchParams.params, fetchParams.query),
+      {
+        method: fetchParams.method,
+        body: fetchParams.body,
+      }
+    )
+  }
+
   const nuxtFetchBase = async <T>(endpoint: string): Promise<T> => {
-    const { data, error } = await useFetch<T>(endpoint)
+    const { data } = await useFetch<T>(endpoint)
 
     return data.value
   }
@@ -89,7 +99,7 @@ export const useFetchable = () => {
     params: Params = [],
     query?: Query
   ): Promise<T> => {
-    const { data, error } = await useFetch<T>(fullUrl(endpoint, params, query))
+    const { data } = await useFetch<T>(fullUrl(endpoint, params, query))
 
     return data.value
   }
@@ -130,11 +140,9 @@ export const useFetchable = () => {
 
   return {
     fullUrl,
+    request,
     nuxtFetchBase,
     nuxtFetch,
-    // nuxtAsyncList,
-    // nuxtAsync,
-    // fetchNuxt,
     nuxtAsync,
     nuxtAsyncData,
     nuxtAsyncList,
