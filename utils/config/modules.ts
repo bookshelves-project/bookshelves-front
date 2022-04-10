@@ -3,6 +3,7 @@
 // import { ModuleOptions, RecursivePartial } from '@nuxtjs/auth-next'
 // import type { IContentOptions } from '@nuxt/content'
 // import { ModuleOptions } from '@nuxtjs/color-mode/dist/module'
+import { ModuleOptions } from '@nuxt/schema'
 import metadata from '../metadata'
 // import { ApiEndpoint } from '../../types/index'
 import pwaData from './pwa'
@@ -125,14 +126,34 @@ const headers = {
 // const colorMode: Partial<ModuleOptions> = {
 //   classSuffix: '',
 // }
-const markdownit = {
-  preset: 'default',
-  linkify: true,
-  breaks: true,
-  use: ['markdown-it-div', 'markdown-it-attrs'],
+// const markdownit = {
+//   preset: 'default',
+//   linkify: true,
+//   breaks: true,
+//   use: ['markdown-it-div', 'markdown-it-attrs'],
+// }
+// From https://github.com/victorgarciaesgi/nuxt-typed-router
+const socialtags: ModuleOptions = {
+  enabled: true,
+  url: process.env.BASE_URL,
+  title: process.env.APP_NAME,
+  author: '',
+  site_name: '',
+  description: '',
+  theme_color: '#2222',
+  img: '/default.jpg',
+  locale: '',
+  opengraph: true,
+  twitter: true,
+  twitter_user: '',
+}
+// From https://nuxt-social-tags.netlify.app/options/
+const nuxtTypedRouter: ModuleOptions = {
+  // outDir: '', // Output directory where you cant the files to be saved
+  // routesObjectName: '', // Name of the routesNames object (ex: "routesTree")
 }
 
-const modules: object = {
+const modules: ModuleOptions = {
   // colorMode,
   // axios,
   // pwa,
@@ -140,16 +161,18 @@ const modules: object = {
   // content,
   // robots,
   // sitemap,
-  markdownit,
+  // markdownit,
+  socialtags: socialtags,
+  // nuxtTypedRouter: nuxtTypedRouter,
   // i18n
 }
 
-export const nuxtLazyLoad: object = {
-  directiveOnly: true,
-  loadingClass: 'isLoading',
-  loadedClass: 'isLoaded',
-  appendClass: 'lazyLoad',
-}
+// export const nuxtLazyLoad: object = {
+//   directiveOnly: true,
+//   loadingClass: 'isLoading',
+//   loadedClass: 'isLoaded',
+//   appendClass: 'lazyLoad',
+// }
 
 export const matomo: object = {
   matomoUrl: process.env.MATOMO_URL ? process.env.MATOMO_URL : null,
