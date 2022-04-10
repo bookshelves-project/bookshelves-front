@@ -3,9 +3,6 @@ import AppHeader from '@/components/app/header.vue'
 import Filters from '@/components/filters/index.vue'
 import EntityRelationList from '@/components/relation/list.vue'
 
-import { useEntityStore } from '~~/store/entity'
-import { objectIsEmpty } from '~/utils/methods'
-
 const title = 'Genres & Tags'
 const description = 'Find books and series by their genres and tags.'
 
@@ -19,10 +16,12 @@ const load = async () => {
   const [tagsData, genresData] = await Promise.all([
     nuxtAsyncData<Tag[]>('/tags', [], {
       'filter[type]': 'tag',
+      'filter[negligible]': false,
       full: true,
     }),
     nuxtAsyncData<Tag[]>('/tags', [], {
       'filter[type]': 'genre',
+      'filter[negligible]': false,
       full: true,
     }),
   ])
@@ -38,7 +37,7 @@ watch(
   }
 )
 
-useMeta({
+useHead({
   title,
 })
 </script>

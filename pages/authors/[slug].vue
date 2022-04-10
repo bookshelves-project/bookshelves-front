@@ -25,7 +25,7 @@ const load = async () => {
 }
 await load()
 
-useMeta({
+useHead({
   title: title.value,
 })
 </script>

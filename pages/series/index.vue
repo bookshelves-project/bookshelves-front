@@ -41,7 +41,7 @@ const sortOptions = [
   },
 ]
 
-useMeta({
+useHead({
   title,
 })
 </script>

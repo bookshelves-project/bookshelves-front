@@ -27,7 +27,7 @@ watch(
 const title = 'Publishers'
 const description = 'Discover your books by publisher'
 
-useMeta({
+useHead({
   title,
 })
 </script>

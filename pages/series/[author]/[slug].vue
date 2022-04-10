@@ -39,7 +39,7 @@ const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
   }
 }
 
-useMeta({
+useHead({
   title: serie.value?.title,
 })
 </script>

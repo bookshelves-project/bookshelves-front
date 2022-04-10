@@ -39,7 +39,7 @@ watch(
   }
 )
 
-useMeta({
+useHead({
   title: title.value,
 })
 </script>

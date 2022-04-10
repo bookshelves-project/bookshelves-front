@@ -43,7 +43,7 @@ const sortOptions: FilterOption[] = [
   },
 ]
 
-useMeta({
+useHead({
   title,
 })
 </script>

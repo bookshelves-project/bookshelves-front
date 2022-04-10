@@ -39,7 +39,7 @@ const latest: SelectedEntities = {
   text: 'You check new books & series on? Here you have latest books!',
 }
 
-useMeta({
+useHead({
   title: 'Home',
 })
 </script>

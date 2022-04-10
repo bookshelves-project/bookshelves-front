@@ -5,8 +5,6 @@ import EntityPublisherLink from '@/components/entity/publisher-link.vue'
 import EntityLanguageLink from '@/components/entity/language-link.vue'
 import EntityTagsLinks from '@/components/entity/tags-links.vue'
 import EntityBookLink from '@/components/entity/book-link.vue'
-import AppButton from '@/components/app/button.vue'
-import EntityBookSerie from '@/components/entity/book/serie.vue'
 import EntityBookRelated from '@/components/entity/book/related.vue'
 import { date } from '~/utils/methods'
 
