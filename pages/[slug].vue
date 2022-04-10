@@ -11,13 +11,14 @@ const summary = ref<string | undefined>()
 const page = ref<Page>()
 
 await nuxtAsyncData<Page>('/pages', [route.params.slug]).then((e) => {
-  title.value = e.title
   summary.value = e.summary
   page.value = e
 })
 
-useHead({
+useMetadata({
   title: title.value,
+  description: summary.value,
+  image: page.value?.cover,
 })
 </script>
 

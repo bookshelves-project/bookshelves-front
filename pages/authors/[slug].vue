@@ -25,8 +25,10 @@ const load = async () => {
 }
 await load()
 
-useHead({
+useMetadata({
   title: title.value,
+  description: author.value?.description,
+  image: author.value?.cover?.simple,
 })
 </script>
 

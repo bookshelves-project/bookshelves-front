@@ -39,8 +39,10 @@ watch(
   }
 )
 
-useHead({
+useMetadata({
   title: title.value,
+  description: book.value?.description,
+  image: book.value?.cover?.simple,
 })
 </script>
 

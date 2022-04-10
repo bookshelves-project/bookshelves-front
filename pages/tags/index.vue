@@ -37,8 +37,9 @@ watch(
   }
 )
 
-useHead({
-  title,
+useMetadata({
+  title: title,
+  description: description,
 })
 </script>
 

@@ -56,7 +56,7 @@ useMetadata({
         :selection="latest"
         right
       />
-      <!-- <home-features-highlights :highlights="homePage.highlights" /> -->
+      <home-features-highlights :highlights="homePage.highlights" />
       <home-cta />
     </div>
   </div>

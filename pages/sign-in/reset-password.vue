@@ -1,6 +1,12 @@
-<script lang="ts">
+<script setup lang="ts">
 import FormLayoutSide from '@/components/form/layout/side.vue'
 // import FormResetPassword from '@/components/form/reset-password.vue'
+
+const title = 'Reset your password'
+
+useMetadata({
+  title: title,
+})
 
 // @Component({
 //   middleware: 'guest',
@@ -14,7 +20,7 @@ import FormLayoutSide from '@/components/form/layout/side.vue'
 
 <template>
   <form-layout-side
-    title="Reset your password"
+    :title="title"
     cta="You have an error?"
     :cta-route="{ name: 'sign-in-forgot-password' }"
     image="/images/pages/password.svg"

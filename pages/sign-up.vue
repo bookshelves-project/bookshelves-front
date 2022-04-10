@@ -3,6 +3,12 @@ import FormLayoutSide from '@/components/form/layout/side.vue'
 import FormRegister from '@/components/form/register.vue'
 import AppImg from '@/components/app/img.vue'
 
+const title = 'Create your account'
+
+useMetadata({
+  title: title,
+})
+
 // @Component({
 //   middleware: 'guest',
 //   head() {
@@ -15,7 +21,7 @@ import AppImg from '@/components/app/img.vue'
 
 <template>
   <form-layout-side
-    title="Create your account"
+    :title="title"
     cta="Do you have an account?"
     :cta-route="{ name: 'sign-in' }"
     image="/images/pages/register.svg"

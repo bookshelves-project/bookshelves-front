@@ -2,6 +2,12 @@
 import FormLayoutSide from '@/components/form/layout/side.vue'
 import FormForgotPassword from '@/components/form/forgot-password.vue'
 
+const title = 'Forgot your password?'
+
+useMetadata({
+  title: title,
+})
+
 // @Component({
 //   middleware: 'guest',
 //   head() {
@@ -14,7 +20,7 @@ import FormForgotPassword from '@/components/form/forgot-password.vue'
 
 <template>
   <form-layout-side
-    title="Forgot your password?"
+    :title="title"
     cta="Do you want to sign-in?"
     :cta-route="{ name: 'sign-in' }"
     image="/images/pages/forgot-password.svg"

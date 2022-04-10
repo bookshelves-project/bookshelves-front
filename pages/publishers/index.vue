@@ -27,8 +27,9 @@ watch(
 const title = 'Publishers'
 const description = 'Discover your books by publisher'
 
-useHead({
-  title,
+useMetadata({
+  title: title,
+  description: description,
 })
 </script>
 

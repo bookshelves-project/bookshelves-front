@@ -41,8 +41,9 @@ const sortOptions = [
   },
 ]
 
-useHead({
-  title,
+useMetadata({
+  title: title,
+  description: description,
 })
 </script>
 

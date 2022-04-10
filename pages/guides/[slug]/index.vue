@@ -16,15 +16,17 @@ await nuxtAsyncData<Post>('/posts', [route.params.slug]).then((e) => {
   post.value = e
 })
 
-useHead({
+useMetadata({
   title: title.value,
+  description: post.value?.summary,
+  image: post.value?.cover,
 })
 </script>
 
 <template>
   <main v-if="post" class="main-content">
     <app-header
-      :title="post.title"
+      :title="title"
       :subtitle="post.category"
       :text="post.summary"
       :image="post.cover"
