@@ -52,8 +52,9 @@ export const useFormStore = defineStore('data', {
       })
     },
     async request() {
-      const { $toast } = useNuxtApp()
+      const { pushToast } = useToast()
       const { request } = useFetchable()
+
       const response = await request({
         endpoint: this.fetchParams.endpoint,
         params: this.fetchParams.params,
@@ -62,17 +63,17 @@ export const useFormStore = defineStore('data', {
         method: this.fetchParams.method,
         body: this.fetchParams.body,
       })
-      console.log(response)
-
       if (typeof response !== 'boolean' && response.ok) {
-        $toast('Success', '', 'success')
+        pushToast('Success', '', 'success')
         this.resetData()
       } else {
-        $toast('Error', 'Oops, an error happened here!', 'error')
+        pushToast('Error', 'Oops, an error happened here!', 'error')
       }
+
       if (this.loadingCanEnd) {
         this.toggleLoading()
       }
+
       return response
     },
   },
