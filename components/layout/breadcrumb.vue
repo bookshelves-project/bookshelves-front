@@ -62,53 +62,41 @@ const translateSlug = (slug: string): string => {
 </script>
 
 <template>
-  <div>
-    <nav class="hidden md:flex" aria-label="Breadcrumb">
-      <ol role="list" class="flex items-center space-x-2">
-        <li>
-          <div>
-            <router-link :to="$localePath({ name: 'index' })">
-              <svg-icon
-                name="home"
-                class="h-5 w-5 shrink-0 text-gray-400 transition-colors duration-100 hover:text-gray-500"
-                aria-hidden="true"
-              />
-              <span class="sr-only">Home</span>
-            </router-link>
-          </div>
-        </li>
-
-        <li v-for="(crumb, id) in crumbs" :key="id">
-          <div class="flex items-center">
+  <nav class="flex" aria-label="Breadcrumb">
+    <ol role="list" class="flex flex-wrap items-center space-x-2">
+      <li>
+        <div>
+          <router-link :to="$localePath({ name: 'index' })">
             <svg-icon
-              name="chevron-right"
-              class="h-5 w-5 shrink-0 text-gray-300"
+              name="home"
+              class="h-5 w-5 shrink-0 text-gray-400 transition-colors duration-100 hover:text-gray-500"
+              aria-hidden="true"
             />
-            <component
-              :is="id >= crumbs.length - 1 ? 'span' : 'router-link'"
-              :to="$localePath(crumb.route)"
-              class="ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400"
-              :class="
-                id >= crumbs.length - 1
-                  ? ''
-                  : 'hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-100'
-              "
-            >
-              {{ capitalize(crumb.title) }}
-            </component>
-          </div>
-        </li>
-      </ol>
-    </nav>
-    <router-link
-      :to="$localePath({ name: 'index' })"
-      class="flex items-center text-xl font-semibold md:hidden"
-    >
-      <svg-icon
-        name="arrow-narrow-right"
-        class="h-5 w-5 rotate-180 transform"
-      />
-      <span class="ml-2 mb-1">Home</span>
-    </router-link>
-  </div>
+            <span class="sr-only">Home</span>
+          </router-link>
+        </div>
+      </li>
+
+      <li v-for="(crumb, id) in crumbs" :key="id">
+        <div class="flex items-center">
+          <svg-icon
+            name="chevron-right"
+            class="h-5 w-5 shrink-0 text-gray-300"
+          />
+          <component
+            :is="id >= crumbs.length - 1 ? 'span' : 'router-link'"
+            :to="$localePath(crumb.route)"
+            class="ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400"
+            :class="
+              id >= crumbs.length - 1
+                ? ''
+                : 'hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-100'
+            "
+          >
+            {{ capitalize(crumb.title) }}
+          </component>
+        </div>
+      </li>
+    </ol>
+  </nav>
 </template>
