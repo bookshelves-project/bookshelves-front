@@ -30,12 +30,15 @@ getOtherFormats()
 
 <template>
   <div v-if="download">
-    <app-button-group :action="download.url" :deployable="deployable" download>
-      <svg-icon name="download" class="w-6 h-6 mr-1" />
-      <span class="hidden md:block mr-1">Download</span>
+    <app-button-group
+      :action="download.reader"
+      :deployable="deployable"
+      external
+    >
+      <svg-icon name="eye" class="w-6 h-6 mr-1" />
+      <span class="hidden md:block mr-1">Read</span>
       {{ download.count ? download.count : '' }}
-      {{ download?.format.toUpperCase() }} ({{ download.isZip ? 'ZIP' : '' }}
-      {{ download.size }})
+      {{ download?.format.toUpperCase() }}
       <template #content>
         <div class="py-1" role="none">
           <span v-for="file in formats" :key="file?.format">
@@ -46,10 +49,9 @@ getOtherFormats()
               class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-75 block px-4 py-2 text-sm"
               role="menuitem"
             >
-              <span class="hidden md:block mr-1">Download</span>
+              <span class="hidden md:block mr-1">Read</span>
               {{ file.count ? file.count : '' }}
-              {{ file.format.toUpperCase() }} ({{ file.isZip ? 'ZIP' : '' }}
-              {{ file.size }})
+              {{ file.format.toUpperCase() }}
             </a>
           </span>
         </div>

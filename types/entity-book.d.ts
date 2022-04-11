@@ -56,7 +56,6 @@ declare interface Book {
   genres?: Tag[]
   download?: DownloadFile
   files?: DownloadList
-  webreader?: string
   googleBook?: GoogleBook
   isFavorite?: boolean
   reviewsCount?: number

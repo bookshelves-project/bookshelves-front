@@ -182,6 +182,13 @@ const success = (payload: boolean) => {
                         {{ file?.size }}
                       </div>
                       <a
+                        :href="file?.reader"
+                        class="font-medium text-primary-600 dark:text-primary-500 hover:bg-gray-100 py-1 px-2 rounded-md dark:hover:bg-gray-800"
+                        target="_blank"
+                      >
+                        Read
+                      </a>
+                      <a
                         :href="file?.url"
                         class="font-medium text-primary-600 dark:text-primary-500 hover:bg-gray-100 py-1 px-2 rounded-md dark:hover:bg-gray-800"
                         download

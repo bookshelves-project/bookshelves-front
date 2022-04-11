@@ -142,7 +142,7 @@ const socialtags: ModuleOptions = {
   description: process.env.META_DESCRIPTION,
   // theme_color: '#2222',
   img: '/default.jpg',
-  // locale: '',
+  locale: 'en_US',
   opengraph: true,
   twitter: true,
   twitter_user: process.env.META_TWITTER_CREATOR,

@@ -3,6 +3,7 @@ import AppHeader from '@/components/app/header.vue'
 import EntityBookOverview from '@/components/entity/book/overview.vue'
 import DownloadButton from '@/components/entity/download-button.vue'
 import EntityReview from '@/components/entity/review/index.vue'
+import ReaderButton from '@/components/entity/reader-button.vue'
 import { formatAuthors } from '~~/utils/methods'
 
 const { nuxtAsyncData } = useFetchable()
@@ -63,6 +64,7 @@ useMetadata({
     >
       <div class="mx-auto grid w-max space-y-3">
         <download-button :download="book.download" :files="book.files" />
+        <reader-button :download="book.download" :files="book.files" />
       </div>
     </app-header>
     <entity-book-overview :book="book" class="mb-6">

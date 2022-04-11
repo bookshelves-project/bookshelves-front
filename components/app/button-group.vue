@@ -5,17 +5,20 @@ import SvgIcon from '@/components/svg-icon.vue'
 defineProps<{
   action?: string
   deployable?: boolean
+  external?: boolean
+  download?: boolean
 }>()
 </script>
 
 <template>
-  <span class="relative z-0 inline-flex shadow-sm rounded-md">
+  <span class="relative inline-flex shadow-sm rounded-md w-full">
     <a
       :href="action"
-      download
+      :target="external ? '_blank' : '_self'"
+      :download="download"
       type="button"
       :class="deployable ? 'rounded-l-md' : 'rounded-md'"
-      class="button-group !px-5"
+      class="button-group !px-5 w-full"
     >
       <slot />
     </a>
