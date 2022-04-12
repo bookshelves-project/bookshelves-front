@@ -41,7 +41,7 @@ const fetchResults = async (input: string) => {
   try {
     firstSearch.value = true
     results.value = {}
-    const data = await nuxtAsyncData<Search>('/entities/search', [], {
+    const data = await nuxtAsyncData<Search>('/search', [], {
       q: input,
       types: types.join(','),
     })
