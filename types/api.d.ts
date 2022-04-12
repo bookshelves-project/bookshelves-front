@@ -62,3 +62,14 @@ declare interface Query {
   q?: string
   types?: string
 }
+
+declare type Params = (string | string[] | undefined)[]
+
+declare interface FetchParams {
+  endpoint: Endpoint
+  params?: Params
+  query?: Query
+  lazy?: boolean
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
+  body?: any
+}

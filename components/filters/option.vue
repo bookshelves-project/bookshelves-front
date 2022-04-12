@@ -56,6 +56,7 @@ const filterBy = (newQuery: boolean | string | string[], replace = false) => {
 
     store.setQueries(formatQuery)
   } else {
+    route.query.page = '1'
     router.push({
       name: route.name!,
       query: { ...route.query, ...formatQuery },

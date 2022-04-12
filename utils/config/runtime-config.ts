@@ -25,6 +25,9 @@ export const publicRuntimeConfig = {
   moduleSocialRating: process.env.MODULE_SOCIAL_RATING
     ? JSON.parse(process.env.MODULE_SOCIAL_RATING)
     : false,
+  moduleContact: process.env.MODULE_CONTACT
+    ? JSON.parse(process.env.MODULE_CONTACT)
+    : false,
   matomoUrl: process.env.MATOMO_URL ?? 'https://matomo.git-projects.xyz/',
   matomoSiteId: process.env.MATOMO_SITE_ID ?? '1',
   linkLicense:

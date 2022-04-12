@@ -28,6 +28,8 @@
   "dependencies": {
     "lozad": "^1.16.0",
     "nprogress": "^0.2.0",
+    "nuxt-social-tags": "^1.1.2",
+    "nuxt-typed-router": "^1.1.2",
     "pinia": "^2.0.13",
     "qs": "^6.10.3",
     "swiper": "^8.1.0",

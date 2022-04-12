@@ -33,7 +33,7 @@ const features = [
 
 <template>
   <div class="space-y-8 xl:col-span-1">
-    <div v-if="config.appName" class="sm:items-center sm:space-x-6 md:flex">
+    <div v-if="config.appName" class="items-center space-x-6 flex">
       <router-link
         :to="$localePath('/')"
         class="group flex w-max items-center lg:mx-0"
@@ -52,7 +52,7 @@ const features = [
     </div>
     <div class="text-base text-gray-500">{{ config.metaDescription }}</div>
     <div class="sm:flex sm:items-center">
-      <div class="space-y-6 sm:flex sm:space-y-0">
+      <div class="flex space-y-0">
         <a
           v-for="(feature, id) in features"
           :key="id"

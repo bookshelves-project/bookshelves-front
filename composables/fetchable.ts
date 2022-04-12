@@ -1,5 +1,6 @@
 import { stringify } from 'qs'
 import { objectIsEmpty } from '~/utils/methods'
+import type { FetchResponse } from 'ohmyfetch'
 
 export const useFetchable = () => {
   const { apiURL, apiEndpoint } = useRuntimeConfig()
@@ -27,60 +28,51 @@ export const useFetchable = () => {
     return `${url}${queryParams}`
   }
 
-  // const fetch = async <T>(
-  //   endpoint: Endpoint,
-  //   params: Params = [],
-  //   query?: Query
-  // ): Promise<ApiResponse<T>> => {
-  //   const { data, error } = await vueUseFetch<ApiResponse<T>>(
-  //     fullUrl(endpoint, params, query)
-  //   ).json()
+  const sanctum = async (): Promise<Response> => {
+    const endpoint: Endpoint = '/sanctum/csrf-cookie'
+    return await $fetch(`${apiURL}${endpoint}`)
+  }
 
-  //   return data.value
-  // }
-
-  // const nuxtAsyncList = async <T>(
-  //   endpoint: Endpoint,
-  //   params: Params = [],
-  //   query?: Query
-  // ): Promise<ApiPaginateResponse<T[]>> => {
-  //   query = {
-  //     ...query,
-  //     ...getRoute.value.query,
-  //   }
-
-  //   const { data } = await vueUseFetch<ApiPaginateResponse<T[]>>(
-  //     fullUrl(endpoint, params, query)
-  //   ).json()
-
-  //   return data.value
-  // }
-
-  // const nuxtAsync = async <T>(
-  //   key: string,
-  //   endpoint: Endpoint,
-  //   params: Params = [],
-  //   query?: Query
-  // ): Promise<T> => {
-  //   query = {
-  //     ...query,
-  //     ...getRoute.value.query,
-  //   }
-
-  //   const { data } = await useAsyncData<T>(key, () =>
-  //     $fetch(fullUrl(endpoint, params, query))
-  //   )
-
-  //   return data.value as unknown as T
-  // }
-
-  const token = () => {
-    return Math.random().toString(36).substr(2)
+  // https://github.com/unjs/ohmyfetch
+  const request = async (
+    fetchParams: FetchParams
+  ): Promise<FetchResponse<any>> => {
+    let data: FetchResponse<any>
+    await $fetch(
+      fullUrl(fetchParams.endpoint, fetchParams.params, fetchParams.query),
+      {
+        method: fetchParams.method,
+        body: fetchParams.body,
+        async onResponse({ request, response, options }) {
+          // Log response
+          console.log(
+            '[fetch response]',
+            request,
+            response.status,
+            response.body
+          )
+          data = response
+        },
+        async onResponseError({ request, response, options }) {
+          // Log error
+          console.log(
+            '[fetch response error]',
+            request,
+            response.status,
+            response.body
+          )
+          data = response
+        },
+      }
+    )
+    // @ts-ignore
+    return data
   }
 
   const nuxtFetchBase = async <T>(endpoint: string): Promise<T> => {
-    const { data, error } = await useFetch<T>(endpoint)
+    const { data } = await useFetch<T>(endpoint)
 
+    // @ts-ignore
     return data.value
   }
 
@@ -89,8 +81,9 @@ export const useFetchable = () => {
     params: Params = [],
     query?: Query
   ): Promise<T> => {
-    const { data, error } = await useFetch<T>(fullUrl(endpoint, params, query))
+    const { data } = await useFetch<T>(fullUrl(endpoint, params, query))
 
+    // @ts-ignore
     return data.value
   }
 
@@ -130,11 +123,10 @@ export const useFetchable = () => {
 
   return {
     fullUrl,
+    sanctum,
+    request,
     nuxtFetchBase,
     nuxtFetch,
-    // nuxtAsyncList,
-    // nuxtAsync,
-    // fetchNuxt,
     nuxtAsync,
     nuxtAsyncData,
     nuxtAsyncList,

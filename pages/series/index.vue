@@ -41,8 +41,9 @@ const sortOptions = [
   },
 ]
 
-useMeta({
-  title,
+useMetadata({
+  title: title,
+  description: description,
 })
 </script>
 

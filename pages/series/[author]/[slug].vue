@@ -39,8 +39,10 @@ const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
   }
 }
 
-useMeta({
+useMetadata({
   title: serie.value?.title,
+  description: serie.value?.description,
+  image: serie.value?.cover?.simple,
 })
 </script>
 

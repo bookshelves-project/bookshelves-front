@@ -4,19 +4,6 @@ import Filters from '@/components/filters/index.vue'
 import EntityList from '@/components/entity/list.vue'
 import Pagination from '@/components/pagination/index.vue'
 
-// const { nuxtAsync } = useFetchable()
-// const route = useRoute()
-
-// const response = ref<ApiPaginateResponse<Author[]>>()
-// response.value = await nuxtAsync('authors', '/authors')
-
-// watch(
-//   () => route.query,
-//   async (newVal) => {
-//     response.value = await nuxtAsync('authors', '/authors')
-//   }
-// )
-
 const { nuxtAsyncList } = useFetchable()
 const route = useRoute()
 
@@ -54,8 +41,9 @@ const sortOptions = [
   },
 ]
 
-useMeta({
-  title,
+useMetadata({
+  title: title,
+  description: description,
 })
 </script>
 

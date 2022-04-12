@@ -43,6 +43,7 @@ declare interface DownloadFile {
   name: string
   size: string
   url: string
+  reader?: string
   count?: number
   format: string
   isZip: boolean

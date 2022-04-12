@@ -43,8 +43,9 @@ const sortOptions: FilterOption[] = [
   },
 ]
 
-useMeta({
-  title,
+useMetadata({
+  title: title,
+  description: description,
 })
 </script>
 

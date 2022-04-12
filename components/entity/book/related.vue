@@ -6,34 +6,9 @@ const props = defineProps<{
   book: Book
 }>()
 
-// const { nuxtAsyncData } = useFetchable()
-// const entities = ref<Entity[]>()
-// const isAvailable = ref(true)
-// const loaded = ref(false)
-
 const emit = defineEmits<{
   (e: 'success', payload: boolean): void
 }>()
-
-// const load = async () => {
-//   if (props.book !== null) {
-//     const list = await nuxtAsyncData<Entity[]>('/entities/related', [
-//       props.book.meta.author as string,
-//       props.book.meta.slug as string,
-//     ])
-//       .then((e) => {
-//         entities.value = e
-//         loaded.value = true
-//       })
-//       .catch(() => {
-//         isAvailable.value = false
-//       })
-//   }
-// }
-
-// onMounted(async () => {
-//   await load()
-// })
 
 const isAvailable = ref(true)
 

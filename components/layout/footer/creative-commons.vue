@@ -35,6 +35,6 @@
 
 <style lang="css" scoped>
 .icon {
-  @apply hidden h-5 w-5 md:block;
+  @apply block h-5 w-5;
 }
 </style>

@@ -43,14 +43,11 @@ defineProps<{
                 v-html="highlight.text"
               ></div>
             </div>
-            <!-- <app-button
+            <app-button
               :color="`white`"
-              :to="highlight.ctaLink || '/'"
+              :to="$localePath(highlight.ctaLink || '/')"
               class="mt-6"
             >
-              {{ highlight.ctaText }}
-            </app-button> -->
-            <app-button :color="`white`" :to="'/'" class="mt-6">
               {{ highlight.ctaText }}
             </app-button>
           </div>

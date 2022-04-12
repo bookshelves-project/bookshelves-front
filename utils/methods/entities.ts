@@ -1,5 +1,3 @@
-// import { useApplicationStore } from '~/store/application'
-
 import { useApplicationStore } from '~~/store/application'
 
 /**

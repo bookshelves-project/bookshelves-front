@@ -11,8 +11,9 @@ await nuxtAsyncList<User>('/users').then((e) => (users.value = e.data))
 const title = 'All users'
 const subtitle = 'All Bookshelves users'
 
-useMeta({
+useMetadata({
   title: title,
+  description: subtitle,
 })
 </script>
 <template>

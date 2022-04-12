@@ -32,6 +32,10 @@ const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
   meta.value = payload.meta
   list.value = list.value?.concat(payload.data)
 }
+
+useMetadata({
+  title: title.value,
+})
 </script>
 
 <template>

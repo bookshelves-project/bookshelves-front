@@ -14,7 +14,8 @@ export const useFormStore = defineStore('data', {
       this.$patch({
         data: form.data,
         test: form.test,
-        loadingCanEnd: form.loadingCanEnd,
+        loadingCanEnd:
+          form.loadingCanEnd !== undefined ? form.loadingCanEnd : true,
       })
     },
     async setRequest(params: FetchParams) {
@@ -51,26 +52,29 @@ export const useFormStore = defineStore('data', {
       })
     },
     async request() {
-      // const { $toast } = useNuxtApp()
-      // const { fetch } = useFetchable()
-      // const response = await fetch({
-      //   endpoint: this.fetchParams.endpoint,
-      //   params: this.fetchParams.params,
-      //   query: this.fetchParams.query,
-      //   lazy: this.fetchParams.lazy,
-      //   method: this.fetchParams.method,
-      //   body: this.fetchParams.body,
-      // })
-      // if (response.response?.status !== 200) {
-      //   $toast('Error', 'Oops, an error happened here!', 'error')
-      // } else {
-      //   $toast('Success', response.body.message, 'success')
-      //   this.resetData()
-      // }
-      // if (this.loadingCanEnd) {
-      //   this.toggleLoading()
-      // }
-      // return response
+      const { pushToast } = useToast()
+      const { request } = useFetchable()
+
+      const response = await request({
+        endpoint: this.fetchParams.endpoint,
+        params: this.fetchParams.params,
+        query: this.fetchParams.query,
+        lazy: this.fetchParams.lazy,
+        method: this.fetchParams.method,
+        body: this.fetchParams.body,
+      })
+      if (typeof response !== 'boolean' && response.ok) {
+        pushToast('Success', '', 'success')
+        this.resetData()
+      } else {
+        pushToast('Error', 'Oops, an error happened here!', 'error')
+      }
+
+      if (this.loadingCanEnd) {
+        this.toggleLoading()
+      }
+
+      return response
     },
   },
 })

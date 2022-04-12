@@ -31,7 +31,8 @@ const getRoutes = () => {
     // console.log('You have to set your routes with $localePath().')
   }
 
-  $toast('Check your console', 'List of all routes is available.', 'success')
+  const { pushToast } = useToast()
+  pushToast('Check your console', 'List of all routes is available.', 'success')
   isOpen.value = false
 }
 

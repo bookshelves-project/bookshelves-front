@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import LayoutBreadcrumb from '@/components/layout/breadcrumb.vue'
 import FormLayoutSide from '@/components/form/layout/side.vue'
 import FormContact from '@/components/form/contact.vue'
+
+const { updateSocialTags } = useSocialTags()
+
+const title = 'Leave us a short note'
+const image = '/images/pages/contact.svg'
+
+useMetadata({
+  title: title,
+  image: image,
+})
 </script>
 
 <template>
-  <form-layout-side
-    title="Leave us a short note "
-    image="/images/pages/contact.svg"
-  >
+  <form-layout-side :title="title" :image="image">
     <template #text>
       <div>
         Do you like what we offer or do you hate our work? Do not hesitate to

@@ -13,7 +13,7 @@ await nuxtAsyncData<User>('/users', [route.params.slug]).then((e) => {
   title.value = e.name
 })
 
-useMeta({
+useMetadata({
   title: title.value,
 })
 </script>

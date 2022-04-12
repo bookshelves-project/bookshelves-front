@@ -21,6 +21,11 @@ watch(
     await load()
   }
 )
+
+useMetadata({
+  title: title,
+  description: description,
+})
 </script>
 
 <template>

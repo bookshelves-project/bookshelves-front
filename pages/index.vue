@@ -38,9 +38,8 @@ const latest: SelectedEntities = {
   title: 'Latest books & series',
   text: 'You check new books & series on? Here you have latest books!',
 }
-
-useMeta({
-  title: 'Home',
+useMetadata({
+  title: 'APP_NAME, reading in complete tranquility',
 })
 </script>
 
@@ -57,7 +56,7 @@ useMeta({
         :selection="latest"
         right
       />
-      <!-- <home-features-highlights :highlights="homePage.highlights" /> -->
+      <home-features-highlights :highlights="homePage.highlights" />
       <home-cta />
     </div>
   </div>

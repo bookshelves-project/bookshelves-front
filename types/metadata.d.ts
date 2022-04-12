@@ -29,3 +29,28 @@ declare interface MetadataBase {
     url?: string
   }
 }
+
+declare interface HeadMeta {
+  description?: string
+  route?: string
+  image?: string
+  type?: string
+  url?: string
+  title?: string
+  articlePublishedTime?: string
+  articleAuthor?: string
+  articleSection?: string
+  bookISBN?: string
+  bookAuthor?: string
+  bookReleaseDate?: string
+  bookTag?: string
+  profileFirstName?: string
+  profileLastName?: string
+}
+
+declare interface HeadElement {
+  hid?: string
+  name?: string
+  property?: string
+  content?: string
+}

@@ -8,27 +8,18 @@ export const useNavigationStore = defineStore('navigation', {
         label: 'books',
         route: {
           name: 'books',
-          // query: {
-          //   sort: 'title_sort'
-          // }
         },
       },
       {
         label: 'series',
         route: {
           name: 'series',
-          // query: {
-          //   sort: 'title_sort'
-          // }
         },
       },
       {
         label: 'authors',
         route: {
           name: 'authors',
-          // query: {
-          //   sort: 'lastname'
-          // }
         },
       },
       {
@@ -41,19 +32,18 @@ export const useNavigationStore = defineStore('navigation', {
     footerProject: {
       title: 'discover',
       links: [
-        // { label: 'advanced-search', route: { name: 'search-advanced' } },
         {
           label: 'about',
           route: {
-            name: 'type-slug',
-            params: { type: 'pages', slug: 'about' },
+            name: 'slug',
+            params: { slug: 'about' },
           },
         },
         {
           label: 'features',
           route: {
-            name: 'type-slug',
-            params: { type: 'pages', slug: 'features' },
+            name: 'slug',
+            params: { slug: 'features' },
           },
         },
       ],
@@ -64,15 +54,15 @@ export const useNavigationStore = defineStore('navigation', {
         {
           label: 'more-ebooks',
           route: {
-            name: 'type-slug',
-            params: { type: 'pages', slug: 'more-ebooks' },
+            name: 'slug',
+            params: { slug: 'more-ebooks' },
           },
         },
         {
           label: 'faq',
           route: {
-            name: 'type-slug',
-            params: { type: 'pages', slug: 'faq' },
+            name: 'slug',
+            params: { slug: 'faq' },
           },
         },
         { label: 'contact', route: { name: 'contact' } },
@@ -107,15 +97,15 @@ export const useNavigationStore = defineStore('navigation', {
         {
           label: 'legality',
           route: {
-            name: 'type-slug',
-            params: { type: 'pages', slug: 'legal' },
+            name: 'slug',
+            params: { slug: 'legal' },
           },
         },
         {
           label: 'privacy',
           route: {
-            name: 'type-slug',
-            params: { type: 'pages', slug: 'privacy' },
+            name: 'slug',
+            params: { slug: 'privacy' },
           },
         },
       ],
@@ -137,6 +127,23 @@ export const useNavigationStore = defineStore('navigation', {
       { label: 'Sign up', icon: 'register', route: { name: 'sign-up' } },
     ] as RouteLink[],
   }),
+  getters: {
+    getFooterProject: (state) => state.footerProject,
+    getFooterSupport(state) {
+      const { moduleContact } = useRuntimeConfig()
+      const support = state.footerSupport
+      if (!moduleContact) {
+        const links = state.footerSupport.links.filter(
+          (e) => e.label !== 'contact'
+        )
+        state.footerSupport.links = links
+      }
+
+      return support
+    },
+    getFooterAdvanced: (state) => state.footerAdvanced,
+    getFooterLegal: (state) => state.footerLegal,
+  },
   actions: {
     toggleSidebar(): boolean {
       this.$patch({

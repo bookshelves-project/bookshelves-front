@@ -6,6 +6,7 @@ declare type Endpoint =
   | '/authors/books'
   | '/authors/series'
   | '/posts'
+  | '/pages'
   | '/tags'
   | '/tags/books'
   | '/application'

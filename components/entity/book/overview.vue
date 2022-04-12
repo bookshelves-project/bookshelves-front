@@ -5,8 +5,6 @@ import EntityPublisherLink from '@/components/entity/publisher-link.vue'
 import EntityLanguageLink from '@/components/entity/language-link.vue'
 import EntityTagsLinks from '@/components/entity/tags-links.vue'
 import EntityBookLink from '@/components/entity/book-link.vue'
-import AppButton from '@/components/app/button.vue'
-import EntityBookSerie from '@/components/entity/book/serie.vue'
 import EntityBookRelated from '@/components/entity/book/related.vue'
 import { date } from '~/utils/methods'
 
@@ -183,6 +181,13 @@ const success = (payload: boolean) => {
                       <div class="text-gray-500 dark:text-gray-400 mr-1">
                         {{ file?.size }}
                       </div>
+                      <a
+                        :href="file?.reader"
+                        class="font-medium text-primary-600 dark:text-primary-500 hover:bg-gray-100 py-1 px-2 rounded-md dark:hover:bg-gray-800"
+                        target="_blank"
+                      >
+                        Read
+                      </a>
                       <a
                         :href="file?.url"
                         class="font-medium text-primary-600 dark:text-primary-500 hover:bg-gray-100 py-1 px-2 rounded-md dark:hover:bg-gray-800"

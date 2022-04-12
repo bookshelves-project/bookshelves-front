@@ -8,29 +8,28 @@ const route = useRoute()
 const title = ref('')
 const summary = ref<string | undefined>()
 
-const post = ref<Post>()
+const page = ref<Page>()
 
-await nuxtAsyncData<Post>('/posts', [route.params.slug]).then((e) => {
-  title.value = e.title
+await nuxtAsyncData<Page>('/pages', [route.params.slug]).then((e) => {
   summary.value = e.summary
-  post.value = e
+  page.value = e
 })
 
 useMetadata({
   title: title.value,
-  description: post.value?.summary,
-  image: post.value?.cover,
+  description: summary.value,
+  image: page.value?.cover,
 })
 </script>
 
 <template>
-  <main v-if="post" class="main-content">
+  <main v-if="page" class="main-content">
     <app-header
-      :title="title"
-      :subtitle="post.category"
-      :text="post.summary"
-      :image="post.cover"
+      :title="page.title"
+      :text="page.summary"
+      :image="page.cover"
+      :breadcrumb="title"
     />
-    <app-content :body="post.body" />
+    <app-content :body="page.body" />
   </main>
 </template>

@@ -8,6 +8,7 @@ import {
 export default defineNuxtConfig({
   build: {
     postcss: {
+      // @ts-ignore
       order: ['tailwindcss/nesting', 'tailwindcss', 'autoprefixer'],
       plugins: {
         'postcss-nested': false,
@@ -17,14 +18,15 @@ export default defineNuxtConfig({
   components: false,
   css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
   buildModules: [
-    // '@intlify/nuxt3', // https://github.com/intlify/nuxt3
     '@nuxtjs/tailwindcss', // https://tailwindcss.nuxtjs.org/
     '@pinia/nuxt', // https://pinia.vuejs.org/ssr/nuxt.html
     '@vueuse/nuxt', // https://vueuse.org/guide/
-    // 'nuxt-windicss', // https://github.com/windicss/nuxt-windicss
+    // 'nuxt-typed-router', // https://github.com/victorgarciaesgi/nuxt-typed-router
   ],
   ...config.buildModules,
-  modules: [],
+  modules: [
+    'nuxt-social-tags', // https://github.com/intevel/nuxt-social-tags
+  ],
   ...config.modules,
   meta: {
     title: 'Bookshelves',

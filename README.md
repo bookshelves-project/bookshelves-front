@@ -32,7 +32,7 @@ cp .env.example .env
 Node.js dependencies
 
 ```bash
-pnpm i --shamefully-hoist
+pnpm i
 ```
 
 Local serve
@@ -61,13 +61,13 @@ API_URL=https://bookshelves.ink
 Setup build
 
 ```bash
-npm run build
+pnpm build
 ```
 
 Launch server in SSR
 
 ```bash
-npm run start
+pnpm start
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
