@@ -15,6 +15,7 @@ export const publicRuntimeConfig = {
   metaRobotDisallow:
     process.env.META_ROBOT_DISALLOW ??
     '/sign-in,/sign-up,/dashboard,/admin,/profile',
+  metaLang: process.env.META_LANG ?? 'en_US',
   metaColor: process.env.PRIMARY_COLOR_500 ?? '#6C63FF',
   googleSiteVerificationToken:
     process.env.GOOGLE_SITE_VERIFICATION_TOKEN ??

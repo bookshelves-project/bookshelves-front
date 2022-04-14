@@ -23,6 +23,7 @@ declare module '@nuxt/schema' {
     metaTwitterCreator: string
     metaTwitterSite: string
     metaRobotDisallow: string
+    metaLang: string
     metaColor: string
     googleSiteVerificationToken: string
     moduleSocial: boolean

@@ -28,8 +28,6 @@
   "dependencies": {
     "lozad": "^1.16.0",
     "nprogress": "^0.2.0",
-    "nuxt-social-tags": "^1.1.2",
-    "nuxt-typed-router": "^1.1.2",
     "pinia": "^2.0.13",
     "qs": "^6.10.3",
     "swiper": "^8.1.0",
@@ -44,7 +42,7 @@
     "@tailwindcss/typography": "^0.5.2",
     "@types/lozad": "^1.16.1",
     "@types/qs": "^6.9.7",
-    "@vueuse/nuxt": "^8.2.5",
+    "@vueuse/nuxt": "^8.2.6",
     "eslint": "^8.13.0",
     "husky": "^7.0.4",
     "nuxt3": "latest",

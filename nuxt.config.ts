@@ -6,6 +6,22 @@ import {
 } from './utils/config/runtime-config'
 
 export default defineNuxtConfig({
+  head: {
+    link: [
+      {
+        rel: 'apple-touch-icon',
+        type: 'image/png',
+        href: '/apple-touch-icon.png',
+      },
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'manifest',
+        crossorigin: 'use-credentials',
+        href: '/manifest.webmanifest',
+      },
+    ],
+  },
   build: {
     postcss: {
       // @ts-ignore
@@ -21,12 +37,9 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss', // https://tailwindcss.nuxtjs.org/
     '@pinia/nuxt', // https://pinia.vuejs.org/ssr/nuxt.html
     '@vueuse/nuxt', // https://vueuse.org/guide/
-    // 'nuxt-typed-router', // https://github.com/victorgarciaesgi/nuxt-typed-router
   ],
   ...config.buildModules,
-  modules: [
-    'nuxt-social-tags', // https://github.com/intevel/nuxt-social-tags
-  ],
+  modules: [],
   ...config.modules,
   meta: {
     title: 'Bookshelves',
