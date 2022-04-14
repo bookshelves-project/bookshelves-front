@@ -14,15 +14,8 @@ const store = useFilterStore()
 const queryAvailable = computed(() => !objectIsEmpty(route.query))
 
 const clearAll = () => {
-  // store.setQueries({})
-  const query = {
-    size: '32',
-    page: '1',
-  }
-  router.replace({
-    name: route.name!,
-    query: props.paginate ? query : {},
-  })
+  store.clearQueries()
+  store.setQueries({})
 }
 </script>
 

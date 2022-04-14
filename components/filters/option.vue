@@ -88,6 +88,19 @@ watch(
     currentQuery.value = newVal
   }
 )
+
+watch(
+  () => store.clear,
+  (newVal) => {
+    checkboxes.value = []
+    switchValue.value = false
+    setTimeout(() => {
+      router.replace({
+        query: {},
+      })
+    }, 300)
+  }
+)
 </script>
 
 <template>

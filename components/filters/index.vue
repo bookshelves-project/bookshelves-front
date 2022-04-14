@@ -80,7 +80,7 @@ const reverseSort = (asc = false) => {
   let query = {}
   query = { ...route.query, ...newQuery }
   router.replace({ query: { ...query } })
-  // store.setQueries({ ...query })
+  store.setQueries({ ...query })
 }
 const queryAvailable = computed(() => {
   return !objectIsEmpty(route.query)
