@@ -25,36 +25,11 @@ const emit = defineEmits(['update:modelValue'])
 stars.value = max
 currentRating.value = modelValue || rating
 
-const starIcon = (star: any) => {
-  //   return this.currentRating >= star
-  //     ? 'star-full'
-  //     : this.currentRating > star - 1
-  //     ? 'star-half'
-  //     : 'star'
-}
 const set = (id: number) => {
   current.value = id
-  let full = <number[]>[]
-  switch (current.value) {
-    case 5:
-      full = [1, 2, 3, 4, 5]
-      break
-    case 4:
-      full = [1, 2, 3, 4]
-      break
-    case 3:
-      full = [1, 2, 3]
-      break
-    case 2:
-      full = [1, 2]
-      break
-    case 1:
-      full = [1]
-      break
-    default:
-      break
-  }
-  currentColor.value = full
+  currentColor.value = Array(current.value)
+    .fill(current.value, 1)
+    .map((x, i) => i)
 }
 const save = (id: number) => {
   currentRating.value = id
@@ -75,13 +50,13 @@ const save = (id: number) => {
       <div
         id="rating"
         name="rating"
-        class="flex items-center space-x-1y"
+        class="flex items-center space-x-1"
         :class="{ 'py-2': !disabled }"
       >
         <div
           v-for="(star, id) in stars"
           :key="id"
-          class="text-gray-400 dark:text-gray-300"
+          class="text-gray-400 dark:text-gray-300 relative"
           :class="[
             {
               star: currentColor.includes(id + 1),
@@ -92,12 +67,12 @@ const save = (id: number) => {
           @click="disabled ? '' : save(id + 1)"
         >
           <svg-icon
-            :name="currentRating >= star ? 'star-full' : 'star'"
-            :class="[
-              currentRating >= star ? 'star' : '',
-              disabled ? 'w-5 h-5' : 'w-8 h-8',
-            ]"
+            v-if="currentRating >= star"
+            name="star-full"
+            :class="[disabled ? 'w-5 h-5' : 'w-8 h-8']"
+            class="star absolute inset-0"
           />
+          <svg-icon name="star" :class="[disabled ? 'w-5 h-5' : 'w-8 h-8']" />
         </div>
       </div>
     </div>
