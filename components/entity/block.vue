@@ -23,7 +23,7 @@ const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
 </script>
 
 <template>
-  <div>
+  <div v-if="list && list.length">
     <app-divider> {{ count }} {{ name }} </app-divider>
     <div class="display-grid space-y-6 sm:space-y-0">
       <entity-card v-for="(entity, id) in list" :key="id" :entity="entity" />

@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="entities">
+  <div v-if="entities && entities.length">
     <transition-group name="list" tag="section" class="display-grid">
       <entity-card
         v-for="entity in entities"
@@ -22,5 +22,8 @@ defineProps<{
         :entity-name="entityName"
       />
     </transition-group>
+  </div>
+  <div v-else class="text-center italic min-h-[10vh]">
+    <div>There is no entries here!</div>
   </div>
 </template>
