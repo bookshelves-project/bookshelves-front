@@ -28,7 +28,9 @@ const {
     v-if="squareForm"
     :is="route ? 'router-link' : 'span'"
     :to="route ? $localePath(route) : '/'"
-    :class="{ 'hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md': route }"
+    :class="{
+      'hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md': route,
+    }"
   >
     <div class="relative w-full h-72 rounded-lg overflow-hidden">
       <app-img
@@ -65,7 +67,10 @@ const {
         aria-hidden="true"
         class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"
       ></div>
-      <p v-if="!noType" class="relative text-lg font-semibold text-white">
+      <p
+        v-if="!noType"
+        class="relative text-lg font-semibold text-white font-handlee"
+      >
         {{ type }}
       </p>
     </div>
@@ -73,7 +78,7 @@ const {
   <div
     v-else
     :class="{ 'hover:bg-gray-100 dark:hover:bg-gray-800': route }"
-    class="entity-card focus relative flex h-56 items-center space-x-3 rounded-sm transition-colors duration-75"
+    class="entity-card focus relative flex h-56 items-center space-x-3 rounded-sm transition-colors duration-75 m-1"
     :title="title"
   >
     <div class="h-full shrink-0 relative">
@@ -83,14 +88,22 @@ const {
         :color="color"
         :alt="title"
       />
+      <div
+        class="absolute top-0 inset-x-0 h-full py-2 px-3 flex items-end justify-start overflow-hidden"
+      >
+        <div
+          aria-hidden="true"
+          class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"
+        ></div>
+        <p
+          v-if="!noType"
+          class="relative text-lg font-semibold text-white font-handlee"
+        >
+          {{ type }}
+        </p>
+      </div>
     </div>
     <div class="mt-2 h-full min-w-0 flex-1">
-      <div
-        v-if="type !== null && !noType"
-        class="absolute top-0 left-0 bg-gray-900 p-2 rounded-br-md text-sm font-semibold bg-opacity-60 text-white dark:text-white"
-      >
-        {{ type }}
-      </div>
       <component
         :is="route ? 'router-link' : 'span'"
         :to="route ? $localePath(route) : '/'"
