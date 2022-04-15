@@ -31,7 +31,7 @@ watch(
 </script>
 
 <template>
-  <div class="my-10 max-w-7xl">
+  <div v-if="pages !== 1" class="my-10 max-w-7xl">
     <nav
       class="flex items-center justify-between border-t border-gray-200 px-4 dark:border-gray-700 sm:px-0"
     >
