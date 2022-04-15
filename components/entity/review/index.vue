@@ -65,9 +65,9 @@ const refresh = async (slug: string) => {
       </div>
     </div>
 
-    <div class="grid lg:grid-cols-3 gap-8">
-      <entity-review-list :reviews="reviews" class="col-span-2" />
-      <form-review class="col-span-1" @refresh="refresh" />
+    <div class="lg:grid lg:grid-cols-3 lg:gap-3">
+      <entity-review-list :reviews="reviews" class="lg:col-span-2" />
+      <form-review class="lg:col-span-1" @refresh="refresh" />
     </div>
   </section>
 </template>
