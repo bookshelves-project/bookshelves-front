@@ -37,7 +37,7 @@ useMetadata({
   <main class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <filters negligible />
+        <filters negligible :total="response.length" />
       </template>
     </app-header>
     <entity-relation-list

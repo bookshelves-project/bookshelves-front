@@ -1,4 +1,6 @@
-<template>filter queries</template>
+<template>
+  <div></div>
+</template>
 <!-- <template>
   <div>
     <span v-for="item in queries" :key="item.id">

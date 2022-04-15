@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import AppHeader from '@/components/app/header.vue'
 import RelationPostCard from '@/components/relation/post/card.vue'
+import Pagination from '@/components/pagination/index.vue'
 
 const { nuxtAsyncList } = useFetchable()
-const { query } = useRoute()
+const route = useRoute()
 
 const title = 'Guides'
 const description = 'To know more about eBooks & eReaders'
@@ -16,7 +17,7 @@ const load = async () => {
 await load()
 
 watch(
-  () => query,
+  () => route.query,
   async (newVal) => {
     await load()
   }
@@ -38,5 +39,10 @@ useMetadata({
         :post="post"
       />
     </div>
+    <pagination
+      v-if="response?.meta"
+      :pages="response?.meta.last_page"
+      :current="response?.meta.current_page"
+    />
   </main>
 </template>

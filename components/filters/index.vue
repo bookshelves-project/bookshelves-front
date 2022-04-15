@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import FiltersOption from '@/components/filters/option.vue'
+import FiltersQueries from '@/components/filters/queries.vue'
 import FiltersClear from '@/components/filters/clear.vue'
 import SvgIcon from '@/components/svg-icon.vue'
 
@@ -13,6 +14,7 @@ defineProps<{
   type?: boolean
   serie?: boolean
   negligible?: boolean
+  total?: number
 }>()
 
 const route = useRoute()
@@ -185,12 +187,15 @@ const queryAvailable = computed(() => {
 
           <div class="mt-2 sm:mt-0 sm:ml-4">
             <div class="-m-1 flex flex-wrap items-center">
-              <div v-if="!queryAvailable" class="italic text-gray-300">
+              <div v-if="!queryAvailable" class="italic text-gray-300 text-sm">
                 None.
               </div>
               <filters-clear />
-              <!-- <filters-queries /> -->
+              <filters-queries />
             </div>
+          </div>
+          <div v-if="total" class="ml-auto text-sm italic">
+            {{ total }} entries
           </div>
         </div>
       </div>
