@@ -63,7 +63,9 @@ const deleteReview = (id: number) => {
       />
       <p class="sr-only">{{ review.rating }} out of 5 stars</p>
 
-      <div class="review-text prose prose-lg dark:prose-invert mt-4 max-w-none">
+      <div
+        class="review-text prose prose-lg dark:prose-invert mr-3 mt-4 max-w-none"
+      >
         <div
           class="light-md mt-1 overflow-hidden text-sm text-gray-500 dark:text-gray-400"
           :class="overflow ? 'overflow-review' : ''"

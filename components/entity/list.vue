@@ -4,7 +4,7 @@ import EntityCard from '@/components/entity/card.vue'
 defineProps<{
   entities?: Book[] | Serie[] | Author[] | Entity[]
   noType?: boolean
-  squareForm?: boolean
+  square?: boolean
   entityName?: boolean
 }>()
 </script>
@@ -18,7 +18,7 @@ defineProps<{
         class="relative"
         :entity="entity"
         :no-type="noType"
-        :square-form="squareForm"
+        :square="square"
         :entity-name="entityName"
       />
     </transition-group>

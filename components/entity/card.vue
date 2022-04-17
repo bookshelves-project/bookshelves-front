@@ -5,7 +5,7 @@ import { capitalize } from '@/utils/methods'
 const props = defineProps<{
   entity: EntityList
   noType?: boolean
-  squareForm?: boolean
+  square?: boolean
   entityName?: boolean
 }>()
 
@@ -25,7 +25,7 @@ const {
 
 <template>
   <component
-    v-if="squareForm"
+    v-if="square"
     :is="route ? 'router-link' : 'span'"
     :to="route ? $localePath(route) : '/'"
     :class="{
