@@ -2,14 +2,12 @@
 import FormLayoutSide from '@/components/form/layout/side.vue'
 import FormContact from '@/components/form/contact.vue'
 
-const { updateSocialTags } = useSocialTags()
-
 const title = 'Leave us a short note'
 const image = '/images/pages/contact.svg'
 
 useMetadata({
-  title: title,
-  image: image,
+  title,
+  image,
 })
 </script>
 

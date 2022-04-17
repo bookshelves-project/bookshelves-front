@@ -53,7 +53,14 @@ useMetadata({
   <div class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <filters serie language type :sort="sortOptions" paginate />
+        <filters
+          serie
+          language
+          type
+          :sort="sortOptions"
+          paginate
+          :total="response?.meta.total"
+        />
       </template>
     </app-header>
     <entity-list :entities="response?.data" />

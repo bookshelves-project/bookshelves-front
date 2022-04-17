@@ -30,7 +30,7 @@ const deleteReview = (id: number) => {
         class="w-10 h-10 rounded-full"
       />
     </div>
-    <div class="flex-1 py-6 pr-6">
+    <div class="flex-1 py-6">
       <router-link
         :to="
           $localePath({
@@ -63,7 +63,9 @@ const deleteReview = (id: number) => {
       />
       <p class="sr-only">{{ review.rating }} out of 5 stars</p>
 
-      <div class="review-text prose prose-lg dark:prose-invert mt-4 max-w-none">
+      <div
+        class="review-text prose prose-lg dark:prose-invert mr-3 mt-4 max-w-none"
+      >
         <div
           class="light-md mt-1 overflow-hidden text-sm text-gray-500 dark:text-gray-400"
           :class="overflow ? 'overflow-review' : ''"
@@ -112,5 +114,9 @@ const deleteReview = (id: number) => {
 .overflow-review :deep(p:after) {
   content: '\A';
   white-space: pre;
+}
+
+.review-text :deep(p) {
+  margin-top: 0 !important;
 }
 </style>

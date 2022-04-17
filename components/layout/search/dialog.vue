@@ -29,6 +29,15 @@ watch(
   }
 )
 
+watch(
+  () => form.value,
+  (newVal) => {
+    if (query.value.length >= 3) {
+      fetchResults(query.value)
+    }
+  }
+)
+
 const fetchResults = async (input: string) => {
   loading.value = true
   const types = []
@@ -95,12 +104,6 @@ onMounted(() => {
       >
         Search
       </h2>
-      <div class="italic text-gray-600 dark:text-gray-400">
-        You can search an
-        <b>author's name</b>, a <b>series' title</b>, a <b>book's title</b> or
-        <b>ISBN</b>. You will have some results sorted by relevance, three best
-        results in each type and other results.
-      </div>
       <div class="absolute top-0 right-0">
         <span
           style="opacity: 1"
@@ -145,7 +148,7 @@ onMounted(() => {
           autocorrect="off"
           autocapitalize="none"
           spellcheck="false"
-          placeholder="Search (3 characters min.)"
+          placeholder="Search (3 char. min.) authors' names, series' title, books' titles or ISBN"
           maxlength="64"
           type="search"
           enterkeyhint="go"

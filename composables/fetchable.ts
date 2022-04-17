@@ -20,6 +20,7 @@ export const useFetchable = () => {
     let queryParams = ''
     if (params) {
       const routeParams = params instanceof Array ? params.join('/') : params
+
       url = `${url}/${routeParams}`
     }
     if (query && !objectIsEmpty(query))

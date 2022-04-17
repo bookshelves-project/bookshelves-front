@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import AppHeader from '@/components/app/header.vue'
-import EntityBookOverview from '@/components/entity/book/overview.vue'
+import EntityBookOverview from '@/components/entity/book/overview/index.vue'
 import DownloadButton from '@/components/entity/download-button.vue'
-import EntityReview from '@/components/entity/review/index.vue'
 import ReaderButton from '@/components/entity/reader-button.vue'
 import { formatAuthors } from '~~/utils/methods'
 
@@ -67,10 +66,6 @@ useMetadata({
         <reader-button :download="book.download" :files="book.files" />
       </div>
     </app-header>
-    <entity-book-overview :book="book" class="mb-6">
-      <template #reviews>
-        <entity-review :entity="book" />
-      </template>
-    </entity-book-overview>
+    <entity-book-overview :book="book" class="mb-6" />
   </main>
 </template>

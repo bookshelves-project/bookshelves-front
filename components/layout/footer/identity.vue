@@ -28,6 +28,12 @@ const features = [
     title: 'Webreader: to read an eBook directly in your browser',
     link: `${apiUrlBase('/webreader')}`,
   },
+  {
+    icon: 'api',
+    label: 'API',
+    title: 'API: share data between applications',
+    link: `${apiUrlBase('/docs')}`,
+  },
 ]
 </script>
 

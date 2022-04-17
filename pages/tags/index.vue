@@ -47,7 +47,7 @@ useMetadata({
   <div class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <filters negligible />
+        <filters negligible :total="genres?.length + tags?.length" />
       </template>
     </app-header>
     <div v-if="genres" class="mb-10">

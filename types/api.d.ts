@@ -46,9 +46,9 @@ declare interface ApiFormated<T> {
 
 declare interface Query {
   lang?: string
-  size?: string
-  page?: string
-  limit?: string
+  size?: number
+  page?: number
+  limit?: number
   'filter[allow_serie]'?: boolean
   'filter[languages]'?: string
   'filter[types]'?: string

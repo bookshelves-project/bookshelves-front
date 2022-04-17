@@ -4,9 +4,8 @@
 // import type { IContentOptions } from '@nuxt/content'
 // import { ModuleOptions } from '@nuxtjs/color-mode/dist/module'
 import { ModuleOptions } from '@nuxt/schema'
-import metadata from '../metadata'
 // import { ApiEndpoint } from '../../types/index'
-import pwaData from './pwa'
+// import pwaData from './pwa'
 
 const headers = {
   common: {
@@ -132,26 +131,6 @@ const headers = {
 //   breaks: true,
 //   use: ['markdown-it-div', 'markdown-it-attrs'],
 // }
-// From https://github.com/victorgarciaesgi/nuxt-typed-router
-const socialtags: ModuleOptions = {
-  enabled: true,
-  url: process.env.BASE_URL,
-  title: process.env.APP_NAME,
-  author: process.env.META_AUTHOR,
-  site_name: process.env.APP_NAME,
-  description: process.env.META_DESCRIPTION,
-  // theme_color: '#2222',
-  img: '/default.jpg',
-  locale: 'en_US',
-  opengraph: true,
-  twitter: true,
-  twitter_user: process.env.META_TWITTER_CREATOR,
-}
-// From https://nuxt-social-tags.netlify.app/options/
-const nuxtTypedRouter: ModuleOptions = {
-  // outDir: '', // Output directory where you cant the files to be saved
-  // routesObjectName: '', // Name of the routesNames object (ex: "routesTree")
-}
 
 const modules: ModuleOptions = {
   // colorMode,
@@ -162,8 +141,6 @@ const modules: ModuleOptions = {
   // robots,
   // sitemap,
   // markdownit,
-  socialtags: socialtags,
-  // nuxtTypedRouter: nuxtTypedRouter,
   // i18n
 }
 
