@@ -15,7 +15,7 @@ defineProps<{
     <a
       :href="action"
       :target="external ? '_blank' : '_self'"
-      :download="download"
+      :download="download ? download : ''"
       type="button"
       :class="deployable ? 'rounded-l-md' : 'rounded-md'"
       class="button-group !px-5 w-full"
