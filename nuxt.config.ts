@@ -1,4 +1,4 @@
-import { defineNuxtConfig } from 'nuxt3'
+import { defineNuxtConfig } from 'nuxt'
 import config from './utils/config'
 import {
   publicRuntimeConfig,
@@ -31,7 +31,10 @@ export default defineNuxtConfig({
       },
     },
   },
-  components: false,
+  components: {
+    global: true,
+    dirs: ['~/components'],
+  },
   css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
   buildModules: [
     '@nuxtjs/tailwindcss', // https://tailwindcss.nuxtjs.org/
@@ -50,8 +53,10 @@ export default defineNuxtConfig({
     ],
   },
   // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config
-  publicRuntimeConfig: publicRuntimeConfig,
-  privateRuntimeConfig: privateRuntimeConfig,
+  runtimeConfig: {
+    ...privateRuntimeConfig,
+    public: publicRuntimeConfig,
+  },
   typescript: {
     strict: true, // for pinia
     shim: false, // with Take Over Mode from https://github.com/johnsoncodehk/volar/discussions/471
