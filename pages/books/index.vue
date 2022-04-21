@@ -59,6 +59,7 @@ useMetadata({
           type
           :sort="sortOptions"
           paginate
+          size
           :total="response?.meta.total"
         />
       </template>

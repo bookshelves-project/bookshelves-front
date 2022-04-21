@@ -28,6 +28,12 @@ watch(
     init(props.pages, props.current)
   }
 )
+watch(
+  () => props.pages,
+  (newVal) => {
+    init(props.pages, props.current)
+  }
+)
 </script>
 
 <template>
