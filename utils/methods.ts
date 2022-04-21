@@ -10,7 +10,7 @@ import {
   instanceSerie,
   instanceAuthor,
 } from './methods/entities'
-import { containsObject, objectIsEmpty } from './methods/object'
+import { containsObject, objectIsEmpty, getValue } from './methods/object'
 import {
   capitalize,
   capitalizeEach,
@@ -41,4 +41,5 @@ export {
   getHostname,
   randomString,
   slugify,
+  getValue,
 }

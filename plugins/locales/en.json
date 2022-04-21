@@ -1,0 +1,38 @@
+{
+  "welcome": "Welcome",
+  "language": "Language",
+  "nav": {
+    "books": "Books",
+    "series": "Series",
+    "authors": "Authors",
+    "tags": "Tags & genres",
+    "guides": "Guides",
+    "discover": "Discover",
+    "support": "Support",
+    "more": "More",
+    "legal": "Legal",
+    "advanced-search": "Advanced search",
+    "about": "About",
+    "features": "Features",
+    "more-ebooks": "More ebooks",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "genres-tags": "Genres & tags",
+    "languages": "Languages",
+    "publishers": "Publishers",
+    "legality": "Legality",
+    "privacy": "Privacy",
+    "sitemap": "Sitemap",
+    "search": {
+      "placeholder": "Search for a book, a series or an author"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "title": "reading in complete tranquility...",
+        "text": "If you have an eReader and are looking for plenty of eBooks to take everywhere with you, you've come to the right place, hours of reading in perspective."
+      }
+    }
+  }
+}
