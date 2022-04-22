@@ -8,7 +8,7 @@ const order = (names: Plugin[]) => {
   names.unshift(tailwindNesting)
 }
 
-const hooks: object = {
+const hooks = {
   // 'vite:extend'({ config }) {
   //   order(config.css.postcss.plugins)
   // },

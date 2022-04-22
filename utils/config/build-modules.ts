@@ -1,11 +1,6 @@
-// import type { ColorModeOptions } from '@nuxtjs/color-mode/types/color-mode'
-
 import { VueUseNuxtOptions } from '@vueuse/nuxt'
 import { ModuleOptions } from '@nuxt/schema'
 
-// const colorMode: Partial<ColorModeOptions> = {
-//   classSuffix: ''
-// }
 const htmlValidator = {
   usePrettier: false,
   options: {
@@ -30,12 +25,7 @@ const htmlValidator = {
   },
 }
 const tailwindcss: Partial<ModuleOptions> = {
-  // cssPath: '~/assets/css/tailwind.css',
-  // configPath: 'tailwind.config.js',
   exposeConfig: true,
-  // config: {},
-  // injectPosition: 0,
-  // viewer: true,
 }
 const vueuse: VueUseNuxtOptions = {
   ssrHandlers: true,

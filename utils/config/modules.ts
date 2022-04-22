@@ -122,9 +122,6 @@ const headers = {
 //     redirectOn: 'root' // recommended
 //   }
 // }
-// const colorMode: Partial<ModuleOptions> = {
-//   classSuffix: '',
-// }
 // const markdownit = {
 //   preset: 'default',
 //   linkify: true,
@@ -144,14 +141,7 @@ const modules: ModuleOptions = {
   // i18n
 }
 
-// export const nuxtLazyLoad: object = {
-//   directiveOnly: true,
-//   loadingClass: 'isLoading',
-//   loadedClass: 'isLoaded',
-//   appendClass: 'lazyLoad',
-// }
-
-export const matomo: object = {
+export const matomo = {
   matomoUrl: process.env.MATOMO_URL ? process.env.MATOMO_URL : null,
   siteId: process.env.MATOMO_SITE_ID ? process.env.MATOMO_SITE_ID : null,
 }
