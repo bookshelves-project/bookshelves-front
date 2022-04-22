@@ -23,20 +23,22 @@ export default defineNuxtConfig({
   modules: [],
   ...config.modules,
   // http://v3.nuxtjs.org/guide/features/runtime-config
-  runtimeConfig: config.runtimeConfig,
+  runtimeConfig: {
+    ...config.runtimeConfigPrivate,
+    public: config.runtimeConfigPublic,
+  },
   typescript: {
     strict: true, // for pinia
     shim: false, // with Take Over Mode from https://github.com/johnsoncodehk/volar/discussions/471
   },
   // https://v3.nuxtjs.org/api/configuration/nuxt.config#vite
   vite: {
-    // vue: {
-    //   reactivityTransform: true
-    // },
     plugins: [
       svgLoader(), // https://github.com/jpkleemans/vite-svg-loader#readme
     ],
   },
   // https://v3.nuxtjs.org/api/configuration/nuxt.config#vue-1
-  vue: {},
+  vue: {
+    // reactivityTransform: true
+  },
 })

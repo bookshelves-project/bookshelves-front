@@ -4,7 +4,10 @@ import head from './config/head'
 import hooks from './config/hooks'
 import meta from './config/meta'
 import modules from './config/modules'
-import runtimeConfig from './config/runtime-config'
+import {
+  runtimeConfigPublic,
+  runtimeConfigPrivate,
+} from './config/runtime-config'
 
 const config = {
   build,
@@ -13,7 +16,8 @@ const config = {
   hooks,
   meta,
   modules,
-  runtimeConfig,
+  runtimeConfigPublic,
+  runtimeConfigPrivate,
 }
 
 export default config
