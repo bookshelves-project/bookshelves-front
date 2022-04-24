@@ -1,4 +1,5 @@
-export const publicRuntimeConfig = {
+const runtimeConfigPrivate = {}
+const runtimeConfigPublic = {
   baseURL: process.env.BASE_URL ?? 'http://localhost:3000',
   apiURL: process.env.API_URL ?? 'http://localhost:8000',
   apiEndpoint: process.env.API_ENDPOINT ?? '/api',
@@ -47,4 +48,5 @@ export const publicRuntimeConfig = {
   primaryColor800: process.env.PRIMARY_COLOR_800 ?? '#2b2866',
   primaryColor900: process.env.PRIMARY_COLOR_900 ?? '#161433',
 }
-export const privateRuntimeConfig = {}
+
+export { runtimeConfigPrivate, runtimeConfigPublic }

@@ -1,61 +1,44 @@
-import { defineNuxtConfig } from 'nuxt3'
+import { defineNuxtConfig } from 'nuxt'
 import config from './utils/config'
-import {
-  publicRuntimeConfig,
-  privateRuntimeConfig,
-} from './utils/config/runtime-config'
+import svgLoader from 'vite-svg-loader'
 
+// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  head: {
-    link: [
-      {
-        rel: 'apple-touch-icon',
-        type: 'image/png',
-        href: '/apple-touch-icon.png',
-      },
-      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-      { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'manifest',
-        crossorigin: 'use-credentials',
-        href: '/manifest.webmanifest',
-      },
-    ],
-  },
-  build: {
-    postcss: {
-      // @ts-ignore
-      order: ['tailwindcss/nesting', 'tailwindcss', 'autoprefixer'],
-      plugins: {
-        'postcss-nested': false,
-      },
-    },
-  },
-  components: false,
-  css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
+  // @ts-ignore
+  build: config.build,
   buildModules: [
     '@nuxtjs/tailwindcss', // https://tailwindcss.nuxtjs.org/
     '@pinia/nuxt', // https://pinia.vuejs.org/ssr/nuxt.html
     '@vueuse/nuxt', // https://vueuse.org/guide/
   ],
   ...config.buildModules,
+  components: {
+    global: true,
+    dirs: ['~/components'],
+  },
+  css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
+  head: config.head,
+  hooks: config.hooks,
+  meta: config.meta,
   modules: [],
   ...config.modules,
-  meta: {
-    title: 'Bookshelves',
-    script: [
-      {
-        src: '/color-mode.js',
-      },
-    ],
+  // http://v3.nuxtjs.org/guide/features/runtime-config
+  runtimeConfig: {
+    ...config.runtimeConfigPrivate,
+    public: config.runtimeConfigPublic,
   },
-  // https://nuxtjs.org/blog/moving-from-nuxtjs-dotenv-to-runtime-config
-  publicRuntimeConfig: publicRuntimeConfig,
-  privateRuntimeConfig: privateRuntimeConfig,
   typescript: {
     strict: true, // for pinia
     shim: false, // with Take Over Mode from https://github.com/johnsoncodehk/volar/discussions/471
   },
-  // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config#vite
-  vite: config.vite,
+  // https://v3.nuxtjs.org/api/configuration/nuxt.config#vite
+  vite: {
+    plugins: [
+      svgLoader(), // https://github.com/jpkleemans/vite-svg-loader#readme
+    ],
+  },
+  // https://v3.nuxtjs.org/api/configuration/nuxt.config#vue-1
+  vue: {
+    // reactivityTransform: true
+  },
 })

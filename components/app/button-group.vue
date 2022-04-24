@@ -2,17 +2,26 @@
 import AppDropdown from '@/components/app/dropdown.vue'
 import SvgIcon from '@/components/svg-icon.vue'
 
-defineProps<{
+const props = defineProps<{
   action?: string
   deployable?: boolean
   external?: boolean
   download?: boolean
 }>()
+
+const link = ref<HTMLAnchorElement>()
+
+onMounted(() => {
+  if (!props.download) {
+    link.value?.removeAttribute('download')
+  }
+})
 </script>
 
 <template>
   <span class="relative inline-flex shadow-sm rounded-md w-full">
     <a
+      ref="link"
       :href="action"
       :target="external ? '_blank' : '_self'"
       :download="download"

@@ -1,3 +1,5 @@
+import { getValue } from '@/utils/methods'
+
 export const useRelation = (route?: Route) => {
   const percent = (bestCount: number, value?: number) => {
     return value ? (value * 100) / bestCount : 1
@@ -26,12 +28,6 @@ export const useRelation = (route?: Route) => {
     }
 
     return style
-  }
-  const getValue = (obj: Keyable, path: string): any => {
-    if (!path) return obj
-    const properties = path.split('.')
-    const key = properties.shift() as string
-    return getValue(obj[key], properties.join('.'))
   }
 
   const getRoute = (item: Keyable): Route => {

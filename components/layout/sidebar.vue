@@ -1,3 +1,51 @@
+<script setup lang="ts">
+import { onClickOutside } from '@vueuse/core'
+import { useNavigationStore } from '~~/store/navigation'
+
+const sidebar = ref(false)
+const layer = ref(false)
+const overlay = ref(false)
+const target = ref(null)
+
+const navigation = useNavigationStore()
+
+watch(
+  () => navigation.sidebar,
+  (newVal) => {
+    if (newVal) {
+      openSidebar()
+    } else {
+      closeSidebar()
+    }
+  }
+)
+
+onClickOutside(target, (event) => {
+  closeSidebar()
+})
+
+const openSidebar = () => {
+  layer.value = true
+  setTimeout(() => {
+    overlay.value = true
+    sidebar.value = true
+  }, 250)
+}
+const closeSidebar = () => {
+  overlay.value = false
+  sidebar.value = false
+  setTimeout(() => {
+    layer.value = false
+  }, 250)
+
+  navigation.closeSidebar()
+}
+const logout = () => {
+  // closeSidebar()
+  // ctx.$auth.logout()
+}
+</script>
+
 <template>
   <div
     v-if="layer"
@@ -141,53 +189,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { onClickOutside } from '@vueuse/core'
-import { useNavigationStore } from '~~/store/navigation'
 
-const sidebar = ref(false)
-const layer = ref(false)
-const overlay = ref(false)
-const target = ref(null)
-
-const navigation = useNavigationStore()
-
-watch(
-  () => navigation.sidebar,
-  (newVal) => {
-    if (newVal) {
-      openSidebar()
-    } else {
-      closeSidebar()
-    }
-  }
-)
-
-onClickOutside(target, (event) => {
-  closeSidebar()
-})
-
-const openSidebar = () => {
-  layer.value = true
-  setTimeout(() => {
-    overlay.value = true
-    sidebar.value = true
-  }, 250)
-}
-const closeSidebar = () => {
-  overlay.value = false
-  sidebar.value = false
-  setTimeout(() => {
-    layer.value = false
-  }, 250)
-
-  navigation.closeSidebar()
-}
-const logout = () => {
-  // closeSidebar()
-  // ctx.$auth.logout()
-}
-</script>
 
 <style lang="css" scoped>
 .link {

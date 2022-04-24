@@ -10,12 +10,28 @@ import { objectIsEmpty } from '~~/utils/methods'
 
 defineProps<{
   sort?: FilterOption[]
+  size?: boolean
   language?: boolean
   type?: boolean
   serie?: boolean
   negligible?: boolean
   total?: number
 }>()
+
+const sizeOptions: FilterOption[] = [
+  {
+    label: '32 (default)',
+    value: '32',
+  },
+  {
+    label: '64',
+    value: '64',
+  },
+  {
+    label: '128',
+    value: '128',
+  },
+]
 
 const route = useRoute()
 const router = useRouter()
@@ -104,6 +120,14 @@ const queryAvailable = computed(() => {
               filter="sort"
               label="Sort"
               :options="sort"
+              type="button"
+              auto-close
+            />
+            <filters-option
+              v-if="size"
+              filter="size"
+              label="By page"
+              :options="sizeOptions"
               type="button"
               auto-close
             />
