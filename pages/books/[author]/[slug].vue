@@ -19,12 +19,14 @@ const load = async () => {
   ])
 
   book.value = entity
-  const serie = entity.serie
-    ? ` · ${entity.serie.title}, vol. ${entity.volume} `
-    : ''
-  const authors = formatAuthors(entity.authors)
-  title.value = `${entity.title} (${entity.type}) ${serie}by ${authors}`
-  breadcrumb.value = `${entity.title} (${entity.type})`
+  if (entity) {
+    const serie = book.value.serie
+      ? ` · ${book.value.serie.title}, vol. ${book.value.volume} `
+      : ''
+    const authors = formatAuthors(book.value.authors)
+    title.value = `${book.value.title} (${book.value.type}) ${serie}by ${authors}`
+    breadcrumb.value = `${book.value.title} (${book.value.type})`
+  }
 }
 await load()
 
