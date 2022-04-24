@@ -10,10 +10,14 @@ const summary = ref<string | undefined>()
 
 const page = ref<Page>()
 
-await nuxtAsyncData<Page>('/pages', [route.params.slug]).then((e) => {
-  summary.value = e.summary
-  page.value = e
-})
+await nuxtAsyncData<Page | undefined>('/pages', [route.params.slug]).then(
+  (e) => {
+    if (e) {
+      summary.value = e.summary
+      page.value = e
+    }
+  }
+)
 
 useMetadata({
   title: title.value,

@@ -10,11 +10,15 @@ const summary = ref<string | undefined>()
 
 const post = ref<Post>()
 
-await nuxtAsyncData<Post>('/posts', [route.params.slug]).then((e) => {
-  title.value = e.title
-  summary.value = e.summary
-  post.value = e
-})
+await nuxtAsyncData<Post | undefined>('/posts', [route.params.slug]).then(
+  (e) => {
+    if (e) {
+      title.value = e.title
+      summary.value = e.summary
+      post.value = e
+    }
+  }
+)
 
 useMetadata({
   title: title.value,
