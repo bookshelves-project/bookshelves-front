@@ -17,7 +17,6 @@ export default defineNuxtConfig({
     dirs: ['~/components'],
   },
   css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
-  head: config.head,
   hooks: config.hooks,
   meta: config.meta,
   modules: [],
