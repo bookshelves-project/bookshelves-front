@@ -72,6 +72,9 @@ module.exports = {
           '@apply grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-hidden':
             {},
         },
+        '.text-gray': {
+          '@apply text-gray-500 dark:text-gray-400': {},
+        },
       })
     }),
     require('@tailwindcss/forms'),
