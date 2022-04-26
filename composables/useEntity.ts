@@ -5,7 +5,11 @@ import {
   instanceAuthor,
 } from '~/utils/methods'
 
-export const useEntity = (originalEntity: EntityList) => {
+export const useEntity = (
+  originalEntity: EntityList,
+  withType = false,
+  withName = false
+) => {
   const currentType = ref<EntityType>()
 
   const checkType = () => {
@@ -29,11 +33,9 @@ export const useEntity = (originalEntity: EntityList) => {
     } else if (currentType.value === 'author') {
       const entity = originalEntity as Author
       return entity.name
-    } else {
-      const entity = originalEntity as Entity
-      // return entity.title || entity.name
-      return ''
     }
+
+    return ''
   })
   const image = computed(() => {
     return originalEntity.cover?.thumbnail || '/images/no-cover.webp'
@@ -85,7 +87,7 @@ export const useEntity = (originalEntity: EntityList) => {
   })
 
   const language = computed(() => {
-    let language = null
+    let language = undefined
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
       language = entity.language?.name
@@ -98,13 +100,16 @@ export const useEntity = (originalEntity: EntityList) => {
     if (currentType.value === 'book') {
       const entity = originalEntity as Book
       if (entity.serie && entity.volume) {
-        return `${entity.serie.title ?? entity.serie}, vol. ${entity.volume}`
+        return {
+          title: `${entity.serie.title ?? entity.serie}`,
+          volume: `${entity.volume}`,
+        }
       }
     }
   })
 
   const authors = computed(() => {
-    let authors = null
+    let authors = undefined
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
       authors = entity.authors
@@ -113,11 +118,11 @@ export const useEntity = (originalEntity: EntityList) => {
       authors = entity.authors
     }
 
-    return authors ? formatAuthors(authors) : null
+    return authors ? formatAuthors(authors) : undefined
   })
 
   const count = computed((): string => {
-    let count = null
+    let count = undefined
     if (currentType.value === 'serie') {
       const entity = originalEntity as Serie
       count = `${entity.count} books`
@@ -135,7 +140,7 @@ export const useEntity = (originalEntity: EntityList) => {
   })
 
   const type = computed(() => {
-    let type = null
+    let type = undefined
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
       type = entity.type
@@ -144,8 +149,8 @@ export const useEntity = (originalEntity: EntityList) => {
     return type
   })
 
-  const entity = computed(() => {
-    let entityName = null
+  const entityName = computed(() => {
+    let entityName = undefined
     const entity = originalEntity as Entity
     entityName = entity.meta?.entity
 
@@ -153,16 +158,15 @@ export const useEntity = (originalEntity: EntityList) => {
   })
 
   return {
-    currentType,
-    color,
-    title,
-    image,
-    route,
-    language,
-    serie,
-    authors,
-    count,
-    type,
-    entity,
+    title: title.value!,
+    image: image.value,
+    color: color.value,
+    route: route.value,
+    language: language.value,
+    serie: serie.value,
+    authors: authors.value,
+    count: count.value,
+    type: withType ? type.value : undefined,
+    entityName: withName ? entityName.value : undefined,
   }
 }

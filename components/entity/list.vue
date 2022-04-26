@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import EntityCard from '@/components/entity/card.vue'
-
-defineProps<{
+interface Props {
   entities?: Book[] | Serie[] | Author[] | Entity[]
-  noType?: boolean
-  square?: boolean
+  type?: boolean
   entityName?: boolean
-}>()
+  card?: 'book' | 'square' | 'full'
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  entity: undefined,
+  type: false,
+  entityName: false,
+  card: 'book',
+})
 </script>
 
 <template>
@@ -17,8 +22,8 @@ defineProps<{
         :key="entity.meta.slug"
         class="relative"
         :entity="entity"
-        :no-type="noType"
-        :square="square"
+        :card="card"
+        :type="type"
         :entity-name="entityName"
       />
     </transition-group>
