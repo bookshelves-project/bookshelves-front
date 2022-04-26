@@ -57,9 +57,7 @@ const refresh = async (slug: string) => {
       Reviews
     </h2>
     <div class="flex items-center space-x-3">
-      <p class="text-gray-500 dark:text-gray-400">
-        {{ reviews ? reviews.length : '0' }} reviews
-      </p>
+      <p class="text-gray">{{ reviews ? reviews.length : '0' }} reviews</p>
       <div v-if="moduleSocialRating && reviews && reviews.length > 5">
         <field-rating-stars :rating="avg" disabled />
       </div>

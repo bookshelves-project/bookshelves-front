@@ -59,7 +59,7 @@ useMetadata({
         />
       </template>
     </app-header>
-    <entity-list :entities="response?.data" />
+    <entity-list :entities="response?.data" type />
     <pagination
       v-if="response?.meta"
       :pages="response?.meta.last_page"

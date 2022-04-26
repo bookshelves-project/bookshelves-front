@@ -84,9 +84,7 @@ const links = [
     </button>
     <app-dialog :open="isOpen" @close="openHelp">
       <div class="p-5">
-        <h2
-          class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400"
-        >
+        <h2 class="text-xs font-medium uppercase tracking-wide text-gray">
           Helper
         </h2>
         <ul role="list" class="mt-3 grid grid-cols-1 space-y-4">

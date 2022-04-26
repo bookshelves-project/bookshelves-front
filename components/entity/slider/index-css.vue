@@ -71,7 +71,12 @@ onMounted(async () => {
             class="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto pb-14 slider-css scrollbar-thin"
           >
             <div v-for="slide in slides" :key="slide.meta.slug" class="card">
-              <entity-card :entity="slide" class="card__entity" entity-name />
+              <entity-card
+                :entity="slide"
+                class="card__entity"
+                type
+                entity-name
+              />
             </div>
           </div>
         </div>

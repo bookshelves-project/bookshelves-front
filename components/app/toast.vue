@@ -52,7 +52,7 @@ const clear = () => {
           <p class="text-sm font-medium text-gray-900 dark:text-gray-200">
             {{ toast.title }}
           </p>
-          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          <p class="mt-1 text-sm text-gray">
             {{ toast.text }}
           </p>
         </div>

@@ -141,7 +141,7 @@ const {
       <div v-html="text" />
     </div>
     <!-- External link  -->
-    <div v-if="cta" class="text-gray-500 dark:text-gray-400">
+    <div v-if="cta" class="text-gray">
       <div class="pt-1 text-right">
         To have more informations:
         <a

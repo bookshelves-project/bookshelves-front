@@ -12,6 +12,7 @@ const title = ref('Related books & series for ')
 const description = 'List of all results for related books & series'
 
 const load = async () => {
+  let current = route.query.page as string
   const [entity, list] = await Promise.all([
     nuxtAsync<Book>('/books', [route.params.author, route.params.slug]).then(
       (e) => e.data
@@ -20,8 +21,8 @@ const load = async () => {
       '/entities/related',
       [route.params.author, route.params.slug],
       {
-        page: (route.query.page as string) || '1',
-        size: '6',
+        page: parseInt(current) || 1,
+        size: 6,
       }
     ),
   ])
@@ -49,6 +50,11 @@ useMetadata({
 <template>
   <main class="main-content">
     <app-header v-if="book" :title="title" :subtitle="description" />
-    <entity-list v-if="response?.data" :entities="response?.data" entity-name />
+    <entity-list
+      v-if="response?.data"
+      :entities="response?.data"
+      type
+      entity-name
+    />
   </main>
 </template>

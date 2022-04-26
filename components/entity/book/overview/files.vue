@@ -45,7 +45,7 @@ const list = computed((): DownloadList => {
               </span>
             </div>
             <div class="ml-4 flex-shrink-0 flex items-center">
-              <div class="text-gray-500 dark:text-gray-400 mr-1">
+              <div class="text-gray mr-1">
                 {{ file?.size }}
               </div>
               <a

@@ -27,9 +27,7 @@ bestCount.value = getBestCount(props.entities!)
       :key="char"
       class="mt-6"
     >
-      <h2
-        class="text-gray-500 dark:text-gray-400 text-base font-medium uppercase tracking-wide"
-      >
+      <h2 class="text-gray text-base font-medium uppercase tracking-wide">
         {{ char }}
       </h2>
       <relation-group :count="bestCount" :items="items" :route="route" />
