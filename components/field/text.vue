@@ -81,8 +81,8 @@ const value = computed<string>({
         :aria-describedby="`${name}-description`"
       />
     </div>
-    <p class="mt-2 text-sm text-gray" id="email-description">
+    <div class="mt-2 text-sm text-gray" id="email-description">
       <slot />
-    </p>
+    </div>
   </div>
 </template>

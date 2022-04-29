@@ -3,7 +3,7 @@ interface Props {
   entities?: Book[] | Serie[] | Author[] | Entity[]
   type?: boolean
   entityName?: boolean
-  card?: 'book' | 'square' | 'full'
+  card?: 'book' | 'full'
 }
 
 const props = withDefaults(defineProps<Props>(), {

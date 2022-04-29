@@ -41,6 +41,15 @@ module.exports = {
       fontFamily: {
         handlee: ['Handlee'],
       },
+      keyframes: {
+        life: {
+          '0%': { width: '100%' },
+          '100%': { width: '0%' },
+        },
+      },
+      animation: {
+        life: 'life 3750ms linear forwards',
+      },
     },
   },
   plugins: [
