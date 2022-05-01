@@ -67,6 +67,9 @@ useMetadata({
         <download-button :download="book.download" :files="book.files" />
         <reader-button :download="book.download" :files="book.files" />
       </div>
+      <template #extra>
+        <entity-serie-link :serie="book.serie" :volume="book.volume" />
+      </template>
     </app-header>
     <entity-book-overview :book="book" class="mb-6" />
   </main>
