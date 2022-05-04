@@ -77,7 +77,7 @@ useMetadata({
     </app-header>
     <div v-if="books">
       <app-divider> {{ serie.count }} Books </app-divider>
-      <entity-list v-if="booksList?.length" :entities="booksList" />
+      <entity-list v-if="booksList?.length" :entities="booksList" type />
       <pagination-load-more
         :meta="books.meta"
         :endpoint="listRoute"

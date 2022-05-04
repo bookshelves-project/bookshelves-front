@@ -36,9 +36,12 @@ const clear = () => {
 <template>
   <section
     v-if="toast"
-    class="pointer-events-auto m-5 w-64 max-w-sm overflow-hidden rounded-lg bg-gray-100 shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-700 sm:w-96"
+    class="pointer-events-auto m-5 w-64 max-w-sm overflow-hidden rounded-lg bg-gray-100 shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-700 sm:w-96 relative"
     :class="bgColor"
   >
+    <span
+      class="absolute inset-x-0 bottom-0 h-1.5 bg-primary-500 dark:bg-primary-600 animate-life"
+    ></span>
     <div class="p-4">
       <div class="flex items-start">
         <div class="shrink-0">
@@ -52,7 +55,7 @@ const clear = () => {
           <p class="text-sm font-medium text-gray-900 dark:text-gray-200">
             {{ toast.title }}
           </p>
-          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          <p class="mt-1 text-sm text-gray">
             {{ toast.text }}
           </p>
         </div>

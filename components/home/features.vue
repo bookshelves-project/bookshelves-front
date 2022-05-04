@@ -14,9 +14,7 @@ defineProps<{
       >
         {{ features.title }}
       </h2>
-      <div
-        class="mx-auto mt-5 max-w-prose text-xl text-gray-500 dark:text-gray-400"
-      >
+      <div class="mx-auto mt-5 max-w-prose text-xl text-gray">
         {{ features.text }}
       </div>
       <div class="mt-12">
@@ -43,7 +41,7 @@ defineProps<{
                 >
                   {{ feature.title }}
                 </h3>
-                <div class="mt-5 text-base text-gray-500 dark:text-gray-400">
+                <div class="mt-5 text-base text-gray">
                   {{ feature.text }}
                 </div>
               </div>

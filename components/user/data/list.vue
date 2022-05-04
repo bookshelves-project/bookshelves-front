@@ -71,7 +71,7 @@ const paginate = (payload: ApiPaginateResponse<UserData[]>) => {
           {{ title }}
         </div>
       </h3>
-      <div class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+      <div class="mt-1 text-sm text-gray">
         {{ subtitle }}
       </div>
     </div>

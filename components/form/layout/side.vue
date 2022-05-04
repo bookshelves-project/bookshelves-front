@@ -13,9 +13,75 @@ defineProps<{
 </script>
 
 <template>
-  <main class="main-content">
+  <main class="main-content relative overflow-x-hidden content-min-height">
+    <svg
+      class="absolute left-1/2 transform translate-x-[75%] block xl:hidden"
+      width="404"
+      height="404"
+      fill="none"
+      viewBox="0 0 404 404"
+      aria-hidden="true"
+    >
+      <defs>
+        <pattern
+          id="85737c0e-0916-41d7-917f-596dc7edfa27"
+          x="0"
+          y="0"
+          width="20"
+          height="20"
+          patternUnits="userSpaceOnUse"
+        >
+          <rect
+            x="0"
+            y="0"
+            width="4"
+            height="4"
+            class="text-gray-200 dark:text-gray-700"
+            fill="currentColor"
+          />
+        </pattern>
+      </defs>
+      <rect
+        width="404"
+        height="404"
+        fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)"
+      />
+    </svg>
+    <svg
+      class="absolute right-1/2 bottom-0 transform -translate-x-[75%] block xl:hidden"
+      width="404"
+      height="404"
+      fill="none"
+      viewBox="0 0 404 404"
+      aria-hidden="true"
+    >
+      <defs>
+        <pattern
+          id="85737c0e-0916-41d7-917f-596dc7edfa27"
+          x="0"
+          y="0"
+          width="20"
+          height="20"
+          patternUnits="userSpaceOnUse"
+        >
+          <rect
+            x="0"
+            y="0"
+            width="4"
+            height="4"
+            class="text-gray-200 dark:text-gray-700"
+            fill="currentColor"
+          />
+        </pattern>
+      </defs>
+      <rect
+        width="404"
+        height="404"
+        fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)"
+      />
+    </svg>
     <layout-breadcrumb :title="breadcrumb" />
-    <div class="grid gap-4 xl:grid-cols-3 h-full mt-6">
+    <div class="grid gap-4 xl:grid-cols-3 h-full mt-6 z-10 relative">
       <div :class="reverse ? 'order-2' : ''" class="col-span-1 flex h-full">
         <div class="m-auto w-full md:max-w-md">
           <h1

@@ -32,7 +32,7 @@ nuxtInit()
 
 <style lang="css">
 body {
-  @apply overflow-y-scroll;
+  @apply overflow-y-scroll bg-white dark:bg-gray-900;
 }
 .no-scroll {
   width: 100%;

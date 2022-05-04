@@ -197,9 +197,7 @@ const queryAvailable = computed(() => {
       <!-- Active filters -->
       <div>
         <div class="mx-auto max-w-7xl py-2 sm:flex sm:items-center">
-          <h3
-            class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400"
-          >
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-gray">
             Filters
             <span class="sr-only">, active</span>
           </h3>

@@ -51,20 +51,14 @@ const submit = async () => {
       type="email"
       autocomplete="email"
       required
-    >
-      <!-- <template v-if="errors.email" #error>{{ errors.email[0] }}</template> -->
-    </field-text>
+    />
     <field-text
       v-model="data.password"
       name="password"
       label="Password"
       type="password"
       required
-    >
-      <!-- <template v-if="errors.password" #error>{{
-        errors.password[0]
-      }}</template> -->
-    </field-text>
+    />
 
     <div class="justify-between md:flex md:items-center">
       <field-checkbox

@@ -57,7 +57,7 @@ defineProps<{
           >
             <blockquote>
               <div>
-                <div class="text-base text-gray-500 dark:text-gray-400">
+                <div class="text-base text-gray">
                   &ldquo;{{ highlight.quoteText }}&rdquo;
                 </div>
               </div>

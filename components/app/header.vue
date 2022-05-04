@@ -107,7 +107,7 @@ const {
             <!-- Authors  -->
             <div
               v-if="authors && authors.length"
-              class="mt-1 text-sm flex items-center mx-auto lg:mx-0 w-max lg:w-full"
+              class="text-sm flex items-center mx-auto lg:mx-0 w-max lg:w-full"
             >
               <span v-if="type" class="mr-1 font-semibold">{{ type }}</span>
               <entity-authors-links
@@ -121,6 +121,9 @@ const {
             >
               {{ subtitle }}
             </h2>
+            <div>
+              <slot name="extra" />
+            </div>
           </div>
         </div>
       </div>
@@ -141,7 +144,7 @@ const {
       <div v-html="text" />
     </div>
     <!-- External link  -->
-    <div v-if="cta" class="text-gray-500 dark:text-gray-400">
+    <div v-if="cta" class="text-gray">
       <div class="pt-1 text-right">
         To have more informations:
         <a

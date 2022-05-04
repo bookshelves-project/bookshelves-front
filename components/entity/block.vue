@@ -26,7 +26,12 @@ const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
   <div v-if="list && list.length">
     <app-divider> {{ count }} {{ name }} </app-divider>
     <div class="display-grid space-y-6 sm:space-y-0">
-      <entity-card v-for="(entity, id) in list" :key="id" :entity="entity" />
+      <entity-card
+        v-for="(entity, id) in list"
+        :key="id"
+        :entity="entity"
+        type
+      />
     </div>
     <div v-if="meta" class="mt-14 mb-5">
       <pagination-load-more

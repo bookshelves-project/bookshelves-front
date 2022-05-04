@@ -29,16 +29,16 @@ const success = (payload: boolean) => {
       "
       :class="related ? '' : 'hidden'"
     >
-      <!-- <entity-book-related
-        v-if="book.tags?.length || book.genres?.length"
-        :book="book"
-        @success="success"
-      /> -->
-      <entity-book-related-css
+      <entity-book-related
         v-if="book.tags?.length || book.genres?.length"
         :book="book"
         @success="success"
       />
+      <!-- <entity-book-related-css
+        v-if="book.tags?.length || book.genres?.length"
+        :book="book"
+        @success="success"
+      /> -->
     </div>
     <div class="lg:col-span-2 lg:pr-8">
       <entity-review :entity="book" />

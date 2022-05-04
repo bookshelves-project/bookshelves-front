@@ -31,10 +31,17 @@ const logout = () => {}
             <app-img
               v-if="loggedIn"
               class="h-8 w-8"
-              :src="user ? user.avatar : null"
+              :src="user.avatar ? user.avatar : null"
               override="rounded-full"
               invisible
             />
+            <!-- <span
+              class="inline-flex items-center justify-center h-6 w-6 rounded-full bg-gray-500"
+            >
+              <span class="text-xs font-medium leading-none text-white"
+                >TW</span
+              >
+            </span> -->
             <app-img
               v-else
               src="/images/user.svg"
@@ -69,10 +76,7 @@ const logout = () => {}
               @click="logout()"
             >
               <span class="flex items-center">
-                <svg-icon
-                  name="logout"
-                  class="mr-1 h-5 w-5 text-gray-500 dark:text-gray-400"
-                />
+                <svg-icon name="logout" class="mr-1 h-5 w-5 text-gray" />
                 Sign out
               </span>
             </button>

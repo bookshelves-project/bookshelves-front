@@ -80,7 +80,7 @@ await getNext()
 .data-list {
   @apply space-y-6;
   & dt {
-    @apply text-sm font-medium text-gray-500 dark:text-gray-400 text-left;
+    @apply text-sm font-medium text-gray text-left;
   }
   & dd {
     @apply mt-1 text-sm text-gray-900 dark:text-gray-100 text-left;

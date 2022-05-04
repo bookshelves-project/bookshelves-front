@@ -43,7 +43,7 @@ const clearPreview = () => {
               <p class="text-sm font-medium text-gray-700 dark:text-gray-200">
                 Bookshelves use Nuxt 3 preview
               </p>
-              <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              <p class="mt-1 text-sm text-gray">
                 You will find some bugs here. Some features are disabled for now.
                 <ul class="list-disc list-inside mt-2">
                   <li>
@@ -62,7 +62,7 @@ const clearPreview = () => {
               <div class="-mx-1.5 -my-1.5">
                 <button
                   type="button"
-                  class="inline-flex bg-gray-50 dark:bg-gray-800 rounded-md p-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-600"
+                  class="inline-flex bg-gray-50 dark:bg-gray-800 rounded-md p-1.5 text-gray hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-600"
                   @click="clearPreview"
                 >
                   <span class="sr-only">Dismiss</span>

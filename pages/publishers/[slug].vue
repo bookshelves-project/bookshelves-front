@@ -42,7 +42,7 @@ useMetadata({
   <div v-if="publisher" class="main-content">
     <app-header :title="title" :subtitle="description" />
     <div>
-      <entity-list :entities="list" />
+      <entity-list :entities="list" type />
       <div v-if="meta" class="mt-14 mb-5">
         <pagination-load-more
           :meta="meta"

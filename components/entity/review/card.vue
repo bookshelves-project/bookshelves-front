@@ -45,12 +45,12 @@ const deleteReview = (id: number) => {
         {{ review.user?.name }}
       </router-link>
       <div>
-        <span class="font-medium text-gray-500 dark:text-gray-400"
+        <span class="font-medium text-gray"
           >Posted from {{ calExactTimeDiff(review.createdAt) }}</span
         >
         <span
           v-if="review.createdAt !== review.updatedAt"
-          class="font-medium text-gray-500 dark:text-gray-400"
+          class="font-medium text-gray"
           >, modified from {{ calExactTimeDiff(review.updatedAt) }}</span
         >
       </div>
@@ -67,7 +67,7 @@ const deleteReview = (id: number) => {
         class="review-text prose prose-lg dark:prose-invert mr-3 mt-4 max-w-none"
       >
         <div
-          class="light-md mt-1 overflow-hidden text-sm text-gray-500 dark:text-gray-400"
+          class="light-md mt-1 overflow-hidden text-sm text-gray"
           :class="overflow ? 'overflow-review' : ''"
           v-html="review.text"
         />

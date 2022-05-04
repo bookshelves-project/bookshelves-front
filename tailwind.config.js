@@ -41,6 +41,15 @@ module.exports = {
       fontFamily: {
         handlee: ['Handlee'],
       },
+      keyframes: {
+        life: {
+          '0%': { width: '100%' },
+          '100%': { width: '0%' },
+        },
+      },
+      animation: {
+        life: 'life 3750ms linear forwards',
+      },
     },
   },
   plugins: [
@@ -71,6 +80,9 @@ module.exports = {
         '.display-grid': {
           '@apply grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-hidden':
             {},
+        },
+        '.text-gray': {
+          '@apply text-gray-500 dark:text-gray-400': {},
         },
       })
     }),

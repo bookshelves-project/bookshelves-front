@@ -22,25 +22,19 @@ defineProps<{
       class="pt-6 md:p-5 text-center md:text-left space-y-4 w-full dark:text-gray-100"
     >
       <div>
-        <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
-          >Title
-        </span>
+        <span class="text-sm font-medium text-gray">Title </span>
         <h3 class="font-semibold">
           {{ entity.title }}
         </h3>
       </div>
       <div class="hidden lg:block">
-        <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
-          >Authors
-        </span>
+        <span class="text-sm font-medium text-gray">Authors </span>
         <h3 class="font-semibold">
           <entity-authors-links :authors="entity.authors" short />
         </h3>
       </div>
       <div v-if="entity.volume" class="hidden lg:block">
-        <span class="text-sm font-medium text-gray-500 dark:text-gray-400"
-          >Volume
-        </span>
+        <span class="text-sm font-medium text-gray">Volume </span>
         <h3 class="font-semibold">
           {{ entity.volume }}
         </h3>
@@ -61,9 +55,7 @@ defineProps<{
         >
           Refer to {{ entity.meta.entity }}
         </app-button>
-        <span v-else class="italic text-gray-500 dark:text-gray-400">
-          Current page
-        </span>
+        <span v-else class="italic text-gray"> Current page </span>
       </div>
     </div>
   </div>

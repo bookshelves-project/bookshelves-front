@@ -52,9 +52,7 @@ defineProps<{
                   {{ date(post.publishedAt) }}
                 </time>
               </p>
-              <p
-                class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 line-clamp-2"
-              >
+              <p class="mt-2 flex items-center text-sm text-gray line-clamp-2">
                 {{ post.summary }}
               </p>
             </div>

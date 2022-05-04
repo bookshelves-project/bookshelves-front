@@ -11,16 +11,23 @@ export default defineNuxtConfig({
     '@pinia/nuxt', // https://pinia.vuejs.org/ssr/nuxt.html
     '@vueuse/nuxt', // https://vueuse.org/guide/
   ],
-  ...config.buildModules,
+  tailwindcss: config.buildModules.tailwindcss,
+  vueuse: config.buildModules.vueuse,
   components: {
     global: true,
     dirs: ['~/components'],
   },
   css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
   hooks: config.hooks,
-  meta: config.meta,
-  modules: [],
-  ...config.modules,
+  meta: {
+    link: config.meta.link,
+    meta: config.meta.meta,
+    script: config.meta.script,
+  },
+  modules: [
+    'nuxt-schema-org', // https://github.com/vueuse/schema-org
+  ],
+  schemaOrg: config.modules.schemaOrg,
   // http://v3.nuxtjs.org/guide/features/runtime-config
   runtimeConfig: {
     ...config.runtimeConfigPrivate,
@@ -35,9 +42,5 @@ export default defineNuxtConfig({
     plugins: [
       svgLoader(), // https://github.com/jpkleemans/vite-svg-loader#readme
     ],
-  },
-  // https://v3.nuxtjs.org/api/configuration/nuxt.config#vue-1
-  vue: {
-    // reactivityTransform: true
   },
 })

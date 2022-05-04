@@ -60,7 +60,7 @@ const destroy = (data: Favoritable | Review) => {
           <div v-if="data.createdAt" class="hidden lg:block">
             <time
               :datetime="data.createdAt.toString()"
-              class="shrink-0 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap"
+              class="shrink-0 text-sm text-gray whitespace-nowrap"
               >{{ date(data.createdAt) }}</time
             >
           </div>

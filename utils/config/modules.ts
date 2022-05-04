@@ -129,6 +129,14 @@ const headers = {
 //   use: ['markdown-it-div', 'markdown-it-attrs'],
 // }
 
+/**
+ * https://vue-schema-org.netlify.app/guide/setup/nuxt.html#_2-configure-the-module
+ */
+let schemaOrg = {
+  // set to your production domain
+  canonicalHost: 'https://nuxtjs.org',
+}
+
 const modules: ModuleOptions = {
   // colorMode,
   // axios,
@@ -139,6 +147,7 @@ const modules: ModuleOptions = {
   // sitemap,
   // markdownit,
   // i18n
+  schemaOrg: schemaOrg,
 }
 
 export const matomo = {

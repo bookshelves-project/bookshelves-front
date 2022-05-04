@@ -42,7 +42,7 @@ const value = computed<any>({
         {{ label }}
         <span v-if="required" class="text-red-600 dark:text-red-500">*</span>
       </label>
-      <div :id="`${name}-description`" class="text-gray-500 dark:text-gray-400">
+      <div :id="`${name}-description`" class="text-gray">
         <slot />
       </div>
     </div>

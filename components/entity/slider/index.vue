@@ -122,7 +122,7 @@ onMounted(async () => {
                 :key="index"
                 class="swiper-lazy text-left"
               >
-                <entity-card :entity="slide" />
+                <entity-card :entity="slide" type />
               </swiper-slide>
               <div class="swiper-pagination"></div>
               <div class="swiper-button swiper-button-prev">

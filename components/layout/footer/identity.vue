@@ -46,10 +46,10 @@ const features = [
       >
         <svg-icon
           name="book"
-          class="h-6 w-6 text-gray-400 transition-colors duration-100 group-hover:text-gray-500 dark:text-gray-400 dark:group-hover:text-gray-300 md:h-12 md:w-12"
+          class="h-6 w-6 text-gray-400 transition-colors duration-100 group-hover:text-gray dark:group-hover:text-gray-300 md:h-12 md:w-12"
         />
         <div
-          class="dm:text-xl mt-2 ml-3 font-handlee text-lg text-gray-400 transition-colors duration-100 group-hover:text-gray-500 dark:text-gray-400 dark:group-hover:text-gray-300 md:text-2xl"
+          class="dm:text-xl mt-2 ml-3 font-handlee text-lg text-gray-400 transition-colors duration-100 group-hover:text-gray dark:group-hover:text-gray-300 md:text-2xl"
         >
           {{ config.appName }}
         </div>
@@ -67,7 +67,7 @@ const features = [
           rel="noopener noreferrer"
           :title="feature.title"
           :aria-label="feature.title"
-          class="mx-auto block w-20 rounded-md p-2 text-gray-400 transition-colors duration-75 hover:bg-gray-200 hover:text-gray-500 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+          class="mx-auto block w-20 rounded-md p-2 text-gray-400 transition-colors duration-75 hover:bg-gray-200 hover:text-gray dark:hover:bg-gray-800 dark:hover:text-gray-300"
         >
           <svg-icon :name="`${feature.icon}`" class="mx-auto h-6 w-6" />
           <div class="mt-2 text-center text-xs">{{ feature.label }}</div>

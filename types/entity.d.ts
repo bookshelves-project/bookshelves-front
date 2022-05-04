@@ -22,6 +22,24 @@ declare interface Entity {
   isFavorite?: boolean
 }
 
+interface UseEntitySerie {
+  title: string
+  volume?: string
+}
+
+declare interface UseEntity {
+  title: string
+  image: string
+  color: string
+  route?: Route
+  authors?: string
+  serie?: UseEntitySerie
+  language?: string
+  count?: string
+  type?: string
+  entityName?: string
+}
+
 declare type EntityType = 'book' | 'serie' | 'author'
 
 declare type Entity = 'books' | 'series' | 'authors'
