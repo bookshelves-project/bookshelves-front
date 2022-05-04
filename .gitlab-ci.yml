@@ -8,7 +8,7 @@ stages:
   - deploy
 
 variables:
-  NODE_VERSION: '16.14.0'
+  NODE_VERSION: '16.15.0'
   PM2: 'bookshelves'
 
 build-job:
