@@ -1,4 +1,5 @@
 #!/bin/bash
 
-rm ./node_modules -r -fo
-rm ./node_modules -r -fo
+rm -rf .nuxt
+rm -rf .output
+rm -rf node_modules

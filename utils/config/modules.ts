@@ -1,25 +1,19 @@
 // import type { AxiosOptions } from '@nuxtjs/axios'
 // import type { Options } from '@nuxtjs/i18n'
 // import { ModuleOptions, RecursivePartial } from '@nuxtjs/auth-next'
-// import type { IContentOptions } from '@nuxt/content'
-// import { ModuleOptions } from '@nuxtjs/color-mode/dist/module'
 import { ModuleOptions } from '@nuxt/schema'
-// import { ApiEndpoint } from '../../types/index'
-// import pwaData from './pwa'
-
-const headers = {
-  common: {
-    'X-Requested-With': 'XMLHttpRequest',
-    'Access-Control-Allow-Origin': '*',
-    Accept: 'application/json',
-  },
-}
 
 // const axios: AxiosOptions = {
 //   baseURL: process.env.API_URL || 'http://localhost:8000',
 //   credentials: true,
 //   // https: true,
-//   headers
+// headers: {
+//   common: {
+//     'X-Requested-With': 'XMLHttpRequest',
+//     'Access-Control-Allow-Origin': '*',
+//     Accept: 'application/json',
+//   },
+// }
 // }
 // const pwa = {
 //   meta: pwaData.meta,
@@ -138,14 +132,9 @@ let schemaOrg = {
 }
 
 const modules: ModuleOptions = {
-  // colorMode,
-  // axios,
-  // pwa,
   // auth: authSession,
-  // content,
   // robots,
   // sitemap,
-  // markdownit,
   // i18n
   schemaOrg: schemaOrg,
 }
