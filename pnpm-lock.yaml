@@ -15,7 +15,6 @@ specifiers:
   '@types/qs': ^6.9.7
   '@vueuse/nuxt': ^8.3.0
   eslint: ^8.14.0
-  husky: ^7.0.4
   lozad: ^1.16.0
   nprogress: ^0.2.0
   nuxt: npm:nuxt3@latest
@@ -49,7 +48,6 @@ devDependencies:
   '@types/qs': 6.9.7
   '@vueuse/nuxt': 8.4.1_vue@3.2.33
   eslint: 8.14.0
-  husky: 7.0.4
   nuxt: /nuxt3/3.0.0-rc.2-27526179.f74a523
   nuxt-schema-org: 0.4.3_vue@3.2.33
   tailwind-scrollbar: 1.3.1
@@ -664,7 +662,7 @@ packages:
       externality: 0.2.1
       fs-extra: 10.1.0
       get-port-please: 2.5.0
-      h3: 0.7.6
+      h3: 0.7.8
       knitwork: 0.1.1
       magic-string: 0.26.1
       mlly: 0.5.2
@@ -2953,12 +2951,12 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /h3/0.7.6:
-    resolution: {integrity: sha512-OoxDWBBpGNAStSVCOQagN+3EKRbCSgwQKFIeu4p4XvsLvd4L9KaQV6GDY5H8ZDYHsWfnsx4KTa2eFwSw530jnQ==}
+  /h3/0.7.8:
+    resolution: {integrity: sha512-E5hqrzQvQEYVE4h579pLb9gipHagQVZIMP2v83vSKxa40b7ctG1zNylXtW57BT3BGNVeQTccl6vIwyVK1L6lLw==}
     dependencies:
       cookie-es: 0.5.0
       destr: 1.1.1
-      radix3: 0.1.1
+      radix3: 0.1.2
       ufo: 0.8.3
     dev: true
 
@@ -3093,12 +3091,6 @@ packages:
   /human-signals/2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
-    dev: true
-
-  /husky/7.0.4:
-    resolution: {integrity: sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==}
-    engines: {node: '>=12'}
-    hasBin: true
     dev: true
 
   /iconv-lite/0.4.24:
@@ -3973,7 +3965,7 @@ packages:
       fs-extra: 10.1.0
       globby: 13.1.1
       gzip-size: 7.0.0
-      h3: 0.7.6
+      h3: 0.7.8
       hasha: 5.2.2
       hookable: 5.1.1
       http-proxy: 1.18.1
@@ -3993,7 +3985,7 @@ packages:
       pkg-types: 0.3.2
       pretty-bytes: 6.0.0
       process: 0.11.10
-      radix3: 0.1.1
+      radix3: 0.1.2
       rollup: 2.71.1
       rollup-plugin-terser: 7.0.2_rollup@2.71.1
       rollup-plugin-visualizer: 5.6.0_rollup@2.71.1
@@ -4209,7 +4201,7 @@ packages:
       escape-string-regexp: 5.0.0
       fs-extra: 10.1.0
       globby: 13.1.1
-      h3: 0.7.6
+      h3: 0.7.8
       hash-sum: 2.0.0
       hookable: 5.1.1
       knitwork: 0.1.1
@@ -5027,8 +5019,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /radix3/0.1.1:
-    resolution: {integrity: sha512-9Np01fn+penHvC05A9EkRpyObPMS0ht3t1UP6KlnQPCfTNzArmEZW/+t2SLsDtPcZyXPDbYCGWA8dSQqWaVwQQ==}
+  /radix3/0.1.2:
+    resolution: {integrity: sha512-Mpfd/OuX0zoJ6ojLD/RTOHvJPg6e6PjINtmYzV87kIXc5iUtDz34i7gg4SV4XjqRJTmSiYO/g9i/mKWGf4z8wg==}
     dev: true
 
   /randombytes/2.1.0:
@@ -6035,7 +6027,7 @@ packages:
       anymatch: 3.1.2
       chokidar: 3.5.3
       destr: 1.1.1
-      h3: 0.7.6
+      h3: 0.7.8
       ioredis: 5.0.4
       listhen: 0.2.11
       mri: 1.2.0
