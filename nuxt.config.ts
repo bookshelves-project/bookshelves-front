@@ -24,7 +24,10 @@ export default defineNuxtConfig({
     meta: config.meta.meta,
     script: config.meta.script,
   },
-  modules: [],
+  modules: [
+    'nuxt-schema-org', // https://github.com/vueuse/schema-org
+  ],
+  schemaOrg: config.modules.schemaOrg,
   // http://v3.nuxtjs.org/guide/features/runtime-config
   runtimeConfig: {
     ...config.runtimeConfigPrivate,

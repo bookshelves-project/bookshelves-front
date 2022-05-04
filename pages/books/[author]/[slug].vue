@@ -25,7 +25,11 @@ const load = async () => {
       : ''
     const authors = formatAuthors(book.value.authors)
     title.value = `${book.value.title} (${book.value.type}) ${serie}by ${authors}`
-    breadcrumb.value = `${book.value.title} (${book.value.type})`
+
+    let serieBreadcrumb = book.value.serie
+      ? `, ${book.value.serie.title} (vol. ${book.value.volume})`
+      : ''
+    breadcrumb.value = `${book.value.title} (${book.value.type})${serieBreadcrumb}`
   }
 }
 await load()
@@ -68,7 +72,9 @@ useMetadata({
         <reader-button :download="book.download" :files="book.files" />
       </div>
       <template #extra>
-        <entity-serie-link :serie="book.serie" :volume="book.volume" />
+        <div class="text-sm">
+          <entity-serie-link :serie="book.serie" :volume="book.volume" />
+        </div>
       </template>
     </app-header>
     <entity-book-overview :book="book" class="mb-6" />
