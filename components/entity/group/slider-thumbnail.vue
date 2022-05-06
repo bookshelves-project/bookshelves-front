@@ -2,7 +2,7 @@
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue'
 import { Pagination, Navigation, FreeMode, Thumbs } from 'swiper'
 import SvgIcon from '@/components/svg-icon.vue'
-import EntitySliderCardThumbnail from '@/components/entity/slider/card-thumbnail.vue'
+import EntitySliderCardThumbnail from '@/components/entity/group/slider-thumbnail.vue'
 import AppImg from '@/components/app/img.vue'
 import AppButton from '@/components/app/button.vue'
 import { Swiper as SwiperInterface } from 'swiper/types'
@@ -110,7 +110,7 @@ watch(
                 :key="id"
                 class="swiper-lazy"
               >
-                <entity-slider-card-thumbnail :entity="entity" />
+                <entity-group-card-thumbnail :entity="entity" />
               </swiper-slide>
               <div class="swiper-button swiper-button-prev">
                 <svg-icon name="chevron-right" />
