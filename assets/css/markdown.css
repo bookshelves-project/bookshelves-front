@@ -162,14 +162,8 @@
   }
 
   & h2::after {
+    @apply w-4/5 block mt-2 mb-1 rounded border-2 border-primary-600 dark:border-primary-500;
     content: ' ';
-    width: 80%;
-    display: block;
-    --border-opacity: 1;
-    margin-top: 0.5rem;
-    margin-bottom: 0.25rem;
-    border-radius: 0.25rem;
-    border: 2px solid #108775;
   }
 
   & h3 {
@@ -182,14 +176,8 @@
   }
 
   & h3::after {
+    @apply w-4/5 block mt-2 mb-1 rounded border border-primary-600 dark:border-primary-500;
     content: ' ';
-    width: 80%;
-    display: block;
-    --border-opacity: 1;
-    margin-top: 0.5rem;
-    margin-bottom: 0.25rem;
-    border-radius: 0.25rem;
-    border: 1px dashed #108775;
   }
 
   /* list  */
