@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import EntitySlider from '@/components/entity/slider/index.vue'
+import EntitySlider from '@/components/entity/group/slider.vue'
 import AppButton from '@/components/app/button.vue'
 
 const props = defineProps<{
   book: Book
+  css?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -30,7 +31,11 @@ const success = (payload: boolean) => {
 <template>
   <div class="mt-8">
     <div v-if="isAvailable">
-      <entity-slider v-if="book" :selection="related" @success="success" />
+      <component
+        :is="css ? 'entity-group-snap' : 'entity-group-slider'"
+        :selection="related"
+        @success="success"
+      />
       <div class="mt-6 flex">
         <app-button
           :to="{

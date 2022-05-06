@@ -15,7 +15,12 @@ export const useToc = () => {
       if (hLevel) {
         tocItem.level = parseInt(hLevel[1])
         tocItem.text = heading.innerText
-        tocItem.id = tocItem.text.replace(/ /g, '-').toLowerCase()
+
+        const reg = /[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s
+        let id = tocItem.text
+        id = id.replace(reg, '').trim().replace(/ /g, '-').toLowerCase()
+
+        tocItem.id = id
         tocData.push(tocItem)
       }
     })

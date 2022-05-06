@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import EntityBookRelated from '@/components/entity/book/related.vue'
-import EntityBookRelatedCss from '@/components/entity/book/related-css.vue'
 import EntityBookOverviewSmall from '@/components/entity/book/overview/small.vue'
 import EntityBookOverviewLarge from '@/components/entity/book/overview/large.vue'
 import EntityReview from '@/components/entity/review/index.vue'
@@ -34,11 +33,6 @@ const success = (payload: boolean) => {
         :book="book"
         @success="success"
       />
-      <!-- <entity-book-related-css
-        v-if="book.tags?.length || book.genres?.length"
-        :book="book"
-        @success="success"
-      /> -->
     </div>
     <div class="lg:col-span-2 lg:pr-8">
       <entity-review :entity="book" />

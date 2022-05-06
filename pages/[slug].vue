@@ -15,6 +15,7 @@ await nuxtAsyncData<Page | undefined>('/pages', [route.params.slug]).then(
     if (e) {
       summary.value = e.summary
       page.value = e
+      title.value = page.value.title
     }
   }
 )

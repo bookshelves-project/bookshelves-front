@@ -19,7 +19,7 @@ build-job:
       - node_modules/
   script:
     - npm i -g pnpm
-    - pnpm i
+    - pnpm install --no-frozen-lockfile
     - pnpm build
   only:
     - main

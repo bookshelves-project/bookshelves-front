@@ -6,34 +6,20 @@ const props = defineProps<{
   right?: boolean
 }>()
 
-const { nuxtAsyncData } = useFetchable()
 const emit = defineEmits<{
   (e: 'success', payload: boolean): void
 }>()
 
-const isAvailable = ref(true)
-const isLoading = ref(true)
+const { getData, isAvailable, isLoading, slides } = useEntityGroup(
+  props.selection
+)
 
-const slides = ref<Entity[]>()
-const getData = async () => {
-  isLoading.value = true
-  slides.value = await nuxtAsyncData<Entity[]>(
-    props.selection.endpoint,
-    props.selection.paramsList ? props.selection.paramsList : [],
-    {}
-  ).then((e) => {
-    if (e) {
-      isLoading.value = false
-      if (e.length === 0) {
-        isAvailable.value = false
-      }
-      return e
-    } else {
-      isAvailable.value = false
-    }
-  })
-  emit('success', isAvailable.value)
-}
+watch(
+  () => isAvailable.value,
+  (newVal) => {
+    emit('success', isAvailable.value)
+  }
+)
 
 onMounted(async () => {
   await getData()
