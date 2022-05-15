@@ -18,10 +18,30 @@ const toggleSidebar = () => {
   >
     <div class="mx-auto max-w-7xl">
       <div class="relative flex h-16 items-center justify-between">
-        <div class="hidden h-full items-center px-2 sm:flex lg:px-0">
+        <div class="h-full items-center px-2 flex lg:px-0">
+          <div class="flex lg:hidden">
+            <button
+              aria-label="Open side menu"
+              @click="toggleSidebar"
+              class="hover:bg-gray-700 transition-colors duration-100 p-1.5 rounded-md"
+            >
+              <svg
+                class="block h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </div>
           <router-link
             :to="$localePath('/')"
-            class="ml-2 flex shrink-0 rounded-md p-2 transition-colors duration-75 hover:bg-gray-100 dark:hover:bg-gray-700"
+            class="ml-2 hidden lg:flex shrink-0 rounded-md p-2 transition-colors duration-75 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <!-- <img
               class="m-auto block h-8 w-8"
@@ -52,27 +72,6 @@ const toggleSidebar = () => {
         </div>
         <div class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
           <layout-search />
-        </div>
-        <div class="flex pr-2 sm:pr-4 lg:hidden">
-          <app-button
-            color="white"
-            size="sm"
-            aria-label="Open side menu"
-            @click="toggleSidebar"
-          >
-            <svg
-              class="block h-6 w-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </app-button>
         </div>
         <div class="hidden pr-4 lg:block">
           <div class="flex items-center">
