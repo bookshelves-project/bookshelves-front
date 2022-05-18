@@ -6,13 +6,6 @@ import svgLoader from 'vite-svg-loader'
 export default defineNuxtConfig({
   // @ts-ignore
   build: config.build,
-  buildModules: [
-    '@nuxtjs/tailwindcss', // https://tailwindcss.nuxtjs.org/
-    '@pinia/nuxt', // https://pinia.vuejs.org/ssr/nuxt.html
-    '@vueuse/nuxt', // https://vueuse.org/guide/
-  ],
-  tailwindcss: config.buildModules.tailwindcss,
-  vueuse: config.buildModules.vueuse,
   components: {
     global: true,
     dirs: ['~/components'],
@@ -25,8 +18,13 @@ export default defineNuxtConfig({
     script: config.meta.script,
   },
   modules: [
+    '@nuxtjs/tailwindcss', // https://tailwindcss.nuxtjs.org/
+    '@pinia/nuxt', // https://pinia.vuejs.org/ssr/nuxt.html
+    '@vueuse/nuxt', // https://vueuse.org/guide/
     'nuxt-schema-org', // https://github.com/vueuse/schema-org
   ],
+  tailwindcss: config.modules.tailwindcss,
+  vueuse: config.modules.vueuse,
   schemaOrg: config.modules.schemaOrg,
   // http://v3.nuxtjs.org/guide/features/runtime-config
   runtimeConfig: {
