@@ -41,7 +41,7 @@ const clearPreview = () => {
             </div>
             <div class="ml-3">
               <p class="text-sm font-medium text-gray-700 dark:text-gray-200">
-                Bookshelves use Nuxt 3 preview
+                Bookshelves use Nuxt 3 RC
               </p>
               <p class="mt-1 text-sm text-gray">
                 You will find some bugs here. Some features are disabled for now.
@@ -51,9 +51,6 @@ const clearPreview = () => {
                   </li>
                   <li>
                     <code>auth</code>
-                  </li>
-                  <li>
-                    Webreader
                   </li>
                 </ul>
               </p>
