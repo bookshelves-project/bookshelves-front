@@ -40,7 +40,7 @@ const clear = () => {
     :class="bgColor"
   >
     <span
-      class="absolute inset-x-0 bottom-0 h-1.5 bg-primary-500 dark:bg-primary-600 animate-life"
+      class="absolute inset-x-0 bottom-0 h-1 bg-primary-500 dark:bg-primary-600 animate-life"
     ></span>
     <div class="p-4">
       <div class="flex items-start">

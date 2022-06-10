@@ -107,12 +107,12 @@ const {
             <!-- Authors  -->
             <div
               v-if="authors && authors.length"
-              class="text-sm flex items-center mx-auto lg:mx-0 w-max lg:w-full"
+              class="text-sm inline md:flex items-center mx-auto md:mx-0 w-max md:w-full"
             >
               <span v-if="type" class="mr-1 font-semibold">{{ type }}</span>
               <entity-authors-links
                 :authors="authors"
-                class="text-center lg:text-left"
+                class="text-left"
                 :lowercase="type !== null"
               />
             </div>

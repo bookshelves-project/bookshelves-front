@@ -42,7 +42,7 @@ defineProps<{
         <h2 class="font-semibold text-lg">
           {{ entity.title }}
         </h2>
-        <h3 class="italic mt-2">
+        <h3 class="italic mt-2 line-clamp-2">
           {{ entity.authors }}
         </h3>
         <div class="mt-1 text-sm sm:mt-3">

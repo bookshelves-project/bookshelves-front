@@ -72,8 +72,13 @@ useMetadata({
         <reader-button :download="book.download" :files="book.files" />
       </div>
       <template #extra>
-        <div class="text-sm">
-          <entity-serie-link :serie="book.serie" :volume="book.volume" />
+        <div class="text-sm flex items-center">
+          in
+          <entity-serie-link
+            :serie="book.serie"
+            :volume="book.volume"
+            class="ml-1"
+          />
         </div>
       </template>
     </app-header>
