@@ -5,7 +5,7 @@
   "tasks": [
     {
       "type": "npm",
-      "script": "install",
+      "script": "install"
     },
     {
       "label": "Push to remotes",
