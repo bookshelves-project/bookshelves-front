@@ -72,6 +72,7 @@ const value = computed<string>({
         :maxlength="maxlength > 0 ? maxlength : ''"
         :autocomplete="autocomplete"
         class="block w-full rounded-md border border-gray-300 p-3 placeholder-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white dark:placeholder-gray-100 sm:text-sm"
+        :required="required"
       ></textarea>
       <input
         v-else
@@ -83,6 +84,7 @@ const value = computed<string>({
         :placeholder="placeholder"
         :aria-describedby="`${name}-description`"
         :autocomplete="autocomplete"
+        :required="required"
       />
     </div>
     <div class="mt-2 text-sm text-gray" id="email-description">
