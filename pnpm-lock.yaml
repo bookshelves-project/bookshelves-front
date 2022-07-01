@@ -22,7 +22,7 @@ specifiers:
   pinia: ^2.0.14
   qs: ^6.10.5
   swiper: ^8.2.2
-  tailwindcss: ^3.1.0
+  tailwindcss: ^3.1.2
   typescript: ^4.7.3
   vite-svg-loader: ^3.3.0
 
@@ -37,17 +37,17 @@ dependencies:
 devDependencies:
   '@nuxtjs/tailwindcss': 5.1.2
   '@pinia/nuxt': 0.1.9_pinia@2.0.14
-  '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.1.0
-  '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.0
-  '@tailwindcss/line-clamp': 0.4.0_tailwindcss@3.1.0
-  '@tailwindcss/typography': 0.5.2_tailwindcss@3.1.0
+  '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.1.2
+  '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.2
+  '@tailwindcss/line-clamp': 0.4.0_tailwindcss@3.1.2
+  '@tailwindcss/typography': 0.5.2_tailwindcss@3.1.2
   '@types/lozad': 1.16.1
   '@types/qs': 6.9.7
   '@vueuse/nuxt': 8.6.0
   eslint: 8.17.0
   nuxt: 3.0.0-rc.3
   nuxt-schema-org: 0.6.2
-  tailwindcss: 3.1.0
+  tailwindcss: 3.1.2
   typescript: 4.7.3
 
 packages:
@@ -510,11 +510,11 @@ packages:
     resolution: {integrity: sha512-YBI/6o2EBz02tdEJRBK8xkt3zvOFOWlLBf7WKYGBsSYSRtjjgrqPe2skp6VLLmKx5WbHHDNcW+6oACaurxGzeA==}
     dev: true
 
-  /@nuxt/kit-edge/3.0.0-rc.3-27579668.27a0084:
-    resolution: {integrity: sha512-ea+MufACOFq3tB8h5LSMMAAoNhbyxrzV6gPx3MulMtgm0Y6vQs6XLpAYQrxSLbvO5gMX1Mv5teBUykhftAclNQ==}
+  /@nuxt/kit-edge/3.0.0-rc.3-27581242.8831e4a:
+    resolution: {integrity: sha512-9nMkY/oPsEzNHivSmiKIpD9G4+uipD6qoZuiwMpjRhLGLzfJTqMLh0Ay0eQPjEdFlGwPxLY4FmUlZfqq9//26Q==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     dependencies:
-      '@nuxt/schema': /@nuxt/schema-edge/3.0.0-rc.3-27579668.27a0084
+      '@nuxt/schema': /@nuxt/schema-edge/3.0.0-rc.3-27581242.8831e4a
       c12: 0.2.7
       consola: 2.15.3
       defu: 6.0.0
@@ -522,7 +522,7 @@ packages:
       hash-sum: 2.0.0
       ignore: 5.2.0
       jiti: 1.13.0
-      knitwork: 0.1.1
+      knitwork: 0.1.2
       lodash.template: 4.5.0
       mlly: 0.5.2
       pathe: 0.3.0
@@ -540,11 +540,11 @@ packages:
       - webpack
     dev: true
 
-  /@nuxt/kit-edge/3.0.0-rc.3-27579668.27a0084_g5rf3icusfse4b63pimitbrmgu:
-    resolution: {integrity: sha512-ea+MufACOFq3tB8h5LSMMAAoNhbyxrzV6gPx3MulMtgm0Y6vQs6XLpAYQrxSLbvO5gMX1Mv5teBUykhftAclNQ==}
+  /@nuxt/kit-edge/3.0.0-rc.3-27581242.8831e4a_g5rf3icusfse4b63pimitbrmgu:
+    resolution: {integrity: sha512-9nMkY/oPsEzNHivSmiKIpD9G4+uipD6qoZuiwMpjRhLGLzfJTqMLh0Ay0eQPjEdFlGwPxLY4FmUlZfqq9//26Q==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     dependencies:
-      '@nuxt/schema': /@nuxt/schema-edge/3.0.0-rc.3-27579668.27a0084_g5rf3icusfse4b63pimitbrmgu
+      '@nuxt/schema': /@nuxt/schema-edge/3.0.0-rc.3-27581242.8831e4a_g5rf3icusfse4b63pimitbrmgu
       c12: 0.2.7
       consola: 2.15.3
       defu: 6.0.0
@@ -552,7 +552,7 @@ packages:
       hash-sum: 2.0.0
       ignore: 5.2.0
       jiti: 1.13.0
-      knitwork: 0.1.1
+      knitwork: 0.1.2
       lodash.template: 4.5.0
       mlly: 0.5.2
       pathe: 0.3.0
@@ -585,8 +585,8 @@ packages:
       - webpack
     dev: true
 
-  /@nuxt/schema-edge/3.0.0-rc.3-27579668.27a0084:
-    resolution: {integrity: sha512-7tLoqbRT62EyK+UYx9cz94yLZ275WX6Dwc0BISy4MhqfV/56hfvYy4sNwnxoqztwwbW6mfKzRg4kTDoqrRUAaQ==}
+  /@nuxt/schema-edge/3.0.0-rc.3-27581242.8831e4a:
+    resolution: {integrity: sha512-oeYdUR0awPc/q5qkI3LJCsyzYAy7NcE5jKLBa9kDs/5dIP6cJP0Ccu+VnnrsJTwOrS27k+lHo8D8i/QFOPJo0A==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     dependencies:
       c12: 0.2.7
@@ -606,8 +606,8 @@ packages:
       - webpack
     dev: true
 
-  /@nuxt/schema-edge/3.0.0-rc.3-27579668.27a0084_g5rf3icusfse4b63pimitbrmgu:
-    resolution: {integrity: sha512-7tLoqbRT62EyK+UYx9cz94yLZ275WX6Dwc0BISy4MhqfV/56hfvYy4sNwnxoqztwwbW6mfKzRg4kTDoqrRUAaQ==}
+  /@nuxt/schema-edge/3.0.0-rc.3-27581242.8831e4a_g5rf3icusfse4b63pimitbrmgu:
+    resolution: {integrity: sha512-oeYdUR0awPc/q5qkI3LJCsyzYAy7NcE5jKLBa9kDs/5dIP6cJP0Ccu+VnnrsJTwOrS27k+lHo8D8i/QFOPJo0A==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     dependencies:
       c12: 0.2.7
@@ -652,7 +652,7 @@ packages:
     resolution: {integrity: sha512-k8wP3D17di27/loe35GZEqXyabG/045tFD1CipmG9MOnZdwf6WeL+gFEXzIaDeDFVLmbI1bnddOk+RutxeIjVA==}
     hasBin: true
     dependencies:
-      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27579668.27a0084
+      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27581242.8831e4a
       chalk: 5.0.1
       ci-info: 3.3.1
       consola: 2.15.3
@@ -690,7 +690,7 @@ packages:
     peerDependencies:
       vue: 3.2.33
     dependencies:
-      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27579668.27a0084_g5rf3icusfse4b63pimitbrmgu
+      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27581242.8831e4a_g5rf3icusfse4b63pimitbrmgu
       '@vitejs/plugin-vue': 2.3.3_vite@2.9.10+vue@3.2.37
       '@vitejs/plugin-vue-jsx': 1.3.10
       autoprefixer: 10.4.7_postcss@8.4.14
@@ -730,7 +730,7 @@ packages:
   /@nuxtjs/tailwindcss/5.1.2:
     resolution: {integrity: sha512-GURUcEyAE6hsOWbLNGOiu832HX53ff2yrbfFJ7qqkFXnq0RNeaoOip+z5MX2mLcmyxlDtFjNmu2rw2rfCTsvHA==}
     dependencies:
-      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27579668.27a0084
+      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27581242.8831e4a
       '@nuxt/postcss8': 1.1.3
       '@types/tailwindcss': 3.0.10
       autoprefixer: 10.4.7_postcss@8.4.14
@@ -741,8 +741,8 @@ packages:
       postcss: 8.4.14
       postcss-custom-properties: 12.1.7_postcss@8.4.14
       postcss-nesting: 10.1.8_postcss@8.4.14
-      tailwind-config-viewer: 1.7.1_tailwindcss@3.1.0
-      tailwindcss: 3.1.0
+      tailwind-config-viewer: 1.7.1_tailwindcss@3.1.2
+      tailwindcss: 3.1.2
       ufo: 0.8.4
     transitivePeerDependencies:
       - esbuild
@@ -865,32 +865,32 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@tailwindcss/aspect-ratio/0.4.0_tailwindcss@3.1.0:
+  /@tailwindcss/aspect-ratio/0.4.0_tailwindcss@3.1.2:
     resolution: {integrity: sha512-WJu0I4PpqNPuutpaA9zDUq2JXR+lorZ7PbLcKNLmb6GL9/HLfC7w3CRsMhJF4BbYd/lkY6CfXOvkYpuGnZfkpQ==}
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.1.0
+      tailwindcss: 3.1.2
     dev: true
 
-  /@tailwindcss/forms/0.5.2_tailwindcss@3.1.0:
+  /@tailwindcss/forms/0.5.2_tailwindcss@3.1.2:
     resolution: {integrity: sha512-pSrFeJB6Bg1Mrg9CdQW3+hqZXAKsBrSG9MAfFLKy1pVA4Mb4W7C0k7mEhlmS2Dfo/otxrQOET7NJiJ9RrS563w==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.1.0
+      tailwindcss: 3.1.2
     dev: true
 
-  /@tailwindcss/line-clamp/0.4.0_tailwindcss@3.1.0:
+  /@tailwindcss/line-clamp/0.4.0_tailwindcss@3.1.2:
     resolution: {integrity: sha512-HQZo6gfx1D0+DU3nWlNLD5iA6Ef4JAXh0LeD8lOGrJwEDBwwJNKQza6WoXhhY1uQrxOuU8ROxV7CqiQV4CoiLw==}
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.1.0
+      tailwindcss: 3.1.2
     dev: true
 
-  /@tailwindcss/typography/0.5.2_tailwindcss@3.1.0:
+  /@tailwindcss/typography/0.5.2_tailwindcss@3.1.2:
     resolution: {integrity: sha512-coq8DBABRPFcVhVIk6IbKyyHUt7YTEC/C992tatFB+yEx5WGBQrCgsSFjxHUr8AWXphWckadVJbominEduYBqw==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1 || insiders'
@@ -898,7 +898,7 @@ packages:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
-      tailwindcss: 3.1.0
+      tailwindcss: 3.1.2
     dev: true
 
   /@trysound/sax/0.2.0:
@@ -1136,7 +1136,7 @@ packages:
   /@vueuse/nuxt/8.6.0:
     resolution: {integrity: sha512-zzLA9j0Nje6b0SLupOsU1EBKzMMplGOnbg4fi291kizez5NCheFBuUThKdvVDuW8vFpN+vtMLzSiCYWFHVdyKw==}
     dependencies:
-      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27579668.27a0084
+      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27581242.8831e4a
       '@vueuse/core': 8.6.0
       '@vueuse/metadata': 8.6.0
       local-pkg: 0.4.1
@@ -3318,6 +3318,10 @@ packages:
     resolution: {integrity: sha512-DxjuhTzCDeXjAcsQuqoZhTFF/wqvaVH2YA7QRhBRpsSeaL44S93hDxyvoluApwk3wjMdia7dc9J0Sj9MHD8rxg==}
     dev: true
 
+  /knitwork/0.1.2:
+    resolution: {integrity: sha512-2ekmY2S/VB3YGVhrIFadyJQpkjMFSf48tsXCnA+kjs4FEQIT+5FLyOF0No/X58z/2E/VaMyeJfukRoVT4gMsfQ==}
+    dev: true
+
   /koa-compose/4.1.0:
     resolution: {integrity: sha512-8ODW8TrDuMYvXRwra/Kh7/rJo9BtOfPc6qO8eAfC80CnCvSjSl0bkRM24X6/XBBEyj0v1nRUQ1LyOy3dbqOWXw==}
     dev: true
@@ -3974,7 +3978,7 @@ packages:
   /nuxt-schema-org/0.6.2:
     resolution: {integrity: sha512-00Onf/7VhLLT7+1c2ekG3GxNK18DMmpzZx968XCfh/ygx2IWZbx5rky5Q+KAhzRgwTNVy887nDSL5slyBPNzPQ==}
     dependencies:
-      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27579668.27a0084
+      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27581242.8831e4a
       '@vueuse/schema-org': 0.6.2
     transitivePeerDependencies:
       - esbuild
@@ -3992,7 +3996,7 @@ packages:
     hasBin: true
     dependencies:
       '@nuxt/devalue': 2.0.0
-      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27579668.27a0084
+      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27581242.8831e4a
       '@nuxt/schema': 3.0.0-rc.3
       '@nuxt/telemetry': 2.1.3
       '@nuxt/ui-templates': 0.1.1
@@ -5372,7 +5376,7 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwind-config-viewer/1.7.1_tailwindcss@3.1.0:
+  /tailwind-config-viewer/1.7.1_tailwindcss@3.1.2:
     resolution: {integrity: sha512-EtDwFzgQEMJ6dFmp/6K+QJSP7NWANrGDsbwkn/BEq7MVJd/dEIZ5BBZTxo5jx+opa3HNJu/CHtWanKSCrgNwpA==}
     engines: {node: '>=8'}
     hasBin: true
@@ -5387,13 +5391,13 @@ packages:
       open: 7.4.2
       portfinder: 1.0.28
       replace-in-file: 6.3.5
-      tailwindcss: 3.1.0
+      tailwindcss: 3.1.2
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /tailwindcss/3.1.0:
-    resolution: {integrity: sha512-XzXq31Fj6RizhlFVNLBlDqzs0dXuIEOAknuOcKx2R/IIQbEz5DnngslYY4JNN6e9JkNBjHGm1w2XDABsADg1ng==}
+  /tailwindcss/3.1.2:
+    resolution: {integrity: sha512-yJ6L5s1U5AeS5g7HHy212zdQfjwD426FBfm59pet/JsyneuZuD4C2W7PpJEg4ppisiB21uLqtNagv8KXury3+Q==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     dependencies:
@@ -5801,7 +5805,7 @@ packages:
     dev: true
 
   /util-deprecate/1.0.2:
-    resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=}
+    resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
 
   /v8-compile-cache/2.3.0:

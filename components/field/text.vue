@@ -22,6 +22,7 @@ interface Props {
   minlength?: number
   maxlength?: number
   disabled?: boolean
+  autocomplete?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -35,6 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
   minlength: 0,
   maxlength: 0,
   disabled: false,
+  autocomplete: undefined,
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -68,7 +70,9 @@ const value = computed<string>({
         rows="4"
         :minlength="minlength > 0 ? minlength : ''"
         :maxlength="maxlength > 0 ? maxlength : ''"
+        :autocomplete="autocomplete"
         class="block w-full rounded-md border border-gray-300 p-3 placeholder-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white dark:placeholder-gray-100 sm:text-sm"
+        :required="required"
       ></textarea>
       <input
         v-else
@@ -79,6 +83,8 @@ const value = computed<string>({
         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white sm:text-sm"
         :placeholder="placeholder"
         :aria-describedby="`${name}-description`"
+        :autocomplete="autocomplete"
+        :required="required"
       />
     </div>
     <div class="mt-2 text-sm text-gray" id="email-description">
