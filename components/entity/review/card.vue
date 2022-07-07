@@ -46,12 +46,12 @@ const deleteReview = (id: number) => {
       </router-link>
       <div>
         <span class="font-medium text-gray"
-          >Posted from {{ calExactTimeDiff(review.createdAt) }}</span
+        >Posted from {{ calExactTimeDiff(review.createdAt) }}</span
         >
         <span
           v-if="review.createdAt !== review.updatedAt"
           class="font-medium text-gray"
-          >, modified from {{ calExactTimeDiff(review.updatedAt) }}</span
+        >, modified from {{ calExactTimeDiff(review.updatedAt) }}</span
         >
       </div>
 

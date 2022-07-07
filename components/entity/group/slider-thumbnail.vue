@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue'
 import { Pagination, Navigation, FreeMode, Thumbs } from 'swiper'
+import { Swiper as SwiperInterface } from 'swiper/types'
 import SvgIcon from '@/components/svg-icon.vue'
 import EntitySliderCardThumbnail from '@/components/entity/group/slider-thumbnail.vue'
 import AppImg from '@/components/app/img.vue'
 import AppButton from '@/components/app/button.vue'
-import { Swiper as SwiperInterface } from 'swiper/types'
 
 const props = defineProps<{
   entities?: Entity[]
@@ -99,7 +99,7 @@ watch(
             <swiper
               ref="swiperMain"
               :loop="main.loop"
-              :spaceBetween="main.spaceBetween"
+              :space-between="main.spaceBetween"
               :navigation="main.navigation"
               :thumbs="{ swiper: thumbsSwiper }"
               :modules="main.modules"
@@ -121,15 +121,15 @@ watch(
             </swiper>
             <swiper
               ref="swiperThumbs"
-              @swiper="setThumbsSwiper"
               :loop="thumbs.loop"
-              :spaceBetween="thumbs.spaceBetween"
-              :slidesPerView="thumbs.slidesPerView"
+              :space-between="thumbs.spaceBetween"
+              :slides-per-view="thumbs.slidesPerView"
               :breakpoints="thumbs.breakpoints"
-              :freeMode="true"
-              :watchSlidesProgress="true"
+              :free-mode="true"
+              :watch-slides-progress="true"
               :modules="thumbs.modules"
               class="h-28 w-full thumbs mt-6 hidden md:block"
+              @swiper="setThumbsSwiper"
             >
               <swiper-slide
                 v-for="(entity, id) in entities"

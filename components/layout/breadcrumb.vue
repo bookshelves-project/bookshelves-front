@@ -32,8 +32,8 @@ const crumbs = computed((): Link[] => {
     const match = router.resolve(path) // try to find route
     if (match.name !== null) {
       param = param.split('?')[0] // remove query
-      let title = param.replace(/-/g, ' ') // replace `-` with space
-      let titleSplitted = title.split('#')
+      const title = param.replace(/-/g, ' ') // replace `-` with space
+      const titleSplitted = title.split('#')
 
       crumbs.push({
         title: capitalizeEach(titleSplitted[0]),

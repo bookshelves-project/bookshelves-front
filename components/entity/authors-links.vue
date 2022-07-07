@@ -25,16 +25,16 @@ defineProps<{
           })
         "
         class="internal-link"
-        >{{ author.name }}</router-link
+      >{{ author.name }}</router-link
       >
       <span
         v-if="
           authors.length > 1 &&
-          authorId !== authors.length - 2 &&
-          authorId !== authors.length - 1
+            authorId !== authors.length - 2 &&
+            authorId !== authors.length - 1
         "
         class="mr-1"
-        >,</span
+      >,</span
       ><span v-if="authorId === authors.length - 2" class="mx-1">&</span>
     </span>
   </div>

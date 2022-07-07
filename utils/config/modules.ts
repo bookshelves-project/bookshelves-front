@@ -156,7 +156,7 @@ const vueuse: VueUseNuxtOptions = {
 /**
  * https://vue-schema-org.netlify.app/guide/setup/nuxt.html#_2-configure-the-module
  */
-let schemaOrg = {
+const schemaOrg = {
   // set to your production domain
   canonicalHost: 'https://nuxtjs.org',
 }
@@ -166,9 +166,9 @@ const modules: ModuleOptions = {
   // robots,
   // sitemap,
   // i18n
-  tailwindcss: tailwindcss,
-  vueuse: vueuse,
-  schemaOrg: schemaOrg,
+  tailwindcss,
+  vueuse,
+  schemaOrg,
 }
 
 export const matomo = {

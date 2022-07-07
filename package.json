@@ -22,7 +22,9 @@
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",
-    "start": "node .output/server/index.mjs"
+    "preview": "nuxt preview",
+    "start": "node .output/server/index.mjs",
+    "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore . --fix"
   },
   "dependencies": {
     "lozad": "^1.16.0",
@@ -33,6 +35,7 @@
     "vite-svg-loader": "^3.3.0"
   },
   "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^10.0.0",
     "@nuxtjs/tailwindcss": "^5.1.2",
     "@pinia/nuxt": "^0.1.9",
     "@tailwindcss/aspect-ratio": "^0.4.0",
@@ -42,16 +45,10 @@
     "@types/lozad": "^1.16.1",
     "@types/qs": "^6.9.7",
     "@vueuse/nuxt": "^8.6.0",
-    "eslint": "^8.17.0",
+    "eslint": "^8.19.0",
     "nuxt": "3.0.0-rc.3",
     "nuxt-schema-org": "^0.6.2",
     "tailwindcss": "^3.1.2",
     "typescript": "^4.7.3"
-  },
-  "pnpm": {
-    "overrides": {
-      "@nuxt/kit": "npm:@nuxt/kit-edge@latest",
-      "@nuxt/kit-edge": "latest"
-    }
   }
 }

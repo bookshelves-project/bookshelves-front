@@ -23,11 +23,13 @@ const props = withDefaults(defineProps<Props>(), { short: false })
             })
           "
           class="internal-link"
-          >{{ tag.name }}</router-link
+        >
+          {{ tag.name }}
+        </router-link
         ><span
           v-if="tags.length > 1 && id !== tags.length - 1"
           class="mr-1 text-gray-900 dark:text-gray-100"
-          >,</span
+        >,</span
         >
       </li>
     </ul>

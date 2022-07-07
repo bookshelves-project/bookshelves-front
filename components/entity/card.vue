@@ -17,5 +17,5 @@ const entity: UseEntity = useEntity(props.entity, props.type, props.entityName)
 </script>
 
 <template>
-  <component :entity="entity" :is="`entity-card-${card}`" />
+  <component :is="`entity-card-${card}`" :entity="entity" />
 </template>

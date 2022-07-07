@@ -5,7 +5,7 @@ import FormLogin from '@/components/form/login.vue'
 const title = 'Sign in to your account'
 
 useMetadata({
-  title: title,
+  title,
 })
 
 // @Component({

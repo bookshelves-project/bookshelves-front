@@ -7,10 +7,10 @@ const currentIcon = computed(() =>
   defineAsyncComponent({
     loader: () => import(`../assets/icons/svg/${props.name}.svg`),
     loadingComponent: {
-      template: `<span></span>`,
+      template: '<span></span>',
     },
     errorComponent: {
-      template: `<span>error</span>`,
+      template: '<span>error</span>',
     },
     delay: 200,
     timeout: 3000,

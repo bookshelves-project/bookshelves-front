@@ -113,7 +113,7 @@ const logout = () => {
               <span
                 class="w-full px-2 py-4 font-semibold"
                 @click="closeSidebar"
-                >{{ $t(`nav.${link.label}`) }}</span
+              >{{ $t(`nav.${link.label}`) }}</span
               >
             </router-link>
           </div>
@@ -188,8 +188,6 @@ const logout = () => {
     </div>
   </div>
 </template>
-
-
 
 <style lang="css" scoped>
 .link {

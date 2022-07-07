@@ -12,7 +12,7 @@ const title = ref('Related books & series for ')
 const description = 'List of all results for related books & series'
 
 const load = async () => {
-  let current = route.query.page as string
+  const current = route.query.page as string
   const [entity, list] = await Promise.all([
     nuxtAsync<Book>('/books', [route.params.author, route.params.slug]).then(
       (e) => e.data

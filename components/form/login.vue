@@ -43,7 +43,7 @@ const submit = async () => {
 </script>
 
 <template>
-  <form-layout @submit="submit" title="Sign-in">
+  <form-layout title="Sign-in" @submit="submit">
     <field-text
       v-model="data.email"
       name="email"

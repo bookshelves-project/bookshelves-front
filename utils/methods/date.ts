@@ -1,6 +1,6 @@
 function getDaysDiff(startDate = new Date(), endDate = new Date()) {
   if (startDate > endDate) {
-    ;[startDate, endDate] = [endDate, startDate]
+    [startDate, endDate] = [endDate, startDate]
   }
 
   const timeDiff = endDate.getTime() - startDate.getTime()
@@ -43,7 +43,7 @@ function getMonthsDiff(startDate = new Date(), endDate = new Date()) {
 // time difference in Years
 function getYearsDiff(startDate = new Date(), endDate = new Date()) {
   if (startDate > endDate) {
-    ;[startDate, endDate] = [endDate, startDate]
+    [startDate, endDate] = [endDate, startDate]
   }
 
   const yearB4End = new Date(
@@ -77,7 +77,7 @@ export const calExactTimeDiff = (firstDate?: Date, secondDate = new Date()) => {
   firstDate = new Date(firstDate)
   secondDate = new Date(secondDate)
   if (firstDate > secondDate) {
-    ;[firstDate, secondDate] = [secondDate, firstDate]
+    [firstDate, secondDate] = [secondDate, firstDate]
   }
 
   let monthDiff = 0

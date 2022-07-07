@@ -22,7 +22,7 @@ export const objectIsEmpty = (object: object): boolean => {
 }
 
 export const getValue = (obj: Keyable, path: string): any => {
-  if (!path) return obj
+  if (!path) { return obj }
   const properties = path.split('.')
   const key = properties.shift() as string
   return getValue(obj[key], properties.join('.')) ?? path

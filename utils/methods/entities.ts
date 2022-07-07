@@ -13,7 +13,7 @@ import { useApplicationStore } from '~~/store/application'
  */
 export const formatAuthors = (authors: Author[] | undefined): string => {
   let result = 'unknown'
-  let list = authors?.map((author) => author.name?.trim()) as string[]
+  const list = authors?.map((author) => author.name?.trim()) as string[]
   result = [list.slice(0, -1).join(', '), list.slice(-1)[0]].join(
     list.length < 2 ? '' : ' & '
   )

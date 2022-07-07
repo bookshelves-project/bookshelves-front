@@ -1,5 +1,5 @@
-import { MetaObject } from '#app'
 import { ComputedGetter } from 'vue'
+import { MetaObject } from '#app'
 
 export const useMetadata = (meta?: HeadMeta) => {
   const config = useRuntimeConfig()
@@ -21,10 +21,10 @@ export const useMetadata = (meta?: HeadMeta) => {
   }
 
   const { fullPath } = useRoute()
-  let route = fullPath
+  const route = fullPath
 
   const metadata: MetaObject | ComputedGetter<MetaObject> = {
-    title: title,
+    title,
     meta: [
       {
         hid: 'description',

@@ -1,6 +1,6 @@
 import { defineNuxtConfig } from 'nuxt'
-import config from './utils/config'
 import svgLoader from 'vite-svg-loader'
+import config from './utils/config'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({

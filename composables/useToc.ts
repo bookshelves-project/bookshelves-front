@@ -7,11 +7,11 @@ export const useToc = () => {
    * */
   const parse = (headingSet: NodeListOf<HTMLElement>) => {
     const tocData: TocItem[] = []
-    let curLevel = 0
-    let preTocItem: TocItem = {}
+    const curLevel = 0
+    const preTocItem: TocItem = {}
     headingSet.forEach((heading) => {
-      let tocItem: TocItem = {}
-      let hLevel = heading.outerHTML.match(/<h([\d]).*>/)
+      const tocItem: TocItem = {}
+      const hLevel = heading.outerHTML.match(/<h([\d]).*>/)
       if (hLevel) {
         tocItem.level = parseInt(hLevel[1])
         tocItem.text = heading.innerText

@@ -5,7 +5,7 @@ import FormForgotPassword from '@/components/form/forgot-password.vue'
 const title = 'Forgot your password?'
 
 useMetadata({
-  title: title,
+  title,
 })
 
 // @Component({

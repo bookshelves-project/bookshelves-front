@@ -51,7 +51,7 @@ const date = (begin: number) => {
             target="_blank"
             rel="noopener noreferrer"
             class="block md:flex"
-            >{{ packageJson.license }} license</a
+          >{{ packageJson.license }} license</a
           ><span class="hidden md:block">,</span
           ><a
             v-if="config.linkChangelog"
@@ -59,7 +59,7 @@ const date = (begin: number) => {
             target="_blank"
             rel="noopener noreferrer"
             class="block italic md:ml-1 md:flex text-center"
-            >v{{ packageJson.version }}</a
+          >v{{ packageJson.version }}</a
           ><span class="hidden md:block">.</span>
         </span>
       </span>

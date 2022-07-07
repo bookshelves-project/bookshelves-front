@@ -74,7 +74,7 @@ export const useEntity = (
       route = {
         name:
           entity.meta.entity === 'author'
-            ? `authors-slug`
+            ? 'authors-slug'
             : `${entity.meta.entity}s-author-slug`,
         params: {
           author: entity.meta.author,
@@ -87,7 +87,7 @@ export const useEntity = (
   })
 
   const language = computed(() => {
-    let language = undefined
+    let language
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
       language = entity.language?.name
@@ -109,7 +109,7 @@ export const useEntity = (
   })
 
   const authors = computed(() => {
-    let authors = undefined
+    let authors
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
       authors = entity.authors
@@ -122,7 +122,7 @@ export const useEntity = (
   })
 
   const count = computed((): string => {
-    let count = undefined
+    let count
     if (currentType.value === 'serie') {
       const entity = originalEntity as Serie
       count = `${entity.count} books`
@@ -136,11 +136,11 @@ export const useEntity = (
       }
     }
 
-    return count ? count : ''
+    return count || ''
   })
 
   const type = computed(() => {
-    let type = undefined
+    let type
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
       type = entity.type
@@ -150,7 +150,7 @@ export const useEntity = (
   })
 
   const entityName = computed(() => {
-    let entityName = undefined
+    let entityName
     const entity = originalEntity as Entity
     entityName = entity.meta?.entity
 

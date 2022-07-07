@@ -12,7 +12,7 @@ import AppButton from '@/components/app/button.vue'
       >
         <span class="block">Ready to dive in?</span>
         <span class="block text-primary-600 dark:text-primary-500"
-          >Discover your next universe.</span
+        >Discover your next universe.</span
         >
       </h2>
       <div class="mt-8 flex lg:mt-0 lg:shrink-0">

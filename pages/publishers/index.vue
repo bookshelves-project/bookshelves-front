@@ -28,8 +28,8 @@ const title = 'Publishers'
 const description = 'Discover your books by publisher'
 
 useMetadata({
-  title: title,
-  description: description,
+  title,
+  description,
 })
 </script>
 

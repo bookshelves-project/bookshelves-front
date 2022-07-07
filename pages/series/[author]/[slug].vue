@@ -81,8 +81,8 @@ useMetadata({
       <pagination-load-more
         :meta="books.meta"
         :endpoint="listRoute"
-        @load="paginate"
         class="mt-6 mb-5"
+        @load="paginate"
       />
     </div>
     <entity-review

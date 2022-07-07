@@ -1,77 +1,37 @@
 {
-  "root": true,
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "parser": "vue-eslint-parser",
+  // https://github.com/nuxt/eslint-config
   "extends": [
     "@nuxtjs/eslint-config-typescript",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:vue/recommended"
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended"
   ],
-  // "extends": "@antfu",
   "rules": {
-    // "@typescript-eslint/explicit-function-return-type": [
-    //   "error"
-    // ],
-    "lines-between-class-members": [
-      "error",
-      "always",
+    "no-undef": "off",
+    "prefer-const": "warn",
+    "no-unused-vars": "warn",
+    "vue/multi-word-component-names": "off",
+    "vue/first-attribute-linebreak": "warn",
+    "vue/no-v-html": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "quotes": [
+      2,
+      "single",
       {
-        "exceptAfterSingleLine": true
+        "avoidEscape": true
       }
     ],
-    "space-before-function-paren": "off",
-    "vue/multi-word-component-names": "off",
-    "no-console": "off",
-    "no-debugger": "off",
-    // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    "vue/no-v-html": "off",
-    "vue/space-before-function-parens": "off",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    // "array-bracket-newline": "error",
-    // "array-callback-return": "error",
-    // "array-element-newline": "error",
-    "arrow-parens": "off",
-    "@typescript-eslint/no-empty-function": "off",
-    "vue/html-indent": "off",
-    "vue/html-closing-bracket-newline": "off",
-    "vue/max-attributes-per-line": "off",
-    // "vue/html-closing-bracket-newline": [
-    //   "error",
-    //   {
-    //     "singleline": "never",
-    //     "multiline": "always"
-    //   }
-    // ],
-    // "vue/multiline-html-element-content-newline": [
-    //   "error",
-    //   {
-    //     "ignoreWhenEmpty": true,
-    //     "ignores": [
-    //       "pre",
-    //       "textarea"
-    //     ],
-    //     "allowEmptyLines": false
-    //   }
-    // ],
-    "vue/singleline-html-element-content-newline": "off",
-    "vue/multiline-html-element-content-newline": "off",
-    // "vue/singleline-html-element-content-newline": [
-    //   "error",
-    //   {
-    //     "ignoreWhenNoAttributes": true,
-    //     "ignoreWhenEmpty": true,
-    //     "ignores": [
-    //       "pre",
-    //       "textarea"
-    //     ]
-    //   }
-    // ],
+    "semi": [
+      "error",
+      "never"
+    ],
     "comma-dangle": "off",
-    "vue/html-self-closing": "off"
+    "vue/html-self-closing": "off",
+    "vue/max-attributes-per-line": "warn",
+    "vue/singleline-html-element-content-newline": "off",
+    "func-call-spacing": "off",
+    "space-before-function-paren": "off",
+    "arrow-parens": "off",
+    "vue/html-closing-bracket-newline": "off",
+    "object-property-newline": "warn"
   }
 }

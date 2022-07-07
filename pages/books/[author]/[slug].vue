@@ -26,7 +26,7 @@ const load = async () => {
     const authors = formatAuthors(book.value.authors)
     title.value = `${book.value.title} (${book.value.type}) ${serie}by ${authors}`
 
-    let serieBreadcrumb = book.value.serie
+    const serieBreadcrumb = book.value.serie
       ? `, ${book.value.serie.title} (vol. ${book.value.volume})`
       : ''
     breadcrumb.value = `${book.value.title} (${book.value.type})${serieBreadcrumb}`

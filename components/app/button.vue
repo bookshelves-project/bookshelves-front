@@ -48,7 +48,7 @@ const alignment = computed((): string => {
     right: 'ml-auto',
     default: 'mx-auto',
   }
-  let current = props.align
+  const current = props.align
   return alignements[current] || alignements.default
 })
 
@@ -56,7 +56,7 @@ onMounted(() => {
   if (props.href) {
     const element: any = btn.value
     if (element instanceof HTMLElement) {
-      let current = props.href
+      const current = props.href
       element.setAttribute('href', current)
     }
   }

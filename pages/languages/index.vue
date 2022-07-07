@@ -24,8 +24,8 @@ const description =
   'You can read your books in many languages, browse each possibilities!'
 
 useMetadata({
-  title: title,
-  description: description,
+  title,
+  description,
 })
 </script>
 

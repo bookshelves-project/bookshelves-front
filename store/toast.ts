@@ -27,7 +27,7 @@ export const useToastStore = defineStore('toast', {
       }, 4000)
     },
     deleteToast(payload: Toast) {
-      let toasts = this.toasts
+      const toasts = this.toasts
 
       const index = toasts.findIndex((key) => key.id === payload.id)
       toasts.splice(index, 1)
@@ -40,7 +40,7 @@ export const useToastStore = defineStore('toast', {
       // })
 
       this.$patch({
-        toasts: toasts,
+        toasts,
       })
     },
   },

@@ -1,6 +1,6 @@
 import { stringify } from 'qs'
-import { objectIsEmpty } from '~/utils/methods'
 import type { FetchResponse } from 'ohmyfetch'
+import { objectIsEmpty } from '~/utils/methods'
 
 export const useFetchable = () => {
   const { apiURL, apiEndpoint } = useRuntimeConfig()
@@ -23,8 +23,7 @@ export const useFetchable = () => {
 
       url = `${url}/${routeParams}`
     }
-    if (query && !objectIsEmpty(query))
-      queryParams = `?${stringify({ ...query })}`
+    if (query && !objectIsEmpty(query)) { queryParams = `?${stringify({ ...query })}` }
 
     return `${url}${queryParams}`
   }

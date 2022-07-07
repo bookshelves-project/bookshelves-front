@@ -87,7 +87,7 @@ const scrollEnabled = () => {
       <span
         class="hidden md:inline-block md:h-screen md:align-middle"
         aria-hidden="true"
-        >&#8203;</span
+      >&#8203;</span
       >
 
       <Transition>
@@ -102,7 +102,7 @@ const scrollEnabled = () => {
             <span
               class="hidden md:inline-block md:h-screen md:align-middle"
               aria-hidden="true"
-              >&#8203;</span
+            >&#8203;</span
             >
 
             <button

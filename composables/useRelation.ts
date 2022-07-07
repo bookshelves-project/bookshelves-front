@@ -18,21 +18,21 @@ export const useRelation = (route?: Route) => {
   const color = (percentage?: number) => {
     let style = 'green'
     if (percentage) {
-      if (percentage >= 15) style = 'green'
-      if (percentage >= 25) style = 'cyan'
-      if (percentage >= 35) style = 'blue'
-      if (percentage >= 45) style = 'purple'
-      if (percentage >= 60) style = 'red'
-      if (percentage >= 75) style = 'orange'
-      if (percentage >= 85) style = 'yellow'
+      if (percentage >= 15) { style = 'green' }
+      if (percentage >= 25) { style = 'cyan' }
+      if (percentage >= 35) { style = 'blue' }
+      if (percentage >= 45) { style = 'purple' }
+      if (percentage >= 60) { style = 'red' }
+      if (percentage >= 75) { style = 'orange' }
+      if (percentage >= 85) { style = 'yellow' }
     }
 
     return style
   }
 
   const getRoute = (item: Keyable): Route => {
-    let params: Keyable = {}
-    let query: Keyable = {}
+    const params: Keyable = {}
+    const query: Keyable = {}
 
     if (route?.paramsList) {
       for (const [key, value] of Object.entries(route?.paramsList)) {
@@ -46,8 +46,8 @@ export const useRelation = (route?: Route) => {
     }
     return {
       name: route?.name,
-      params: params,
-      query: query,
+      params,
+      query,
     }
   }
 

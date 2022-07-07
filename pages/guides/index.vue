@@ -24,8 +24,8 @@ watch(
 )
 
 useMetadata({
-  title: title,
-  description: description,
+  title,
+  description,
 })
 </script>
 

@@ -5,7 +5,7 @@ import FormLayoutSide from '@/components/form/layout/side.vue'
 const title = 'Reset your password'
 
 useMetadata({
-  title: title,
+  title,
 })
 
 // @Component({

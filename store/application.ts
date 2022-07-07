@@ -1,5 +1,5 @@
-import { CookieRef } from '#app'
 import { defineStore } from 'pinia'
+import { CookieRef } from '#app'
 
 export const useApplicationStore = defineStore('application', {
   state: () => ({

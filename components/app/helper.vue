@@ -10,7 +10,7 @@ const openHelp = (status: boolean) => {
 }
 
 const getRoutes = () => {
-  let routes: any[] = []
+  const routes: any[] = []
   if (router && router.options.routes) {
     router.options.routes.forEach((route) => {
       routes.push({

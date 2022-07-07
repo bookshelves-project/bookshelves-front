@@ -20,8 +20,8 @@ defineProps<{
 
           <div class="space-y-6">
             <div
-              class="text-sm text-gray-900 dark:text-gray-100 word-wraping"
               v-if="book.description"
+              class="text-sm text-gray-900 dark:text-gray-100 word-wraping"
               v-html="book.description"
             ></div>
           </div>
@@ -40,7 +40,7 @@ defineProps<{
                   <span>Publisher:</span>
                   <entity-publisher-link :publisher="book.publisher" />
                   <span v-if="book.releasedOn"
-                    >({{ date(book.releasedOn) }})</span
+                  >({{ date(book.releasedOn) }})</span
                   >
                 </span>
               </li>

@@ -50,9 +50,9 @@ const props = defineProps<{
               </span>
               <span
                 class="mt-1 block text-base text-gray-900 dark:text-gray-100"
-                ><span class="font-medium text-gray-700 dark:text-gray-300">
-                  {{ metric.label }}
-                </span>
+              ><span class="font-medium text-gray-700 dark:text-gray-300">
+                {{ metric.label }}
+              </span>
               </span>
             </div>
           </div>

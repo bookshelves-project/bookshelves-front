@@ -91,7 +91,7 @@ const reverseSort = (asc = false) => {
   const order = asc ? '' : '-'
   let sort = `${order}${newQuery.sort}`
   if (asc) {
-    let currentSort = newQuery.sort as string
+    const currentSort = newQuery.sort as string
     sort = currentSort.replace('-', '')
   }
   newQuery = { sort }

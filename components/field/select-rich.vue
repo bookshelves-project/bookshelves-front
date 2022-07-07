@@ -81,8 +81,8 @@ onClickOutside(target, (event) => (isOpen.value = false))
         Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
       -->
           <li
-            class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"
             id="listbox-option-0"
+            class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"
             role="option"
           >
             <div class="flex items-center">

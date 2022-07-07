@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
-import EntityCard from '@/components/entity/card.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination, Navigation } from 'swiper'
+import SvgIcon from '@/components/svg-icon.vue'
+import EntityCard from '@/components/entity/card.vue'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'

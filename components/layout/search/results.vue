@@ -54,7 +54,7 @@ const close = () => {
             <div class="italic">
               {{ capitalize(entity.meta.entity) }}
               <span v-if="entity.type"
-                >({{ entity.type.toLocaleLowerCase() }})</span
+              >({{ entity.type.toLocaleLowerCase() }})</span
               >
             </div>
           </div>

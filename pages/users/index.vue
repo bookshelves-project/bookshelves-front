@@ -12,7 +12,7 @@ const title = 'All users'
 const subtitle = 'All Bookshelves users'
 
 useMetadata({
-  title: title,
+  title,
   description: subtitle,
 })
 </script>

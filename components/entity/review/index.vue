@@ -23,7 +23,7 @@ const load = async () => {
 await load()
 
 const avg = computed(() => {
-  let avg = undefined
+  let avg
   const ratings: any[] = []
   if (reviews.value) {
     reviews.value.forEach((review) => {

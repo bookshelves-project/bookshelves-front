@@ -6,7 +6,7 @@ import AppImg from '@/components/app/img.vue'
 const title = 'Create your account'
 
 useMetadata({
-  title: title,
+  title,
 })
 
 // @Component({

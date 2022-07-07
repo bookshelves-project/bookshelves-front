@@ -45,11 +45,16 @@ const submit = async () => {
 </script>
 
 <template>
-  <form-layout @submit="submit" title="Let's talk">
+  <form-layout title="Let's talk" @submit="submit">
     <field-text v-model="data.name" name="name" label="Name" required />
     <field-text v-model="data.email" name="email" label="Email" type="email" required />
-    <field-select v-model="data.reason" name="reason" label="Reason" placeholder="Select a reason"
-      :options="enums.submissionsReasons" required />
+    <field-select
+      v-model="data.reason"
+      name="reason"
+      label="Reason"
+      placeholder="Select a reason"
+      :options="enums.submissionsReasons"
+      required />
     <field-text v-model="data.message" name="message" label="Message" multiline required />
     <field-checkbox v-model="data.honeypot" name="honeypot" label="Conditions" class="hidden">
       {{ conditions }}

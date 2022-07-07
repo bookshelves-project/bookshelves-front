@@ -61,7 +61,7 @@ const destroy = (data: Favoritable | Review) => {
             <time
               :datetime="data.createdAt.toString()"
               class="shrink-0 text-sm text-gray whitespace-nowrap"
-              >{{ date(data.createdAt) }}</time
+            >{{ date(data.createdAt) }}</time
             >
           </div>
         </div>
