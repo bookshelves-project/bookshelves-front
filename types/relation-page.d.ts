@@ -1,3 +1,9 @@
+declare interface PageMeta {
+  slug: string
+  title?: string
+  description?: string
+  show: string
+}
 declare interface Page {
   title: string
   meta: PageMeta
@@ -6,11 +12,4 @@ declare interface Page {
   publishedAt?: Date
   updatedAt?: Date
   body?: string
-}
-
-declare interface PageMeta {
-  slug: string
-  title?: string
-  description?: string
-  show: string
 }

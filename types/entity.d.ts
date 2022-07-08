@@ -1,3 +1,5 @@
+declare type EntityType = 'book' | 'serie' | 'author'
+
 declare interface EntityMeta {
   entity: EntityType
   author?: string
@@ -39,9 +41,5 @@ declare interface UseEntity {
   type?: string
   entityName?: string
 }
-
-declare type EntityType = 'book' | 'serie' | 'author'
-
-declare type Entity = 'books' | 'series' | 'authors'
 
 declare type EntityList = Book | Serie | Author | Entity
