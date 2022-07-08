@@ -1,5 +1,5 @@
-import en from './locales/en.json'
 import { defineNuxtPlugin } from '#app'
+import en from './locales/en.json'
 import { getValue } from '@/utils/methods'
 
 export default defineNuxtPlugin(() => {

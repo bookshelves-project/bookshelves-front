@@ -2,7 +2,7 @@
 // import type { Options } from '@nuxtjs/i18n'
 // import { ModuleOptions, RecursivePartial } from '@nuxtjs/auth-next'
 import { VueUseNuxtOptions } from '@vueuse/nuxt'
-import { ModuleOptions } from '@nuxt/schema'
+import { ModuleOptions, NuxtConfig } from '@nuxt/schema'
 
 const htmlValidator = {
   usePrettier: false,
@@ -27,7 +27,7 @@ const htmlValidator = {
     },
   },
 }
-const tailwindcss: Partial<ModuleOptions> = {
+const tailwindcss: NuxtConfig['tailwindcss'] = {
   exposeConfig: true,
 }
 const vueuse: VueUseNuxtOptions = {
@@ -156,12 +156,12 @@ const vueuse: VueUseNuxtOptions = {
 /**
  * https://vue-schema-org.netlify.app/guide/setup/nuxt.html#_2-configure-the-module
  */
-const schemaOrg = {
+const schemaOrg: NuxtConfig['schemaOrg'] = {
   // set to your production domain
   canonicalHost: 'https://nuxtjs.org',
 }
 
-const modules: ModuleOptions = {
+const modules = {
   // auth: authSession,
   // robots,
   // sitemap,

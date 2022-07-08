@@ -16,7 +16,7 @@ await load()
 
 watch(
   () => route.query,
-  async (newVal) => {
+  async () => {
     await load()
   }
 )
