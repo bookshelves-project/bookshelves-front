@@ -1,5 +1,3 @@
-import { TocItem } from '~~/class/toc-item'
-
 export const useToc = () => {
   /**
    * From https://stackoverflow.com/questions/187619/is-there-a-javascript-solution-to-generating-a-table-of-contents-for-a-page
@@ -37,6 +35,6 @@ export const useToc = () => {
 
   return {
     parse,
-    create,
+    create
   }
 }

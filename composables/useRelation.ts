@@ -1,6 +1,6 @@
-import { getValue } from '@/utils/methods'
 
 export const useRelation = (route?: Route) => {
+  const { objectGetValue } = useTools()
   const percent = (bestCount: number, value?: number) => {
     return value ? (value * 100) / bestCount : 1
   }
@@ -36,12 +36,12 @@ export const useRelation = (route?: Route) => {
 
     if (route?.paramsList) {
       for (const [key, value] of Object.entries(route?.paramsList)) {
-        params[key] = getValue(item, value)
+        params[key] = objectGetValue(item, value)
       }
     }
     if (route?.queryList) {
       for (const [key, value] of Object.entries(route?.queryList)) {
-        query[key] = getValue(item, value)
+        query[key] = objectGetValue(item, value)
       }
     }
     return {

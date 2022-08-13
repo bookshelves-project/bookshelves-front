@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { TocItem } from '~~/class/toc-item'
-
 const props = defineProps<{
   body?: string
 }>()

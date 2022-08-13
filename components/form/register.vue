@@ -1,6 +1,5 @@
 <script setup lang="ts">
 // import useAuth from '~/composables/useAuth'
-// import { randomString } from '~/utils/methods'
 // import { useFormStore } from '~~/store/form'
 
 // const { $auth } = useContext()

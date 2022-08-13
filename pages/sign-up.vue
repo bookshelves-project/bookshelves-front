@@ -1,5 +1,30 @@
+<script setup lang="ts">
+const title = 'Create your account'
+
+useMetadata({
+  title
+})
+
+// @Component({
+//   middleware: 'guest',
+//   head() {
+//     return this.$metadata({
+//       title: 'Sign up',
+//     })
+//   },
+// })
+</script>
+
 <template>
-  <div>
-    <pre>/sign-up</pre>
-  </div>
+  <form-layout-side
+    :title="title"
+    cta="Do you have an account?"
+    :cta-route="{ name: 'sign-in' }"
+    image="/images/pages/register.svg"
+    reverse
+  >
+    <template #form>
+      <form-register />
+    </template>
+  </form-layout-side>
 </template>

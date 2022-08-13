@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { capitalize } from '~/utils/methods'
 import AppImg from '@/components/app/img.vue'
 
 defineProps<{
@@ -53,8 +52,8 @@ const close = () => {
             <div class="font-semibold">
               {{ entity.title }}
             </div>
-            <div class="italic">
-              {{ capitalize(entity.meta.entity) }}
+            <div class="italic capitalize">
+              {{ entity.meta.entity }}
               <span v-if="entity.type">({{ entity.type.toLocaleLowerCase() }})</span>
             </div>
           </div>

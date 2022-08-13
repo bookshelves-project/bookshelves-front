@@ -10,3 +10,11 @@ declare interface Route {
 }
 
 declare type Dictionary<T> = { [key: string]: T }
+
+declare interface TocItem {
+  text?: string
+  level?: number
+  id?: string
+  parent?: TocItem
+  children?: TocItem[]
+}

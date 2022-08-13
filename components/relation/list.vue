@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { groupBy } from '~/utils/methods'
-import RelationGroup from '@/components/relation/group.vue'
-
 const props = defineProps<{
   entities?: Tag[] | Language[]
   name?: string
@@ -9,10 +6,11 @@ const props = defineProps<{
   group?: boolean
 }>()
 
+const { arrayGroupBy } = useTools()
 const bestCount = ref(0)
 
 const entitiesByChar = computed((): Record<string, Language[] | Tag[]> => {
-  return groupBy(props.entities!, 'firstChar')
+  return arrayGroupBy(props.entities!, 'firstChar')
 })
 
 const { getBestCount } = useRelation(props.route)

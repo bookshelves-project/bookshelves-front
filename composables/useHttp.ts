@@ -24,13 +24,14 @@ export const useHttp = () => {
     }
 
     if (request.query || route.query) {
-      const queryParams = {
-        ...request.query,
-        ...getRoute.value.query
-      } as Record<string, string>
-      const query = new URLSearchParams(queryParams)
-      const queryStringify = query.toString()
-      localUrl += `?${queryStringify}`
+      // const queryParams = {
+      //   ...request.query,
+      //   ...getRoute.value.query
+      // } as Record<string, string>
+      // const query = new URLSearchParams(queryParams)
+      // const queryStringify = query.toString()
+      // localUrl += `?${queryStringify}`
+      setQuery(localUrl, request.query)
     }
 
     if (request.debug) {
@@ -41,6 +42,19 @@ export const useHttp = () => {
       url: localUrl,
       request
     }
+  }
+
+  const setQuery = (endpoint: string, query?: Query) => {
+    const queryParams = {
+      ...query,
+      ...getRoute.value.query
+    } as Record<string, string>
+
+    const urlSearchParams = new URLSearchParams(queryParams)
+    const queryStringify = urlSearchParams.toString()
+    endpoint += `?${queryStringify}`
+
+    return endpoint
   }
 
   const isRequestData = (object: unknown): object is RequestData => {
@@ -66,7 +80,7 @@ export const useHttp = () => {
   }
 
   const requestRaw = async <T>(request: BaseRequest) => {
-    const response = await $fetch.raw(request.url)
+    const response = await $fetch.raw(request.endpoint)
 
     if (response.status === 200) {
       const body = response._data as any
@@ -81,6 +95,7 @@ export const useHttp = () => {
 
   return {
     getRequest,
+    setQuery,
     request,
     requestRaw
   }

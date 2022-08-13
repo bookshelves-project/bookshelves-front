@@ -7,6 +7,7 @@ import { useFormStore } from '~~/store/form'
 import { useApplicationStore } from '~~/store/application'
 
 const { enums } = useApplicationStore()
+const { stringRandom } = useTools()
 
 const config = useRuntimeConfig()
 const data = ref({
@@ -18,7 +19,7 @@ const data = ref({
 })
 const test = ref({
   name: 'Name',
-  email: 'user@mail.com',
+  email: `${stringRandom(10)}@example.com`,
   reason: 'other',
   message: 'Message with some data.',
   honeypot: false

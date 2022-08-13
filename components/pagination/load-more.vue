@@ -11,7 +11,7 @@ const emit = defineEmits<{
   (e: 'load', payload?: ApiResponse<Entity[]>): void
 }>()
 
-const { request } = useHttp()
+const { setQuery, requestRaw } = useHttp()
 
 const pending = ref(false)
 const disabled = ref(false)
@@ -24,12 +24,14 @@ const load = async () => {
     lastPage !== currentPage ? currentPage + 1 : lastPage
   ).toString()
 
-  const list = await request<ApiResponse<Entity[]>>({
-    endpoint: props.meta.path as ApiEndpoint,
-    query: {
-      page: parseInt(nextPage),
-      size: parseInt(props.meta.per_page)
-    }
+  let endpoint = props.meta.path
+  endpoint = setQuery(endpoint, {
+    page: parseInt(nextPage),
+    size: parseInt(props.meta.per_page)
+  })
+
+  const list = await requestRaw<ApiResponse<Entity[]>>({
+    endpoint
   })
   pending.value = false
 

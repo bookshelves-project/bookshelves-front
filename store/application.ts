@@ -11,7 +11,9 @@ export const useApplicationStore = defineStore('application', {
   }),
   actions: {
     async nuxtInit() {
-      const cookie = useCookie('application')
+      const cookie = useCookie('application', {
+        sameSite: 'strict'
+      })
       if (!this.available) {
         if (cookie.value !== undefined) {
           console.warn('init: from cookie')

@@ -22,11 +22,11 @@ declare type Params = {
 }
 
 // declare type Endpoint = 'games' | 'armies' | 'army-categories' | 'miniatures' | 'collectors' | 'search' | 'cms' | 'cms/home'
-declare type ApiEndpoint = '/application' | '/cms/home-page' | '/entities/selection' | '/entities/latest' | '/books' | '/authors' | '/series' | '/tags' | '/series/books' | '/authors/books' | '/authors/series' | '/languages' | '/publishers' | '/posts' | '/tags/books' | '/pages' | '/submission/send'
+declare type ApiEndpoint = '/application' | '/cms/home-page' | '/entities/selection' | '/entities/latest' | '/books' | '/authors' | '/series' | '/tags' | '/series/books' | '/authors/books' | '/authors/series' | '/languages' | '/publishers' | '/posts' | '/tags/books' | '/pages' | '/submission/send' | '/publishers' | '/publishers/books' | '/users' | '/users/favorites' | '/users/reviews' | '/entities/related'
 
 type RequestMethod = 'GET' | 'POST' | 'UPDATE' | 'PATCH' | 'DELETE'
 declare interface BaseRequest {
-  url: string
+  endpoint: string
   method?: RequestMethod = 'GET'
   debug?: boolean
 }

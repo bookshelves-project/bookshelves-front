@@ -42,6 +42,24 @@ export function useTools() {
     }
   }
 
+  const objectContainsObject = (object: object, list: []): boolean => {
+    let i
+    for (i = 0; i < list.length; i++) {
+      if (list[i] === object) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  const objectGetValue = (obj: Keyable, path: string): any => {
+    if (!path) { return obj }
+    const properties = path.split('.')
+    const key = properties.shift() as string
+    return objectGetValue(obj[key], properties.join('.')) ?? path
+  }
+
   const arrayGroupBy = <T, K extends keyof T>(
     array: T[],
     groupOn: K | ((i: T) => string)
@@ -60,6 +78,8 @@ export function useTools() {
     stringSlugify,
     stringRandom,
     objectIsEmpty,
+    objectContainsObject,
+    objectGetValue,
     arrayPushIfNotExist,
     arrayGroupBy
   }

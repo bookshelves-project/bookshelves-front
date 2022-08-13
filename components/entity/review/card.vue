@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { calExactTimeDiff } from '~/utils/methods'
 defineProps<{
   review?: Review
 }>()
 
-const { moduleSocialRating } = useRuntimeConfig()
+const rc = useRuntimeConfig()
+const { calExactTimeDiff } = useDate()
 const emit = defineEmits(['destroy'])
 
 const overflow = ref(true)
@@ -51,7 +51,7 @@ const deleteReview = (id: number) => {
       </div>
 
       <field-rating-stars
-        v-if="moduleSocialRating"
+        v-if="rc.public.moduleSocialRating"
         :rating="review.rating"
         class="mt-4"
         disabled

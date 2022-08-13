@@ -5,7 +5,7 @@ import UserDataLoading from '@/components/user/data/loading.vue'
 import PaginationLoadMore from '@/components/pagination/load-more.vue'
 
 const props = defineProps<{
-  endpoint: Endpoint
+  endpoint: ApiEndpoint
   title?: string
   subtitle?: string
   empty?: string
@@ -24,12 +24,12 @@ const emit = defineEmits(['destroy'])
 
 const load = async () => {
   try {
-    const response = await request<ApiResponse<UserData[]>>(
-      props.endpoint,
-      [route.params.slug]
-    )
-    meta.value = response.meta
-    list.value = response.data
+    const response = await request<ApiResponse<UserData[]>>({
+      endpoint: props.endpoint,
+      params: [route.params.slug]
+    })
+    meta.value = response?.meta
+    list.value = response?.data
     isLoading.value = false
   } catch (error) {
     console.error(error)
@@ -48,9 +48,11 @@ const destroy = (data: UserData) => {
     emit('destroy', { data })
   }
 }
-const paginate = (payload: ApiResponse<UserData[]>) => {
-  meta.value = payload.meta
-  list.value = list.value?.concat(payload.data)
+const paginate = (payload?: ApiResponse<any[]>) => {
+  meta.value = payload?.meta
+  if (payload?.data) {
+    list.value = list.value?.concat(payload.data)
+  }
 }
 </script>
 

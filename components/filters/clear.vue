@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/svg-icon.vue'
-import { objectIsEmpty } from '~/utils/methods'
 import { useFilterStore } from '~~/store/filter'
 
-const props = defineProps<{
+defineProps<{
   paginate?: boolean
 }>()
 
+const { objectIsEmpty } = useTools()
 const route = useRoute()
-const router = useRouter()
 const store = useFilterStore()
 
 const queryAvailable = computed(() => !objectIsEmpty(route.query))

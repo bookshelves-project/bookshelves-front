@@ -7,10 +7,10 @@ const rc = useRuntimeConfig()
 const reviews = ref<Review[]>()
 
 const { requestRaw } = useHttp()
-const url = props.entity.meta.reviews
-if (url) {
+const endpoint = props.entity.meta.reviews
+if (endpoint) {
   const response = await requestRaw<ApiResponse<Review[]>>({
-    url
+    endpoint
   })
   reviews.value = response?.data
 }

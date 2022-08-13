@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { params } = useRoute()
+const route = useRoute()
 
 definePageMeta({
   middleware (to) {
@@ -25,7 +25,7 @@ definePageMeta({
       $localePath({
         name: 'authors-slug',
         params: {
-          slug: params.author,
+          slug: route.params.author,
         },
       })
     "

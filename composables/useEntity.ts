@@ -1,15 +1,9 @@
-import {
-  formatAuthors,
-  instanceBook,
-  instanceSerie,
-  instanceAuthor
-} from '~/utils/methods'
-
 export const useEntity = (
   originalEntity: EntityList,
   withType = false,
   withName = false
 ) => {
+  const { formatAuthors, instanceAuthor, instanceBook, instanceSerie } = useEntityMethods()
   const currentType = ref<EntityType>()
 
   const checkType = () => {

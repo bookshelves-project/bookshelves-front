@@ -91,7 +91,7 @@ watch(
 
 watch(
   () => store.clear,
-  (newVal) => {
+  () => {
     checkboxes.value = []
     switchValue.value = false
     setTimeout(() => {

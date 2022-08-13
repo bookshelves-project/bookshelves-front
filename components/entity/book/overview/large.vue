@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { date } from '~/utils/methods'
-
 defineProps<{
   book: Book
 }>()
+
+const { date } = useDate()
 </script>
 
 <template>

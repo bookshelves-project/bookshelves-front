@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { capitalize } from '@/utils/methods'
 
 defineProps<{
   entity: UseEntity
@@ -47,8 +46,8 @@ defineProps<{
         </h3>
         <div class="mt-1 text-sm sm:mt-3">
           <div class="italic">
-            <div v-if="entity.entityName">
-              {{ capitalize(entity.entityName) }}
+            <div v-if="entity.entityName" class="capitalize">
+              {{ entity.entityName }}
             </div>
             <div v-if="entity.serie">
               {{ entity.serie?.title }}, vol. {{ entity.serie?.volume }}

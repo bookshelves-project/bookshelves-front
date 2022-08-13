@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import RelationPostToc from '@/components/relation/post/toc.vue'
 import '@/assets/css/markdown.css'
 
 defineProps<{
