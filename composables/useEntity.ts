@@ -1,15 +1,9 @@
-import {
-  formatAuthors,
-  instanceBook,
-  instanceSerie,
-  instanceAuthor,
-} from '~/utils/methods'
-
 export const useEntity = (
   originalEntity: EntityList,
   withType = false,
   withName = false
 ) => {
+  const { formatAuthors, instanceAuthor, instanceBook, instanceSerie } = useEntityMethods()
   const currentType = ref<EntityType>()
 
   const checkType = () => {
@@ -49,8 +43,8 @@ export const useEntity = (
         name: 'books-author-slug',
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     } else if (currentType.value === 'serie') {
       const entity = originalEntity as Serie
@@ -58,28 +52,28 @@ export const useEntity = (
         name: 'series-author-slug',
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     } else if (currentType.value === 'author') {
       const entity = originalEntity as Author
       route = {
         name: 'authors-slug',
         params: {
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     } else {
       const entity = originalEntity as Entity
       route = {
         name:
           entity.meta.entity === 'author'
-            ? `authors-slug`
+            ? 'authors-slug'
             : `${entity.meta.entity}s-author-slug`,
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     }
 
@@ -87,7 +81,7 @@ export const useEntity = (
   })
 
   const language = computed(() => {
-    let language = undefined
+    let language
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
       language = entity.language?.name
@@ -102,14 +96,14 @@ export const useEntity = (
       if (entity.serie && entity.volume) {
         return {
           title: `${entity.serie.title ?? entity.serie}`,
-          volume: `${entity.volume}`,
+          volume: `${entity.volume}`
         }
       }
     }
   })
 
   const authors = computed(() => {
-    let authors = undefined
+    let authors
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
       authors = entity.authors
@@ -122,7 +116,7 @@ export const useEntity = (
   })
 
   const count = computed((): string => {
-    let count = undefined
+    let count
     if (currentType.value === 'serie') {
       const entity = originalEntity as Serie
       count = `${entity.count} books`
@@ -136,11 +130,11 @@ export const useEntity = (
       }
     }
 
-    return count ? count : ''
+    return count || ''
   })
 
   const type = computed(() => {
-    let type = undefined
+    let type
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
       type = entity.type
@@ -150,7 +144,7 @@ export const useEntity = (
   })
 
   const entityName = computed(() => {
-    let entityName = undefined
+    let entityName
     const entity = originalEntity as Entity
     entityName = entity.meta?.entity
 
@@ -167,6 +161,6 @@ export const useEntity = (
     authors: authors.value,
     count: count.value,
     type: withType ? type.value : undefined,
-    entityName: withName ? entityName.value : undefined,
+    entityName: withName ? entityName.value : undefined
   }
 }

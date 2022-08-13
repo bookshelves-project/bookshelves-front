@@ -11,9 +11,7 @@ import AppButton from '@/components/app/button.vue'
         class="font-handlee text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 md:text-4xl"
       >
         <span class="block">Ready to dive in?</span>
-        <span class="block text-primary-600 dark:text-primary-500"
-          >Discover your next universe.</span
-        >
+        <span class="block text-primary-600 dark:text-primary-500">Discover your next universe.</span>
       </h2>
       <div class="mt-8 flex lg:mt-0 lg:shrink-0">
         <div class="inline-flex rounded-md shadow">

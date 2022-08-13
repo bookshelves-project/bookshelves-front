@@ -1,36 +1,34 @@
 <script setup lang="ts">
-import EntityAuthorsLinks from '@/components/entity/authors-links.vue'
-import EntitySerieLink from '@/components/entity/serie-link.vue'
-import EntityLanguageLink from '@/components/entity/language-link.vue'
-import EntityBookLink from '@/components/entity/book-link.vue'
-
 const props = defineProps<{
   book: Book
 }>()
 
-const { nuxtFetch } = useFetchable()
+const { request } = useHttp()
 const bookNext = ref<Book>()
 
 const getNext = async () => {
-  if (props.book.serie !== null) {
-    await nuxtFetch<ApiResponse<Book>>(
-      '/series/books',
-      [props.book.meta.author, props.book.serie?.meta.slug],
-      {
-        next: props.book.volume,
-        first: true,
-      }
-    )
-      .then((e) => (bookNext.value = e?.data))
-      .catch((e) => {})
-  }
+  if (!props.book.serie) { return false }
+  bookNext.value = await request<Book>({
+    endpoint: '/series/books',
+    params: [
+      props.book.meta.author,
+      props.book.serie?.meta.slug
+    ],
+    query: {
+      next: props.book.volume,
+      first: true
+    },
+    extractData: true
+  })
 }
 await getNext()
 </script>
 
 <template>
   <div class="mt-4 lg:mt-0 lg:col-span-1 order-2">
-    <h2 class="sr-only">Information</h2>
+    <h2 class="sr-only">
+      Information
+    </h2>
     <p
       class="text-3xl font-semibold text-gray-900 dark:text-gray-100 font-handlee"
     >
@@ -52,12 +50,6 @@ await getNext()
               <entity-serie-link :serie="book.serie" :volume="book.volume" />
             </dd>
           </div>
-          <div v-if="bookNext">
-            <dt>Do you want vol. {{ bookNext.volume }}?</dt>
-            <dd>
-              <entity-book-link :book="bookNext" />
-            </dd>
-          </div>
           <div v-if="book.language">
             <dt>Language</dt>
             <dd>
@@ -68,6 +60,12 @@ await getNext()
             <dt>ISBN</dt>
             <dd>
               {{ book.identifier.isbn }}
+            </dd>
+          </div>
+          <div v-if="bookNext">
+            <dt>Do you want vol. {{ bookNext.volume }}?</dt>
+            <dd>
+              <entity-book-link :book="bookNext" />
             </dd>
           </div>
         </dl>

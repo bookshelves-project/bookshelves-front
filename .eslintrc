@@ -1,77 +1,23 @@
 {
-  "root": true,
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "parser": "vue-eslint-parser",
   "extends": [
-    "@nuxtjs/eslint-config-typescript",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:vue/recommended"
+    "@nuxtjs/eslint-config-typescript"
   ],
-  // "extends": "@antfu",
   "rules": {
-    // "@typescript-eslint/explicit-function-return-type": [
-    //   "error"
-    // ],
-    "lines-between-class-members": [
-      "error",
-      "always",
+    "prefer-const": "warn",
+    "no-unused-vars": "warn",
+    "no-console": [
+      "warn",
       {
-        "exceptAfterSingleLine": true
+        "allow": [
+          "warn",
+          "error"
+        ]
       }
     ],
     "space-before-function-paren": "off",
+    "func-call-spacing": "off",
     "vue/multi-word-component-names": "off",
-    "no-console": "off",
-    "no-debugger": "off",
-    // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    "vue/no-v-html": "off",
-    "vue/space-before-function-parens": "off",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    // "array-bracket-newline": "error",
-    // "array-callback-return": "error",
-    // "array-element-newline": "error",
-    "arrow-parens": "off",
-    "@typescript-eslint/no-empty-function": "off",
-    "vue/html-indent": "off",
-    "vue/html-closing-bracket-newline": "off",
-    "vue/max-attributes-per-line": "off",
-    // "vue/html-closing-bracket-newline": [
-    //   "error",
-    //   {
-    //     "singleline": "never",
-    //     "multiline": "always"
-    //   }
-    // ],
-    // "vue/multiline-html-element-content-newline": [
-    //   "error",
-    //   {
-    //     "ignoreWhenEmpty": true,
-    //     "ignores": [
-    //       "pre",
-    //       "textarea"
-    //     ],
-    //     "allowEmptyLines": false
-    //   }
-    // ],
-    "vue/singleline-html-element-content-newline": "off",
-    "vue/multiline-html-element-content-newline": "off",
-    // "vue/singleline-html-element-content-newline": [
-    //   "error",
-    //   {
-    //     "ignoreWhenNoAttributes": true,
-    //     "ignoreWhenEmpty": true,
-    //     "ignores": [
-    //       "pre",
-    //       "textarea"
-    //     ]
-    //   }
-    // ],
-    "comma-dangle": "off",
-    "vue/html-self-closing": "off"
+    "vue/no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "warn"
   }
 }

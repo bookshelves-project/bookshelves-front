@@ -1,3 +1,6 @@
+declare interface Keyable {
+  [key: string]: any
+}
 declare interface Route {
   name?: string
   params?: Keyable
@@ -6,7 +9,12 @@ declare interface Route {
   queryList?: Keyable
 }
 
-declare interface Keyable {
-  [key: string]: any
-}
 declare type Dictionary<T> = { [key: string]: T }
+
+declare interface TocItem {
+  text?: string
+  level?: number
+  id?: string
+  parent?: TocItem
+  children?: TocItem[]
+}

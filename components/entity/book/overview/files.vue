@@ -38,8 +38,7 @@ const list = computed((): DownloadList => {
             <div class="w-0 flex-1 flex items-center">
               <span
                 class="font-bold uppercase text-primary-600 dark:text-primary-500"
-                >{{ file?.format }}</span
-              >
+              >{{ file?.format }}</span>
               <span class="ml-2 flex-1 w-0 truncate">
                 {{ file?.name }}
               </span>

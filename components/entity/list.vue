@@ -6,11 +6,11 @@ interface Props {
   card?: 'book' | 'full'
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  entity: undefined,
+withDefaults(defineProps<Props>(), {
+  entities: () => [],
   type: false,
   entityName: false,
-  card: 'book',
+  card: 'book'
 })
 </script>
 

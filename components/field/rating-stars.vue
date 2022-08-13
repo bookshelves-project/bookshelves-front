@@ -12,7 +12,7 @@ const {
   modelValue,
   rating = 0,
   max = 5,
-  disabled = false,
+  disabled = false
 } = defineProps<Props>()
 
 const stars = ref(0)

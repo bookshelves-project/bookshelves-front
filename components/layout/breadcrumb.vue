@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/svg-icon.vue'
-import { capitalize, capitalizeEach } from '~/utils/methods'
 
 const props = defineProps<{
   title?: string
@@ -9,6 +8,16 @@ const props = defineProps<{
 interface Link {
   title: string
   route?: object
+}
+
+const capitalizeEach = (string: string) => {
+  const arr = string.split(' ')
+
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
+  }
+
+  return arr.join(' ')
 }
 
 const crumbs = computed((): Link[] => {
@@ -26,18 +35,18 @@ const crumbs = computed((): Link[] => {
   const crumbs: Link[] = []
 
   let path = ''
-  params = params.filter((e) => e.length > 3)
+  params = params.filter(e => e.length > 3)
   params.forEach((param) => {
     path = `${path}/${param}`
     const match = router.resolve(path) // try to find route
     if (match.name !== null) {
       param = param.split('?')[0] // remove query
-      let title = param.replace(/-/g, ' ') // replace `-` with space
-      let titleSplitted = title.split('#')
+      const title = param.replace(/-/g, ' ') // replace `-` with space
+      const titleSplitted = title.split('#')
 
       crumbs.push({
         title: capitalizeEach(titleSplitted[0]),
-        route: match,
+        route: match
       })
     }
   })
@@ -46,7 +55,7 @@ const crumbs = computed((): Link[] => {
   })
   if (props.title) {
     crumbs.splice(-1, 1, {
-      title: props.title,
+      title: props.title
     })
   }
 
@@ -86,14 +95,14 @@ const translateSlug = (slug: string): string => {
           <component
             :is="id >= crumbs.length - 1 ? 'span' : 'router-link'"
             :to="$localePath(crumb.route)"
-            class="ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400"
+            class="ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400 capitalize"
             :class="
               id >= crumbs.length - 1
                 ? ''
                 : 'hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-100'
             "
           >
-            {{ capitalize(crumb.title) }}
+            {{ crumb.title }}
           </component>
         </div>
       </li>

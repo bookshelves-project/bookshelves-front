@@ -4,7 +4,7 @@ const config = useRuntimeConfig()
 const leave: CmsPricing = {
   title: 'Let me go!',
   description: `You disagree with what ${config.appName} offers and think it's shameful.`,
-  features: ['Leave this website now'],
+  features: ['Leave this website now']
 }
 const free: CmsPricing = {
   title: 'Free to read',
@@ -14,10 +14,10 @@ const free: CmsPricing = {
     'Search to find the eBook you absolutely want',
     "Download an eBook, a complete series or even all of an author's books",
     'Read the guides with coffee/tea/chocolate (not included) to learn more',
-    'Download eBooks on your eReader from internal browser',
+    'Download eBooks on your eReader from internal browser'
   ],
   cta: 'Discover all eBooks',
-  route: 'books',
+  route: 'books'
 }
 const account: CmsPricing = {
   title: 'Community',
@@ -25,15 +25,15 @@ const account: CmsPricing = {
   features: [
     'Get a list of your favorite eBooks',
     'Leave ratings and reviews',
-    'Propose your eBooks',
+    'Propose your eBooks'
   ],
-  cta: 'Sign up',
+  cta: 'Sign up'
   // route: 'sign-up',
 }
 const pricings: CmsPricingList = {
   leave,
   free,
-  account,
+  account
 }
 </script>
 
@@ -63,7 +63,7 @@ const pricings: CmsPricingList = {
 
     <div class="mt-16 pb-6 lg:mt-20 lg:pb-10">
       <div class="relative z-0">
-        <div class="absolute inset-0 h-5/6 lg:h-2/3"></div>
+        <div class="absolute inset-0 h-5/6 lg:h-2/3" />
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <home-pricing-sections
             v-if="config.moduleSocial"
@@ -74,7 +74,7 @@ const pricings: CmsPricingList = {
               <div
                 class="pointer-events-none absolute inset-0 rounded-lg border-2 border-primary-600"
                 aria-hidden="true"
-              ></div>
+              />
               <div
                 class="rounded-t-lg bg-gray-50 px-6 pt-12 pb-10 dark:bg-gray-800"
               >

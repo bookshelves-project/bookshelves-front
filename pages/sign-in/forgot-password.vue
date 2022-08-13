@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import FormLayoutSide from '@/components/form/layout/side.vue'
-import FormForgotPassword from '@/components/form/forgot-password.vue'
-
 const title = 'Forgot your password?'
 
 useMetadata({
-  title: title,
+  title
 })
 
 // @Component({

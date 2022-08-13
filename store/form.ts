@@ -7,7 +7,7 @@ export const useFormStore = defineStore('data', {
     test: {},
     isLoading: false,
     response: {},
-    fetchParams: {} as FetchParams,
+    fetchParams: {} as FetchParams
   }),
   actions: {
     setForm(form: { data: object; test: object; loadingCanEnd?: boolean }) {
@@ -15,19 +15,19 @@ export const useFormStore = defineStore('data', {
         data: form.data,
         test: form.test,
         loadingCanEnd:
-          form.loadingCanEnd !== undefined ? form.loadingCanEnd : true,
+          form.loadingCanEnd !== undefined ? form.loadingCanEnd : true
       })
     },
     async setRequest(params: FetchParams) {
       this.$patch({
-        fetchParams: params,
+        fetchParams: params
       })
 
       return await this.request()
     },
     fillData() {
       this.$patch({
-        data: { ...this.test },
+        data: { ...this.test }
       })
     },
     resetData(): any {
@@ -41,19 +41,19 @@ export const useFormStore = defineStore('data', {
         }
       }
       this.$patch({
-        data,
+        data
       })
 
       return data
     },
     toggleLoading() {
       this.$patch({
-        isLoading: !this.isLoading,
+        isLoading: !this.isLoading
       })
     },
     async request() {
       const { pushToast } = useToast()
-      const { request } = useFetchable()
+      const { request } = useHttp()
 
       const response = await request({
         endpoint: this.fetchParams.endpoint,
@@ -61,7 +61,7 @@ export const useFormStore = defineStore('data', {
         query: this.fetchParams.query,
         lazy: this.fetchParams.lazy,
         method: this.fetchParams.method,
-        body: this.fetchParams.body,
+        body: this.fetchParams.body
       })
       if (typeof response !== 'boolean' && response.ok) {
         pushToast('Success', '', 'success')
@@ -75,6 +75,6 @@ export const useFormStore = defineStore('data', {
       }
 
       return response
-    },
-  },
+    }
+  }
 })

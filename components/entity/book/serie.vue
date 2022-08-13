@@ -3,7 +3,7 @@ const props = defineProps<{
   book: Book
 }>()
 
-const { nuxtAsyncData } = useFetchable()
+const { nuxtAsyncData } = useHttp()
 const entities = ref<Entity[]>()
 const isAvailable = ref(true)
 const loaded = ref(false)
@@ -13,7 +13,7 @@ const load = async () => {
     const list = await nuxtAsyncData<Entity[]>('/series/books', [
       props.book.volume?.toString(10) as string,
       props.book.serie?.meta.author,
-      props.book.serie?.meta.slug,
+      props.book.serie?.meta.slug
     ])
       .then((e) => {
         entities.value = e
@@ -43,7 +43,9 @@ onMounted(async () => {
       },
     }"
   >
-    <template #title>{{ book.serie.title }}'s series</template>
+    <template #title>
+      {{ book.serie.title }}'s series
+    </template>
     <template #subtitle>
       Current: vol. {{ book.volume }}, limited to 10 next volumes.
     </template>

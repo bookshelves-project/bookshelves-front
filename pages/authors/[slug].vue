@@ -1,34 +1,43 @@
-<script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import EntityBlock from '@/components/entity/block.vue'
-import EntityReview from '@/components/entity/review/index.vue'
-import DownloadButton from '@/components/entity/download-button.vue'
-const { params } = useRoute()
-const { nuxtAsyncData, nuxtAsyncList } = useFetchable()
+<script lang="ts" setup>
+const route = useRoute()
+const { request } = useHttp()
 
 const title = ref('Author')
-
 const author = ref<Author>()
-const series = ref<ApiPaginateResponse<Entity[]>>()
-const books = ref<ApiPaginateResponse<Entity[]>>()
+const series = ref<ApiResponse<Entity[]>>()
+const books = ref<ApiResponse<Entity[]>>()
 
-const load = async () => {
-  const [entity, listBook, listSerie] = await Promise.all([
-    nuxtAsyncData<Author>('/authors', [params.slug]),
-    nuxtAsyncList<Entity>('/authors/books', [params.slug]),
-    nuxtAsyncList<Entity>('/authors/series', [params.slug]),
-  ])
-  author.value = entity
-  series.value = listSerie
-  books.value = listBook
-  title.value = `${entity.firstname} ${entity.lastname}`
-}
-await load()
+const [authorRaw, booksRaw, seriesRaw] = await Promise.all([
+  request<Author>({
+    endpoint: '/authors',
+    params: [
+      route.params.slug
+    ],
+    extractData: true
+  }),
+  request<ApiResponse<Entity[]>>({
+    endpoint: '/authors/books',
+    params: [
+      route.params.slug
+    ]
+  }),
+  request<ApiResponse<Entity[]>>({
+    endpoint: '/authors/series',
+    params: [
+      route.params.slug
+    ]
+  })
+])
+
+author.value = authorRaw
+books.value = booksRaw
+series.value = seriesRaw
+title.value = `${author.value?.firstname} ${author.value?.lastname}`
 
 useMetadata({
   title: title.value,
   description: author.value?.description,
-  image: author.value?.cover?.simple,
+  image: author.value?.cover?.simple
 })
 </script>
 
@@ -44,7 +53,7 @@ useMetadata({
       :breadcrumb="title"
       favorite
     >
-      <download-button :download="author.download" :files="author.files" />
+      <entity-download-button :download="author.download" :files="author.files" />
     </app-header>
     <div>
       <entity-block

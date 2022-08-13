@@ -7,6 +7,7 @@ import { useFormStore } from '~~/store/form'
 import { useApplicationStore } from '~~/store/application'
 
 const { enums } = useApplicationStore()
+const { stringRandom } = useTools()
 
 const config = useRuntimeConfig()
 const data = ref({
@@ -14,14 +15,14 @@ const data = ref({
   email: '',
   reason: '',
   message: '',
-  honeypot: false,
+  honeypot: false
 })
 const test = ref({
   name: 'Name',
-  email: 'user@mail.com',
+  email: `${stringRandom(10)}@example.com`,
   reason: 'other',
   message: 'Message with some data.',
-  honeypot: false,
+  honeypot: false
 })
 const conditions = `Accept conditions about data privacy about ${config.appName} to send your message to ${config.appName} Team.`
 
@@ -29,27 +30,33 @@ const store = useFormStore()
 
 store.setForm({
   data: data.value,
-  test: test.value,
+  test: test.value
 })
 
 const submit = async () => {
-  // const { sanctum } = useFetchable()
+  // const { sanctum } = useHttp()
   // await sanctum()
 
   await store.setRequest({
     endpoint: '/submission/send',
     method: 'POST',
-    body: data.value,
+    body: data.value
   })
 }
 </script>
 
 <template>
-  <form-layout @submit="submit" title="Let's talk">
+  <form-layout title="Let's talk" @submit="submit">
     <field-text v-model="data.name" name="name" label="Name" required />
     <field-text v-model="data.email" name="email" label="Email" type="email" required />
-    <field-select v-model="data.reason" name="reason" label="Reason" placeholder="Select a reason"
-      :options="enums.submissionsReasons" required />
+    <field-select
+      v-model="data.reason"
+      name="reason"
+      label="Reason"
+      placeholder="Select a reason"
+      :options="enums.submissionsReasons"
+      required
+    />
     <field-text v-model="data.message" name="message" label="Message" multiline required />
     <field-checkbox v-model="data.honeypot" name="honeypot" label="Conditions" class="hidden">
       {{ conditions }}

@@ -1,25 +1,6 @@
 <script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import Filters from '@/components/filters/index.vue'
-import EntityList from '@/components/entity/list.vue'
-import Pagination from '@/components/pagination/index.vue'
-
-const { nuxtAsyncList } = useFetchable()
-const route = useRoute()
-
-const response = ref<ApiPaginateResponse<Book[]>>()
-
-const load = async () => {
-  response.value = await nuxtAsyncList<Book>('/books')
-}
-await load()
-
-watch(
-  () => route.query,
-  async (newVal) => {
-    await load()
-  }
-)
+const { asyncRequest, paginate } = useHttpPage<Book>('/books')
+await asyncRequest()
 
 const title = 'All books available'
 const description =
@@ -27,25 +8,25 @@ const description =
 const sortOptions: FilterOption[] = [
   {
     label: "By series' title (default)",
-    value: 'slug_sort',
+    value: 'slug_sort'
   },
   {
     label: 'By title',
-    value: 'title',
+    value: 'title'
   },
   {
     label: 'Most recently published',
-    value: '-released_on',
+    value: '-released_on'
   },
   {
     label: 'Newest uploaded',
-    value: '-created_at',
-  },
+    value: '-created_at'
+  }
 ]
 
 useMetadata({
-  title: title,
-  description: description,
+  title,
+  description
 })
 </script>
 
@@ -60,15 +41,15 @@ useMetadata({
           :sort="sortOptions"
           paginate
           size
-          :total="response?.meta.total"
+          :total="paginate?.meta?.total"
         />
       </template>
     </app-header>
-    <entity-list :entities="response?.data" type />
+    <entity-list :entities="paginate?.data" type />
     <pagination
-      v-if="response?.meta"
-      :pages="response?.meta.last_page"
-      :current="response?.meta.current_page"
+      v-if="paginate?.meta"
+      :pages="paginate?.meta.last_page"
+      :current="paginate?.meta.current_page"
     />
   </div>
 </template>

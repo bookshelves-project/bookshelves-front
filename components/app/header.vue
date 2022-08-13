@@ -2,7 +2,6 @@
 import LayoutBreadcrumb from '@/components/layout/breadcrumb.vue'
 import AppImg from '@/components/app/img.vue'
 import EntityAuthorsLinks from '@/components/entity/authors-links.vue'
-import { getHostname } from '~/utils/methods'
 
 interface Props {
   title?: string
@@ -31,8 +30,12 @@ const {
   authors,
   favorite = false,
   entity,
-  color = '#ffffff',
+  color = '#ffffff'
 } = defineProps<Props>()
+
+const getHostname = (url?: string) => {
+  return url ? new URL(url).hostname : ''
+}
 </script>
 
 <template>
@@ -152,8 +155,7 @@ const {
           target="_blank"
           rel="noopener noreferrer"
           class="border-b border-gray-500 hover:text-gray-700"
-          >{{ getHostname(cta) }}</a
-        >
+        >{{ getHostname(cta) }}</a>
       </div>
     </div>
     <!-- Filters  -->

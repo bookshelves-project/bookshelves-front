@@ -12,7 +12,7 @@ const toggle = () => {
   isOpen.value = !isOpen.value
 }
 
-onClickOutside(target, (event) => (isOpen.value = false))
+onClickOutside(target, event => (isOpen.value = false))
 </script>
 
 <template>
@@ -34,7 +34,7 @@ onClickOutside(target, (event) => (isOpen.value = false))
             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
             alt=""
             class="h-6 w-6 flex-shrink-0 rounded-full"
-          />
+          >
           <span class="ml-3 block truncate"> Tom Cook </span>
         </span>
         <span
@@ -81,8 +81,8 @@ onClickOutside(target, (event) => (isOpen.value = false))
         Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
       -->
           <li
-            class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"
             id="listbox-option-0"
+            class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"
             role="option"
           >
             <div class="flex items-center">
@@ -90,7 +90,7 @@ onClickOutside(target, (event) => (isOpen.value = false))
                 src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                 alt=""
                 class="h-6 w-6 flex-shrink-0 rounded-full"
-              />
+              >
               <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
               <span class="ml-3 block truncate font-normal"> Wade Cooper </span>
             </div>

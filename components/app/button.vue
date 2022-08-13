@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
-
 interface Props {
   color?: 'primary' | 'secondary' | 'white' | 'danger'
   type?: 'button' | 'reset' | 'submit'
@@ -26,7 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   download: false,
   icon: undefined,
-  loading: false,
+  loading: false
 })
 
 defineEmits(['click'])
@@ -46,9 +44,9 @@ const alignment = computed((): string => {
     left: 'mr-auto',
     center: 'mx-auto',
     right: 'ml-auto',
-    default: 'mx-auto',
+    default: 'mx-auto'
   }
-  let current = props.align
+  const current = props.align
   return alignements[current] || alignements.default
 })
 
@@ -56,7 +54,7 @@ onMounted(() => {
   if (props.href) {
     const element: any = btn.value
     if (element instanceof HTMLElement) {
-      let current = props.href
+      const current = props.href
       element.setAttribute('href', current)
     }
   }
@@ -92,12 +90,12 @@ onMounted(() => {
           r="10"
           stroke="currentColor"
           stroke-width="4"
-        ></circle>
+        />
         <path
           class="opacity-75"
           fill="currentColor"
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-        ></path>
+        />
       </svg>
     </span>
     <span :class="[{ 'space-x-2': icon }, alignment]" class="flex items-center">

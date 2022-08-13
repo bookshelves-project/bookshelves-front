@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { TocItem } from '~~/class/toc-item'
-
 const props = defineProps<{
   body?: string
 }>()
@@ -41,8 +39,7 @@ onMounted(() => {
                 'py-2': link.level === 2,
                 'ml-2 pb-2': link.level === 3,
               }"
-              >{{ link.text }}</a
-            >
+            >{{ link.text }}</a>
           </li>
         </ul>
       </nav>

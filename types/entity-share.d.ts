@@ -32,13 +32,6 @@ declare interface Sizes {
   pdf: SizesItem
 }
 
-declare interface DownloadList {
-  cbz?: DownloadFile
-  epub?: DownloadFile
-  pdf?: DownloadFile
-  main?: DownloadFile
-}
-
 declare interface DownloadFile {
   name: string
   size: string
@@ -47,4 +40,11 @@ declare interface DownloadFile {
   count?: number
   format: string
   isZip: boolean
+}
+
+declare interface DownloadList {
+  cbz?: DownloadFile
+  epub?: DownloadFile
+  pdf?: DownloadFile
+  main?: DownloadFile
 }

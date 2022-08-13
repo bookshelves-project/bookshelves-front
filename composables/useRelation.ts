@@ -1,6 +1,6 @@
-import { getValue } from '@/utils/methods'
 
 export const useRelation = (route?: Route) => {
+  const { objectGetValue } = useTools()
   const percent = (bestCount: number, value?: number) => {
     return value ? (value * 100) / bestCount : 1
   }
@@ -18,36 +18,36 @@ export const useRelation = (route?: Route) => {
   const color = (percentage?: number) => {
     let style = 'green'
     if (percentage) {
-      if (percentage >= 15) style = 'green'
-      if (percentage >= 25) style = 'cyan'
-      if (percentage >= 35) style = 'blue'
-      if (percentage >= 45) style = 'purple'
-      if (percentage >= 60) style = 'red'
-      if (percentage >= 75) style = 'orange'
-      if (percentage >= 85) style = 'yellow'
+      if (percentage >= 15) { style = 'green' }
+      if (percentage >= 25) { style = 'cyan' }
+      if (percentage >= 35) { style = 'blue' }
+      if (percentage >= 45) { style = 'purple' }
+      if (percentage >= 60) { style = 'red' }
+      if (percentage >= 75) { style = 'orange' }
+      if (percentage >= 85) { style = 'yellow' }
     }
 
     return style
   }
 
   const getRoute = (item: Keyable): Route => {
-    let params: Keyable = {}
-    let query: Keyable = {}
+    const params: Keyable = {}
+    const query: Keyable = {}
 
     if (route?.paramsList) {
       for (const [key, value] of Object.entries(route?.paramsList)) {
-        params[key] = getValue(item, value)
+        params[key] = objectGetValue(item, value)
       }
     }
     if (route?.queryList) {
       for (const [key, value] of Object.entries(route?.queryList)) {
-        query[key] = getValue(item, value)
+        query[key] = objectGetValue(item, value)
       }
     }
     return {
       name: route?.name,
-      params: params,
-      query: query,
+      params,
+      query
     }
   }
 
@@ -55,6 +55,6 @@ export const useRelation = (route?: Route) => {
     percent,
     getBestCount,
     color,
-    getRoute,
+    getRoute
   }
 }

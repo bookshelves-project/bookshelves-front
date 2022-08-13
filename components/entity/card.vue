@@ -10,12 +10,12 @@ const props = withDefaults(defineProps<Props>(), {
   entity: undefined,
   type: false,
   entityName: false,
-  card: 'book',
+  card: 'book'
 })
 
 const entity: UseEntity = useEntity(props.entity, props.type, props.entityName)
 </script>
 
 <template>
-  <component :entity="entity" :is="`entity-card-${card}`" />
+  <component :is="`entity-card-${card}`" :entity="entity" />
 </template>

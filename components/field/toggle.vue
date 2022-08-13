@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: false,
   label: 'switch',
   enabled: 'check',
-  disabled: 'cross-sm',
+  disabled: 'cross-sm'
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -41,8 +41,7 @@ onMounted(() => {
       <span
         id="availability-label"
         class="text-sm font-medium text-gray-900 dark:text-gray-100"
-        >{{ label }}</span
-      >
+      >{{ label }}</span>
     </span>
     <button
       type="button"

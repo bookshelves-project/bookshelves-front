@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import FormLayoutSide from '@/components/form/layout/side.vue'
-import FormContact from '@/components/form/contact.vue'
-
 const title = 'Leave us a short note'
 const image = '/images/pages/contact.svg'
 
 useMetadata({
   title,
-  image,
+  image
 })
 </script>
 

@@ -35,9 +35,9 @@ onMounted(() => {
       <app-dropdown align="right" auto-close>
         <template #trigger>
           <button
+            id="option-menu-button"
             type="button"
             class="button-group rounded-r-md"
-            id="option-menu-button"
             aria-expanded="true"
             aria-haspopup="true"
           >

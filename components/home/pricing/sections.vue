@@ -49,7 +49,7 @@ defineProps<{
         <div
           class="pointer-events-none absolute inset-0 rounded-lg border-2 border-primary-600"
           aria-hidden="true"
-        ></div>
+        />
         <div class="absolute inset-x-0 top-0 translate-y-px transform">
           <div class="flex -translate-y-1/2 transform justify-center">
             <span

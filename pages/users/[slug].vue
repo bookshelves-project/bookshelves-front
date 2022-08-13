@@ -1,20 +1,19 @@
 <script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import UserDataList from '@/components/user/data/list.vue'
-
-const { nuxtAsyncData } = useFetchable()
 const route = useRoute()
+const { asyncRequest, response } = useHttpPage<User>({
+  endpoint: '/users',
+  params: [route.params.slug]
+})
+await asyncRequest()
 
 const user = ref<User>()
-const title = ref('Profile of ')
+const title = ref()
 
-await nuxtAsyncData<User>('/users', [route.params.slug]).then((e) => {
-  user.value = e
-  title.value = e.name
-})
+user.value = response.value?.data
+title.value = `Profile of ${user.value?.name}`
 
 useMetadata({
-  title: title.value,
+  title: title.value
 })
 </script>
 

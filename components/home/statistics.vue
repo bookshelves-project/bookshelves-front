@@ -12,7 +12,7 @@ const props = defineProps<{
           loading="lazy"
           class="h-full w-full object-cover opacity-25"
           src="/images/statistics.webp"
-        />
+        >
         <div
           aria-hidden="true"
           class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white dark:from-gray-900"
@@ -50,9 +50,9 @@ const props = defineProps<{
               </span>
               <span
                 class="mt-1 block text-base text-gray-900 dark:text-gray-100"
-                ><span class="font-medium text-gray-700 dark:text-gray-300">
-                  {{ metric.label }}
-                </span>
+              ><span class="font-medium text-gray-700 dark:text-gray-300">
+                {{ metric.label }}
+              </span>
               </span>
             </div>
           </div>

@@ -31,7 +31,7 @@ defineProps<{
               <div
                 class="flex items-center text-primary-600 dark:text-primary-500"
               >
-                <img :src="highlight.icon" alt="" class="h-12 w-12" />
+                <img :src="highlight.icon" alt="" class="h-12 w-12">
                 <h2
                   class="ml-3 font-handlee text-3xl font-extrabold tracking-tight"
                 >
@@ -41,7 +41,7 @@ defineProps<{
               <div
                 class="mt-4 text-lg text-gray-500"
                 v-html="highlight.text"
-              ></div>
+              />
             </div>
             <app-button
               :color="`white`"
@@ -86,7 +86,7 @@ defineProps<{
               :src="highlight.picture"
               :alt="highlight.title"
               loading="lazy"
-            />
+            >
           </div>
         </div>
       </div>

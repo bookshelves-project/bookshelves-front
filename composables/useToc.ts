@@ -1,17 +1,14 @@
-import { TocItem } from '~~/class/toc-item'
-import { objectIsEmpty } from '~~/utils/methods'
-
 export const useToc = () => {
   /**
    * From https://stackoverflow.com/questions/187619/is-there-a-javascript-solution-to-generating-a-table-of-contents-for-a-page
    * */
   const parse = (headingSet: NodeListOf<HTMLElement>) => {
     const tocData: TocItem[] = []
-    let curLevel = 0
-    let preTocItem: TocItem = {}
+    const curLevel = 0
+    const preTocItem: TocItem = {}
     headingSet.forEach((heading) => {
-      let tocItem: TocItem = {}
-      let hLevel = heading.outerHTML.match(/<h([\d]).*>/)
+      const tocItem: TocItem = {}
+      const hLevel = heading.outerHTML.match(/<h([\d]).*>/)
       if (hLevel) {
         tocItem.level = parseInt(hLevel[1])
         tocItem.text = heading.innerText
@@ -38,6 +35,6 @@ export const useToc = () => {
 
   return {
     parse,
-    create,
+    create
   }
 }

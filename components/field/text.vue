@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
   minlength: 0,
   maxlength: 0,
   disabled: false,
-  autocomplete: undefined,
+  autocomplete: undefined
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -47,7 +47,7 @@ const value = computed<string>({
   },
   set(val) {
     emit('update:modelValue', val)
-  },
+  }
 })
 </script>
 
@@ -63,9 +63,9 @@ const value = computed<string>({
     <div class="mt-1">
       <textarea
         v-if="multiline"
+        :id="name"
         v-model="value"
         :name="name"
-        :id="name"
         :placeholder="placeholder"
         rows="4"
         :minlength="minlength > 0 ? minlength : ''"
@@ -73,21 +73,21 @@ const value = computed<string>({
         :autocomplete="autocomplete"
         class="block w-full rounded-md border border-gray-300 p-3 placeholder-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white dark:placeholder-gray-100 sm:text-sm"
         :required="required"
-      ></textarea>
+      />
       <input
         v-else
+        :id="name"
         v-model="value"
         :type="type ? type : 'text'"
         :name="name"
-        :id="name"
         class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white sm:text-sm"
         :placeholder="placeholder"
         :aria-describedby="`${name}-description`"
         :autocomplete="autocomplete"
         :required="required"
-      />
+      >
     </div>
-    <div class="mt-2 text-sm text-gray" id="email-description">
+    <div id="email-description" class="mt-2 text-sm text-gray">
       <slot />
     </div>
   </div>

@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import AppImg from '@/components/app/img.vue'
-import SvgIcon from '@/components/svg-icon.vue'
-import { date } from '@/utils/methods'
-
 defineProps<{
   post: Post
 }>()
+
+const { date } = useDate()
 </script>
 
 <template>

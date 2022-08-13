@@ -14,7 +14,7 @@ const getOtherFormats = () => {
   if (props.files) {
     const list: DownloadFile[] = []
     Object.entries(props.files).forEach(([key, value]) => {
-      let file: DownloadFile = value
+      const file: DownloadFile = value
       if (file && file?.format !== props.download?.format) {
         list.push(file)
       }

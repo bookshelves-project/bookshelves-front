@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import FormLayoutSide from '@/components/form/layout/side.vue'
-// import FormResetPassword from '@/components/form/reset-password.vue'
-
 const title = 'Reset your password'
 
 useMetadata({
-  title: title,
+  title
 })
 
 // @Component({

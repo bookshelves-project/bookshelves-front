@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import FormLayoutSide from '@/components/form/layout/side.vue'
-import FormLogin from '@/components/form/login.vue'
-
 const title = 'Sign in to your account'
 
 useMetadata({
-  title: title,
+  title
 })
 
 // @Component({

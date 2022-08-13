@@ -8,7 +8,9 @@ const props = withDefaults(defineProps<Props>(), { short: false })
 
 <template>
   <div v-if="tags && tags.length" class="lg:flex">
-    <h2 v-if="!short" class="mr-1">Tags:</h2>
+    <h2 v-if="!short" class="mr-1">
+      Tags:
+    </h2>
     <ul>
       <li
         v-for="(tag, id) in tags"
@@ -23,12 +25,12 @@ const props = withDefaults(defineProps<Props>(), { short: false })
             })
           "
           class="internal-link"
-          >{{ tag.name }}</router-link
-        ><span
+        >
+          {{ tag.name }}
+        </router-link><span
           v-if="tags.length > 1 && id !== tags.length - 1"
           class="mr-1 text-gray-900 dark:text-gray-100"
-          >,</span
-        >
+        >,</span>
       </li>
     </ul>
   </div>

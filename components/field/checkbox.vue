@@ -16,7 +16,7 @@ const value = computed<any>({
   },
   set(val) {
     emit('update:modelValue', val)
-  },
+  }
 })
 </script>
 
@@ -32,7 +32,7 @@ const value = computed<any>({
         class="checkbox"
         :value="currentValue"
         :required="required"
-      />
+      >
     </div>
     <div class="ml-3 w-full text-sm">
       <label

@@ -1,10 +1,6 @@
 <script setup lang="ts">
 // import useAuth from '~/composables/useAuth'
-import FormLayout from '@/components/form/layout/index.vue'
-import FieldText from '@/components/field/text.vue'
-import FieldCheckbox from '@/components/field/checkbox.vue'
-import { randomString } from '~/utils/methods'
-import { useFormStore } from '~~/store/form'
+// import { useFormStore } from '~~/store/form'
 
 // const { $auth } = useContext()
 // const { registerAndLogin } = useAuth()
@@ -12,38 +8,38 @@ import { useFormStore } from '~~/store/form'
 const data = ref({
   email: '',
   password: '',
-  password_confirmation: '',
+  password_confirmation: ''
 })
 const test = ref({
-  email: `${randomString(6).toLowerCase()}@mail.com`,
+  // email: `${randomString(6).toLowerCase()}@mail.com`,
   password: 'password',
-  password_confirmation: 'password',
+  password_confirmation: 'password'
 })
 // const errors = ref({
 //   email: '',
 //   password: '',
 // })
 
-const store = useFormStore()
-store.setForm({
-  data: data.value,
-  test: test.value,
-  loadingCanEnd: false,
-})
+// const store = useFormStore()
+// store.setForm({
+//   data: data.value,
+//   test: test.value,
+//   loadingCanEnd: false
+// })
 
 const submit = async () => {
-  await store.setRequest({
-    endpoint: '/register',
-    method: 'POST',
-    body: data.value,
-  })
+  // await store.setRequest({
+  //   endpoint: '/register',
+  //   method: 'POST',
+  //   body: data.value
+  // })
 }
 
 // const emailError = ref<string>()
 </script>
 
 <template>
-  <form-layout @submit="submit" title="Sign up">
+  <form-layout title="Sign up" @submit="submit">
     <field-text
       v-model="data.email"
       name="email"

@@ -1,45 +1,52 @@
-<script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import EntityList from '@/components/entity/list.vue'
-import PaginationLoadMore from '@/components/pagination/load-more.vue'
+<script lang="ts" setup>
+const { request } = useHttp()
+const listRoute: ApiEndpoint = '/publishers/books'
+const route = useRoute()
 
-const { nuxtAsyncData, nuxtAsyncList } = useFetchable()
-const { params } = useRoute()
-
-const publisher = ref<Publisher>()
-const meta = ref<ApiMeta>()
-const list = ref<Entity[]>()
-const listRoute: Endpoint = '/publishers/books'
+const [publisherRaw, entitiesRaw] = await Promise.all([
+  request<Publisher>({
+    endpoint: '/publishers',
+    params: [
+      route.params.slug
+    ],
+    extractData: true
+  }),
+  request<ApiResponse<Entity[]>>({
+    endpoint: listRoute,
+    params: [
+      route.params.slug
+    ]
+  })
+])
 
 const title = ref<string>()
 const description = ref<string>()
+const publisher = ref<Publisher>()
+const meta = ref<ApiMeta>()
+const list = ref<Entity[]>()
 
-const load = async () => {
-  const [entity, entities] = await Promise.all([
-    nuxtAsyncData<Publisher>('/publishers', [params.slug]),
-    nuxtAsyncList<Entity>(listRoute, [params.slug]),
-  ])
-  publisher.value = entity
-  meta.value = entities.meta
-  list.value = entities.data
+publisher.value = publisherRaw
+meta.value = entitiesRaw?.meta
+list.value = entitiesRaw?.data
 
-  title.value = `Publisher ${entity.name}`
-  description.value = `Books from ${entity.name}`
-}
-await load()
+title.value = `Publisher ${publisher.value?.name}`
+description.value = `Books from ${publisher.value?.name}`
 
-const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
-  meta.value = payload.meta
-  list.value = list.value?.concat(payload.data)
+const paginate = (payload?: ApiResponse<Entity[]>) => {
+  meta.value = payload?.meta
+  if (payload?.data) {
+    list.value = list.value?.concat(payload.data)
+  }
 }
 
 useMetadata({
   title: title.value,
+  description: description.value
 })
 </script>
 
 <template>
-  <div v-if="publisher" class="main-content">
+  <div class="main-content">
     <app-header :title="title" :subtitle="description" />
     <div>
       <entity-list :entities="list" type />

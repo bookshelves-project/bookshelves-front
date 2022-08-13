@@ -1,3 +1,10 @@
+interface PostMeta {
+  slug: string
+  title?: string
+  description?: string
+  show: string
+}
+
 declare interface Post {
   title: string
   meta: PostMeta
@@ -9,11 +16,4 @@ declare interface Post {
   updatedAt?: Date
   pin?: boolean
   body?: string
-}
-
-interface PostMeta {
-  slug: string
-  title?: string
-  description?: string
-  show: string
 }

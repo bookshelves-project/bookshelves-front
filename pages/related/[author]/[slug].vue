@@ -1,49 +1,54 @@
 <script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import EntityList from '@/components/entity/list.vue'
-
-const { nuxtAsyncList, nuxtAsync } = useFetchable()
+const { request } = useHttp()
 const route = useRoute()
 
 const book = ref<Book>()
-const response = ref<ApiPaginateResponse<Entity[]>>()
+const entities = ref<ApiResponse<Entity[]>>()
 
 const title = ref('Related books & series for ')
 const description = 'List of all results for related books & series'
 
-const load = async () => {
-  let current = route.query.page as string
-  const [entity, list] = await Promise.all([
-    nuxtAsync<Book>('/books', [route.params.author, route.params.slug]).then(
-      (e) => e.data
-    ),
-    nuxtAsyncList<Entity>(
-      '/entities/related',
-      [route.params.author, route.params.slug],
-      {
+const fetchApi = async () => {
+  const current = route.query.page as string
+  const [bookRaw, entitiesRaw] = await Promise.all([
+    request<Book>({
+      endpoint: '/books',
+      params: [
+        route.params.author,
+        route.params.slug
+      ],
+      extractData: true
+    }),
+    request<ApiResponse<Entity[]>>({
+      endpoint: '/entities/related',
+      params: [
+        route.params.author,
+        route.params.slug
+      ],
+      query: {
         page: parseInt(current) || 1,
-        size: 6,
+        size: 6
       }
-    ),
+    })
   ])
 
-  book.value = entity
-  response.value = list
-  title.value += book.value.title
+  book.value = bookRaw
+  entities.value = entitiesRaw
+  title.value += book.value?.title
 }
-await load()
+await fetchApi()
 
 watch(
   () => route.query,
-  async (newVal) => {
-    await load()
+  async () => {
+    await fetchApi()
   }
 )
 
 useMetadata({
   title: title.value,
   description: book.value?.description,
-  image: book.value?.cover?.simple,
+  image: book.value?.cover?.simple
 })
 </script>
 
@@ -51,8 +56,8 @@ useMetadata({
   <main class="main-content">
     <app-header v-if="book" :title="title" :subtitle="description" />
     <entity-list
-      v-if="response?.data"
-      :entities="response?.data"
+      v-if="entities?.data"
+      :entities="entities?.data"
       type
       entity-name
     />

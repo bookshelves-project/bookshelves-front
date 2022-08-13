@@ -21,9 +21,7 @@ const appName: string = config.appName || 'Bookshelves'
         >
           <span
             class="block text-primary-600 dark:text-primary-400 xl:inline"
-            >{{ appName }}</span
-          ><span class="hidden xl:inline">, </span
-          ><span class="block xl:inline">{{ hero.title }}</span>
+          >{{ appName }}</span><span class="hidden xl:inline">, </span><span class="block xl:inline">{{ hero.title }}</span>
         </h1>
         <p
           class="mx-auto mt-3 text-base text-gray sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0"
