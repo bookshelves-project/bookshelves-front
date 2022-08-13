@@ -19,7 +19,6 @@ const success = (payload: boolean) => {
   <div class="divide-y divide-gray-300 dark:divide-gray-700 space-y-10">
     <div class="mx-auto lg:grid lg:grid-cols-3 lg:gap-x-8">
       <entity-book-overview-small :book="book" />
-
       <entity-book-overview-large :book="book" />
     </div>
     <div

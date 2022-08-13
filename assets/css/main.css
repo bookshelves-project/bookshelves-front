@@ -4,3 +4,20 @@
   font-family: Handlee;
   src: url('../fonts/Handlee-Regular.ttf');
 }
+
+body {
+  @apply overflow-y-scroll bg-white dark:bg-gray-900;
+}
+.no-scroll {
+  width: 100%;
+  position: fixed;
+  overflow-y: scroll;
+}
+.dark {
+  color-scheme: dark;
+  scrollbar-color: theme('colors.gray.600') theme('colors.gray.900');
+}
+.dark [type='checkbox']:checked,
+.dark [type='radio']:checked {
+  background-color: currentColor !important;
+}

@@ -17,20 +17,20 @@ const {
   showLastDots,
   isActive,
   getTag,
-  displayLastPage,
+  displayLastPage
 } = usePagination()
 
 init(props.pages, props.current)
 
 watch(
   () => props.current,
-  (newVal) => {
+  () => {
     init(props.pages, props.current)
   }
 )
 watch(
   () => props.pages,
-  (newVal) => {
+  () => {
     init(props.pages, props.current)
   }
 )
@@ -60,7 +60,9 @@ watch(
             <svg-icon name="chevron-right" class="w-5 h-5 rotate-90" />
           </component>
         </router-link>
-        <div v-if="showFirstDots" class="item dots">...</div>
+        <div v-if="showFirstDots" class="item dots">
+          ...
+        </div>
         <span v-for="pageNum in numberOfLinks" :key="pageNum + startNumber - 1">
           <router-link
             :to="linkGen(pageNum + startNumber - 1)"
@@ -72,7 +74,9 @@ watch(
             {{ pageNum + startNumber - 1 }}
           </router-link>
         </span>
-        <div v-if="showLastDots" class="item dots">...</div>
+        <div v-if="showLastDots" class="item dots">
+          ...
+        </div>
         <router-link
           v-if="showLastDots && displayLastPage"
           v-slot="{ navigate }"

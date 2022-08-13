@@ -19,7 +19,7 @@ const pwa = {
     // description: metadata.base.website.description,
     // display: 'browser',
     // lang: metadata.base.settings.lang,
-  },
+  }
 }
 
 export default pwa

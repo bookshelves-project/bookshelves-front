@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   filter: undefined,
   options: undefined,
   type: 'checkbox',
-  autoClose: false,
+  autoClose: false
 })
 
 const route = useRoute()
@@ -51,7 +51,7 @@ const filterBy = (newQuery: boolean | string | string[], replace = false) => {
 
   if (replace) {
     router.replace({
-      query: { query: formatQuery },
+      query: { query: formatQuery }
     })
 
     store.setQueries(formatQuery)
@@ -59,7 +59,7 @@ const filterBy = (newQuery: boolean | string | string[], replace = false) => {
     route.query.page = '1'
     router.push({
       name: route.name!,
-      query: { ...route.query, ...formatQuery },
+      query: { ...route.query, ...formatQuery }
     })
 
     store.setQueries({ ...route.query, ...formatQuery })
@@ -96,7 +96,7 @@ watch(
     switchValue.value = false
     setTimeout(() => {
       router.replace({
-        query: {},
+        query: {}
       })
     }, 300)
   }

@@ -1,10 +1,12 @@
+import { NuxtConfig } from 'nuxt'
+
 const build = {
+  // https://github.com/nuxt-community/tailwindcss-module/issues/227
   postcss: {
-    order: ['tailwindcss/nesting', 'tailwindcss', 'autoprefixer'],
     plugins: {
-      'postcss-nested': false,
-    },
-  },
-}
+      'postcss-nested': {}
+    }
+  }
+} as NuxtConfig['build']
 
 export default build

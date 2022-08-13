@@ -8,7 +8,7 @@ import {
   colorsList,
   instanceBook,
   instanceSerie,
-  instanceAuthor,
+  instanceAuthor
 } from './methods/entities'
 import { containsObject, objectIsEmpty, getValue } from './methods/object'
 import {
@@ -17,7 +17,7 @@ import {
   overflow,
   getHostname,
   randomString,
-  slugify,
+  slugify
 } from './methods/string'
 
 export {
@@ -41,5 +41,5 @@ export {
   getHostname,
   randomString,
   slugify,
-  getValue,
+  getValue
 }

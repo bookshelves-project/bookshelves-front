@@ -12,7 +12,7 @@ const props = defineProps<{
           loading="lazy"
           class="h-full w-full object-cover opacity-25"
           src="/images/statistics.webp"
-        />
+        >
         <div
           aria-hidden="true"
           class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white dark:from-gray-900"

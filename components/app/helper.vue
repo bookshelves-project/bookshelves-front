@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import AppDialog from '@/components/app/dialog.vue'
-
 const router = useRouter()
 const isOpen = ref(false)
-const { $toast } = useNuxtApp()
 
 const openHelp = (status: boolean) => {
   isOpen.value = status
@@ -15,24 +12,28 @@ const getRoutes = () => {
     router.options.routes.forEach((route) => {
       routes.push({
         name: route.name,
-        path: route.path,
+        path: route.path
       })
     })
-    console.log('------------')
+    console.warn('------------')
     // routes = routes.filter((e) => e.name.includes('__en'))
     // routes = routes.sort((a, b) =>
     //   a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
     // )
     routes.forEach((route) => {
-      console.log(`${route.name.replace('___en', '')} => ${route.path}`)
+      console.warn(`${route.name.replace('___en', '')} => ${route.path}`)
     })
-    console.log('------------')
+    console.warn('------------')
     // console.log('i18n is enabled!')
     // console.log('You have to set your routes with $localePath().')
   }
 
   const { pushToast } = useToast()
-  pushToast('Check your console', 'List of all routes is available.', 'success')
+  pushToast({
+    title: 'Check your console',
+    text: 'List of all routes is available.',
+    type: 'success'
+  })
   isOpen.value = false
 }
 
@@ -41,14 +42,14 @@ const links = [
     label: 'Routes',
     description: 'Print all routes in console',
     method: getRoutes,
-    icon: 'router',
+    icon: 'router'
   },
   {
     label: 'Roadmap',
     description: 'A guide about Bookshelves roadmap',
     href: 'https://bookshelves-documentation.netlify.app/development/roadmap',
-    img: 'https://bookshelves.ink/images/bookshelves.svg',
-  },
+    img: 'https://bookshelves.ink/images/bookshelves.svg'
+  }
 ]
 </script>
 
@@ -108,7 +109,9 @@ const links = [
                   <div class="font-medium text-gray-900 dark:text-gray-100">
                     {{ item.label }}
                   </div>
-                  <p class="text-gray-500">{{ item.description }}</p>
+                  <p class="text-gray-500">
+                    {{ item.description }}
+                  </p>
                 </div>
               </div>
             </component>

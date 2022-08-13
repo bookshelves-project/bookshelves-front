@@ -47,7 +47,7 @@ export const useRelation = (route?: Route) => {
     return {
       name: route?.name,
       params,
-      query,
+      query
     }
   }
 
@@ -55,6 +55,6 @@ export const useRelation = (route?: Route) => {
     percent,
     getBestCount,
     color,
-    getRoute,
+    getRoute
   }
 }

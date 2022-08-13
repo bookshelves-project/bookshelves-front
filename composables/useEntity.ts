@@ -2,7 +2,7 @@ import {
   formatAuthors,
   instanceBook,
   instanceSerie,
-  instanceAuthor,
+  instanceAuthor
 } from '~/utils/methods'
 
 export const useEntity = (
@@ -49,8 +49,8 @@ export const useEntity = (
         name: 'books-author-slug',
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     } else if (currentType.value === 'serie') {
       const entity = originalEntity as Serie
@@ -58,16 +58,16 @@ export const useEntity = (
         name: 'series-author-slug',
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     } else if (currentType.value === 'author') {
       const entity = originalEntity as Author
       route = {
         name: 'authors-slug',
         params: {
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     } else {
       const entity = originalEntity as Entity
@@ -78,8 +78,8 @@ export const useEntity = (
             : `${entity.meta.entity}s-author-slug`,
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     }
 
@@ -102,7 +102,7 @@ export const useEntity = (
       if (entity.serie && entity.volume) {
         return {
           title: `${entity.serie.title ?? entity.serie}`,
-          volume: `${entity.volume}`,
+          volume: `${entity.volume}`
         }
       }
     }
@@ -167,6 +167,6 @@ export const useEntity = (
     authors: authors.value,
     count: count.value,
     type: withType ? type.value : undefined,
-    entityName: withName ? entityName.value : undefined,
+    entityName: withName ? entityName.value : undefined
   }
 }

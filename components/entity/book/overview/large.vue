@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import EntityPublisherLink from '@/components/entity/publisher-link.vue'
-import EntityTagsLinks from '@/components/entity/tags-links.vue'
-import EntityBookOverviewFiles from '@/components/entity/book/overview/files.vue'
 import { date } from '~/utils/methods'
 
 defineProps<{
@@ -16,14 +13,16 @@ defineProps<{
     <div class="flex flex-col h-full">
       <div>
         <div>
-          <h3 class="sr-only">Abstract</h3>
+          <h3 class="sr-only">
+            Abstract
+          </h3>
 
           <div class="space-y-6">
             <div
               v-if="book.description"
               class="text-sm text-gray-900 dark:text-gray-100 word-wraping"
               v-html="book.description"
-            ></div>
+            />
           </div>
         </div>
         <div :class="{ 'mt-10': book.description }">
@@ -39,9 +38,7 @@ defineProps<{
                 <span>
                   <span>Publisher:</span>
                   <entity-publisher-link :publisher="book.publisher" />
-                  <span v-if="book.releasedOn"
-                  >({{ date(book.releasedOn) }})</span
-                  >
+                  <span v-if="book.releasedOn">({{ date(book.releasedOn) }})</span>
                 </span>
               </li>
               <li v-if="book.pageCount">

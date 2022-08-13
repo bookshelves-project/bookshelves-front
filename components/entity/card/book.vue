@@ -26,7 +26,7 @@ defineProps<{
         <div
           aria-hidden="true"
           class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"
-        ></div>
+        />
         <p class="relative text-lg font-semibold text-white font-handlee">
           {{ entity.type }}
         </p>
@@ -38,7 +38,7 @@ defineProps<{
         :to="entity.route ? $localePath(entity.route) : '/'"
         class="text-black focus:outline-none dark:text-gray-100"
       >
-        <span class="absolute inset-0" aria-hidden="true"></span>
+        <span class="absolute inset-0" aria-hidden="true" />
         <h2 class="font-semibold text-lg">
           {{ entity.title }}
         </h2>

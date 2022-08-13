@@ -112,14 +112,14 @@ export const calExactTimeDiff = (firstDate?: Date, secondDate = new Date()) => {
   const exactTimeDiffUnits = {
     yrs: getYearsDiff(firstDate, secondDate),
     mths: monthDiff,
-    dys: dayDiff,
+    dys: dayDiff
   }
 
   if (exactTimeDiffUnits.yrs > 3) {
     const dateTimeLocale = firstDate.toLocaleString('fr', {
       year: 'numeric',
       month: 'numeric',
-      day: 'numeric',
+      day: 'numeric'
     })
     return dateTimeLocale
   }
@@ -132,7 +132,7 @@ export const calExactTimeDiff = (firstDate?: Date, secondDate = new Date()) => {
     const timeToString = firstDate.toLocaleString('fr', {
       timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       hour: 'numeric',
-      minute: 'numeric',
+      minute: 'numeric'
     })
 
     return `today at ${timeToString}`
@@ -172,6 +172,6 @@ export const date = (date?: Date) => {
   return date.toLocaleString(userLang, {
     year: 'numeric',
     month: 'long',
-    day: 'numeric',
+    day: 'numeric'
   })
 }

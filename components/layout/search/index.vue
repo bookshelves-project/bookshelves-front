@@ -61,19 +61,19 @@ onMounted(() => {
             fill-rule="evenodd"
             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
             clip-rule="evenodd"
-          ></path>
+          />
         </svg>
       </div>
       <div
         class="absolute inset-0 cursor-text rounded-md border border-gray-300 transition-colors duration-75 hover:border-2 hover:border-primary-600 dark:border-gray-600 hover:dark:border-primary-400"
-      ></div>
+      />
       <input
         id="search"
         class="search"
         placeholder="Search"
         type="search"
         name="search"
-      />
+      >
       <div class="absolute top-1/2 right-1.5 -translate-y-1/2 transform">
         <span
           style="opacity: 1"
@@ -82,7 +82,7 @@ onMounted(() => {
           <span class="sr-only"> Press </span>
           <kbd class="font-sans">
             <abbr title="Control" class="no-underline">
-              <span class="mr-1" v-html="metaKey"></span>
+              <span class="mr-1" v-html="metaKey" />
             </abbr>
           </kbd>
           <span class="sr-only"> and </span>

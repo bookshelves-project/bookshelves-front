@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
   minlength: 0,
   maxlength: 0,
   disabled: false,
-  autocomplete: undefined,
+  autocomplete: undefined
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -47,7 +47,7 @@ const value = computed<string>({
   },
   set(val) {
     emit('update:modelValue', val)
-  },
+  }
 })
 </script>
 
@@ -73,7 +73,7 @@ const value = computed<string>({
         :autocomplete="autocomplete"
         class="block w-full rounded-md border border-gray-300 p-3 placeholder-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white dark:placeholder-gray-100 sm:text-sm"
         :required="required"
-      ></textarea>
+      />
       <input
         v-else
         :id="name"
@@ -85,7 +85,7 @@ const value = computed<string>({
         :aria-describedby="`${name}-description`"
         :autocomplete="autocomplete"
         :required="required"
-      />
+      >
     </div>
     <div id="email-description" class="mt-2 text-sm text-gray">
       <slot />

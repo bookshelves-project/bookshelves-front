@@ -62,7 +62,7 @@ export const usePagination = () => {
 
     const newRoute = {
       name: route.name || 'index',
-      query: { ...newQuery },
+      query: { ...newQuery }
     }
 
     return newRoute
@@ -138,6 +138,6 @@ export const usePagination = () => {
     showLastDots,
     isActive,
     getTag,
-    displayLastPage,
+    displayLastPage
   }
 }

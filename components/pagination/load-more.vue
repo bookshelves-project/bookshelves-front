@@ -4,14 +4,14 @@ import AppLoading from '@/components/app/loading.vue'
 
 const props = defineProps<{
   meta: ApiMeta
-  endpoint: Endpoint
+  endpoint: ApiEndpoint
 }>()
 
 const emit = defineEmits<{
-  (e: 'load', payload: ApiPaginateResponse<any[]>): void
+  (e: 'load', payload?: ApiResponse<Entity[]>): void
 }>()
 
-const { nuxtFetchBase } = useFetchable()
+const { request } = useHttp()
 
 const pending = ref(false)
 const disabled = ref(false)
@@ -24,9 +24,13 @@ const load = async () => {
     lastPage !== currentPage ? currentPage + 1 : lastPage
   ).toString()
 
-  const list = await nuxtFetchBase<ApiPaginateResponse<Entity[]>>(
-    `${props.meta.path}?page=${nextPage}&size=${props.meta.per_page}`
-  )
+  const list = await request<ApiResponse<Entity[]>>({
+    endpoint: props.meta.path as ApiEndpoint,
+    query: {
+      page: parseInt(nextPage),
+      size: parseInt(props.meta.per_page)
+    }
+  })
   pending.value = false
 
   emit('load', list)
@@ -49,7 +53,7 @@ const load = async () => {
             <div class="absolute top-1/2 -translate-y-1/2 transform -left-5">
               <transition name="fade">
                 <app-loading v-if="pending" class="w-5 h-5" />
-                <span v-else class="w-5 h-5"></span>
+                <span v-else class="w-5 h-5" />
               </transition>
             </div>
             <span v-if="!disabled">Load more</span>

@@ -6,7 +6,7 @@ const {
   getFooterAdvanced,
   getFooterLegal,
   getFooterProject,
-  getFooterSupport,
+  getFooterSupport
 } = useNavigationStore()
 </script>
 

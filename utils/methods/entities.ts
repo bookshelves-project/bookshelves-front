@@ -13,7 +13,7 @@ import { useApplicationStore } from '~~/store/application'
  */
 export const formatAuthors = (authors: Author[] | undefined): string => {
   let result = 'unknown'
-  const list = authors?.map((author) => author.name?.trim()) as string[]
+  const list = authors?.map(author => author.name?.trim()) as string[]
   result = [list.slice(0, -1).join(', '), list.slice(-1)[0]].join(
     list.length < 2 ? '' : ' & '
   )
@@ -31,7 +31,7 @@ export const formatLanguage = (slug?: string) => {
 
   let lang = slug
   if (languages && languages.length) {
-    const language = languages.find((lang) => lang.meta?.slug === slug)
+    const language = languages.find(lang => lang.meta?.slug === slug)
     lang = language ? (language.name as string) : slug
   }
 
@@ -75,7 +75,7 @@ export const formatType = (slug?: string) => {
   return type
 }
 
-export const colorsList = () => {}
+export const colorsList = () => { }
 
 export const instanceBook = (entity: EntityList): entity is Book => {
   return entity.meta.entity === 'book'

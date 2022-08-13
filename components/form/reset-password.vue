@@ -11,13 +11,13 @@ const data = ref({
   token: '',
   email: '',
   password: '',
-  password_confirmation: '',
+  password_confirmation: ''
 })
 const test = ref({
   token: query.token,
   email: 'admin@mail.com',
   password: 'password2',
-  password_confirmation: 'password2',
+  password_confirmation: 'password2'
 })
 
 // store.init(form, test)

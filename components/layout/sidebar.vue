@@ -58,7 +58,7 @@ const logout = () => {
         v-if="overlay"
         class="fixed inset-0 bg-gray-600 bg-opacity-75"
         aria-hidden="true"
-      ></div>
+      />
     </Transition>
     <div
       ref="target"
@@ -113,8 +113,7 @@ const logout = () => {
               <span
                 class="w-full px-2 py-4 font-semibold"
                 @click="closeSidebar"
-              >{{ $t(`nav.${link.label}`) }}</span
-              >
+              >{{ $t(`nav.${link.label}`) }}</span>
             </router-link>
           </div>
           <div class="mt-8">

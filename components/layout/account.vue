@@ -68,7 +68,7 @@ const logout = () => {}
                 </span>
               </router-link>
             </span>
-            <hr class="border-gray-200 dark:border-gray-600" />
+            <hr class="border-gray-200 dark:border-gray-600">
             <button
               class="link w-full"
               role="menuitem"

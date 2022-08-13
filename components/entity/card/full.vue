@@ -28,7 +28,7 @@ defineProps<{
         <div
           aria-hidden="true"
           class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"
-        ></div>
+        />
         <p
           v-if="entity.type"
           class="relative text-lg font-semibold text-white font-handlee"
@@ -48,10 +48,8 @@ defineProps<{
         <div class="text-gray flex items-center line-clamp-1">
           <span v-if="entity.language" class="font-semibold">{{
             entity.language
-          }}</span
-          ><span v-if="entity.serie?.volume" class="italic">
-            • vol. {{ entity.serie?.volume }}</span
-          >
+          }}</span><span v-if="entity.serie?.volume" class="italic">
+            • vol. {{ entity.serie?.volume }}</span>
         </div>
         <h2
           :class="entity.language || entity.serie?.volume ? 'mt-3' : ''"
@@ -65,7 +63,7 @@ defineProps<{
           }}</span>
           <span v-if="entity.serie">{{ entity.serie.title }}</span>
           <span v-if="entity.count">{{ entity.count }}</span>
-          <span v-else><br /></span>
+          <span v-else><br></span>
         </div>
       </div>
       <div v-if="entity.authors" class="mt-auto">

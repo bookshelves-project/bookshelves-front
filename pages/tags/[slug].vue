@@ -1,45 +1,50 @@
-<script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import EntityList from '@/components/entity/list.vue'
-import PaginationLoadMore from '@/components/pagination/load-more.vue'
+<script lang="ts" setup>
+const { request } = useHttp()
+const listRoute: ApiEndpoint = '/tags/books'
+const route = useRoute()
 
-const { nuxtAsyncData, nuxtAsyncList } = useFetchable()
-const { params } = useRoute()
-
-const tag = ref<Tag>()
-const meta = ref<ApiMeta>()
-const list = ref<Entity[]>()
-const listRoute: Endpoint = '/tags/books'
+const [tagRaw, entitiesRaw] = await Promise.all([
+  request<Tag>({
+    endpoint: '/tags',
+    params: [
+      route.params.slug
+    ],
+    extractData: true
+  }),
+  request<ApiResponse<Entity[]>>({
+    endpoint: listRoute,
+    params: [
+      route.params.slug
+    ]
+  })
+])
 
 const title = ref<string>()
 const description = ref<string>()
+const tag = ref<Tag>()
+const meta = ref<ApiMeta>()
+const list = ref<Entity[]>()
 
-const load = async () => {
-  const [entity, entities] = await Promise.all([
-    nuxtAsyncData<Tag>('/tags', [params.slug]),
-    nuxtAsyncList<Entity>(listRoute, [params.slug]),
-  ])
+tag.value = tagRaw
+meta.value = entitiesRaw?.meta
+list.value = entitiesRaw?.data
+title.value = `Tag ${tag.value?.name}`
+description.value = `Books and series with tag ${tag.value?.name}`
 
-  tag.value = entity
-  meta.value = entities.meta
-  list.value = entities.data
-  title.value = `Tag ${entity.name}`
-  description.value = `Books and series with tag ${entity.name}`
-}
-await load()
-
-const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
-  meta.value = payload.meta
-  list.value = list.value?.concat(payload.data)
+const paginate = (payload?: ApiResponse<Entity[]>) => {
+  meta.value = payload?.meta
+  if (payload?.data) {
+    list.value = list.value?.concat(payload.data)
+  }
 }
 
 useMetadata({
-  title: title.value,
+  title: title.value
 })
 </script>
 
 <template>
-  <div v-if="tag" class="main-content">
+  <div class="main-content">
     <app-header :title="title" :subtitle="description" />
     <div>
       <entity-list :entities="list" type entity-name />

@@ -26,7 +26,7 @@ const crumbs = computed((): Link[] => {
   const crumbs: Link[] = []
 
   let path = ''
-  params = params.filter((e) => e.length > 3)
+  params = params.filter(e => e.length > 3)
   params.forEach((param) => {
     path = `${path}/${param}`
     const match = router.resolve(path) // try to find route
@@ -37,7 +37,7 @@ const crumbs = computed((): Link[] => {
 
       crumbs.push({
         title: capitalizeEach(titleSplitted[0]),
-        route: match,
+        route: match
       })
     }
   })
@@ -46,7 +46,7 @@ const crumbs = computed((): Link[] => {
   })
   if (props.title) {
     crumbs.splice(-1, 1, {
-      title: props.title,
+      title: props.title
     })
   }
 

@@ -1,35 +1,19 @@
 <script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import EntityRelationList from '@/components/relation/list.vue'
-import Filters from '@/components/filters/index.vue'
-
-const { nuxtAsyncData } = useFetchable()
-const route = useRoute()
-
-const response = ref<Publisher[]>()
-const load = async () => {
-  const list = await nuxtAsyncData<Publisher[]>('/publishers', [], {
+const { asyncRequest, paginate } = useHttpPage<Publisher>({
+  endpoint: '/publishers',
+  query: {
     full: true,
-    'filter[negligible]': false,
-  })
-
-  response.value = list
-}
-await load()
-
-watch(
-  () => route.query,
-  async (newVal) => {
-    await load()
+    'filter[negligible]': false
   }
-)
+})
+await asyncRequest()
 
 const title = 'Publishers'
 const description = 'Discover your books by publisher'
 
 useMetadata({
   title,
-  description,
+  description
 })
 </script>
 
@@ -37,11 +21,11 @@ useMetadata({
   <main class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <filters negligible :total="response.length" />
+        <filters negligible :total="paginate?.data.length" />
       </template>
     </app-header>
-    <entity-relation-list
-      :entities="response"
+    <relation-list
+      :entities="paginate?.data"
       name="publishers"
       :route="{
         name: 'publishers-slug',

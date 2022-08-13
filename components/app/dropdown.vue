@@ -9,13 +9,13 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   align: 'right',
   arrow: false,
-  autoClose: false,
+  autoClose: false
 })
 
 const open = ref(false)
 const target = ref<HTMLElement>()
 
-onClickOutside(target, (event) => (open.value = false))
+onClickOutside(target, () => (open.value = false))
 
 const alignmentClasses = computed((): string => {
   if (props.align === 'left') {

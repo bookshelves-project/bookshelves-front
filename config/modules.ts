@@ -10,7 +10,7 @@ const htmlValidator = {
     extends: [
       'html-validate:document',
       'html-validate:recommended',
-      'html-validate:standard',
+      'html-validate:standard'
     ],
     rules: {
       'svg-focusable': 'off',
@@ -23,15 +23,15 @@ const htmlValidator = {
       'attribute-boolean-style': 'off',
       'doctype-style': 'off',
       // Unreasonable rule
-      'no-inline-style': 'off',
-    },
-  },
+      'no-inline-style': 'off'
+    }
+  }
 }
 const tailwindcss: NuxtConfig['tailwindcss'] = {
-  exposeConfig: true,
+  exposeConfig: true
 }
 const vueuse: VueUseNuxtOptions = {
-  ssrHandlers: true,
+  ssrHandlers: true
 }
 // const axios: AxiosOptions = {
 //   baseURL: process.env.API_URL || 'http://localhost:8000',
@@ -158,7 +158,7 @@ const vueuse: VueUseNuxtOptions = {
  */
 const schemaOrg: NuxtConfig['schemaOrg'] = {
   // set to your production domain
-  canonicalHost: 'https://nuxtjs.org',
+  canonicalHost: 'https://nuxtjs.org'
 }
 
 const modules = {
@@ -168,12 +168,12 @@ const modules = {
   // i18n
   tailwindcss,
   vueuse,
-  schemaOrg,
+  schemaOrg
 }
 
 export const matomo = {
   matomoUrl: process.env.MATOMO_URL ? process.env.MATOMO_URL : null,
-  siteId: process.env.MATOMO_SITE_ID ? process.env.MATOMO_SITE_ID : null,
+  siteId: process.env.MATOMO_SITE_ID ? process.env.MATOMO_SITE_ID : null
 }
 
 export default modules

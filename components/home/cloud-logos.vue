@@ -26,7 +26,7 @@ defineProps<{
           :title="logo.label"
           class="hover:zoom col-span-1 flex justify-center transition-all duration-300 md:col-span-2 lg:col-span-1"
         >
-          <app-img :src="logo.picture" :title="logo.label" class="w-32" />
+          <app-img :src="logo.picture" :title="logo.label" class="w-16 md:w-32" />
         </a>
       </div>
     </div>

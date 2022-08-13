@@ -6,19 +6,18 @@ defineProps<{
 
 <template>
   <div v-if="book && book.meta" class="dark:text-white">
-    <router-link
-      :to="
-        $localePath({
-          name: 'books-author-slug',
-          params: {
-            author: book.meta.author,
-            slug: book.meta.slug,
-          },
-        })
-      "
-      class="internal-link"
+    <app-button
+      size="md"
+      color="white"
+      :to="{
+        name: 'books-author-slug',
+        params: {
+          author: book.meta.author,
+          slug: book.meta.slug,
+        },
+      }"
     >
       {{ book.title }}
-    </router-link>
+    </app-button>
   </div>
 </template>

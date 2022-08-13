@@ -6,7 +6,8 @@ import SvgIcon from '@/components/svg-icon.vue'
 
 import { useApplicationStore } from '~~/store/application'
 import { useFilterStore } from '~~/store/filter'
-import { objectIsEmpty } from '~~/utils/methods'
+
+const { objectIsEmpty } = useTools()
 
 defineProps<{
   sort?: FilterOption[]
@@ -21,16 +22,16 @@ defineProps<{
 const sizeOptions: FilterOption[] = [
   {
     label: '32 (default)',
-    value: '32',
+    value: '32'
   },
   {
     label: '64',
-    value: '64',
+    value: '64'
   },
   {
     label: '128',
-    value: '128',
-  },
+    value: '128'
+  }
 ]
 
 const route = useRoute()
@@ -50,13 +51,13 @@ const filterLanguages = computed(() => {
         query: { type: lang.meta?.slug },
         enabled: route.query[type]
           ? route.query[type]!.includes(lang.meta?.slug!)
-          : false,
+          : false
       })
     })
   }
   return {
     type,
-    options,
+    options
   }
 })
 const filterTypes = computed(() => {
@@ -70,20 +71,20 @@ const filterTypes = computed(() => {
         label: value,
         value: key,
         query: { type: key },
-        enabled: route.query[type] ? route.query[type]!.includes(key) : false,
+        enabled: route.query[type] ? route.query[type]!.includes(key) : false
       })
     }
   }
 
   return {
     type,
-    options,
+    options
   }
 })
 const filterSerie = computed(() => {
   return {
     type: 'filter[disallow_serie]',
-    options: [],
+    options: []
   }
 })
 const reverseSort = (asc = false) => {
@@ -108,7 +109,9 @@ const queryAvailable = computed(() => {
 <template>
   <div>
     <section aria-labelledby="filter-heading">
-      <h2 id="filter-heading" class="sr-only">Filters</h2>
+      <h2 id="filter-heading" class="sr-only">
+        Filters
+      </h2>
 
       <div
         class="relative z-10 border-b border-gray-200 pb-4 dark:border-gray-700"

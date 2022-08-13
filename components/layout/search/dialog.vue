@@ -3,7 +3,7 @@ import LayoutSearchResults from '@/components/layout/search/results.vue'
 import FieldCheckbox from '@/components/field/checkbox.vue'
 import AppLoading from '@/components/app/loading.vue'
 
-const { nuxtAsyncData } = useFetchable()
+const { nuxtAsyncData } = useHttp()
 
 const emit = defineEmits<{
   (e: 'close', status: boolean): void
@@ -17,7 +17,7 @@ const firstSearch = ref(false)
 const form = ref({
   authors: true,
   series: true,
-  books: true,
+  books: true
 })
 
 watch(
@@ -52,7 +52,7 @@ const fetchResults = async (input: string) => {
     results.value = {}
     const data = await nuxtAsyncData<Search>('/search', [], {
       q: input,
-      types: types.join(','),
+      types: types.join(',')
     })
 
     results.value = data
@@ -67,28 +67,28 @@ const close = () => {
 const list = computed(() => [
   {
     key: results.value?.relevant?.authors,
-    title: 'More relevant authors',
+    title: 'More relevant authors'
   },
   {
     key: results.value?.relevant?.series,
-    title: 'More relevant series',
+    title: 'More relevant series'
   },
   {
     key: results.value?.relevant?.books,
-    title: 'More relevant books',
+    title: 'More relevant books'
   },
   {
     key: results.value?.other?.authors,
-    title: 'Other authors',
+    title: 'Other authors'
   },
   {
     key: results.value?.other?.series,
-    title: 'Other series',
+    title: 'Other series'
   },
   {
     key: results.value?.other?.books,
-    title: 'Other books',
-  },
+    title: 'Other books'
+  }
 ])
 
 onMounted(() => {
@@ -134,7 +134,7 @@ onMounted(() => {
               fill-rule="evenodd"
               d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
               clip-rule="evenodd"
-            ></path>
+            />
           </svg>
         </div>
         <input
@@ -152,7 +152,7 @@ onMounted(() => {
           maxlength="64"
           type="search"
           enterkeyhint="go"
-        />
+        >
         <transition name="fade">
           <div
             v-if="loading"

@@ -13,7 +13,7 @@ const props = defineProps<{
   deletable?: boolean
 }>()
 
-const { nuxtFetch } = useFetchable()
+const { request } = useHttp()
 const route = useRoute()
 
 const meta = ref<ApiMeta>()
@@ -24,7 +24,7 @@ const emit = defineEmits(['destroy'])
 
 const load = async () => {
   try {
-    const response = await nuxtFetch<ApiPaginateResponse<UserData[]>>(
+    const response = await request<ApiResponse<UserData[]>>(
       props.endpoint,
       [route.params.slug]
     )
@@ -48,7 +48,7 @@ const destroy = (data: UserData) => {
     emit('destroy', { data })
   }
 }
-const paginate = (payload: ApiPaginateResponse<UserData[]>) => {
+const paginate = (payload: ApiResponse<UserData[]>) => {
   meta.value = payload.meta
   list.value = list.value?.concat(payload.data)
 }
@@ -91,7 +91,7 @@ const paginate = (payload: ApiPaginateResponse<UserData[]>) => {
           :class="id === list.length - 1 ? 'rounded-b-md' : ''"
           :deletable="deletable ?? false"
           @destroy="destroy"
-        ></user-data-card>
+        />
         <div v-if="meta" class="mt-14 mb-5">
           <pagination-load-more
             :meta="meta"

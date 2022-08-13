@@ -7,17 +7,27 @@
 [![node](https://img.shields.io/static/v1?label=NodeJS&message=v16&color=339933&style=flat-square&logo=node.js&logoColor=ffffff)](https://nodejs.org/en)
 [![pnpm](https://img.shields.io/static/v1?label=pnpm&message=v7&color=F69220&style=flat-square&logo=pnpm&logoColor=ffffff)](https://pnpm.io)
 
-📀 [**bookshelves-project**](https://gitlab.com/bookshelves-project) : Bookshelves repository  
+📀 [**bookshelves-project**](https://github.com/bookshelves-project) : Bookshelves repository  
 💻 [**bookshelves.ink**](https://bookshelves.ink): demo  
-📚 [**documentation.bookshelves.ink**](https://bookshelves-documentation.netlify.app): documentation, if this link not work, you can check doc on [this repository](https://gitlab.com/bookshelves-project/bookshelves-doc)  
+📚 [**documentation.bookshelves.ink**](https://bookshelves-documentation.netlify.app): documentation, if this link not work, you can check doc on [this repository](https://github.com/bookshelves-project/bookshelves-doc)  
 
 Works with [documentation](https://nuxtjs.org).
 
 ## Commands
 
+To upgrade
+
+<https://github.com/nuxt/framework/releases/tag/v3.0.0-rc.8>
+
 ```bash
-npx nuxi upgrade
+npx nuxi-edge@latest upgrade --force // Automated
 ```
+
+Manual: Bump `nuxt` dependency to `3.0.0-rc.8` and then use `npx nuxi-edge@latest cleanup` to cleanup any local caches
+
+*OR*
+
+Bump `nuxt` dependency to `npm:nuxt3@latest` and then use `npx nuxi-edge@latest cleanup` to cleanup any local caches
 
 ## **Setup**
 

@@ -1,8 +1,5 @@
 <script setup lang="ts">
 // import useAuth from '~/composables/useAuth'
-import FormLayout from '@/components/form/layout/index.vue'
-import FieldText from '@/components/field/text.vue'
-import FieldCheckbox from '@/components/field/checkbox.vue'
 import { useFormStore } from '~~/store/form'
 
 // const { login } = useAuth()
@@ -11,13 +8,13 @@ const data = ref({
   email: '',
   password: '',
   remember: false,
-  device_name: null,
+  device_name: null
 })
 const test = ref({
   email: 'superadmin@example.com',
   password: 'password',
   remember: true,
-  device_name: 'web',
+  device_name: 'web'
 })
 // const errors = ref({
 //   email: '',
@@ -28,14 +25,14 @@ const store = useFormStore()
 store.setForm({
   data: data.value,
   test: test.value,
-  loadingCanEnd: false,
+  loadingCanEnd: false
 })
 
 const submit = async () => {
   await store.setRequest({
     endpoint: '/login',
     method: 'POST',
-    body: data.value,
+    body: data.value
   })
 }
 

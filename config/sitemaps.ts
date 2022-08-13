@@ -8,43 +8,43 @@ export default (meta) => {
       exclude: ['**'],
       routes() {
         return getRoutes()
-      },
+      }
     },
     {
       path: '/sitemaps/books.xml',
       exclude: ['**'],
       routes: () => {
         return getBooksRoutes()
-      },
+      }
     },
     {
       path: '/sitemaps/series.xml',
       exclude: ['**'],
       routes: () => {
         return getSeriesRoutes()
-      },
+      }
     },
     {
       path: '/sitemaps/authors.xml',
       exclude: ['**'],
       routes: () => {
         return getAuthorsRoutes()
-      },
+      }
     },
     {
       path: '/sitemaps/guides.xml',
       exclude: ['**'],
       routes: () => {
         return getGuidesRoutes()
-      },
+      }
     },
     {
       path: '/sitemaps/pages.xml',
       exclude: ['**'],
       routes: () => {
         return getPagesRoutes()
-      },
-    },
+      }
+    }
   ]
 }
 
@@ -55,33 +55,33 @@ const getRoutes = () => {
       {
         url: '',
         changefreq: 'weekly',
-        priority: 1,
+        priority: 1
       },
       {
         url: 'books',
         changefreq: 'weekly',
-        priority: 1,
+        priority: 1
       },
       {
         url: 'series',
         changefreq: 'weekly',
-        priority: 1,
+        priority: 1
       },
       {
         url: 'authors',
         changefreq: 'weekly',
-        priority: 0.9,
+        priority: 0.9
       },
       {
         url: 'search',
         changefreq: 'weekly',
-        priority: 0.8,
+        priority: 0.8
       },
       {
         url: 'guides',
         changefreq: 'weekly',
-        priority: 0.7,
-      },
+        priority: 0.7
+      }
     ]
     staticRoutes.forEach((route) => {
       routes.push(route)

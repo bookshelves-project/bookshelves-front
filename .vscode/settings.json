@@ -3,9 +3,11 @@
     "editor.defaultFormatter": "Vue.volar",
     "editor.formatOnSave": false
   },
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
   "[ts]": {
-    // "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",

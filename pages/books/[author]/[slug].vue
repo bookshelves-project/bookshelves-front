@@ -1,44 +1,33 @@
-<script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import EntityBookOverview from '@/components/entity/book/overview/index.vue'
-import DownloadButton from '@/components/entity/download-button.vue'
-import ReaderButton from '@/components/entity/reader-button.vue'
-import { formatAuthors } from '~~/utils/methods'
-
-const { nuxtAsyncData } = useFetchable()
+<script lang="ts" setup>
 const route = useRoute()
+const { formatAuthors } = useEntityMethods()
 
+const { asyncRequest, response } = useHttpPage<Book>({
+  endpoint: '/books',
+  params: [
+    route.params.author,
+    route.params.slug
+  ]
+})
+await asyncRequest()
+
+const book = ref<Book>()
 const title = ref<string>('')
 const breadcrumb = ref<string>()
-const book = ref<Book>()
 
-const load = async () => {
-  const entity = await nuxtAsyncData<Book>('/books', [
-    route.params.author,
-    route.params.slug,
-  ])
+if (response.value) {
+  book.value = response.value.data
+  const serie = book.value.serie
+    ? ` · ${book.value.serie.title}, vol. ${book.value.volume} `
+    : ''
+  const authors = formatAuthors(book.value.authors)
+  title.value = `${book.value.title} (${book.value.type}) ${serie}by ${authors}`
 
-  book.value = entity
-  if (entity) {
-    const serie = book.value.serie
-      ? ` · ${book.value.serie.title}, vol. ${book.value.volume} `
-      : ''
-    const authors = formatAuthors(book.value.authors)
-    title.value = `${book.value.title} (${book.value.type}) ${serie}by ${authors}`
-
-    const serieBreadcrumb = book.value.serie
-      ? `, ${book.value.serie.title} (vol. ${book.value.volume})`
-      : ''
-    breadcrumb.value = `${book.value.title} (${book.value.type})${serieBreadcrumb}`
-  }
+  const serieBreadcrumb = book.value.serie
+    ? `, ${book.value.serie.title} (vol. ${book.value.volume})`
+    : ''
+  breadcrumb.value = `${book.value.title} (${book.value.type})${serieBreadcrumb}`
 }
-await load()
-
-useMetadata({
-  title: title.value,
-  description: book.value?.description,
-  image: book.value?.cover?.simple,
-})
 
 // const authors = this.formatAuthors(this.book.authors)
 // const isbn: string = this.book.identifier
@@ -54,6 +43,12 @@ useMetadata({
 //   bookReleaseDate: this.book.publishDate?.toString(),
 //   bookTag: formatTags(this.book.tags),
 // })
+
+useMetadata({
+  title: title.value,
+  description: book.value?.description,
+  image: book.value?.cover?.simple
+})
 </script>
 
 <template>
@@ -68,8 +63,8 @@ useMetadata({
       favorite
     >
       <div class="mx-auto grid w-max space-y-3">
-        <download-button :download="book.download" :files="book.files" />
-        <reader-button :download="book.download" :files="book.files" />
+        <entity-download-button :download="book.download" :files="book.files" />
+        <entity-reader-button :download="book.download" :files="book.files" />
       </div>
       <template #extra>
         <div class="text-sm flex items-center">

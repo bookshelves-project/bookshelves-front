@@ -24,12 +24,14 @@ declare interface ApiMeta {
 
 declare interface ApiResponse<T> {
   data: T
+  links?: ApiMetaLinksList
+  meta?: ApiMeta
 }
 
-declare interface ApiPaginateResponse<T> {
+declare interface ApiResponse<T> {
   data: T
-  links: ApiMetaLinksList
-  meta: ApiMeta
+  links?: ApiMetaLinksList
+  meta?: ApiMeta
 }
 
 declare interface Pagination {

@@ -17,10 +17,10 @@ const attrs = useAttrs()
 onMounted(() => {
   source.value = props.src
   lozad(media.value, {
-    load(el: HTMLImageElement) {
+    load (el: HTMLImageElement) {
       el.src = el.dataset.src!
       el.onload = () => (display.value = true)
-    },
+    }
   }).observe()
 })
 </script>
@@ -41,7 +41,7 @@ onMounted(() => {
       :data-src="source"
       :alt="display ? (alt ? alt : title) : ''"
       loading="lazy"
-    />
+    >
   </div>
 </template>
 

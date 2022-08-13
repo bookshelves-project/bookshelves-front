@@ -21,8 +21,8 @@ const main = {
   modules: [FreeMode, Navigation, Thumbs],
   navigation: {
     nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
+    prevEl: '.swiper-button-prev'
+  }
 }
 const thumbs = {
   loop: false,
@@ -34,19 +34,19 @@ const thumbs = {
   modules: [Pagination, FreeMode, Navigation, Thumbs],
   pagination: {
     el: '.swiper-pagination',
-    clickable: true,
+    clickable: true
   },
   breakpoints: {
     600: {
-      slidesPerView: 2,
+      slidesPerView: 2
     },
     900: {
-      slidesPerView: 5,
+      slidesPerView: 5
     },
     1300: {
-      slidesPerView: 5,
-    },
-  },
+      slidesPerView: 5
+    }
+  }
 }
 const swiperMain = ref<SwiperInterface>()
 const swiperThumbs = ref<SwiperInterface>()
@@ -78,11 +78,11 @@ watch(
     <div class="py-5">
       <div v-if="!isLoaded" class="pt-2 pb-2 animate-pulse">
         <div class="flex space-x-6">
-          <div class="bg-gray-300 dark:bg-gray-700 h-96 w-64 rounded-md"></div>
+          <div class="bg-gray-300 dark:bg-gray-700 h-96 w-64 rounded-md" />
           <div class="mt-4 space-y-4">
-            <div class="h-8 w-48 rounded-md bg-gray-300 dark:bg-gray-700"></div>
-            <div class="h-8 w-48 rounded-md bg-gray-300 dark:bg-gray-700"></div>
-            <div class="h-8 w-48 rounded-md bg-gray-300 dark:bg-gray-700"></div>
+            <div class="h-8 w-48 rounded-md bg-gray-300 dark:bg-gray-700" />
+            <div class="h-8 w-48 rounded-md bg-gray-300 dark:bg-gray-700" />
+            <div class="h-8 w-48 rounded-md bg-gray-300 dark:bg-gray-700" />
           </div>
         </div>
         <div class="mt-6 flex items-center space-x-6">
@@ -90,7 +90,7 @@ watch(
             v-for="(i, id) in 5"
             :key="id"
             class="bg-gray-300 dark:bg-gray-700 h-20 w-20 rounded-md"
-          ></div>
+          />
         </div>
       </div>
       <div v-else>
@@ -143,7 +143,7 @@ watch(
                   :title="entity.title"
                 />
               </swiper-slide>
-              <div class="swiper-pagination"></div>
+              <div class="swiper-pagination" />
             </swiper>
             <div v-if="route" class="mt-6">
               <app-button

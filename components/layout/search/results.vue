@@ -50,12 +50,12 @@ const close = () => {
         />
         <div class="ml-4 overflow-hidden dark:text-gray-400">
           <div class="wiki-title">
-            <div class="font-semibold">{{ entity.title }}</div>
+            <div class="font-semibold">
+              {{ entity.title }}
+            </div>
             <div class="italic">
               {{ capitalize(entity.meta.entity) }}
-              <span v-if="entity.type"
-              >({{ entity.type.toLocaleLowerCase() }})</span
-              >
+              <span v-if="entity.type">({{ entity.type.toLocaleLowerCase() }})</span>
             </div>
           </div>
           <div class="text-sm italic">

@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import AppImg from '@/components/app/img.vue'
-import FieldRatingStars from '@/components/field/rating-stars.vue'
 import { calExactTimeDiff } from '~/utils/methods'
-const props = defineProps<{
+defineProps<{
   review?: Review
 }>()
 
@@ -45,14 +43,11 @@ const deleteReview = (id: number) => {
         {{ review.user?.name }}
       </router-link>
       <div>
-        <span class="font-medium text-gray"
-        >Posted from {{ calExactTimeDiff(review.createdAt) }}</span
-        >
+        <span class="font-medium text-gray">Posted from {{ calExactTimeDiff(review.createdAt) }}</span>
         <span
           v-if="review.createdAt !== review.updatedAt"
           class="font-medium text-gray"
-        >, modified from {{ calExactTimeDiff(review.updatedAt) }}</span
-        >
+        >, modified from {{ calExactTimeDiff(review.updatedAt) }}</span>
       </div>
 
       <field-rating-stars
@@ -61,7 +56,9 @@ const deleteReview = (id: number) => {
         class="mt-4"
         disabled
       />
-      <p class="sr-only">{{ review.rating }} out of 5 stars</p>
+      <p class="sr-only">
+        {{ review.rating }} out of 5 stars
+      </p>
 
       <div
         class="review-text prose prose-lg dark:prose-invert mr-3 mt-4 max-w-none"

@@ -61,7 +61,7 @@ declare interface CmsPricingList {
 
 declare interface SelectedEntities {
   key: string
-  endpoint: Endpoint
+  endpoint: ApiEndpoint
   paramsList?: Params
   right?: boolean
   eyebrow?: string

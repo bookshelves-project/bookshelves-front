@@ -32,7 +32,9 @@ const { color, getRoute, percent } = useRelation(props.route)
             <p class="text-gray-900 font-medium dark:text-gray-100">
               {{ item.name }}
             </p>
-            <p class="text-gray">{{ item.count }} books</p>
+            <p class="text-gray">
+              {{ item.count }} books
+            </p>
           </div>
         </div>
       </router-link>

@@ -33,7 +33,7 @@ defineProps<{
                       :alt="feature.title"
                       loading="lazy"
                       class="h-8 w-8 text-white"
-                    />
+                    >
                   </div>
                 </div>
                 <h3

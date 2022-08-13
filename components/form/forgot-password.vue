@@ -1,17 +1,15 @@
 <script setup lang="ts">
 // import useAuth from '~/composables/useAuth'
-import FormLayout from '@/components/form/layout/index.vue'
-import FieldText from '@/components/field/text.vue'
 // import { useFormStore } from '~/store/form'
 
 // const { passwordForgot } = useAuth()
 // const store = useFormStore()
 
 const data = ref({
-  email: '',
+  email: ''
 })
 const test = ref({
-  email: 'admin@mail.com',
+  email: 'admin@mail.com'
 })
 
 // store.init(form, test)
