@@ -66,7 +66,7 @@ onMounted(() => {
 
 <template>
   <app-dialog :open="searchStore.opened" size="2xl" @close="searchStore.closeDialog()">
-    <div class="mx-auto max-w-3xl transform divide-y divide-gray-100 dark:divide-gray-700 overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
+    <div class="mx-auto max-w-3xl transform divide-y divide-gray-100 dark:divide-gray-700 overflow-hidden rounded-xl bg-white dark:bg-gray-800 md:shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
       <div class="absolute top-0 right-0">
         <span
           style="opacity: 1"

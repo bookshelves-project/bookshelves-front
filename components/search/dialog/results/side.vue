@@ -11,7 +11,7 @@ const searchStore = useSearchStore()
 
 <template>
   <transition>
-    <div v-if="selected" class="hidden h-96 w-1/2 flex-none flex-col overflow-y-auto sm:flex scrollbar-thin">
+    <div v-if="selected" class="hidden md:h-96 w-1/2 flex-none flex-col overflow-y-auto sm:flex scrollbar-thin">
       <div class="flex-none p-6 text-center">
         <img :src="selected?.media?.url" :alt="selected.media?.name" class="mx-auto h-16 w-16 rounded-full object-cover">
         <h2 class="mt-3 font-semibold text-gray-900 dark:text-gray-100">
@@ -22,6 +22,22 @@ const searchStore = useSearchStore()
         </p>
       </div>
       <div class="flex flex-auto flex-col justify-between p-6">
+        <app-button
+          :to="$localePath({
+            name:
+              selected.meta.entity === 'author'
+                ? `authors-slug`
+                : `${selected.meta.entity}s-author-slug`,
+            params: {
+              author: selected.meta.author,
+              slug: selected.meta.slug,
+            },
+          })"
+          align="center"
+          @click="searchStore.closeDialog()"
+        >
+          Show
+        </app-button>
         <dl class="grid grid-cols-1 gap-x-6 gap-y-3 text-sm text-gray-700 dark:text-gray-300">
           <dt v-if="selected.authors">
             Authors
@@ -43,22 +59,6 @@ const searchStore = useSearchStore()
             {{ selected.volume }}
           </dd>
         </dl>
-        <app-button
-          :to="$localePath({
-            name:
-              selected.meta.entity === 'author'
-                ? `authors-slug`
-                : `${selected.meta.entity}s-author-slug`,
-            params: {
-              author: selected.meta.author,
-              slug: selected.meta.slug,
-            },
-          })"
-          align="center"
-          @click="searchStore.closeDialog()"
-        >
-          Show
-        </app-button>
       </div>
     </div>
   </transition>

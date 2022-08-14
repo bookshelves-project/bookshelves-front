@@ -15,6 +15,7 @@ declare interface Query {
   sort?: string
   q?: string
   types?: string
+  relevant?: boolean
 }
 
 declare type Params = {

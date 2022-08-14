@@ -15,7 +15,7 @@ const selectResult = (item:Entity) => {
   <div>
     <div class="flex divide-x divide-gray-100 dark:divide-gray-700">
       <!-- Preview Visible: "sm:h-96" -->
-      <div class="h-96 min-w-0 flex-auto scroll-py-4 overflow-y-auto px-6 py-4 scrollbar-thin">
+      <div class="h-[90vh] md:h-96 min-w-0 flex-auto scroll-py-4 overflow-y-auto px-6 py-4 scrollbar-thin">
         <!-- Results, show/hide based on command palette state. -->
         <ul id="options" class="-mx-2 text-sm text-gray-700 dark:text-gray-300" role="listbox">
           <div
