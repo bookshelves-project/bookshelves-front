@@ -94,6 +94,12 @@ module.exports = {
           '&:before': {
             'z-index': '2147483647'
           }
+        },
+        '.capitalize-first': {
+          'text-transform': 'lowercase',
+          '&:first-letter': {
+            'text-transform': 'uppercase'
+          }
         }
       })
     }),
