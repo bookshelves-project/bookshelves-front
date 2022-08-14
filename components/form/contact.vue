@@ -19,7 +19,7 @@ const data = ref({
 })
 const test = ref({
   name: 'Name',
-  email: `${stringRandom(10)}@example.com`,
+  email: 'user@gmail.com',
   reason: 'other',
   message: 'Message with some data.',
   honeypot: false
@@ -37,11 +37,15 @@ const submit = async () => {
   // const { sanctum } = useHttp()
   // await sanctum()
 
-  await store.setRequest({
+  const res = await store.request({
     endpoint: '/submission/send',
     method: 'POST',
     body: data.value
+  }, {
+    withToast: true,
+    successMsg: 'Your message has been sent.'
   })
+  console.log(res)
 }
 </script>
 

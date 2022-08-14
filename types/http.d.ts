@@ -32,9 +32,14 @@ declare interface BaseRequest {
 }
 declare interface RequestData {
   endpoint: ApiEndpoint
+  raw?: boolean
+  headers?: HeadersInit
+  crashOnError?: boolean
   method?: RequestMethod = 'GET'
   params?: Params
   query?: Query
+  body?: any
+  lazy?: boolean
   extractData?: boolean
   debug?: boolean
 }

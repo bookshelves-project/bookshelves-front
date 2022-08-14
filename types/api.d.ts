@@ -28,12 +28,6 @@ declare interface ApiResponse<T> {
   meta?: ApiMeta
 }
 
-declare interface ApiResponse<T> {
-  data: T
-  links?: ApiMetaLinksList
-  meta?: ApiMeta
-}
-
 declare interface Pagination {
   pages?: number
   currentPage?: number
@@ -66,12 +60,3 @@ declare interface Query {
 }
 
 declare type Params = (string | string[] | undefined)[]
-
-declare interface FetchParams {
-  endpoint: Endpoint
-  params?: Params
-  query?: Query
-  lazy?: boolean
-  method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
-  body?: any
-}

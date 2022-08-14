@@ -1,3 +1,5 @@
+import { FetchRequest, FetchOptions, FetchResponse, FetchError } from 'ohmyfetch'
+
 /**
  * API composable
  */
@@ -54,22 +56,67 @@ export const useHttp = () => {
     return Object.prototype.hasOwnProperty.call(object, 'endpoint')
   }
 
-  const request = async <T>(request: RequestData | ApiEndpoint) => {
-    const req = getRequest(request)
-    const response = await $fetch.raw(req.url).catch(e => e)
+  const isFetchResponse = <T>(object: any): object is FetchResponse<T> => {
+    if (object && typeof object === 'object') {
+      return object.status !== undefined
+    }
 
-    if (response.status === 200) {
+    return false
+  }
+
+  const request = async <T>(request: RequestData | ApiEndpoint) => {
+    let req: {
+      url: string
+      request: RequestData
+    }
+
+    if (isRequestData(request) && request.raw) {
+      req = {
+        url: request.endpoint,
+        request
+      }
+    } else {
+      req = getRequest(request)
+    }
+
+    const res = {
+      response: {} as FetchResponse<T>,
+      body: {} as T,
+      success: false,
+      hasErrors: false,
+      error: {} as FetchError
+    }
+
+    const response = await $fetch.raw<T>(req.url, {
+      method: req.request.method || 'GET',
+      body: req.request.body,
+      headers: req.request.headers
+    }).catch((e: FetchError) => {
+      console.warn(e)
+      res.hasErrors = true
+      res.error = e
+      if (req.request.crashOnError) {
+        throw e
+      }
+    })
+
+    if (!res.hasErrors && isFetchResponse(response)) {
       const body = response._data as any
+      res.success = true
 
       if (req.request.debug) {
         console.warn(body)
       }
-      if (req.request.extractData) {
-        return body.data as T
-      }
 
-      return body as T
+      res.response = response
+      if (req.request.extractData) {
+        res.body = body.data as T
+      } else {
+        res.body = body as T
+      }
     }
+
+    return res
   }
 
   const requestRaw = async <T>(request: BaseRequest) => {

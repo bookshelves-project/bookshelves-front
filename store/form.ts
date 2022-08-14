@@ -7,7 +7,7 @@ export const useFormStore = defineStore('data', {
     test: {},
     isLoading: false,
     response: {},
-    fetchParams: {} as FetchParams
+    requestData: {} as RequestData
   }),
   actions: {
     setForm(form: { data: object; test: object; loadingCanEnd?: boolean }) {
@@ -18,12 +18,10 @@ export const useFormStore = defineStore('data', {
           form.loadingCanEnd !== undefined ? form.loadingCanEnd : true
       })
     },
-    async setRequest(params: FetchParams) {
+    setRequestData(params: RequestData) {
       this.$patch({
-        fetchParams: params
+        requestData: params
       })
-
-      return await this.request()
     },
     fillData() {
       this.$patch({
@@ -51,26 +49,46 @@ export const useFormStore = defineStore('data', {
         isLoading: !this.isLoading
       })
     },
-    async request() {
+    async request(
+      requestData: RequestData,
+      options: {
+        loadingCanEnd?: boolean
+        withToast?: boolean,
+        successMsg?: string,
+        errorMsg?: string
+      } = { loadingCanEnd: true, withToast: false, successMsg: 'It\'s all works!', errorMsg: 'Oops, an error happened here!' }
+    ) {
       const { pushToast } = useToast()
       const { request } = useHttp()
 
+      this.setRequestData(requestData)
       const response = await request({
-        endpoint: this.fetchParams.endpoint,
-        params: this.fetchParams.params,
-        query: this.fetchParams.query,
-        lazy: this.fetchParams.lazy,
-        method: this.fetchParams.method,
-        body: this.fetchParams.body
+        endpoint: this.requestData.endpoint,
+        params: this.requestData.params,
+        query: this.requestData.query,
+        lazy: this.requestData.lazy,
+        method: this.requestData.method,
+        body: this.requestData.body
       })
-      if (typeof response !== 'boolean' && response.ok) {
-        pushToast('Success', '', 'success')
-        this.resetData()
-      } else {
-        pushToast('Error', 'Oops, an error happened here!', 'error')
+
+      if (options.withToast) {
+        if (response.success) {
+          pushToast({
+            title: 'Success',
+            text: options.successMsg,
+            type: 'success'
+          })
+          this.resetData()
+        } else {
+          pushToast({
+            title: 'Error',
+            text: options.errorMsg,
+            type: 'error'
+          })
+        }
       }
 
-      if (this.loadingCanEnd) {
+      if (options.loadingCanEnd) {
         this.toggleLoading()
       }
 
