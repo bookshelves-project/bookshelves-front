@@ -14,7 +14,7 @@ const media = ref<HTMLImageElement>()
 const display = ref(false)
 const attrs = useAttrs()
 
-onMounted(() => {
+const load = () => {
   source.value = props.src
   lozad(media.value, {
     load (el: HTMLImageElement) {
@@ -22,6 +22,18 @@ onMounted(() => {
       el.onload = () => (display.value = true)
     }
   }).observe()
+}
+
+watch(
+  () => props.src,
+  () => {
+    display.value = false
+    load()
+  }
+)
+
+onMounted(() => {
+  load()
 })
 </script>
 

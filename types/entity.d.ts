@@ -8,6 +8,12 @@ declare interface EntityMeta {
   reviews?: string
 }
 
+declare interface Media {
+  name?: string
+  url?: string
+  color?: string
+}
+
 declare interface Entity {
   meta: EntityMeta
   title?: string
@@ -19,6 +25,7 @@ declare interface Entity {
   count?: number
   language?: Language
   volume?: number
+  media?: Media
   cover?: Cover
   firstChar?: string
   isFavorite?: boolean

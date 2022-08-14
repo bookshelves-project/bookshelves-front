@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import EntityBookRelated from '@/components/entity/book/related.vue'
-import EntityBookOverviewSmall from '@/components/entity/book/overview/small.vue'
-import EntityBookOverviewLarge from '@/components/entity/book/overview/large.vue'
-import EntityReview from '@/components/entity/review/index.vue'
-
 defineProps<{
   book: Book
 }>()

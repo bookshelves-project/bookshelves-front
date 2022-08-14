@@ -6,6 +6,8 @@ const props = defineProps<{
   currentValue?: string
   required?: boolean
   full?: boolean
+  capitalize?: boolean
+  capitalizeFirst?: boolean
 }>()
 
 const emit = defineEmits(['update:modelValue'])
@@ -37,6 +39,10 @@ const value = computed<any>({
     <div class="ml-3 w-full text-sm">
       <label
         :for="name"
+        :class="[
+          {'capitalize': capitalize},
+          {'capitalize-first': capitalizeFirst}
+        ]"
         class="block w-full font-medium text-gray-700 dark:text-gray-300"
       >
         {{ label }}

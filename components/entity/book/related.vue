@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import EntitySlider from '@/components/entity/group/slider.vue'
-import AppButton from '@/components/app/button.vue'
-
 const props = defineProps<{
   book: Book
   css?: boolean

@@ -21,8 +21,7 @@ declare type Params = {
   slug: string | string[]
 }
 
-// declare type Endpoint = 'games' | 'armies' | 'army-categories' | 'miniatures' | 'collectors' | 'search' | 'cms' | 'cms/home'
-declare type ApiEndpoint = '/application' | '/cms/home-page' | '/entities/selection' | '/entities/latest' | '/books' | '/authors' | '/series' | '/tags' | '/series/books' | '/authors/books' | '/authors/series' | '/languages' | '/publishers' | '/posts' | '/tags/books' | '/pages' | '/submission/send' | '/publishers' | '/publishers/books' | '/users' | '/users/favorites' | '/users/reviews' | '/entities/related'
+declare type ApiEndpoint = '/application' | '/cms/home-page' | '/entities/selection' | '/entities/latest' | '/books' | '/authors' | '/series' | '/tags' | '/series/books' | '/authors/books' | '/authors/series' | '/languages' | '/publishers' | '/posts' | '/tags/books' | '/pages' | '/submission/send' | '/publishers' | '/publishers/books' | '/users' | '/users/favorites' | '/users/reviews' | '/entities/related' | '/search'
 
 type RequestMethod = 'GET' | 'POST' | 'UPDATE' | 'PATCH' | 'DELETE'
 declare interface BaseRequest {

@@ -1,8 +1,6 @@
-<script setup lang="ts">
-import AppDialog from '@/components/app/dialog.vue'
-import LayoutSearchDialog from '@/components/layout/search/dialog.vue'
+<script lang="ts" setup>
+import { useSearchStore } from '~~/store/search'
 
-const isOpen = ref(false)
 const metaKey = ref('Ctrl')
 const searchKey = ref('k')
 
@@ -17,19 +15,17 @@ const shortcutOpen = (e: KeyboardEvent) => {
   if (e.key === searchKey.value && (e.ctrlKey || e.metaKey)) {
     e.preventDefault() // present "Save Page" from getting triggered.
 
-    isOpen.value = true
+    searchStore.openDialog()
   }
 }
 const shortcutClose = (e: KeyboardEvent) => {
   if (e.key === 'Escape') {
     e.preventDefault() // present "Save Page" from getting triggered.
 
-    isOpen.value = false
+    searchStore.closeDialog()
   }
 }
-const closeDialog = (status: boolean) => {
-  isOpen.value = status
-}
+const searchStore = useSearchStore()
 
 onMounted(() => {
   window.addEventListener('keydown', shortcutOpen)
@@ -39,14 +35,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="search-bar flex w-full max-w-lg lg:max-w-xs">
-    <app-dialog :open="isOpen" size="xl" @close="closeDialog">
-      <layout-search-dialog @close="closeDialog" />
-    </app-dialog>
+  <button
+    class="search-bar h-full text-sm font-medium text-white px-4 relative"
+    @click="searchStore.toggleDialog()"
+  >
     <label for="search" class="sr-only"> Search </label>
     <div
       class="relative w-full text-gray-400 focus-within:text-gray-600 dark:focus-within:text-gray-500"
-      @click="() => (isOpen = !isOpen)"
     >
       <div
         class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
@@ -93,18 +88,5 @@ onMounted(() => {
         </span>
       </div>
     </div>
-  </div>
+  </button>
 </template>
-
-<style lang="css" scoped>
-.search-bar :deep(abbr) {
-  @apply no-underline;
-}
-.search-bar :deep(.search) {
-  @apply block w-full rounded-md border py-2 pl-10 pr-3 leading-5 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:text-sm;
-  @apply border-gray-200 text-gray-900 placeholder-gray-500 focus:border-white focus:ring-white focus:ring-offset-primary-600;
-}
-.dark .search-bar :deep(.search) {
-  @apply border-gray-600 bg-gray-700 text-gray-100 placeholder-gray-400 focus:border-gray-900 focus:ring-gray-900 focus:ring-offset-primary-400;
-}
-</style>

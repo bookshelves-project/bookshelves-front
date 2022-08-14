@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { SvgLibrary } from '@/.nuxt/types/svg-library'
+
 interface Props {
   color?: 'primary' | 'secondary' | 'white' | 'danger'
   type?: 'button' | 'reset' | 'submit'
@@ -8,7 +10,7 @@ interface Props {
   to?: string | object
   disabled?: boolean
   download?: boolean
-  icon?: string
+  icon?: SvgLibrary
   loading?: boolean
   outlined?: boolean
   hideLabel?: boolean
@@ -112,7 +114,7 @@ onMounted(() => {
 
 <style lang="css" scoped>
 .sm {
-  @apply px-3 py-1;
+  @apply px-3 py-1 !text-sm !font-normal;
 }
 .md {
   @apply px-4 py-2;

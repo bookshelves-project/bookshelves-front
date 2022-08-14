@@ -6,7 +6,9 @@ declare interface EntityCollection {
 
 declare interface Search {
   count?: number
+  query?: string
   type?: 'collection' | 'meilisearch'
+  results?: EntityCollection
   relevant?: EntityCollection
   other?: EntityCollection
 }

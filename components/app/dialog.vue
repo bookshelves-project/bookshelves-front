@@ -36,16 +36,13 @@ watch(
   }
 )
 
-onClickOutside(target, event => closeEvent())
+onClickOutside(target, () => closeEvent())
 
 const emit = defineEmits(['close'])
 
 const closeEvent = () => {
   modal.value = false
   emit('close', modal.value)
-}
-const preventDefault = (e: Event) => {
-  e.preventDefault()
 }
 const scrollDisabled = () => {
   document.body.classList.add('no-scroll')
@@ -68,74 +65,76 @@ const scrollEnabled = () => {
 </script>
 
 <template>
-  <div
-    v-if="layer"
-    class="fixed inset-0 z-40 overflow-y-auto"
-    aria-labelledby="modal-title"
-    role="dialog"
-    aria-modal="true"
-  >
-    <div class="block min-h-screen items-end justify-center p-0 text-center">
-      <Transition>
-        <div
-          v-if="overlay"
-          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-          aria-hidden="true"
-        />
-      </Transition>
-      <!-- This element is to trick the browser into centering the modal contents. -->
-      <span
-        class="hidden md:inline-block md:h-screen md:align-middle"
-        aria-hidden="true"
-      >&#8203;</span>
-
-      <Transition>
-        <div
-          v-if="modal"
-          class="fixed inset-0 z-50 overflow-y-auto scrollbar-thin"
-        >
+  <Teleport to="body">
+    <div
+      v-if="layer"
+      class="fixed inset-0 z-40 overflow-y-auto"
+      aria-labelledby="modal-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="block min-h-screen items-end justify-center p-0 text-center">
+        <Transition>
           <div
-            class="md:min-h-32 block min-h-screen items-end justify-center p-0 text-center"
+            v-if="overlay"
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            aria-hidden="true"
+          />
+        </Transition>
+        <!-- This element is to trick the browser into centering the modal contents. -->
+        <span
+          class="hidden md:inline-block md:h-screen md:align-middle"
+          aria-hidden="true"
+        >&#8203;</span>
+
+        <Transition>
+          <div
+            v-if="modal"
+            class="fixed inset-0 z-50 overflow-y-auto scrollbar-thin"
           >
-            <!-- This element is to trick the browser into centering the modal contents. -->
-            <span
-              class="hidden md:inline-block md:h-screen md:align-middle"
-              aria-hidden="true"
-            >&#8203;</span>
-
-            <button
-              class="fixed top-2.5 right-2.5 z-50 rounded-md bg-gray-500 bg-opacity-30 transition-colors duration-75 hover:bg-gray-600 hover:bg-opacity-30"
-              @click="closeEvent"
+            <div
+              class="md:min-h-32 block min-h-screen items-end justify-center p-0 text-center"
             >
-              <svg
-                class="h-5 w-5 text-gray-800"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button>
+              <!-- This element is to trick the browser into centering the modal contents. -->
+              <span
+                class="hidden md:inline-block md:h-screen md:align-middle"
+                aria-hidden="true"
+              >&#8203;</span>
 
-            <Transition>
-              <div
-                v-if="modal"
-                ref="target"
-                class="inline-block min-h-screen w-full transform overflow-hidden bg-white text-left align-middle shadow-xl transition-all dark:bg-gray-800 dark:text-gray-100 md:min-h-full md:rounded-lg"
-                :class="`dialog-${size}`"
+              <button
+                class="fixed top-2.5 right-2.5 z-50 rounded-md bg-gray-500 bg-opacity-30 transition-colors duration-75 hover:bg-gray-600 hover:bg-opacity-30"
+                @click="closeEvent"
               >
-                <slot />
-              </div>
-            </Transition>
+                <svg
+                  class="h-5 w-5 text-gray-800"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+
+              <Transition>
+                <div
+                  v-if="modal"
+                  ref="target"
+                  class="inline-block min-h-screen w-full transform overflow-hidden bg-white text-left align-middle shadow-xl transition-all dark:bg-gray-800 dark:text-gray-100 md:min-h-full md:rounded-lg"
+                  :class="`dialog-${size}`"
+                >
+                  <slot />
+                </div>
+              </Transition>
+            </div>
           </div>
-        </div>
-      </Transition>
+        </Transition>
+      </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <style lang="css" scoped>
