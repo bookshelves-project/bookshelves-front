@@ -3,18 +3,21 @@ const props = defineProps<{
   book: Book
 }>()
 
-const { nuxtAsyncData } = useHttp()
+const { request } = useHttp()
 const entities = ref<Entity[]>()
 const isAvailable = ref(true)
 const loaded = ref(false)
 
 const load = async () => {
   if (props.book && props.book.serie !== null) {
-    const list = await nuxtAsyncData<Entity[]>('/series/books', [
-      props.book.volume?.toString(10) as string,
-      props.book.serie?.meta.author,
-      props.book.serie?.meta.slug
-    ])
+    const list = await request<Entity[]>({
+      endpoint: '/series/books',
+      params: [
+        props.book.volume?.toString(10) as string,
+        props.book.serie?.meta.author,
+        props.book.serie?.meta.slug
+      ]
+    })
       .then((e) => {
         entities.value = e
         loaded.value = true

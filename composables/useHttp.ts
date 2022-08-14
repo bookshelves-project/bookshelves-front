@@ -24,14 +24,7 @@ export const useHttp = () => {
     }
 
     if (request.query || route.query) {
-      // const queryParams = {
-      //   ...request.query,
-      //   ...getRoute.value.query
-      // } as Record<string, string>
-      // const query = new URLSearchParams(queryParams)
-      // const queryStringify = query.toString()
-      // localUrl += `?${queryStringify}`
-      setQuery(localUrl, request.query)
+      localUrl = setQuery(localUrl, request.query)
     }
 
     if (request.debug) {
@@ -63,7 +56,7 @@ export const useHttp = () => {
 
   const request = async <T>(request: RequestData | ApiEndpoint) => {
     const req = getRequest(request)
-    const response = await $fetch.raw(req.url)
+    const response = await $fetch.raw(req.url).catch(e => e)
 
     if (response.status === 200) {
       const body = response._data as any
@@ -80,7 +73,7 @@ export const useHttp = () => {
   }
 
   const requestRaw = async <T>(request: BaseRequest) => {
-    const response = await $fetch.raw(request.endpoint)
+    const response = await $fetch.raw(request.endpoint).catch(e => e)
 
     if (response.status === 200) {
       const body = response._data as any

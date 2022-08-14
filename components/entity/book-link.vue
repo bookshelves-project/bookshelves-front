@@ -7,7 +7,7 @@ defineProps<{
 <template>
   <div v-if="book && book.meta" class="dark:text-white">
     <app-button
-      size="md"
+      size="sm"
       color="white"
       :to="{
         name: 'books-author-slug',
@@ -18,6 +18,7 @@ defineProps<{
       }"
     >
       {{ book.title }}
+      <slot />
     </app-button>
   </div>
 </template>

@@ -1,12 +1,20 @@
-declare interface EntityCollection {
-  authors?: Entity[]
-  series?: Entity[]
-  books?: Entity[]
+declare interface Relevant {
+  relevant?: Entity[]
+  other: Entity[]
 }
 
 declare interface Search {
   count?: number
+  query?: string
   type?: 'collection' | 'meilisearch'
-  relevant?: EntityCollection
-  other?: EntityCollection
+  results?: {
+    authors?: Entity[]
+    series?: Entity[]
+    books?: Entity[]
+  }
+  results_relevant?: {
+    authors?: Relevant
+    series?: Relevant
+    books?: Relevant
+  }
 }

@@ -63,9 +63,11 @@ await getNext()
             </dd>
           </div>
           <div v-if="bookNext">
-            <dt>Do you want vol. {{ bookNext.volume }}?</dt>
+            <dt>Do you want next volume?</dt>
             <dd>
-              <entity-book-link :book="bookNext" />
+              <entity-book-link :book="bookNext">
+                (vol. {{ bookNext.volume }})
+              </entity-book-link>
             </dd>
           </div>
         </dl>
