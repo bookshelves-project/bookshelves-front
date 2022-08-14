@@ -14,9 +14,9 @@ defineProps<{
     <div class="h-full shrink-0 relative">
       <app-img
         class="h-full w-36 object-cover rounded-md"
-        :src="entity.image"
-        :color="entity.color"
-        :alt="entity.title"
+        :src="entity.media?.url"
+        :color="entity.media?.color"
+        :alt="entity.media?.name"
       />
       <div
         v-if="entity.type"

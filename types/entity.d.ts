@@ -38,12 +38,11 @@ interface UseEntitySerie {
 
 declare interface UseEntity {
   title: string
-  image: string
-  color: string
   route?: Route
   authors?: string
   serie?: UseEntitySerie
   language?: string
+  media?: Media
   count?: string
   type?: string
   entityName?: string

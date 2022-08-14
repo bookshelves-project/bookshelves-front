@@ -16,9 +16,9 @@ defineProps<{
     <div class="relative">
       <app-img
         class="w-full h-48 object-cover rounded-t-lg"
-        :src="entity.image"
-        :color="entity.color"
-        :alt="entity.title"
+        :src="entity.media?.url"
+        :color="entity.media?.color"
+        :alt="entity.media?.name"
       />
       <div
         class="absolute top-0 inset-x-0 h-full py-2 px-3 flex items-end justify-start overflow-hidden"

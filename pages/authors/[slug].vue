@@ -37,7 +37,7 @@ title.value = `${author.value?.firstname} ${author.value?.lastname}`
 useMetadata({
   title: title.value,
   description: author.value?.description,
-  image: author.value?.cover?.simple
+  image: author.value?.media_social
 })
 </script>
 
@@ -45,7 +45,7 @@ useMetadata({
   <main v-if="author" class="main-content">
     <app-header
       :title="author.name"
-      :image="author.cover?.thumbnail"
+      :image="author.media?.url"
       :subtitle="`${author.count?.books} books`"
       :cta="author.link"
       :text="author.description"

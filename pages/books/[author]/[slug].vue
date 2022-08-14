@@ -47,7 +47,7 @@ if (response.value) {
 useMetadata({
   title: title.value,
   description: book.value?.description,
-  image: book.value?.cover?.simple
+  image: book.value?.media_social
 })
 </script>
 
@@ -55,9 +55,8 @@ useMetadata({
   <main v-if="book" class="main-content">
     <app-header
       :title="book.title"
-      :image="book.cover?.thumbnail"
-      :image-original="book.cover?.original"
-      :color="book.cover?.color"
+      :image="book.media?.url"
+      :color="book.media?.color"
       :authors="book.authors"
       :breadcrumb="breadcrumb"
       favorite

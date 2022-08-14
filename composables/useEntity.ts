@@ -17,9 +17,6 @@ export const useEntity = (
   }
   checkType()
 
-  const color = computed(() => {
-    return originalEntity.cover?.color || '#ffffff'
-  })
   const title = computed(() => {
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
@@ -31,8 +28,20 @@ export const useEntity = (
 
     return ''
   })
-  const image = computed(() => {
-    return originalEntity.cover?.thumbnail || '/images/no-cover.webp'
+  const media = computed((): Media => {
+    if (originalEntity.media) {
+      return {
+        name: originalEntity.media.name,
+        url: originalEntity.media.url || '/images/no-cover.webp',
+        color: originalEntity.media.color
+      }
+    }
+
+    return {
+      name: '',
+      url: '/images/no-cover.webp',
+      color: ''
+    }
   })
   const route = computed(() => {
     let route = { name: 'index', params: {} }
@@ -153,8 +162,7 @@ export const useEntity = (
 
   return {
     title: title.value!,
-    image: image.value,
-    color: color.value,
+    media: media.value,
     route: route.value,
     language: language.value,
     serie: serie.value,

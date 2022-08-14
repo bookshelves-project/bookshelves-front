@@ -44,7 +44,8 @@ declare interface Book {
   summary?: string
   language: Language
   releasedOn?: Date
-  cover?: Cover
+  media?: Media
+  media_social?: string
   volume?: number
   serie?: BookSerie
   description?: string

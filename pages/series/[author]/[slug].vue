@@ -42,7 +42,7 @@ const paginate = (payload?: ApiResponse<Entity[]>) => {
 useMetadata({
   title: serie.value?.title,
   description: serie.value?.description,
-  image: serie.value?.cover?.simple
+  image: serie.value?.media_social
 })
 </script>
 
@@ -50,8 +50,8 @@ useMetadata({
   <main v-if="serie" class="main-content">
     <app-header
       :title="serie.title"
-      :image="serie.cover?.thumbnail"
-      :color="serie.cover?.color"
+      :image="serie.media?.url"
+      :color="serie.media?.color"
       :subtitle="`${serie.count} books`"
       :type="serie.type"
       :authors="serie.authors"
