@@ -11,7 +11,8 @@ declare interface Serie {
   title?: string
   type?: string
   meta: SerieMeta
-  cover?: Cover
+  media?: Media
+  media_social?: string
   language: Language
   authors?: Author[]
   count?: number

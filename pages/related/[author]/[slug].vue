@@ -48,7 +48,7 @@ watch(
 useMetadata({
   title: title.value,
   description: book.value?.description,
-  image: book.value?.cover?.simple
+  image: book.value?.media_social
 })
 </script>
 
