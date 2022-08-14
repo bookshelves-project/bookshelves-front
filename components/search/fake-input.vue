@@ -36,7 +36,7 @@ onMounted(() => {
 
 <template>
   <button
-    class="search-bar h-full text-sm font-medium text-white px-4 relative"
+    class="search-bar h-full text-sm font-medium text-white md:px-4 relative w-full"
     @click="searchStore.toggleDialog()"
   >
     <label for="search" class="sr-only"> Search </label>

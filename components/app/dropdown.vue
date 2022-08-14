@@ -44,7 +44,7 @@ const alignmentClasses = computed((): string => {
     >
       <div
         v-show="open"
-        class="absolute z-50 mt-2 rounded-md shadow-lg ring-1 ring-primary-600 ring-opacity-5 dark:rounded-none"
+        class="absolute top-8 z-50 mt-2 rounded-md shadow-lg ring-1 ring-primary-600 ring-opacity-5 dark:rounded-none"
         :class="[alignmentClasses]"
         style="display: none"
         @click="autoClose ? (open = false) : ''"

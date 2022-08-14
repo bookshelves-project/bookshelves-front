@@ -1,6 +1,6 @@
 import { defineNuxtConfig } from 'nuxt'
 import svgLoader from 'vite-svg-loader'
-import Inspector from 'vite-plugin-vue-inspector'
+// import Inspector from 'vite-plugin-vue-inspector'
 import svgLibrary from './plugins/vite/svg-library'
 import config from './config'
 
@@ -41,9 +41,9 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       svgLoader(), // https://github.com/jpkleemans/vite-svg-loader#readme
-      Inspector({
-        appendTo: 'entry.mjs'
-      }), // https://github.com/webfansplz/vite-plugin-vue-inspector
+      // Inspector({
+      //   appendTo: 'entry.mjs'
+      // }), // https://github.com/webfansplz/vite-plugin-vue-inspector
       svgLibrary()
     ]
   }

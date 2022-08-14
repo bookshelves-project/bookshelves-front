@@ -56,10 +56,8 @@ const toggleSidebar = () => {
               </div>
             </div>
           </div>
-          <div class="flex flex-1 justify-center pr-2 lg:ml-6 lg:justify-end">
+          <div class="pr-4 flex items-center w-full lg:w-96">
             <search />
-          </div>
-          <div class="hidden pr-4 lg:block">
             <div class="flex items-center">
               <layout-account />
             </div>

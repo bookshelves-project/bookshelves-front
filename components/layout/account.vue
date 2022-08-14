@@ -1,8 +1,5 @@
 <script setup lang="ts">
 // import useAuth from '~/composables/useAuth'
-import AppDropdown from '@/components/app/dropdown.vue'
-import AppImg from '@/components/app/img.vue'
-import SvgIcon from '@/components/svg-icon.vue'
 import { useNavigationStore } from '~~/store/navigation'
 
 // const ctx = useNuxtApp().nuxt2Context
@@ -21,7 +18,7 @@ const logout = () => {}
 
 <template>
   <div class="ml-3">
-    <app-dropdown align="right" auto-close>
+    <app-dropdown align="right" auto-close class="flex">
       <template #trigger>
         <span
           class="flex items-center rounded-md border border-transparent text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:bg-gray-50 hover:text-gray-800 focus:bg-gray-50 focus:outline-none active:bg-gray-50 dark:hover:bg-gray-700 dark:focus:bg-gray-700"
@@ -31,17 +28,10 @@ const logout = () => {}
             <app-img
               v-if="loggedIn"
               class="h-8 w-8"
-              :src="user.avatar ? user.avatar : null"
+              :src="user?.avatar ? user.avatar : '/images/user.svg'"
               override="rounded-full"
               invisible
             />
-            <!-- <span
-              class="inline-flex items-center justify-center h-6 w-6 rounded-full bg-gray-500"
-            >
-              <span class="text-xs font-medium leading-none text-white"
-                >TW</span
-              >
-            </span> -->
             <app-img
               v-else
               src="/images/user.svg"
@@ -50,11 +40,11 @@ const logout = () => {}
               invisible
             />
           </transition>
-          <svg-icon name="dropdown" class="h-5 w-5 mb-1" />
+          <svg-icon name="dropdown" class="h-5 w-5 mb-1 hidden sm:block" />
         </span>
       </template>
       <template #content>
-        <div class="w-48 rounded-md bg-white dark:bg-gray-700">
+        <div class="w-48 rounded-md bg-white dark:bg-gray-700 p-2">
           <div v-if="loggedIn">
             <span v-for="(link, id) in auth" :key="id">
               <router-link

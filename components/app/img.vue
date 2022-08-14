@@ -43,7 +43,7 @@ onMounted(() => {
       <div
         v-if="!display"
         v-bind="attrs"
-        class="placeholder bg-gray-50 dark:bg-gray-800"
+        class="placeholder bg-white dark:bg-gray-900"
         :style="color !== '#ffffff' ? `background-color: ${color};` : ''"
       />
     </transition>

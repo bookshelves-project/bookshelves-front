@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-full">
     <search-fake-input />
     <search-dialog />
   </div>
