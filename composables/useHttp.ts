@@ -14,7 +14,9 @@ interface Request {
 }
 
 /**
- * API composable
+ * useHTTP composable based on `ohmyfetch` library.
+ *
+ * Docs: https://github.com/unjs/ohmyfetch
  */
 export const useHttp = () => {
   const route = useRoute()
@@ -82,27 +84,7 @@ export const useHttp = () => {
     return false
   }
 
-  /**
-   * Create an HTTP request based on $fetch, and return a promise.
-   * Allow request errors.
-   *
-   * @param request RequestData | ApiEndpoint
-  */
-  const request = async <T>(request: RequestData | ApiEndpoint): Promise<HttpResponse<T>> => {
-    let req: Request = {
-      url: '',
-      request: {} as RequestData
-    }
-
-    if (isRequestData(request) && request.raw) {
-      req = {
-        url: request.endpoint,
-        request
-      }
-    } else {
-      req = getRequest(request)
-    }
-
+  const executeRequest = async <T>(req: Request): Promise<HttpResponse<T>> => {
     const res: HttpResponse<T> = {
       response: {} as FetchResponse<T>,
       body: {} as T,
@@ -143,18 +125,41 @@ export const useHttp = () => {
     return res
   }
 
-  const requestRaw = async <T>(request: BaseRequest) => {
-    const response = await $fetch.raw(request.endpoint).catch(e => e)
-
-    if (response.status === 200) {
-      const body = response._data as any
-
-      if (request.debug) {
-        console.warn(body)
-      }
-
-      return body as T
+  /**
+   * Create an HTTP request based on $fetch, and return a promise.
+   * Allow request errors.
+   *
+   * @param request RequestData | ApiEndpoint
+  */
+  const request = async <T>(request: RequestData | ApiEndpoint): Promise<HttpResponse<T>> => {
+    let req: Request = {
+      url: '',
+      request: {} as RequestData
     }
+
+    if (isRequestData(request) && request.raw) {
+      req = {
+        url: request.endpoint,
+        request
+      }
+    } else {
+      req = getRequest(request)
+    }
+
+    const res = await executeRequest<T>(req)
+
+    return res
+  }
+
+  const requestRaw = async <T>(request: BaseRequest): Promise<HttpResponse<T>> => {
+    const req: Request = {
+      url: request.endpoint,
+      request: {} as RequestData
+    }
+
+    const res = await executeRequest<T>(req)
+
+    return res
   }
 
   return {
