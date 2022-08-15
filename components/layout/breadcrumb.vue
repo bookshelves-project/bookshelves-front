@@ -99,7 +99,7 @@ crumbs.value = getCrumbsList.value
           <component
             :is="id >= crumbs.length - 1 ? 'span' : 'router-link'"
             :to="$localePath(crumb.route)"
-            class="ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400 capitalize"
+            class="ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400"
             :class="
               id >= crumbs.length - 1
                 ? ''

@@ -13,13 +13,12 @@ export const useEntityMethods = () => {
    * ```
    */
   const formatAuthors = (authors: Author[] | undefined): string => {
-    let result = 'unknown'
-    const list = authors?.map(author => author.name?.trim()) as string[]
-    result = [list.slice(0, -1).join(', '), list.slice(-1)[0]].join(
-      list.length < 2 ? '' : ' & '
-    )
+    if (!authors) { return 'unknown' }
 
-    return result
+    const list = authors?.map(author => author.name?.trim()) as string[]
+    const formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' })
+
+    return formatter.format(list)
   }
 
   /**
@@ -45,18 +44,12 @@ export const useEntityMethods = () => {
  * @returns `string`
  */
   const formatTags = (tags?: Tag[]) => {
-    if (tags) {
-      let entitiesToString = ''
-      tags.forEach((tag, tagId) => {
-        entitiesToString += `${tag.name}`
-        if (tags.length > 1 && tagId !== tags.length - 1) {
-          entitiesToString += ' & '
-        }
-      })
-      return entitiesToString
-    }
+    if (!tags) { return 'unknown' }
 
-    return 'unknown'
+    const list = tags?.map(tag => tag.name?.trim()) as string[]
+    const formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' })
+
+    return formatter.format(list)
   }
 
   /**

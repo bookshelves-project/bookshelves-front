@@ -14,7 +14,7 @@ declare interface Serie {
   media?: Media
   media_social?: string
   language: Language
-  authors?: Author[]
+  authors: Author[]
   count?: number
   description?: string
   link: string
