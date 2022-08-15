@@ -21,7 +21,7 @@ const searchStore = useSearchStore()
           {{ selected.meta.entity }}
         </p>
       </div>
-      <div class="flex flex-auto flex-col justify-between p-6">
+      <div class="justify-between px-6">
         <app-button
           :to="$localePath({
             name:
@@ -34,11 +34,12 @@ const searchStore = useSearchStore()
             },
           })"
           align="center"
+          full
           @click="searchStore.closeDialog()"
         >
           Show
         </app-button>
-        <dl class="grid grid-cols-1 gap-x-6 gap-y-3 text-sm text-gray-700 dark:text-gray-300">
+        <dl class="grid grid-cols-1 gap-x-6 gap-y-3 text-sm text-gray-700 dark:text-gray-300 mt-5">
           <dt v-if="selected.authors">
             Authors
           </dt>

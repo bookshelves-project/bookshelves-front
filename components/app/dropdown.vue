@@ -35,14 +35,14 @@ const openDropdown = () => {
   setTimeout(() => {
     overlay.value = true
     dropdown.value = true
-  }, 250)
+  }, 150)
 }
 const closeDropdown = () => {
   dropdown.value = false
   overlay.value = false
   setTimeout(() => {
     opened.value = false
-  }, 250)
+  }, 150)
 }
 
 const alignmentClasses = computed((): string => {
@@ -105,7 +105,7 @@ onMounted(() => {
             v-show="dropdown"
             ref="target"
             :class="[alignmentClasses]"
-            class="bg-gray-50 dark:bg-gray-800 shadow w-max p-1.5 rounded-md absolute top-10 text-left"
+            class="bg-gray-50 dark:bg-gray-800 shadow w-max p-1.5 rounded-md absolute top-10 text-left dark:border-gray-700 border border-transparent"
             @click="autoClose ? closeDropdown() : ''"
           >
             <slot name="content" />

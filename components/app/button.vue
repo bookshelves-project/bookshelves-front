@@ -14,6 +14,7 @@ interface Props {
   loading?: boolean
   outlined?: boolean
   hideLabel?: boolean
+  full?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -26,7 +27,8 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   download: false,
   icon: undefined,
-  loading: false
+  loading: false,
+  full: false
 })
 
 defineEmits(['click'])
@@ -70,7 +72,7 @@ onMounted(() => {
     :to="to !== undefined ? $localePath(to) : null"
     :target="href ? (download ? '' : '_blank') : null"
     :rel="href ? 'noopener noreferrer' : null"
-    :class="[color, { disabled: disabled }, size]"
+    :class="[color, { disabled: disabled }, size, {'w-full': full}]"
     class="btn relative"
     :type="type"
     :disabled="disabled"
