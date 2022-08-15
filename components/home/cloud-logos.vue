@@ -15,7 +15,7 @@ defineProps<{
         {{ logos.title }}
       </p>
       <div
-        class="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-5"
+        class="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-6"
       >
         <a
           v-for="(logo, id) in logos.list"
