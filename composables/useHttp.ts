@@ -1,4 +1,17 @@
-import { FetchRequest, FetchOptions, FetchResponse, FetchError } from 'ohmyfetch'
+import { FetchResponse, FetchError } from 'ohmyfetch'
+
+interface HttpResponse<T> {
+  response: FetchResponse<T>,
+  body: T,
+  success: boolean
+  hasErrors: boolean
+  error: FetchError
+}
+
+interface Request {
+  url: string
+  request: RequestData
+}
 
 /**
  * API composable
@@ -11,7 +24,7 @@ export const useHttp = () => {
 
   const getRoute = computed(() => useRoute())
 
-  const getRequest = (request: RequestData | ApiEndpoint) => {
+  const getRequest = (request: RequestData | ApiEndpoint): Request => {
     if (!isRequestData(request)) {
       request = {
         endpoint: request
@@ -19,11 +32,7 @@ export const useHttp = () => {
     }
 
     let localUrl = `${url}${request.endpoint}`
-
-    if (request.params) {
-      const params = Object.values(request.params).join('/')
-      localUrl += `/${params}`
-    }
+    localUrl = setParams(localUrl, request.params)
 
     if (request.query || route.query) {
       localUrl = setQuery(localUrl, request.query)
@@ -37,6 +46,15 @@ export const useHttp = () => {
       url: localUrl,
       request
     }
+  }
+
+  const setParams = (endpoint: string, params?: Params) => {
+    if (params) {
+      const paramsStr = Object.values(params).join('/')
+      endpoint += `/${paramsStr}`
+    }
+
+    return endpoint
   }
 
   const setQuery = (endpoint: string, query?: Query) => {
@@ -64,10 +82,16 @@ export const useHttp = () => {
     return false
   }
 
-  const request = async <T>(request: RequestData | ApiEndpoint) => {
-    let req: {
-      url: string
-      request: RequestData
+  /**
+   * Create an HTTP request based on $fetch, and return a promise.
+   * Allow request errors.
+   *
+   * @param request RequestData | ApiEndpoint
+  */
+  const request = async <T>(request: RequestData | ApiEndpoint): Promise<HttpResponse<T>> => {
+    let req: Request = {
+      url: '',
+      request: {} as RequestData
     }
 
     if (isRequestData(request) && request.raw) {
@@ -79,7 +103,7 @@ export const useHttp = () => {
       req = getRequest(request)
     }
 
-    const res = {
+    const res: HttpResponse<T> = {
       response: {} as FetchResponse<T>,
       body: {} as T,
       success: false,
