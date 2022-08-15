@@ -45,6 +45,12 @@ watch(
   }
 )
 
+const crumbs: string[] = [
+  'Related',
+    `${book.value?.authors[0].name}`,
+    `${book.value?.title}`
+]
+
 useMetadata({
   title: title.value,
   description,
@@ -54,7 +60,7 @@ useMetadata({
 
 <template>
   <main class="main-content">
-    <app-header v-if="book" :title="title" :subtitle="description" />
+    <app-header v-if="book" :title="title" :subtitle="description" :crumbs="crumbs" />
     <entity-list
       v-if="entities?.data"
       :entities="entities?.data"

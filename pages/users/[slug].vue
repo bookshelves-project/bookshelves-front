@@ -12,6 +12,11 @@ const user = ref<User>()
 user.value = response.value?.data
 title.value = `Profile of ${user.value?.name}`
 
+const crumbs: string[] = [
+  'Users',
+  `${user.value?.name}`
+]
+
 useMetadata({
   title: title.value
 })
@@ -22,8 +27,10 @@ useMetadata({
     <app-header
       v-if="user"
       :title="title"
+      :subtitle="user.slug"
       :image="user.avatar"
       :text="user.about"
+      :crumbs="crumbs"
     />
     <div
       v-if="user"

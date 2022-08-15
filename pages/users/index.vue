@@ -16,7 +16,7 @@ useMetadata({
 <template>
   <main class="main-content">
     <app-header :title="title" :subtitle="subtitle" />
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       <nuxt-link
         v-for="user in users"
         :key="user.id"

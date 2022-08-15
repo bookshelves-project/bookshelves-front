@@ -12,7 +12,7 @@ if (endpoint) {
   const response = await requestRaw<ApiResponse<Review[]>>({
     endpoint
   })
-  reviews.value = response?.data
+  reviews.value = response?.body.data
 }
 
 const avg = computed(() => {
