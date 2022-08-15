@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import LayoutBreadcrumb from '@/components/layout/breadcrumb.vue'
-import AppImg from '@/components/app/img.vue'
-import EntityAuthorsLinks from '@/components/entity/authors-links.vue'
-
 interface Props {
   title?: string
   subtitle?: string
@@ -16,7 +12,7 @@ interface Props {
   favorite?: boolean
   entity?: Entity | Author
   color?: string
-  breadcrumb?: string
+  crumbs?: string[]
 }
 const {
   title,
@@ -47,7 +43,7 @@ const getHostname = (url?: string) => {
         : 'border-transparent pb-2 md:mb-4'
     "
   >
-    <layout-breadcrumb class="mb-6" :title="breadcrumb" />
+    <layout-breadcrumb class="mb-6" :crumbs="crumbs" />
     <div class="lg:flex lg:items-center lg:justify-between">
       <!-- Main  -->
       <div class="flex items-center justify-between">

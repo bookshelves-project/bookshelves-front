@@ -13,7 +13,7 @@ await requestPage()
 
 const book = ref<Book>()
 const title = ref<string>('')
-const breadcrumb = ref<string>()
+const crumbs = ref<string[]>([])
 
 if (response.value) {
   book.value = response.value.data
@@ -23,10 +23,11 @@ if (response.value) {
   const authors = formatAuthors(book.value.authors)
   title.value = `${book.value.title} (${book.value.type}) ${serie}by ${authors}`
 
-  const serieBreadcrumb = book.value.serie
-    ? `, ${book.value.serie.title}, vol. ${book.value.volume}`
-    : ''
-  breadcrumb.value = `${book.value.title}${serieBreadcrumb}`
+  crumbs.value = [
+    'Books',
+    `${book.value.authors[0].name}`,
+    `${book.value.title}`
+  ]
 }
 
 // const authors = this.formatAuthors(this.book.authors)
@@ -58,7 +59,7 @@ useMetadata({
       :image="book.media?.url"
       :color="book.media?.color"
       :authors="book.authors"
-      :breadcrumb="breadcrumb"
+      :crumbs="crumbs"
       favorite
     >
       <div class="mx-auto grid w-max space-y-3">

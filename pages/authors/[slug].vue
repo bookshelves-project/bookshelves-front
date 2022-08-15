@@ -3,6 +3,8 @@ const route = useRoute()
 const { request } = useHttp()
 
 const title = ref('Author')
+const crumbs = ref<string[]>()
+
 const author = ref<Author>()
 const series = ref<ApiResponse<Entity[]>>()
 const books = ref<ApiResponse<Entity[]>>()
@@ -33,6 +35,7 @@ author.value = authorRaw.body
 books.value = booksRaw.body
 series.value = seriesRaw.body
 title.value = `${author.value?.firstname} ${author.value?.lastname}`
+crumbs.value = ['Authors', `${author.value?.name}`]
 
 useMetadata({
   title: title.value,
@@ -50,7 +53,7 @@ useMetadata({
       :cta="author.link"
       :text="author.description"
       :entity="author"
-      :breadcrumb="title"
+      :crumbs="crumbs"
       favorite
     >
       <entity-download-button :download="author.download" :files="author.files" />

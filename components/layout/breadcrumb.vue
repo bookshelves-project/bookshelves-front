@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
-
 const props = defineProps<{
-  title?: string
+  crumbs?: string[]
 }>()
 
-interface Link {
+interface Crumb {
   title: string
   route?: object
 }
+
+const crumbs = ref<Crumb[]>([])
 
 const capitalizeEach = (string: string) => {
   const arr = string.split(' ')
@@ -20,7 +20,14 @@ const capitalizeEach = (string: string) => {
   return arr.join(' ')
 }
 
-const crumbs = computed((): Link[] => {
+const translateSlug = (slug: string): string => {
+  const slugs: Keyable = {
+    // 'retours d experience': "retours d'experience",
+  }
+  return slugs[slug] || slug
+}
+
+const getCrumbsList = computed((): Crumb[] => {
   const route = useRoute()
   const router = useRouter()
 
@@ -32,7 +39,7 @@ const crumbs = computed((): Link[] => {
     ? fullPath.substring(1).split('/')
     : fullPath.split('/')
 
-  const crumbs: Link[] = []
+  const crumbsList: Crumb[] = []
 
   let path = ''
   params = params.filter(e => e.length > 3)
@@ -44,30 +51,27 @@ const crumbs = computed((): Link[] => {
       const title = param.replace(/-/g, ' ') // replace `-` with space
       const titleSplitted = title.split('#')
 
-      crumbs.push({
+      crumbsList.push({
         title: capitalizeEach(titleSplitted[0]),
         route: match
       })
     }
   })
-  crumbs.forEach((crumb: any) => {
+  crumbsList.forEach((crumb: any) => {
     crumb.title = translateSlug(crumb.title)
   })
-  if (props.title) {
-    crumbs.splice(-1, 1, {
-      title: props.title
-    })
+  if (props.crumbs) {
+    for (let i = 0; i < crumbsList.length; i++) {
+      const element = crumbsList[i]
+      const currentTitle = props.crumbs[i]
+      element.title = currentTitle
+    }
   }
 
-  return crumbs
+  return crumbsList
 })
+crumbs.value = getCrumbsList.value
 
-const translateSlug = (slug: string): string => {
-  const slugs: Keyable = {
-    // 'retours d experience': "retours d'experience",
-  }
-  return slugs[slug] || slug
-}
 </script>
 
 <template>

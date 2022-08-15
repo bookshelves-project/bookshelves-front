@@ -24,12 +24,12 @@ const [serieRaw, booksRaw] = await Promise.all([
 const serie = ref<Serie>()
 const books = ref<ApiResponse<Entity[]>>()
 const booksList = ref<Entity[]>()
-const breadcrumb = ref<string>()
+const crumbs = ref<string[]>()
 
 serie.value = serieRaw.body
 books.value = booksRaw.body
 booksList.value = books.value?.data
-breadcrumb.value = `${serie.value?.title} (${serie.value?.type})`
+crumbs.value = ['Series', `${serie.value.authors[0].name}`, `${serie.value?.title} (${serie.value?.type})`]
 
 const paginate = (payload?: ApiResponse<Entity[]>) => {
   const list = books.value?.data
@@ -58,7 +58,7 @@ useMetadata({
       :cta="serie.link"
       :text="serie.description"
       :entity="serie"
-      :breadcrumb="breadcrumb"
+      :crumbs="crumbs"
       favorite
     >
       <div class="flex">
