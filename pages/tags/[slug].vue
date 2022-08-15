@@ -19,8 +19,6 @@ const [tagRaw, entitiesRaw] = await Promise.all([
   })
 ])
 
-const title = ref<string>()
-const description = ref<string>()
 const tag = ref<Tag>()
 const meta = ref<ApiMeta>()
 const list = ref<Entity[]>()
@@ -28,8 +26,6 @@ const list = ref<Entity[]>()
 tag.value = tagRaw.body
 meta.value = entitiesRaw?.body.meta
 list.value = entitiesRaw?.body.data
-title.value = `Tag ${tag.value?.name}`
-description.value = `Books and series with tag ${tag.value?.name}`
 
 const paginate = (payload?: ApiResponse<Entity[]>) => {
   meta.value = payload?.meta
@@ -39,13 +35,14 @@ const paginate = (payload?: ApiResponse<Entity[]>) => {
 }
 
 useMetadata({
-  title: title.value
+  title: `Tag ${tag.value?.name}`,
+  description: `Books and series with tag ${tag.value?.name}`
 })
 </script>
 
 <template>
   <div class="main-content">
-    <app-header :title="title" :subtitle="description" />
+    <app-header v-if="tag" :title="tag.name" />
     <div>
       <entity-list :entities="list" type entity-name />
       <div v-if="meta" class="mt-14 mb-5">

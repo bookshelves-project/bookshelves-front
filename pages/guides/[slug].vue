@@ -6,16 +6,11 @@ const { requestPage, response } = useHttpPage<Post>({
 })
 await requestPage()
 
-const title = ref<string>()
-const summary = ref<string>()
 const post = ref<Post>()
-
 post.value = response.value?.data
-title.value = post.value?.title
-summary.value = post.value?.summary
 
 useMetadata({
-  title: title.value,
+  title: `${post.value?.title} · Guides`,
   description: post.value?.summary,
   image: post.value?.cover
 })
@@ -24,7 +19,7 @@ useMetadata({
 <template>
   <main v-if="post" class="main-content">
     <app-header
-      :title="title"
+      :title="post.title"
       :subtitle="post.category"
       :text="post.summary"
       :image="post.cover"

@@ -6,8 +6,8 @@ const { requestPage, response } = useHttpPage<User>({
 })
 await requestPage()
 
+const title = ref<string>()
 const user = ref<User>()
-const title = ref()
 
 user.value = response.value?.data
 title.value = `Profile of ${user.value?.name}`

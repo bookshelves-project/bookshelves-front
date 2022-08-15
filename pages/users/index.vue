@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { requestPage, response } = useHttpPage<User>('/users')
+const { requestPage, response } = useHttpPage<User[]>('/users')
 await requestPage()
 
 const users = ref<User[]>()

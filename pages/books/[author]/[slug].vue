@@ -12,23 +12,11 @@ const { requestPage, response } = useHttpPage<Book>({
 await requestPage()
 
 const book = ref<Book>()
-const title = ref<string>('')
-const crumbs = ref<string[]>([])
 
-if (response.value) {
-  book.value = response.value.data
-  const serie = book.value.serie
-    ? ` · ${book.value.serie.title}, vol. ${book.value.volume} `
-    : ''
-  const authors = formatAuthors(book.value.authors)
-  title.value = `${book.value.title} (${book.value.type}) ${serie}by ${authors}`
-
-  crumbs.value = [
-    'Books',
-    `${book.value.authors[0].name}`,
-    `${book.value.title}`
-  ]
-}
+book.value = response.value?.data
+const serie = book.value?.serie
+  ? ` · ${book.value?.serie.title} (${book.value?.volume}) `
+  : ''
 
 // const authors = this.formatAuthors(this.book.authors)
 // const isbn: string = this.book.identifier
@@ -45,8 +33,14 @@ if (response.value) {
 //   bookTag: formatTags(this.book.tags),
 // })
 
+const crumbs: string[] = [
+  'Books',
+    `${book.value?.authors[0].name}`,
+    `${book.value?.title}`
+]
+
 useMetadata({
-  title: title.value,
+  title: `${book.value?.title} by ${formatAuthors(book.value?.authors)} ${serie}`,
   description: book.value?.description,
   image: book.value?.media_social
 })

@@ -2,9 +2,6 @@
 const route = useRoute()
 const { request } = useHttp()
 
-const title = ref('Author')
-const crumbs = ref<string[]>()
-
 const author = ref<Author>()
 const series = ref<ApiResponse<Entity[]>>()
 const books = ref<ApiResponse<Entity[]>>()
@@ -34,11 +31,14 @@ const [authorRaw, booksRaw, seriesRaw] = await Promise.all([
 author.value = authorRaw.body
 books.value = booksRaw.body
 series.value = seriesRaw.body
-title.value = `${author.value?.firstname} ${author.value?.lastname}`
-crumbs.value = ['Authors', `${author.value?.name}`]
+
+const crumbs: string[] = [
+  'Authors',
+  `${author.value?.name}`
+]
 
 useMetadata({
-  title: title.value,
+  title: `${author.value?.firstname} ${author.value?.lastname} · Authors`,
   description: author.value?.description,
   image: author.value?.media_social
 })

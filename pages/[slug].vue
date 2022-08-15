@@ -6,17 +6,16 @@ const { requestPage, response } = useHttpPage<Page>({
 })
 await requestPage()
 
-const title = ref<string>()
-const summary = ref<string>()
 const page = ref<Page>()
-
 page.value = response.value?.data
-title.value = page.value?.title
-summary.value = page.value?.summary
+
+const crumbs: string[] = [
+  `${page.value?.title}`
+]
 
 useMetadata({
-  title: title.value,
-  description: summary.value,
+  title: page.value?.title,
+  description: page.value?.summary,
   image: page.value?.cover
 })
 </script>
@@ -27,7 +26,7 @@ useMetadata({
       :title="page.title"
       :text="page.summary"
       :image="page.cover"
-      :breadcrumb="title"
+      :crumbs="crumbs"
     />
     <app-content :body="page.body" />
   </main>

@@ -2,6 +2,7 @@
 const route = useRoute()
 const { request } = useHttp()
 const listRoute: ApiEndpoint = '/series/books'
+const { formatAuthors } = useEntityMethods()
 
 const [serieRaw, booksRaw] = await Promise.all([
   request<Serie>({
@@ -24,12 +25,10 @@ const [serieRaw, booksRaw] = await Promise.all([
 const serie = ref<Serie>()
 const books = ref<ApiResponse<Entity[]>>()
 const booksList = ref<Entity[]>()
-const crumbs = ref<string[]>()
 
 serie.value = serieRaw.body
 books.value = booksRaw.body
 booksList.value = books.value?.data
-crumbs.value = ['Series', `${serie.value.authors[0].name}`, `${serie.value?.title} (${serie.value?.type})`]
 
 const paginate = (payload?: ApiResponse<Entity[]>) => {
   const list = books.value?.data
@@ -39,8 +38,14 @@ const paginate = (payload?: ApiResponse<Entity[]>) => {
   }
 }
 
+const crumbs: string[] = [
+  'Series',
+  `${serie.value.authors[0].name}`,
+   `${serie.value?.title} (${serie.value?.type})`
+]
+
 useMetadata({
-  title: serie.value?.title,
+  title: `${serie.value?.title} by ${formatAuthors(serie.value.authors)} · Series`,
   description: serie.value?.description,
   image: serie.value?.media_social
 })

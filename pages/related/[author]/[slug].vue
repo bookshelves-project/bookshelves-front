@@ -5,7 +5,7 @@ const route = useRoute()
 const book = ref<Book>()
 const entities = ref<ApiResponse<Entity[]>>()
 
-const title = ref('Related books & series for ')
+const title = ref<string>()
 const description = 'List of all results for related books & series'
 
 const fetchApi = async () => {
@@ -34,7 +34,7 @@ const fetchApi = async () => {
 
   book.value = bookRaw.body
   entities.value = entitiesRaw.body
-  title.value += book.value?.title
+  title.value = `Related books & series for ${book.value?.title}`
 }
 await fetchApi()
 
@@ -47,7 +47,7 @@ watch(
 
 useMetadata({
   title: title.value,
-  description: book.value?.description,
+  description,
   image: book.value?.media_social
 })
 </script>
