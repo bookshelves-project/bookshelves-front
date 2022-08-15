@@ -9,21 +9,21 @@ export const useEntityGroup = (selection: SelectedEntities) => {
   const getData = async () => {
     isLoading.value = true
 
-    slides.value = await request<Entity[]>({
+    const response = await request<Entity[]>({
       endpoint: selection.endpoint,
       params: selection.paramsList ? selection.paramsList : [],
       extractData: true
-    }).then((e) => {
-      if (e) {
-        isLoading.value = false
-        if (e.length === 0) {
-          isAvailable.value = false
-        }
-        return e
-      } else {
+    })
+
+    if (response?.success) {
+      isLoading.value = false
+      if (response.body.length === 0) {
         isAvailable.value = false
       }
-    })
+      slides.value = response.body
+    } else {
+      isAvailable.value = false
+    }
   }
 
   return {

@@ -26,8 +26,8 @@ const books = ref<ApiResponse<Entity[]>>()
 const booksList = ref<Entity[]>()
 const breadcrumb = ref<string>()
 
-serie.value = serieRaw
-books.value = booksRaw
+serie.value = serieRaw.body
+books.value = booksRaw.body
 booksList.value = books.value?.data
 breadcrumb.value = `${serie.value?.title} (${serie.value?.type})`
 

@@ -44,7 +44,7 @@ const logout = () => {}
         </span>
       </template>
       <template #content>
-        <div class="w-48 rounded-md bg-white dark:bg-gray-700 p-2">
+        <div>
           <div v-if="loggedIn">
             <span v-for="(link, id) in auth" :key="id">
               <router-link
@@ -90,6 +90,6 @@ const logout = () => {}
 
 <style lang="css" scoped>
 .link {
-  @apply block rounded-md px-4 py-2 text-sm text-gray-700 transition-colors duration-100 hover:bg-gray-200 dark:text-gray-200 dark:hover:bg-gray-600;
+  @apply block rounded-md px-4 py-2 text-gray-700 transition-colors duration-100 hover:bg-gray-200 dark:text-gray-200 dark:hover:bg-gray-600;
 }
 </style>

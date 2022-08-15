@@ -1,12 +1,12 @@
 <script setup lang="ts">
-const { asyncRequest, paginate } = useHttpPage<Publisher>({
+const { requestPage, response } = useHttpPage<Publisher[]>({
   endpoint: '/publishers',
   query: {
     full: true,
     'filter[negligible]': false
   }
 })
-await asyncRequest()
+await requestPage()
 
 const title = 'Publishers'
 const description = 'Discover your books by publisher'
@@ -21,11 +21,11 @@ useMetadata({
   <main class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <filters negligible :total="paginate?.data.length" />
+        <filters negligible :total="response?.data.length" />
       </template>
     </app-header>
     <relation-list
-      :entities="paginate?.data"
+      :entities="response?.data"
       name="publishers"
       :route="{
         name: 'publishers-slug',

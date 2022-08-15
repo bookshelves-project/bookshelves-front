@@ -25,9 +25,9 @@ const publisher = ref<Publisher>()
 const meta = ref<ApiMeta>()
 const list = ref<Entity[]>()
 
-publisher.value = publisherRaw
-meta.value = entitiesRaw?.meta
-list.value = entitiesRaw?.data
+publisher.value = publisherRaw.body
+meta.value = entitiesRaw?.body.meta
+list.value = entitiesRaw?.body.data
 
 title.value = `Publisher ${publisher.value?.name}`
 description.value = `Books from ${publisher.value?.name}`

@@ -43,7 +43,7 @@ const fetchResults = async (input: string) => {
       query: query.value,
       type: 'meilisearch'
     }
-    const data = await request<Search>({
+    const response = await request<Search>({
       endpoint: '/search',
       query: {
         q: input,
@@ -52,7 +52,7 @@ const fetchResults = async (input: string) => {
       extractData: true
     })
 
-    results.value = data
+    results.value = response.body
   } catch (error) {
     console.error(error)
   }

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const route = useRoute()
-const { asyncRequest, response } = useHttpPage<User>({
+const { requestPage, response } = useHttpPage<User>({
   endpoint: '/users',
   params: [route.params.slug]
 })
-await asyncRequest()
+await requestPage()
 
 const user = ref<User>()
 const title = ref()

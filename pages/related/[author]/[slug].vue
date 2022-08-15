@@ -32,8 +32,8 @@ const fetchApi = async () => {
     })
   ])
 
-  book.value = bookRaw
-  entities.value = entitiesRaw
+  book.value = bookRaw.body
+  entities.value = entitiesRaw.body
   title.value += book.value?.title
 }
 await fetchApi()

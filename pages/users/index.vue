@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const { asyncRequest, paginate } = useHttpPage<User>('/users')
-await asyncRequest()
+const { requestPage, response } = useHttpPage<User>('/users')
+await requestPage()
 
 const users = ref<User[]>()
-users.value = paginate.value?.data
+users.value = response.value?.data
 
 const title = 'All users'
 const subtitle = 'All Bookshelves users'

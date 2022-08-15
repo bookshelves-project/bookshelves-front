@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const { asyncRequest, paginate } = useHttpPage<Book>('/books')
-await asyncRequest()
+const { requestPage, response } = useHttpPage<Book[]>('/books')
+await requestPage()
 
 const title = 'All books available'
 const description =
@@ -41,15 +41,15 @@ useMetadata({
           :sort="sortOptions"
           paginate
           size
-          :total="paginate?.meta?.total"
+          :total="response?.meta?.total"
         />
       </template>
     </app-header>
-    <entity-list :entities="paginate?.data" type />
+    <entity-list :entities="response?.data" type />
     <pagination
-      v-if="paginate?.meta"
-      :pages="paginate?.meta.last_page"
-      :current="paginate?.meta.current_page"
+      v-if="response?.meta"
+      :pages="response?.meta.last_page"
+      :current="response?.meta.current_page"
     />
   </div>
 </template>

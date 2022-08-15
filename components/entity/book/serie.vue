@@ -10,7 +10,7 @@ const loaded = ref(false)
 
 const load = async () => {
   if (props.book && props.book.serie !== null) {
-    const list = await request<Entity[]>({
+    const response = await request<Entity[]>({
       endpoint: '/series/books',
       params: [
         props.book.volume?.toString(10) as string,
@@ -18,13 +18,13 @@ const load = async () => {
         props.book.serie?.meta.slug
       ]
     })
-      .then((e) => {
-        entities.value = e
-        loaded.value = true
-      })
-      .catch(() => {
-        isAvailable.value = false
-      })
+
+    if (response.success) {
+      entities.value = response.body
+      loaded.value = true
+    } else {
+      isAvailable.value = false
+    }
   }
 }
 

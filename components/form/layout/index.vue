@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import AppButton from '@/components/app/button.vue'
-import SvgIcon from '@/components/svg-icon.vue'
 import { useFormStore } from '~/store/form'
 
 defineProps<{
@@ -14,13 +12,12 @@ const emit = defineEmits<{
 
 const isDev = process.dev
 const store = useFormStore()
-const isLoading = computed(() => store.isLoading)
 
 const fill = () => {
   store.fillData()
 }
-const submit = async () => {
-  store.toggleLoading()
+const submit = () => {
+  store.enableLoading()
   emit('submit', true)
 }
 </script>
@@ -34,9 +31,9 @@ const submit = async () => {
         align="center"
         color="primary"
         class="w-full"
-        :loading="isLoading"
+        :loading="store.isLoading"
       >
-        <span v-if="isLoading">Processing...</span>
+        <span v-if="store.isLoading">Processing...</span>
         <span v-else>{{ title ?? 'Submit' }}</span>
       </app-button>
       <app-button v-if="isDev" type="button" @click="fill">

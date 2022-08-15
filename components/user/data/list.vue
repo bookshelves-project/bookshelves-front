@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
-import UserDataCard from '@/components/user/data/card.vue'
-import UserDataLoading from '@/components/user/data/loading.vue'
-import PaginationLoadMore from '@/components/pagination/load-more.vue'
-
 const props = defineProps<{
   endpoint: ApiEndpoint
   title?: string
@@ -23,16 +18,16 @@ const isLoading = ref(true)
 const emit = defineEmits(['destroy'])
 
 const load = async () => {
-  try {
-    const response = await request<ApiResponse<UserData[]>>({
-      endpoint: props.endpoint,
-      params: [route.params.slug]
-    })
-    meta.value = response?.meta
-    list.value = response?.data
+  const response = await request<ApiResponse<UserData[]>>({
+    endpoint: props.endpoint,
+    params: [route.params.slug]
+  })
+
+  if (response.success) {
+    meta.value = response?.body.meta
+    list.value = response?.body.data
     isLoading.value = false
-  } catch (error) {
-    console.error(error)
+  } else {
     isLoading.value = false
   }
 }

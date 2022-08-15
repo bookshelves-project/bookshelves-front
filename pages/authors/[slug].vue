@@ -29,9 +29,9 @@ const [authorRaw, booksRaw, seriesRaw] = await Promise.all([
   })
 ])
 
-author.value = authorRaw
-books.value = booksRaw
-series.value = seriesRaw
+author.value = authorRaw.body
+books.value = booksRaw.body
+series.value = seriesRaw.body
 title.value = `${author.value?.firstname} ${author.value?.lastname}`
 
 useMetadata({

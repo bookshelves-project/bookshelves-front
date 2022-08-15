@@ -40,12 +40,12 @@ export const useApplicationStore = defineStore('application', {
         endpoint: '/application',
         extractData: true
       })
-      cookie.value = JSON.stringify(response)
+      cookie.value = JSON.stringify(response.body)
 
       this.$patch({
-        headConfig: response?.headConfig,
-        enums: response?.enums,
-        languages: response?.languages,
+        headConfig: response?.body.headConfig,
+        enums: response?.body.enums,
+        languages: response?.body.languages,
         available: true
       })
     },

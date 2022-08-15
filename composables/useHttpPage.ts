@@ -4,27 +4,27 @@
 export const useHttpPage = <T>(
   request: RequestData | ApiEndpoint
 ) => {
-  const paginate = ref<ApiResponse<T[]>>()
   const response = ref<ApiResponse<T>>()
   const route = useRoute()
   const http = useHttp()
 
-  const asyncRequest = async () => {
-    const data = await http.request(request)
-    paginate.value = data as ApiResponse<T[]>
-    response.value = data as ApiResponse<T>
+  const requestPage = async () => {
+    const res = await http.request<ApiResponse<T>>(request)
+
+    if (res.success) {
+      response.value = res.body
+    }
   }
 
   watch(
     () => route.query,
     () => {
-      asyncRequest()
+      requestPage()
     }
   )
 
   return {
-    paginate,
     response,
-    asyncRequest
+    requestPage
   }
 }

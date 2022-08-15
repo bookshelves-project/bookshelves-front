@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { SvgLibrary } from '@/.nuxt/types/svg-library'
 const config = useRuntimeConfig()
 
 const apiUrlBase = (endpoint: string) => {
@@ -6,7 +7,12 @@ const apiUrlBase = (endpoint: string) => {
   return `${config.apiURL}${endpoint}`
 }
 
-const features = [
+const features: {
+  icon: SvgLibrary,
+  label: string,
+  title: string,
+  link: string,
+}[] = [
   {
     icon: 'feature-feed',
     label: 'OPDS',

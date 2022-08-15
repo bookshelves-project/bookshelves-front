@@ -44,6 +44,16 @@ export const useFormStore = defineStore('data', {
 
       return data
     },
+    enableLoading() {
+      this.$patch({
+        isLoading: !this.isLoading
+      })
+    },
+    disableLoading() {
+      this.$patch({
+        isLoading: !this.isLoading
+      })
+    },
     toggleLoading() {
       this.$patch({
         isLoading: !this.isLoading
@@ -52,11 +62,11 @@ export const useFormStore = defineStore('data', {
     async request(
       requestData: RequestData,
       options: {
-        loadingCanEnd?: boolean
+        loadingInfinite?: boolean,
         withToast?: boolean,
         successMsg?: string,
         errorMsg?: string
-      } = { loadingCanEnd: true, withToast: false, successMsg: 'It\'s all works!', errorMsg: 'Oops, an error happened here!' }
+      } = { loadingInfinite: true, withToast: false, successMsg: 'It\'s all works!', errorMsg: 'Oops, an error happened here!' }
     ) {
       const { pushToast } = useToast()
       const { request } = useHttp()
@@ -88,8 +98,8 @@ export const useFormStore = defineStore('data', {
         }
       }
 
-      if (options.loadingCanEnd) {
-        this.toggleLoading()
+      if (!options.loadingInfinite) {
+        this.disableLoading()
       }
 
       return response

@@ -8,7 +8,7 @@ const bookNext = ref<Book>()
 
 const getNext = async () => {
   if (!props.book.serie) { return false }
-  bookNext.value = await request<Book>({
+  const reponse = await request<Book>({
     endpoint: '/series/books',
     params: [
       props.book.meta.author,
@@ -20,6 +20,10 @@ const getNext = async () => {
     },
     extractData: true
   })
+
+  if (reponse.success) {
+    bookNext.value = reponse.body
+  }
 }
 await getNext()
 </script>

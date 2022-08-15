@@ -25,9 +25,9 @@ const tag = ref<Tag>()
 const meta = ref<ApiMeta>()
 const list = ref<Entity[]>()
 
-tag.value = tagRaw
-meta.value = entitiesRaw?.meta
-list.value = entitiesRaw?.data
+tag.value = tagRaw.body
+meta.value = entitiesRaw?.body.meta
+list.value = entitiesRaw?.body.data
 title.value = `Tag ${tag.value?.name}`
 description.value = `Books and series with tag ${tag.value?.name}`
 

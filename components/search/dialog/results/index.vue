@@ -43,7 +43,7 @@ const selectResult = (item:Entity) => {
                     @click="selectResult(item)"
                   >
                     <div class="flex items-center">
-                      <app-img :src="item.media?.url" :alt="item.media?.name" :color="item.media?.color" class="h-6 w-6 flex-none rounded-full object-cover" />
+                      <app-img :src="item.media?.url" :alt="item.media?.name" :color="item.media?.color" class="h-10 w-10 flex-none rounded-full object-cover" />
                       <div class="ml-3">
                         <span class="block line-clamp-1">{{ item.title }}</span>
                         <span class="block line-clamp-1 text-sm text-gray-500 dark:text-gray-400 italic space-x-1">

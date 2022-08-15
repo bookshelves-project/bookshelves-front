@@ -1,24 +1,24 @@
 <script lang="ts" setup>
-const { asyncRequest, paginate } = useHttpPage<Tag>({
+const { requestPage, response } = useHttpPage<Tag[]>({
   endpoint: '/tags',
   query: {
     'filter[negligible]': false,
     full: true
   }
 })
-await asyncRequest()
+await requestPage()
 
 const tags = ref<Tag[]>()
 const genres = ref<Tag[]>()
 
 const setTags = () => {
-  genres.value = paginate.value?.data.filter(tag => tag.type === 'genre')
-  tags.value = paginate.value?.data.filter(tag => tag.type === 'tag')
+  genres.value = response.value?.data.filter(tag => tag.type === 'genre')
+  tags.value = response.value?.data.filter(tag => tag.type === 'tag')
 }
 setTags()
 
 watch(
-  () => paginate.value,
+  () => response.value,
   () => setTags()
 )
 
@@ -35,7 +35,7 @@ useMetadata({
   <div class="main-content">
     <app-header :title="title" :subtitle="description">
       <template #filters>
-        <filters negligible :total="paginate?.data.length" />
+        <filters negligible :total="response?.data.length" />
       </template>
     </app-header>
     <div v-if="genres" class="mb-10">

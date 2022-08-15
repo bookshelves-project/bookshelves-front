@@ -2,14 +2,14 @@
 const route = useRoute()
 const { formatAuthors } = useEntityMethods()
 
-const { asyncRequest, response } = useHttpPage<Book>({
+const { requestPage, response } = useHttpPage<Book>({
   endpoint: '/books',
   params: [
     route.params.author,
     route.params.slug
   ]
 })
-await asyncRequest()
+await requestPage()
 
 const book = ref<Book>()
 const title = ref<string>('')
@@ -24,9 +24,9 @@ if (response.value) {
   title.value = `${book.value.title} (${book.value.type}) ${serie}by ${authors}`
 
   const serieBreadcrumb = book.value.serie
-    ? `, ${book.value.serie.title} (vol. ${book.value.volume})`
+    ? `, ${book.value.serie.title}, vol. ${book.value.volume}`
     : ''
-  breadcrumb.value = `${book.value.title} (${book.value.type})${serieBreadcrumb}`
+  breadcrumb.value = `${book.value.title}${serieBreadcrumb}`
 }
 
 // const authors = this.formatAuthors(this.book.authors)

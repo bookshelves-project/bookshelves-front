@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import FormLayout from '@/components/form/layout/index.vue'
-import FieldText from '@/components/field/text.vue'
-import FieldSelect from '@/components/field/select.vue'
-import FieldCheckbox from '@/components/field/checkbox.vue'
 import { useFormStore } from '~~/store/form'
 import { useApplicationStore } from '~~/store/application'
 
@@ -45,7 +41,6 @@ const submit = async () => {
     withToast: true,
     successMsg: 'Your message has been sent.'
   })
-  console.log(res)
 }
 </script>
 

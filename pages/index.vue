@@ -14,8 +14,10 @@ if (!objectIsEmpty(store.homePage)) {
     endpoint: '/cms/home-page',
     extractData: true
   })
-  store.setHomePage(response)
-  homePage.value = response
+  if (response.success) {
+    store.setHomePage(response.body)
+    homePage.value = response.body
+  }
 }
 
 const selection: SelectedEntities = {

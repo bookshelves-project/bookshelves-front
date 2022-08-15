@@ -7,6 +7,7 @@ const layer = ref(false)
 const overlay = ref(false)
 const target = ref(null)
 
+const config = useRuntimeConfig()
 const navigation = useNavigationStore()
 
 watch(
@@ -82,14 +83,14 @@ const logout = () => {
           active-class="active-logo"
         >
           <span class="inline-flex items-center" @click="closeSidebar">
-            <!-- <img
+            <img
               class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
               src="/icon.svg"
-              :alt="`${$config.appName} logo`"
-            /> -->
-            <!-- <div class="mt-2 ml-3 text-2xl font-handlee dark:text-gray-100">
-              {{ $config.appName }}
-            </div> -->
+              :alt="`${config.public.appName} logo`"
+            >
+            <div class="mt-2 ml-3 text-2xl font-handlee dark:text-gray-100">
+              {{ config.public.appName }}
+            </div>
           </span>
         </router-link>
       </div>
@@ -117,12 +118,12 @@ const logout = () => {
             </router-link>
           </div>
           <div class="mt-8">
-            <h3
+            <!-- <h3
               id="teams-headline"
               class="px-3 text-xs font-semibold uppercase tracking-wider text-gray-500"
             >
               Authentification
-            </h3>
+            </h3> -->
             <div
               class="mt-3 space-y-1"
               role="group"
