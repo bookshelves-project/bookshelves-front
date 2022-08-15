@@ -6,19 +6,18 @@ defineProps<{
 
 <template>
   <div v-if="book && book.meta" class="dark:text-white">
-    <app-button
-      size="sm"
-      color="white"
-      :to="{
+    <nuxt-link
+      :to="$localePath({
         name: 'books-author-slug',
         params: {
           author: book.meta.author,
           slug: book.meta.slug,
         },
-      }"
+      })"
+      class="link-macos"
     >
       {{ book.title }}
       <slot />
-    </app-button>
+    </nuxt-link>
   </div>
 </template>

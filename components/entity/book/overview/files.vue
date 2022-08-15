@@ -49,14 +49,14 @@ const list = computed((): DownloadList => {
               </div>
               <a
                 :href="file?.reader"
-                class="font-medium text-primary-600 dark:text-primary-500 hover:bg-gray-100 py-1 px-2 rounded-md dark:hover:bg-gray-800"
+                class="link-macos"
                 target="_blank"
               >
                 Read
               </a>
               <a
                 :href="file?.url"
-                class="font-medium text-primary-600 dark:text-primary-500 hover:bg-gray-100 py-1 px-2 rounded-md dark:hover:bg-gray-800"
+                class="link-macos"
                 download
               >
                 Download
