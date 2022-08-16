@@ -1,7 +1,7 @@
 declare interface RouteLink {
   label: string
   icon?: import('@/.nuxt/types/svg-library').SvgLibrary
-  route: Route
+  route: TypedRoute
 }
 declare interface FooterColumn {
   title: string

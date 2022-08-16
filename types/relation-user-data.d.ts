@@ -1,6 +1,6 @@
 declare interface UserDataMeta {
   type: string
-  for: string
+  entity: 'author' | 'book' | 'serie'
   author: string
   slug: string
 }
@@ -15,7 +15,7 @@ declare interface UserData {
   updatedAt?: Date
 }
 
-declare interface Favoritable extends UserData {}
+declare interface Favoritable extends UserData { }
 
 declare interface Review extends UserData {
   id: number

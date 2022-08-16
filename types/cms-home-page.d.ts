@@ -38,7 +38,7 @@ declare interface CmsHighlight {
   title?: string
   text?: string
   ctaText?: string
-  ctaLink?: object
+  ctaLink?: TypedRoute
   quoteText?: string
   quoteAuthor?: string
   icon?: string
