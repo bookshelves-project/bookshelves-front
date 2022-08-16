@@ -32,11 +32,11 @@ useMetadata({
 
 <template>
   <div class="main-content">
-    <app-header :title="title" :subtitle="description">
+    <layout-header :title="title" :subtitle="description">
       <template #filters>
         <filters negligible :total="response?.data.length" />
       </template>
-    </app-header>
+    </layout-header>
     <div v-if="genres" class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">
         Genres

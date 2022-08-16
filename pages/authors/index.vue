@@ -29,7 +29,7 @@ useMetadata({
 
 <template>
   <div class="main-content">
-    <app-header :title="title" :subtitle="description">
+    <layout-header :title="title" :subtitle="description">
       <template #filters>
         <filters
           :sort="sortOptions"
@@ -38,7 +38,7 @@ useMetadata({
           :total="response?.meta?.total"
         />
       </template>
-    </app-header>
+    </layout-header>
     <entity-list :entities="response?.data" type />
     <pagination
       v-if="response?.meta"

@@ -33,8 +33,8 @@ defineProps<{
     </div>
     <div class="mt-2 h-full min-w-0 flex-1">
       <component
-        :is="entity.route ? 'router-link' : 'span'"
-        :to="entity.route ? $localePath(entity.route) : '/'"
+        :is="entity.route ? 'app-link' : 'span'"
+        :to="entity.route ? entity.route : { name: 'index' }"
         class="text-black focus:outline-none dark:text-gray-100"
       >
         <span class="absolute inset-0" aria-hidden="true" />

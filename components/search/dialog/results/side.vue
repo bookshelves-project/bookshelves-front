@@ -7,6 +7,7 @@ defineProps<{
 
 const { formatAuthors } = useEntityMethods()
 const searchStore = useSearchStore()
+const { getDynamicRoute } = useEntityMethods()
 </script>
 
 <template>
@@ -23,16 +24,7 @@ const searchStore = useSearchStore()
       </div>
       <div class="justify-between px-6">
         <app-button
-          :to="$localePath({
-            name:
-              selected.meta.entity === 'author'
-                ? `authors-slug`
-                : `${selected.meta.entity}s-author-slug`,
-            params: {
-              author: selected.meta.author,
-              slug: selected.meta.slug,
-            },
-          })"
+          :to="getDynamicRoute(selected)"
           align="center"
           full
           @click="searchStore.closeDialog()"

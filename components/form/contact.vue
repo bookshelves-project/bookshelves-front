@@ -3,7 +3,6 @@ import { useFormStore } from '~~/store/form'
 import { useApplicationStore } from '~~/store/application'
 
 const { enums } = useApplicationStore()
-const { stringRandom } = useTools()
 
 const config = useRuntimeConfig()
 const data = ref({
@@ -33,7 +32,7 @@ const submit = async () => {
   // const { sanctum } = useHttp()
   // await sanctum()
 
-  const res = await store.request({
+  await store.request({
     endpoint: '/submission/send',
     method: 'POST',
     body: data.value

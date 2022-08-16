@@ -21,7 +21,7 @@ watch(
   }
 )
 
-onClickOutside(target, (event) => {
+onClickOutside(target, () => {
   closeSidebar()
 })
 
@@ -41,10 +41,10 @@ const closeSidebar = () => {
 
   navigation.closeSidebar()
 }
-const logout = () => {
-  // closeSidebar()
-  // ctx.$auth.logout()
-}
+// const logout = () => {
+// closeSidebar()
+// ctx.$auth.logout()
+// }
 </script>
 
 <template>
@@ -77,8 +77,10 @@ const logout = () => {
         </button>
       </div>
       <div class="flex flex-shrink-0 items-center px-4">
-        <router-link
-          to="/"
+        <app-link
+          :to="{
+            name: 'index'
+          }"
           class="inline-flex h-8 w-auto items-center"
           active-class="active-logo"
         >
@@ -92,30 +94,36 @@ const logout = () => {
               {{ config.public.appName }}
             </div>
           </span>
-        </router-link>
+        </app-link>
       </div>
       <div class="mt-5 h-0 flex-1 overflow-y-auto">
         <nav class="px-2">
           <div class="space-y-1">
-            <router-link to="/" class="link group" active-class="active-logo">
+            <app-link
+              :to="{
+                name: 'index'
+              }"
+              class="link group"
+              active-class="active-logo"
+            >
               <span
                 class="w-full px-2 py-4 font-semibold"
                 @click="closeSidebar"
               >
                 Home
               </span>
-            </router-link>
-            <router-link
+            </app-link>
+            <app-link
               v-for="(link, id) in navigation.main"
               :key="id"
-              :to="$localePath(link.route)"
+              :to="link.route"
               class="link group"
             >
               <span
                 class="w-full px-2 py-4 font-semibold"
                 @click="closeSidebar"
               >{{ $t(`nav.${link.label}`) }}</span>
-            </router-link>
+            </app-link>
           </div>
           <div class="mt-8">
             <!-- <h3
@@ -130,10 +138,10 @@ const logout = () => {
               aria-labelledby="teams-headline"
             >
               <!-- <div v-if="$auth.$state.loggedIn" class="space-y-2">
-                <router-link
+                <app-link
                   v-for="(link, id) in navigation.auth"
                   :key="id"
-                  :to="$localePath(link.route)"
+                  :to="link.route"
                   class="link group"
                   role="menuitem"
                 >
@@ -147,7 +155,7 @@ const logout = () => {
                     ></span>
                     <span>{{ link.label }}</span>
                   </span>
-                </router-link>
+                </app-link>
                 <button
                   class="link group w-full px-3 py-4"
                   type="button"
@@ -162,10 +170,10 @@ const logout = () => {
                 </button>
               </div>
               <div v-else class="space-y-2">
-                <router-link
+                <app-link
                   v-for="(link, id) in navigation.guest"
                   :key="id"
-                  :to="$localePath(link.route)"
+                  :to="link.route"
                   class="link group"
                   role="menuitem"
                 >
@@ -175,7 +183,7 @@ const logout = () => {
                   >
                     <span>{{ link.label }}</span>
                   </span>
-                </router-link>
+                </app-link>
               </div> -->
             </div>
           </div>
@@ -193,7 +201,7 @@ const logout = () => {
 .link {
   @apply flex items-center rounded-md text-base font-medium leading-5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700;
 }
-.router-link-active {
+.app-link-active {
   @apply bg-gray-200 text-black dark:bg-gray-600 dark:text-white;
 }
 </style>

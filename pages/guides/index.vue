@@ -12,7 +12,7 @@ useMetadata({
 
 <template>
   <main class="main-content">
-    <app-header :title="title" :subtitle="description" />
+    <layout-header :title="title" :subtitle="description" />
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
       <relation-post-card
         v-for="post in response?.data"

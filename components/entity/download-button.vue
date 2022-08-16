@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import AppButtonGroup from '@/components/app/button-group.vue'
-import SvgIcon from '@/components/svg-icon.vue'
-
 const props = defineProps<{
   download?: DownloadFile
   files?: DownloadList
@@ -13,6 +10,7 @@ const formats = ref<DownloadFile[]>()
 const getOtherFormats = () => {
   if (props.files) {
     const list: DownloadFile[] = []
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     Object.entries(props.files).forEach(([key, value]) => {
       const file: DownloadFile = value
       if (file && file?.format !== props.download?.format) {

@@ -12,7 +12,7 @@ const toggle = () => {
   isOpen.value = !isOpen.value
 }
 
-onClickOutside(target, event => (isOpen.value = false))
+onClickOutside(target, () => (isOpen.value = false))
 </script>
 
 <template>

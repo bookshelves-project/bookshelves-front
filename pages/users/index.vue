@@ -14,12 +14,12 @@ useMetadata({
 </script>
 <template>
   <main class="main-content">
-    <app-header :title="title" :subtitle="subtitle" />
+    <layout-header :title="title" :subtitle="subtitle" />
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-      <nuxt-link
+      <app-link
         v-for="user in users"
         :key="user.id"
-        :to="$localePath({ name: 'users-slug', params: { slug: user.slug } })"
+        :to="{ name: 'users-slug', params: { slug: user.slug } }"
         class="relative rounded-lg border border-gray-300 dark:border-gray-600 bg-white hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500"
       >
         <div class="shrink-0">
@@ -38,7 +38,7 @@ useMetadata({
             Reviews: {{ user.reviews_count }}
           </p>
         </div>
-      </nuxt-link>
+      </app-link>
     </div>
   </main>
 </template>

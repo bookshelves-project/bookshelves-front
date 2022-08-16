@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { params } = useRoute()
+const route = useRoute()
 
 definePageMeta({
   middleware(to) {
@@ -21,13 +21,11 @@ definePageMeta({
 
 <template>
   <app-redirection
-    :to="
-      $localePath({
-        name: 'authors-slug',
-        params: {
-          slug: params.author,
-        },
-      })
-    "
+    :to="{
+      name: 'authors-slug',
+      params: {
+        slug: route.params.author as string,
+      },
+    }"
   />
 </template>

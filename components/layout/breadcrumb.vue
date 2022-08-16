@@ -5,7 +5,7 @@ const props = defineProps<{
 
 interface Crumb {
   title: string
-  route?: object
+  route?: TypedRoute
 }
 
 const crumbs = ref<Crumb[]>([])
@@ -79,14 +79,14 @@ crumbs.value = getCrumbsList.value
     <ol role="list" class="flex flex-wrap items-center space-x-2">
       <li>
         <div>
-          <router-link :to="$localePath({ name: 'index' })">
+          <app-link :to="{ name: 'index' }">
             <svg-icon
               name="home"
               class="h-5 w-5 shrink-0 text-gray-400 transition-colors duration-100 hover:text-gray-500"
               aria-hidden="true"
             />
             <span class="sr-only">Home</span>
-          </router-link>
+          </app-link>
         </div>
       </li>
 
@@ -97,8 +97,8 @@ crumbs.value = getCrumbsList.value
             class="h-5 w-5 shrink-0 text-gray-300"
           />
           <component
-            :is="id >= crumbs.length - 1 ? 'span' : 'router-link'"
-            :to="$localePath(crumb.route)"
+            :is="id >= crumbs.length - 1 ? 'span' : 'app-link'"
+            :to="crumb.route"
             class="ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400"
             :class="
               id >= crumbs.length - 1

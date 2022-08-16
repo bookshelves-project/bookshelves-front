@@ -17,15 +17,13 @@ defineProps<{
       :key="authorId"
       class="flex md:contents max-w-max"
     >
-      <router-link
-        :to="
-          $localePath({
-            name: 'authors-slug',
-            params: { slug: author.meta.slug },
-          })
-        "
+      <app-link
+        :to="{
+          name: 'authors-slug',
+          params: { slug: author.meta.slug },
+        }"
         class="ml-1 internal-link"
-      >{{ author.name }}</router-link>
+      >{{ author.name }}</app-link>
       <span
         v-if="
           authors.length > 1 &&

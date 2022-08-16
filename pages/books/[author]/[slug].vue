@@ -47,7 +47,7 @@ useMetadata({
 
 <template>
   <main v-if="book" class="main-content">
-    <app-header
+    <layout-header
       :title="book.title"
       :image="book.media?.url"
       :color="book.media?.color"
@@ -71,7 +71,7 @@ useMetadata({
           </div>
         </div>
       </template>
-    </app-header>
+    </layout-header>
     <entity-book-overview :book="book" class="mb-6" />
   </main>
 </template>

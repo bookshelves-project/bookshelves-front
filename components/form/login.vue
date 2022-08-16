@@ -64,12 +64,12 @@ const submit = async () => {
         label="Remember me"
       />
       <div class="mt-6 text-sm md:mt-0">
-        <router-link
-          :to="$localePath({ name: 'sign-in-forgot-password' })"
+        <app-link
+          :to="{ name: 'sign-in-forgot-password' }"
           class="font-medium text-primary-600 dark:text-primary-500 hover:text-primary-400 hover:underline"
         >
           Forgot your password?
-        </router-link>
+        </app-link>
       </div>
     </div>
   </form-layout>

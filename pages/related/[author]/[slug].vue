@@ -60,7 +60,7 @@ useMetadata({
 
 <template>
   <main class="main-content">
-    <app-header v-if="book" :title="title" :subtitle="description" :crumbs="crumbs" />
+    <layout-header v-if="book" :title="title" :subtitle="description" :crumbs="crumbs" />
     <entity-list
       v-if="entities?.data"
       :entities="entities?.data"

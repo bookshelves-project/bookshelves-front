@@ -4,6 +4,7 @@ defineProps<{
   deletable: boolean
 }>()
 
+const { getDynamicRoute } = useEntityMethods()
 const { date } = useDate()
 const emit = defineEmits(['destroy'])
 
@@ -14,19 +15,8 @@ const destroy = (data: Favoritable | Review) => {
 
 <template>
   <li v-if="data.meta" class="relative bg-white dark:bg-gray-800 flex">
-    <nuxt-link
-      :to="
-        $localePath({
-          name:
-            data.meta.for === 'author'
-              ? `authors-slug`
-              : `${data.meta.for}s-author-slug`,
-          params: {
-            author: data.meta.author,
-            slug: data.meta.slug,
-          },
-        })
-      "
+    <app-link
+      :to="getDynamicRoute(data)"
       :title="data.title"
       :aria-label="data.title"
       class="flex items-center w-full py-5 pl-4 pr-3 space-x-6 hover:bg-gray-50 dark:hover:bg-gray-700 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-600 overflow-x-hidden"
@@ -50,7 +40,7 @@ const destroy = (data: Favoritable | Review) => {
                 {{ data.title }}
               </div>
               <div class="text-sm text-gray-500 truncate dark:text-gray-400 capitalize">
-                {{ data.meta.for }}
+                {{ data.meta.entity }}
               </div>
             </div>
           </div>
@@ -67,7 +57,7 @@ const destroy = (data: Favoritable | Review) => {
           </div>
         </div>
       </div>
-    </nuxt-link>
+    </app-link>
     <button
       v-if="deletable"
       type="button"

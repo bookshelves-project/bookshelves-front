@@ -7,7 +7,7 @@ const form = ref({
 const config = useRuntimeConfig()
 
 const loggedIn = ref(false)
-const emit = defineEmits(['refresh'])
+// const emit = defineEmits(['refresh'])
 
 const submit = async () => {
   // const { name, params } = useRoute()

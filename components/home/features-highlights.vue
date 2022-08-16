@@ -45,7 +45,7 @@ defineProps<{
             </div>
             <app-button
               :color="`white`"
-              :to="$localePath(highlight.ctaLink || '/')"
+              :to="highlight.ctaLink || { name: 'index' }"
               class="mt-6"
             >
               {{ highlight.ctaText }}

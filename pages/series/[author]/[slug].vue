@@ -53,7 +53,7 @@ useMetadata({
 
 <template>
   <main v-if="serie" class="main-content">
-    <app-header
+    <layout-header
       :title="serie.title"
       :image="serie.media?.url"
       :color="serie.media?.color"
@@ -79,7 +79,7 @@ useMetadata({
       <template #content>
         <entity-tags-links :tags="serie.tags" />
       </template>
-    </app-header>
+    </layout-header>
     <div v-if="books && books.data?.length && books.meta">
       <app-divider> {{ serie.count }} Books </app-divider>
       <entity-list v-if="booksList?.length" :entities="booksList" type />

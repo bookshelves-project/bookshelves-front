@@ -7,6 +7,7 @@ const list = computed((): DownloadList => {
   let filtered = {}
   if (props.files) {
     filtered = Object.fromEntries(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       Object.entries(props.files).filter(([key, file]) => file !== null)
     )
     filtered = Object.values(filtered).reverse()

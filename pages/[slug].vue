@@ -21,7 +21,7 @@ useMetadata({
 
 <template>
   <main v-if="page" class="main-content">
-    <app-header
+    <layout-header
       :title="page.title"
       :text="page.summary"
       :image="page.cover"

@@ -47,8 +47,8 @@ const logout = () => {}
         <div>
           <div v-if="loggedIn">
             <span v-for="(link, id) in auth" :key="id">
-              <router-link
-                :to="$localePath(link.route)"
+              <app-link
+                :to="link.route"
                 class="link"
                 role="menuitem"
               >
@@ -56,7 +56,7 @@ const logout = () => {}
                   <svg-icon :name="link.icon" class="mr-1 h-5 w-5" />
                   {{ link.label }}
                 </span>
-              </router-link>
+              </app-link>
             </span>
             <hr class="border-gray-200 dark:border-gray-600">
             <button
@@ -72,15 +72,15 @@ const logout = () => {}
             </button>
           </div>
           <div v-else>
-            <router-link
+            <app-link
               v-for="(link, id) in guest"
               :key="id"
-              :to="$localePath(link.route)"
+              :to="link.route"
               class="link"
               role="menuitem"
             >
               <span>{{ link.label }}</span>
-            </router-link>
+            </app-link>
           </div>
         </div>
       </template>

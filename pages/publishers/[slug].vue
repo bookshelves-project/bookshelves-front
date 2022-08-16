@@ -42,7 +42,7 @@ useMetadata({
 
 <template>
   <div class="main-content">
-    <app-header :title="publisher?.name" />
+    <layout-header :title="publisher?.name" />
     <div>
       <entity-list :entities="list" type />
       <div v-if="meta" class="mt-14 mb-5">

@@ -10,11 +10,11 @@ const data = ref({
   password: '',
   password_confirmation: ''
 })
-const test = ref({
-  // email: `${randomString(6).toLowerCase()}@mail.com`,
-  password: 'password',
-  password_confirmation: 'password'
-})
+// const test = ref({
+//   // email: `${randomString(6).toLowerCase()}@mail.com`,
+//   password: 'password',
+//   password_confirmation: 'password'
+// })
 // const errors = ref({
 //   email: '',
 //   password: '',

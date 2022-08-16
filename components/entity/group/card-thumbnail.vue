@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import EntityAuthorsLinks from '@/components/entity/authors-links.vue'
-import AppImg from '@/components/app/img.vue'
-import AppButton from '@/components/app/button.vue'
-
 defineProps<{
   entity?: Entity
 }>()
+
+const { getDynamicRoute } = useEntityMethods()
+
 </script>
 
 <template>
@@ -43,15 +42,7 @@ defineProps<{
         <app-button
           v-if="$route.params.slug !== entity.meta.slug"
           :color="`white`"
-          :to="
-            $localePath({
-              name: `${entity.meta.entity}s-author-slug`,
-              params: {
-                author: entity.meta.author,
-                slug: entity.meta.slug,
-              },
-            })
-          "
+          :to="getDynamicRoute(entity)"
         >
           Refer to {{ entity.meta.entity }}
         </app-button>

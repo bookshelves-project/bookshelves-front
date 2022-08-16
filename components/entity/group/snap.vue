@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import EntityCard from '@/components/entity/card.vue'
-
 const props = defineProps<{
   selection: SelectedEntities
   right?: boolean
@@ -16,7 +14,7 @@ const { getData, isAvailable, isLoading, slides } = useEntityGroup(
 
 watch(
   () => isAvailable.value,
-  (newVal) => {
+  () => {
     emit('success', isAvailable.value)
   }
 )

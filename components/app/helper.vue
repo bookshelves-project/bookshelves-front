@@ -25,7 +25,6 @@ const getRoutes = () => {
     })
     console.warn('------------')
     // console.log('i18n is enabled!')
-    // console.log('You have to set your routes with $localePath().')
   }
 
   const { pushToast } = useToast()

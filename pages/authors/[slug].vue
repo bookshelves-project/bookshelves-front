@@ -46,7 +46,7 @@ useMetadata({
 
 <template>
   <main v-if="author" class="main-content">
-    <app-header
+    <layout-header
       :title="author.name"
       :image="author.media?.url"
       :subtitle="`${author.count?.books} books`"
@@ -57,7 +57,7 @@ useMetadata({
       favorite
     >
       <entity-download-button :download="author.download" :files="author.files" />
-    </app-header>
+    </layout-header>
     <div>
       <entity-block
         :entities="series"

@@ -11,5 +11,9 @@ definePageMeta({
 </script>
 
 <template>
-  <app-redirection :to="$localePath('/')" />
+  <app-redirection
+    :to="{
+      name: 'index'
+    }"
+  />
 </template>

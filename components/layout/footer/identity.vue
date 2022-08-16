@@ -43,8 +43,10 @@ const features: {
 <template>
   <div class="space-y-8 xl:col-span-1">
     <div v-if="config.appName" class="items-center space-x-6 flex">
-      <router-link
-        :to="$localePath('/')"
+      <app-link
+        :to="{
+          name: 'index'
+        }"
         class="group flex w-max items-center lg:mx-0"
       >
         <svg-icon
@@ -56,7 +58,7 @@ const features: {
         >
           {{ config.appName }}
         </div>
-      </router-link>
+      </app-link>
       <layout-option-color-mode />
     </div>
     <div class="text-base text-gray-500">

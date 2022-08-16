@@ -34,25 +34,27 @@ const toggleSidebar = () => {
                 </svg>
               </button>
             </div>
-            <router-link
-              :to="$localePath('/')"
+            <app-link
+              :to="{
+                name: 'index'
+              }"
               class="ml-2 hidden lg:flex shrink-0 rounded-md p-2 transition-colors duration-75 hover:bg-gray-100 dark:hover:bg-gray-700"
             >
               <img class="m-auto block h-8 w-8" src="/icon.png" :alt="config.appName">
-            </router-link>
+            </app-link>
             <div class="hidden h-full lg:ml-4 lg:block">
               <div class="flex h-full space-x-6">
-                <router-link
+                <app-link
                   v-for="(link, id) in navigation.main"
                   :key="id"
-                  :to="$localePath(link.route)"
+                  :to="link.route"
                   class="focus-link inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-semibold text-gray-400 outline-none transition-colors duration-100 hover:border-gray-300 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
                   aria-current="page"
                 >
                   <span class="font-semibold">
                     {{ $t(`nav.${link.label}`) }}
                   </span>
-                </router-link>
+                </app-link>
               </div>
             </div>
           </div>
@@ -69,7 +71,7 @@ const toggleSidebar = () => {
 </template>
 
 <style lang="css" scoped>
-.router-link-active {
+.app-link-active {
   @apply border-primary-500 text-primary-500 dark:border-white dark:text-gray-100;
 }
 

@@ -2,10 +2,10 @@
 const props = defineProps<{
   count: number
   items?: Tag[] | Language[]
-  route?: Route
+  to?:TypedRoute
 }>()
 
-const { color, getRoute, percent } = useRelation(props.route)
+const { color, getRoute, percent } = useRelation(props.to)
 </script>
 
 <template>
@@ -15,8 +15,8 @@ const { color, getRoute, percent } = useRelation(props.route)
     class="mt-3 grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"
   >
     <li v-for="item in items" :key="item.meta.slug">
-      <router-link
-        :to="$localePath(getRoute(item))"
+      <app-link
+        :to="getRoute(item)"
         class="col-span-1 flex shadow-sm rounded-md group"
       >
         <div
@@ -37,7 +37,7 @@ const { color, getRoute, percent } = useRelation(props.route)
             </p>
           </div>
         </div>
-      </router-link>
+      </app-link>
     </li>
   </transition-group>
 </template>

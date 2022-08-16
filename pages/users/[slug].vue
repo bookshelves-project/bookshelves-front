@@ -23,7 +23,7 @@ useMetadata({
 
 <template>
   <main class="main-content">
-    <app-header
+    <layout-header
       v-if="user"
       :title="title"
       :subtitle="user.slug"

@@ -9,8 +9,8 @@ interface Props {
   text?: string
   type?: string
   authors?: Author[]
-  favorite?: boolean
-  entity?: Entity | Author
+  // favorite?: boolean
+  // entity?: Entity | Author
   color?: string
   crumbs?: string[]
 }
@@ -24,8 +24,8 @@ const {
   text,
   type,
   authors,
-  favorite = false,
-  entity,
+  // favorite = false,
+  // entity,
   color = '#ffffff'
 } = defineProps<Props>()
 

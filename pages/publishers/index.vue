@@ -18,11 +18,11 @@ useMetadata({
 
 <template>
   <main class="main-content">
-    <app-header :title="title" :subtitle="description">
+    <layout-header :title="title" :subtitle="description">
       <template #filters>
         <filters negligible :total="response?.data.length" />
       </template>
-    </app-header>
+    </layout-header>
     <relation-list
       :entities="response?.data"
       name="publishers"

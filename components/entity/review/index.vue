@@ -31,6 +31,7 @@ const avg = computed(() => {
   return avg
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const refresh = async (slug: string) => {
   // try {
   //   const entity = this.$route.name.split('-')[0].slice(0, -1)

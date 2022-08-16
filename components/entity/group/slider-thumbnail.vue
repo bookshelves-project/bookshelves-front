@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination, Navigation, FreeMode, Thumbs } from 'swiper'
 import { Swiper as SwiperInterface } from 'swiper/types'
-import SvgIcon from '@/components/svg-icon.vue'
-import EntitySliderCardThumbnail from '@/components/entity/group/slider-thumbnail.vue'
-import AppImg from '@/components/app/img.vue'
-import AppButton from '@/components/app/button.vue'
 
 const props = defineProps<{
   entities?: Entity[]
   loaded: boolean
-  route: Route
+  route: TypedRoute
 }>()
 
 const isLoaded = ref(false)

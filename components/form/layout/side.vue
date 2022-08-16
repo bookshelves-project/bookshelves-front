@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import AppImg from '@/components/app/img.vue'
-import LayoutBreadcrumb from '@/components/layout/breadcrumb.vue'
-
 defineProps<{
   title: string
   reverse?: boolean
   cta?: string
-  ctaRoute?: Route
+  ctaRoute?: TypedRoute
   image?: string
   breadcrumb?: string
 }>()
@@ -99,12 +96,12 @@ defineProps<{
               />
             </div>
             <div class="relative flex justify-center text-sm">
-              <router-link
-                :to="$localePath(ctaRoute)"
+              <app-link
+                :to="ctaRoute"
                 class="bg-white px-2 text-gray-500 hover:text-gray-800 dark:text-gray-300 dark:bg-gray-900"
               >
                 {{ cta }}
-              </router-link>
+              </app-link>
             </div>
           </div>
           <div class="mt-8">

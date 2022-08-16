@@ -13,7 +13,7 @@ useMetadata({
 
 <template>
   <main class="main-content">
-    <app-header :title="title" :subtitle="description" />
+    <layout-header :title="title" :subtitle="description" />
     <relation-list
       :entities="response?.data"
       name="languages"

@@ -7,7 +7,7 @@ interface Props {
   align?: 'left' | 'center' | 'right'
   size?: 'sm' | 'md' | 'lg'
   href?: string
-  to?: string | object
+  to?: TypedRoute
   disabled?: boolean
   download?: boolean
   icon?: SvgLibrary
@@ -40,7 +40,7 @@ if (props.href) {
   tag.value = 'a'
 }
 if (props.to) {
-  tag.value = 'router-link'
+  tag.value = 'app-link'
 }
 
 const alignment = computed((): string => {
@@ -69,7 +69,7 @@ onMounted(() => {
   <component
     :is="tag"
     ref="btn"
-    :to="to !== undefined ? $localePath(to) : null"
+    :to="to !== undefined ? to : null"
     :target="href ? (download ? '' : '_blank') : null"
     :rel="href ? 'noopener noreferrer' : null"
     :class="[color, { disabled: disabled }, size, {'w-full': full}]"

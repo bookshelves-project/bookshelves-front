@@ -8,9 +8,9 @@
 const data = ref({
   email: ''
 })
-const test = ref({
-  email: 'admin@mail.com'
-})
+// const test = ref({
+//   email: 'admin@mail.com'
+// })
 
 // store.init(form, test)
 // store.setButton('Get new password')

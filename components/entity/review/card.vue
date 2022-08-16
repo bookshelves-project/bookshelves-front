@@ -5,17 +5,18 @@ defineProps<{
 
 const rc = useRuntimeConfig()
 const { calExactTimeDiff } = useDate()
-const emit = defineEmits(['destroy'])
+// const emit = defineEmits(['destroy'])
 
 const overflow = ref(true)
-const auth = ref(false)
+// const auth = ref(false)
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const toggleFullReview = (review: Review) => {
   overflow.value = !overflow.value
 }
-const deleteReview = (id: number) => {
-  emit('destroy', id)
-}
+// const deleteReview = (id: number) => {
+//   emit('destroy', id)
+// }
 </script>
 
 <template>
@@ -29,19 +30,17 @@ const deleteReview = (id: number) => {
       />
     </div>
     <div class="flex-1 py-6">
-      <router-link
-        :to="
-          $localePath({
-            name: 'users-slug',
-            params: {
-              slug: review.user.slug,
-            },
-          })
-        "
+      <app-link
+        :to="{
+          name: 'users-slug',
+          params: {
+            slug: review.user.slug,
+          },
+        }"
         class="font-medium text-gray-900 dark:text-gray-100 internal-link"
       >
         {{ review.user?.name }}
-      </router-link>
+      </app-link>
       <div>
         <span class="font-medium text-gray">Posted from {{ calExactTimeDiff(review.createdAt) }}</span>
         <span

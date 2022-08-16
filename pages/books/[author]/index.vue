@@ -21,13 +21,11 @@ definePageMeta({
 
 <template>
   <app-redirection
-    :to="
-      $localePath({
-        name: 'authors-slug',
-        params: {
-          slug: route.params.author,
-        },
-      })
-    "
+    :to="{
+      name: 'authors-slug',
+      params: {
+        slug: route.params.author,
+      },
+    }"
   />
 </template>
