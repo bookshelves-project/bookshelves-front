@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="authors && authors.length">
+  <div v-if="authors && authors.length" class="flex items-center">
     <span v-if="!short">
       <span v-if="lowercase">by </span>
       <span v-else>By </span>
@@ -15,7 +15,7 @@ defineProps<{
     <span
       v-for="(author, authorId) in authors"
       :key="authorId"
-      class="mr-1 flex md:contents max-w-max"
+      class="flex md:contents max-w-max"
     >
       <router-link
         :to="
@@ -24,7 +24,7 @@ defineProps<{
             params: { slug: author.meta.slug },
           })
         "
-        class="internal-link"
+        class="ml-1 internal-link"
       >{{ author.name }}</router-link>
       <span
         v-if="

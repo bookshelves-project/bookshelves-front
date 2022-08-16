@@ -67,7 +67,7 @@ onMounted(() => {
 
 <template>
   <div class="relative">
-    <div @click="toggle()">
+    <div class="cursor-pointer" @click="toggle()">
       <slot name="trigger" />
     </div>
     <div v-if="opened">

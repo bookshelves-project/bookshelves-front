@@ -29,7 +29,7 @@ await getNext()
 </script>
 
 <template>
-  <div class="mt-4 lg:mt-0 lg:col-span-1 order-2">
+  <div class="mt-4 md:mt-0 md:col-span-1 order-2">
     <h2 class="sr-only">
       Information
     </h2>

@@ -12,7 +12,7 @@ const success = (payload: boolean) => {
 
 <template>
   <div class="divide-y divide-gray-300 dark:divide-gray-700 space-y-10">
-    <div class="mx-auto lg:grid lg:grid-cols-3 lg:gap-x-8">
+    <div class="mx-auto md:grid md:grid-cols-3 md:gap-x-8">
       <entity-book-overview-small :book="book" />
       <entity-book-overview-large :book="book" />
     </div>

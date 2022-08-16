@@ -8,7 +8,7 @@ const { date } = useDate()
 
 <template>
   <div
-    class="col-span-2 order-1 lg:border-r lg:border-gray-200 dark:lg:border-gray-700 lg:pb-2 lg:pr-8"
+    class="col-span-2 order-1 md:border-r md:border-gray-200 dark:md:border-gray-700 md:pb-2 md:pr-8"
   >
     <div class="flex flex-col h-full">
       <div>
