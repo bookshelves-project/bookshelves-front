@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import packageJson from '@/package.json'
+// import packageJson from '@/package.json'
 
 export const useMetadataStore = defineStore('metadata', {
   state: () => ({

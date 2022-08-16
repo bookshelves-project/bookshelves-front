@@ -153,9 +153,8 @@ export const useEntity = (
   })
 
   const entityName = computed(() => {
-    let entityName
     const entity = originalEntity as Entity
-    entityName = entity.meta?.entity
+    const entityName = entity.meta?.entity
 
     return entityName
   })

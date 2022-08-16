@@ -54,7 +54,7 @@ module.exports = {
     }
   },
   plugins: [
-    plugin(({ addComponents, theme }) => {
+    plugin(({ addComponents }) => {
       addComponents({
         '.main-content': {
           '@apply container !max-w-7xl lg:pt-6 pt-5 text-black dark:text-white':

@@ -72,7 +72,7 @@ export const usePagination = () => {
     return current.value === pageNum
   }
   const getTag = (pageNum: number) => {
-    return isActive(pageNum) ? 'em' : 'router-link'
+    return isActive(pageNum) ? 'em' : 'app-link'
   }
 
   const calcStartNumber = (): number => {

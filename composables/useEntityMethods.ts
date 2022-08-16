@@ -81,6 +81,24 @@ export const useEntityMethods = () => {
     return entity.meta.entity === 'author'
   }
 
+  const getDynamicRoute = (entity: Entity | Favoritable | Review) => {
+    const route: TypedRoute = {
+      name: 'authors-slug'
+    }
+
+    const meta = entity.meta
+
+    if (meta.entity === 'book') { route.name = 'books-author-slug' }
+    if (meta.entity === 'serie') { route.name = 'series-author-slug' }
+
+    route.params = {
+      author: meta.author,
+      slug: meta.slug
+    }
+
+    return route
+  }
+
   return {
     formatAuthors,
     formatLanguage,
@@ -88,6 +106,7 @@ export const useEntityMethods = () => {
     formatType,
     instanceBook,
     instanceSerie,
-    instanceAuthor
+    instanceAuthor,
+    getDynamicRoute
   }
 }

@@ -11,35 +11,34 @@ export const useDate = () => {
   }
 
   // time difference in Months
-  // eslint-disable-next-line no-unused-vars
-  function getMonthsDiff(startDate = new Date(), endDate = new Date()) {
-    const monthsOfFullYears = getYearsDiff(startDate, endDate) * 12
-    let months = monthsOfFullYears
-    // the variable below is not necessary, but I kept it for understanding of code
-    // we can use "startDate" instead of it
-    const yearsAfterStart = new Date(
-      startDate.getFullYear() + getYearsDiff(startDate, endDate),
-      startDate.getMonth(),
-      startDate.getDate()
-    )
-    const isDayAhead = endDate.getDate() >= yearsAfterStart.getDate()
+  // function getMonthsDiff(startDate = new Date(), endDate = new Date()) {
+  //   const monthsOfFullYears = getYearsDiff(startDate, endDate) * 12
+  //   let months = monthsOfFullYears
+  //   // the variable below is not necessary, but I kept it for understanding of code
+  //   // we can use "startDate" instead of it
+  //   const yearsAfterStart = new Date(
+  //     startDate.getFullYear() + getYearsDiff(startDate, endDate),
+  //     startDate.getMonth(),
+  //     startDate.getDate()
+  //   )
+  //   const isDayAhead = endDate.getDate() >= yearsAfterStart.getDate()
 
-    if (startDate.getMonth() === endDate.getMonth() && !isDayAhead) {
-      months = 11
-      return months
-    }
+  //   if (startDate.getMonth() === endDate.getMonth() && !isDayAhead) {
+  //     months = 11
+  //     return months
+  //   }
 
-    if (endDate.getMonth() >= yearsAfterStart.getMonth()) {
-      const diff = endDate.getMonth() - yearsAfterStart.getMonth()
-      months += isDayAhead ? diff : diff - 1
-    } else {
-      months += isDayAhead
-        ? 12 - (startDate.getMonth() - endDate.getMonth())
-        : 12 - (startDate.getMonth() - endDate.getMonth()) - 1
-    }
+  //   if (endDate.getMonth() >= yearsAfterStart.getMonth()) {
+  //     const diff = endDate.getMonth() - yearsAfterStart.getMonth()
+  //     months += isDayAhead ? diff : diff - 1
+  //   } else {
+  //     months += isDayAhead
+  //       ? 12 - (startDate.getMonth() - endDate.getMonth())
+  //       : 12 - (startDate.getMonth() - endDate.getMonth()) - 1
+  //   }
 
-    return months
-  }
+  //   return months
+  // }
 
   // time difference in Years
   function getYearsDiff(startDate = new Date(), endDate = new Date()) {

@@ -1,5 +1,5 @@
 
-export const useRelation = (route?: Route) => {
+export const useRelation = (route?: TypedRoute) => {
   const { objectGetValue } = useTools()
   const percent = (bestCount: number, value?: number) => {
     return value ? (value * 100) / bestCount : 1
@@ -30,7 +30,7 @@ export const useRelation = (route?: Route) => {
     return style
   }
 
-  const getRoute = (item: Keyable): Route => {
+  const getRoute = (item: Keyable): TypedRoute => {
     const params: Keyable = {}
     const query: Keyable = {}
 
@@ -48,7 +48,7 @@ export const useRelation = (route?: Route) => {
       name: route?.name,
       params,
       query
-    }
+    } as TypedRoute
   }
 
   return {
