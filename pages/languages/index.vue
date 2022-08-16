@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-const { requestPage, response } = useHttpPage<Language[]>('/languages')
-await requestPage()
+const response = await useHttpFilter<Language[]>('/languages')
 
 const title = 'Languages of books and series'
 const description =

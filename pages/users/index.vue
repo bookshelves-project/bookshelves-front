@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const { requestPage, response } = useHttpPage<User[]>('/users')
-await requestPage()
+const response = await useHttpFilter<User[]>('/users')
 
 const users = ref<User[]>()
 users.value = response.value?.data

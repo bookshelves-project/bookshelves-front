@@ -2,14 +2,13 @@
 const route = useRoute()
 const { formatAuthors } = useEntityMethods()
 
-const { requestPage, response } = useHttpPage<Book>({
+const response = await useHttpFilter<Book>({
   endpoint: '/books',
   params: [
     route.params.author,
     route.params.slug
   ]
 })
-await requestPage()
 
 const book = ref<Book>()
 
@@ -35,8 +34,8 @@ const serie = book.value?.serie
 
 const crumbs: string[] = [
   'Books',
-    `${book.value?.authors[0].name}`,
-    `${book.value?.title}`
+  `${book.value?.authors[0].name}`,
+  `${book.value?.title}`
 ]
 
 useMetadata({
@@ -62,12 +61,14 @@ useMetadata({
       </div>
       <template #extra>
         <div class="text-sm flex items-center">
-          in
-          <entity-serie-link
-            :serie="book.serie"
-            :volume="book.volume"
-            class="ml-1"
-          />
+          <div class="mx-auto lg:mx-0 flex items-center">
+            in
+            <entity-serie-link
+              :serie="book.serie"
+              :volume="book.volume"
+              class="ml-1"
+            />
+          </div>
         </div>
       </template>
     </app-header>

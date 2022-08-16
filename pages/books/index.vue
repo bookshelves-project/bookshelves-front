@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const { requestPage, response } = useHttpPage<Book[]>('/books')
-await requestPage()
+const response = await useHttpFilter<Book[]>('/books')
 
 const title = 'All books available'
 const description =

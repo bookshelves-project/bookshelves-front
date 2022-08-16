@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-const { requestPage, response } = useHttpPage<Tag[]>({
+const response = await useHttpFilter<Tag[]>({
   endpoint: '/tags',
   query: {
     'filter[negligible]': false,
     full: true
   }
 })
-await requestPage()
 
 const tags = ref<Tag[]>()
 const genres = ref<Tag[]>()

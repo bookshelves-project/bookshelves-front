@@ -1,12 +1,11 @@
 <script setup lang="ts">
-const { requestPage, response } = useHttpPage<Publisher[]>({
+const response = await useHttpFilter<Publisher[]>({
   endpoint: '/publishers',
   query: {
     full: true,
     'filter[negligible]': false
   }
 })
-await requestPage()
 
 const title = 'Publishers'
 const description = 'Discover your books by publisher'

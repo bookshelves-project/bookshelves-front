@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-const { requestPage, response } = useHttpPage<Author[]>('/authors')
-await requestPage()
+const response = await useHttpFilter<Author[]>('/authors')
 
 const title = 'All authors available'
 const description = 'Want to find all books written by specific author?'

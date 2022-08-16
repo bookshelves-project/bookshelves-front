@@ -1,10 +1,9 @@
 <script setup lang="ts">
 const route = useRoute()
-const { requestPage, response } = useHttpPage<User>({
+const response = await useHttpFilter<User>({
   endpoint: '/users',
   params: [route.params.slug]
 })
-await requestPage()
 
 const title = ref<string>()
 const user = ref<User>()

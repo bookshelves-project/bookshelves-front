@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const { requestPage, response } = useHttpPage<Post[]>('/posts')
-await requestPage()
+const response = await useHttpFilter<Post[]>('/posts')
 
 const title = 'Guides'
 const description = 'To know more about eBooks & eReaders'

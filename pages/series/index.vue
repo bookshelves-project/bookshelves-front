@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const { requestPage, response } = useHttpPage<Serie[]>('/series')
-await requestPage()
+const response = await useHttpFilter<Serie[]>('/series')
 
 const title = 'All series available'
 const description = 'Discover all series'
