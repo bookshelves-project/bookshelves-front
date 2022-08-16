@@ -18,6 +18,7 @@ specifiers:
   lozad: ^1.16.0
   nuxt: 3.0.0-rc.8
   nuxt-schema-org: ^0.6.2
+  nuxt-typed-router: ^1.1.2
   pinia: ^2.0.14
   swiper: ^8.3.2
   tailwindcss: ^3.1.2
@@ -52,6 +53,7 @@ devDependencies:
   histoire: 0.10.1_vite@3.0.7
   nuxt: 3.0.0-rc.8_vite@3.0.7+webpack@5.74.0
   nuxt-schema-org: 0.6.5_rqp5fkxjwn2kwglahs2xi3xf2m
+  nuxt-typed-router: 1.1.2_vite@3.0.7+webpack@5.74.0
   tailwindcss: 3.1.8
   typescript: 4.7.4
   vite: 3.0.7
@@ -604,6 +606,36 @@ packages:
     resolution: {integrity: sha512-YBI/6o2EBz02tdEJRBK8xkt3zvOFOWlLBf7WKYGBsSYSRtjjgrqPe2skp6VLLmKx5WbHHDNcW+6oACaurxGzeA==}
     dev: true
 
+  /@nuxt/kit-edge/3.0.0-rc.8-27677215.58c4753_vite@3.0.7+webpack@5.74.0:
+    resolution: {integrity: sha512-aQOmkUcVC/syY+BkqgBq45P5b8pwCQs3M5ZCj7+kJ3uklC3XN1qZwsOofJQ/PB89dP9z8HpofvRnYXa3fL+E2g==}
+    engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
+    dependencies:
+      '@nuxt/schema': /@nuxt/schema-edge/3.0.0-rc.8-27677215.58c4753_vite@3.0.7+webpack@5.74.0
+      c12: 0.2.9
+      consola: 2.15.3
+      defu: 6.0.0
+      globby: 13.1.2
+      hash-sum: 2.0.0
+      ignore: 5.2.0
+      jiti: 1.14.0
+      knitwork: 0.1.2
+      lodash.template: 4.5.0
+      mlly: 0.5.12
+      pathe: 0.3.4
+      pkg-types: 0.3.3
+      scule: 0.3.2
+      semver: 7.3.7
+      unctx: 2.0.1_vite@3.0.7+webpack@5.74.0
+      unimport: 0.6.7_vite@3.0.7+webpack@5.74.0
+      untyped: 0.4.5
+    transitivePeerDependencies:
+      - esbuild
+      - rollup
+      - supports-color
+      - vite
+      - webpack
+    dev: true
+
   /@nuxt/kit/3.0.0-rc.4_vite@3.0.7+webpack@5.74.0:
     resolution: {integrity: sha512-ZBSeHFy3fPUx0equCtyP6eVUAZQWwRqTp2YnHSFqM5+yhN5aTGo8gBlfwttVBr4yhFBpGFRHhQj/iNPqrCeTnQ==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
@@ -736,6 +768,27 @@ packages:
       postcss-url: 10.1.3_postcss@8.4.16
       semver: 7.3.7
     transitivePeerDependencies:
+      - webpack
+    dev: true
+
+  /@nuxt/schema-edge/3.0.0-rc.8-27677215.58c4753_vite@3.0.7+webpack@5.74.0:
+    resolution: {integrity: sha512-2kavAsbN5ZCY57sFi/0282NlSOKKvTBGUgh9LVVOQZm4Af6bT1XqvAyJEV8bZyuqXmemPwjjYDADZbkGWrHEnQ==}
+    engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
+    dependencies:
+      c12: 0.2.9
+      create-require: 1.1.1
+      defu: 6.0.0
+      jiti: 1.14.0
+      pathe: 0.3.4
+      postcss-import-resolver: 2.0.0
+      scule: 0.3.2
+      std-env: 3.2.1
+      ufo: 0.8.5
+      unimport: 0.6.7_vite@3.0.7+webpack@5.74.0
+    transitivePeerDependencies:
+      - esbuild
+      - rollup
+      - vite
       - webpack
     dev: true
 
@@ -4920,6 +4973,10 @@ packages:
       p-locate: 5.0.0
     dev: true
 
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: true
+
   /lodash._reinterpolate/3.0.0:
     resolution: {integrity: sha512-xYHt68QRoYGjeeM/XOE1uJtvXQAgvszfBhjV4yvsQH0u2i9I6cI6c6/eG4Hh3UAOVn0y/xAXwmTzEay49Q//HA==}
     dev: true
@@ -5461,6 +5518,24 @@ packages:
       - vite
       - vue
       - vue-router
+      - webpack
+    dev: true
+
+  /nuxt-typed-router/1.1.2_vite@3.0.7+webpack@5.74.0:
+    resolution: {integrity: sha512-/moOurpYDlTPf8WjX/Zj7SVInsF+mPFi7NwknMKQMWB5bZ79GB2yGHsQz1+rXeJdkroWO1C04xsQbw1u9rbO7A==}
+    dependencies:
+      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.8-27677215.58c4753_vite@3.0.7+webpack@5.74.0
+      chalk: 4.1.2
+      lodash-es: 4.17.21
+      log-symbols: 5.1.0
+      mkdirp: 1.0.4
+      pathe: 0.2.0
+      prettier: 2.7.1
+    transitivePeerDependencies:
+      - esbuild
+      - rollup
+      - supports-color
+      - vite
       - webpack
     dev: true
 
@@ -6307,6 +6382,12 @@ packages:
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: true
+
+  /prettier/2.7.1:
+    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /pretty-bytes/6.0.0:

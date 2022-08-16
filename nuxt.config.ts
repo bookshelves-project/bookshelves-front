@@ -23,11 +23,13 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss', // https://tailwindcss.nuxtjs.org/
     '@pinia/nuxt', // https://pinia.vuejs.org/ssr/nuxt.html
     '@vueuse/nuxt', // https://vueuse.org/guide/
-    'nuxt-schema-org' // https://github.com/vueuse/schema-org
+    'nuxt-schema-org', // https://github.com/vueuse/schema-org
+    'nuxt-typed-router' // https://github.com/victorgarciaesgi/nuxt-typed-router
   ],
   tailwindcss: config.modules.tailwindcss,
   vueuse: config.modules.vueuse,
   schemaOrg: config.modules.schemaOrg,
+  nuxtTypedRouter: config.modules.nuxtTypedRouter,
   // http://v3.nuxtjs.org/guide/features/runtime-config
   runtimeConfig: {
     ...config.runtimeConfigPrivate,
