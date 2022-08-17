@@ -6,24 +6,28 @@ export const useNavigationStore = defineStore('navigation', {
     main: [
       {
         label: 'books',
+        icon: 'navigation-book',
         route: {
           name: 'books'
         }
       },
       {
         label: 'series',
+        icon: 'navigation-serie',
         route: {
           name: 'series'
         }
       },
       {
         label: 'authors',
+        icon: 'navigation-author',
         route: {
           name: 'authors'
         }
       },
       {
         label: 'tags',
+        icon: 'navigation-tag',
         route: {
           name: 'tags'
         }

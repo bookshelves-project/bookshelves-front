@@ -107,10 +107,11 @@ const closeSidebar = () => {
               active-class="active-logo"
             >
               <span
-                class="w-full px-2 py-4 font-semibold"
+                class="w-full px-2 py-4 font-semibold flex items-center space-x-2"
                 @click="closeSidebar"
               >
-                Home
+                <svg-icon name="home" class="w-5 h-5" />
+                <span>Home</span>
               </span>
             </app-link>
             <app-link

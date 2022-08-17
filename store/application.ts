@@ -11,6 +11,9 @@ export const useApplicationStore = defineStore('application', {
   }),
   actions: {
     async nuxtInit() {
+      const { me } = useAuth()
+      await me()
+
       const cookie = useCookie('application', {
         sameSite: 'strict'
       })
@@ -43,9 +46,9 @@ export const useApplicationStore = defineStore('application', {
       cookie.value = JSON.stringify(response.body)
 
       this.$patch({
-        headConfig: response?.body.headConfig,
-        enums: response?.body.enums,
-        languages: response?.body.languages,
+        headConfig: response?.body?.headConfig,
+        enums: response?.body?.enums,
+        languages: response?.body?.languages,
         available: true
       })
     },

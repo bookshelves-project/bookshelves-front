@@ -1,13 +1,5 @@
 import { FetchResponse, FetchError } from 'ohmyfetch'
 
-interface HttpResponse<T> {
-  response: FetchResponse<T>,
-  body: T,
-  success: boolean
-  hasErrors: boolean
-  error: FetchError
-}
-
 interface Request {
   url: string
   request: RequestData
@@ -96,7 +88,8 @@ export const useHttp = () => {
     const response = await $fetch.raw<T>(req.url, {
       method: req.request.method || 'GET',
       body: req.request.body,
-      headers: req.request.headers
+      headers: req.request.headers,
+      credentials: req.request.credentials
     }).catch((e: FetchError) => {
       console.warn(e)
       res.hasErrors = true
@@ -139,7 +132,7 @@ export const useHttp = () => {
 
     if (isRequestData(request) && request.raw) {
       req = {
-        url: request.endpoint,
+        url: request.endpoint as string,
         request
       }
     } else {
@@ -153,7 +146,7 @@ export const useHttp = () => {
 
   const requestRaw = async <T>(request: BaseRequest): Promise<HttpResponse<T>> => {
     const req: Request = {
-      url: request.endpoint,
+      url: request.endpoint as string,
       request: {} as RequestData
     }
 

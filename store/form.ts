@@ -1,21 +1,17 @@
 import { defineStore } from 'pinia'
 
-export const useFormStore = defineStore('data', {
+export const useFormStore = defineStore('form', {
   state: () => ({
-    loadingCanEnd: true,
-    data: {},
-    test: {},
+    body: {} as object,
+    test: {} as object,
     isLoading: false,
-    response: {},
     requestData: {} as RequestData
   }),
   actions: {
-    setForm(form: { data: object; test: object; loadingCanEnd?: boolean }) {
+    setForm(form: { body?: object; test?: object }) {
       this.$patch({
-        data: form.data,
-        test: form.test,
-        loadingCanEnd:
-          form.loadingCanEnd !== undefined ? form.loadingCanEnd : true
+        body: form.body,
+        test: form.test
       })
     },
     setRequestData(params: RequestData) {
@@ -25,24 +21,24 @@ export const useFormStore = defineStore('data', {
     },
     fillData() {
       this.$patch({
-        data: { ...this.test }
+        body: { ...this.test }
       })
     },
     resetData(): any {
-      const data = this.data as { [key: string]: any }
+      const body = this.body as { [key: string]: any }
 
-      for (const key in data) {
-        if (typeof data[key] === 'boolean') {
-          data[key] = false
+      for (const key in body) {
+        if (typeof body[key] === 'boolean') {
+          body[key] = false
         } else {
-          data[key] = ''
+          body[key] = ''
         }
       }
       this.$patch({
-        data
+        body
       })
 
-      return data
+      return body
     },
     enableLoading() {
       this.$patch({
@@ -69,10 +65,10 @@ export const useFormStore = defineStore('data', {
       } = { loadingInfinite: true, withToast: false, successMsg: 'It\'s all works!', errorMsg: 'Oops, an error happened here!' }
     ) {
       const { pushToast } = useToast()
-      const { request } = useHttp()
+      const { request } = useAuth()
 
       this.setRequestData(requestData)
-      const response = await request({
+      const res = await request<unknown>({
         endpoint: this.requestData.endpoint,
         params: this.requestData.params,
         query: this.requestData.query,
@@ -82,7 +78,7 @@ export const useFormStore = defineStore('data', {
       })
 
       if (options.withToast) {
-        if (response.success) {
+        if (res.success) {
           pushToast({
             title: 'Success',
             text: options.successMsg,
@@ -102,7 +98,7 @@ export const useFormStore = defineStore('data', {
         this.disableLoading()
       }
 
-      return response
+      return res
     }
   }
 })

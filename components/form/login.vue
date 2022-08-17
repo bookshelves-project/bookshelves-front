@@ -2,9 +2,9 @@
 // import useAuth from '~/composables/useAuth'
 import { useFormStore } from '~~/store/form'
 
-// const { login } = useAuth()
+const { login, logout, me, favorites } = useAuth()
 
-const data = ref({
+const form = ref({
   email: '',
   password: '',
   remember: false,
@@ -23,16 +23,14 @@ const test = ref({
 
 const store = useFormStore()
 store.setForm({
-  data: data.value,
-  test: test.value,
-  loadingCanEnd: false
+  body: form.value,
+  test: test.value
 })
 
 const submit = async () => {
-  await store.setRequest({
-    endpoint: '/login',
-    method: 'POST',
-    body: data.value
+  await login({
+    email: form.value.email,
+    password: form.value.password
   })
 }
 
@@ -40,37 +38,39 @@ const submit = async () => {
 </script>
 
 <template>
-  <form-layout title="Sign-in" @submit="submit">
-    <field-text
-      v-model="data.email"
-      name="email"
-      label="Email"
-      type="email"
-      autocomplete="email"
-      required
-    />
-    <field-text
-      v-model="data.password"
-      name="password"
-      label="Password"
-      type="password"
-      required
-    />
-
-    <div class="justify-between md:flex md:items-center">
-      <field-checkbox
-        v-model="data.remember"
-        name="remember_me"
-        label="Remember me"
+  <div>
+    <form-layout title="Sign-in" @submit="submit">
+      <field-text
+        v-model="form.email"
+        name="email"
+        label="Email"
+        type="email"
+        autocomplete="email"
+        required
       />
-      <div class="mt-6 text-sm md:mt-0">
-        <app-link
-          :to="{ name: 'sign-in-forgot-password' }"
-          class="font-medium text-primary-600 dark:text-primary-500 hover:text-primary-400 hover:underline"
-        >
-          Forgot your password?
-        </app-link>
+      <field-text
+        v-model="form.password"
+        name="password"
+        label="Password"
+        type="password"
+        required
+      />
+
+      <div class="justify-between md:flex md:items-center">
+        <field-checkbox
+          v-model="form.remember"
+          name="remember_me"
+          label="Remember me"
+        />
+        <div class="mt-6 text-sm md:mt-0">
+          <app-link
+            :to="{ name: 'sign-in-forgot-password' }"
+            class="font-medium text-primary-600 dark:text-primary-500 hover:text-primary-400 hover:underline"
+          >
+            Forgot your password?
+          </app-link>
+        </div>
       </div>
-    </div>
-  </form-layout>
+    </form-layout>
+  </div>
 </template>
