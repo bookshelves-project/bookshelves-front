@@ -13,7 +13,6 @@ export default defineNuxtConfig({
     dirs: ['~/components']
   },
   css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
-  hooks: config.hooks,
   meta: {
     link: config.meta.link,
     meta: config.meta.meta,
