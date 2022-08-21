@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import packageJson from '@/package.json'
+// import packageJson from '@/package.json'
 
 export const useMetadataStore = defineStore('metadata', {
   state: () => ({
-    base: {} as MetadataBase,
+    base: {} as MetadataBase
   }),
   actions: {
     setBase() {
@@ -25,7 +25,7 @@ export const useMetadataStore = defineStore('metadata', {
           color,
           locale: 'en_US',
           lang: 'en',
-          googleToken: config.googleSiteVerificationToken,
+          googleToken: config.googleSiteVerificationToken
         },
         website: {
           title: app,
@@ -37,23 +37,23 @@ export const useMetadataStore = defineStore('metadata', {
           publisher: app,
           copyright: license,
           language: 'english',
-          designer: author,
+          designer: author
         },
         og: {
           type: 'website',
-          siteName: app,
+          siteName: app
         },
         twitter: {
           creator: config.metaTwitterCreator,
           site: config.metaTwitterSite,
           url: config.metaTwitterSite
             ? `https://twitter.com/${twitterLink}`
-            : undefined,
-        },
+            : undefined
+        }
       }
       this.$patch({
-        base: meta,
+        base: meta
       })
-    },
-  },
+    }
+  }
 })

@@ -2,14 +2,14 @@ import { defineStore } from 'pinia'
 
 export const useToastStore = defineStore('toast', {
   state: () => ({
-    toasts: [] as Toast[],
+    toasts: [] as Toast[]
   }),
   getters: {
     getToasts(state) {
       return state.toasts.reduce((items) => {
         return items
       }, [] as Toast[])
-    },
+    }
   },
   actions: {
     addToast(payload: Toast) {
@@ -18,7 +18,7 @@ export const useToastStore = defineStore('toast', {
       this.timeoutToast(payload)
 
       this.$patch({
-        toasts,
+        toasts
       })
     },
     timeoutToast(payload: Toast) {
@@ -29,12 +29,12 @@ export const useToastStore = defineStore('toast', {
     deleteToast(payload: Toast) {
       const toasts = this.toasts
 
-      const index = toasts.findIndex((key) => key.id === payload.id)
+      const index = toasts.findIndex(key => key.id === payload.id)
       toasts.splice(index, 1)
 
       this.$patch({
-        toasts,
+        toasts
       })
-    },
-  },
+    }
+  }
 })

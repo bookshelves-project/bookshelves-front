@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import Redirection from '@/components/redirection.vue'
-
-const { params } = useRoute()
+const route = useRoute()
 
 definePageMeta({
-  middleware(to, from) {
+  middleware (to) {
     if (to.params.author) {
       const app = useNuxtApp()
       const router = useRouter()
@@ -12,24 +10,22 @@ definePageMeta({
         app.$localePath({
           name: 'authors-slug',
           params: {
-            slug: to.params.author,
-          },
+            slug: to.params.author
+          }
         })
       )
     }
-  },
+  }
 })
 </script>
 
 <template>
-  <redirection
-    :to="
-      $localePath({
-        name: 'authors-slug',
-        params: {
-          slug: params.author,
-        },
-      })
-    "
+  <app-redirection
+    :to="{
+      name: 'authors-slug',
+      params: {
+        slug: route.params.author,
+      },
+    }"
   />
 </template>

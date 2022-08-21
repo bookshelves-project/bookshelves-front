@@ -1,26 +1,19 @@
-<script setup lang="ts">
-import EntityReviewList from '@/components/entity/review/list.vue'
-import FormReview from '@/components/form/review.vue'
-import FieldRatingStars from '@/components/field/rating-stars.vue'
-
+<script lang="ts" setup>
 const props = defineProps<{
   entity: Book | Author | Serie | Entity
 }>()
 
-const { moduleSocial, moduleSocialRating } = useRuntimeConfig()
-const { nuxtFetchBase } = useFetchable()
+const rc = useRuntimeConfig()
 const reviews = ref<Review[]>()
 
-const load = async () => {
-  if (props.entity.meta.reviews) {
-    const response = await nuxtFetchBase<ApiPaginateResponse<Review[]>>(
-      props.entity.meta.reviews
-    )
-
-    reviews.value = response.data
-  }
+const { requestRaw } = useHttp()
+const endpoint = props.entity.meta.reviews
+if (endpoint) {
+  const response = await requestRaw<ApiResponse<Review[]>>({
+    endpoint
+  })
+  reviews.value = response?.body.data
 }
-await load()
 
 const avg = computed(() => {
   let avg
@@ -37,6 +30,8 @@ const avg = computed(() => {
 
   return avg
 })
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const refresh = async (slug: string) => {
   // try {
   //   const entity = this.$route.name.split('-')[0].slice(0, -1)
@@ -49,7 +44,7 @@ const refresh = async (slug: string) => {
 </script>
 
 <template>
-  <section v-if="moduleSocial" aria-labelledby="book-reviews" class="mt-6">
+  <section v-if="rc.public.moduleSocial" aria-labelledby="book-reviews" class="mt-6">
     <h2
       id="book-heading"
       class="text-2xl font-handlee font-semibold text-primary-600 dark:text-gray-100"
@@ -57,8 +52,10 @@ const refresh = async (slug: string) => {
       Reviews
     </h2>
     <div class="flex items-center space-x-3">
-      <p class="text-gray">{{ reviews ? reviews.length : '0' }} reviews</p>
-      <div v-if="moduleSocialRating && reviews && reviews.length > 5">
+      <p class="text-gray">
+        {{ reviews ? reviews.length : '0' }} reviews
+      </p>
+      <div v-if="rc.public.moduleSocialRating && reviews && reviews.length > 5">
         <field-rating-stars :rating="avg" disabled />
       </div>
     </div>

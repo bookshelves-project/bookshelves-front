@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination, Navigation } from 'swiper'
-import SvgIcon from '@/components/svg-icon.vue'
-import EntityCard from '@/components/entity/card.vue'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
@@ -22,7 +20,7 @@ const { getData, isAvailable, isLoading, slides } = useEntityGroup(
 
 watch(
   () => isLoading.value,
-  (newVal) => {
+  () => {
     emit('success', isAvailable.value)
   }
 )
@@ -40,27 +38,27 @@ const main = {
   grabCursor: true,
   navigation: {
     nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    prevEl: '.swiper-button-prev'
   },
   paginationClickable: true,
   pagination: {
     el: '.swiper-pagination',
-    clickable: true,
+    clickable: true
   },
   breakpoints: {
     500: {
       slidesPerView: 2,
-      slidesPerGroup: 2,
+      slidesPerGroup: 2
     },
     800: {
       slidesPerView: 3,
-      slidesPerGroup: 3,
+      slidesPerGroup: 3
     },
     1200: {
       slidesPerView: 4,
-      slidesPerGroup: 4,
-    },
-  },
+      slidesPerGroup: 4
+    }
+  }
 }
 </script>
 
@@ -90,7 +88,7 @@ const main = {
           <div
             v-if="isLoading"
             class="flex h-64 w-full animate-pulse items-center overflow-hidden rounded-md bg-gray-300 dark:bg-gray-600"
-          ></div>
+          />
           <div v-else>
             <swiper
               :space-between="main.spaceBetween"
@@ -108,7 +106,7 @@ const main = {
               >
                 <entity-card :entity="slide" type />
               </swiper-slide>
-              <div class="swiper-pagination"></div>
+              <div class="swiper-pagination" />
               <div class="swiper-button swiper-button-prev">
                 <svg-icon name="chevron-right" />
               </div>

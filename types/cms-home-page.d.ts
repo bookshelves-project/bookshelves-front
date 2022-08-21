@@ -38,7 +38,7 @@ declare interface CmsHighlight {
   title?: string
   text?: string
   ctaText?: string
-  ctaLink?: object
+  ctaLink?: TypedRoute
   quoteText?: string
   quoteAuthor?: string
   icon?: string
@@ -61,7 +61,7 @@ declare interface CmsPricingList {
 
 declare interface SelectedEntities {
   key: string
-  endpoint: Endpoint
+  endpoint: ApiEndpoint
   paramsList?: Params
   right?: boolean
   eyebrow?: string

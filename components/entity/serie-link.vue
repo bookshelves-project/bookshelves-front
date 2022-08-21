@@ -6,21 +6,19 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="serie && serie.meta" class="mt-2 dark:text-white lg:mt-0">
-    <router-link
-      :to="
-        $localePath({
-          name: 'series-author-slug',
-          params: {
-            author: serie.meta.author,
-            slug: serie.meta.slug,
-          },
-        })
-      "
+  <div v-if="serie && serie.meta" class="dark:text-white lg:mt-0">
+    <app-link
+      :to="{
+        name: 'series-author-slug',
+        params: {
+          author: serie.meta.author,
+          slug: serie.meta.slug,
+        },
+      }"
       class="internal-link"
     >
       {{ serie.title }}
-    </router-link>
+    </app-link>
     (vol. {{ volume }})
   </div>
 </template>

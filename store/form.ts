@@ -1,80 +1,104 @@
 import { defineStore } from 'pinia'
 
-export const useFormStore = defineStore('data', {
+export const useFormStore = defineStore('form', {
   state: () => ({
-    loadingCanEnd: true,
-    data: {},
-    test: {},
+    body: {} as object,
+    test: {} as object,
     isLoading: false,
-    response: {},
-    fetchParams: {} as FetchParams,
+    requestData: {} as RequestData
   }),
   actions: {
-    setForm(form: { data: object; test: object; loadingCanEnd?: boolean }) {
+    setForm(form: { body?: object; test?: object }) {
       this.$patch({
-        data: form.data,
-        test: form.test,
-        loadingCanEnd:
-          form.loadingCanEnd !== undefined ? form.loadingCanEnd : true,
+        body: form.body,
+        test: form.test
       })
     },
-    async setRequest(params: FetchParams) {
+    setRequestData(params: RequestData) {
       this.$patch({
-        fetchParams: params,
+        requestData: params
       })
-
-      return await this.request()
     },
     fillData() {
       this.$patch({
-        data: { ...this.test },
+        body: { ...this.test }
       })
     },
     resetData(): any {
-      const data = this.data as { [key: string]: any }
+      const body = this.body as { [key: string]: any }
 
-      for (const key in data) {
-        if (typeof data[key] === 'boolean') {
-          data[key] = false
+      for (const key in body) {
+        if (typeof body[key] === 'boolean') {
+          body[key] = false
         } else {
-          data[key] = ''
+          body[key] = ''
         }
       }
       this.$patch({
-        data,
+        body
       })
 
-      return data
+      return body
+    },
+    enableLoading() {
+      this.$patch({
+        isLoading: !this.isLoading
+      })
+    },
+    disableLoading() {
+      this.$patch({
+        isLoading: !this.isLoading
+      })
     },
     toggleLoading() {
       this.$patch({
-        isLoading: !this.isLoading,
+        isLoading: !this.isLoading
       })
     },
-    async request() {
+    async request(
+      requestData: RequestData,
+      options: {
+        loadingInfinite?: boolean,
+        withToast?: boolean,
+        successMsg?: string,
+        errorMsg?: string
+      } = { loadingInfinite: true, withToast: false, successMsg: 'It\'s all works!', errorMsg: 'Oops, an error happened here!' }
+    ) {
       const { pushToast } = useToast()
-      const { request } = useFetchable()
+      const { request } = useAuth()
 
-      const response = await request({
-        endpoint: this.fetchParams.endpoint,
-        params: this.fetchParams.params,
-        query: this.fetchParams.query,
-        lazy: this.fetchParams.lazy,
-        method: this.fetchParams.method,
-        body: this.fetchParams.body,
+      this.setRequestData(requestData)
+      const res = await request<unknown>({
+        endpoint: this.requestData.endpoint,
+        params: this.requestData.params,
+        query: this.requestData.query,
+        lazy: this.requestData.lazy,
+        method: this.requestData.method,
+        body: this.requestData.body
       })
-      if (typeof response !== 'boolean' && response.ok) {
-        pushToast('Success', '', 'success')
-        this.resetData()
-      } else {
-        pushToast('Error', 'Oops, an error happened here!', 'error')
+
+      if (options.withToast) {
+        if (res.success) {
+          pushToast({
+            title: 'Success',
+            text: options.successMsg,
+            type: 'success'
+          })
+          this.resetData()
+        } else {
+          pushToast({
+            title: 'Error',
+            text: options.errorMsg,
+            type: 'error'
+          })
+        }
       }
 
-      if (this.loadingCanEnd) {
-        this.toggleLoading()
+      if (!options.loadingInfinite) {
+        this.disableLoading()
       }
 
-      return response
-    },
-  },
+      return res
+    }
+  }
 })

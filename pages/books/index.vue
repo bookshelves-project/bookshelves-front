@@ -1,25 +1,5 @@
 <script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import Filters from '@/components/filters/index.vue'
-import EntityList from '@/components/entity/list.vue'
-import Pagination from '@/components/pagination/index.vue'
-
-const { nuxtAsyncList } = useFetchable()
-const route = useRoute()
-
-const response = ref<ApiPaginateResponse<Book[]>>()
-
-const load = async () => {
-  response.value = await nuxtAsyncList<Book>('/books')
-}
-await load()
-
-watch(
-  () => route.query,
-  async (newVal) => {
-    await load()
-  }
-)
+const response = await useHttpFilter<Book[]>('/books')
 
 const title = 'All books available'
 const description =
@@ -27,31 +7,31 @@ const description =
 const sortOptions: FilterOption[] = [
   {
     label: "By series' title (default)",
-    value: 'slug_sort',
+    value: 'slug_sort'
   },
   {
     label: 'By title',
-    value: 'title',
+    value: 'title'
   },
   {
     label: 'Most recently published',
-    value: '-released_on',
+    value: '-released_on'
   },
   {
     label: 'Newest uploaded',
-    value: '-created_at',
-  },
+    value: '-created_at'
+  }
 ]
 
 useMetadata({
   title,
-  description,
+  description
 })
 </script>
 
 <template>
   <div class="main-content">
-    <app-header :title="title" :subtitle="description">
+    <layout-header :title="title" :subtitle="description">
       <template #filters>
         <filters
           serie
@@ -60,10 +40,10 @@ useMetadata({
           :sort="sortOptions"
           paginate
           size
-          :total="response?.meta.total"
+          :total="response?.meta?.total"
         />
       </template>
-    </app-header>
+    </layout-header>
     <entity-list :entities="response?.data" type />
     <pagination
       v-if="response?.meta"

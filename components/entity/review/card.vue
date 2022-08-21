@@ -1,23 +1,22 @@
 <script setup lang="ts">
-import AppImg from '@/components/app/img.vue'
-import FieldRatingStars from '@/components/field/rating-stars.vue'
-import { calExactTimeDiff } from '~/utils/methods'
-const props = defineProps<{
+defineProps<{
   review?: Review
 }>()
 
-const { moduleSocialRating } = useRuntimeConfig()
-const emit = defineEmits(['destroy'])
+const rc = useRuntimeConfig()
+const { calExactTimeDiff } = useDate()
+// const emit = defineEmits(['destroy'])
 
 const overflow = ref(true)
-const auth = ref(false)
+// const auth = ref(false)
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const toggleFullReview = (review: Review) => {
   overflow.value = !overflow.value
 }
-const deleteReview = (id: number) => {
-  emit('destroy', id)
-}
+// const deleteReview = (id: number) => {
+//   emit('destroy', id)
+// }
 </script>
 
 <template>
@@ -31,37 +30,34 @@ const deleteReview = (id: number) => {
       />
     </div>
     <div class="flex-1 py-6">
-      <router-link
-        :to="
-          $localePath({
-            name: 'users-slug',
-            params: {
-              slug: review.user.slug,
-            },
-          })
-        "
+      <app-link
+        :to="{
+          name: 'users-slug',
+          params: {
+            slug: review.user.slug,
+          },
+        }"
         class="font-medium text-gray-900 dark:text-gray-100 internal-link"
       >
         {{ review.user?.name }}
-      </router-link>
+      </app-link>
       <div>
-        <span class="font-medium text-gray"
-        >Posted from {{ calExactTimeDiff(review.createdAt) }}</span
-        >
+        <span class="font-medium text-gray">Posted from {{ calExactTimeDiff(review.createdAt) }}</span>
         <span
           v-if="review.createdAt !== review.updatedAt"
           class="font-medium text-gray"
-        >, modified from {{ calExactTimeDiff(review.updatedAt) }}</span
-        >
+        >, modified from {{ calExactTimeDiff(review.updatedAt) }}</span>
       </div>
 
       <field-rating-stars
-        v-if="moduleSocialRating"
+        v-if="rc.public.moduleSocialRating"
         :rating="review.rating"
         class="mt-4"
         disabled
       />
-      <p class="sr-only">{{ review.rating }} out of 5 stars</p>
+      <p class="sr-only">
+        {{ review.rating }} out of 5 stars
+      </p>
 
       <div
         class="review-text prose prose-lg dark:prose-invert mr-3 mt-4 max-w-none"

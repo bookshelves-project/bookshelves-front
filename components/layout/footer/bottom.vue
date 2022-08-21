@@ -37,30 +37,31 @@ const date = (begin: number) => {
       <span class="flex">
         <span class="mx-auto md:flex">
           <span class="mx-1 hidden md:block">·</span>
-          <!-- <router-link
+          <!-- <app-link
             v-if="team"
-            :to="$localePath(`/pages/about`)"
+            :to="{
+              name: 'slug',
+              params: {
+                slug: 'about'
+              }
+            }"
             class="transition-colors duration-100"
-            >{{ team }}</router-link
+            >{{ team }}</app-link
           > -->
           <span class="mx-auto">{{ config.metaAuthor }}</span>
-          <span class="mx-1 hidden md:block text-center">·</span
-          ><a
+          <span class="mx-1 hidden md:block text-center">·</span><a
             v-if="config.linkLicense"
             :href="config.linkLicense"
             target="_blank"
             rel="noopener noreferrer"
             class="block md:flex"
-          >{{ packageJson.license }} license</a
-          ><span class="hidden md:block">,</span
-          ><a
+          >{{ packageJson.license }} license</a><span class="hidden md:block">,</span><a
             v-if="config.linkChangelog"
             :href="config.linkChangelog"
             target="_blank"
             rel="noopener noreferrer"
             class="block italic md:ml-1 md:flex text-center"
-          >v{{ packageJson.version }}</a
-          ><span class="hidden md:block">.</span>
+          >v{{ packageJson.version }}</a><span class="hidden md:block">.</span>
         </span>
       </span>
     </div>

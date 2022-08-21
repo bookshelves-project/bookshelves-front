@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   statistics?: CmsStatistics
 }>()
 </script>
@@ -12,7 +12,7 @@ const props = defineProps<{
           loading="lazy"
           class="h-full w-full object-cover opacity-25"
           src="/images/statistics.webp"
-        />
+        >
         <div
           aria-hidden="true"
           class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white dark:from-gray-900"
@@ -40,7 +40,7 @@ const props = defineProps<{
           <div
             v-for="(metric, id) in statistics.list"
             :key="id"
-            class="rounded-md transition-colors duration-100 hover:bg-gray-300 hover:bg-opacity-50 dark:hover:bg-gray-600"
+            class="rounded-md"
           >
             <div class="block p-2">
               <span

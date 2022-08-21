@@ -1,5 +1,5 @@
 export const useEntityGroup = (selection: SelectedEntities) => {
-  const { nuxtAsyncData } = useFetchable()
+  const { request } = useHttp()
 
   const isAvailable = ref(true)
   const isLoading = ref(true)
@@ -8,27 +8,28 @@ export const useEntityGroup = (selection: SelectedEntities) => {
 
   const getData = async () => {
     isLoading.value = true
-    slides.value = await nuxtAsyncData<Entity[]>(
-      selection.endpoint,
-      selection.paramsList ? selection.paramsList : [],
-      {}
-    ).then((e) => {
-      if (e) {
-        isLoading.value = false
-        if (e.length === 0) {
-          isAvailable.value = false
-        }
-        return e
-      } else {
+
+    const response = await request<Entity[]>({
+      endpoint: selection.endpoint,
+      params: selection.paramsList ? selection.paramsList : [],
+      extractData: true
+    })
+
+    if (response?.success) {
+      isLoading.value = false
+      if (response.body.length === 0) {
         isAvailable.value = false
       }
-    })
+      slides.value = response.body
+    } else {
+      isAvailable.value = false
+    }
   }
 
   return {
     isAvailable,
     isLoading,
     getData,
-    slides,
+    slides
   }
 }

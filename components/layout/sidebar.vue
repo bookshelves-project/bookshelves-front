@@ -7,6 +7,7 @@ const layer = ref(false)
 const overlay = ref(false)
 const target = ref(null)
 
+const config = useRuntimeConfig()
 const navigation = useNavigationStore()
 
 watch(
@@ -20,7 +21,7 @@ watch(
   }
 )
 
-onClickOutside(target, (event) => {
+onClickOutside(target, () => {
   closeSidebar()
 })
 
@@ -40,10 +41,10 @@ const closeSidebar = () => {
 
   navigation.closeSidebar()
 }
-const logout = () => {
-  // closeSidebar()
-  // ctx.$auth.logout()
-}
+// const logout = () => {
+// closeSidebar()
+// ctx.$auth.logout()
+// }
 </script>
 
 <template>
@@ -58,7 +59,7 @@ const logout = () => {
         v-if="overlay"
         class="fixed inset-0 bg-gray-600 bg-opacity-75"
         aria-hidden="true"
-      ></div>
+      />
     </Transition>
     <div
       ref="target"
@@ -76,64 +77,72 @@ const logout = () => {
         </button>
       </div>
       <div class="flex flex-shrink-0 items-center px-4">
-        <router-link
-          to="/"
+        <app-link
+          :to="{
+            name: 'index'
+          }"
           class="inline-flex h-8 w-auto items-center"
           active-class="active-logo"
         >
           <span class="inline-flex items-center" @click="closeSidebar">
-            <!-- <img
+            <img
               class="w-auto h-8 transition-all duration-100 sm:h-10 group-hover:home-logo-shadow"
               src="/icon.svg"
-              :alt="`${$config.appName} logo`"
-            /> -->
-            <!-- <div class="mt-2 ml-3 text-2xl font-handlee dark:text-gray-100">
-              {{ $config.appName }}
-            </div> -->
+              :alt="`${config.public.appName} logo`"
+            >
+            <div class="mt-2 ml-3 text-2xl font-handlee dark:text-gray-100">
+              {{ config.public.appName }}
+            </div>
           </span>
-        </router-link>
+        </app-link>
       </div>
       <div class="mt-5 h-0 flex-1 overflow-y-auto">
         <nav class="px-2">
           <div class="space-y-1">
-            <router-link to="/" class="link group" active-class="active-logo">
+            <app-link
+              :to="{
+                name: 'index'
+              }"
+              class="link group"
+              active-class="active-logo"
+            >
               <span
-                class="w-full px-2 py-4 font-semibold"
+                class="w-full px-2 py-4 font-semibold flex items-center space-x-2"
                 @click="closeSidebar"
               >
-                Home
+                <svg-icon name="home" class="w-5 h-5" />
+                <span>Home</span>
               </span>
-            </router-link>
-            <router-link
+            </app-link>
+            <app-link
               v-for="(link, id) in navigation.main"
               :key="id"
-              :to="$localePath(link.route)"
+              :to="link.route"
               class="link group"
             >
               <span
                 class="w-full px-2 py-4 font-semibold"
                 @click="closeSidebar"
-              >{{ $t(`nav.${link.label}`) }}</span
-              >
-            </router-link>
+              >{{ $t(`nav.${link.label}`) }}</span>
+            </app-link>
           </div>
           <div class="mt-8">
-            <h3
+            <!-- <h3
               id="teams-headline"
               class="px-3 text-xs font-semibold uppercase tracking-wider text-gray-500"
             >
               Authentification
-            </h3>
+            </h3> -->
             <div
               class="mt-3 space-y-1"
               role="group"
               aria-labelledby="teams-headline"
             >
               <!-- <div v-if="$auth.$state.loggedIn" class="space-y-2">
-                <router-link
+                <app-link
                   v-for="(link, id) in navigation.auth"
                   :key="id"
-                  :to="$localePath(link.route)"
+                  :to="link.route"
                   class="link group"
                   role="menuitem"
                 >
@@ -147,7 +156,7 @@ const logout = () => {
                     ></span>
                     <span>{{ link.label }}</span>
                   </span>
-                </router-link>
+                </app-link>
                 <button
                   class="link group w-full px-3 py-4"
                   type="button"
@@ -162,10 +171,10 @@ const logout = () => {
                 </button>
               </div>
               <div v-else class="space-y-2">
-                <router-link
+                <app-link
                   v-for="(link, id) in navigation.guest"
                   :key="id"
-                  :to="$localePath(link.route)"
+                  :to="link.route"
                   class="link group"
                   role="menuitem"
                 >
@@ -175,7 +184,7 @@ const logout = () => {
                   >
                     <span>{{ link.label }}</span>
                   </span>
-                </router-link>
+                </app-link>
               </div> -->
             </div>
           </div>
@@ -193,7 +202,7 @@ const logout = () => {
 .link {
   @apply flex items-center rounded-md text-base font-medium leading-5 text-gray-600 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700;
 }
-.router-link-active {
+.app-link-active {
   @apply bg-gray-200 text-black dark:bg-gray-600 dark:text-white;
 }
 </style>

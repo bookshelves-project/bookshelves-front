@@ -1,58 +1,47 @@
-<script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import Filters from '@/components/filters/index.vue'
-import EntityRelationList from '@/components/relation/list.vue'
-
-const title = 'Genres & Tags'
-const description = 'Find books and series by their genres and tags.'
-
-const { nuxtAsyncData } = useFetchable()
-const route = useRoute()
+<script lang="ts" setup>
+const response = await useHttpFilter<Tag[]>({
+  endpoint: '/tags',
+  query: {
+    'filter[negligible]': false,
+    full: true
+  }
+})
 
 const tags = ref<Tag[]>()
 const genres = ref<Tag[]>()
 
-const load = async () => {
-  const [tagsData, genresData] = await Promise.all([
-    nuxtAsyncData<Tag[]>('/tags', [], {
-      'filter[type]': 'tag',
-      'filter[negligible]': false,
-      full: true,
-    }),
-    nuxtAsyncData<Tag[]>('/tags', [], {
-      'filter[type]': 'genre',
-      'filter[negligible]': false,
-      full: true,
-    }),
-  ])
-  tags.value = tagsData
-  genres.value = genresData
+const setTags = () => {
+  genres.value = response.value?.data.filter(tag => tag.type === 'genre')
+  tags.value = response.value?.data.filter(tag => tag.type === 'tag')
 }
-await load()
+setTags()
 
 watch(
-  () => route.query,
-  async (newVal) => {
-    await load()
-  }
+  () => response.value,
+  () => setTags()
 )
+
+const title = 'Genres & Tags'
+const description = 'Find books and series by their genres and tags.'
 
 useMetadata({
   title,
-  description,
+  description
 })
 </script>
 
 <template>
   <div class="main-content">
-    <app-header :title="title" :subtitle="description">
+    <layout-header :title="title" :subtitle="description">
       <template #filters>
-        <filters negligible :total="genres?.length + tags?.length" />
+        <filters negligible :total="response?.data.length" />
       </template>
-    </app-header>
+    </layout-header>
     <div v-if="genres" class="mb-10">
-      <h2 class="mb-6 font-handlee text-2xl">Genres</h2>
-      <entity-relation-list
+      <h2 class="mb-6 font-handlee text-2xl">
+        Genres
+      </h2>
+      <relation-list
         :entities="genres"
         name="genres"
         :route="{
@@ -65,8 +54,10 @@ useMetadata({
       />
     </div>
     <div v-if="tags" class="mb-10">
-      <h2 class="mb-6 font-handlee text-2xl">Tags</h2>
-      <entity-relation-list
+      <h2 class="mb-6 font-handlee text-2xl">
+        Tags
+      </h2>
+      <relation-list
         :entities="tags"
         name="tags"
         :route="{

@@ -1,15 +1,9 @@
-import {
-  formatAuthors,
-  instanceBook,
-  instanceSerie,
-  instanceAuthor,
-} from '~/utils/methods'
-
 export const useEntity = (
   originalEntity: EntityList,
   withType = false,
   withName = false
 ) => {
+  const { formatAuthors, instanceAuthor, instanceBook, instanceSerie } = useEntityMethods()
   const currentType = ref<EntityType>()
 
   const checkType = () => {
@@ -23,9 +17,6 @@ export const useEntity = (
   }
   checkType()
 
-  const color = computed(() => {
-    return originalEntity.cover?.color || '#ffffff'
-  })
   const title = computed(() => {
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
@@ -37,8 +28,20 @@ export const useEntity = (
 
     return ''
   })
-  const image = computed(() => {
-    return originalEntity.cover?.thumbnail || '/images/no-cover.webp'
+  const media = computed((): Media => {
+    if (originalEntity.media) {
+      return {
+        name: originalEntity.media.name,
+        url: originalEntity.media.url || '/images/no-cover.webp',
+        color: originalEntity.media.color
+      }
+    }
+
+    return {
+      name: '',
+      url: '/images/no-cover.webp',
+      color: ''
+    }
   })
   const route = computed(() => {
     let route = { name: 'index', params: {} }
@@ -49,8 +52,8 @@ export const useEntity = (
         name: 'books-author-slug',
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     } else if (currentType.value === 'serie') {
       const entity = originalEntity as Serie
@@ -58,16 +61,16 @@ export const useEntity = (
         name: 'series-author-slug',
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     } else if (currentType.value === 'author') {
       const entity = originalEntity as Author
       route = {
         name: 'authors-slug',
         params: {
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     } else {
       const entity = originalEntity as Entity
@@ -78,8 +81,8 @@ export const useEntity = (
             : `${entity.meta.entity}s-author-slug`,
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug,
-        },
+          slug: entity.meta.slug
+        }
       }
     }
 
@@ -102,7 +105,7 @@ export const useEntity = (
       if (entity.serie && entity.volume) {
         return {
           title: `${entity.serie.title ?? entity.serie}`,
-          volume: `${entity.volume}`,
+          volume: `${entity.volume}`
         }
       }
     }
@@ -150,23 +153,21 @@ export const useEntity = (
   })
 
   const entityName = computed(() => {
-    let entityName
     const entity = originalEntity as Entity
-    entityName = entity.meta?.entity
+    const entityName = entity.meta?.entity
 
     return entityName
   })
 
   return {
     title: title.value!,
-    image: image.value,
-    color: color.value,
+    media: media.value,
     route: route.value,
     language: language.value,
     serie: serie.value,
     authors: authors.value,
     count: count.value,
     type: withType ? type.value : undefined,
-    entityName: withName ? entityName.value : undefined,
+    entityName: withName ? entityName.value : undefined
   }
 }

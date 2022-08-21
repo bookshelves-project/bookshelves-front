@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import EntityBookRelated from '@/components/entity/book/related.vue'
-import EntityBookOverviewSmall from '@/components/entity/book/overview/small.vue'
-import EntityBookOverviewLarge from '@/components/entity/book/overview/large.vue'
-import EntityReview from '@/components/entity/review/index.vue'
-
 defineProps<{
   book: Book
 }>()
@@ -17,9 +12,8 @@ const success = (payload: boolean) => {
 
 <template>
   <div class="divide-y divide-gray-300 dark:divide-gray-700 space-y-10">
-    <div class="mx-auto lg:grid lg:grid-cols-3 lg:gap-x-8">
+    <div class="mx-auto md:grid md:grid-cols-3 md:gap-x-8">
       <entity-book-overview-small :book="book" />
-
       <entity-book-overview-large :book="book" />
     </div>
     <div

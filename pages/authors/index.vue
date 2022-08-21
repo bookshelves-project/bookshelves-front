@@ -1,25 +1,5 @@
-<script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import Filters from '@/components/filters/index.vue'
-import EntityList from '@/components/entity/list.vue'
-import Pagination from '@/components/pagination/index.vue'
-
-const { nuxtAsyncList } = useFetchable()
-const route = useRoute()
-
-const response = ref<ApiPaginateResponse<Author[]>>()
-
-const load = async () => {
-  response.value = await nuxtAsyncList<Author>('/authors')
-}
-await load()
-
-watch(
-  () => route.query,
-  async () => {
-    await load()
-  }
-)
+<script lang="ts" setup>
+const response = await useHttpFilter<Author[]>('/authors')
 
 const title = 'All authors available'
 const description = 'Want to find all books written by specific author?'
@@ -27,38 +7,38 @@ const sortOptions = [
   {
     label: 'By lastname (default)',
     query: { sort: 'lastname' },
-    value: 'lastname',
+    value: 'lastname'
   },
   {
     label: 'By firstname',
     query: { sort: 'firstname' },
-    value: 'firstname',
+    value: 'firstname'
   },
   {
     label: 'Newest created',
     query: { sort: '-created_at' },
-    value: '-created_at',
-  },
+    value: '-created_at'
+  }
 ]
 
 useMetadata({
   title,
-  description,
+  description
 })
 </script>
 
 <template>
   <div class="main-content">
-    <app-header :title="title" :subtitle="description">
+    <layout-header :title="title" :subtitle="description">
       <template #filters>
         <filters
           :sort="sortOptions"
           paginate
           size
-          :total="response?.meta.total"
+          :total="response?.meta?.total"
         />
       </template>
-    </app-header>
+    </layout-header>
     <entity-list :entities="response?.data" type />
     <pagination
       v-if="response?.meta"

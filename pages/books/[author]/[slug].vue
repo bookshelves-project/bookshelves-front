@@ -1,44 +1,21 @@
-<script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import EntityBookOverview from '@/components/entity/book/overview/index.vue'
-import DownloadButton from '@/components/entity/download-button.vue'
-import ReaderButton from '@/components/entity/reader-button.vue'
-import { formatAuthors } from '~~/utils/methods'
-
-const { nuxtAsyncData } = useFetchable()
+<script lang="ts" setup>
 const route = useRoute()
+const { formatAuthors } = useEntityMethods()
 
-const title = ref<string>('')
-const breadcrumb = ref<string>()
+const response = await useHttpFilter<Book>({
+  endpoint: '/books',
+  params: [
+    route.params.author,
+    route.params.slug
+  ]
+})
+
 const book = ref<Book>()
 
-const load = async () => {
-  const entity = await nuxtAsyncData<Book>('/books', [
-    route.params.author,
-    route.params.slug,
-  ])
-
-  book.value = entity
-  if (entity) {
-    const serie = book.value.serie
-      ? ` · ${book.value.serie.title}, vol. ${book.value.volume} `
-      : ''
-    const authors = formatAuthors(book.value.authors)
-    title.value = `${book.value.title} (${book.value.type}) ${serie}by ${authors}`
-
-    const serieBreadcrumb = book.value.serie
-      ? `, ${book.value.serie.title} (vol. ${book.value.volume})`
-      : ''
-    breadcrumb.value = `${book.value.title} (${book.value.type})${serieBreadcrumb}`
-  }
-}
-await load()
-
-useMetadata({
-  title: title.value,
-  description: book.value?.description,
-  image: book.value?.cover?.simple,
-})
+book.value = response.value?.data
+const serie = book.value?.serie
+  ? ` · ${book.value?.serie.title} (${book.value?.volume}) `
+  : ''
 
 // const authors = this.formatAuthors(this.book.authors)
 // const isbn: string = this.book.identifier
@@ -54,34 +31,47 @@ useMetadata({
 //   bookReleaseDate: this.book.publishDate?.toString(),
 //   bookTag: formatTags(this.book.tags),
 // })
+
+const crumbs: string[] = [
+  'Books',
+  `${book.value?.authors[0].name}`,
+  `${book.value?.title}`
+]
+
+useMetadata({
+  title: `${book.value?.title} by ${formatAuthors(book.value?.authors)} ${serie}`,
+  description: book.value?.description,
+  image: book.value?.media_social
+})
 </script>
 
 <template>
   <main v-if="book" class="main-content">
-    <app-header
+    <layout-header
       :title="book.title"
-      :image="book.cover?.thumbnail"
-      :image-original="book.cover?.original"
-      :color="book.cover?.color"
+      :image="book.media?.url"
+      :color="book.media?.color"
       :authors="book.authors"
-      :breadcrumb="breadcrumb"
+      :crumbs="crumbs"
       favorite
     >
       <div class="mx-auto grid w-max space-y-3">
-        <download-button :download="book.download" :files="book.files" />
-        <reader-button :download="book.download" :files="book.files" />
+        <entity-download-button :download="book.download" :files="book.files" />
+        <entity-reader-button :download="book.download" :files="book.files" />
       </div>
       <template #extra>
         <div class="text-sm flex items-center">
-          in
-          <entity-serie-link
-            :serie="book.serie"
-            :volume="book.volume"
-            class="ml-1"
-          />
+          <div class="mx-auto lg:mx-0 flex items-center">
+            in
+            <entity-serie-link
+              :serie="book.serie"
+              :volume="book.volume"
+              class="ml-1"
+            />
+          </div>
         </div>
       </template>
-    </app-header>
+    </layout-header>
     <entity-book-overview :book="book" class="mb-6" />
   </main>
 </template>

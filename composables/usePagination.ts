@@ -62,7 +62,7 @@ export const usePagination = () => {
 
     const newRoute = {
       name: route.name || 'index',
-      query: { ...newQuery },
+      query: { ...newQuery }
     }
 
     return newRoute
@@ -72,7 +72,7 @@ export const usePagination = () => {
     return current.value === pageNum
   }
   const getTag = (pageNum: number) => {
-    return isActive(pageNum) ? 'em' : 'router-link'
+    return isActive(pageNum) ? 'em' : 'app-link'
   }
 
   const calcStartNumber = (): number => {
@@ -138,6 +138,6 @@ export const usePagination = () => {
     showLastDots,
     isActive,
     getTag,
-    displayLastPage,
+    displayLastPage
   }
 }

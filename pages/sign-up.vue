@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import FormLayoutSide from '@/components/form/layout/side.vue'
-import FormRegister from '@/components/form/register.vue'
-import AppImg from '@/components/app/img.vue'
-
 const title = 'Create your account'
 
 useMetadata({
-  title,
+  title
 })
 
 // @Component({

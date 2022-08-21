@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import EntityCard from '@/components/entity/card.vue'
-
 const props = defineProps<{
   selection: SelectedEntities
   right?: boolean
@@ -16,7 +14,7 @@ const { getData, isAvailable, isLoading, slides } = useEntityGroup(
 
 watch(
   () => isAvailable.value,
-  (newVal) => {
+  () => {
     emit('success', isAvailable.value)
   }
 )
@@ -51,7 +49,7 @@ onMounted(async () => {
         <div
           v-if="isLoading"
           class="flex h-64 w-full animate-pulse items-center overflow-hidden rounded-md bg-gray-300 dark:bg-gray-600"
-        ></div>
+        />
         <div v-else>
           <div
             class="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto pb-14 slider-css scrollbar-thin"

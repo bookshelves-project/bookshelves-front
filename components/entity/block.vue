@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import AppDivider from '@/components/app/divider.vue'
-import EntityCard from '@/components/entity/card.vue'
-import PaginationLoadMore from '@/components/pagination/load-more.vue'
-
 const props = defineProps<{
-  entities?: ApiPaginateResponse<Entity[]>
+  entities?: ApiResponse<Entity[]>
   count?: number
   name?: string
-  endpoint: Endpoint
+  endpoint: ApiEndpoint
 }>()
 
 const meta = ref<ApiMeta>()
@@ -16,9 +12,11 @@ const list = ref<Entity[]>()
 meta.value = props.entities?.meta
 list.value = props.entities?.data
 
-const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
-  meta.value = payload.meta
-  list.value = list.value?.concat(payload.data)
+const paginate = (payload?: ApiResponse<Entity[]>) => {
+  meta.value = payload?.meta
+  if (payload?.data) {
+    list.value = list.value?.concat(payload.data)
+  }
 }
 </script>
 

@@ -14,14 +14,26 @@ const media = ref<HTMLImageElement>()
 const display = ref(false)
 const attrs = useAttrs()
 
-onMounted(() => {
+const load = () => {
   source.value = props.src
   lozad(media.value, {
-    load(el: HTMLImageElement) {
+    load (el: HTMLImageElement) {
       el.src = el.dataset.src!
       el.onload = () => (display.value = true)
-    },
+    }
   }).observe()
+}
+
+watch(
+  () => props.src,
+  () => {
+    display.value = false
+    load()
+  }
+)
+
+onMounted(() => {
+  load()
 })
 </script>
 
@@ -31,7 +43,7 @@ onMounted(() => {
       <div
         v-if="!display"
         v-bind="attrs"
-        class="placeholder bg-gray-50 dark:bg-gray-800"
+        class="placeholder bg-white dark:bg-gray-900"
         :style="color !== '#ffffff' ? `background-color: ${color};` : ''"
       />
     </transition>
@@ -41,7 +53,7 @@ onMounted(() => {
       :data-src="source"
       :alt="display ? (alt ? alt : title) : ''"
       loading="lazy"
-    />
+    >
   </div>
 </template>
 

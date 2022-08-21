@@ -3,7 +3,7 @@
 // import useAuth from '~/composables/useAuth'
 // import { useFormStore } from '~/store/form'
 
-const { query } = useRoute()
+// const { query } = useRoute()
 // const { passwordReset } = useAuth()
 // const store = useFormStore()
 
@@ -11,14 +11,14 @@ const data = ref({
   token: '',
   email: '',
   password: '',
-  password_confirmation: '',
+  password_confirmation: ''
 })
-const test = ref({
-  token: query.token,
-  email: 'admin@mail.com',
-  password: 'password2',
-  password_confirmation: 'password2',
-})
+// const test = ref({
+//   token: query.token,
+//   email: 'admin@mail.com',
+//   password: 'password2',
+//   password_confirmation: 'password2'
+// })
 
 // store.init(form, test)
 // store.setButton('Reset password')
@@ -59,12 +59,12 @@ const test = ref({
     <template #extra>
       <div class="mt-3 text-center">
         If you have reset your password, you can
-        <router-link
-          :to="$localePath({ name: 'sign-in' })"
+        <app-link
+          :to="{ name: 'sign-in' }"
           class="internal-link"
         >
           sign in
-        </router-link>
+        </app-link>
         with your new password.
       </div>
     </template>

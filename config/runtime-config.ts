@@ -46,7 +46,7 @@ const runtimeConfigPublic = {
   primaryColor600: process.env.PRIMARY_COLOR_600 ?? '#564fcc',
   primaryColor700: process.env.PRIMARY_COLOR_700 ?? '#413b99',
   primaryColor800: process.env.PRIMARY_COLOR_800 ?? '#2b2866',
-  primaryColor900: process.env.PRIMARY_COLOR_900 ?? '#161433',
+  primaryColor900: process.env.PRIMARY_COLOR_900 ?? '#161433'
 }
 
 export { runtimeConfigPrivate, runtimeConfigPublic }

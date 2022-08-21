@@ -12,7 +12,7 @@ const {
   modelValue,
   rating = 0,
   max = 5,
-  disabled = false,
+  disabled = false
 } = defineProps<Props>()
 
 const stars = ref(0)
@@ -29,6 +29,7 @@ const set = (id: number) => {
   current.value = id
   currentColor.value = Array(current.value)
     .fill(current.value, 1)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     .map((x, i) => i)
 }
 const save = (id: number) => {

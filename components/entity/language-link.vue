@@ -6,16 +6,14 @@ defineProps<{
 
 <template>
   <div v-if="language" class="mt-2 dark:text-white lg:mt-0">
-    <router-link
-      :to="
-        $localePath({
-          name: 'books',
-          query: { lang: language.meta.slug },
-        })
-      "
+    <app-link
+      :to="{
+        name: 'books',
+        query: { lang: language.meta.slug },
+      }"
       class="internal-link"
     >
       {{ language.name }}
-    </router-link>
+    </app-link>
   </div>
 </template>

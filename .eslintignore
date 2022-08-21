@@ -1,4 +1,8 @@
-dist
 node_modules
-.output
+*.log*
 .nuxt
+.nitro
+.cache
+.output
+.env
+dist

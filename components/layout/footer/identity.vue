@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
-import AppColorMode from '@/components/app/color-mode.vue'
-
+import type { SvgLibrary } from '@/.nuxt/types/svg-library'
 const config = useRuntimeConfig()
 
 const apiUrlBase = (endpoint: string) => {
@@ -9,43 +7,50 @@ const apiUrlBase = (endpoint: string) => {
   return `${config.apiURL}${endpoint}`
 }
 
-const features = [
+const features: {
+  icon: SvgLibrary,
+  label: string,
+  title: string,
+  link: string,
+}[] = [
   {
-    icon: 'feed',
+    icon: 'feature-feed',
     label: 'OPDS',
     title: 'OPDS: Open Publication Distribution System',
-    link: `${apiUrlBase('/opds')}`,
+    link: `${apiUrlBase('/opds')}`
   },
   {
-    icon: 'catalog',
+    icon: 'feature-catalog',
     label: 'Catalog',
     title: 'Catalog: simple interface for eReader browser',
-    link: `${apiUrlBase('/catalog')}`,
+    link: `${apiUrlBase('/catalog')}`
   },
   {
-    icon: 'ereader',
+    icon: 'feature-ereader',
     label: 'Webreader',
     title: 'Webreader: to read an eBook directly in your browser',
-    link: `${apiUrlBase('/webreader')}`,
+    link: `${apiUrlBase('/webreader')}`
   },
   {
-    icon: 'api',
+    icon: 'feature-api',
     label: 'API',
     title: 'API: share data between applications',
-    link: `${apiUrlBase('/docs')}`,
-  },
+    link: `${apiUrlBase('/docs')}`
+  }
 ]
 </script>
 
 <template>
   <div class="space-y-8 xl:col-span-1">
     <div v-if="config.appName" class="items-center space-x-6 flex">
-      <router-link
-        :to="$localePath('/')"
+      <app-link
+        :to="{
+          name: 'index'
+        }"
         class="group flex w-max items-center lg:mx-0"
       >
         <svg-icon
-          name="book"
+          name="logo"
           class="h-6 w-6 text-gray-400 transition-colors duration-100 group-hover:text-gray dark:group-hover:text-gray-300 md:h-12 md:w-12"
         />
         <div
@@ -53,10 +58,12 @@ const features = [
         >
           {{ config.appName }}
         </div>
-      </router-link>
-      <app-color-mode />
+      </app-link>
+      <layout-option-color-mode />
     </div>
-    <div class="text-base text-gray-500">{{ config.metaDescription }}</div>
+    <div class="text-base text-gray-500">
+      {{ config.metaDescription }}
+    </div>
     <div class="sm:flex sm:items-center">
       <div class="flex space-y-0">
         <a

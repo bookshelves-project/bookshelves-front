@@ -2,37 +2,37 @@ import { defineStore } from 'pinia'
 
 export const useEntityStore = defineStore('entity', {
   state: () => ({
-    books: {} as ApiPaginateResponse<Book[]>,
-    series: {} as ApiPaginateResponse<Serie[]>,
-    authors: {} as ApiPaginateResponse<Author[]>,
+    books: {} as ApiResponse<Book[]>,
+    series: {} as ApiResponse<Serie[]>,
+    authors: {} as ApiResponse<Author[]>,
     tags: {} as Tag[],
-    genres: {} as Tag[],
+    genres: {} as Tag[]
   }),
   actions: {
-    booksStore(payload: ApiPaginateResponse<Book[]>) {
+    booksStore(payload: ApiResponse<Book[]>) {
       this.$patch({
-        books: payload,
+        books: payload
       })
     },
-    seriesStore(payload: ApiPaginateResponse<Serie[]>) {
+    seriesStore(payload: ApiResponse<Serie[]>) {
       this.$patch({
-        series: payload,
+        series: payload
       })
     },
-    authorsStore(payload: ApiPaginateResponse<Author[]>) {
+    authorsStore(payload: ApiResponse<Author[]>) {
       this.$patch({
-        authors: payload,
+        authors: payload
       })
     },
     tagsStore(payload: Tag[]) {
       this.$patch({
-        tags: payload,
+        tags: payload
       })
     },
     genresStore(payload: Tag[]) {
       this.$patch({
-        genres: payload,
+        genres: payload
       })
-    },
-  },
+    }
+  }
 })

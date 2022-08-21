@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
+import type { SvgLibrary } from '@/.nuxt/types/svg-library'
 
 interface Props {
   color?: 'primary' | 'secondary' | 'white' | 'danger'
@@ -7,13 +7,14 @@ interface Props {
   align?: 'left' | 'center' | 'right'
   size?: 'sm' | 'md' | 'lg'
   href?: string
-  to?: string | object
+  to?: TypedRoute
   disabled?: boolean
   download?: boolean
-  icon?: string
+  icon?: SvgLibrary
   loading?: boolean
   outlined?: boolean
   hideLabel?: boolean
+  full?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -27,6 +28,7 @@ const props = withDefaults(defineProps<Props>(), {
   download: false,
   icon: undefined,
   loading: false,
+  full: false
 })
 
 defineEmits(['click'])
@@ -38,7 +40,7 @@ if (props.href) {
   tag.value = 'a'
 }
 if (props.to) {
-  tag.value = 'router-link'
+  tag.value = 'app-link'
 }
 
 const alignment = computed((): string => {
@@ -46,7 +48,7 @@ const alignment = computed((): string => {
     left: 'mr-auto',
     center: 'mx-auto',
     right: 'ml-auto',
-    default: 'mx-auto',
+    default: 'mx-auto'
   }
   const current = props.align
   return alignements[current] || alignements.default
@@ -67,10 +69,10 @@ onMounted(() => {
   <component
     :is="tag"
     ref="btn"
-    :to="to !== undefined ? $localePath(to) : null"
+    :to="to !== undefined ? to : null"
     :target="href ? (download ? '' : '_blank') : null"
     :rel="href ? 'noopener noreferrer' : null"
-    :class="[color, { disabled: disabled }, size]"
+    :class="[color, { disabled: disabled }, size, {'w-full': full}]"
     class="btn relative"
     :type="type"
     :disabled="disabled"
@@ -92,12 +94,12 @@ onMounted(() => {
           r="10"
           stroke="currentColor"
           stroke-width="4"
-        ></circle>
+        />
         <path
           class="opacity-75"
           fill="currentColor"
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-        ></path>
+        />
       </svg>
     </span>
     <span :class="[{ 'space-x-2': icon }, alignment]" class="flex items-center">
@@ -114,7 +116,7 @@ onMounted(() => {
 
 <style lang="css" scoped>
 .sm {
-  @apply px-3 py-1;
+  @apply px-3 py-1 !text-sm !font-normal;
 }
 .md {
   @apply px-4 py-2;

@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import EntitySlider from '@/components/entity/group/slider.vue'
-import AppButton from '@/components/app/button.vue'
-
 const props = defineProps<{
   book: Book
   css?: boolean
@@ -20,7 +17,7 @@ const related: SelectedEntities = {
   eyebrow: 'Do you want more?',
   right: false,
   title: 'Related books & series',
-  text: 'Based on tags & genre, not in same series. Limited to 10 first results.',
+  text: 'Based on tags & genre, not in same series. Limited to 10 first results.'
 }
 const success = (payload: boolean) => {
   isAvailable.value = payload

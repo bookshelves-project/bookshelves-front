@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onClickOutside } from '@vueuse/core'
 
 interface Props {
@@ -9,13 +9,41 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   align: 'right',
   arrow: false,
-  autoClose: false,
+  autoClose: false
 })
 
-const open = ref(false)
+type Platform = 'desktop' | 'mobile'
+const platform = ref<Platform>('desktop')
+const isMobile = ref(false)
+
+const opened = ref(false)
+const dropdown = ref(false)
+const overlay = ref(false)
+
 const target = ref<HTMLElement>()
 
-onClickOutside(target, (event) => (open.value = false))
+const toggle = () => {
+  if (opened.value) {
+    closeDropdown()
+  } else {
+    openDropdown()
+  }
+}
+
+const openDropdown = () => {
+  opened.value = true
+  setTimeout(() => {
+    overlay.value = true
+    dropdown.value = true
+  }, 150)
+}
+const closeDropdown = () => {
+  dropdown.value = false
+  overlay.value = false
+  setTimeout(() => {
+    opened.value = false
+  }, 150)
+}
 
 const alignmentClasses = computed((): string => {
   if (props.align === 'left') {
@@ -26,31 +54,64 @@ const alignmentClasses = computed((): string => {
     return 'origin-top'
   }
 })
+
+onClickOutside(target, () => closeDropdown())
+
+onMounted(() => {
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    isMobile.value = true
+    platform.value = 'mobile'
+  }
+})
 </script>
 
 <template>
-  <div ref="target" class="relative h-full">
-    <button class="h-full rounded-md" type="button" @click="open = !open">
+  <div class="relative">
+    <div class="cursor-pointer" @click="toggle()">
       <slot name="trigger" />
-    </button>
-
-    <transition
-      enter-active-class="transition duration-100 ease-out"
-      enter-from-class="transform scale-95 opacity-0"
-      enter-to-class="transform scale-100 opacity-100"
-      leave-active-class="transition duration-75 ease-in"
-      leave-from-class="transform scale-100 opacity-100"
-      leave-to-class="transform scale-95 opacity-0"
-    >
-      <div
-        v-show="open"
-        class="absolute z-50 mt-2 rounded-md shadow-lg ring-1 ring-primary-600 ring-opacity-5 dark:rounded-none"
-        :class="[alignmentClasses]"
-        style="display: none"
-        @click="autoClose ? (open = false) : ''"
-      >
-        <slot name="content" />
+    </div>
+    <div v-if="opened">
+      <div v-if="isMobile">
+        <Teleport to="body">
+          <div>
+            <Transition>
+              <div
+                v-if="overlay"
+                class="fixed inset-0 z-40 bg-gray-500 dark:bg-gray-700 opacity-75"
+                aria-hidden="true"
+              />
+            </Transition>
+            <div ref="target" class="fixed bottom-0 z-50 w-full">
+              <div
+                :class="dropdown ? '-translate-y-0' : 'translate-y-full'"
+                class="bg-gray-100 dark:bg-gray-800 mx-2 rounded-t-md pb-3 px-3 pt-3 shadow-xl transition duration-300 ease-in-out text-center font-semibold"
+              >
+                <slot name="content" />
+              </div>
+            </div>
+          </div>
+        </Teleport>
       </div>
-    </transition>
+      <div v-else>
+        <Transition
+          enter-active-class="transition duration-100 ease-out"
+          enter-from-class="transform scale-95 opacity-0"
+          enter-to-class="transform scale-100 opacity-100"
+          leave-active-class="transition duration-75 ease-in"
+          leave-from-class="transform scale-100 opacity-100"
+          leave-to-class="transform scale-95 opacity-0"
+        >
+          <div
+            v-show="dropdown"
+            ref="target"
+            :class="[alignmentClasses]"
+            class="bg-gray-50 dark:bg-gray-800 shadow w-max p-1.5 rounded-md absolute top-10 text-left dark:border-gray-700 border border-transparent"
+            @click="autoClose ? closeDropdown() : ''"
+          >
+            <slot name="content" />
+          </div>
+        </Transition>
+      </div>
+    </div>
   </div>
 </template>

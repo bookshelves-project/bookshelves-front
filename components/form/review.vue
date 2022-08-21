@@ -1,18 +1,13 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
-import AppImg from '@/components/app/img.vue'
-import FieldText from '@/components/field/text.vue'
-import FieldRatingStars from '@/components/field/rating-stars.vue'
-
 const form = ref({
   text: '',
-  rating: 0,
+  rating: 0
 })
 
 const config = useRuntimeConfig()
 
 const loggedIn = ref(false)
-const emit = defineEmits(['refresh'])
+// const emit = defineEmits(['refresh'])
 
 const submit = async () => {
   // const { name, params } = useRoute()

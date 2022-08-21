@@ -1,39 +1,31 @@
 <script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import AppContent from '@/components/app/content.vue'
-
-const { nuxtAsyncData } = useFetchable()
 const route = useRoute()
-
-const title = ref('')
-const summary = ref<string | undefined>()
+const response = await useHttpFilter<Page>({
+  endpoint: '/pages',
+  params: [route.params.slug]
+})
 
 const page = ref<Page>()
+page.value = response.value?.data
 
-await nuxtAsyncData<Page | undefined>('/pages', [route.params.slug]).then(
-  (e) => {
-    if (e) {
-      summary.value = e.summary
-      page.value = e
-      title.value = page.value.title
-    }
-  }
-)
+const crumbs: string[] = [
+  `${page.value?.title}`
+]
 
 useMetadata({
-  title: title.value,
-  description: summary.value,
-  image: page.value?.cover,
+  title: page.value?.title,
+  description: page.value?.summary,
+  image: page.value?.cover
 })
 </script>
 
 <template>
   <main v-if="page" class="main-content">
-    <app-header
+    <layout-header
       :title="page.title"
       :text="page.summary"
       :image="page.cover"
-      :breadcrumb="title"
+      :crumbs="crumbs"
     />
     <app-content :body="page.body" />
   </main>

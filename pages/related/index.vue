@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import Redirection from '@/components/redirection.vue'
-
-const { params } = useRoute()
-
 definePageMeta({
-  middleware(to, from) {
+  middleware (to) {
     if (to.params.author) {
       const app = useNuxtApp()
       const router = useRouter()
       router.push(app.$localePath('/'))
     }
-  },
+  }
 })
 </script>
 
 <template>
-  <redirection :to="$localePath('/')" />
+  <app-redirection
+    :to="{
+      name: 'index'
+    }"
+  />
 </template>

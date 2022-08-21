@@ -1,46 +1,48 @@
-<script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import EntityList from '@/components/entity/list.vue'
-import PaginationLoadMore from '@/components/pagination/load-more.vue'
+<script lang="ts" setup>
+const { request } = useHttp()
+const listRoute: ApiEndpoint = '/tags/books'
+const route = useRoute()
 
-const { nuxtAsyncData, nuxtAsyncList } = useFetchable()
-const { params } = useRoute()
+const [tagRaw, entitiesRaw] = await Promise.all([
+  request<Tag>({
+    endpoint: '/tags',
+    params: [
+      route.params.slug
+    ],
+    extractData: true
+  }),
+  request<ApiResponse<Entity[]>>({
+    endpoint: listRoute,
+    params: [
+      route.params.slug
+    ]
+  })
+])
 
 const tag = ref<Tag>()
 const meta = ref<ApiMeta>()
 const list = ref<Entity[]>()
-const listRoute: Endpoint = '/tags/books'
 
-const title = ref<string>()
-const description = ref<string>()
+tag.value = tagRaw.body
+meta.value = entitiesRaw?.body.meta
+list.value = entitiesRaw?.body.data
 
-const load = async () => {
-  const [entity, entities] = await Promise.all([
-    nuxtAsyncData<Tag>('/tags', [params.slug]),
-    nuxtAsyncList<Entity>(listRoute, [params.slug]),
-  ])
-
-  tag.value = entity
-  meta.value = entities.meta
-  list.value = entities.data
-  title.value = `Tag ${entity.name}`
-  description.value = `Books and series with tag ${entity.name}`
-}
-await load()
-
-const paginate = (payload: ApiPaginateResponse<Entity[]>) => {
-  meta.value = payload.meta
-  list.value = list.value?.concat(payload.data)
+const paginate = (payload?: ApiResponse<Entity[]>) => {
+  meta.value = payload?.meta
+  if (payload?.data) {
+    list.value = list.value?.concat(payload.data)
+  }
 }
 
 useMetadata({
-  title: title.value,
+  title: `Tag ${tag.value?.name}`,
+  description: `Books and series with tag ${tag.value?.name}`
 })
 </script>
 
 <template>
-  <div v-if="tag" class="main-content">
-    <app-header :title="title" :subtitle="description" />
+  <div class="main-content">
+    <layout-header v-if="tag" :title="tag.name" />
     <div>
       <entity-list :entities="list" type entity-name />
       <div v-if="meta" class="mt-14 mb-5">

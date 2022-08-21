@@ -6,28 +6,32 @@ export const useNavigationStore = defineStore('navigation', {
     main: [
       {
         label: 'books',
+        icon: 'navigation-book',
         route: {
-          name: 'books',
-        },
+          name: 'books'
+        }
       },
       {
         label: 'series',
+        icon: 'navigation-serie',
         route: {
-          name: 'series',
-        },
+          name: 'series'
+        }
       },
       {
         label: 'authors',
+        icon: 'navigation-author',
         route: {
-          name: 'authors',
-        },
+          name: 'authors'
+        }
       },
       {
         label: 'tags',
+        icon: 'navigation-tag',
         route: {
-          name: 'tags',
-        },
-      },
+          name: 'tags'
+        }
+      }
     ] as RouteLink[],
     footerProject: {
       title: 'discover',
@@ -36,17 +40,17 @@ export const useNavigationStore = defineStore('navigation', {
           label: 'about',
           route: {
             name: 'slug',
-            params: { slug: 'about' },
-          },
+            params: { slug: 'about' }
+          }
         },
         {
           label: 'features',
           route: {
             name: 'slug',
-            params: { slug: 'features' },
-          },
-        },
-      ],
+            params: { slug: 'features' }
+          }
+        }
+      ]
     } as FooterColumn,
     footerSupport: {
       title: 'support',
@@ -55,18 +59,18 @@ export const useNavigationStore = defineStore('navigation', {
           label: 'more-ebooks',
           route: {
             name: 'slug',
-            params: { slug: 'more-ebooks' },
-          },
+            params: { slug: 'more-ebooks' }
+          }
         },
         {
           label: 'faq',
           route: {
             name: 'slug',
-            params: { slug: 'faq' },
-          },
+            params: { slug: 'faq' }
+          }
         },
-        { label: 'contact', route: { name: 'contact' } },
-      ],
+        { label: 'contact', route: { name: 'contact' } }
+      ]
     } as FooterColumn,
     footerAdvanced: {
       title: 'more',
@@ -74,22 +78,22 @@ export const useNavigationStore = defineStore('navigation', {
         {
           label: 'guides',
           route: {
-            name: 'guides',
-          },
+            name: 'guides'
+          }
         },
         {
           label: 'languages',
           route: {
-            name: 'languages',
-          },
+            name: 'languages'
+          }
         },
         {
           label: 'publishers',
           route: {
-            name: 'publishers',
-          },
-        },
-      ],
+            name: 'publishers'
+          }
+        }
+      ]
     } as FooterColumn,
     footerLegal: {
       title: 'legal',
@@ -98,66 +102,66 @@ export const useNavigationStore = defineStore('navigation', {
           label: 'legality',
           route: {
             name: 'slug',
-            params: { slug: 'legal' },
-          },
+            params: { slug: 'legal' }
+          }
         },
         {
           label: 'privacy',
           route: {
             name: 'slug',
-            params: { slug: 'privacy' },
-          },
-        },
-      ],
+            params: { slug: 'privacy' }
+          }
+        }
+      ]
     } as FooterColumn,
     auth: [
       {
         label: 'My profile',
         icon: 'user-circle',
-        route: { name: 'profile' },
+        route: { name: 'profile' }
       },
       {
         label: 'Settings',
         icon: 'cog',
-        route: { name: 'profile-settings' },
-      },
+        route: { name: 'profile-settings' }
+      }
     ] as RouteLink[],
     guest: [
       { label: 'Sign in', icon: 'login', route: { name: 'sign-in' } },
-      { label: 'Sign up', icon: 'register', route: { name: 'sign-up' } },
-    ] as RouteLink[],
+      { label: 'Sign up', icon: 'register', route: { name: 'sign-up' } }
+    ] as RouteLink[]
   }),
   getters: {
-    getFooterProject: (state) => state.footerProject,
+    getFooterProject: state => state.footerProject,
     getFooterSupport(state) {
       const { moduleContact } = useRuntimeConfig()
       const support = state.footerSupport
       if (!moduleContact) {
         const links = state.footerSupport.links.filter(
-          (e) => e.label !== 'contact'
+          e => e.label !== 'contact'
         )
         state.footerSupport.links = links
       }
 
       return support
     },
-    getFooterAdvanced: (state) => state.footerAdvanced,
-    getFooterLegal: (state) => state.footerLegal,
+    getFooterAdvanced: state => state.footerAdvanced,
+    getFooterLegal: state => state.footerLegal
   },
   actions: {
     toggleSidebar(): boolean {
       this.$patch({
-        sidebar: !this.sidebar,
+        sidebar: !this.sidebar
       })
 
       return this.sidebar
     },
     closeSidebar(): boolean {
       this.$patch({
-        sidebar: false,
+        sidebar: false
       })
 
       return this.sidebar
-    },
-  },
+    }
+  }
 })

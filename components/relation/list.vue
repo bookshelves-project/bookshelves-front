@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import { groupBy } from '~/utils/methods'
-import RelationGroup from '@/components/relation/group.vue'
-
 const props = defineProps<{
   entities?: Tag[] | Language[]
   name?: string
-  route?: Route
+  to?: TypedRoute
   group?: boolean
 }>()
 
+const { arrayGroupBy } = useTools()
 const bestCount = ref(0)
 
 const entitiesByChar = computed((): Record<string, Language[] | Tag[]> => {
-  return groupBy(props.entities!, 'firstChar')
+  return arrayGroupBy(props.entities!, 'firstChar')
 })
 
-const { getBestCount } = useRelation(props.route)
+const { getBestCount } = useRelation(props.to)
 bestCount.value = getBestCount(props.entities!)
 </script>
 
@@ -30,10 +28,10 @@ bestCount.value = getBestCount(props.entities!)
       <h2 class="text-gray text-base font-medium uppercase tracking-wide">
         {{ char }}
       </h2>
-      <relation-group :count="bestCount" :items="items" :route="route" />
+      <relation-group :count="bestCount" :items="items" :to="to" />
     </div>
   </div>
   <div v-else>
-    <relation-group :count="bestCount" :items="entities" :route="route" />
+    <relation-group :count="bestCount" :items="entities" :to="to" />
   </div>
 </template>

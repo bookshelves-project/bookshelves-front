@@ -1,4 +1,6 @@
-<template>filter chip</template>
+<template>
+  <div>filter chip</div>
+</template>
 
 <!-- <template>
   <button

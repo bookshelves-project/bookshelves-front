@@ -2,36 +2,36 @@
 // import type { Options } from '@nuxtjs/i18n'
 // import { ModuleOptions, RecursivePartial } from '@nuxtjs/auth-next'
 import { VueUseNuxtOptions } from '@vueuse/nuxt'
-import { ModuleOptions, NuxtConfig } from '@nuxt/schema'
+import { NuxtConfig } from '@nuxt/schema'
 
-const htmlValidator = {
-  usePrettier: false,
-  options: {
-    extends: [
-      'html-validate:document',
-      'html-validate:recommended',
-      'html-validate:standard',
-    ],
-    rules: {
-      'svg-focusable': 'off',
-      'no-unknown-elements': 'error',
-      // Conflicts or not needed as we use prettier formatting
-      'void-style': 'off',
-      'no-trailing-whitespace': 'off',
-      // Conflict with Nuxt defaults
-      'require-sri': 'off',
-      'attribute-boolean-style': 'off',
-      'doctype-style': 'off',
-      // Unreasonable rule
-      'no-inline-style': 'off',
-    },
-  },
-}
+// const htmlValidator = {
+//   usePrettier: false,
+//   options: {
+//     extends: [
+//       'html-validate:document',
+//       'html-validate:recommended',
+//       'html-validate:standard'
+//     ],
+//     rules: {
+//       'svg-focusable': 'off',
+//       'no-unknown-elements': 'error',
+//       // Conflicts or not needed as we use prettier formatting
+//       'void-style': 'off',
+//       'no-trailing-whitespace': 'off',
+//       // Conflict with Nuxt defaults
+//       'require-sri': 'off',
+//       'attribute-boolean-style': 'off',
+//       'doctype-style': 'off',
+//       // Unreasonable rule
+//       'no-inline-style': 'off'
+//     }
+//   }
+// }
 const tailwindcss: NuxtConfig['tailwindcss'] = {
-  exposeConfig: true,
+  exposeConfig: true
 }
 const vueuse: VueUseNuxtOptions = {
-  ssrHandlers: true,
+  ssrHandlers: true
 }
 // const axios: AxiosOptions = {
 //   baseURL: process.env.API_URL || 'http://localhost:8000',
@@ -158,7 +158,11 @@ const vueuse: VueUseNuxtOptions = {
  */
 const schemaOrg: NuxtConfig['schemaOrg'] = {
   // set to your production domain
-  canonicalHost: 'https://nuxtjs.org',
+  canonicalHost: 'https://nuxtjs.org'
+}
+
+const nuxtTypedRouter: NuxtConfig['nuxtTypedRouter'] = {
+  outDir: './.nuxt/router'
 }
 
 const modules = {
@@ -169,11 +173,12 @@ const modules = {
   tailwindcss,
   vueuse,
   schemaOrg,
+  nuxtTypedRouter
 }
 
 export const matomo = {
   matomoUrl: process.env.MATOMO_URL ? process.env.MATOMO_URL : null,
-  siteId: process.env.MATOMO_SITE_ID ? process.env.MATOMO_SITE_ID : null,
+  siteId: process.env.MATOMO_SITE_ID ? process.env.MATOMO_SITE_ID : null
 }
 
 export default modules

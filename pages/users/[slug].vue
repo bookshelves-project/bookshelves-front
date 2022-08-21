@@ -1,30 +1,35 @@
 <script setup lang="ts">
-import AppHeader from '@/components/app/header.vue'
-import UserDataList from '@/components/user/data/list.vue'
-
-const { nuxtAsyncData } = useFetchable()
 const route = useRoute()
-
-const user = ref<User>()
-const title = ref('Profile of ')
-
-await nuxtAsyncData<User>('/users', [route.params.slug]).then((e) => {
-  user.value = e
-  title.value = e.name
+const response = await useHttpFilter<User>({
+  endpoint: '/users',
+  params: [route.params.slug]
 })
 
+const title = ref<string>()
+const user = ref<User>()
+
+user.value = response.value?.data
+title.value = `Profile of ${user.value?.name}`
+
+const crumbs: string[] = [
+  'Users',
+  `${user.value?.name}`
+]
+
 useMetadata({
-  title: title.value,
+  title: title.value
 })
 </script>
 
 <template>
   <main class="main-content">
-    <app-header
+    <layout-header
       v-if="user"
       :title="title"
+      :subtitle="user.slug"
       :image="user.avatar"
       :text="user.about"
+      :crumbs="crumbs"
     />
     <div
       v-if="user"

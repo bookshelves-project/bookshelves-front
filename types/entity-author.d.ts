@@ -17,7 +17,8 @@ declare interface Author {
   meta: AuthorMeta
   lastname?: string
   firstname?: string
-  cover?: Cover
+  media?: Media
+  media_social?: string
   count?: AuthorCount
   description?: string
   link?: string

@@ -1,21 +1,17 @@
 <script setup lang="ts">
-import AppImg from '@/components/app/img.vue'
-import SvgIcon from '@/components/svg-icon.vue'
-import { date } from '@/utils/methods'
-
 defineProps<{
   post: Post
 }>()
+
+const { date } = useDate()
 </script>
 
 <template>
-  <nuxt-link
-    :to="
-      $localePath({
-        name: 'guides-slug',
-        params: { slug: post.meta?.slug },
-      })
-    "
+  <app-link
+    :to="{
+      name: 'guides-slug',
+      params: { slug: post.meta?.slug },
+    }"
     :title="post.title"
     :aria-label="post.title"
     class="relative block transition-colors duration-75 px-3 py-2 rounded-md shadow hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -76,7 +72,7 @@ defineProps<{
         </svg>
       </div>
     </div>
-  </nuxt-link>
+  </app-link>
 </template>
 
 <style scoped>

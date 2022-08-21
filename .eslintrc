@@ -1,37 +1,24 @@
 {
-  // https://github.com/nuxt/eslint-config
   "extends": [
-    "@nuxtjs/eslint-config-typescript",
-    "eslint:recommended",
-    "plugin:vue/vue3-recommended"
+    "@nuxtjs/eslint-config-typescript"
   ],
   "rules": {
-    "no-undef": "off",
     "prefer-const": "warn",
     "no-unused-vars": "warn",
-    "vue/multi-word-component-names": "off",
-    "vue/first-attribute-linebreak": "warn",
-    "vue/no-v-html": "off",
-    "@typescript-eslint/no-unused-vars": "warn",
-    "quotes": [
-      2,
-      "single",
+    "no-console": [
+      "warn",
       {
-        "avoidEscape": true
+        "allow": [
+          "warn",
+          "error"
+        ]
       }
     ],
-    "semi": [
-      "error",
-      "never"
-    ],
-    "comma-dangle": "off",
-    "vue/html-self-closing": "off",
-    "vue/max-attributes-per-line": "warn",
-    "vue/singleline-html-element-content-newline": "off",
-    "func-call-spacing": "off",
     "space-before-function-paren": "off",
-    "arrow-parens": "off",
-    "vue/html-closing-bracket-newline": "off",
-    "object-property-newline": "warn"
+    "func-call-spacing": "off",
+    "vue/multi-word-component-names": "off",
+    "vue/no-unused-vars": "warn",
+    "vue/no-v-html": "off",
+    "@typescript-eslint/no-unused-vars": "warn"
   }
 }

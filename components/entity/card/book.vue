@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { capitalize } from '@/utils/methods'
 
 defineProps<{
   entity: UseEntity
@@ -15,9 +14,9 @@ defineProps<{
     <div class="h-full shrink-0 relative">
       <app-img
         class="h-full w-36 object-cover rounded-md"
-        :src="entity.image"
-        :color="entity.color"
-        :alt="entity.title"
+        :src="entity.media?.url"
+        :color="entity.media?.color"
+        :alt="entity.media?.name"
       />
       <div
         v-if="entity.type"
@@ -26,7 +25,7 @@ defineProps<{
         <div
           aria-hidden="true"
           class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"
-        ></div>
+        />
         <p class="relative text-lg font-semibold text-white font-handlee">
           {{ entity.type }}
         </p>
@@ -34,11 +33,11 @@ defineProps<{
     </div>
     <div class="mt-2 h-full min-w-0 flex-1">
       <component
-        :is="entity.route ? 'router-link' : 'span'"
-        :to="entity.route ? $localePath(entity.route) : '/'"
+        :is="entity.route ? 'app-link' : 'span'"
+        :to="entity.route ? entity.route : { name: 'index' }"
         class="text-black focus:outline-none dark:text-gray-100"
       >
-        <span class="absolute inset-0" aria-hidden="true"></span>
+        <span class="absolute inset-0" aria-hidden="true" />
         <h2 class="font-semibold text-lg">
           {{ entity.title }}
         </h2>
@@ -47,8 +46,8 @@ defineProps<{
         </h3>
         <div class="mt-1 text-sm sm:mt-3">
           <div class="italic">
-            <div v-if="entity.entityName">
-              {{ capitalize(entity.entityName) }}
+            <div v-if="entity.entityName" class="capitalize">
+              {{ entity.entityName }}
             </div>
             <div v-if="entity.serie">
               {{ entity.serie?.title }}, vol. {{ entity.serie?.volume }}

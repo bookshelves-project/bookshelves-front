@@ -7,6 +7,7 @@ const list = computed((): DownloadList => {
   let filtered = {}
   if (props.files) {
     filtered = Object.fromEntries(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       Object.entries(props.files).filter(([key, file]) => file !== null)
     )
     filtered = Object.values(filtered).reverse()
@@ -38,8 +39,7 @@ const list = computed((): DownloadList => {
             <div class="w-0 flex-1 flex items-center">
               <span
                 class="font-bold uppercase text-primary-600 dark:text-primary-500"
-              >{{ file?.format }}</span
-              >
+              >{{ file?.format }}</span>
               <span class="ml-2 flex-1 w-0 truncate">
                 {{ file?.name }}
               </span>
@@ -50,14 +50,14 @@ const list = computed((): DownloadList => {
               </div>
               <a
                 :href="file?.reader"
-                class="font-medium text-primary-600 dark:text-primary-500 hover:bg-gray-100 py-1 px-2 rounded-md dark:hover:bg-gray-800"
+                class="link-macos"
                 target="_blank"
               >
                 Read
               </a>
               <a
                 :href="file?.url"
-                class="font-medium text-primary-600 dark:text-primary-500 hover:bg-gray-100 py-1 px-2 rounded-md dark:hover:bg-gray-800"
+                class="link-macos"
                 download
               >
                 Download
