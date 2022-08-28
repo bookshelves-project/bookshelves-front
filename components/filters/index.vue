@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import FiltersOption from '@/components/filters/option.vue'
-import FiltersQueries from '@/components/filters/queries.vue'
-import FiltersClear from '@/components/filters/clear.vue'
-import SvgIcon from '@/components/svg-icon.vue'
-
 import { useApplicationStore } from '~~/store/application'
 import { useFilterStore } from '~~/store/filter'
 

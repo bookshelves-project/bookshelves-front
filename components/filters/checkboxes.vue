@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import FieldCheckbox from '@/components/field/checkbox.vue'
-
 const props = defineProps<{
   modelValue?: string[]
   options?: FilterOption[]

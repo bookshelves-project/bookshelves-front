@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import AppDropdown from '@/components/app/dropdown.vue'
-import FiltersCheckboxes from '@/components/filters/checkboxes.vue'
-import FieldToggle from '@/components/field/toggle.vue'
-import SvgIcon from '@/components/svg-icon.vue'
 import { useFilterStore } from '~~/store/filter'
 
 interface Props {
