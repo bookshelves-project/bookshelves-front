@@ -4,7 +4,7 @@ import AppLoading from '@/components/app/loading.vue'
 
 const props = defineProps<{
   meta: ApiMeta
-  endpoint: ApiEndpoint
+  endpoint: ApiTypedRouteList
 }>()
 
 const emit = defineEmits<{

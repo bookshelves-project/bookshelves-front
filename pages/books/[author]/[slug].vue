@@ -3,11 +3,11 @@ const route = useRoute()
 const { formatAuthors } = useEntityMethods()
 
 const response = await useHttpFilter<Book>({
-  endpoint: '/books',
-  params: [
-    route.params.author,
-    route.params.slug
-  ]
+  endpoint: '/books/{author}/{slug}',
+  params: {
+    author: route.params.author,
+    slug: route.params.slug
+  }
 })
 
 const book = ref<Book>()

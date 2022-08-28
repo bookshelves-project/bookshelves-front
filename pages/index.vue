@@ -11,7 +11,10 @@ if (!objectIsEmpty(store.homePage)) {
   homePage.value = store.homePage
 } else {
   const response = await request<CmsHomePage>({
-    endpoint: '/cms/home-page',
+    endpoint: '/pages/{slug}',
+    params: {
+      slug: 'home-page'
+    },
     extractData: true
   })
   if (response.success) {

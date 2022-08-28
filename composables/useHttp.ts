@@ -18,7 +18,7 @@ export const useHttp = () => {
 
   const getRoute = computed(() => useRoute())
 
-  const getRequest = (request: RequestData | ApiEndpoint): Request => {
+  const getRequest = (request: RequestData | ApiTypedRouteList): Request => {
     if (!isRequestData(request)) {
       request = {
         endpoint: request
@@ -42,10 +42,14 @@ export const useHttp = () => {
     }
   }
 
-  const setParams = (endpoint: string, params?: Params) => {
+  const setParams = (endpoint: string, params?: ApiTypedRouteParams[ApiTypedRouteList]) => {
     if (params) {
-      const paramsStr = Object.values(params).join('/')
-      endpoint += `/${paramsStr}`
+      const interpolateUrl = (string: string, values: Keyable) =>
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        string.replace(/{(.*?)}/g, (match, offset) => values[offset])
+      const route = interpolateUrl(endpoint, params)
+
+      endpoint = route
     }
 
     return endpoint
@@ -124,7 +128,7 @@ export const useHttp = () => {
    *
    * @param request RequestData | ApiEndpoint
   */
-  const request = async <T>(request: RequestData | ApiEndpoint): Promise<HttpResponse<T>> => {
+  const request = async <T>(request: RequestData | ApiTypedRouteList): Promise<HttpResponse<T>> => {
     let req: Request = {
       url: '',
       request: {} as RequestData

@@ -11,8 +11,8 @@ export const useApplicationStore = defineStore('application', {
   }),
   actions: {
     async nuxtInit() {
-      const { me } = useAuth()
-      await me()
+      // const { me } = useAuth()
+      // await me()
 
       const cookie = useCookie('application', {
         sameSite: 'strict'

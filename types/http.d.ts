@@ -63,8 +63,90 @@ declare interface Query {
   relevant?: boolean
 }
 
-declare type Params = {
-  slug: string | string[]
+declare type Params = (string | string[])[]
+type ApiTypedParam = string | number | string[]
+type ApiTypedRouteList =
+  | '/authors'
+  | '/authors/{slug}'
+  | '/authors/{slug}/books'
+  | '/authors/{slug}/series'
+  | '/series'
+  | '/series/{author}/{slug}'
+  | '/series/{author}/{slug}/books'
+  | '/books'
+  | '/books/{author}/{slug}'
+  | '/languages'
+  | '/publishers'
+  | '/publishers/{slug}'
+  | '/publishers/{slug}/books'
+  | '/tags'
+  | '/tags/{slug}'
+  | '/tags/{slug}/books'
+  | '/posts'
+  | '/posts/{slug}'
+  | '/pages'
+  | '/pages/{slug}'
+  | '/users'
+  | '/users/{slug}'
+
+type ApiTypedRouteParams = {
+  '/authors': never;
+  '/authors/{slug}': {
+    slug: ApiTypedParam;
+  }
+  '/authors/{slug}/books': {
+    slug: ApiTypedParam;
+  }
+  '/authors/{slug}/series': {
+    slug: ApiTypedParam;
+  }
+  '/series': never
+  '/series/{author}/{slug}': {
+    author: ApiTypedParam;
+    slug: ApiTypedParam;
+  }
+  '/series/{author}/{slug}/books': {
+    author: ApiTypedParam;
+    slug: ApiTypedParam;
+  }
+  '/books': never
+  '/books/{author}/{slug}': {
+    author: ApiTypedParam;
+    slug: ApiTypedParam;
+  }
+  '/languages': never
+  '/publishers': never
+  '/publishers/{slug}': {
+    slug: ApiTypedParam;
+  }
+  '/publishers/{slug}/books': {
+    slug: ApiTypedParam;
+  }
+  '/tags': never
+  '/tags/{slug}': {
+    slug: ApiTypedParam;
+  }
+  '/tags/{slug}/books': {
+    slug: ApiTypedParam;
+  }
+  '/posts': never
+  '/posts/{slug}': {
+    slug: ApiTypedParam;
+  }
+  '/pages': never
+  '/pages/{slug}': {
+    slug: ApiTypedParam;
+  }
+  '/users': never
+  '/users/{slug}': {
+    slug: ApiTypedParam;
+  }
+};
+
+declare interface ApiTypedRoute {
+  name: ApiTypedRouteList,
+  params?: ApiTypedRouteParams[ApiTypedRouteList],
+  query?: Query
 }
 
 type ApiEndpointEntity =
@@ -123,13 +205,14 @@ declare interface BaseRequest {
   debug?: boolean
 }
 declare interface RequestData {
-  endpoint?: ApiEndpoint
+  // apiType?: ApiTypedRoute
+  endpoint?: ApiTypedRouteList
   raw?: boolean
   headers?: HeadersInit
   crashOnError?: boolean
   method?: RequestMethod = 'GET'
   credentials?: RequestCredentials
-  params?: Params
+  params?: ApiTypedRouteParams[ApiTypedRouteList]
   query?: Query
   body?: any
   lazy?: boolean

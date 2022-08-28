@@ -1,8 +1,10 @@
 <script setup lang="ts">
 const route = useRoute()
 const response = await useHttpFilter<User>({
-  endpoint: '/users',
-  params: [route.params.slug]
+  endpoint: '/users/{slug}',
+  params: {
+    slug: route.params.slug
+  }
 })
 
 const title = ref<string>()

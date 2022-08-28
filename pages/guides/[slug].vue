@@ -1,8 +1,10 @@
 <script setup lang="ts">
 const route = useRoute()
 const response = await useHttpFilter<Post>({
-  endpoint: '/posts',
-  params: [route.params.slug]
+  endpoint: '/posts/{slug}',
+  params: {
+    slug: route.params.slug
+  }
 })
 
 const post = ref<Post>()
