@@ -1,4 +1,5 @@
 import svgLoader from 'vite-svg-loader'
+import dynamicImport from 'vite-plugin-dynamic-import'
 // import Inspector from 'vite-plugin-vue-inspector'
 import svgLibrary from './plugins/vite/svg-library'
 import config from './config'
@@ -45,6 +46,7 @@ export default defineNuxtConfig({
       // Inspector({
       //   appendTo: 'entry.mjs'
       // }), // https://github.com/webfansplz/vite-plugin-vue-inspector
+      // dynamicImport(/* options */), // https://github.com/vite-plugin/vite-plugin-dynamic-import
       svgLibrary()
     ]
   }

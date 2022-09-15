@@ -1,13 +1,16 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { SvgLibrary } from '@/.nuxt/types/svg-library'
 
 const props = defineProps<{
   name?: SvgLibrary
 }>()
 
+// const path = `@/assets/icons/${props.name}.svg`
+const path = `~/components/icons/${props.name}.vue`
+
 const currentIcon = computed(() =>
   defineAsyncComponent({
-    loader: () => import(`@/assets/svg/${props.name}.svg`),
+    loader: () => import(/* @vite-ignore */ path),
     loadingComponent: {
       template: '<span></span>'
     },
@@ -23,7 +26,7 @@ const attrs = useAttrs()
 </script>
 
 <template>
-  <span>
+  <div>
     <Suspense>
       <template #default>
         <current-icon :class="attrs.class" />
@@ -32,5 +35,5 @@ const attrs = useAttrs()
         <div :class="attrs.class" />
       </template>
     </Suspense>
-  </span>
+  </div>
 </template>
