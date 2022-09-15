@@ -5,9 +5,11 @@ const props = defineProps<{
   name?: SvgLibrary
 }>()
 
+const path = `/assets/svg/${props.name}.svg`
+
 const currentIcon = computed(() =>
   defineAsyncComponent({
-    loader: () => import(`@/assets/svg/${props.name}.svg`),
+    loader: () => import(/* @vite-ignore */path),
     loadingComponent: {
       template: '<span></span>'
     },
@@ -20,16 +22,17 @@ const currentIcon = computed(() =>
   })
 )
 const attrs = useAttrs()
+const classes = attrs.class ?? 'w-6 h-6'
 </script>
 
 <template>
   <span>
     <Suspense>
       <template #default>
-        <current-icon :class="attrs.class" />
+        <current-icon :class="classes" />
       </template>
       <template #fallback>
-        <div :class="attrs.class" />
+        <div :class="classes" />
       </template>
     </Suspense>
   </span>

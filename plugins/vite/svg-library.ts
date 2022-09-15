@@ -27,7 +27,7 @@ const loadVueComponents = (options: Options) => {
 }
 
 export default function plugin(options: Options = {
-  path: './components/icons',
+  path: './assets/icons',
   extension: 'svg'
 }): Plugin {
   return {

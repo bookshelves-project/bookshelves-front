@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-// import { useApplicationStore } from '~/store/application'
+import { useApplicationStore } from '~/store/application'
 
-// const rc = useRuntimeConfig()
+const rc = useRuntimeConfig()
 const isDev = process.env.NODE_ENV === 'development'
 
-// const { nuxtInit } = useApplicationStore()
-// nuxtInit()
+const { nuxtInit } = useApplicationStore()
+nuxtInit()
 </script>
 
 <template>
@@ -13,7 +13,7 @@ const isDev = process.env.NODE_ENV === 'development'
     :class="{ 'debug-screens': isDev }"
     class="min-h-screen text-gray-900 transition-colors duration-200 dark:bg-gray-900 dark:text-gray-100"
   >
-    <!-- <NuxtLoadingIndicator :color="rc.public.primaryColor500" />
+    <NuxtLoadingIndicator :color="rc.public.primaryColor500" />
     <app-toasts />
     <app-helper v-if="isDev" />
     <app-preview />
@@ -22,8 +22,6 @@ const isDev = process.env.NODE_ENV === 'development'
     <div class="content-min-height pt-16">
       <NuxtPage />
     </div>
-    <layout-footer /> -->
-    hey
-    <svg-icon name="arrow-narrow-right" />
+    <layout-footer />
   </div>
 </template>
