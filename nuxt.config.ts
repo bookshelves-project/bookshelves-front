@@ -1,4 +1,3 @@
-import { defineNuxtConfig } from 'nuxt'
 import svgLoader from 'vite-svg-loader'
 // import Inspector from 'vite-plugin-vue-inspector'
 import svgLibrary from './plugins/vite/svg-library'
@@ -24,6 +23,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt', // https://vueuse.org/guide/
     'nuxt-schema-org', // https://github.com/vueuse/schema-org
     'nuxt-typed-router' // https://github.com/victorgarciaesgi/nuxt-typed-router
+    // 'nuxt-icons' // https://github.com/gitFoxCode/nuxt-icons
   ],
   tailwindcss: config.modules.tailwindcss,
   vueuse: config.modules.vueuse,

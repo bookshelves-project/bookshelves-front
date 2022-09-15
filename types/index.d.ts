@@ -44,6 +44,13 @@ declare module '@nuxt/schema' {
     primaryColor900: string
   }
   interface PrivateRuntimeConfig {}
+  interface AppConfigInput {
+    /** Theme configuration */
+    theme?: {
+      /** Primary app color */
+      primaryColor?: string
+    }
+  }
 }
 
 export {}

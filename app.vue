@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useApplicationStore } from './store/application'
+import { useApplicationStore } from '~/store/application'
 
 const rc = useRuntimeConfig()
 const isDev = process.env.NODE_ENV === 'development'
