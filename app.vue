@@ -4,8 +4,8 @@ import { useApplicationStore } from '~/store/application'
 const rc = useRuntimeConfig()
 const isDev = process.env.NODE_ENV === 'development'
 
-const { nuxtInit } = useApplicationStore()
-nuxtInit()
+// const { nuxtInit } = useApplicationStore()
+// nuxtInit()
 </script>
 
 <template>
