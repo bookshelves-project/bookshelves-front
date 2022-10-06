@@ -43,7 +43,7 @@ export const useEntity = (
       color: ''
     }
   })
-  const route = computed(() => {
+  const route = computed((): TypedRoute => {
     let route = { name: 'index', params: {} }
 
     if (currentType.value === 'book') {
@@ -86,7 +86,7 @@ export const useEntity = (
       }
     }
 
-    return route
+    return route as TypedRoute
   })
 
   const language = computed(() => {

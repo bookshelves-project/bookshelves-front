@@ -12,7 +12,7 @@
  * `const response = await useHttpFilter<Book[]>('/books')`
  */
 export const useHttpFilter = async <T>(
-  request: RequestData | ApiEndpoint
+  request: RequestData | ApiTypedRouteList
 ) => {
   const response = ref<ApiResponse<T>>()
   const route = useRoute()
