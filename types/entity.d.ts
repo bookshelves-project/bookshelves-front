@@ -38,6 +38,7 @@ interface UseEntitySerie {
 }
 
 declare interface UseEntity {
+  entity: string
   title: string
   route?: TypedRoute
   authors?: string

@@ -19,7 +19,7 @@ defineProps<{
           :color="entity.media?.color"
           :alt="entity.media?.name"
         />
-        <div v-if="!entity.media?.available" class="absolute top-4 text-black right-3 text-right">
+        <div v-if="!entity.media?.available && entity.entity !== 'author'" class="absolute top-4 text-black right-3 text-right">
           <div class="text-xs uppercase font-semibold">
             {{ entity.authors }}
           </div>

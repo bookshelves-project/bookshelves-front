@@ -161,6 +161,7 @@ export const useEntity = (
   })
 
   return {
+    entity: currentType.value,
     title: title.value!,
     media: media.value,
     route: route.value,
