@@ -33,7 +33,8 @@ export const useEntity = (
       return {
         name: originalEntity.media.name,
         url: originalEntity.media.url || '/images/no-cover.webp',
-        color: originalEntity.media.color
+        color: originalEntity.media.color,
+        available: originalEntity.media.available
       }
     }
 

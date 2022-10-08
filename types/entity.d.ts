@@ -12,6 +12,7 @@ declare interface Media {
   name?: string
   url?: string
   color?: string
+  available?: boolean
 }
 
 declare interface Entity {

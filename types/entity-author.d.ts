@@ -1,6 +1,6 @@
 declare interface AuthorMeta {
   entity: EntityType
-  slug?: string
+  slug: string
   show?: string
   books?: string
   series?: string

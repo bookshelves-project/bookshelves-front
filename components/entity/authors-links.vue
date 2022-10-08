@@ -31,7 +31,7 @@ defineProps<{
             authorId !== authors.length - 1
         "
         class="mr-1"
-      >,</span><span v-if="authorId === authors.length - 2" class="mx-1">&</span>
+      >,</span><span v-if="authorId === authors.length - 2" class="ml-1">&</span>
     </span>
   </div>
 </template>
