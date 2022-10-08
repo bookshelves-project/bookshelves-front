@@ -12,8 +12,11 @@ const isAvailable = ref(true)
 
 const related: SelectedEntities = {
   key: 'selection',
-  endpoint: '/entities/related',
-  paramsList: [props.book.meta.author, props.book.meta.slug],
+  endpoint: '/entities/related/{author}/{slug}',
+  paramsList: {
+    author: props.book.meta.author,
+    slug: props.book.meta.slug
+  },
   eyebrow: 'Do you want more?',
   right: false,
   title: 'Related books & series',

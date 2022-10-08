@@ -11,7 +11,7 @@ declare interface BookSerie {
   meta: BookMeta
 }
 
-declare interface GoogleBook {
+declare interface google_book {
   previewLink?: null
   buyLink?: null
   createdAt?: Date
@@ -43,21 +43,21 @@ declare interface Book {
   authors: Author[]
   summary?: string
   language: Language
-  releasedOn?: Date
+  released_on?: Date
   media?: Media
   media_social?: string
   volume?: number
   serie?: BookSerie
   description?: string
   identifier?: Identifier
-  pageCount?: string
-  maturityRating?: string
+  page_count?: string
+  maturity_rating?: string
   publisher?: Publisher
   tags?: Tag[]
   genres?: Tag[]
   download?: DownloadFile
   files?: DownloadList
-  googleBook?: GoogleBook
-  isFavorite?: boolean
-  reviewsCount?: number
+  google_book?: google_book
+  is_favorite?: boolean
+  reviews_count?: number
 }

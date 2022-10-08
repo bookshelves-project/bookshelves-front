@@ -17,7 +17,7 @@ declare interface Tag {
   name: string
   type?: string
   count?: number
-  firstChar?: string
+  first_char?: string
   meta: TagMeta
 }
 

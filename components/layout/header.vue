@@ -91,7 +91,7 @@ const getHostname = (url?: string) => {
                   @click="toggleFavorite"
                 >
                   <svg-icon
-                    v-if="isFavorite"
+                    v-if="is_favorite"
                     name="heart-full"
                     class="w-5 h-5 text-red-600 hover:text-gray-600 transition-colors duration-100"
                   />

@@ -24,6 +24,6 @@ declare interface Author {
   link?: string
   download?: DownloadFile
   files?: DownloadList
-  isFavorite?: boolean
+  is_favorite?: boolean
   reviews?: Review[]
 }

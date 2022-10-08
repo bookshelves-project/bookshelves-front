@@ -9,11 +9,11 @@ const bookNext = ref<Book>()
 const getNext = async () => {
   if (!props.book.serie) { return false }
   const reponse = await request<Book>({
-    endpoint: '/series/books',
-    params: [
-      props.book.meta.author,
-      props.book.serie?.meta.slug
-    ],
+    endpoint: '/series/{author}/{slug}/books',
+    params: {
+      author: props.book.meta.author,
+      slug: props.book.serie?.meta.slug
+    },
     query: {
       next: props.book.volume,
       first: true

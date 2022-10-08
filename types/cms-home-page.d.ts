@@ -61,8 +61,8 @@ declare interface CmsPricingList {
 
 declare interface SelectedEntities {
   key: string
-  endpoint: ApiEndpoint
-  paramsList?: Params
+  endpoint: ApiTypedRouteList
+  paramsList?: ApiTypedRouteParams[ApiTypedRouteList]
   right?: boolean
   eyebrow?: string
   title: string

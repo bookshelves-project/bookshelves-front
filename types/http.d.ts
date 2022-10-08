@@ -64,7 +64,7 @@ declare interface Query {
 }
 
 declare type Params = (string | string[])[]
-type ApiTypedParam = string | number | string[]
+type ApiTypedParam = string | number | string[] | undefined
 type ApiTypedRouteList =
   | '/authors'
   | '/authors/{slug}'
@@ -88,6 +88,7 @@ type ApiTypedRouteList =
   | '/pages/{slug}'
   | '/users'
   | '/users/{slug}'
+  | '/entities/related/{author}/{slug}'
 
 type ApiTypedRouteParams = {
   '/authors': never;
@@ -141,6 +142,10 @@ type ApiTypedRouteParams = {
   '/users/{slug}': {
     slug: ApiTypedParam;
   }
+  '/entities/related/{author}/{slug}': {
+    author: ApiTypedParam;
+    slug: ApiTypedParam;
+  }
 };
 
 declare interface ApiTypedRoute {
@@ -149,6 +154,7 @@ declare interface ApiTypedRoute {
   query?: Query
 }
 
+// deprecated
 type ApiEndpointEntity =
   | '/books'
   | '/authors'
@@ -162,11 +168,13 @@ type ApiEndpointEntity =
   | '/entities/latest'
   | '/entities/related'
 
+// deprecated
 type ApiEndpointRelation =
   | '/languages'
   | '/publishers'
   | '/publishers/books'
 
+// deprecated
 type ApiEndpointOther =
   | '/application'
   | '/cms/home-page'
@@ -175,12 +183,14 @@ type ApiEndpointOther =
   | '/submissions'
   | '/search'
 
+// deprecated
 type ApiEndpointAuth =
   | '/auth/login'
   | '/auth/logout'
   | '/auth/register'
   | '/auth/me'
 
+// deprecated
 type ApiEndpointProfile =
   | '/user'
   | '/profile/favorites'
@@ -188,6 +198,7 @@ type ApiEndpointProfile =
   | '/users/favorites'
   | '/users/reviews'
 
+// deprecated
 declare type ApiEndpoint =
   | ApiEndpointOther
   | ApiEndpointEntity

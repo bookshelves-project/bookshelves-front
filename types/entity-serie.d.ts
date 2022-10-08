@@ -22,6 +22,6 @@ declare interface Serie {
   genres?: Tag[]
   download?: DownloadFile
   files?: DownloadList
-  isFavorite?: boolean
+  is_favorite?: boolean
   reviews?: Review[]
 }

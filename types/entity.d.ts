@@ -27,8 +27,8 @@ declare interface Entity {
   volume?: number
   media?: Media
   cover?: Cover
-  firstChar?: string
-  isFavorite?: boolean
+  first_char?: string
+  is_favorite?: boolean
 }
 
 interface UseEntitySerie {

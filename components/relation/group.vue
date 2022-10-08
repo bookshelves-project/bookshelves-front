@@ -23,7 +23,7 @@ const { color, getRoute, percent } = useRelation(props.to)
           :class="color(percent(count, item.count))"
           class="flex-shrink-0 flex items-center justify-center w-16 text-gray-900 dark:text-gray-100 text-sm font-semibold rounded-l-md"
         >
-          {{ item.firstChar }}
+          {{ item.first_char }}
         </div>
         <div
           class="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 rounded-r-md truncate group-hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:group-hover:bg-gray-700 transition-colors duration-75"

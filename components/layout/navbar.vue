@@ -71,7 +71,7 @@ const toggleSidebar = () => {
 </template>
 
 <style lang="css" scoped>
-.app-link-active {
+.router-link-active {
   @apply border-primary-500 text-primary-500 dark:border-white dark:text-gray-100;
 }
 

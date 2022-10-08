@@ -6,7 +6,7 @@ const { formatAuthors } = useEntityMethods()
 
 const [serieRaw, booksRaw] = await Promise.all([
   request<Serie>({
-    endpoint: '/series',
+    endpoint: '/series/{author}/{slug}',
     params: {
       author: route.params.author,
       slug: route.params.slug
@@ -40,8 +40,8 @@ const paginate = (payload?: ApiResponse<Entity[]>) => {
 
 const crumbs: string[] = [
   'Series',
-  `${serie.value?.authors[0].name}`,
-   `${serie.value?.title} (${serie.value?.type})`
+  serie.value?.authors ? `${serie.value?.authors[0].name}` : '',
+  `${serie.value?.title} (${serie.value?.type})`
 ]
 
 useMetadata({

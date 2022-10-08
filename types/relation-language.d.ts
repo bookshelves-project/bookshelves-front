@@ -1,6 +1,6 @@
 declare interface Language {
   name?: string
-  firstChar?: string
+  first_char?: string
   count?: number
   meta: {
     slug: string

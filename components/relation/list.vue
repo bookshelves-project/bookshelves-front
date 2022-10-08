@@ -10,7 +10,7 @@ const { arrayGroupBy } = useTools()
 const bestCount = ref(0)
 
 const entitiesByChar = computed((): Record<string, Language[] | Tag[]> => {
-  return arrayGroupBy(props.entities!, 'firstChar')
+  return arrayGroupBy(props.entities!, 'first_char')
 })
 
 const { getBestCount } = useRelation(props.to)
