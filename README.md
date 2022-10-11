@@ -24,13 +24,13 @@ Works with [documentation](https://nuxtjs.org).
 
 To upgrade
 
-<https://github.com/nuxt/framework/releases/tag/v3.0.0-rc.10>
+<https://github.com/nuxt/framework/releases/tag/v3.0.0-rc.11>
 
 ```bash
 npx nuxi-edge@latest upgrade --force // Automated
 ```
 
-Manual: Bump `nuxt` dependency to `3.0.0-rc.10` and then use `npx nuxi-edge@latest cleanup` to cleanup any local caches
+Manual: Bump `nuxt` dependency to `3.0.0-rc.11` and then use `npx nuxi-edge@latest cleanup` to cleanup any local caches
 
 *OR*
 

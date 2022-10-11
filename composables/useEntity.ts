@@ -171,5 +171,5 @@ export const useEntity = (
     count: count.value,
     type: withType ? type.value : undefined,
     entityName: withName ? entityName.value : undefined
-  }
+  } as UseEntity
 }
