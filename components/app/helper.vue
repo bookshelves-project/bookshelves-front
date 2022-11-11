@@ -56,7 +56,7 @@ const links = [
   <div>
     <button
       name="router"
-      class="fixed bottom-0 right-0 z-50 rounded-tl-md bg-gray-700 p-2 transition-colors duration-100 hover:bg-gray-600"
+      class="fixed bottom-0 right-0 z-50 rounded-tl-md bg-gray-700 p-1 transition-colors duration-100 hover:bg-gray-600"
       type="button"
       @click="() => (isOpen = !isOpen)"
     >
@@ -64,10 +64,9 @@ const links = [
         class="flex items-center rounded-md text-sm font-medium shadow-sm transition-all duration-100 focus:outline-none focus:ring-2 focus:ring-offset-2"
       >
         <span class="sr-only">Help</span>
-        <span class="h-6 w-6 text-gray-200">
+        <span class="h-5 w-5 text-gray-200">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
