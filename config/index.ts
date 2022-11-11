@@ -1,6 +1,6 @@
 import app from './app'
 import build from './build'
-import meta from './meta'
+import head from './head'
 import modules from './modules'
 import {
   runtimeConfigPublic,
@@ -10,7 +10,7 @@ import {
 const config = {
   app,
   build,
-  meta,
+  head,
   modules,
   runtimeConfigPublic,
   runtimeConfigPrivate

@@ -1,5 +1,5 @@
 import svgLoader from 'vite-svg-loader'
-import dynamicImport from 'vite-plugin-dynamic-import'
+// import dynamicImport from 'vite-plugin-dynamic-import'
 // import Inspector from 'vite-plugin-vue-inspector'
 import svgLibrary from './plugins/vite/svg-library'
 import config from './config'
@@ -13,11 +13,6 @@ export default defineNuxtConfig({
     dirs: ['~/components']
   },
   css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
-  meta: {
-    link: config.meta.link,
-    meta: config.meta.meta,
-    script: config.meta.script
-  },
   modules: [
     '@nuxtjs/tailwindcss', // https://tailwindcss.nuxtjs.org/
     '@pinia/nuxt', // https://pinia.vuejs.org/ssr/nuxt.html
@@ -36,7 +31,6 @@ export default defineNuxtConfig({
     public: config.runtimeConfigPublic
   },
   typescript: {
-    strict: true, // for pinia
     shim: false // with Take Over Mode from https://github.com/johnsoncodehk/volar/discussions/471
   },
   // https://v3.nuxtjs.org/api/configuration/nuxt.config#vite
