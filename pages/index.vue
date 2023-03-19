@@ -14,7 +14,7 @@ else {
   const response = await request<CmsHomePage>({
     endpoint: '/pages/{slug}',
     params: {
-      slug: 'home-page',
+      slug: 'homepage-en',
     },
     extractData: true,
   })
