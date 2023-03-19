@@ -6,8 +6,8 @@ const response = await useHttpFilter<Book>({
   endpoint: '/books/{author}/{slug}',
   params: {
     author: route.params.author,
-    slug: route.params.slug
-  }
+    slug: route.params.slug,
+  },
 })
 
 const book = ref<Book>()
@@ -35,13 +35,13 @@ const serie = book.value?.serie
 const crumbs: string[] = [
   'Books',
   `${book.value?.authors[0].name}`,
-  `${book.value?.title}`
+  `${book.value?.title}`,
 ]
 
 useMetadata({
   title: `${book.value?.title} by ${formatAuthors(book.value?.authors)} ${serie}`,
   description: book.value?.description,
-  image: book.value?.media_social
+  image: book.value?.media_social,
 })
 </script>
 

@@ -27,14 +27,14 @@ export const useToc = () => {
 
   const create = (body: string): TocItem[] => {
     const document = new DOMParser().parseFromString(body, 'text/html')
-    const headingSet: NodeListOf<HTMLHeadingElement> =
-      document.querySelectorAll('h2, h3, h4')
+    const headingSet: NodeListOf<HTMLHeadingElement>
+      = document.querySelectorAll('h2, h3, h4')
 
     return parse(headingSet)
   }
 
   return {
     parse,
-    create
+    create,
   }
 }

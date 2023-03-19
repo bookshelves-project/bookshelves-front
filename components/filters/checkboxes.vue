@@ -12,16 +12,15 @@ choices.value = props.modelValue!
 watch(
   () => props.modelValue,
   (newVal) => {
-    if (newVal) {
+    if (newVal)
       choices.value = newVal
-    }
-  }
+  },
 )
 watch(
   () => choices.value,
   (newVal) => {
     emit('update:modelValue', newVal)
-  }
+  },
 )
 </script>
 

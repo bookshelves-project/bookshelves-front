@@ -7,16 +7,16 @@ const [tagRaw, entitiesRaw] = await Promise.all([
   request<Tag>({
     endpoint: '/tags',
     params: {
-      slug: route.params.slug
+      slug: route.params.slug,
     },
-    extractData: true
+    extractData: true,
   }),
   request<ApiResponse<Entity[]>>({
     endpoint: listRoute,
     params: {
-      slug: route.params.slug
-    }
-  })
+      slug: route.params.slug,
+    },
+  }),
 ])
 
 const tag = ref<Tag>()
@@ -29,14 +29,13 @@ list.value = entitiesRaw?.body?.data
 
 const paginate = (payload?: ApiResponse<Entity[]>) => {
   meta.value = payload?.meta
-  if (payload?.data) {
+  if (payload?.data)
     list.value = list.value?.concat(payload.data)
-  }
 }
 
 useMetadata({
   title: `Tag ${tag.value?.name}`,
-  description: `Books and series with tag ${tag.value?.name}`
+  description: `Books and series with tag ${tag.value?.name}`,
 })
 </script>
 

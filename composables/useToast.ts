@@ -6,6 +6,6 @@ export const useToast = () => {
     store.addToast(toast)
   }
   return {
-    pushToast
+    pushToast,
   }
 }

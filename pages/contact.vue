@@ -4,7 +4,7 @@ const image = '/images/pages/contact.svg'
 
 useMetadata({
   title,
-  image
+  image,
 })
 </script>
 

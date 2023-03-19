@@ -13,12 +13,11 @@ const navigation = useNavigationStore()
 watch(
   () => navigation.sidebar,
   (newVal) => {
-    if (newVal) {
+    if (newVal)
       openSidebar()
-    } else {
+    else
       closeSidebar()
-    }
-  }
+  },
 )
 
 onClickOutside(target, () => {
@@ -79,7 +78,7 @@ const closeSidebar = () => {
       <div class="flex flex-shrink-0 items-center px-4">
         <app-link
           :to="{
-            name: 'index'
+            name: 'index',
           }"
           class="inline-flex h-8 w-auto items-center"
           active-class="active-logo"
@@ -101,7 +100,7 @@ const closeSidebar = () => {
           <div class="space-y-1">
             <app-link
               :to="{
-                name: 'index'
+                name: 'index',
               }"
               class="link group"
               active-class="active-logo"
@@ -110,7 +109,7 @@ const closeSidebar = () => {
                 class="w-full px-2 py-4 font-semibold flex items-center space-x-2"
                 @click="closeSidebar"
               >
-                <svg-icon name="home" class="w-5 h-5" />
+                <!-- <svg-icon name="home" class="w-5 h-5" /> -->
                 <span>Home</span>
               </span>
             </app-link>

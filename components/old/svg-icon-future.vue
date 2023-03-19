@@ -12,15 +12,15 @@ const currentIcon = computed(() =>
   defineAsyncComponent({
     loader: () => import(/* @vite-ignore */ path),
     loadingComponent: {
-      template: '<span></span>'
+      template: '<span></span>',
     },
     errorComponent: {
-      template: '<span>error</span>'
+      template: '<span>error</span>',
     },
     delay: 200,
     timeout: 3000,
-    suspensible: true
-  })
+    suspensible: true,
+  }),
 )
 const attrs = useAttrs()
 </script>

@@ -3,8 +3,8 @@ const response = await useHttpFilter<Tag[]>({
   endpoint: '/tags',
   query: {
     'filter[negligible]': false,
-    full: true
-  }
+    'full': true,
+  },
 })
 
 const tags = ref<Tag[]>()
@@ -18,7 +18,7 @@ setTags()
 
 watch(
   () => response.value,
-  () => setTags()
+  () => setTags(),
 )
 
 const title = 'Genres & Tags'
@@ -26,7 +26,7 @@ const description = 'Find books and series by their genres and tags.'
 
 useMetadata({
   title,
-  description
+  description,
 })
 </script>
 

@@ -13,9 +13,8 @@ const crumbs = ref<Crumb[]>([])
 const capitalizeEach = (string: string) => {
   const arr = string.split(' ')
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++)
     arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
-  }
 
   return arr.join(' ')
 }
@@ -53,7 +52,7 @@ const getCrumbsList = computed((): Crumb[] => {
 
       crumbsList.push({
         title: capitalizeEach(titleSplitted[0]),
-        route: match
+        route: match,
       })
     }
   })
@@ -71,7 +70,6 @@ const getCrumbsList = computed((): Crumb[] => {
   return crumbsList
 })
 crumbs.value = getCrumbsList.value
-
 </script>
 
 <template>

@@ -5,11 +5,10 @@ const metaKey = ref('Ctrl')
 const searchKey = ref('k')
 
 const isMacintosh = () => {
-  if (navigator.userAgent.includes('Mac')) {
+  if (navigator.userAgent.includes('Mac'))
     metaKey.value = '&#8984;'
-  } else {
+  else
     metaKey.value = 'Ctrl'
-  }
 }
 const shortcutOpen = (e: KeyboardEvent) => {
   if (e.key === searchKey.value && (e.ctrlKey || e.metaKey)) {

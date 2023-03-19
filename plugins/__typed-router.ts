@@ -4,9 +4,10 @@
  * ---------------------
  * */
 
-import { defineNuxtPlugin } from '#app';
+import { defineNuxtPlugin } from '#app'
 
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin(() => {
+  const router = useRouter()
   const routesList = {
     slug: 'slug',
     authorsSlug: 'authors-slug',
@@ -37,12 +38,12 @@ export default defineNuxtPlugin((nuxtApp) => {
     tags: 'tags',
     usersSlug: 'users-slug',
     users: 'users',
-  };
+  }
 
   return {
     provide: {
-      typedRouter: nuxtApp.$router,
+      typedRouter: router as TypedRouter,
       routesList,
     },
-  };
-});
+  }
+})

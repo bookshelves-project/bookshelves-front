@@ -10,22 +10,22 @@ const [authorRaw, booksRaw, seriesRaw] = await Promise.all([
   request<Author>({
     endpoint: '/authors/{slug}',
     params: {
-      slug: route.params.slug
+      slug: route.params.slug,
     },
-    extractData: true
+    extractData: true,
   }),
   request<ApiResponse<Entity[]>>({
     endpoint: '/authors/{slug}/books',
     params: {
-      slug: route.params.slug
-    }
+      slug: route.params.slug,
+    },
   }),
   request<ApiResponse<Entity[]>>({
     endpoint: '/authors/{slug}/series',
     params: {
-      slug: route.params.slug
-    }
-  })
+      slug: route.params.slug,
+    },
+  }),
 ])
 
 author.value = authorRaw.body
@@ -34,13 +34,13 @@ series.value = seriesRaw.body
 
 const crumbs: string[] = [
   'Authors',
-  `${author.value?.name}`
+  `${author.value?.name}`,
 ]
 
 useMetadata({
   title: `${author.value?.firstname} ${author.value?.lastname} · Authors`,
   description: author.value?.description,
-  image: author.value?.media_social
+  image: author.value?.media_social,
 })
 </script>
 
@@ -63,13 +63,13 @@ useMetadata({
         :entities="series"
         :count="author.count?.series"
         name="Series"
-        :endpoint="'/authors/books'"
+        endpoint="/authors/books"
       />
       <entity-block
         :entities="books"
         :count="author.count?.books"
         name="Books"
-        :endpoint="'/authors/series'"
+        endpoint="/authors/series"
       />
     </div>
     <entity-review

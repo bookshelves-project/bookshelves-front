@@ -3,21 +3,21 @@ const route = useRoute()
 const response = await useHttpFilter<Page>({
   endpoint: '/pages/{slug}',
   params: {
-    slug: route.params.slug
-  }
+    slug: route.params.slug,
+  },
 })
 
 const page = ref<Page>()
 page.value = response.value?.data
 
 const crumbs: string[] = [
-  `${page.value?.title}`
+  `${page.value?.title}`,
 ]
 
 useMetadata({
   title: page.value?.title,
   description: page.value?.summary,
-  image: page.value?.cover
+  image: page.value?.cover,
 })
 </script>
 

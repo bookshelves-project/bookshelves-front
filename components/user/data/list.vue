@@ -8,6 +8,7 @@ const props = defineProps<{
   deletable?: boolean
 }>()
 
+const emit = defineEmits(['destroy'])
 const { request } = useHttp()
 const route = useRoute()
 
@@ -15,19 +16,18 @@ const meta = ref<ApiMeta>()
 const list = ref<UserData[]>()
 const isLoading = ref(true)
 
-const emit = defineEmits(['destroy'])
-
 const load = async () => {
   const response = await request<ApiResponse<UserData[]>>({
     endpoint: props.endpoint,
-    params: [route.params.slug]
+    params: [route.params.slug],
   })
 
   if (response.success) {
     meta.value = response?.body.meta
     list.value = response?.body.data
     isLoading.value = false
-  } else {
+  }
+  else {
     isLoading.value = false
   }
 }
@@ -38,16 +38,15 @@ onMounted(() => {
 const destroy = (data: UserData) => {
   if (list.value) {
     list.value = list.value.filter(
-      (item: UserData) => item.meta.slug !== data.meta.slug
+      (item: UserData) => item.meta.slug !== data.meta.slug,
     )
     emit('destroy', { data })
   }
 }
 const paginate = (payload?: ApiResponse<any[]>) => {
   meta.value = payload?.meta
-  if (payload?.data) {
+  if (payload?.data)
     list.value = list.value?.concat(payload.data)
-  }
 }
 </script>
 

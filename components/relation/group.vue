@@ -2,7 +2,7 @@
 const props = defineProps<{
   count: number
   items?: Tag[] | Language[]
-  to?:TypedRoute
+  to?: TypedRoute
 }>()
 
 const { color, getRoute, percent } = useRelation(props.to)

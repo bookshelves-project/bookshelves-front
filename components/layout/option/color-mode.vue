@@ -6,7 +6,8 @@ const toggleDark = () => {
     root.remove('dark')
 
     localStorage.setItem('color-scheme', 'light')
-  } else {
+  }
+  else {
     root.toggle('dark')
     root.remove('light')
 

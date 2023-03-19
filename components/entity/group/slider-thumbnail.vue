@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Pagination, Navigation, FreeMode, Thumbs } from 'swiper'
-import { Swiper as SwiperInterface } from 'swiper/types'
+import { FreeMode, Navigation, Pagination, Thumbs } from 'swiper'
+import type { Swiper as SwiperInterface } from 'swiper/types'
 
 const props = defineProps<{
   entities?: Entity[]
@@ -17,8 +17,8 @@ const main = {
   modules: [FreeMode, Navigation, Thumbs],
   navigation: {
     nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev'
-  }
+    prevEl: '.swiper-button-prev',
+  },
 }
 const thumbs = {
   loop: false,
@@ -30,19 +30,19 @@ const thumbs = {
   modules: [Pagination, FreeMode, Navigation, Thumbs],
   pagination: {
     el: '.swiper-pagination',
-    clickable: true
+    clickable: true,
   },
   breakpoints: {
     600: {
-      slidesPerView: 2
+      slidesPerView: 2,
     },
     900: {
-      slidesPerView: 5
+      slidesPerView: 5,
     },
     1300: {
-      slidesPerView: 5
-    }
-  }
+      slidesPerView: 5,
+    },
+  },
 }
 const swiperMain = ref<SwiperInterface>()
 const swiperThumbs = ref<SwiperInterface>()
@@ -55,7 +55,7 @@ watch(
   () => props.loaded,
   (newVal) => {
     isLoaded.value = newVal
-  }
+  },
 )
 </script>
 
@@ -92,7 +92,7 @@ watch(
       <div v-else>
         <client-only>
           <section class="books-slider-swiper">
-            <swiper
+            <Swiper
               ref="swiperMain"
               :loop="main.loop"
               :space-between="main.spaceBetween"
@@ -101,21 +101,21 @@ watch(
               :modules="main.modules"
               class="h-96 w-full"
             >
-              <swiper-slide
+              <SwiperSlide
                 v-for="(entity, id) in entities"
                 :key="id"
                 class="swiper-lazy"
               >
                 <entity-group-card-thumbnail :entity="entity" />
-              </swiper-slide>
+              </SwiperSlide>
               <div class="swiper-button swiper-button-prev">
                 <svg-icon name="chevron-right" />
               </div>
               <div class="swiper-button swiper-button-next">
                 <svg-icon name="chevron-right" />
               </div>
-            </swiper>
-            <swiper
+            </Swiper>
+            <Swiper
               ref="swiperThumbs"
               :loop="thumbs.loop"
               :space-between="thumbs.spaceBetween"
@@ -127,7 +127,7 @@ watch(
               class="h-28 w-full thumbs mt-6 hidden md:block"
               @swiper="setThumbsSwiper"
             >
-              <swiper-slide
+              <SwiperSlide
                 v-for="(entity, id) in entities"
                 :key="id"
                 class="hover:opacity-60 transition-opacity duration-100"
@@ -138,9 +138,9 @@ watch(
                   :color="entity.cover?.color"
                   :title="entity.title"
                 />
-              </swiper-slide>
+              </SwiperSlide>
               <div class="swiper-pagination" />
-            </swiper>
+            </Swiper>
             <div v-if="route" class="mt-6">
               <app-button
                 :to="route"

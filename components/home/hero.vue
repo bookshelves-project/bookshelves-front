@@ -32,7 +32,7 @@ const appName: string = config.appName || 'Bookshelves'
     </div>
     <div class="mx-auto mt-5 hidden sm:mt-10 md:block lg:mt-0 lg:ml-auto">
       <div class="mx-auto lg:mx-0">
-        <app-img
+        <AppImg
           :src="hero.picture"
           alt="Woman on books pile who is reading"
           override="md:h-[32rem] lg:h-[36rem] object-center"

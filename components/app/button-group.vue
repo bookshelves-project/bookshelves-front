@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import AppDropdown from '@/components/app/dropdown.vue'
-import SvgIcon from '@/components/svg-icon.vue'
 
 const props = defineProps<{
   action?: string
@@ -12,9 +11,8 @@ const props = defineProps<{
 const link = ref<HTMLAnchorElement>()
 
 onMounted(() => {
-  if (!props.download) {
+  if (!props.download)
     link.value?.removeAttribute('download')
-  }
 })
 </script>
 
@@ -32,7 +30,7 @@ onMounted(() => {
       <slot />
     </a>
     <span v-if="deployable" class="-ml-px relative block">
-      <app-dropdown align="right" auto-close>
+      <AppDropdown align="right" auto-close>
         <template #trigger>
           <button
             id="option-menu-button"
@@ -42,7 +40,7 @@ onMounted(() => {
             aria-haspopup="true"
           >
             <span class="sr-only">Open options</span>
-            <svg-icon name="solid-chevron" class="w-5 h-5" />
+            <SvgIcon name="solid-chevron" class="w-5 h-5" />
           </button>
         </template>
         <template #content>
@@ -56,7 +54,7 @@ onMounted(() => {
             <slot name="content" />
           </div>
         </template>
-      </app-dropdown>
+      </AppDropdown>
     </span>
   </span>
 </template>

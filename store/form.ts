@@ -5,64 +5,63 @@ export const useFormStore = defineStore('form', {
     body: {} as object,
     test: {} as object,
     isLoading: false,
-    requestData: {} as RequestData
+    requestData: {} as RequestData,
   }),
   actions: {
     setForm(form: { body?: object; test?: object }) {
       this.$patch({
         body: form.body,
-        test: form.test
+        test: form.test,
       })
     },
     setRequestData(params: RequestData) {
       this.$patch({
-        requestData: params
+        requestData: params,
       })
     },
     fillData() {
       this.$patch({
-        body: { ...this.test }
+        body: { ...this.test },
       })
     },
     resetData(): any {
       const body = this.body as { [key: string]: any }
 
       for (const key in body) {
-        if (typeof body[key] === 'boolean') {
+        if (typeof body[key] === 'boolean')
           body[key] = false
-        } else {
+        else
           body[key] = ''
-        }
       }
       this.$patch({
-        body
+        body,
       })
 
       return body
     },
     enableLoading() {
       this.$patch({
-        isLoading: !this.isLoading
+        isLoading: !this.isLoading,
       })
     },
     disableLoading() {
       this.$patch({
-        isLoading: !this.isLoading
+        isLoading: !this.isLoading,
       })
     },
     toggleLoading() {
       this.$patch({
-        isLoading: !this.isLoading
+        isLoading: !this.isLoading,
       })
     },
     async request(
       requestData: RequestData,
       options: {
-        loadingInfinite?: boolean,
-        withToast?: boolean,
-        successMsg?: string,
+        loadingInfinite?: boolean
+        withToast?: boolean
+        successMsg?: string
         errorMsg?: string
-      } = { loadingInfinite: true, withToast: false, successMsg: 'It\'s all works!', errorMsg: 'Oops, an error happened here!' }
+      } = { loadingInfinite: true, withToast: false, successMsg: 'It\'s all works!', errorMsg: 'Oops, an error happened here!' },
     ) {
       const { pushToast } = useToast()
       const { request } = useAuth()
@@ -74,7 +73,7 @@ export const useFormStore = defineStore('form', {
         query: this.requestData.query,
         lazy: this.requestData.lazy,
         method: this.requestData.method,
-        body: this.requestData.body
+        body: this.requestData.body,
       })
 
       if (options.withToast) {
@@ -82,23 +81,23 @@ export const useFormStore = defineStore('form', {
           pushToast({
             title: 'Success',
             text: options.successMsg,
-            type: 'success'
+            type: 'success',
           })
           this.resetData()
-        } else {
+        }
+        else {
           pushToast({
             title: 'Error',
             text: options.errorMsg,
-            type: 'error'
+            type: 'error',
           })
         }
       }
 
-      if (!options.loadingInfinite) {
+      if (!options.loadingInfinite)
         this.disableLoading()
-      }
 
       return res
-    }
-  }
+    },
+  },
 })

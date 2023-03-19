@@ -5,25 +5,25 @@ const title = 'All series available'
 const description = 'Discover all series'
 const sortOptions = [
   {
-    label: "By series' title (default)",
+    label: 'By series\' title (default)',
     query: { sort: 'title_sort' },
-    value: 'title_sort'
+    value: 'title_sort',
   },
   {
     label: 'By title',
     query: { sort: 'title' },
-    value: 'title'
+    value: 'title',
   },
   {
     label: 'Newest uploaded',
     query: { sort: '-created_at' },
-    value: '-created_at'
-  }
+    value: '-created_at',
+  },
 ]
 
 useMetadata({
   title,
-  description
+  description,
 })
 </script>
 

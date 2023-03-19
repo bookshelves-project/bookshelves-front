@@ -26,7 +26,7 @@ const {
   authors,
   // favorite = false,
   // entity,
-  color = '#ffffff'
+  color = '#ffffff',
 } = defineProps<Props>()
 
 const getHostname = (url?: string) => {

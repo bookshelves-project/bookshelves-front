@@ -15,12 +15,12 @@ const related: SelectedEntities = {
   endpoint: '/entities/related/{author}/{slug}',
   paramsList: {
     author: props.book.meta.author,
-    slug: props.book.meta.slug
+    slug: props.book.meta.slug,
   },
   eyebrow: 'Do you want more?',
   right: false,
   title: 'Related books & series',
-  text: 'Based on tags & genre, not in same series. Limited to 10 first results.'
+  text: 'Based on tags & genre, not in same series. Limited to 10 first results.',
 }
 const success = (payload: boolean) => {
   isAvailable.value = payload

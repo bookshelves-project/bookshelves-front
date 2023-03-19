@@ -15,21 +15,21 @@ const fetchApi = async () => {
       endpoint: '/books',
       params: [
         route.params.author,
-        route.params.slug
+        route.params.slug,
       ],
-      extractData: true
+      extractData: true,
     }),
     request<ApiResponse<Entity[]>>({
       endpoint: '/entities/related',
       params: [
         route.params.author,
-        route.params.slug
+        route.params.slug,
       ],
       query: {
         page: parseInt(current) || 1,
-        size: 6
-      }
-    })
+        size: 6,
+      },
+    }),
   ])
 
   book.value = bookRaw.body
@@ -42,19 +42,19 @@ watch(
   () => route.query,
   async () => {
     await fetchApi()
-  }
+  },
 )
 
 const crumbs: string[] = [
   'Related',
     `${book.value?.authors[0].name}`,
-    `${book.value?.title}`
+    `${book.value?.title}`,
 ]
 
 useMetadata({
   title: title.value,
   description,
-  image: book.value?.media_social
+  image: book.value?.media_social,
 })
 </script>
 

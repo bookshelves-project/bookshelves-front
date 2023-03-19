@@ -1,18 +1,18 @@
-import { acceptHMRUpdate, defineStore } from 'pinia'
+import { defineStore } from 'pinia'
 
 // export const useUserStore = defineStore('user', () => {
 export const useUserStore = defineStore('user', {
   state: () => ({
     loggedIn: false,
-    user: {} as User
+    user: {} as User,
   }),
   actions: {
     setUser(payload?: User) {
       this.$patch({
-        user: payload
+        user: payload,
       })
-    }
-  }
+    },
+  },
   // /**
   //  * Current named of the user.
   //  */

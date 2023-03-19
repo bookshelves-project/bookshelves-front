@@ -12,16 +12,17 @@ export const useEntityGroup = (selection: SelectedEntities) => {
     const response = await request<Entity[]>({
       endpoint: selection.endpoint,
       params: selection.paramsList ? selection.paramsList : [],
-      extractData: true
+      extractData: true,
     })
 
     if (response?.success) {
       isLoading.value = false
-      if (response.body.length === 0) {
+      if (response.body.length === 0)
         isAvailable.value = false
-      }
+
       slides.value = response.body
-    } else {
+    }
+    else {
       isAvailable.value = false
     }
   }
@@ -30,6 +31,6 @@ export const useEntityGroup = (selection: SelectedEntities) => {
     isAvailable,
     isLoading,
     getData,
-    slides
+    slides,
   }
 }

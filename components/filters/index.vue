@@ -2,8 +2,6 @@
 import { useApplicationStore } from '~~/store/application'
 import { useFilterStore } from '~~/store/filter'
 
-const { objectIsEmpty } = useTools()
-
 defineProps<{
   sort?: FilterOption[]
   size?: boolean
@@ -14,19 +12,21 @@ defineProps<{
   total?: number
 }>()
 
+const { objectIsEmpty } = useTools()
+
 const sizeOptions: FilterOption[] = [
   {
     label: '32 (default)',
-    value: '32'
+    value: '32',
   },
   {
     label: '64',
-    value: '64'
+    value: '64',
   },
   {
     label: '128',
-    value: '128'
-  }
+    value: '128',
+  },
 ]
 
 const route = useRoute()
@@ -46,13 +46,13 @@ const filterLanguages = computed(() => {
         query: { type: lang.meta?.slug },
         enabled: route.query[type]
           ? route.query[type]!.includes(lang.meta?.slug!)
-          : false
+          : false,
       })
     })
   }
   return {
     type,
-    options
+    options,
   }
 })
 const filterTypes = computed(() => {
@@ -66,20 +66,20 @@ const filterTypes = computed(() => {
         label: value,
         value: key,
         query: { type: key },
-        enabled: route.query[type] ? route.query[type]!.includes(key) : false
+        enabled: route.query[type] ? route.query[type]!.includes(key) : false,
       })
     }
   }
 
   return {
     type,
-    options
+    options,
   }
 })
 const filterSerie = computed(() => {
   return {
     type: 'filter[disallow_serie]',
-    options: []
+    options: [],
   }
 })
 const reverseSort = (asc = false) => {

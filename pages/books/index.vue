@@ -2,30 +2,30 @@
 const response = await useHttpFilter<Book[]>('/books')
 
 const title = 'All books available'
-const description =
-  "Discover all available books sorted by title and serie's title"
+const description
+  = 'Discover all available books sorted by title and serie\'s title'
 const sortOptions: FilterOption[] = [
   {
-    label: "By series' title (default)",
-    value: 'slug_sort'
+    label: 'By series\' title (default)',
+    value: 'slug_sort',
   },
   {
     label: 'By title',
-    value: 'title'
+    value: 'title',
   },
   {
     label: 'Most recently published',
-    value: '-released_on'
+    value: '-released_on',
   },
   {
     label: 'Newest uploaded',
-    value: '-created_at'
-  }
+    value: '-created_at',
+  },
 ]
 
 useMetadata({
   title,
-  description
+  description,
 })
 </script>
 

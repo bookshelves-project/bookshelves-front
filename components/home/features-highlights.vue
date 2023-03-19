@@ -43,13 +43,13 @@ defineProps<{
                 v-html="highlight.text"
               />
             </div>
-            <app-button
-              :color="`white`"
+            <AppButton
+              color="white"
               :to="highlight.ctaLink || { name: 'index' }"
               class="mt-6"
             >
               {{ highlight.ctaText }}
-            </app-button>
+            </AppButton>
           </div>
           <div
             v-if="highlight.quoteText"

@@ -1,4 +1,4 @@
-import { NuxtConfig } from 'nuxt/config'
+import type { NuxtConfig } from 'nuxt/config'
 import head from './head'
 
 const app = {
@@ -6,12 +6,12 @@ const app = {
     link: head.link,
     meta: head.meta,
     noscript: [
-      { children: 'Sorry but Javascript is required to use Bookshelves.' }
+      { children: 'Sorry but Javascript is required to use Bookshelves.' },
     ],
-    script: head.script
+    script: head.script,
     // title: process.env.APP_NAME,
     // titleTemplate: process.env.APP_NAME
-  }
+  },
 } as NuxtConfig['app']
 
 export default app

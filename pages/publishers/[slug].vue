@@ -7,16 +7,16 @@ const [publisherRaw, entitiesRaw] = await Promise.all([
   request<Publisher>({
     endpoint: '/publishers/{slug}',
     params: {
-      slug: route.params.slug
+      slug: route.params.slug,
     },
-    extractData: true
+    extractData: true,
   }),
   request<ApiResponse<Entity[]>>({
     endpoint: listRoute,
     params: {
-      slug: route.params.slug
-    }
-  })
+      slug: route.params.slug,
+    },
+  }),
 ])
 
 const publisher = ref<Publisher>()
@@ -29,14 +29,13 @@ list.value = entitiesRaw?.body?.data
 
 const paginate = (payload?: ApiResponse<Entity[]>) => {
   meta.value = payload?.meta
-  if (payload?.data) {
+  if (payload?.data)
     list.value = list.value?.concat(payload.data)
-  }
 }
 
 useMetadata({
   title: `Publisher ${publisher.value?.name}`,
-  description: `Books from ${publisher.value?.name}`
+  description: `Books from ${publisher.value?.name}`,
 })
 </script>
 

@@ -8,7 +8,7 @@
 const data = ref({
   email: '',
   password: '',
-  password_confirmation: ''
+  password_confirmation: '',
 })
 // const test = ref({
 //   // email: `${randomString(6).toLowerCase()}@mail.com`,

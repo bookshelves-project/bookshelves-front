@@ -2,7 +2,7 @@ declare interface Keyable {
   [key: string]: any
 }
 
-declare type Dictionary<T> = { [key: string]: T }
+declare interface Dictionary<T> { [key: string]: T }
 
 declare interface TocItem {
   text?: string
@@ -13,7 +13,7 @@ declare interface TocItem {
 }
 
 interface TypedRoute {
-  name: import('@/.nuxt/router').TypedRouteList,
-  params?: import('@/.nuxt/router/typed-router').TypedRouteParams[import('@/.nuxt/router').TypedRouteList],
+  name: import('@/.nuxt/router').TypedRouteList
+  params?: import('@/.nuxt/router/typed-router').TypedRouteParams[import('@/.nuxt/router').TypedRouteList]
   query?: Query
 }

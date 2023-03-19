@@ -1,4 +1,4 @@
-import { FetchResponse, FetchError } from 'ohmyfetch'
+import type { FetchError, FetchResponse } from 'ohmyfetch'
 
 interface Request {
   url: string
@@ -21,31 +21,29 @@ export const useHttp = () => {
   const getRequest = (request: RequestData | ApiTypedRouteList): Request => {
     if (!isRequestData(request)) {
       request = {
-        endpoint: request
+        endpoint: request,
       }
     }
 
     let localUrl = `${url}${request.endpoint}`
     localUrl = setParams(localUrl, request.params)
 
-    if (request.query || route.query) {
+    if (request.query || route.query)
       localUrl = setQuery(localUrl, request.query)
-    }
 
-    if (request.debug) {
+    if (request.debug)
       console.warn(localUrl)
-    }
 
     return {
       url: localUrl,
-      request
+      request,
     }
   }
 
   const setParams = (endpoint: string, params?: ApiTypedRouteParams[ApiTypedRouteList]) => {
     if (params) {
       const interpolateUrl = (string: string, values: Keyable) =>
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
         string.replace(/{(.*?)}/g, (match, offset) => values[offset])
       const route = interpolateUrl(endpoint, params)
 
@@ -58,7 +56,7 @@ export const useHttp = () => {
   const setQuery = (endpoint: string, query?: Query) => {
     const queryParams = {
       ...query,
-      ...getRoute.value.query
+      ...getRoute.value.query,
     } as Record<string, string>
 
     const urlSearchParams = new URLSearchParams(queryParams)
@@ -73,9 +71,8 @@ export const useHttp = () => {
   }
 
   const isFetchResponse = <T>(object: any): object is FetchResponse<T> => {
-    if (object && typeof object === 'object') {
+    if (object && typeof object === 'object')
       return object.status !== undefined
-    }
 
     return false
   }
@@ -86,37 +83,34 @@ export const useHttp = () => {
       body: {} as T,
       success: false,
       hasErrors: false,
-      error: {} as FetchError
+      error: {} as FetchError,
     }
 
     const response = await $fetch.raw<T>(req.url, {
       method: req.request.method || 'GET',
       body: req.request.body,
       headers: req.request.headers,
-      credentials: req.request.credentials
+      credentials: req.request.credentials,
     }).catch((e: FetchError) => {
       console.warn(e)
       res.hasErrors = true
       res.error = e
-      if (req.request.crashOnError) {
+      if (req.request.crashOnError)
         throw e
-      }
     })
 
     if (!res.hasErrors && isFetchResponse(response)) {
       const body = response._data as any
       res.success = true
 
-      if (req.request.debug) {
+      if (req.request.debug)
         console.warn(body)
-      }
 
       res.response = response
-      if (req.request.extractData) {
+      if (req.request.extractData)
         res.body = body.data as T
-      } else {
+      else
         res.body = body as T
-      }
     }
 
     return res
@@ -131,15 +125,16 @@ export const useHttp = () => {
   const request = async <T>(request: RequestData | ApiTypedRouteList): Promise<HttpResponse<T>> => {
     let req: Request = {
       url: '',
-      request: {} as RequestData
+      request: {} as RequestData,
     }
 
     if (isRequestData(request) && request.raw) {
       req = {
         url: request.endpoint as string,
-        request
+        request,
       }
-    } else {
+    }
+    else {
       req = getRequest(request)
     }
 
@@ -151,7 +146,7 @@ export const useHttp = () => {
   const requestRaw = async <T>(request: BaseRequest): Promise<HttpResponse<T>> => {
     const req: Request = {
       url: request.endpoint as string,
-      request: {} as RequestData
+      request: {} as RequestData,
     }
 
     const res = await executeRequest<T>(req)
@@ -163,6 +158,6 @@ export const useHttp = () => {
     getRequest,
     setQuery,
     request,
-    requestRaw
+    requestRaw,
   }
 }

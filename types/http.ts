@@ -36,8 +36,8 @@ declare interface ApiResponse<T> {
 }
 
 declare interface HttpResponse<T = any> {
-  response?: import('ohmyfetch').FetchResponse<T>,
-  body?: T,
+  response?: import('ohmyfetch').FetchResponse<T>
+  body?: T
   success?: boolean
   hasErrors?: boolean
   error?: import('ohmyfetch').FetchError
@@ -90,67 +90,67 @@ type ApiTypedRouteList =
   | '/users/{slug}'
   | '/entities/related/{author}/{slug}'
 
-type ApiTypedRouteParams = {
-  '/authors': never;
+interface ApiTypedRouteParams {
+  '/authors': never
   '/authors/{slug}': {
-    slug: ApiTypedParam;
+    slug: ApiTypedParam
   }
   '/authors/{slug}/books': {
-    slug: ApiTypedParam;
+    slug: ApiTypedParam
   }
   '/authors/{slug}/series': {
-    slug: ApiTypedParam;
+    slug: ApiTypedParam
   }
   '/series': never
   '/series/{author}/{slug}': {
-    author: ApiTypedParam;
-    slug: ApiTypedParam;
+    author: ApiTypedParam
+    slug: ApiTypedParam
   }
   '/series/{author}/{slug}/books': {
-    author: ApiTypedParam;
-    slug: ApiTypedParam;
+    author: ApiTypedParam
+    slug: ApiTypedParam
   }
   '/books': never
   '/books/{author}/{slug}': {
-    author: ApiTypedParam;
-    slug: ApiTypedParam;
+    author: ApiTypedParam
+    slug: ApiTypedParam
   }
   '/languages': never
   '/publishers': never
   '/publishers/{slug}': {
-    slug: ApiTypedParam;
+    slug: ApiTypedParam
   }
   '/publishers/{slug}/books': {
-    slug: ApiTypedParam;
+    slug: ApiTypedParam
   }
   '/tags': never
   '/tags/{slug}': {
-    slug: ApiTypedParam;
+    slug: ApiTypedParam
   }
   '/tags/{slug}/books': {
-    slug: ApiTypedParam;
+    slug: ApiTypedParam
   }
   '/posts': never
   '/posts/{slug}': {
-    slug: ApiTypedParam;
+    slug: ApiTypedParam
   }
   '/pages': never
   '/pages/{slug}': {
-    slug: ApiTypedParam;
+    slug: ApiTypedParam
   }
   '/users': never
   '/users/{slug}': {
-    slug: ApiTypedParam;
+    slug: ApiTypedParam
   }
   '/entities/related/{author}/{slug}': {
-    author: ApiTypedParam;
-    slug: ApiTypedParam;
+    author: ApiTypedParam
+    slug: ApiTypedParam
   }
-};
+}
 
 declare interface ApiTypedRoute {
-  name: ApiTypedRouteList,
-  params?: ApiTypedRouteParams[ApiTypedRouteList],
+  name: ApiTypedRouteList
+  params?: ApiTypedRouteParams[ApiTypedRouteList]
   query?: Query
 }
 

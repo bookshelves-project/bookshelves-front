@@ -6,7 +6,7 @@ const description = 'To know more about eBooks & eReaders'
 
 useMetadata({
   title,
-  description
+  description,
 })
 </script>
 

@@ -13,7 +13,8 @@ export const useEntityMethods = () => {
    * ```
    */
   const formatAuthors = (authors: Author[] | undefined): string => {
-    if (!authors) { return 'unknown' }
+    if (!authors)
+      return 'unknown'
 
     const list = authors?.map(author => author.name?.trim()) as string[]
     const formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' })
@@ -44,7 +45,8 @@ export const useEntityMethods = () => {
  * @returns `string`
  */
   const formatTags = (tags?: Tag[]) => {
-    if (!tags) { return 'unknown' }
+    if (!tags)
+      return 'unknown'
 
     const list = tags?.map(tag => tag.name?.trim()) as string[]
     const formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' })
@@ -83,17 +85,19 @@ export const useEntityMethods = () => {
 
   const getDynamicRoute = (entity: Entity | Favoritable | Review) => {
     const route: TypedRoute = {
-      name: 'authors-slug'
+      name: 'authors-slug',
     }
 
     const meta = entity.meta
 
-    if (meta.entity === 'book') { route.name = 'books-author-slug' }
-    if (meta.entity === 'serie') { route.name = 'series-author-slug' }
+    if (meta.entity === 'book')
+      route.name = 'books-author-slug'
+    if (meta.entity === 'serie')
+      route.name = 'series-author-slug'
 
     route.params = {
       author: meta.author,
-      slug: meta.slug
+      slug: meta.slug,
     }
 
     return route
@@ -107,6 +111,6 @@ export const useEntityMethods = () => {
     instanceBook,
     instanceSerie,
     instanceAuthor,
-    getDynamicRoute
+    getDynamicRoute,
   }
 }

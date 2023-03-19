@@ -12,7 +12,7 @@ const getRoutes = () => {
     router.options.routes.forEach((route) => {
       routes.push({
         name: route.name,
-        path: route.path
+        path: route.path,
       })
     })
     console.warn('------------')
@@ -31,7 +31,7 @@ const getRoutes = () => {
   pushToast({
     title: 'Check your console',
     text: 'List of all routes is available.',
-    type: 'success'
+    type: 'success',
   })
   isOpen.value = false
 }
@@ -41,14 +41,14 @@ const links = [
     label: 'Routes',
     description: 'Print all routes in console',
     method: getRoutes,
-    icon: 'router'
+    icon: 'router',
   },
   {
     label: 'Roadmap',
     description: 'A guide about Bookshelves roadmap',
     href: 'https://bookshelves-documentation.netlify.app/development/roadmap',
-    img: 'https://bookshelves.ink/images/bookshelves.svg'
-  }
+    img: 'https://bookshelves.ink/images/bookshelves.svg',
+  },
 ]
 </script>
 

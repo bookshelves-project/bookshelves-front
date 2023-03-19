@@ -2,9 +2,9 @@
 const response = await useHttpFilter<Publisher[]>({
   endpoint: '/publishers',
   query: {
-    full: true,
-    'filter[negligible]': false
-  }
+    'full': true,
+    'filter[negligible]': false,
+  },
 })
 
 const title = 'Publishers'
@@ -12,7 +12,7 @@ const description = 'Discover your books by publisher'
 
 useMetadata({
   title,
-  description
+  description,
 })
 </script>
 

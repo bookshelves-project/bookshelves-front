@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
-
 interface Props {
   modelValue?: number
   rating?: number
@@ -12,15 +10,14 @@ const {
   modelValue,
   rating = 0,
   max = 5,
-  disabled = false
+  disabled = false,
 } = defineProps<Props>()
 
+const emit = defineEmits(['update:modelValue'])
 const stars = ref(0)
 const current = ref(0)
 const currentColor = ref([1, 2, 3, 4, 5])
 const currentRating = ref(0)
-
-const emit = defineEmits(['update:modelValue'])
 
 stars.value = max
 currentRating.value = modelValue || rating
@@ -29,7 +26,7 @@ const set = (id: number) => {
   current.value = id
   currentColor.value = Array(current.value)
     .fill(current.value, 1)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     .map((x, i) => i)
 }
 const save = (id: number) => {
@@ -67,13 +64,13 @@ const save = (id: number) => {
           @mouseover="disabled ? '' : set(id + 1)"
           @click="disabled ? '' : save(id + 1)"
         >
-          <svg-icon
+          <SvgIcon
             v-if="currentRating >= star"
             name="star-full"
             :class="[disabled ? 'w-5 h-5' : 'w-8 h-8']"
             class="star absolute inset-0"
           />
-          <svg-icon name="star" :class="[disabled ? 'w-5 h-5' : 'w-8 h-8']" />
+          <SvgIcon name="star" :class="[disabled ? 'w-5 h-5' : 'w-8 h-8']" />
         </div>
       </div>
     </div>

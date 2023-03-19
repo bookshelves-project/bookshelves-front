@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useApplicationStore } from '~/store/application'
-
 const rc = useRuntimeConfig()
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -16,7 +14,6 @@ const isDev = process.env.NODE_ENV === 'development'
     <NuxtLoadingIndicator :color="rc.public.primaryColor500" />
     <app-toasts />
     <app-helper v-if="isDev" />
-    <app-preview />
     <layout-navbar />
     <layout-sidebar />
     <div class="content-min-height pt-16">

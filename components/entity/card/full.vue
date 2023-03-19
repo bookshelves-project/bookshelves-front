@@ -7,7 +7,7 @@ defineProps<{
 <template>
   <component
     :is="entity.route ? 'app-link' : 'span'"
-    :to="entity.route ? entity.route : { name : 'index' }"
+    :to="entity.route ? entity.route : { name: 'index' }"
     :class="{
       group: entity.route,
     }"

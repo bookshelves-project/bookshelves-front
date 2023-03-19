@@ -4,10 +4,9 @@ defineProps<{
   deletable: boolean
 }>()
 
+const emit = defineEmits(['destroy'])
 const { getDynamicRoute } = useEntityMethods()
 const { date } = useDate()
-const emit = defineEmits(['destroy'])
-
 const destroy = (data: Favoritable | Review) => {
   emit('destroy', data)
 }

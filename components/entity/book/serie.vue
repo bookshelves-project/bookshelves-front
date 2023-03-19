@@ -15,14 +15,15 @@ const load = async () => {
       endpoint: '/series/{author}/{slug}/books',
       params: {
         author: props.book.serie?.meta.author,
-        slug: props.book.serie?.meta.slug
-      }
+        slug: props.book.serie?.meta.slug,
+      },
     })
 
     if (response.success) {
       entities.value = response.body
       loaded.value = true
-    } else {
+    }
+    else {
       isAvailable.value = false
     }
   }

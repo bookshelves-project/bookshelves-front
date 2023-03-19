@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Pagination, Navigation } from 'swiper'
+import { Navigation, Pagination } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
@@ -15,14 +15,14 @@ const emit = defineEmits<{
 }>()
 
 const { getData, isAvailable, isLoading, slides } = useEntityGroup(
-  props.selection
+  props.selection,
 )
 
 watch(
   () => isLoading.value,
   () => {
     emit('success', isAvailable.value)
-  }
+  },
 )
 
 onMounted(async () => {
@@ -38,27 +38,27 @@ const main = {
   grabCursor: true,
   navigation: {
     nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev'
+    prevEl: '.swiper-button-prev',
   },
   paginationClickable: true,
   pagination: {
     el: '.swiper-pagination',
-    clickable: true
+    clickable: true,
   },
   breakpoints: {
     500: {
       slidesPerView: 2,
-      slidesPerGroup: 2
+      slidesPerGroup: 2,
     },
     800: {
       slidesPerView: 3,
-      slidesPerGroup: 3
+      slidesPerGroup: 3,
     },
     1200: {
       slidesPerView: 4,
-      slidesPerGroup: 4
-    }
-  }
+      slidesPerGroup: 4,
+    },
+  },
 }
 </script>
 
@@ -90,7 +90,7 @@ const main = {
             class="flex h-64 w-full animate-pulse items-center overflow-hidden rounded-md bg-gray-300 dark:bg-gray-600"
           />
           <div v-else>
-            <swiper
+            <Swiper
               :space-between="main.spaceBetween"
               grab-cursor
               :pagination="main.pagination"
@@ -99,13 +99,13 @@ const main = {
               :breakpoints="main.breakpoints"
               class="relative !pb-10"
             >
-              <swiper-slide
+              <SwiperSlide
                 v-for="(slide, index) in slides"
                 :key="index"
                 class="swiper-lazy text-left"
               >
                 <entity-card :entity="slide" type />
-              </swiper-slide>
+              </SwiperSlide>
               <div class="swiper-pagination" />
               <div class="swiper-button swiper-button-prev">
                 <svg-icon name="chevron-right" />
@@ -113,7 +113,7 @@ const main = {
               <div class="swiper-button swiper-button-next">
                 <svg-icon name="chevron-right" />
               </div>
-            </swiper>
+            </Swiper>
           </div>
         </div>
       </section>

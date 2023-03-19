@@ -9,14 +9,14 @@ const emit = defineEmits<{
 }>()
 
 const { getData, isAvailable, isLoading, slides } = useEntityGroup(
-  props.selection
+  props.selection,
 )
 
 watch(
   () => isAvailable.value,
   () => {
     emit('success', isAvailable.value)
-  }
+  },
 )
 
 onMounted(async () => {

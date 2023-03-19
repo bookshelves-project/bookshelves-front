@@ -10,14 +10,14 @@ const data = ref({
   email: '',
   reason: '',
   message: '',
-  honeypot: false
+  honeypot: false,
 })
 const test = ref({
   name: 'Name',
   email: 'user@gmail.com',
   reason: 'other',
   message: 'Message with some data.',
-  honeypot: false
+  honeypot: false,
 })
 const conditions = `Accept conditions about data privacy about ${config.appName} to send your message to ${config.appName} Team.`
 
@@ -25,7 +25,7 @@ const store = useFormStore()
 
 store.setForm({
   data: data.value,
-  test: test.value
+  test: test.value,
 })
 
 const submit = async () => {
@@ -35,10 +35,10 @@ const submit = async () => {
   await store.request({
     endpoint: '/submission/send',
     method: 'POST',
-    body: data.value
+    body: data.value,
   }, {
     withToast: true,
-    successMsg: 'Your message has been sent.'
+    successMsg: 'Your message has been sent.',
   })
 }
 </script>

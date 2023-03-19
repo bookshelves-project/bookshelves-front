@@ -2,7 +2,7 @@
 import { useSearchStore } from '~~/store/search'
 
 defineProps<{
-  selected?:Entity
+  selected?: Entity
 }>()
 
 const { formatAuthors } = useEntityMethods()

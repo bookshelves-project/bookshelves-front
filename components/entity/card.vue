@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<Props>(), {
   entity: undefined,
   type: false,
   entityName: false,
-  card: 'book'
+  card: 'book',
 })
 
 const entity: UseEntity = useEntity(props.entity, props.type, props.entityName)

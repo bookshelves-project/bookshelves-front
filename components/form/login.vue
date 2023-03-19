@@ -8,13 +8,13 @@ const form = ref({
   email: '',
   password: '',
   remember: false,
-  device_name: null
+  device_name: null,
 })
 const test = ref({
   email: 'superadmin@example.com',
   password: 'password',
   remember: true,
-  device_name: 'web'
+  device_name: 'web',
 })
 // const errors = ref({
 //   email: '',
@@ -24,13 +24,13 @@ const test = ref({
 const store = useFormStore()
 store.setForm({
   body: form.value,
-  test: test.value
+  test: test.value,
 })
 
 const submit = async () => {
   await login({
     email: form.value.email,
-    password: form.value.password
+    password: form.value.password,
   })
 }
 

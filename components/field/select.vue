@@ -8,8 +8,8 @@ const props = defineProps<{
   required?: boolean
 }>()
 
-const selected = ref<string>()
 const emit = defineEmits(['update:modelValue'])
+const selected = ref<string>()
 const selectOption = () => {
   emit('update:modelValue', selected.value)
 }
@@ -18,7 +18,7 @@ watch(
   () => props.modelValue,
   (newVal) => {
     selected.value = newVal
-  }
+  },
 )
 </script>
 

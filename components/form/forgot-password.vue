@@ -6,7 +6,7 @@
 // const store = useFormStore()
 
 const data = ref({
-  email: ''
+  email: '',
 })
 // const test = ref({
 //   email: 'admin@mail.com'

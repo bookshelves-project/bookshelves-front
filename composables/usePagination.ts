@@ -8,9 +8,8 @@ export const usePagination = () => {
   const startNumber = ref(1)
 
   const displayLastPage = computed((): boolean => {
-    if (current.value <= pages.value - (limit.value - 2)) {
+    if (current.value <= pages.value - (limit.value - 2))
       return true
-    }
 
     return false
   })
@@ -21,25 +20,25 @@ export const usePagination = () => {
 
   const nearFromBeginning = computed((): boolean => {
     return (
-      !showAllPages.value &&
-      current.value < limit.value - 1 &&
-      limit.value > ellipsesThreshold
+      !showAllPages.value
+      && current.value < limit.value - 1
+      && limit.value > ellipsesThreshold
     )
   })
   const nearFromEnd = computed((): boolean => {
     return (
-      !showAllPages.value &&
-      !nearFromBeginning.value &&
-      pages.value - current.value + 2 < limit.value &&
-      limit.value > ellipsesThreshold
+      !showAllPages.value
+      && !nearFromBeginning.value
+      && pages.value - current.value + 2 < limit.value
+      && limit.value > ellipsesThreshold
     )
   })
   const isOnTheMiddle = computed((): boolean => {
     return (
-      !showAllPages.value &&
-      !nearFromBeginning.value &&
-      !nearFromEnd.value &&
-      limit.value > ellipsesThreshold
+      !showAllPages.value
+      && !nearFromBeginning.value
+      && !nearFromEnd.value
+      && limit.value > ellipsesThreshold
     )
   })
   const showFirstDots = computed((): boolean => {
@@ -53,16 +52,15 @@ export const usePagination = () => {
     const route = useRoute()
     const newQuery = { ...route.query }
     newQuery.page = pageNum.toString()
-    if (pageNum === 0) {
+    if (pageNum === 0)
       newQuery.page = '1'
-    }
-    if (pageNum === pages.value + 1) {
+
+    if (pageNum === pages.value + 1)
       newQuery.page = pages.value.toString()
-    }
 
     const newRoute = {
       name: route.name || 'index',
-      query: { ...newQuery }
+      query: { ...newQuery },
     }
 
     return newRoute
@@ -78,30 +76,28 @@ export const usePagination = () => {
   const calcStartNumber = (): number => {
     let startNumber = 1
 
-    if (nearFromEnd.value) {
+    if (nearFromEnd.value)
       startNumber = pages.value - numberOfLinks.value + 1
-    } else if (isOnTheMiddle.value) {
+    else if (isOnTheMiddle.value)
       startNumber = current.value - Math.floor(numberOfLinks.value / 2)
-    }
 
-    if (startNumber > pages.value - numberOfLinks.value) {
+    if (startNumber > pages.value - numberOfLinks.value)
       startNumber = pages.value - numberOfLinks.value + 1
-    }
-    if (startNumber < 1) {
+
+    if (startNumber < 1)
       startNumber = 1
-    }
 
     return startNumber
   }
 
   const calcNumberOfLinks = (): number => {
     let numberOfLinks = limit.value
-    if (showAllPages.value) {
+    if (showAllPages.value)
       numberOfLinks = pages.value
-    }
-    if (nearFromBeginning.value || nearFromEnd.value) {
+
+    if (nearFromBeginning.value || nearFromEnd.value)
       numberOfLinks = limit.value - 1
-    }
+
     if (isOnTheMiddle.value) {
       // return this.limit - 2
       numberOfLinks = limit.value
@@ -116,11 +112,10 @@ export const usePagination = () => {
 
     if (pages.value >= 8) {
       const limitCalc = pages.value / 3
-      if (limitCalc <= 8) {
+      if (limitCalc <= 8)
         limit.value = limitCalc
-      } else {
+      else
         limit.value = 8
-      }
     }
 
     numberOfLinks.value = calcNumberOfLinks()
@@ -138,6 +133,6 @@ export const usePagination = () => {
     showLastDots,
     isActive,
     getTag,
-    displayLastPage
+    displayLastPage,
   }
 }

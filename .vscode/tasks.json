@@ -37,6 +37,17 @@
       }
     },
     {
+      "label": "PNPM lint",
+      "type": "shell",
+      "command": "pnpm lint:fix",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent",
+        "revealProblems": "onProblem",
+        "close": true
+      }
+    },
+    {
       "label": "Push to remotes",
       "type": "shell",
       "command": "./bin/push.sh",
