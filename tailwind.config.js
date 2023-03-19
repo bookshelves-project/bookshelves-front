@@ -102,7 +102,7 @@ module.exports = {
           },
         },
         '.link-macos': {
-          '@apply font-medium text-primary-600 dark:text-primary-500 hover:bg-gray-100 py-1 px-2 rounded-md dark:hover:bg-gray-800':
+          '@apply font-medium text-primary-600 dark:text-primary-300 hover:bg-gray-100 py-1 px-2 rounded-md dark:hover:bg-gray-800':
           {},
         },
       })

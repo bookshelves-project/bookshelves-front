@@ -47,7 +47,7 @@ const clear = () => {
           <svg-icon
             :name="toast.type ? `toast-${toast.type}` : 'information'"
             :class="color"
-            class="h-6 w-6"
+
           />
         </div>
         <div class="ml-3 w-0 flex-1 pt-0.5">

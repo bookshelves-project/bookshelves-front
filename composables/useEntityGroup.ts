@@ -11,13 +11,13 @@ export const useEntityGroup = (selection: SelectedEntities) => {
 
     const response = await request<Entity[]>({
       endpoint: selection.endpoint,
-      params: selection.paramsList ? selection.paramsList : [],
+      params: selection.paramsList ? selection.paramsList : <any>[],
       extractData: true,
     })
 
     if (response?.success) {
       isLoading.value = false
-      if (response.body.length === 0)
+      if (response.body?.length === 0)
         isAvailable.value = false
 
       slides.value = response.body

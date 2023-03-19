@@ -2,18 +2,16 @@
 interface Props {
   modelValue?: boolean
   label?: string
-  enabled?: string
-  disabled?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: false,
   label: 'switch',
-  enabled: 'check',
-  disabled: 'cross-sm',
+
 })
 
 const emit = defineEmits(['update:modelValue'])
+const toggled = ref(false)
 
 watch(
   () => props.modelValue,
@@ -22,7 +20,6 @@ watch(
   },
 )
 
-const toggled = ref(false)
 const toggle = () => {
   toggled.value = !toggled.value
   emit('update:modelValue', toggled.value)
@@ -67,7 +64,7 @@ onMounted(() => {
           aria-hidden="true"
         >
           <SvgIcon
-            :name="disabled"
+            name="cross-sm"
             class="toggle-disabled h-3 w-3 text-gray-400 dark:text-gray-700"
           />
         </span>
@@ -81,7 +78,7 @@ onMounted(() => {
           aria-hidden="true"
         >
           <SvgIcon
-            :name="enabled"
+            name="old/check"
             class="toggle-enabled h-3 w-3 text-primary-600"
           />
         </span>
