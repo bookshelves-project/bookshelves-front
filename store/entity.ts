@@ -6,33 +6,33 @@ export const useEntityStore = defineStore('entity', {
     series: {} as ApiResponse<Serie[]>,
     authors: {} as ApiResponse<Author[]>,
     tags: {} as Tag[],
-    genres: {} as Tag[]
+    genres: {} as Tag[],
   }),
   actions: {
     booksStore(payload: ApiResponse<Book[]>) {
       this.$patch({
-        books: payload
+        books: payload,
       })
     },
     seriesStore(payload: ApiResponse<Serie[]>) {
       this.$patch({
-        series: payload
+        series: payload,
       })
     },
     authorsStore(payload: ApiResponse<Author[]>) {
       this.$patch({
-        authors: payload
+        authors: payload,
       })
     },
     tagsStore(payload: Tag[]) {
       this.$patch({
-        tags: payload
+        tags: payload,
       })
     },
     genresStore(payload: Tag[]) {
       this.$patch({
-        genres: payload
+        genres: payload,
       })
-    }
-  }
+    },
+  },
 })

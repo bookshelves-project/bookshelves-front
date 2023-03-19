@@ -6,7 +6,7 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {
   tags: () => [] as Tag[],
-  short: false
+  short: false,
 })
 </script>
 

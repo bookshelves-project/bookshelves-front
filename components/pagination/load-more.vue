@@ -4,7 +4,7 @@ import AppLoading from '@/components/app/loading.vue'
 
 const props = defineProps<{
   meta: ApiMeta
-  endpoint: ApiEndpoint
+  endpoint: ApiTypedRouteList
 }>()
 
 const emit = defineEmits<{
@@ -27,11 +27,11 @@ const load = async () => {
   let endpoint = props.meta.path
   endpoint = setQuery(endpoint, {
     page: parseInt(nextPage),
-    size: parseInt(props.meta.per_page)
+    size: parseInt(props.meta.per_page),
   })
 
   const list = await requestRaw<ApiResponse<Entity[]>>({
-    endpoint
+    endpoint,
   })
   pending.value = false
 
@@ -43,7 +43,7 @@ const load = async () => {
   <div>
     <div v-if="meta.current_page !== meta.last_page" class="flex">
       <transition name="fade">
-        <app-button
+        <AppButton
           v-if="!disabled"
           color="primary"
           class="w-full max-w-lg mx-auto"
@@ -54,14 +54,14 @@ const load = async () => {
           <div class="flex items-center space-x-2 relative">
             <div class="absolute top-1/2 -translate-y-1/2 transform -left-5">
               <transition name="fade">
-                <app-loading v-if="pending" class="w-5 h-5" />
+                <AppLoading v-if="pending" class="w-5 h-5" />
                 <span v-else class="w-5 h-5" />
               </transition>
             </div>
             <span v-if="!disabled">Load more</span>
             <span v-else>End</span>
           </div>
-        </app-button>
+        </AppButton>
       </transition>
     </div>
   </div>

@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="authors && authors.length" class="flex items-center">
+  <div v-if="authors && authors.length">
     <span v-if="!short">
       <span v-if="lowercase">by </span>
       <span v-else>By </span>
@@ -26,12 +26,12 @@ defineProps<{
       >{{ author.name }}</app-link>
       <span
         v-if="
-          authors.length > 1 &&
-            authorId !== authors.length - 2 &&
-            authorId !== authors.length - 1
+          authors.length > 1
+            && authorId !== authors.length - 2
+            && authorId !== authors.length - 1
         "
         class="mr-1"
-      >,</span><span v-if="authorId === authors.length - 2" class="mx-1">&</span>
+      >,</span><span v-if="authorId === authors.length - 2" class="ml-1">&</span>
     </span>
   </div>
 </template>

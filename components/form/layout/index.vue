@@ -37,7 +37,7 @@ const submit = () => {
         <span v-else>{{ title ?? 'Submit' }}</span>
       </app-button>
       <app-button v-if="isDev" type="button" @click="fill">
-        <svg-icon name="test" class="h-6 w-6" />
+        <svg-icon name="test"  />
       </app-button>
     </div>
   </form>

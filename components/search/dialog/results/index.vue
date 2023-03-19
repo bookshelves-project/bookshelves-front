@@ -5,7 +5,7 @@ defineProps<{
 
 const selected = ref<Entity>()
 const selectedId = ref('')
-const selectResult = (item:Entity) => {
+const selectResult = (item: Entity) => {
   selected.value = item
   selectedId.value = `${item.meta.entity}-${item.meta.slug}`
 }
@@ -25,7 +25,7 @@ const selectResult = (item:Entity) => {
             {{ search?.count }} results with "{{ search.query }}"
           </div>
           <transition-group name="list" tag="div">
-            <li v-for="(collection,collectionId) in search?.results" :key="collectionId">
+            <li v-for="(collection, collectionId) in search?.results" :key="collectionId">
               <div v-if="collection?.length" class="mb-6">
                 <div class="capitalize-first">
                   {{ collectionId }}
@@ -33,7 +33,7 @@ const selectResult = (item:Entity) => {
                 <ul class="space-y-1 mt-2">
                   <!-- Active: "bg-gray-100 text-gray-900" -->
                   <li
-                    v-for="(item,itemId) in collection"
+                    v-for="(item, itemId) in collection"
                     id="option-1"
                     :key="itemId"
                     :class="selectedId === `${item.meta.entity}-${item.meta.slug}` ? 'bg-gray-100 dark:bg-gray-700' : ''"

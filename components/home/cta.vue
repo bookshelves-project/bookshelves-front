@@ -15,9 +15,9 @@ import AppButton from '@/components/app/button.vue'
       </h2>
       <div class="mt-8 flex lg:mt-0 lg:shrink-0">
         <div class="inline-flex rounded-md shadow">
-          <app-button color="primary" :to="{ name: 'books' }">
+          <AppButton color="primary" :to="{ name: 'books' }">
             Discover books
-          </app-button>
+          </AppButton>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { CookieOptions } from '#app'
+import type { CookieOptions } from '#app'
 import { useUserStore } from '~~/store/user'
 
 /**
@@ -13,22 +13,21 @@ export const useAuth = () => {
   const http = useHttp()
 
   const configAuth = (request?: RequestData) => {
-    if (!request) {
+    if (!request)
       request = {}
-    }
 
     const cookieName = 'XSRF-TOKEN'
     const cookieOptions: CookieOptions = {
-      sameSite: 'lax'
+      sameSite: 'lax',
     }
     const tokenCookie = useCookie(cookieName, cookieOptions).value
 
     const contentType = 'application/json'
     const headers: HeadersInit = {
       'X-XSRF-TOKEN': tokenCookie,
-      Accept: contentType,
+      'Accept': contentType,
       'Content-Type': contentType,
-      'X-Requested-With': 'XMLHttpRequest'
+      'X-Requested-With': 'XMLHttpRequest',
       // Authorization: `Bearer ${token.value}`
     }
     const credentials: RequestCredentials = 'include'
@@ -47,7 +46,7 @@ export const useAuth = () => {
     const res = await http.requestRaw({
       endpoint: sanctumEndpoint,
       headers: request.headers,
-      credentials: request.credentials
+      credentials: request.credentials,
     })
 
     return res
@@ -66,11 +65,11 @@ export const useAuth = () => {
     return res
   }
 
-  const login = async (credentials: { email: string, password: string }) => {
+  const login = async (credentials: { email: string; password: string }) => {
     await request({
       endpoint: '/auth/login',
       body: credentials,
-      method: 'POST'
+      method: 'POST',
     })
     await me()
   }
@@ -78,7 +77,7 @@ export const useAuth = () => {
   const me = async () => {
     const { setUser } = useUserStore()
     const res = await request<User>({
-      endpoint: '/auth/me'
+      endpoint: '/auth/me',
     })
     setUser(res.body?.data)
 
@@ -87,7 +86,7 @@ export const useAuth = () => {
 
   const favorites = async () => {
     const res = await request<Favoritable>({
-      endpoint: '/profile/favorites'
+      endpoint: '/profile/favorites',
     })
 
     return res
@@ -98,7 +97,7 @@ export const useAuth = () => {
       endpoint: '/auth/logout',
       headers: configAuth().headers,
       credentials: configAuth().credentials,
-      method: 'POST'
+      method: 'POST',
     })
     console.log(res)
   }
@@ -109,6 +108,6 @@ export const useAuth = () => {
     login,
     me,
     favorites,
-    logout
+    logout,
   }
 }

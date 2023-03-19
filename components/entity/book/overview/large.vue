@@ -38,11 +38,11 @@ const { date } = useDate()
                 <span>
                   <span>Publisher:</span>
                   <entity-publisher-link :publisher="book.publisher" />
-                  <span v-if="book.releasedOn">({{ date(book.releasedOn) }})</span>
+                  <span v-if="book.released_on">({{ date(book.released_on) }})</span>
                 </span>
               </li>
-              <li v-if="book.pageCount">
-                <span> Page count: {{ book.pageCount }} </span>
+              <li v-if="book.page_count">
+                <span> Page count: {{ book.page_count }} </span>
               </li>
               <li v-if="book.genres && book.genres.length >= 1">
                 <span>

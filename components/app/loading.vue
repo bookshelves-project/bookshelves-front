@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 const style = ref('animate-spin')
 const attrs = useAttrs()
-if (attrs.class === undefined) {
+if (attrs.class === undefined)
   style.value = `${style.value} h-6 w-6`
-}
 </script>
 
 <template>

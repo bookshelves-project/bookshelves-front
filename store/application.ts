@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { CookieRef } from '#app'
+import type { CookieRef } from '#app'
 
 export const useApplicationStore = defineStore('application', {
   state: () => ({
@@ -7,15 +7,15 @@ export const useApplicationStore = defineStore('application', {
     headConfig: {} as HeadConfig,
     enums: {} as ApplicationEnums,
     languages: {} as Language[],
-    available: false
+    available: false,
   }),
   actions: {
     async nuxtInit() {
-      const { me } = useAuth()
-      await me()
+      // const { me } = useAuth()
+      // await me()
 
       const cookie = useCookie('application', {
-        sameSite: 'strict'
+        sameSite: 'strict',
       })
       if (!this.available) {
         if (cookie.value !== undefined) {
@@ -27,9 +27,10 @@ export const useApplicationStore = defineStore('application', {
             headConfig: data.headConfig,
             enums: data.enums,
             languages: data.languages,
-            available: true
+            available: true,
           })
-        } else {
+        }
+        else {
           console.warn('init: from api')
 
           await this.fetchApplication(cookie)
@@ -41,7 +42,7 @@ export const useApplicationStore = defineStore('application', {
 
       const response = await request<Application>({
         endpoint: '/application',
-        extractData: true
+        extractData: true,
       })
       cookie.value = JSON.stringify(response.body)
 
@@ -49,13 +50,13 @@ export const useApplicationStore = defineStore('application', {
         headConfig: response?.body?.headConfig,
         enums: response?.body?.enums,
         languages: response?.body?.languages,
-        available: true
+        available: true,
       })
     },
     setHomePage(payload?: CmsHomePage) {
       this.$patch({
-        homePage: payload
+        homePage: payload,
       })
-    }
-  }
+    },
+  },
 })

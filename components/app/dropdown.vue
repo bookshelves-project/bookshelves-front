@@ -9,7 +9,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   align: 'right',
   arrow: false,
-  autoClose: false
+  autoClose: false,
 })
 
 type Platform = 'desktop' | 'mobile'
@@ -23,11 +23,10 @@ const overlay = ref(false)
 const target = ref<HTMLElement>()
 
 const toggle = () => {
-  if (opened.value) {
+  if (opened.value)
     closeDropdown()
-  } else {
+  else
     openDropdown()
-  }
 }
 
 const openDropdown = () => {
@@ -46,13 +45,12 @@ const closeDropdown = () => {
 }
 
 const alignmentClasses = computed((): string => {
-  if (props.align === 'left') {
+  if (props.align === 'left')
     return 'origin-top-left left-0'
-  } else if (props.align === 'right') {
+  else if (props.align === 'right')
     return 'origin-top-right right-0'
-  } else {
+  else
     return 'origin-top'
-  }
 })
 
 onClickOutside(target, () => closeDropdown())

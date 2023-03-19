@@ -4,7 +4,7 @@ const config = useRuntimeConfig()
 const leave: CmsPricing = {
   title: 'Let me go!',
   description: `You disagree with what ${config.appName} offers and think it's shameful.`,
-  features: ['Leave this website now']
+  features: ['Leave this website now'],
 }
 const free: CmsPricing = {
   title: 'Free to read',
@@ -12,12 +12,12 @@ const free: CmsPricing = {
   features: [
     'Browse the list of eBooks, series and authors',
     'Search to find the eBook you absolutely want',
-    "Download an eBook, a complete series or even all of an author's books",
+    'Download an eBook, a complete series or even all of an author\'s books',
     'Read the guides with coffee/tea/chocolate (not included) to learn more',
-    'Download eBooks on your eReader from internal browser'
+    'Download eBooks on your eReader from internal browser',
   ],
   cta: 'Discover all eBooks',
-  route: 'books'
+  route: 'books',
 }
 const account: CmsPricing = {
   title: 'Community',
@@ -25,15 +25,15 @@ const account: CmsPricing = {
   features: [
     'Get a list of your favorite eBooks',
     'Leave ratings and reviews',
-    'Propose your eBooks'
+    'Propose your eBooks',
   ],
-  cta: 'Sign up'
+  cta: 'Sign up',
   // route: 'sign-up',
 }
 const pricings: CmsPricingList = {
   leave,
   free,
-  account
+  account,
 }
 </script>
 

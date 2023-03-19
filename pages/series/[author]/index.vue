@@ -10,12 +10,12 @@ definePageMeta({
         app.$localePath({
           name: 'authors-slug',
           params: {
-            slug: to.params.author
-          }
-        })
+            slug: to.params.author,
+          },
+        }),
       )
     }
-  }
+  },
 })
 </script>
 

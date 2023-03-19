@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
-
 const props = defineProps<{
   pages: number
   current: number
@@ -17,7 +15,7 @@ const {
   showLastDots,
   isActive,
   getTag,
-  displayLastPage
+  displayLastPage,
 } = usePagination()
 
 init(props.pages, props.current)
@@ -26,13 +24,13 @@ watch(
   () => props.current,
   () => {
     init(props.pages, props.current)
-  }
+  },
 )
 watch(
   () => props.pages,
   () => {
     init(props.pages, props.current)
-  }
+  },
 )
 </script>
 
@@ -43,7 +41,7 @@ watch(
     >
       <div class="-mt-px flex w-0 flex-1">
         <nuxt-link :to="linkGen(1)" class="item extreme-link">
-          <svg-icon name="arrow-narrow-right" class="mr-1 w-5 h-5 rotate-90" />
+          <SvgIcon name="arrow-narrow-right" class="mr-1 w-5 h-5 rotate-90" />
           First
         </nuxt-link>
       </div>
@@ -57,7 +55,7 @@ watch(
             aria-label="Previous"
             @click="navigate"
           >
-            <svg-icon name="chevron-right" class="w-5 h-5 rotate-90" />
+            <SvgIcon name="chevron-right" class="w-5 h-5 rotate-90" />
           </component>
         </nuxt-link>
         <div v-if="showFirstDots" class="item dots">
@@ -103,14 +101,14 @@ watch(
             aria-label="Next"
             @click="navigate"
           >
-            <svg-icon name="chevron-right" class="w-5 h-5" />
+            <SvgIcon name="chevron-right" class="w-5 h-5" />
           </component>
         </nuxt-link>
       </div>
       <div class="-mt-px flex w-0 flex-1 justify-end">
         <nuxt-link :to="linkGen(pages)" class="item extreme-link">
           Last
-          <svg-icon name="arrow-narrow-right" class="ml-1 w-5 h-5" />
+          <SvgIcon name="arrow-narrow-right" class="ml-1 w-5 h-5" />
         </nuxt-link>
       </div>
     </nav>

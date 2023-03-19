@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const form = ref({
   text: '',
-  rating: 0
+  rating: 0,
 })
 
 const config = useRuntimeConfig()

@@ -10,7 +10,7 @@ const { requestRaw } = useHttp()
 const endpoint = props.entity.meta.reviews
 if (endpoint) {
   const response = await requestRaw<ApiResponse<Review[]>>({
-    endpoint
+    endpoint,
   })
   reviews.value = response?.body.data
 }
@@ -20,9 +20,8 @@ const avg = computed(() => {
   const ratings: any[] = []
   if (reviews.value) {
     reviews.value.forEach((review) => {
-      if (review.rating) {
+      if (review.rating)
         ratings.push(review.rating)
-      }
     })
     const sum = ratings.reduce((a, b) => parseFloat(a) + parseFloat(b), 0)
     avg = sum / ratings.length || 0

@@ -7,9 +7,9 @@ const config = useRuntimeConfig()
 const date = (begin: number) => {
   const current = new Date().getFullYear()
   const year = `${begin} - ${current}`
-  if (begin === current) {
+  if (begin === current)
     return begin
-  }
+
   return year
 }
 </script>
@@ -30,7 +30,7 @@ const date = (begin: number) => {
           aria-label="Creative commons"
           class="mx-auto flex items-center space-x-2 transition-colors duration-100"
         >
-          <layout-footer-creative-commons />
+          <LayoutFooterCreativeCommons />
           <span>{{ date(2020) }}</span>
         </a>
       </div>
@@ -66,7 +66,7 @@ const date = (begin: number) => {
       </span>
     </div>
     <div class="mt-6 flex lg:mt-0">
-      <layout-footer-back-to-top class="mx-auto" />
+      <LayoutFooterBackToTop class="mx-auto" />
     </div>
   </div>
 </template>

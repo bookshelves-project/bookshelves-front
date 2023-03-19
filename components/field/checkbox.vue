@@ -18,7 +18,7 @@ const value = computed<any>({
   },
   set(val) {
     emit('update:modelValue', val)
-  }
+  },
 })
 </script>
 
@@ -40,8 +40,8 @@ const value = computed<any>({
       <label
         :for="name"
         :class="[
-          {'capitalize': capitalize},
-          {'capitalize-first': capitalizeFirst}
+          { capitalize },
+          { 'capitalize-first': capitalizeFirst },
         ]"
         class="block w-full font-medium text-gray-700 dark:text-gray-300"
       >

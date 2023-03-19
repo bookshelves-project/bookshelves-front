@@ -4,15 +4,15 @@ export const useScroll = () => {
   const lastScrollPosition = ref(0)
 
   const handleScroll = () => {
-    const currentScrollPosition =
-      window.pageYOffset || document.documentElement.scrollTop
-    if (currentScrollPosition < 0) {
+    const currentScrollPosition
+      = window.pageYOffset || document.documentElement.scrollTop
+    if (currentScrollPosition < 0)
       return
-    } // Stop executing this function if the difference between
+    // Stop executing this function if the difference between
     // current scroll position and last scroll position is less than some offset
-    if (Math.abs(currentScrollPosition - lastScrollPosition.value) < 60) {
+    if (Math.abs(currentScrollPosition - lastScrollPosition.value) < 60)
       return
-    }
+
     show.value = currentScrollPosition < lastScrollPosition.value
     lastScrollPosition.value = currentScrollPosition
   }
@@ -29,6 +29,6 @@ export const useScroll = () => {
     isScroll,
     handleScroll,
     show,
-    lastScrollPosition
+    lastScrollPosition,
   }
 }

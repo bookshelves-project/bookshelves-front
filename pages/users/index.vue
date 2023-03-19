@@ -9,9 +9,10 @@ const subtitle = 'All Bookshelves users'
 
 useMetadata({
   title,
-  description: subtitle
+  description: subtitle,
 })
 </script>
+
 <template>
   <main class="main-content">
     <layout-header :title="title" :subtitle="subtitle" />

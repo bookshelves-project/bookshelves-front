@@ -1,30 +1,25 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
-
 interface Props {
   modelValue?: boolean
   label?: string
-  enabled?: string
-  disabled?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: false,
   label: 'switch',
-  enabled: 'check',
-  disabled: 'cross-sm'
+
 })
 
 const emit = defineEmits(['update:modelValue'])
+const toggled = ref(false)
 
 watch(
   () => props.modelValue,
   (newVal) => {
     toggled.value = newVal
-  }
+  },
 )
 
-const toggled = ref(false)
 const toggle = () => {
   toggled.value = !toggled.value
   emit('update:modelValue', toggled.value)
@@ -68,8 +63,8 @@ onMounted(() => {
           class="absolute inset-0 flex h-full w-full items-center justify-center transition-opacity"
           aria-hidden="true"
         >
-          <svg-icon
-            :name="disabled"
+          <SvgIcon
+            name="cross-sm"
             class="toggle-disabled h-3 w-3 text-gray-400 dark:text-gray-700"
           />
         </span>
@@ -82,8 +77,8 @@ onMounted(() => {
           class="absolute inset-0 flex h-full w-full items-center justify-center transition-opacity"
           aria-hidden="true"
         >
-          <svg-icon
-            :name="enabled"
+          <SvgIcon
+            name="old/check"
             class="toggle-enabled h-3 w-3 text-primary-600"
           />
         </span>

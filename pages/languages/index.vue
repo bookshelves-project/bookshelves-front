@@ -2,12 +2,12 @@
 const response = await useHttpFilter<Language[]>('/languages')
 
 const title = 'Languages of books and series'
-const description =
-  'You can read your books in many languages, browse each possibilities!'
+const description
+  = 'You can read your books in many languages, browse each possibilities!'
 
 useMetadata({
   title,
-  description
+  description,
 })
 </script>
 

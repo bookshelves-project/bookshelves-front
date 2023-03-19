@@ -90,6 +90,6 @@ const logout = () => {}
 
 <style lang="css" scoped>
 .link {
-  @apply block rounded-md px-4 py-2 text-gray-700 transition-colors duration-100 hover:bg-gray-200 dark:text-gray-200 dark:hover:bg-gray-600;
+  @apply block rounded-md px-3 py-1.5 text-gray-700 text-sm transition-colors duration-100 hover:bg-gray-200 dark:text-gray-200 dark:hover:bg-gray-600;
 }
 </style>

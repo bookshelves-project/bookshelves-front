@@ -14,7 +14,7 @@ const success = (payload: boolean) => {
   <div class="divide-y divide-gray-300 dark:divide-gray-700 space-y-10">
     <div class="mx-auto md:grid md:grid-cols-3 md:gap-x-8">
       <entity-book-overview-small :book="book" />
-      <entity-book-overview-large :book="book" />
+      <entity-book-overview-large class="mt-10 md:mt-0" :book="book" />
     </div>
     <div
       v-if="

@@ -14,9 +14,8 @@ list.value = props.entities?.data
 
 const paginate = (payload?: ApiResponse<Entity[]>) => {
   meta.value = payload?.meta
-  if (payload?.data) {
+  if (payload?.data)
     list.value = list.value?.concat(payload.data)
-  }
 }
 </script>
 

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 defineProps<{
   entity: UseEntity
 }>()
@@ -12,12 +11,25 @@ defineProps<{
     :title="entity.title"
   >
     <div class="h-full shrink-0 relative">
-      <app-img
-        class="h-full w-36 object-cover rounded-md"
-        :src="entity.media?.url"
-        :color="entity.media?.color"
-        :alt="entity.media?.name"
-      />
+      <div class="h-full w-36 relative">
+        <app-img
+          class="h-full w-36 object-cover rounded-md"
+          :src="entity.media?.url"
+          :color="entity.media?.color"
+          :alt="entity.media?.name"
+        />
+        <div v-if="!entity.media?.available && entity.entity !== 'author'" class="absolute top-4 text-black right-3 text-right">
+          <div class="text-xs uppercase font-semibold line-clamp-1">
+            {{ entity.authors }}
+          </div>
+          <div class="text-sm font-bold mt-6">
+            {{ entity.title }}
+          </div>
+          <div class="mt-2 text-xs font-semibold line-clamp-1">
+            {{ entity.serie?.title ?? 'Serie' }}
+          </div>
+        </div>
+      </div>
       <div
         v-if="entity.type"
         class="absolute top-0 inset-x-0 h-full py-2 px-3 flex items-end justify-start overflow-hidden rounded-md"

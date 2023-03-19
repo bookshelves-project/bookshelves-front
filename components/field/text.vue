@@ -5,18 +5,18 @@ interface Props {
   name?: string
   placeholder?: string
   type?:
-    | 'date'
-    | 'datetime-local'
-    | 'email'
-    | 'month'
-    | 'number'
-    | 'password'
-    | 'search'
-    | 'tel'
-    | 'text'
-    | 'time'
-    | 'url'
-    | 'week'
+  | 'date'
+  | 'datetime-local'
+  | 'email'
+  | 'month'
+  | 'number'
+  | 'password'
+  | 'search'
+  | 'tel'
+  | 'text'
+  | 'time'
+  | 'url'
+  | 'week'
   required?: boolean
   multiline?: boolean
   minlength?: number
@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
   minlength: 0,
   maxlength: 0,
   disabled: false,
-  autocomplete: undefined
+  autocomplete: undefined,
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -47,7 +47,7 @@ const value = computed<string>({
   },
   set(val) {
     emit('update:modelValue', val)
-  }
+  },
 })
 </script>
 

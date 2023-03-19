@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { SvgLibrary } from '@/.nuxt/types/svg-library'
+import type { IconType } from '~~/.nuxt/svg-transformer'
+
 const config = useRuntimeConfig()
 
 const apiUrlBase = (endpoint: string) => {
@@ -8,35 +9,35 @@ const apiUrlBase = (endpoint: string) => {
 }
 
 const features: {
-  icon: SvgLibrary,
-  label: string,
-  title: string,
-  link: string,
+  icon: IconType
+  label: string
+  title: string
+  link: string
 }[] = [
   {
     icon: 'feature-feed',
     label: 'OPDS',
     title: 'OPDS: Open Publication Distribution System',
-    link: `${apiUrlBase('/opds')}`
+    link: `${apiUrlBase('/opds')}`,
   },
   {
     icon: 'feature-catalog',
     label: 'Catalog',
     title: 'Catalog: simple interface for eReader browser',
-    link: `${apiUrlBase('/catalog')}`
+    link: `${apiUrlBase('/catalog')}`,
   },
   {
     icon: 'feature-ereader',
     label: 'Webreader',
     title: 'Webreader: to read an eBook directly in your browser',
-    link: `${apiUrlBase('/webreader')}`
+    link: `${apiUrlBase('/webreader')}`,
   },
   {
     icon: 'feature-api',
     label: 'API',
     title: 'API: share data between applications',
-    link: `${apiUrlBase('/docs')}`
-  }
+    link: `${apiUrlBase('/docs')}`,
+  },
 ]
 </script>
 
@@ -45,7 +46,7 @@ const features: {
     <div v-if="config.appName" class="items-center space-x-6 flex">
       <app-link
         :to="{
-          name: 'index'
+          name: 'index',
         }"
         class="group flex w-max items-center lg:mx-0"
       >
@@ -76,7 +77,7 @@ const features: {
           :aria-label="feature.title"
           class="mx-auto block w-20 rounded-md p-2 text-gray-400 transition-colors duration-75 hover:bg-gray-200 hover:text-gray dark:hover:bg-gray-800 dark:hover:text-gray-300"
         >
-          <svg-icon :name="`${feature.icon}`" class="mx-auto h-6 w-6" />
+          <svg-icon :name="`${feature.icon}`" display="flex" class="mx-auto h-6 w-6" />
           <div class="mt-2 text-center text-xs">{{ feature.label }}</div>
         </a>
         <!-- <app-language-switch /> -->

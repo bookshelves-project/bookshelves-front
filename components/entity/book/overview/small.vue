@@ -7,23 +7,23 @@ const { request } = useHttp()
 const bookNext = ref<Book>()
 
 const getNext = async () => {
-  if (!props.book.serie) { return false }
+  if (!props.book.serie)
+    return false
   const reponse = await request<Book>({
-    endpoint: '/series/books',
-    params: [
-      props.book.meta.author,
-      props.book.serie?.meta.slug
-    ],
+    endpoint: '/series/{author}/{slug}/books',
+    params: {
+      author: props.book.meta.author,
+      slug: props.book.serie?.meta.slug,
+    },
     query: {
       next: props.book.volume,
-      first: true
+      first: true,
     },
-    extractData: true
+    extractData: true,
   })
 
-  if (reponse.success) {
+  if (reponse.success)
     bookNext.value = reponse.body
-  }
 }
 await getNext()
 </script>
@@ -67,7 +67,7 @@ await getNext()
             </dd>
           </div>
           <div v-if="bookNext">
-            <dt>Next</dt>
+            <dt>Next vol.</dt>
             <dd>
               <entity-book-link :book="bookNext">
                 (vol. {{ bookNext.volume }})

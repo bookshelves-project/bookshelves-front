@@ -7,9 +7,10 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   open: false,
-  size: 'sm'
+  size: 'sm',
 })
 
+const emit = defineEmits(['close'])
 const target = ref<HTMLElement>()
 const modal = ref(false)
 const layer = ref(false)
@@ -25,7 +26,8 @@ watch(
         modal.value = newVal
       }, 150)
       scrollDisabled()
-    } else {
+    }
+    else {
       overlay.value = newVal
       modal.value = newVal
       setTimeout(() => {
@@ -33,12 +35,10 @@ watch(
       }, 250)
       scrollEnabled()
     }
-  }
+  },
 )
 
 onClickOutside(target, () => closeEvent())
-
-const emit = defineEmits(['close'])
 
 const closeEvent = () => {
   modal.value = false

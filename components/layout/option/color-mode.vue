@@ -6,7 +6,8 @@ const toggleDark = () => {
     root.remove('dark')
 
     localStorage.setItem('color-scheme', 'light')
-  } else {
+  }
+  else {
     root.toggle('dark')
     root.remove('light')
 
@@ -23,7 +24,7 @@ const toggleDark = () => {
     <span class="sun" title="Switch to dark mode">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
+
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -39,7 +40,7 @@ const toggleDark = () => {
     <span class="moon" title="Switch to light mode">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6"
+
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

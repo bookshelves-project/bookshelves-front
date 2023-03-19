@@ -11,7 +11,7 @@ const data = ref({
   token: '',
   email: '',
   password: '',
-  password_confirmation: ''
+  password_confirmation: '',
 })
 // const test = ref({
 //   token: query.token,

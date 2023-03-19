@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import AppDropdown from '@/components/app/dropdown.vue'
-import FiltersCheckboxes from '@/components/filters/checkboxes.vue'
-import FieldToggle from '@/components/field/toggle.vue'
-import SvgIcon from '@/components/svg-icon.vue'
 import { useFilterStore } from '~~/store/filter'
 
 interface Props {
@@ -22,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
   filter: undefined,
   options: undefined,
   type: 'checkbox',
-  autoClose: false
+  autoClose: false,
 })
 
 const route = useRoute()
@@ -36,30 +32,30 @@ const store = useFilterStore()
 
 const checkCurrentFilters = () => {
   const current = route.query[props.filter] as string
-  if (props.type === 'checkbox' && route.query[props.filter]) {
+  if (props.type === 'checkbox' && route.query[props.filter])
     checkboxes.value = current.split(',')
-  }
-  if (props.type === 'switch') {
+
+  if (props.type === 'switch')
     switchValue.value = current ? JSON.parse(current) : false
-  }
 }
 const filterBy = (newQuery: boolean | string | string[], replace = false) => {
-  if (newQuery instanceof Array) {
+  if (Array.isArray(newQuery))
     newQuery = newQuery.join(',')
-  }
+
   const formatQuery = { [props.filter]: newQuery } as any
 
   if (replace) {
     router.replace({
-      query: { query: formatQuery }
+      query: { query: formatQuery },
     })
 
     store.setQueries(formatQuery)
-  } else {
+  }
+  else {
     route.query.page = '1'
     router.push({
       name: route.name!,
-      query: { ...route.query, ...formatQuery }
+      query: { ...route.query, ...formatQuery },
     })
 
     store.setQueries({ ...route.query, ...formatQuery })
@@ -74,19 +70,19 @@ watch(
   () => checkboxes.value,
   (newVal) => {
     filterBy(newVal)
-  }
+  },
 )
 watch(
   () => switchValue.value,
   (newVal) => {
     filterBy(newVal)
-  }
+  },
 )
 watch(
   () => route.query,
   (newVal) => {
     currentQuery.value = newVal
-  }
+  },
 )
 
 watch(
@@ -96,10 +92,10 @@ watch(
     switchValue.value = false
     setTimeout(() => {
       router.replace({
-        query: {}
+        query: {},
       })
     }, 300)
-  }
+  },
 )
 </script>
 

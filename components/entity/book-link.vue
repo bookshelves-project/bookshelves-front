@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="book && book.meta" class="dark:text-white">
+  <div v-if="book && book.meta" class="dark:text-white mt-2">
     <app-link
       :to="{
         name: 'books-author-slug',
@@ -14,7 +14,7 @@ defineProps<{
           slug: book.meta.slug,
         },
       }"
-      class="link-macos"
+      class="internal-link"
     >
       {{ book.title }}
       <slot />

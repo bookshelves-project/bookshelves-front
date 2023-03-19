@@ -18,13 +18,12 @@ const value = computed<string>({
   },
   set(val) {
     emit('update:modelValue', val)
-  }
+  },
 })
 
 onMounted(() => {
   search.value?.focus()
 })
-
 </script>
 
 <template>
@@ -56,7 +55,7 @@ onMounted(() => {
       class="flex items-center justify-end space-x-4 p-3"
     >
       <field-checkbox
-        v-for="(item,index) in searchStore.types"
+        v-for="(item, index) in searchStore.types"
         :key="index"
         v-model="searchStore.types[index]"
         :name="index"

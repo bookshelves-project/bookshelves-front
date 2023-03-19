@@ -6,9 +6,9 @@ interface MediaProps {
   placeholder?: string
   preflight?: boolean
   iframe?: boolean
-  width?: number|string
-  height?: number|string
-  allow?: string,
+  width?: number | string
+  height?: number | string
+  allow?: string
   options?: IntersectionObserverInit
 }
 
@@ -23,22 +23,21 @@ const props = withDefaults(defineProps<MediaProps>(), {
   height: '460px',
   allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
   options: {
-    // @ts-ignore
+    // @ts-expect-error
     threshold: 1.0,
-    rootMargin: '0px 0px 100px 0px'
-  }
+    rootMargin: '0px 0px 100px 0px',
+  },
 })
 
 const media = ref<HTMLElement>()
 const currentPlaceholder = ref<HTMLElement>()
-const currentMedia = ref<HTMLImageElement|HTMLIFrameElement>()
+const currentMedia = ref<HTMLImageElement | HTMLIFrameElement>()
 
 const allow = ref(props.allow ?? '')
 const style = ''
 const preflightClass = ref('object-cover h-full w-full')
-if (props.iframe) {
+if (props.iframe)
   preflightClass.value = `${preflightClass.value} rounded-md`
-}
 
 const setMedia = () => {
   const placeholder = media.value?.children[0] as HTMLElement
@@ -50,9 +49,8 @@ const setMedia = () => {
   current.setAttribute('src', props.src)
 
   current.classList.remove('hidden')
-  if (props.iframe) {
+  if (props.iframe)
     current.setAttribute('allow', allow.value)
-  }
 
   current.onload = () => {
     placeholder?.classList.add('opacity-0')
@@ -61,7 +59,8 @@ const setMedia = () => {
 }
 
 const setIntersectionObserver = () => {
-  if (!window.IntersectionObserver) { return }
+  if (!window.IntersectionObserver)
+    return
 
   const observer = new IntersectionObserver(([entry]) => {
     const target = entry.target
@@ -72,9 +71,8 @@ const setIntersectionObserver = () => {
     }
   }, props.options)
 
-  if (media.value) {
+  if (media.value)
     observer.observe(media.value)
-  }
 }
 
 const handleError = () => {
@@ -94,7 +92,7 @@ onMounted(() => {
   <div ref="media" class="lazy-media relative my-2">
     <div
       :class="[
-        {preflightClass: preflight}
+        { preflightClass: preflight },
       ]"
       class="lazy-media-transition bg-gray-50 dark:bg-gray-800 opacity-100 transition-opacity duration-200 absolute inset-0"
       :style="color !== '#ffffff' ? `background-color: ${color};` : ''"
@@ -108,10 +106,9 @@ onMounted(() => {
     </div>
     <iframe
       v-if="iframe"
-      :class="[
-        'lazy-media-iframe hidden',
+      class="lazy-media-iframe hidden" :class="[
         style,
-        preflight ? preflightClass : ''
+        preflight ? preflightClass : '',
       ]"
       :width="width"
       :height="height"
@@ -125,10 +122,9 @@ onMounted(() => {
     />
     <img
       v-else
-      :class="[
-        'lazy-media-media hidden',
+      class="lazy-media-media hidden" :class="[
         style,
-        preflight ? preflightClass : ''
+        preflight ? preflightClass : '',
       ]"
       :data-src="src"
       :title="alt"

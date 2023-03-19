@@ -1,8 +1,8 @@
 // import type { AxiosOptions } from '@nuxtjs/axios'
 // import type { Options } from '@nuxtjs/i18n'
 // import { ModuleOptions, RecursivePartial } from '@nuxtjs/auth-next'
-import { VueUseNuxtOptions } from '@vueuse/nuxt'
-import { NuxtConfig } from '@nuxt/schema'
+import type { VueUseNuxtOptions } from '@vueuse/nuxt'
+import type { NuxtConfig } from '@nuxt/schema'
 
 // const htmlValidator = {
 //   usePrettier: false,
@@ -28,10 +28,10 @@ import { NuxtConfig } from '@nuxt/schema'
 //   }
 // }
 const tailwindcss: NuxtConfig['tailwindcss'] = {
-  exposeConfig: true
+  exposeConfig: true,
 }
 const vueuse: VueUseNuxtOptions = {
-  ssrHandlers: true
+  ssrHandlers: true,
 }
 // const axios: AxiosOptions = {
 //   baseURL: process.env.API_URL || 'http://localhost:8000',
@@ -158,11 +158,11 @@ const vueuse: VueUseNuxtOptions = {
  */
 const schemaOrg: NuxtConfig['schemaOrg'] = {
   // set to your production domain
-  canonicalHost: 'https://nuxtjs.org'
+  canonicalHost: 'https://nuxtjs.org',
 }
 
 const nuxtTypedRouter: NuxtConfig['nuxtTypedRouter'] = {
-  outDir: './.nuxt/router'
+  // outDir: './.nuxt/router',
 }
 
 const modules = {
@@ -173,12 +173,12 @@ const modules = {
   tailwindcss,
   vueuse,
   schemaOrg,
-  nuxtTypedRouter
+  nuxtTypedRouter,
 }
 
 export const matomo = {
   matomoUrl: process.env.MATOMO_URL ? process.env.MATOMO_URL : null,
-  siteId: process.env.MATOMO_SITE_ID ? process.env.MATOMO_SITE_ID : null
+  siteId: process.env.MATOMO_SITE_ID ? process.env.MATOMO_SITE_ID : null,
 }
 
 export default modules

@@ -10,7 +10,7 @@ withDefaults(defineProps<Props>(), {
   entities: () => [],
   type: false,
   entityName: false,
-  card: 'book'
+  card: 'book',
 })
 </script>
 

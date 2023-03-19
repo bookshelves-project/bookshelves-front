@@ -17,10 +17,10 @@ const attrs = useAttrs()
 const load = () => {
   source.value = props.src
   lozad(media.value, {
-    load (el: HTMLImageElement) {
+    load(el: HTMLImageElement) {
       el.src = el.dataset.src!
       el.onload = () => (display.value = true)
-    }
+    },
   }).observe()
 }
 
@@ -29,7 +29,7 @@ watch(
   () => {
     display.value = false
     load()
-  }
+  },
 )
 
 onMounted(() => {

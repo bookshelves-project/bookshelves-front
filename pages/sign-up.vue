@@ -2,7 +2,7 @@
 const title = 'Create your account'
 
 useMetadata({
-  title
+  title,
 })
 
 // @Component({

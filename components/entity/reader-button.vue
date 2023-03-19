@@ -13,13 +13,12 @@ const getOtherFormats = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     Object.entries(props.files).forEach(([key, value]) => {
       const file: DownloadFile = value
-      if (file && file?.format !== props.download?.format) {
+      if (file && file?.format !== props.download?.format)
         list.push(file)
-      }
     })
-    if (list.length > 0) {
+    if (list.length > 0)
       deployable.value = true
-    }
+
     formats.value = list
   }
 }

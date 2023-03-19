@@ -1,19 +1,18 @@
 export const useEntity = (
   originalEntity: EntityList,
   withType = false,
-  withName = false
+  withName = false,
 ) => {
   const { formatAuthors, instanceAuthor, instanceBook, instanceSerie } = useEntityMethods()
   const currentType = ref<EntityType>()
 
   const checkType = () => {
-    if (instanceBook(originalEntity)) {
+    if (instanceBook(originalEntity))
       currentType.value = 'book'
-    } else if (instanceSerie(originalEntity)) {
+    else if (instanceSerie(originalEntity))
       currentType.value = 'serie'
-    } else if (instanceAuthor(originalEntity)) {
+    else if (instanceAuthor(originalEntity))
       currentType.value = 'author'
-    }
   }
   checkType()
 
@@ -21,7 +20,8 @@ export const useEntity = (
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
       return entity.title
-    } else if (currentType.value === 'author') {
+    }
+    else if (currentType.value === 'author') {
       const entity = originalEntity as Author
       return entity.name
     }
@@ -33,17 +33,18 @@ export const useEntity = (
       return {
         name: originalEntity.media.name,
         url: originalEntity.media.url || '/images/no-cover.webp',
-        color: originalEntity.media.color
+        color: originalEntity.media.color,
+        available: originalEntity.media.available,
       }
     }
 
     return {
       name: '',
       url: '/images/no-cover.webp',
-      color: ''
+      color: '',
     }
   })
-  const route = computed(() => {
+  const route = computed((): TypedRoute => {
     let route = { name: 'index', params: {} }
 
     if (currentType.value === 'book') {
@@ -52,27 +53,30 @@ export const useEntity = (
         name: 'books-author-slug',
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug
-        }
+          slug: entity.meta.slug,
+        },
       }
-    } else if (currentType.value === 'serie') {
+    }
+    else if (currentType.value === 'serie') {
       const entity = originalEntity as Serie
       route = {
         name: 'series-author-slug',
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug
-        }
+          slug: entity.meta.slug,
+        },
       }
-    } else if (currentType.value === 'author') {
+    }
+    else if (currentType.value === 'author') {
       const entity = originalEntity as Author
       route = {
         name: 'authors-slug',
         params: {
-          slug: entity.meta.slug
-        }
+          slug: entity.meta.slug,
+        },
       }
-    } else {
+    }
+    else {
       const entity = originalEntity as Entity
       route = {
         name:
@@ -81,12 +85,12 @@ export const useEntity = (
             : `${entity.meta.entity}s-author-slug`,
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug
-        }
+          slug: entity.meta.slug,
+        },
       }
     }
 
-    return route
+    return route as TypedRoute
   })
 
   const language = computed(() => {
@@ -105,7 +109,7 @@ export const useEntity = (
       if (entity.serie && entity.volume) {
         return {
           title: `${entity.serie.title ?? entity.serie}`,
-          volume: `${entity.volume}`
+          volume: `${entity.volume}`,
         }
       }
     }
@@ -116,7 +120,8 @@ export const useEntity = (
     if (currentType.value === 'book' || currentType.value === 'serie') {
       const entity = originalEntity as Book | Serie
       authors = entity.authors
-    } else if (currentType.value !== 'author') {
+    }
+    else if (currentType.value !== 'author') {
       const entity = originalEntity as Entity
       authors = entity.authors
     }
@@ -129,13 +134,13 @@ export const useEntity = (
     if (currentType.value === 'serie') {
       const entity = originalEntity as Serie
       count = `${entity.count} books`
-    } else if (currentType.value === 'author') {
+    }
+    else if (currentType.value === 'author') {
       const entity = originalEntity as Author
       if (entity.count) {
         count = `${entity.count.books} books`
-        if (entity.count.series) {
+        if (entity.count.series)
           count += ` & ${entity.count.series} series`
-        }
       }
     }
 
@@ -160,6 +165,7 @@ export const useEntity = (
   })
 
   return {
+    entity: currentType.value,
     title: title.value!,
     media: media.value,
     route: route.value,
@@ -168,6 +174,6 @@ export const useEntity = (
     authors: authors.value,
     count: count.value,
     type: withType ? type.value : undefined,
-    entityName: withName ? entityName.value : undefined
-  }
+    entityName: withName ? entityName.value : undefined,
+  } as UseEntity
 }

@@ -36,7 +36,7 @@ const toggleSidebar = () => {
             </div>
             <app-link
               :to="{
-                name: 'index'
+                name: 'index',
               }"
               class="ml-2 hidden lg:flex shrink-0 rounded-md p-2 transition-colors duration-75 hover:bg-gray-100 dark:hover:bg-gray-700"
             >
@@ -60,9 +60,9 @@ const toggleSidebar = () => {
           </div>
           <div class="pr-4 flex items-center w-full lg:w-96">
             <search />
-            <div class="flex items-center">
+            <!-- <div class="flex items-center">
               <layout-account />
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ const toggleSidebar = () => {
 </template>
 
 <style lang="css" scoped>
-.app-link-active {
+.router-link-active {
   @apply border-primary-500 text-primary-500 dark:border-white dark:text-gray-100;
 }
 

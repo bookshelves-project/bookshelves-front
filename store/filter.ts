@@ -3,23 +3,23 @@ import { defineStore } from 'pinia'
 export const useFilterStore = defineStore('filter', {
   state: () => ({
     queries: {},
-    clear: false
+    clear: false,
   }),
   actions: {
     setQueries(payload: object) {
       this.$patch({
-        queries: payload
+        queries: payload,
       })
     },
     clearQueries() {
       this.$patch({
-        clear: true
+        clear: true,
       })
       setTimeout(() => {
         this.$patch({
-          clear: false
+          clear: false,
         })
       }, 300)
-    }
-  }
+    },
+  },
 })

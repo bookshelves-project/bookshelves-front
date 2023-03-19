@@ -2,7 +2,7 @@
 const route = useRoute()
 
 definePageMeta({
-  middleware (to) {
+  middleware(to) {
     if (to.params.author) {
       const app = useNuxtApp()
       const router = useRouter()
@@ -10,12 +10,12 @@ definePageMeta({
         app.$localePath({
           name: 'authors-slug',
           params: {
-            slug: to.params.author
-          }
-        })
+            slug: to.params.author,
+          },
+        }),
       )
     }
-  }
+  },
 })
 </script>
 

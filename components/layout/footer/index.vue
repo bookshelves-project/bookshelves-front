@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <footer class="footer" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">

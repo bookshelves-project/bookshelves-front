@@ -4,7 +4,6 @@ defineProps<{
 }>()
 
 const { getDynamicRoute } = useEntityMethods()
-
 </script>
 
 <template>
@@ -41,7 +40,7 @@ const { getDynamicRoute } = useEntityMethods()
       <div class="pt-6">
         <app-button
           v-if="$route.params.slug !== entity.meta.slug"
-          :color="`white`"
+          color="white"
           :to="getDynamicRoute(entity)"
         >
           Refer to {{ entity.meta.entity }}

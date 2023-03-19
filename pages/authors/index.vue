@@ -7,23 +7,23 @@ const sortOptions = [
   {
     label: 'By lastname (default)',
     query: { sort: 'lastname' },
-    value: 'lastname'
+    value: 'lastname',
   },
   {
     label: 'By firstname',
     query: { sort: 'firstname' },
-    value: 'firstname'
+    value: 'firstname',
   },
   {
     label: 'Newest created',
     query: { sort: '-created_at' },
-    value: '-created_at'
-  }
+    value: '-created_at',
+  },
 ]
 
 useMetadata({
   title,
-  description
+  description,
 })
 </script>
 

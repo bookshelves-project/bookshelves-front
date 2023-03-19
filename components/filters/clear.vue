@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
 import { useFilterStore } from '~~/store/filter'
 
 defineProps<{

@@ -1,22 +1,22 @@
 <script lang="ts" setup>
 const { request } = useHttp()
-const listRoute: ApiEndpoint = '/publishers/books'
+const listRoute: ApiTypedRouteList = '/publishers/{slug}/books'
 const route = useRoute()
 
 const [publisherRaw, entitiesRaw] = await Promise.all([
   request<Publisher>({
-    endpoint: '/publishers',
-    params: [
-      route.params.slug
-    ],
-    extractData: true
+    endpoint: '/publishers/{slug}',
+    params: {
+      slug: route.params.slug,
+    },
+    extractData: true,
   }),
   request<ApiResponse<Entity[]>>({
     endpoint: listRoute,
-    params: [
-      route.params.slug
-    ]
-  })
+    params: {
+      slug: route.params.slug,
+    },
+  }),
 ])
 
 const publisher = ref<Publisher>()
@@ -24,19 +24,18 @@ const meta = ref<ApiMeta>()
 const list = ref<Entity[]>()
 
 publisher.value = publisherRaw.body
-meta.value = entitiesRaw?.body.meta
-list.value = entitiesRaw?.body.data
+meta.value = entitiesRaw?.body?.meta
+list.value = entitiesRaw?.body?.data
 
 const paginate = (payload?: ApiResponse<Entity[]>) => {
   meta.value = payload?.meta
-  if (payload?.data) {
+  if (payload?.data)
     list.value = list.value?.concat(payload.data)
-  }
 }
 
 useMetadata({
   title: `Publisher ${publisher.value?.name}`,
-  description: `Books from ${publisher.value?.name}`
+  description: `Books from ${publisher.value?.name}`,
 })
 </script>
 

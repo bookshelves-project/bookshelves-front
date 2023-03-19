@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-import { useApplicationStore } from './store/application'
-
 const rc = useRuntimeConfig()
 const isDev = process.env.NODE_ENV === 'development'
 
-const { nuxtInit } = useApplicationStore()
-nuxtInit()
+// const { nuxtInit } = useApplicationStore()
+// nuxtInit()
 </script>
 
 <template>
@@ -16,7 +14,6 @@ nuxtInit()
     <NuxtLoadingIndicator :color="rc.public.primaryColor500" />
     <app-toasts />
     <app-helper v-if="isDev" />
-    <app-preview />
     <layout-navbar />
     <layout-sidebar />
     <div class="content-min-height pt-16">

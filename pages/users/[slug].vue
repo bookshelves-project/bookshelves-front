@@ -1,8 +1,10 @@
 <script setup lang="ts">
 const route = useRoute()
 const response = await useHttpFilter<User>({
-  endpoint: '/users',
-  params: [route.params.slug]
+  endpoint: '/users/{slug}',
+  params: {
+    slug: route.params.slug,
+  },
 })
 
 const title = ref<string>()
@@ -13,11 +15,11 @@ title.value = `Profile of ${user.value?.name}`
 
 const crumbs: string[] = [
   'Users',
-  `${user.value?.name}`
+  `${user.value?.name}`,
 ]
 
 useMetadata({
-  title: title.value
+  title: title.value,
 })
 </script>
 

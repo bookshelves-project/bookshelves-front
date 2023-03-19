@@ -2,7 +2,7 @@
 const title = 'Forgot your password?'
 
 useMetadata({
-  title
+  title,
 })
 
 // @Component({

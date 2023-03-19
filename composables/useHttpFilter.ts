@@ -12,7 +12,7 @@
  * `const response = await useHttpFilter<Book[]>('/books')`
  */
 export const useHttpFilter = async <T>(
-  request: RequestData | ApiEndpoint
+  request: RequestData | ApiTypedRouteList,
 ) => {
   const response = ref<ApiResponse<T>>()
   const route = useRoute()
@@ -21,9 +21,8 @@ export const useHttpFilter = async <T>(
   const executeRequest = async () => {
     const res = await http.request<ApiResponse<T>>(request)
 
-    if (res.success) {
+    if (res.success)
       response.value = res.body
-    }
   }
   await executeRequest()
 
@@ -31,7 +30,7 @@ export const useHttpFilter = async <T>(
     () => route.query,
     () => {
       executeRequest()
-    }
+    },
   )
 
   return response

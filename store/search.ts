@@ -14,43 +14,43 @@ export const useSearchStore = defineStore('search', {
     types: {
       authors: true,
       series: true,
-      books: true
-    } as Type
+      books: true,
+    } as Type,
   }),
   getters: {
-    searchOpened: state => state.opened
+    searchOpened: state => state.opened,
   },
   actions: {
     setTypes(payload: Type) {
       this.$patch({
-        types: payload
+        types: payload,
       })
     },
     setFirstSearch(payload: boolean) {
       this.$patch({
-        firstSearch: payload
+        firstSearch: payload,
       })
     },
     setLoading(payload: boolean) {
       this.$patch({
-        loading: payload
+        loading: payload,
       })
     },
     toggleDialog() {
       this.$patch({
-        opened: !this.opened
+        opened: !this.opened,
       })
     },
     openDialog() {
       this.$patch({
-        opened: true
+        opened: true,
       })
     },
     closeDialog() {
       this.$patch({
         opened: false,
-        firstSearch: false
+        firstSearch: false,
       })
-    }
-  }
+    },
+  },
 })

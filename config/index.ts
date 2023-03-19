@@ -1,19 +1,19 @@
 import app from './app'
 import build from './build'
-import meta from './meta'
+import head from './head'
 import modules from './modules'
 import {
+  runtimeConfigPrivate,
   runtimeConfigPublic,
-  runtimeConfigPrivate
 } from './runtime-config'
 
 const config = {
   app,
   build,
-  meta,
+  head,
   modules,
   runtimeConfigPublic,
-  runtimeConfigPrivate
+  runtimeConfigPrivate,
 }
 
 export default config

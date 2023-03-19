@@ -9,10 +9,14 @@ const store = useApplicationStore()
 
 if (!objectIsEmpty(store.homePage)) {
   homePage.value = store.homePage
-} else {
+}
+else {
   const response = await request<CmsHomePage>({
-    endpoint: '/cms/home-page',
-    extractData: true
+    endpoint: '/pages/{slug}',
+    params: {
+      slug: 'homepage-en',
+    },
+    extractData: true,
   })
   if (response.success) {
     store.setHomePage(response.body)
@@ -25,17 +29,17 @@ const selection: SelectedEntities = {
   endpoint: '/entities/selection',
   eyebrow: 'Want to read a good book?',
   title: 'Selection of books & series',
-  text: 'If you search a new book to read, check this selection of eBooks.'
+  text: 'If you search a new book to read, check this selection of eBooks.',
 }
 const latest: SelectedEntities = {
   key: 'latest',
   endpoint: '/entities/latest',
   eyebrow: 'Hyped by new books?',
   title: 'Latest books & series',
-  text: 'You check new books & series on? Here you have latest books!'
+  text: 'You check new books & series on? Here you have latest books!',
 }
 useMetadata({
-  title: 'APP_NAME, reading in complete tranquility'
+  title: 'APP_NAME, reading in complete tranquility',
 })
 </script>
 

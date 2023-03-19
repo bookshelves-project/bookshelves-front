@@ -11,29 +11,26 @@ const searchStore = useSearchStore()
 watch(
   () => query.value,
   (newVal) => {
-    if (newVal.length >= 3) {
+    if (newVal.length >= 3)
       fetchResults(newVal)
-    }
-  }
+  },
 )
 
 watch(
   () => searchStore.types,
   () => {
-    if (query.value.length >= 3) {
+    if (query.value.length >= 3)
       fetchResults(query.value)
-    }
   },
-  { deep: true }
+  { deep: true },
 )
 
 const fetchResults = async (input: string) => {
   searchStore.setLoading(true)
   const types = []
   for (const [key, value] of Object.entries(searchStore.types)) {
-    if (value) {
+    if (value)
       types.push(key)
-    }
   }
 
   try {
@@ -41,19 +38,20 @@ const fetchResults = async (input: string) => {
     results.value = {
       count: 0,
       query: query.value,
-      type: 'meilisearch'
+      type: 'meilisearch',
     }
     const response = await request<Search>({
       endpoint: '/search',
       query: {
         q: input,
-        types: types.join(',')
+        types: types.join(','),
       },
-      extractData: true
+      extractData: true,
     })
 
     results.value = response.body
-  } catch (error) {
+  }
+  catch (error) {
     console.error(error)
   }
   searchStore.setLoading(false)
