@@ -5,12 +5,16 @@ const props = defineProps<{
 
 interface Crumb {
   title: string
-  route?: TypedRoute
+  route?: {
+    name: string
+    params?: Keyable
+    query?: Keyable
+  }
 }
 
 const crumbs = ref<Crumb[]>([])
 
-const capitalizeEach = (string: string) => {
+function capitalizeEach(string: string) {
   const arr = string.split(' ')
 
   for (let i = 0; i < arr.length; i++)
@@ -19,7 +23,7 @@ const capitalizeEach = (string: string) => {
   return arr.join(' ')
 }
 
-const translateSlug = (slug: string): string => {
+function translateSlug(slug: string): string {
   const slugs: Keyable = {
     // 'retours d experience': "retours d'experience",
   }
@@ -52,6 +56,7 @@ const getCrumbsList = computed((): Crumb[] => {
 
       crumbsList.push({
         title: capitalizeEach(titleSplitted[0]),
+        // @ts-expect-error TODO: fix this
         route: match,
       })
     }
@@ -77,14 +82,14 @@ crumbs.value = getCrumbsList.value
     <ol role="list" class="flex flex-wrap items-center space-x-2">
       <li>
         <div>
-          <app-link :to="{ name: 'index' }">
+          <typed-link :to="{ name: 'index' }">
             <svg-icon
               name="home"
               class="h-5 w-5 shrink-0 text-gray-400 transition-colors duration-100 hover:text-gray-500"
               aria-hidden="true"
             />
             <span class="sr-only">Home</span>
-          </app-link>
+          </typed-link>
         </div>
       </li>
 
@@ -95,7 +100,7 @@ crumbs.value = getCrumbsList.value
             class="h-5 w-5 shrink-0 text-gray-300"
           />
           <component
-            :is="id >= crumbs.length - 1 ? 'span' : 'app-link'"
+            :is="id >= crumbs.length - 1 ? 'span' : 'typed-link'"
             :to="crumb.route"
             class="ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400"
             :class="

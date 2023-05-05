@@ -1,21 +1,20 @@
 <script setup lang="ts">
-import { useNavigationStore } from '~~/store/navigation'
+import { useNavigationStore } from '~~/stores/navigation'
 
 const { show } = useScroll()
 const navigation = useNavigationStore()
 
 const config = useRuntimeConfig()
-const toggleSidebar = () => {
+function toggleSidebar() {
   navigation.toggleSidebar()
 }
 </script>
 
 <template>
-  <div
-    class="navbar w-full z-20 relative"
-    :class="{ 'navbar--hidden': !show }"
-  >
-    <nav class="w-full border-b border-primary-300 border-opacity-25 bg-white shadow-sm dark:bg-gray-800">
+  <div class="navbar w-full z-20 relative" :class="{ 'navbar--hidden': !show }">
+    <nav
+      class="w-full border-b border-primary-300 border-opacity-25 bg-white shadow-sm dark:bg-gray-800"
+    >
       <div class="mx-auto max-w-7xl">
         <div class="relative flex h-16 items-center justify-between">
           <div class="h-full items-center px-2 flex lg:px-0">
@@ -25,7 +24,12 @@ const toggleSidebar = () => {
                 class="hover:bg-gray-700 transition-colors duration-100 p-1.5 rounded-md"
                 @click="toggleSidebar"
               >
-                <svg class="block h-6 w-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  class="block h-6 w-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     fill-rule="evenodd"
                     d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z"
@@ -34,17 +38,21 @@ const toggleSidebar = () => {
                 </svg>
               </button>
             </div>
-            <app-link
+            <typed-link
               :to="{
                 name: 'index',
               }"
               class="ml-2 hidden lg:flex shrink-0 rounded-md p-2 transition-colors duration-75 hover:bg-gray-100 dark:hover:bg-gray-700"
             >
-              <img class="m-auto block h-8 w-8" src="/icon.png" :alt="config.appName">
-            </app-link>
+              <img
+                class="m-auto block h-8 w-8"
+                src="/icon.png"
+                :alt="config.appName"
+              >
+            </typed-link>
             <div class="hidden h-full lg:ml-4 lg:block">
               <div class="flex h-full space-x-6">
-                <app-link
+                <typed-link
                   v-for="(link, id) in navigation.main"
                   :key="id"
                   :to="link.route"
@@ -54,7 +62,7 @@ const toggleSidebar = () => {
                   <span class="font-semibold">
                     {{ $t(`nav.${link.label}`) }}
                   </span>
-                </app-link>
+                </typed-link>
               </div>
             </div>
           </div>

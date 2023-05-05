@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Author } from '~/types/entity-author'
+
 interface Props {
   title?: string
   subtitle?: string
@@ -29,7 +31,7 @@ const {
   color = '#ffffff',
 } = defineProps<Props>()
 
-const getHostname = (url?: string) => {
+function getHostname(url?: string) {
   return url ? new URL(url).hostname : ''
 }
 </script>

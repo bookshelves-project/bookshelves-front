@@ -1,11 +1,14 @@
 <script lang="ts" setup>
+import type { Entity, Search } from '~/types/search'
+
 defineProps<{
   search?: Search
 }>()
 
 const selected = ref<Entity>()
 const selectedId = ref('')
-const selectResult = (item: Entity) => {
+
+function selectResult(item: Entity) {
   selected.value = item
   selectedId.value = `${item.meta.entity}-${item.meta.slug}`
 }

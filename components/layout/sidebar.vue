@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import { useNavigationStore } from '~~/store/navigation'
+import { useNavigationStore } from '~~/stores/navigation'
 
 const sidebar = ref(false)
 const layer = ref(false)
@@ -9,6 +9,23 @@ const target = ref(null)
 
 const config = useRuntimeConfig()
 const navigation = useNavigationStore()
+
+function openSidebar() {
+  layer.value = true
+  setTimeout(() => {
+    overlay.value = true
+    sidebar.value = true
+  }, 250)
+}
+function closeSidebar() {
+  overlay.value = false
+  sidebar.value = false
+  setTimeout(() => {
+    layer.value = false
+  }, 250)
+
+  navigation.closeSidebar()
+}
 
 watch(
   () => navigation.sidebar,
@@ -24,22 +41,6 @@ onClickOutside(target, () => {
   closeSidebar()
 })
 
-const openSidebar = () => {
-  layer.value = true
-  setTimeout(() => {
-    overlay.value = true
-    sidebar.value = true
-  }, 250)
-}
-const closeSidebar = () => {
-  overlay.value = false
-  sidebar.value = false
-  setTimeout(() => {
-    layer.value = false
-  }, 250)
-
-  navigation.closeSidebar()
-}
 // const logout = () => {
 // closeSidebar()
 // ctx.$auth.logout()
@@ -76,7 +77,7 @@ const closeSidebar = () => {
         </button>
       </div>
       <div class="flex flex-shrink-0 items-center px-4">
-        <app-link
+        <typed-link
           :to="{
             name: 'index',
           }"
@@ -93,12 +94,12 @@ const closeSidebar = () => {
               {{ config.public.appName }}
             </div>
           </span>
-        </app-link>
+        </typed-link>
       </div>
       <div class="mt-5 h-0 flex-1 overflow-y-auto">
         <nav class="px-2">
           <div class="space-y-1">
-            <app-link
+            <typed-link
               :to="{
                 name: 'index',
               }"
@@ -112,8 +113,8 @@ const closeSidebar = () => {
                 <!-- <svg-icon name="home" class="w-5 h-5" /> -->
                 <span>Home</span>
               </span>
-            </app-link>
-            <app-link
+            </typed-link>
+            <typed-link
               v-for="(link, id) in navigation.main"
               :key="id"
               :to="link.route"
@@ -123,7 +124,7 @@ const closeSidebar = () => {
                 class="w-full px-2 py-4 font-semibold"
                 @click="closeSidebar"
               >{{ $t(`nav.${link.label}`) }}</span>
-            </app-link>
+            </typed-link>
           </div>
           <div class="mt-8">
             <!-- <h3
@@ -138,7 +139,7 @@ const closeSidebar = () => {
               aria-labelledby="teams-headline"
             >
               <!-- <div v-if="$auth.$state.loggedIn" class="space-y-2">
-                <app-link
+                <typed-link
                   v-for="(link, id) in navigation.auth"
                   :key="id"
                   :to="link.route"
@@ -155,7 +156,7 @@ const closeSidebar = () => {
                     ></span>
                     <span>{{ link.label }}</span>
                   </span>
-                </app-link>
+                </typed-link>
                 <button
                   class="link group w-full px-3 py-4"
                   type="button"
@@ -170,7 +171,7 @@ const closeSidebar = () => {
                 </button>
               </div>
               <div v-else class="space-y-2">
-                <app-link
+                <typed-link
                   v-for="(link, id) in navigation.guest"
                   :key="id"
                   :to="link.route"
@@ -183,7 +184,7 @@ const closeSidebar = () => {
                   >
                     <span>{{ link.label }}</span>
                   </span>
-                </app-link>
+                </typed-link>
               </div> -->
             </div>
           </div>

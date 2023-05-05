@@ -1,13 +1,15 @@
-const runtimeConfigPrivate = {}
+const runtimeConfigPrivate = {
+  secretKey: process.env.SECRET_KEY ?? '',
+}
 const runtimeConfigPublic = {
-  siteUrl: process.env.BASE_URL || 'http://localhost:3000',
-  siteName: process.env.APP_NAME ?? 'Bookshelves',
-  siteDescription: process.env.META_DESCRIPTION
-  ?? 'For people with eReaders, download eBooks and reading in complete tranquility, your digital library that goes everywhere with you.',
-  language: 'en-US', // prefer more explicit language codes like `en-AU` over `en`
-  //
-  baseURL: process.env.BASE_URL ?? 'http://localhost:3000',
-  apiURL: process.env.API_URL ?? 'http://localhost:8000',
+  baseUrl: process.env.NUXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
+  apiUrl: process.env.NUXT_PUBLIC_API_URL ?? 'http://localhost:8000',
+
+  siteUrl: process.env.NUXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
+  siteName: 'Ewilan Rivière',
+  siteDescription: 'Welcome to my portfolio',
+  language: 'en', // prefer more explicit language codes like `en-AU` over `en`
+
   apiEndpoint: process.env.API_ENDPOINT ?? '/api',
   appName: process.env.APP_NAME ?? 'Bookshelves',
   metaTitle:

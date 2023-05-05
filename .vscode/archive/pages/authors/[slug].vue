@@ -1,0 +1,80 @@
+<script lang="ts" setup>
+const route = useRoute()
+const { request } = useHttp()
+
+const author = ref<Author>()
+const series = ref<ApiResponse<Entity[]>>()
+const books = ref<ApiResponse<Entity[]>>()
+
+const [authorRaw, booksRaw, seriesRaw] = await Promise.all([
+  request<Author>({
+    endpoint: '/authors/{slug}',
+    params: {
+      slug: route.params.slug,
+    },
+    extractData: true,
+  }),
+  request<ApiResponse<Entity[]>>({
+    endpoint: '/authors/{slug}/books',
+    params: {
+      slug: route.params.slug,
+    },
+  }),
+  request<ApiResponse<Entity[]>>({
+    endpoint: '/authors/{slug}/series',
+    params: {
+      slug: route.params.slug,
+    },
+  }),
+])
+
+author.value = authorRaw.body
+books.value = booksRaw.body
+series.value = seriesRaw.body
+
+const crumbs: string[] = [
+  'Authors',
+  `${author.value?.name}`,
+]
+
+useMetadata({
+  title: `${author.value?.firstname} ${author.value?.lastname} · Authors`,
+  description: author.value?.description,
+  image: author.value?.media_social,
+})
+</script>
+
+<template>
+  <main v-if="author" class="main-content">
+    <layout-header
+      :title="author.name"
+      :image="author.media?.url"
+      :subtitle="`${author.count?.books} books`"
+      :cta="author.link"
+      :text="author.description"
+      :entity="author"
+      :crumbs="crumbs"
+      favorite
+    >
+      <entity-download-button :download="author.download" :files="author.files" />
+    </layout-header>
+    <div>
+      <entity-block
+        :entities="series"
+        :count="author.count?.series"
+        name="Series"
+        endpoint="/authors/books"
+      />
+      <entity-block
+        :entities="books"
+        :count="author.count?.books"
+        name="Books"
+        endpoint="/authors/series"
+      />
+    </div>
+    <entity-review
+      :entity="author"
+      class="border-t border-gray-400 dark:border-gray-700 pt-6 mt-10"
+    />
+  </main>
+</template>

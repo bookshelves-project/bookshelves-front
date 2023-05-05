@@ -1,47 +1,56 @@
-// import svgLoader from 'vite-svg-loader'
-// import dynamicImport from 'vite-plugin-dynamic-import'
-// import Inspector from 'vite-plugin-vue-inspector'
-// import svgLibrary from './plugins/vite/svg-library'
-import config from './config'
+import { config, modules } from './config'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  app: config.app,
-  build: config.build,
-  components: {
-    global: true,
-    dirs: ['~/components'],
+  app: {
+    head: {
+      // link: head.link,
+      // meta: head.meta,
+      // script: head.script,
+    },
   },
-  css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
-  modules: [
-    '@nuxtjs/tailwindcss', // https://tailwindcss.nuxtjs.org/
-    '@pinia/nuxt', // https://pinia.vuejs.org/ssr/nuxt.html
-    '@vueuse/nuxt', // https://vueuse.org/guide/
-    'nuxt-typed-router', // https://github.com/victorgarciaesgi/nuxt-typed-router
-    // 'nuxt-icons' // https://github.com/gitFoxCode/nuxt-icons
-    'nuxt-svg-transformer', // https://github.com/kiwilan/nuxt-svg-transformer
-    // 'nuxt-seo-kit' // https://github.com/harlan-zw/nuxt-seo-kit
+
+  css: [
+    // '~/assets/css/tailwind.css',
+    // '~/assets/css/main.css',
   ],
-  tailwindcss: config.modules.tailwindcss,
-  vueuse: config.modules.vueuse,
-  nuxtTypedRouter: config.modules.nuxtTypedRouter,
-  // http://v3.nuxtjs.org/guide/features/runtime-config
+
+  extends: [
+    'nuxt-seo-kit', // https://github.com/harlan-zw/nuxt-seo-kit
+  ],
+  modules: [
+    '@nuxt/devtools', // https://devtools.nuxtjs.org
+    // '@nuxtjs/color-mode', // https://color-mode.nuxtjs.org/
+    '@nuxtjs/i18n', // https://i18n.nuxtjs.org
+    '@pinia/nuxt', // https://pinia.vuejs.org/ssr/nuxt.html
+    // '@vueuse/nuxt', // https://vueuse.org/guide/index.html#nuxt
+    'nuxt-svg-transformer', // https://github.com/kiwilan/nuxt-svg-transformer
+    'nuxt-typed-link', // https://github.com/kiwilan/nuxt-typed-link
+  ],
+
+  // colorMode: modules.colorMode,
+  i18n: {
+    ...modules.i18n,
+    // vueI18n: './i18n.config.ts',
+  },
+  svgTransformer: modules.svgTransformer,
+  typedLink: modules.typedLink,
+
   runtimeConfig: {
-    ...config.runtimeConfigPrivate,
-    public: config.runtimeConfigPublic,
+    ...config.private,
+    public: config.public,
   },
+
+  postcss: {
+    plugins: {
+      'postcss-import': {},
+      'tailwindcss/nesting': {},
+      'tailwindcss': {},
+      'autoprefixer': {},
+    },
+  },
+
   typescript: {
-    shim: false, // with Take Over Mode from https://github.com/johnsoncodehk/volar/discussions/471
-  },
-  // https://v3.nuxtjs.org/api/configuration/nuxt.config#vite
-  vite: {
-    plugins: [
-      // svgLoader() // https://github.com/jpkleemans/vite-svg-loader#readme
-      // Inspector({
-      //   appendTo: 'entry.mjs'
-      // }), // https://github.com/webfansplz/vite-plugin-vue-inspector
-      // dynamicImport(/* options */), // https://github.com/vite-plugin/vite-plugin-dynamic-import
-      // svgLibrary()
-    ],
+    shim: false,
   },
 })

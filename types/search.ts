@@ -1,9 +1,13 @@
-declare interface Relevant {
+export interface Entity {
+  [key: string]: any
+}
+
+export interface Relevant {
   relevant?: Entity[]
   other: Entity[]
 }
 
-declare interface Search {
+export interface Search {
   count?: number
   query?: string
   type?: 'collection' | 'meilisearch'

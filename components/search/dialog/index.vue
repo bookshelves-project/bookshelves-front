@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useSearchStore } from '~~/store/search'
+import type { Search } from '~/types/search'
+import { useSearchStore } from '~~/stores/search'
 
 const { request } = useHttp()
 
@@ -25,7 +26,7 @@ watch(
   { deep: true },
 )
 
-const fetchResults = async (input: string) => {
+async function fetchResults(input: string) {
   searchStore.setLoading(true)
   const types = []
   for (const [key, value] of Object.entries(searchStore.types)) {

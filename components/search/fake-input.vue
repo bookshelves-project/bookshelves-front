@@ -1,30 +1,30 @@
 <script lang="ts" setup>
-import { useSearchStore } from '~~/store/search'
+import { useSearchStore } from '~~/stores/search'
 
+const searchStore = useSearchStore()
 const metaKey = ref('Ctrl')
 const searchKey = ref('k')
 
-const isMacintosh = () => {
+function isMacintosh() {
   if (navigator.userAgent.includes('Mac'))
     metaKey.value = '&#8984;'
   else
     metaKey.value = 'Ctrl'
 }
-const shortcutOpen = (e: KeyboardEvent) => {
+function shortcutOpen(e: KeyboardEvent) {
   if (e.key === searchKey.value && (e.ctrlKey || e.metaKey)) {
     e.preventDefault() // present "Save Page" from getting triggered.
 
     searchStore.openDialog()
   }
 }
-const shortcutClose = (e: KeyboardEvent) => {
+function shortcutClose(e: KeyboardEvent) {
   if (e.key === 'Escape') {
     e.preventDefault() // present "Save Page" from getting triggered.
 
     searchStore.closeDialog()
   }
 }
-const searchStore = useSearchStore()
 
 onMounted(() => {
   window.addEventListener('keydown', shortcutOpen)

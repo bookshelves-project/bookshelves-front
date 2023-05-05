@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { useSearchStore } from '~~/store/search'
+import type { Entity } from '~/types/search'
+import { useSearchStore } from '~~/stores/search'
 
 defineProps<{
   selected?: Entity
 }>()
 
-const { formatAuthors } = useEntityMethods()
+const { formatAuthors, getDynamicRoute } = useEntityMethods()
 const searchStore = useSearchStore()
-const { getDynamicRoute } = useEntityMethods()
 </script>
 
 <template>

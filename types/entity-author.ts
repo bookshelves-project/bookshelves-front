@@ -1,29 +1,35 @@
-declare interface AuthorMeta {
-  entity: EntityType
-  slug: string
-  show?: string
-  books?: string
-  series?: string
-  reviews?: string
-}
+// declare interface AuthorMeta {
+//   entity: EntityType
+//   slug: string
+//   show?: string
+//   books?: string
+//   series?: string
+//   reviews?: string
+// }
 
-declare interface AuthorCount {
-  books?: number
-  series?: number
-}
+// declare interface AuthorCount {
+//   books?: number
+//   series?: number
+// }
 
-declare interface Author {
+export interface Author {
   name?: string
-  meta: AuthorMeta
+  // meta: AuthorMeta
+  meta: any
   lastname?: string
   firstname?: string
-  media?: Media
+  // media?: Media
+  media?: any
   media_social?: string
-  count?: AuthorCount
+  // count?: AuthorCount
+  count?: any
   description?: string
   link?: string
-  download?: DownloadFile
-  files?: DownloadList
+  // download?: DownloadFile
+  download?: any
+  // files?: DownloadList
+  files?: any
   is_favorite?: boolean
-  reviews?: Review[]
+  // reviews?: Review[]
+  reviews?: any[]
 }

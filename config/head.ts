@@ -1,82 +1,90 @@
-const link = [
+import type { Link, Meta, Script } from '@unhead/schema'
+
+const link: Link<any['link']>[] = [
   {
     rel: 'apple-touch-icon',
-    type: 'image/png',
+    sizes: '180x180',
     href: '/apple-touch-icon.png',
   },
-  { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-  { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '32x32',
+    href: '/favicon-32x32.png',
+  },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '16x16',
+    href: '/favicon-16x16.png',
+  },
   {
     rel: 'manifest',
-    crossorigin: 'use-credentials',
     href: '/site.webmanifest',
   },
 ]
-const meta = [
+const meta: Meta<any['link']>[] = [
   {
     hid: 'robots',
     name: 'robots',
-    content: process.env.META_ROBOT,
+    content: 'index,follow',
   },
-  { name: 'msapplication-TileColor', content: process.env.PRIMARY_COLOR_500 },
-  { name: 'theme-color', content: process.env.PRIMARY_COLOR_500 },
+  { name: 'msapplication-TileColor', content: '#9333EA' },
+  {
+    name: 'theme-color',
+    content: '#9333EA',
+  },
   { name: 'viewport', content: 'width=device-width, initial-scale=1' },
   {
     hid: 'author',
     name: 'author',
-    content: process.env.META_AUTHOR,
+    content: 'Ewilan Rivière',
   },
   {
     hid: 'language',
     name: 'language',
-    content: process.env.META_LANG,
+    content: 'en-US',
   },
   {
     hid: 'designer',
     name: 'designer',
-    content: process.env.META_AUTHOR,
+    content: 'Ewilan Rivière',
   },
   {
     hid: 'publisher',
     name: 'publisher',
-    content: process.env.APP_NAME,
+    content: 'Ewilan Rivière Portfolio',
   },
   {
     hid: 'copyright',
     name: 'copyright',
-    content: process.env.APP_NAME,
+    content: 'Ewilan Rivière Portfolio',
   },
   {
     hid: 'og:site_name',
     property: 'og:site_name',
-    content: process.env.APP_NAME,
+    content: 'Ewilan Rivière',
   },
   {
     hid: 'og:locale',
     property: 'og:locale',
-    content: process.env.META_LANG,
+    content: 'en-US',
   },
-  process.env.META_TWITTER_SITE
-    ? {
-        hid: 'twitter:url',
-        name: 'twitter:url',
-        content: process.env.META_TWITTER_SITE,
-      }
-    : {},
-  process.env.META_TWITTER_CREATOR
-    ? {
-        hid: 'twitter:creator',
-        name: 'twitter:creator',
-        content: process.env.META_TWITTER_CREATOR,
-      }
-    : {},
-  process.env.GOOGLE_SITE_VERIFICATION_TOKEN
-    ? {
-        hid: 'google-site-verification',
-        name: 'google-site-verification',
-        content: process.env.GOOGLE_SITE_VERIFICATION_TOKEN,
-      }
-    : {},
+  {
+    hid: 'twitter:site',
+    name: 'twitter:site',
+    content: '@ewilanriviere',
+  },
+  {
+    hid: 'twitter:creator',
+    name: 'twitter:creator',
+    content: '@ewilanriviere',
+  },
+  {
+    hid: 'google-site-verification',
+    name: 'google-site-verification',
+    content: 'HlYyBKngNkGks_Ys_Yebcn0UcKoCz1o-XMxuCzgMmuk',
+  },
   {
     hid: 'og:type',
     property: 'og:type',
@@ -85,12 +93,12 @@ const meta = [
   {
     hid: 'og:url',
     property: 'og:url',
-    content: process.env.BASE_URL,
+    content: process.env.NUXT_PUBLIC_SITE_URL,
   },
   {
     hid: 'og:image:alt',
     property: 'og:image:alt',
-    content: process.env.APP_NAME,
+    content: 'Ewilan Rivière',
   },
   {
     hid: 'twitter:card',
@@ -98,10 +106,10 @@ const meta = [
     content: 'summary_large_image',
   },
 ]
-const script = [
-  {
-    src: '/color-mode.js',
-  },
+const script: Script<any['script']>[] = [
+  // {
+  //   src: '/color-scheme.js',
+  // },
 ]
 
 export default { link, meta, script }

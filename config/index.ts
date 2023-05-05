@@ -1,5 +1,3 @@
-import app from './app'
-import build from './build'
 import head from './head'
 import modules from './modules'
 import {
@@ -8,12 +6,12 @@ import {
 } from './runtime-config'
 
 const config = {
-  app,
-  build,
-  head,
-  modules,
-  runtimeConfigPublic,
-  runtimeConfigPrivate,
+  private: runtimeConfigPrivate,
+  public: runtimeConfigPublic,
 }
 
-export default config
+export {
+  head,
+  modules,
+  config,
+}
