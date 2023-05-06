@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const scrollToTop = () => {
+function scrollToTop() {
   return window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 </script>

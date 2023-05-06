@@ -17,11 +17,11 @@ const isDev = process.env.NODE_ENV === 'development'
     <NuxtLoadingIndicator :color="config.public.primaryColor500" />
     <!-- <app-toasts /> -->
     <!-- <app-helper v-if="isDev" /> -->
-    <!-- <layout-navbar /> -->
-    <!-- <layout-sidebar /> -->
+    <layout-navbar />
+    <layout-sidebar />
     <div class="content-min-height pt-16">
       <NuxtPage />
     </div>
-    <!-- <layout-footer /> -->
+    <layout-footer />
   </div>
 </template>

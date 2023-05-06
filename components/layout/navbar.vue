@@ -5,6 +5,7 @@ const { show } = useScroll()
 const navigation = useNavigationStore()
 
 const config = useRuntimeConfig()
+const appName = config.public.appName
 function toggleSidebar() {
   navigation.toggleSidebar()
 }
@@ -46,8 +47,8 @@ function toggleSidebar() {
             >
               <img
                 class="m-auto block h-8 w-8"
-                src="/icon.png"
-                :alt="config.appName"
+                src="/icon.svg"
+                :alt="appName"
               >
             </typed-link>
             <div class="hidden h-full lg:ml-4 lg:block">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Author } from '~/types/entity-author'
+import type { Author } from '~/types'
 
 interface Props {
   title?: string
@@ -111,7 +111,7 @@ function getHostname(url?: string) {
               class="text-sm flex items-center mx-auto lg:mx-0 w-max lg:w-full"
             >
               <span v-if="type" class="mr-1 font-semibold">{{ type }}</span>
-              <entity-authors-links
+              <book-link-authors
                 :authors="authors"
                 class="text-left"
                 :lowercase="type !== null"

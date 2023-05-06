@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useFilterStore } from '~~/store/filter'
+import { useFilterStore } from '~~/stores/filter'
 
 defineProps<{
   paginate?: boolean

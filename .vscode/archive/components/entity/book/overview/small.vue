@@ -6,7 +6,7 @@ const props = defineProps<{
 const { request } = useHttp()
 const bookNext = ref<Book>()
 
-const getNext = async () => {
+async function getNext() {
   if (!props.book.serie)
     return false
   const reponse = await request<Book>({

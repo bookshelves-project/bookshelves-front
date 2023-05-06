@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Entity, Search } from '~/types/search'
+import type { Entity, Search } from '~/types'
 
 defineProps<{
   search?: Search

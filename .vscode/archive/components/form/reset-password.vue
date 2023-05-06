@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import { useContext } from '@nuxtjs/composition-api'
 // import useAuth from '~/composables/useAuth'
-// import { useFormStore } from '~/store/form'
+// import { useFormStore } from '~/stores/form'
 
 // const { query } = useRoute()
 // const { passwordReset } = useAuth()

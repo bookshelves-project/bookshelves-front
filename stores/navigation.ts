@@ -135,7 +135,8 @@ export const useNavigationStore = defineStore('navigation', {
   getters: {
     getFooterProject: state => state.footerProject,
     getFooterSupport(state) {
-      const { moduleContact } = useRuntimeConfig()
+      const config = useRuntimeConfig()
+      const moduleContact = config.public.moduleContact
       const support = state.footerSupport
       if (!moduleContact) {
         const links = state.footerSupport.links.filter(

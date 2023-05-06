@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useNavigationStore } from '~~/store/navigation'
+import { useNavigationStore } from '~~/stores/navigation'
 
 const { show } = useScroll()
 const navigation = useNavigationStore()

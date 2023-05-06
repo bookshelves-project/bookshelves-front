@@ -1,0 +1,203 @@
+.dark {
+  & .nuxt-content {
+    @apply text-white;
+
+    & a {
+      @apply text-gray-100;
+    }
+
+    & h1,
+    & h2,
+    & h3 {
+      @apply text-white;
+    }
+
+    & code,
+    & pre,
+    & strong {
+      @apply text-white;
+    }
+
+    & a {
+      @apply transition-colors duration-100 text-gray-100 hover:text-gray-400;
+    }
+
+    & code {
+      @apply bg-gray-800;
+    }
+
+    & pre {
+      @apply bg-gray-800;
+    }
+
+    & blockquote {
+      @apply text-gray-400;
+    }
+  }
+}
+
+/* .alert-warning {
+  @apply bg-yellow-100 dark:bg-yellow-700 border-yellow-300 dark:border-yellow-900 rounded-r-md;
+} */
+
+.nuxt-content img {
+  margin: auto;
+}
+
+.nuxt-content {
+  & a {
+    text-decoration: none !important;
+  }
+
+  /* common text  */
+  @apply font-sans text-gray-700;
+
+  & p {
+    @apply my-5 text-justify !important;
+    -webkit-hyphens: auto !important;
+    -moz-hyphens: auto !important;
+    -ms-hyphens: auto !important;
+    hyphens: auto !important;
+  }
+
+  /* links  */
+  & a {
+    @apply text-black transition-colors duration-100 border-b-2 border-primary-500;
+    --border-opacity: 0.25;
+  }
+
+  & a:hover {
+    @apply bg-primary-500 border-primary-500 bg-opacity-20;
+  }
+
+  /* filename and copy  */
+  & .nuxt-content-highlight {
+    @apply relative;
+
+    & pre {
+      @apply scrollbar-thin;
+    }
+
+    /* Style filename span added by @nuxt/content */
+    & > .filename {
+      @apply absolute top-0 right-0 z-10 mt-3 mr-4 text-sm leading-none tracking-tight text-gray-100 bg-gray-800 bg-opacity-50;
+    }
+
+    /* Add top padding to code block with filename */
+    & > .filename + pre[class*='language-'] {
+      @apply pt-8;
+    }
+
+    /* Style copy button added in `pages/_.vue` */
+    & > .copy {
+      @apply absolute top-0 right-0 px-2 py-2 mt-3 mr-3 text-sm font-semibold leading-none text-white uppercase transition-opacity duration-300 bg-gray-800 bg-opacity-75 border border-white rounded-md shadow-lg opacity-0;
+
+      &:hover {
+        @apply bg-gray-700;
+      }
+
+      &:focus {
+        @apply bg-gray-600 outline-none;
+      }
+    }
+
+    &:hover {
+      & > .copy {
+        @apply opacity-100;
+      }
+    }
+  }
+
+  & kbd {
+    @apply px-2 py-1 mx-1 bg-gray-100 shadow-md;
+  }
+
+  /* code  */
+  & code {
+    @apply p-1 bg-gray-200 dark:bg-gray-800;
+  }
+
+  & code::before {
+    content: '' !important;
+  }
+
+  & code::after {
+    @apply hidden !important;
+    content: '' !important;
+  }
+
+  & pre {
+    /* word-break:break-all !important; */
+    /* white-space:break-spaces !important; */
+  }
+
+  /* container  */
+  & .remark-container {
+    @apply bg-opacity-75 px-5 pt-1 pb-5 border-l-4 my-10 !important;
+    @apply bg-gray-100;
+  }
+
+  & .remark-container-title {
+    @apply my-2 text-xl font-bold text-black;
+  }
+
+  & .tip {
+    @apply bg-green-100 border-green-300;
+  }
+
+  /* & .warning {
+    @apply bg-yellow-100 dark:bg-yellow-700 border-yellow-300 dark:border-yellow-900 !important;
+  } */
+  & .danger {
+    @apply bg-red-100 border-red-300;
+  }
+
+  & .info {
+    @apply bg-blue-100 border-blue-300;
+  }
+
+  /* titles  */
+  & h2 {
+    @apply relative table mt-16 mb-8 text-2xl font-handlee w-max;
+  }
+
+  & h2::after {
+    @apply w-4/5 block mt-2 mb-1 rounded border-2 border-primary-600 dark:border-primary-500;
+    content: ' ';
+  }
+
+  & h3 {
+    @apply font-handlee w-max;
+    position: relative;
+    display: table;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    @apply text-xl font-bold;
+  }
+
+  & h3::after {
+    @apply w-4/5 block mt-2 mb-1 rounded border border-primary-600 dark:border-primary-500;
+    content: ' ';
+  }
+
+  /* list  */
+  & li {
+    @apply my-1;
+  }
+}
+
+.title::after {
+  content: ' ';
+  width: 80%;
+  display: block;
+  --border-opacity: 1;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.25rem;
+  border: 2px solid #108775;
+  border-top-color: rgb(16, 135, 117);
+  border-right-color: rgb(16, 135, 117);
+  border-bottom-color: rgb(16, 135, 117);
+  border-left-color: rgb(16, 135, 117);
+  border-color: rgba(16, 135, 117, var(--border-opacity));
+}

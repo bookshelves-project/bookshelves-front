@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useFormStore } from '~/store/form'
+import { useFormStore } from '~/stores/form'
 
 defineProps<{
   title?: string

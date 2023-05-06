@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useToastStore } from '~/store/toast'
+import { useToastStore } from '~/stores/toast'
 
 // from: https://blog.aspiresys.pl/technology/toast-toasts-in-vue/
 const toastStore = useToastStore()

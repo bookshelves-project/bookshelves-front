@@ -2,10 +2,12 @@
 import type { IconType } from '~~/.nuxt/svg-transformer'
 
 const config = useRuntimeConfig()
+const appName = config.public.appName
+const metaDescription = config.public.metaDescription
 
 function url(endpoint: string) {
-  const config = useRuntimeConfig()
-  return `${config.apiURL}${endpoint}`
+  const apiURL = config.public.apiURL
+  return `${apiURL}${endpoint}`
 }
 
 interface Feature {
@@ -44,7 +46,7 @@ const features: Feature[] = [
 
 <template>
   <div class="space-y-8 xl:col-span-1">
-    <div v-if="config.appName" class="items-center space-x-6 flex">
+    <div v-if="appName" class="items-center space-x-6 flex">
       <typed-link
         :to="{
           name: 'index',
@@ -58,13 +60,13 @@ const features: Feature[] = [
         <div
           class="dm:text-xl mt-2 ml-3 font-handlee text-lg text-gray-400 transition-colors duration-100 group-hover:text-gray dark:group-hover:text-gray-300 md:text-2xl"
         >
-          {{ config.appName }}
+          {{ appName }}
         </div>
       </typed-link>
       <layout-option-color-mode />
     </div>
     <div class="text-base text-gray-500">
-      {{ config.metaDescription }}
+      {{ metaDescription }}
     </div>
     <div class="sm:flex sm:items-center">
       <div class="flex space-y-0">

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-// import { useApplicationStore } from '~~/store/application'
+// import { useApplicationStore } from '~~/stores/application'
 
 // const { request } = useHttp()
 // const { objectIsEmpty } = useTools()

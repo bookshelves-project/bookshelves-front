@@ -14,9 +14,9 @@
 
 <https://jsonpath.com>
 
-📀 [**bookshelves-project**](https://github.com/bookshelves-project) : Bookshelves repository  
-💻 [**bookshelves.ink**](https://bookshelves.ink): demo  
-📚 [**documentation.bookshelves.ink**](https://bookshelves-documentation.netlify.app): documentation, if this link not work, you can check doc on [this repository](https://github.com/bookshelves-project/bookshelves-doc)  
+📀 [**bookshelves-project**](https://github.com/bookshelves-project) : Bookshelves repository
+💻 [**bookshelves.ink**](https://bookshelves.ink): demo
+📚 [**documentation.bookshelves.ink**](https://bookshelves-documentation.netlify.app): documentation, if this link not work, you can check doc on [this repository](https://github.com/bookshelves-project/bookshelves-doc)
 
 Works with [documentation](https://nuxtjs.org).
 
@@ -32,7 +32,7 @@ npx nuxi-edge@latest upgrade --force // Automated
 
 Manual: Bump `nuxt` dependency to `3.0.0-rc.13` and then use `npx nuxi-edge@latest cleanup` to cleanup any local caches
 
-*OR*
+_OR_
 
 Bump `nuxt` dependency to `npm:nuxt3@latest` and then use `npx nuxi-edge@latest cleanup` to cleanup any local caches
 
@@ -58,7 +58,7 @@ Local serve
 pnpm dev
 ```
 
-### *Update API*
+### _Update API_
 
 Update `.env` on `API_URL` to use local API
 

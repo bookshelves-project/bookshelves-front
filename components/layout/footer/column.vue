@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { FooterColumn } from '~/types/navigation'
+
 defineProps<{
   column: FooterColumn
 }>()

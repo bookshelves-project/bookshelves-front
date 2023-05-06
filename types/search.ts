@@ -1,6 +1,4 @@
-export interface Entity {
-  [key: string]: any
-}
+import type { Entity } from './entity'
 
 export interface Relevant {
   relevant?: Entity[]

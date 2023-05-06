@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import LayoutFooterColumn from '@/components/layout/footer/column.vue'
-import { useNavigationStore } from '~~/store/navigation'
+import { useNavigationStore } from '~~/stores/navigation'
 
 const {
   getFooterAdvanced,

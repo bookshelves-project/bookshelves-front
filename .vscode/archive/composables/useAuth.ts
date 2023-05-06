@@ -1,5 +1,5 @@
 import type { CookieOptions } from '#app'
-import { useUserStore } from '~~/store/user'
+import { useUserStore } from '~~/stores/user'
 
 /**
  * To manage authentication with API.

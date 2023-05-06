@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useFormStore } from '~~/store/form'
-import { useApplicationStore } from '~~/store/application'
+import { useFormStore } from '~~/stores/form'
+import { useApplicationStore } from '~~/stores/application'
 
 const { enums } = useApplicationStore()
 

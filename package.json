@@ -1,5 +1,5 @@
 {
-  "name": "bookshelves-front",
+  "name": "bookshelves",
   "version": "1.0.0",
   "private": true,
   "author": "Bookshelves Team",
@@ -20,7 +20,7 @@
     "url": "https://github.com/bookshelves-project/bookshelves-front"
   },
   "engines": {
-    "pnpm": ">=7.0.0",
+    "pnpm": ">=8.0.0",
     "node": ">=16.0.0"
   },
   "scripts": {
@@ -28,45 +28,30 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "start": "node .output/server/index.mjs",
     "postinstall": "nuxt prepare",
-    "clean": "nuxi clean",
-    "story:dev": "histoire dev",
-    "story:build": "histoire build",
-    "story:preview": "histoire preview",
     "lint": "eslint .",
     "lint:fix": "eslint --ext .ts,.js,.vue --ignore-path .gitignore . --fix"
-  },
-  "dependencies": {
-    "lozad": "^1.16.0",
-    "pinia": "^2.0.35",
-    "swiper": "^9.2.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.5",
     "@nuxt/devtools": "^0.4.5",
-    "@nuxtjs/color-mode": "^3.2.0",
     "@nuxtjs/i18n": "8.0.0-beta.8",
-    "@nuxtjs/tailwindcss": "^6.6.7",
     "@pinia/nuxt": "^0.4.9",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
-    "@types/lozad": "^1.16.1",
-    "@unhead/vue": "^1.1.26",
-    "@vueuse/head": "^1.1.26",
+    "@types/node": "^18",
+    "@vueuse/core": "^10.1.2",
     "@vueuse/nuxt": "^10.1.2",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.39.0",
-    "nuxt": "3.4.3",
+    "nuxt": "^3.4.3",
     "nuxt-seo-kit": "^1.3.8",
     "nuxt-svg-transformer": "^0.2.5",
     "nuxt-typed-link": "^0.1.10",
-    "ohmyfetch": "^0.4.21",
     "postcss": "^8.4.23",
+    "swiper": "^9.2.4",
     "tailwindcss": "^3.3.2",
-    "typescript": "^5.0.4",
-    "vite": "^4.3.5",
-    "vue": "^3.2.47"
+    "typescript": "^5.0.4"
   }
 }

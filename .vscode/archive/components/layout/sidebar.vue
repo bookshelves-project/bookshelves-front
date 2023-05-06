@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import { useNavigationStore } from '~~/store/navigation'
+import { useNavigationStore } from '~~/stores/navigation'
 
 const sidebar = ref(false)
 const layer = ref(false)

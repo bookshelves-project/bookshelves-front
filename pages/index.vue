@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-// import { useApplicationStore } from '~~/store/application'
+// import { useApplicationStore } from '~~/stores/application'
 
 // const { request } = useHttp()
 // const { objectIsEmpty } = useTools()
@@ -44,17 +44,7 @@
 </script>
 
 <template>
-  <div>
-    <pre>/</pre>
-    <!-- <TypedLink
-      :to="{
-        name: 'index',
-      }"
-    >
-      Link
-    </TypedLink> -->
-  </div>
-  <!-- <home-hero :hero="homePage.hero" class="pt-5" /> -->
+  <home-hero class="pt-5" />
   <!-- <home-statistics :statistics="homePage.statistics" /> -->
   <!-- <home-cloud-logos :logos="homePage.logos" /> -->
   <!-- <entity-group-slider

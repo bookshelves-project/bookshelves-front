@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import { useCounter } from '~/store/counter'
+// import { useCounter } from '~/stores/counter'
 // import { useI18n } from 'vue-i18n'
 
 // const { t, locale, availableLocales } = useI18n()

@@ -1,5 +1,50 @@
+<script lang="ts" setup>
+import type { Book } from '~/types'
+
+const route = useRoute()
+
+const book = await useHttpQuery<Book>({
+  name: '/books/{author}/{slug}',
+  params: {
+    author: route.params.author,
+    slug: route.params.slug,
+  },
+}).then(response => response.value?.data)
+
+const crumbs: string[] = [
+  'Books',
+  `${book?.authors[0].name}`,
+  `${book?.title}`,
+]
+</script>
+
 <template>
-  <div>
-    <pre>/books/[author]/[book]</pre>
-  </div>
+  <main v-if="book" class="main-content">
+    <layout-header
+      :title="book.title"
+      :image="book.media?.url"
+      :color="book.media?.color"
+      :authors="book.authors"
+      :crumbs="crumbs"
+      favorite
+    >
+      <div class="mx-auto grid w-max space-y-3">
+        <book-cta-download :download="book.download" :files="book.files" />
+        <book-cta-reader :download="book.download" :files="book.files" />
+      </div>
+      <template #extra>
+        <div class="text-sm flex items-center">
+          <div class="mx-auto lg:mx-0 flex items-center">
+            in
+            <book-link-serie
+              :serie="book.serie"
+              :volume="book.volume"
+              class="ml-1"
+            />
+          </div>
+        </div>
+      </template>
+    </layout-header>
+    <book-overview :book="book" class="mb-6" />
+  </main>
 </template>

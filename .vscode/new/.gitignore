@@ -1,0 +1,10 @@
+node_modules
+*.log
+.nuxt
+nuxt.d.ts
+.output
+.env
+.DS_Store
+assets/icons/cache
+
+assets/svg-transformer-list.ts

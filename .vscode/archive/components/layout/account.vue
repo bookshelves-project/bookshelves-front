@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import useAuth from '~/composables/useAuth'
-import { useNavigationStore } from '~~/store/navigation'
+import { useNavigationStore } from '~~/stores/navigation'
 
 // const ctx = useNuxtApp().nuxt2Context
 // const $auth = ctx.$auth

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSearchStore } from '~~/store/search'
+import { useSearchStore } from '~~/stores/search'
 
 const { request } = useHttp()
 

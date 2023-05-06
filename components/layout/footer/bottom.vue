@@ -4,7 +4,11 @@ import LayoutFooterBackToTop from '@/components/layout/footer/back-to-top.vue'
 import LayoutFooterCreativeCommons from '@/components/layout/footer/creative-commons.vue'
 
 const config = useRuntimeConfig()
-const date = (begin: number) => {
+const metaAuthor = config.public.metaAuthor
+const linkLicense = config.public.linkLicense
+const linkChangelog = config.public.linkChangelog
+
+function date(begin: number) {
   const current = new Date().getFullYear()
   const year = `${begin} - ${current}`
   if (begin === current)
@@ -48,16 +52,16 @@ const date = (begin: number) => {
             class="transition-colors duration-100"
             >{{ team }}</typed-link
           > -->
-          <span class="mx-auto">{{ config.metaAuthor }}</span>
+          <span class="mx-auto">{{ metaAuthor }}</span>
           <span class="mx-1 hidden md:block text-center">·</span><a
-            v-if="config.linkLicense"
-            :href="config.linkLicense"
+            v-if="linkLicense"
+            :href="linkLicense"
             target="_blank"
             rel="noopener noreferrer"
             class="block md:flex"
           >{{ packageJson.license }} license</a><span class="hidden md:block">,</span><a
-            v-if="config.linkChangelog"
-            :href="config.linkChangelog"
+            v-if="linkChangelog"
+            :href="linkChangelog"
             target="_blank"
             rel="noopener noreferrer"
             class="block italic md:ml-1 md:flex text-center"

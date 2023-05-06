@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useToastStore } from '~/store/toast'
+import { useToastStore } from '~/stores/toast'
 
 const props = defineProps<{
   toast?: Toast

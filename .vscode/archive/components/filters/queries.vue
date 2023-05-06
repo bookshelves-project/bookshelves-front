@@ -19,7 +19,7 @@
 <script>
 import { mapState } from 'pinia'
 import { isEmpty } from 'lodash'
-import { useFilterStore } from '~/store/filter'
+import { useFilterStore } from '~/stores/filter'
 export default {
   name: 'FiltesQueries',
   props: {

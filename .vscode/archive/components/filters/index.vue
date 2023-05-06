@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useApplicationStore } from '~~/store/application'
-import { useFilterStore } from '~~/store/filter'
+import { useApplicationStore } from '~~/stores/application'
+import { useFilterStore } from '~~/stores/filter'
 
 defineProps<{
   sort?: FilterOption[]
