@@ -15,9 +15,7 @@ const emit = defineEmits<{
   (e: 'success', payload: boolean): void
 }>()
 
-const { getData, isAvailable, isLoading, slides } = useEntityGroup(
-  props.selection,
-)
+const { getData, isAvailable, isLoading, slides } = useEntityGroup(props.selection)
 
 watch(
   () => isLoading.value,

@@ -17,13 +17,20 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div v-if="entities && entities.length">
-    <transition-group name="list" tag="section" class="display-grid">
+    <!-- <transition-group name="list" tag="section" class="display-grid">
       <listing-card
         v-for="entity in entities"
         :key="entity.meta.slug"
         :entity="entity"
       />
-    </transition-group>
+    </transition-group> -->
+    <div class="display-grid">
+      <listing-card
+        v-for="entity in entities"
+        :key="entity.meta.slug"
+        :entity="entity"
+      />
+    </div>
   </div>
   <div v-else class="text-center italic min-h-[10vh]">
     <div>There is no entries here!</div>

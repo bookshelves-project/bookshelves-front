@@ -7,19 +7,24 @@ import type { ApiBaseRoute, UseHttpRequest } from '~/types'
  *
  * Docs: https://github.com/unjs/ofetch
  */
-export async function useHttp<T = any>(request: UseHttpRequest | string): Promise<Ref<FetchResponse<T> | undefined>> {
+export async function useHttp<T = any>(request: UseHttpRequest | string): Promise<T | undefined> {
+  const success = ref(false)
   const response = ref<FetchResponse<T>>()
+
   if (!isUseHttpRequest(request)) {
     request = {
       name: request as ApiBaseRoute,
     }
   }
 
+  if (request.watch === undefined)
+    request.watch = true
+
   if (request.auto === undefined)
     request.auto = true
 
   let endpoint: string = request.name ?? '' as string
-  if (request.auto)
+  if (request.watch)
     endpoint = handleRoute(request)
   else
     endpoint = handleEndpoint(request)
@@ -27,13 +32,27 @@ export async function useHttp<T = any>(request: UseHttpRequest | string): Promis
   response.value = await ofetch.raw(endpoint, {
     method: 'GET',
   })
+    .then((response) => {
+      success.value = true
+
+      return response
+    })
     .catch((error) => {
       console.error(error)
+      success.value = false
 
       return error
     })
 
-  return response
+  if (!success.value)
+    return undefined
+
+  const body = response.value?._data as any
+
+  if (request.auto && Object.hasOwn(body, 'data'))
+    return body.data as T
+
+  return body as T
 }
 
 function handleEndpoint(request: UseHttpRequest): string {

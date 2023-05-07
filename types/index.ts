@@ -2,6 +2,7 @@ export * from './api'
 export * from './application'
 export * from './entity'
 export * from './navigation'
+export * from './query'
 export * from './search'
 export * from './toast'
 export * from './utils'
@@ -14,4 +15,5 @@ declare global {
   interface Keyable {
     [key: string]: any
   }
+
 }

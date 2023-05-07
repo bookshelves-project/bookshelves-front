@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { EntityList, UseEntity } from '~/types'
 
 const props = defineProps<{
@@ -9,80 +9,43 @@ const entity: UseEntity = useEntity(props.entity)
 </script>
 
 <template>
-  <div
-    :class="{ 'hover:bg-gray-100 dark:hover:bg-gray-800': entity.route }"
-    class="entity-card focus relative flex h-56 items-center space-x-3 rounded-md transition-colors duration-75 m-1"
-    :title="entity.title"
-  >
-    <div class="h-full shrink-0 relative">
-      <div class="h-full w-36 relative">
-        <app-img
-          class="h-full w-36 object-cover rounded-md"
-          :src="entity.media?.url"
-          :color="entity.media?.color"
-          :alt="entity.media?.name"
-        />
-        <div v-if="!entity.media?.available && entity.entity !== 'author'" class="absolute top-4 text-black right-3 text-right">
-          <div class="text-xs uppercase font-semibold line-clamp-1">
-            {{ entity.authors }}
-          </div>
-          <div class="text-sm font-bold mt-6">
-            {{ entity.title }}
-          </div>
-          <div class="mt-2 text-xs font-semibold line-clamp-1">
-            {{ entity.serie?.title ?? 'Serie' }}
+  <article class="flex gap-4 flex-row group relative m-2 h-56">
+    <app-img
+      class="aspect-[4/5] w-32 flex-none rounded-md object-cover group-hover:shadow transition-all transform group-hover:scale-[1.02] duration-200"
+      :src="entity.media?.url"
+      :color="entity.media?.color"
+      :alt="entity.media?.name"
+    />
+    <div class="flex-auto relative">
+      <p class="mt-1 text-sm text-gray-600">
+        {{ entity.authors }}
+      </p>
+      <h3
+        class="text-lg mt-1 font-semibold text-gray-900 line-clamp-2 hyphens-auto h-14 my-auto"
+        lang="en"
+      >
+        {{ entity.title }}
+      </h3>
+      <div class="mt-1 text-sm sm:mt-3 italic text-gray-600">
+        <div v-if="entity.entityName" class="capitalize">
+          {{ entity.entityName }}
+        </div>
+        <div v-if="entity.serie">
+          <div>{{ entity.serie?.title }}</div>
+          <div class="text-xs mt-2">
+            Vol. {{ entity.serie?.volume }}
           </div>
         </div>
+        {{ entity.count }}
       </div>
-      <div
-        v-if="entity.type"
-        class="absolute top-0 inset-x-0 h-full py-2 px-3 flex items-end justify-start overflow-hidden rounded-md"
-      >
-        <div
-          aria-hidden="true"
-          class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"
-        />
-        <p class="relative text-lg font-semibold text-white font-handlee">
-          {{ entity.type }}
-        </p>
+      <div class="absolute left-0 bottom-2 text-sm italic text-gray-600">
+        {{ entity.language }}
       </div>
     </div>
-    <div class="mt-2 h-full min-w-0 flex-1">
-      <typed-link
-        :to="entity.route ? entity.route : { name: 'index' }"
-        class="text-black focus:outline-none dark:text-gray-100"
-      >
-        <span class="absolute inset-0" aria-hidden="true" />
-        <h2 class="font-semibold text-lg">
-          {{ entity.title }}
-        </h2>
-        <h3 class="italic mt-2 line-clamp-2">
-          {{ entity.authors }}
-        </h3>
-        <div class="mt-1 text-sm sm:mt-3">
-          <div class="italic">
-            <div v-if="entity.entityName" class="capitalize">
-              {{ entity.entityName }}
-            </div>
-            <div v-if="entity.serie">
-              {{ entity.serie?.title }}, vol. {{ entity.serie?.volume }}
-            </div>
-            {{ entity.count }}
-          </div>
-          <div class="mt-1">
-            {{ entity.language }}
-          </div>
-        </div>
-      </typed-link>
-    </div>
-  </div>
+    <typed-link
+      :to="entity.route ? entity.route : { name: 'index' }"
+      :title="entity.title"
+      class="absolute inset-0 z-10"
+    />
+  </article>
 </template>
-
-<style lang="css" scoped>
-.focus {
-  @apply focus-within:ring-2 focus-within:ring-primary-500 focus-within:ring-offset-2 dark:ring-offset-gray-700;
-}
-.dark :deep(.focus) {
-  @apply focus-within:ring-primary-800 focus-within:ring-offset-gray-900;
-}
-</style>

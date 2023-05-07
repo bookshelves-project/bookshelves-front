@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Api, Book } from '~/types'
+import type { Book } from '~/types'
 
 const props = defineProps<{
   book: Book
@@ -11,7 +11,7 @@ async function nextSerieVolume() {
   if (!props.book.serie)
     return false
 
-  const reponse = await useHttp<Api<Book>>({
+  bookNext.value = await useHttp<Book>({
     name: '/series/{author}/{serie}/{volume}/next',
     params: {
       author: props.book.meta.author,
@@ -19,9 +19,6 @@ async function nextSerieVolume() {
       volume: props.book.volume,
     },
   })
-
-  if (reponse.value?.ok)
-    bookNext.value = reponse.value?._data?.data
 }
 await nextSerieVolume()
 </script>

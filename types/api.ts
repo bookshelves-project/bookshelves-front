@@ -1,47 +1,47 @@
 export type UrlParam = string | number | string[] | undefined
 export type ApiBaseRoute =
   | '/authors'
-  | '/authors/{slug}'
-  | '/authors/{slug}/books'
-  | '/authors/{slug}/series'
+  | '/authors/{author}'
+  | '/authors/{author}/books'
+  | '/authors/{author}/series'
   | '/series'
-  | '/series/{author}/{slug}'
-  | '/series/{author}/{slug}/books'
+  | '/series/{author}/{serie}'
+  | '/series/{author}/{serie}/books'
   | '/books'
-  | '/books/{author}/{slug}'
-  | '/entities/related/{author}/{slug}'
+  | '/books/{author}/{book}'
+  | '/entities/related/{author}/{book}'
   | '/series/{author}/{serie}/{volume}/next'
   | '/application'
   | '/search'
 
 export interface ApiBaseRouteParams {
   '/authors': never
-  '/authors/{slug}': {
-    slug: UrlParam
+  '/authors/{author}': {
+    author: UrlParam
   }
-  '/authors/{slug}/books': {
-    slug: UrlParam
+  '/authors/{author}/books': {
+    author: UrlParam
   }
-  '/authors/{slug}/series': {
-    slug: UrlParam
+  '/authors/{author}/series': {
+    author: UrlParam
   }
   '/series': never
-  '/series/{author}/{slug}': {
+  '/series/{author}/{serie}': {
     author: UrlParam
-    slug: UrlParam
+    serie: UrlParam
   }
-  '/series/{author}/{slug}/books': {
+  '/series/{author}/{serie}/books': {
     author: UrlParam
-    slug: UrlParam
+    serie: UrlParam
   }
   '/books': never
-  '/books/{author}/{slug}': {
+  '/books/{author}/{book}': {
     author: UrlParam
-    slug: UrlParam
+    book: UrlParam
   }
-  '/entities/related/{author}/{slug}': {
+  '/entities/related/{author}/{book}': {
     author: UrlParam
-    slug: UrlParam
+    book: UrlParam
   }
   '/series/{author}/{serie}/{volume}/next': {
     author: UrlParam

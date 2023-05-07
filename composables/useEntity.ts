@@ -52,43 +52,59 @@ export function useEntity(
     if (currentType.value === 'book') {
       const entity = current as Book
       route = {
-        name: 'books-author-slug',
+        name: 'books-author-book',
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug,
+          book: entity.meta.slug,
         },
       }
     }
     else if (currentType.value === 'serie') {
       const entity = current as Serie
       route = {
-        name: 'series-author-slug',
+        name: 'series-author-serie',
         params: {
           author: entity.meta.author,
-          slug: entity.meta.slug,
+          serie: entity.meta.slug,
         },
       }
     }
     else if (currentType.value === 'author') {
       const entity = current as Author
       route = {
-        name: 'authors-slug',
+        name: 'authors-author',
         params: {
-          slug: entity.meta.slug,
+          author: entity.meta.slug,
         },
       }
     }
     else {
       const entity = current as Entity
-      route = {
-        name:
-          entity.meta.entity === 'author'
-            ? 'authors-slug'
-            : `${entity.meta.entity}s-author-slug`,
-        params: {
-          author: entity.meta.author,
-          slug: entity.meta.slug,
-        },
+      if (entity.meta.entity === 'author') {
+        route = {
+          name: 'authors-author',
+          params: {
+            author: entity.meta.slug,
+          },
+        }
+      }
+      else if (entity.meta.entity === 'book') {
+        route = {
+          name: 'books-author-book',
+          params: {
+            author: entity.meta.author,
+            book: entity.meta.slug,
+          },
+        }
+      }
+      else if (entity.meta.entity === 'serie') {
+        route = {
+          name: 'series-author-serie',
+          params: {
+            author: entity.meta.author,
+            serie: entity.meta.slug,
+          },
+        }
       }
     }
 

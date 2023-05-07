@@ -18,10 +18,8 @@ export async function useHttpQuery<T>(request: UseHttpRequest): Promise<Ref<ApiD
   const route = useRoute()
 
   const execute = async () => {
-    const res = await useHttp<ApiData<T>>(request)
-
-    if (res.value?.ok)
-      response.value = res.value._data
+    request.auto = false
+    response.value = await useHttp<ApiData<T>>(request)
   }
   await execute()
 
@@ -29,8 +27,9 @@ export async function useHttpQuery<T>(request: UseHttpRequest): Promise<Ref<ApiD
     () => route.query,
     () => {
       execute()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     },
   )
 
-  return response
+  return response as Ref<ApiData<T>>
 }

@@ -107,9 +107,9 @@ const meta: Meta<any['link']>[] = [
   },
 ]
 const script: Script<any['script']>[] = [
-  // {
-  //   src: '/color-scheme.js',
-  // },
+  {
+    src: '/color-mode.js',
+  },
 ]
 
 export default { link, meta, script }

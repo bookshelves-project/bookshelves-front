@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { Api, Application, ApplicationEnums, Language } from '~/types'
+import type { Application, ApplicationEnums, Language } from '~/types'
 
 export const useApplicationStore = defineStore('application', {
   state: () => ({
@@ -41,18 +41,17 @@ export const useApplicationStore = defineStore('application', {
         await this.fetchApplication()
     },
     async fetchApplication() {
-      const response = await useHttp<Api<Application>>({
+      const response = await useHttp<Application>({
         name: '/application',
-        auto: false,
+        watch: false,
         // extractData: true,
       })
       // cookie.value = JSON.stringify(response.body)
-      const body = response.value?._data?.data
 
       this.$patch({
         // headConfig: response?.body?.headConfig,
-        enums: body?.enums,
-        languages: body?.languages,
+        enums: response?.enums,
+        languages: response?.languages,
         available: true,
       })
     },

@@ -3,19 +3,25 @@ import type { Book } from '~/types'
 
 const route = useRoute()
 
-const book = await useHttpQuery<Book>({
-  name: '/books/{author}/{slug}',
+const book = await useHttp<Book>({
+  name: '/books/{author}/{book}',
   params: {
     author: route.params.author,
-    slug: route.params.slug,
+    book: route.params.book,
   },
-}).then(response => response.value?.data)
+})
 
 const crumbs: string[] = [
   'Books',
   `${book?.authors[0].name}`,
   `${book?.title}`,
 ]
+
+useMetadata({
+  title: book?.title,
+  description: book?.description,
+  image: book?.media?.url,
+})
 </script>
 
 <template>

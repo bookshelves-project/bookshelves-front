@@ -14,10 +14,10 @@ const isAvailable = ref(true)
 
 const related: SelectedEntities = {
   key: 'selection',
-  name: '/entities/related/{author}/{slug}',
+  name: '/entities/related/{author}/{book}',
   params: {
     author: props.book.meta.author,
-    slug: props.book.meta.slug,
+    book: props.book.meta.slug,
   },
   eyebrow: 'Do you want more?',
   right: false,
@@ -40,10 +40,10 @@ function success(payload: boolean) {
       <div class="mt-6 flex">
         <app-button
           :to="{
-            name: 'related-author-slug',
+            name: 'related-author-entity',
             params: {
               author: book.meta.author,
-              slug: book.meta.slug,
+              entity: book.meta.slug,
             },
           }"
           color="white"

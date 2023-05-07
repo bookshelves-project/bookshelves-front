@@ -32,7 +32,7 @@ useMetadata({
 
 <template>
   <div class="main-content">
-    <!-- <layout-header :title="title" :subtitle="description">
+    <layout-header :title="title" :subtitle="description">
       <template #filters>
         <filters
           serie
@@ -44,7 +44,7 @@ useMetadata({
           :total="response?.meta?.total"
         />
       </template>
-    </layout-header> -->
+    </layout-header>
     <entity-list :entities="response?.data" type />
     <pagination
       v-if="response?.meta"

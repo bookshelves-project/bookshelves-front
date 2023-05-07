@@ -12,15 +12,15 @@ export function useEntityGroup(selection: SelectedEntities) {
     const response = await useHttp<ApiData<Entity[]>>({
       name: selection.name,
       params: selection.params ? selection.params : <any>[],
-      // extractData: true,
+      auto: false,
     })
 
-    if (response?.value?.ok) {
+    if (response) {
       isLoading.value = false
-      if (response.value._data?.data.length === 0)
+      if (response.data.length === 0)
         isAvailable.value = false
 
-      slides.value = response.value._data?.data
+      slides.value = response.data
     }
     else {
       isAvailable.value = false
