@@ -9,6 +9,8 @@ export type ApiBaseRoute =
   | '/series/{author}/{serie}/books'
   | '/books'
   | '/books/{author}/{book}'
+  | '/tags'
+  | '/tags/{tag}'
   | '/entities/related/{author}/{book}'
   | '/series/{author}/{serie}/{volume}/next'
   | '/application'
@@ -38,6 +40,10 @@ export interface ApiBaseRouteParams {
   '/books/{author}/{book}': {
     author: UrlParam
     book: UrlParam
+  }
+  '/tags': never
+  '/tags/{tag}': {
+    tag: UrlParam
   }
   '/entities/related/{author}/{book}': {
     author: UrlParam

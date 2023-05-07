@@ -91,14 +91,25 @@ export function useEntityMethods() {
 
     const meta = entity.meta
 
-    if (meta.entity === 'book')
+    if (meta.entity === 'book') {
       route.name = 'books-author-book'
-    if (meta.entity === 'serie')
+      route.params = {
+        author: meta.author,
+        book: meta.slug,
+      }
+    }
+    else if (meta.entity === 'serie') {
       route.name = 'series-author-serie'
-
-    route.params = {
-      author: meta.author,
-      slug: meta.slug,
+      route.params = {
+        author: meta.author,
+        serie: meta.slug,
+      }
+    }
+    else if (meta.entity === 'author') {
+      route.name = 'authors-author'
+      route.params = {
+        author: meta.slug,
+      }
     }
 
     return route

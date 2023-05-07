@@ -10,12 +10,15 @@ const entity: UseEntity = useEntity(props.entity)
 
 <template>
   <article class="flex gap-4 flex-row group relative m-2 h-56">
-    <app-img
-      class="aspect-[4/5] w-32 flex-none rounded-md object-cover group-hover:shadow transition-all transform group-hover:scale-[1.02] duration-200"
-      :src="entity.media?.url"
-      :color="entity.media?.color"
-      :alt="entity.media?.name"
-    />
+    <div class="group-hover:shadow transition-all transform group-hover:scale-[1.02] duration-200 h-full relative">
+      <app-img
+        class="aspect-[4/5] w-32 flex-none rounded-md object-cover h-full"
+        :src="entity.media?.url"
+        :color="entity.media?.color"
+        :alt="entity.media?.name"
+      />
+      <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+    </div>
     <div class="flex-auto relative">
       <p class="mt-1 text-sm text-gray-600">
         {{ entity.authors }}

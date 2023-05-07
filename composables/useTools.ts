@@ -51,9 +51,13 @@ export function useTools() {
     return false
   }
 
-  const objectGetValue = (obj: Keyable, path: string): any => {
+  const objectGetValue = (obj: Keyable, path: string | number): any => {
     if (!path)
       return obj
+
+    if (typeof path === 'number')
+      path = path.toString()
+
     const properties = path.split('.')
     const key = properties.shift() as string
     return objectGetValue(obj[key], properties.join('.')) ?? path

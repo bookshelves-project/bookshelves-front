@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Api } from '~/types'
 import type { Search } from '~/types/search'
 import { useSearchStore } from '~~/stores/search'
 
@@ -45,16 +44,17 @@ async function fetchResults(input: string) {
       query: query.value,
       type: 'meilisearch',
     }
-    const response = await useHttp<Api<Search>>({
+    const response = await useHttp<Search>({
       name: '/search',
       query: {
         q: input,
         types: types.join(','),
       },
+      auto: true,
     })
 
-    if (response.value?.ok)
-      results.value = response.value?._data?.data
+    if (response)
+      results.value = response
   }
   catch (error) {
     console.error(error)
