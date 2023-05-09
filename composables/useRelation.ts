@@ -47,8 +47,8 @@ export function useRelation(route?: AppRoute) {
         params[key] = objectGetValue(item, value)
     }
     if (route?.query) {
-      for (const [key, value] of Object.entries(route?.params))
-        query[key] = objectGetValue(item, value)
+      for (const [key, value] of Object.entries(route?.query))
+        query[key] = objectGetValue(item, (value as string | number))
     }
 
     return {

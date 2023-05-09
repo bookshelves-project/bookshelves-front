@@ -7,6 +7,8 @@
 //   reviews?: string
 // }
 
+import type { Author } from './author'
+
 // declare interface Serie {
 //   title?: string
 //   type?: string
@@ -33,7 +35,8 @@ export interface Serie {
   media?: any
   media_social?: string
   language: any
-  authors: any[]
+  author: Author
+  authors: Author[]
   count?: number
   description?: string
   link: string

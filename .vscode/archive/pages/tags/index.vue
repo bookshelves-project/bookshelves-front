@@ -10,7 +10,7 @@ const response = await useHttpFilter<Tag[]>({
 const tags = ref<Tag[]>()
 const genres = ref<Tag[]>()
 
-const setTags = () => {
+function setTags() {
   genres.value = response.value?.data.filter(tag => tag.type === 'genre')
   tags.value = response.value?.data.filter(tag => tag.type === 'tag')
 }

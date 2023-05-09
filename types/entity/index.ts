@@ -66,7 +66,25 @@ export interface UseEntity {
   entityName?: string
 }
 
-export type EntityList = Book | Serie | Author | Entity
+export interface EntityCard {
+  entity?: EntityType
+  route?: AppRoute
+
+  title?: string
+  subtitle?: string
+  text?: string
+  details?: string
+  media?: Media
+  // authors?: string
+  // serie?: UseEntitySerie
+  // language?: string
+  // media?: Media
+  // count?: string
+  // type?: string
+  // entityName?: string
+}
+
+export type EntityInstance = Book | Serie | Author | Entity
 
 export type EntityType = 'book' | 'serie' | 'author'
 

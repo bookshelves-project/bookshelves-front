@@ -71,15 +71,15 @@ export function useEntityMethods() {
     return type
   }
 
-  const instanceBook = (entity: EntityList): entity is Book => {
+  const instanceBook = (entity: EntityInstance): entity is Book => {
     return entity.meta.entity === 'book'
   }
 
-  const instanceSerie = (entity: EntityList): entity is Serie => {
+  const instanceSerie = (entity: EntityInstance): entity is Serie => {
     return entity.meta.entity === 'serie'
   }
 
-  const instanceAuthor = (entity: EntityList): entity is Author => {
+  const instanceAuthor = (entity: EntityInstance): entity is Author => {
     return entity.meta.entity === 'author'
   }
 

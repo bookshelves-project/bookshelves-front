@@ -50,4 +50,4 @@ declare interface UseEntity {
   entityName?: string
 }
 
-declare type EntityList = Book | Serie | Author | Entity
+declare type EntityInstance = Book | Serie | Author | Entity

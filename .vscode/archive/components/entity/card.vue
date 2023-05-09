@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  entity?: EntityList
+  entity?: EntityInstance
   type?: boolean
   entityName?: boolean
   card?: 'book' | 'square' | 'full'

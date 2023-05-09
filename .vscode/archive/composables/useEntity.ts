@@ -1,4 +1,4 @@
-export function useEntity(originalEntity: EntityList,
+export function useEntity(originalEntity: EntityInstance,
   withType = false,
   withName = false) {
   const { formatAuthors, instanceAuthor, instanceBook, instanceSerie } = useEntityMethods()
