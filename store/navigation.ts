@@ -94,13 +94,13 @@ export const useNavigationStore = defineStore('navigation', {
     footerLegal: {
       title: 'legal',
       links: [
-        {
-          label: 'legality',
-          route: {
-            name: 'slug',
-            params: { slug: 'legal' }
-          }
-        },
+        // {
+        //   label: 'legality',
+        //   route: {
+        //     name: 'slug',
+        //     params: { slug: 'legal' }
+        //   }
+        // },
         {
           label: 'privacy',
           route: {
