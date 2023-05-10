@@ -8,8 +8,8 @@ stages:
   - deploy
 
 variables:
-  NODE_VERSION: '16.15.0'
-  PM2: 'bookshelves'
+  NODE_VERSION: "16.15.0"
+  PM2: "bookshelves"
 
 build-job:
   stage: test
@@ -28,7 +28,7 @@ deploy-job:
   stage: deploy
   image: alpine:latest
   before_script:
-    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )'
+    - "command -v ssh-agent >/dev/null || ( apk add --update openssh )"
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
@@ -37,11 +37,12 @@ deploy-job:
     - chmod 644 ~/.ssh/known_hosts
   script:
     - ssh $SSH_USER@$SSH_IP "
-      cd /home/ewilan/www/$CI_PROJECT_NAME &&
+      . ~/.zshrc &&
+      cd /home/ewilan/www/bookshelves-front &&
       git pull &&
       /home/ewilan/.nvm/versions/node/v$NODE_VERSION/bin/pnpm i &&
       /home/ewilan/.nvm/versions/node/v$NODE_VERSION/bin/pnpm build &&
-      /home/ewilan/.nvm/versions/node/v$NODE_VERSION/bin/pm2 restart $PM2 &&
-      discord-queerotronic.sh '$CI_PROJECT_TITLE'"
+      pm2 restart $PM2 &&
+      notify main 'Bookshelves front deployed'"
   only:
     - main
