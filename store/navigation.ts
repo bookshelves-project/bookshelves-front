@@ -71,12 +71,12 @@ export const useNavigationStore = defineStore('navigation', {
     footerAdvanced: {
       title: 'more',
       links: [
-        {
-          label: 'guides',
-          route: {
-            name: 'guides'
-          }
-        },
+        // {
+        //   label: 'guides',
+        //   route: {
+        //     name: 'guides'
+        //   }
+        // },
         {
           label: 'languages',
           route: {
