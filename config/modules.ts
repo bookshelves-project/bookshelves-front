@@ -1,5 +1,4 @@
 import type { NuxtConfig } from '@nuxt/schema'
-import { en, fr } from './locales'
 
 const i18n: NuxtConfig['i18n'] = {
   baseUrl: process.env.NUXT_PUBLIC_SITE_URL,
@@ -16,16 +15,6 @@ const i18n: NuxtConfig['i18n'] = {
     },
   ],
   defaultLocale: 'en',
-  // old configuration
-  vueI18n: {
-    legacy: false,
-    locale: 'en',
-    fallbackLocale: 'en',
-    messages: {
-      en,
-      fr,
-    },
-  },
 }
 
 // https://github.com/kiwilan/nuxt-svg-transformer

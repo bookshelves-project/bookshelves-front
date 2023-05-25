@@ -38,9 +38,9 @@
 //   title: 'Latest books & series',
 //   text: 'You check new books & series on? Here you have latest books!',
 // }
-// useMetadata({
-//   title: 'APP_NAME, reading in complete tranquility',
-// })
+useMetadata({
+  title: 'APP_NAME, reading in complete tranquility',
+})
 </script>
 
 <template>

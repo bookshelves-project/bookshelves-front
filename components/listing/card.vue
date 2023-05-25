@@ -9,7 +9,7 @@ const entity = useEntityCard(props.entity)
 </script>
 
 <template>
-  <article class="flex gap-4 flex-row group relative m-2 h-56">
+  <article class="flex gap-4 flex-row group relative m-2 h-56 group">
     <div class="group-hover:shadow transition-all transform group-hover:scale-[1.02] duration-200 h-full relative">
       <app-img
         class="aspect-[4/5] w-36 flex-none rounded-md object-cover h-full"
@@ -24,7 +24,7 @@ const entity = useEntityCard(props.entity)
         {{ entity.subtitle }}
       </p>
       <h3
-        class="text-base mt-1 font-semibold text-gray-900 line-clamp-3 hyphens-auto dark:text-gray-100"
+        class="text-base mt-1 font-semibold text-gray-900 line-clamp-3 hyphens-auto dark:text-gray-100 group-hover:underline"
         lang="en"
       >
         {{ entity.title }}
