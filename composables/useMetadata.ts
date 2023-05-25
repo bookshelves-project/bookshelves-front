@@ -11,10 +11,10 @@ interface HeadMeta {
 }
 
 export function useMetadata(meta?: HeadMeta) {
-  const config = useRuntimeConfig()
+  const appConfig = useAppConfig()
 
-  const appName = config.public.appName
-  const appDescription = config.public.metaDescription
+  const appName = appConfig.appName
+  const appDescription = appConfig.metaDescription
 
   let metaTitle = appName
   if (meta?.title) {

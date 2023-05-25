@@ -33,11 +33,17 @@ getOtherFormats()
       :action="download.reader"
       :deployable="deployable"
       external
+      outlined
+      title="Read"
     >
-      <svg-icon name="eye" class="w-6 h-6 mr-1" />
-      <span class="hidden md:block mr-1">Read</span>
-      {{ download.count ? download.count : '' }}
-      {{ download?.format.toUpperCase() }}
+      <div class="flex justify-center items-center w-full">
+        <svg-icon name="eye" class="w-5 h-5 mr-1" />
+        <span class="hidden md:block mr-1">Read</span>
+        <div>
+          {{ download.count ? download.count : '' }}
+          {{ download?.format.toUpperCase() }}
+        </div>
+      </div>
       <template #content>
         <div class="py-1" role="none">
           <span v-for="file in formats" :key="file?.format">

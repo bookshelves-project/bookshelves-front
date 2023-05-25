@@ -7,15 +7,15 @@ const [serie, books] = await Promise.all([
   useHttp<Serie>({
     name: '/series/{author}/{serie}',
     params: {
-      author: params.author,
-      serie: params.serie,
+      author: params.author_slug,
+      serie: params.serie_slug,
     },
   }),
   useHttp<ApiData<Entity[]>>({
     name: '/series/{author}/{serie}/books',
     params: {
-      author: params.author,
-      serie: params.serie,
+      author: params.author_slug,
+      serie: params.serie_slug,
     },
     auto: false,
   }),

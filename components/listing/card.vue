@@ -12,11 +12,23 @@ const entity = useEntityCard(props.entity)
   <article class="flex gap-4 flex-row group relative m-2 h-56 group">
     <div class="group-hover:shadow transition-all transform group-hover:scale-[1.02] duration-200 h-full relative">
       <app-img
+        v-if="entity.media?.available"
         class="aspect-[4/5] w-36 flex-none rounded-md object-cover h-full"
         :src="entity.media?.url"
         :color="entity.media?.color"
         :alt="entity.media?.name"
       />
+      <div v-else class="aspect-[4/5] w-36 flex-none rounded-md object-cover h-full bg-yellow-100 text-black text-right">
+        <div class="p-4 text-sm">
+          <div class="text-xs">
+            {{ entity.subtitle }}
+          </div>
+          <div class="mt-6 font-semibold">
+            {{ entity.title }}
+          </div>
+          <hr class="border-black mt-3">
+        </div>
+      </div>
       <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
     </div>
     <div class="flex-auto relative">

@@ -6,6 +6,8 @@ const props = defineProps<{
   deployable?: boolean
   external?: boolean
   download?: boolean
+  outlined?: boolean
+  title?: string
 }>()
 
 const link = ref<HTMLAnchorElement>()
@@ -24,8 +26,12 @@ onMounted(() => {
       :target="external ? '_blank' : '_self'"
       :download="download"
       type="button"
-      :class="deployable ? 'rounded-l-md' : 'rounded-md'"
+      :class="[
+        deployable ? 'rounded-l-md' : 'rounded-md',
+        { 'button-group-outlined': outlined },
+      ]"
       class="button-group !px-5 w-full"
+      :title="title"
     >
       <slot />
     </a>
@@ -62,5 +68,8 @@ onMounted(() => {
 <style lang="css" scoped>
 .button-group {
   @apply relative inline-flex items-center px-2 py-2 border border-primary-700 bg-primary-600 text-sm font-medium text-white hover:bg-primary-500 focus:z-10 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 h-full;
+}
+.button-group-outlined {
+  @apply bg-transparent;
 }
 </style>

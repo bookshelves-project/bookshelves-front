@@ -11,10 +11,10 @@ defineProps<{
   <div v-if="serie && serie.meta" class="dark:text-white lg:mt-0">
     <typed-link
       :to="{
-        name: 'series-author-slug',
+        name: 'series-author_slug-serie_slug',
         params: {
-          author: serie.meta.author,
-          slug: serie.meta.slug,
+          author_slug: serie.meta.author,
+          serie_slug: serie.meta.slug,
         },
       }"
       class="internal-link"

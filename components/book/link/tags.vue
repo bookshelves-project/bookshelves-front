@@ -25,8 +25,8 @@ withDefaults(defineProps<Props>(), {
       >
         <typed-link
           :to="{
-            name: 'tags-slug',
-            params: { slug: tag.meta.slug },
+            name: 'tags-tag_slug',
+            params: { tag_slug: tag.meta.slug },
           }"
           class="internal-link"
         >

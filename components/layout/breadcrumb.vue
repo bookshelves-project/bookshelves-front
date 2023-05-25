@@ -99,20 +99,24 @@ crumbs.value = getCrumbsList.value
             name="chevron-right"
             class="h-5 w-5 shrink-0 text-gray-300"
           />
-          <component
-            :is="id >= crumbs.length - 1 ? 'span' : 'typed-link'"
+          <nuxt-link
             :to="crumb.route"
-            class="ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400"
-            :class="
-              id >= crumbs.length - 1
-                ? ''
-                : 'hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-100'
-            "
+            class="breadcrumb-link"
+            :class="id >= crumbs.length - 1 ? '' : 'breadcrumb-link-active'"
           >
             {{ crumb.title }}
-          </component>
+          </nuxt-link>
         </div>
       </li>
     </ol>
   </nav>
 </template>
+
+<style lang="css" scoped>
+.breadcrumb-link {
+  @apply ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400;
+}
+.breadcrumb-link-active {
+  @apply hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-100;
+}
+</style>

@@ -1,0 +1,52 @@
+# A pipeline is composed of independent jobs that run scripts, grouped into stages.
+# Stages run in sequential order, but jobs within stages run in parallel.
+#
+# For more information, see: https://docs.gitlab.com/ee/ci/
+
+stages:
+  - deploy
+
+variables:
+  NODE_VERSION: "18.12.1"
+  PM2_NAME: "portfolio"
+
+deploy-job:
+  stage: deploy
+  image: node:18.12.1
+  before_script:
+    - echo "Installing dependencies..."
+    - apt-get update -qq && apt-get install -y -qq sshpass
+    - apt-get install -y -qq rsync
+    - echo "Setup..."
+    - git clone https://gitlab.com/ewilan-riviere/portfolio.git
+    - cd portfolio
+    - touch .env
+    - echo "NUXT_PUBLIC_SITE_URL=$NUXT_PUBLIC_SITE_URL" >> .env
+    - echo "NUXT_PUBLIC_API_URL=$NUXT_PUBLIC_API_URL" >> .env
+    - echo "NUXT_PUBLIC_MAIL_TO_ADDRESS=$NUXT_PUBLIC_MAIL_TO_ADDRESS" >> .env
+    - npm install -g pnpm
+    - pnpm i
+    - echo "Building..."
+    - pnpm build
+    - echo "Deploying..."
+    - "command -v ssh-agent >/dev/null || ( apk add --update openssh )"
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan $SSH_IP >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - rsync -azPhhr .output $SSH_USER@$SSH_IP:/home/ewilan/www/$CI_PROJECT_NAME/.output-$CI_JOB_ID
+    - ssh $SSH_USER@$SSH_IP "
+      . ~/.zshrc &&
+      cd /home/ewilan/www/$CI_PROJECT_NAME &&
+      git pull &&
+      /home/ewilan/.nvm/versions/node/v$NODE_VERSION/bin/pnpm i &&
+      rm -rf .output &&
+      mv .output-$CI_JOB_ID/.output .output &&
+      rm -rf .output-* &&
+      pm2 restart $PM2_NAME &&
+      notify main '$CI_PROJECT_TITLE deployed'"
+  only:
+    - main

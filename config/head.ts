@@ -110,6 +110,11 @@ const script: Script<any['script']>[] = [
   {
     src: '/color-mode.js',
   },
+  {
+    'src': 'https://umami.git-projects.xyz/gotur',
+    'async': true,
+    'data-website-id': '9954e865-f161-495f-b637-4e44ece6ba39',
+  },
 ]
 
 export default { link, meta, script }

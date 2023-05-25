@@ -3,10 +3,11 @@ import packageJson from '~/package.json'
 import LayoutFooterBackToTop from '@/components/layout/footer/back-to-top.vue'
 import LayoutFooterCreativeCommons from '@/components/layout/footer/creative-commons.vue'
 
-const config = useRuntimeConfig()
-const metaAuthor = config.public.metaAuthor
-const linkLicense = config.public.linkLicense
-const linkChangelog = config.public.linkChangelog
+const appConfig = useAppConfig()
+
+const metaAuthor = appConfig.metaAuthor
+const linkLicense = appConfig.linkLicense
+const linkChangelog = appConfig.linkChangelog
 
 function date(begin: number) {
   const current = new Date().getFullYear()

@@ -29,12 +29,16 @@ getOtherFormats()
 
 <template>
   <div v-if="download">
-    <app-button-group :action="download.url" :deployable="deployable" download>
-      <svg-icon name="download" class="w-6 h-6 mr-1" />
-      <span class="hidden md:block mr-1">Download</span>
-      {{ download.count ? download.count : '' }}
-      {{ download?.format.toUpperCase() }} ({{ download.isZip ? 'ZIP ' : ''
-      }}{{ download.size }})
+    <app-button-group :action="download.url" :deployable="deployable" download title="Download">
+      <div class="flex items-center justify-center w-full">
+        <!-- <svg-icon name="download" class="w-5 h-5 mr-1" /> -->
+        <span class="hidden md:block mr-1">Download</span>
+        <div>
+          {{ download.count ? download.count : '' }}
+          {{ download?.format.toUpperCase() }} ({{ download.isZip ? 'ZIP ' : ''
+          }}{{ download.size }})
+        </div>
+      </div>
       <template #content>
         <div class="py-1" role="none">
           <span v-for="file in formats" :key="file?.format">

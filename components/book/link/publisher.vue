@@ -10,8 +10,8 @@ defineProps<{
   <div v-if="publisher" class="dark:text-white">
     <typed-link
       :to="{
-        name: 'publishers-slug',
-        params: { slug: publisher.meta.slug },
+        name: 'publishers-publisher_slug',
+        params: { publisher_slug: publisher.meta.slug },
       }"
       class="internal-link"
     >

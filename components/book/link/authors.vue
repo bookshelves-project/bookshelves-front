@@ -21,7 +21,7 @@ defineProps<{
     >
       <typed-link
         :to="{
-          name: 'authors-slug',
+          name: 'authors-author_slug',
           params: { slug: author.meta.slug },
         }"
         class="ml-1 internal-link"

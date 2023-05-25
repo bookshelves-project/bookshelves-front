@@ -94,34 +94,34 @@ export function useEntityCard(current: EntityInstance, withType = false, withNam
   })
 
   const route = computed((): AppRoute => {
-    let route = { name: 'index', params: {} }
+    let route: AppRoute = { name: 'index' }
 
     if (currentType.value === 'book') {
       const entity = current as Book
       route = {
-        name: 'books-author-book',
+        name: 'books-author_slug-book_slug',
         params: {
-          author: entity.meta.author,
-          book: entity.meta.slug,
+          author_slug: entity.meta.author,
+          book_slug: entity.meta.slug,
         },
       }
     }
     else if (currentType.value === 'serie') {
       const entity = current as Serie
       route = {
-        name: 'series-author-serie',
+        name: 'series-author_slug-serie_slug',
         params: {
-          author: entity.meta.author,
-          serie: entity.meta.slug,
+          author_slug: entity.meta.author,
+          serie_slug: entity.meta.slug,
         },
       }
     }
     else if (currentType.value === 'author') {
       const entity = current as Author
       route = {
-        name: 'authors-author',
+        name: 'authors-author_slug',
         params: {
-          author: entity.meta.slug,
+          author_slug: entity.meta.slug,
         },
       }
     }
@@ -129,27 +129,27 @@ export function useEntityCard(current: EntityInstance, withType = false, withNam
       const entity = current as Entity
       if (entity.meta.entity === 'author') {
         route = {
-          name: 'authors-author',
+          name: 'authors-author_slug',
           params: {
-            author: entity.meta.slug,
+            author_slug: entity.meta.slug,
           },
         }
       }
       else if (entity.meta.entity === 'book') {
         route = {
-          name: 'books-author-book',
+          name: 'books-author_slug-book_slug',
           params: {
-            author: entity.meta.author,
-            book: entity.meta.slug,
+            author_slug: entity.meta.author,
+            book_slug: entity.meta.slug,
           },
         }
       }
       else if (entity.meta.entity === 'serie') {
         route = {
-          name: 'series-author-serie',
+          name: 'series-author_slug-serie_slug',
           params: {
-            author: entity.meta.author,
-            serie: entity.meta.slug,
+            author_slug: entity.meta.author,
+            serie_slug: entity.meta.slug,
           },
         }
       }

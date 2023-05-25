@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import type { IconType } from '~~/.nuxt/svg-transformer'
 
+const appConfig = useAppConfig()
 const config = useRuntimeConfig()
-const appName = config.public.appName
-const metaDescription = config.public.metaDescription
+
+const appName = appConfig.appName
+const metaDescription = appConfig.metaDescription
 
 function url(endpoint: string) {
   const apiURL = config.public.apiURL

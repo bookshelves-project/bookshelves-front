@@ -6,8 +6,8 @@ const route = useRoute()
 const book = await useHttp<Book>({
   name: '/books/{author}/{book}',
   params: {
-    author: route.params.author,
-    book: route.params.book,
+    author: route.params.author_slug,
+    book: route.params.book_slug,
   },
 })
 

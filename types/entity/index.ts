@@ -19,7 +19,7 @@ export * from './user'
 
 export interface EntityMeta {
   entity: EntityType
-  author?: string
+  author: string
   slug: string
   show?: string
   reviews?: string

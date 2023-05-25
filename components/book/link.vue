@@ -10,10 +10,10 @@ defineProps<{
   <div v-if="book && book.meta" class="dark:text-white mt-2">
     <typed-link
       :to="{
-        name: 'books-author-slug',
+        name: 'books-author_slug-book_slug',
         params: {
-          author: book.meta.author,
-          slug: book.meta.slug,
+          author_slug: book.meta.author,
+          book_slug: book.meta.slug,
         },
       }"
       class="internal-link"

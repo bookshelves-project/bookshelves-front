@@ -7,20 +7,20 @@ const [author, books, series] = await Promise.all([
   useHttp<Author>({
     name: '/authors/{author}',
     params: {
-      author: params.author,
+      author: params.author_slug,
     },
   }),
   useHttp<ApiData<Entity[]>>({
     name: '/authors/{author}/books',
     params: {
-      author: params.author,
+      author: params.author_slug,
     },
     auto: false,
   }),
   useHttp<ApiData<Entity[]>>({
     name: '/authors/{author}/series',
     params: {
-      author: params.author,
+      author: params.author_slug,
     },
     auto: false,
   }),
@@ -54,16 +54,18 @@ useMetadata({
     </layout-header>
     <div>
       <listing-block
+        v-if="series"
         :entities="series"
         :count="author.count?.series"
         name="Series"
-        endpoint="/authors/books"
+        endpoint="/authors/{author}/books"
       />
       <listing-block
+        v-if="books"
         :entities="books"
         :count="author.count?.books"
         name="Books"
-        endpoint="/authors/series"
+        endpoint="/authors/{author}/series"
       />
     </div>
     <!-- <entity-review
