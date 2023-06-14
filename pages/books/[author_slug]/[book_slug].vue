@@ -39,7 +39,7 @@ useMetadata({
         <book-cta-reader :download="book.download" :files="book.files" />
       </div>
       <template #extra>
-        <div class="text-sm flex items-center">
+        <div v-if="book.serie" class="text-sm flex items-center">
           <div class="mx-auto lg:mx-0 flex items-center">
             in
             <book-link-serie
