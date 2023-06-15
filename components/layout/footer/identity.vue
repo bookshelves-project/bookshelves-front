@@ -8,7 +8,7 @@ const appName = appConfig.appName
 const metaDescription = appConfig.metaDescription
 
 function url(endpoint: string) {
-  const apiURL = config.public.apiURL
+  const apiURL = config.public.apiUrl
   return `${apiURL}${endpoint}`
 }
 
