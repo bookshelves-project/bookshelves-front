@@ -9,6 +9,6 @@ export interface Tag {
   name: string
   type?: string
   count?: number
-  first_char?: string
+  firstChar?: string
   meta: TagMeta
 }

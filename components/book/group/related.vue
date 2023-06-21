@@ -40,10 +40,10 @@ function success(payload: boolean) {
       <div class="mt-6 flex">
         <app-button
           :to="{
-            name: 'related-author-entity',
+            name: 'related-author_slug-entity_slug',
             params: {
-              author: book.meta.author,
-              entity: book.meta.slug,
+              author_slug: book.meta.author,
+              entity_slug: book.meta.slug,
             },
           }"
           color="white"

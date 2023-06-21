@@ -7,6 +7,18 @@ const isDev = process.env.NODE_ENV === 'development'
 
 // const { nuxtInit } = useApplicationStore()
 // nuxtInit()
+
+const localePath = useLocalePath()
+
+// navigateTo(localePath({
+//   name: 'user-id',
+// }, 'fr'))
+// navigateTo(localePath({
+//   name: 'authors-author_slug',
+//   params: {
+//     id: 1,
+//   },
+// }, 'fr'))
 </script>
 
 <template>

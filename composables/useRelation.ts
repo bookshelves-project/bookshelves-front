@@ -1,4 +1,4 @@
-import type { Language, Tag } from '~/types'
+import type { Language, Publisher, Tag } from '~/types'
 
 export function useRelation(route?: AppRoute) {
   const { objectGetValue } = useTools()
@@ -7,7 +7,7 @@ export function useRelation(route?: AppRoute) {
     return value ? (value * 100) / bestCount : 1
   }
 
-  const getBestCount = (entities: Language[] | Tag[]) => {
+  const getBestCount = (entities: Language[] | Tag[] | Publisher[]) => {
     let minimal = 0
     entities?.forEach((element) => {
       if (minimal < element.count!)
@@ -44,7 +44,7 @@ export function useRelation(route?: AppRoute) {
 
     if (route?.params) {
       for (const [key, value] of Object.entries(route?.params))
-        params[key] = objectGetValue(item, value)
+        params[key] = objectGetValue(item, value as string | number)
     }
     if (route?.query) {
       for (const [key, value] of Object.entries(route?.query))

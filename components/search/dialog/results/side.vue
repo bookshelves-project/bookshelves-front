@@ -6,8 +6,17 @@ defineProps<{
   selected?: Entity
 }>()
 
+const router = useRouter()
 const { formatAuthors, getDynamicRoute } = useEntityMethods()
 const searchStore = useSearchStore()
+
+function selectPage(selected: Entity) {
+  const localePath = useLocalePath()
+  const route = getDynamicRoute(selected)
+  searchStore.setClear(true)
+  router.push(localePath(route))
+  searchStore.closeDialog()
+}
 </script>
 
 <template>
@@ -24,10 +33,9 @@ const searchStore = useSearchStore()
       </div>
       <div class="justify-between px-6">
         <app-button
-          :to="getDynamicRoute(selected)"
           align="center"
           full
-          @click="searchStore.closeDialog()"
+          @click="selectPage(selected)"
         >
           Show
         </app-button>

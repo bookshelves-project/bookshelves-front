@@ -63,18 +63,28 @@ export function useTools() {
     return objectGetValue(obj[key], properties.join('.')) ?? path
   }
 
-  const arrayGroupBy = <T, K extends keyof T>(
-    array: T[],
-    groupOn: K | ((i: T) => string),
-  ): Record<string, T[]> => {
-    const groupFn = typeof groupOn === 'function' ? groupOn : (o: T) => o[groupOn]
+  function arrayGroupBy<T extends { [key: string]: any }>(
+    arr: T[],
+    firstCharKey: string,
+  ): Record<string, T[]> {
+    const sortedArray: Record<string, T[]> = {}
 
-    return Object.fromEntries(
-      array.reduce((acc, obj) => {
-        const groupKey = groupFn(obj)
-        return acc.set(groupKey, [...(acc.get(groupKey) || []), obj])
-      }, new Map()),
-    ) as Record<string, T[]>
+    arr.forEach((item) => {
+      const firstChar = item[firstCharKey]
+      if (!sortedArray[firstChar])
+        sortedArray[firstChar] = []
+
+      sortedArray[firstChar].push(item)
+    })
+
+    const sortedKeys = Object.keys(sortedArray).sort()
+    const sortedObject: Record<string, T[]> = {}
+
+    sortedKeys.forEach((key) => {
+      sortedObject[key] = sortedArray[key]
+    })
+
+    return sortedObject
   }
 
   return {

@@ -25,16 +25,14 @@ export default defineNuxtConfig({
     '@pinia/nuxt', // https://pinia.vuejs.org/ssr/nuxt.html
     '@vueuse/nuxt', // https://vueuse.org/guide/index.html#nuxt
     'nuxt-svg-transformer', // https://github.com/kiwilan/nuxt-svg-transformer
-    'nuxt-typed-link', // https://github.com/kiwilan/nuxt-typed-link
+    // 'nuxt-typed-link', // https://github.com/kiwilan/nuxt-typed-link
+    'nuxt-typed-router', // https://nuxt-typed-router.vercel.app
   ],
 
   // colorMode: modules.colorMode,
-  i18n: {
-    ...modules.i18n,
-    // vueI18n: './i18n.config.ts',
-  },
+  i18n: modules.i18n,
   svgTransformer: modules.svgTransformer,
-  typedLink: modules.typedLink,
+  // typedLink: modules.typedLink,
 
   runtimeConfig: {
     ...config.private,
@@ -52,5 +50,9 @@ export default defineNuxtConfig({
 
   typescript: {
     shim: false,
+  },
+
+  experimental: {
+    typedPages: true,
   },
 })

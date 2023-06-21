@@ -33,23 +33,23 @@ useMetadata({
 </script>
 
 <template>
-  <div class="main-content">
+  <main class="main-content">
     <layout-header :title="title" :subtitle="description">
-      <template #filters>
+      <!-- <template #filters>
         <filters negligible :total="response?.data.length" />
-      </template>
+      </template> -->
     </layout-header>
     <div v-if="genres" class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">
         Genres
       </h2>
       <listing-relation
-        :entities="genres"
+        :models="genres"
         name="genres"
         :to="{
-          name: 'tags-tag',
+          name: 'tags-tag_slug',
           params: {
-            tag: 'meta.slug',
+            tag_slug: 'meta.slug',
           },
         }"
         group
@@ -60,15 +60,15 @@ useMetadata({
         Tags
       </h2>
       <listing-relation
-        :entities="tags"
+        :models="tags"
         name="tags"
         :to="{
-          name: 'tags-tag',
+          name: 'tags-tag_slug',
           params: {
-            tag: 'meta.slug',
+            tag_slug: 'meta.slug',
           },
         }"
       />
     </div>
-  </div>
+  </main>
 </template>

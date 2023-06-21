@@ -86,29 +86,29 @@ export function useEntityMethods() {
 
   const getDynamicRoute = (entity: Entity | Favoritable | Review) => {
     const route: AppRoute = {
-      name: 'authors-author',
+      name: 'authors-author_slug',
     }
 
     const meta = entity.meta
 
     if (meta.entity === 'book') {
-      route.name = 'books-author-book'
+      route.name = 'books-author_slug-book_slug'
       route.params = {
-        author: meta.author,
-        book: meta.slug,
+        author_slug: meta.author,
+        book_slug: meta.slug,
       }
     }
     else if (meta.entity === 'serie') {
-      route.name = 'series-author-serie'
+      route.name = 'series-author_slug-serie_slug'
       route.params = {
-        author: meta.author,
-        serie: meta.slug,
+        author_slug: meta.author,
+        serie_slug: meta.slug,
       }
     }
     else if (meta.entity === 'author') {
-      route.name = 'authors-author'
+      route.name = 'authors-author_slug'
       route.params = {
-        author: meta.slug,
+        author_slug: meta.slug,
       }
     }
 

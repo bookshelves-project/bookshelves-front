@@ -1,28 +1,26 @@
 <script setup lang="ts">
-import type { Language, Tag } from '~/types'
+import type { Language, Publisher, Tag } from '~/types'
 
 const props = defineProps<{
-  entities?: Tag[] | Language[]
+  models?: Tag[] | Language[] | Publisher[] | any[]
   name?: string
-  to?: AppRoute
+  to?: any
   group?: boolean
 }>()
 
 const { arrayGroupBy } = useTools()
 const bestCount = ref(0)
 
-const entitiesByChar = computed((): Record<string, Language[] | Tag[]> => {
-  return arrayGroupBy(props.entities!, 'first_char')
-})
+const listing = arrayGroupBy(props.models || [], 'firstChar')
 
 const { getBestCount } = useRelation(props.to)
-bestCount.value = getBestCount(props.entities!)
+bestCount.value = getBestCount(props.models || [])
 </script>
 
 <template>
   <div v-if="!group">
     <div
-      v-for="(items, char) in entitiesByChar"
+      v-for="(items, char) in listing"
       :id="`${name}-${char}`"
       :key="char"
       class="mt-6"
@@ -34,6 +32,6 @@ bestCount.value = getBestCount(props.entities!)
     </div>
   </div>
   <div v-else>
-    <listing-relation-group :count="bestCount" :items="entities" :to="to" />
+    <listing-relation-group :count="bestCount" :items="models" :to="to" />
   </div>
 </template>

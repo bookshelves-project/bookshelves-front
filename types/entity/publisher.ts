@@ -7,6 +7,6 @@
 export interface Publisher {
   name: string
   count: number
-  first_char: string
+  firstChar: string
   meta: any // PublisherMeta
 }

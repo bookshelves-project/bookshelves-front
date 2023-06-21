@@ -11,6 +11,7 @@ export const useSearchStore = defineStore('search', {
     opened: false,
     loading: false,
     firstSearch: false,
+    clear: false,
     types: {
       authors: true,
       series: true,
@@ -19,6 +20,7 @@ export const useSearchStore = defineStore('search', {
   }),
   getters: {
     searchOpened: state => state.opened,
+    clearInput: state => state.clear,
   },
   actions: {
     setTypes(payload: Type) {
@@ -29,6 +31,11 @@ export const useSearchStore = defineStore('search', {
     setFirstSearch(payload: boolean) {
       this.$patch({
         firstSearch: payload,
+      })
+    },
+    setClear(payload: boolean) {
+      this.$patch({
+        clear: payload,
       })
     },
     setLoading(payload: boolean) {

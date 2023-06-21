@@ -26,9 +26,9 @@ useMetadata({
     <relation-list
       :entities="response?.data"
       name="publishers"
-      :route="{
-        name: 'publishers-slug',
-        paramsList: {
+      :to="{
+        name: 'publishers-publisher_slug',
+        params: {
           slug: 'meta.slug',
         },
       }"

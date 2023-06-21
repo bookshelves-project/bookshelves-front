@@ -1,6 +1,6 @@
 export interface Language {
   name?: string
-  first_char?: string
+  firstChar?: string
   count?: number
   meta: {
     slug: string

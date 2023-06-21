@@ -15,6 +15,7 @@ const i18n: NuxtConfig['i18n'] = {
     },
   ],
   defaultLocale: 'en',
+  strategy: 'prefix_except_default',
 }
 
 // https://github.com/kiwilan/nuxt-svg-transformer
@@ -23,15 +24,9 @@ const svgTransformer: NuxtConfig['svgTransformer'] = {
   sizeInherit: true,
 }
 
-// https://github.com/kiwilan/nuxt-typed-link
-const typedLink: NuxtConfig['typedLink'] = {
-  i18n: true,
-}
-
 const modules = {
   svgTransformer,
   i18n,
-  typedLink,
 }
 
 export default modules

@@ -21,6 +21,13 @@ const value = computed<string>({
   },
 })
 
+watch(
+  () => searchStore.clearInput,
+  () => {
+    value.value = ''
+  },
+)
+
 onMounted(() => {
   search.value?.focus()
 })
