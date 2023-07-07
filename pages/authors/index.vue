@@ -43,7 +43,7 @@ useMetadata({
         /> -->
       </template>
     </layout-header>
-    <listing :entities="authors?.data" />
+    <listing :entities="authors?.data" placeholder="/images/no-author.jpg" />
     <pagination
       v-if="authors?.meta"
       :pages="authors?.meta.last_page"

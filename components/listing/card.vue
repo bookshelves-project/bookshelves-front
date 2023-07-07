@@ -3,6 +3,7 @@ import type { EntityInstance } from '~/types'
 
 const props = defineProps<{
   entity: EntityInstance
+  placeholder?: string
 }>()
 
 const entity = useEntityCard(props.entity)
@@ -18,15 +19,18 @@ const entity = useEntityCard(props.entity)
         :color="entity.media?.color"
         :alt="entity.media?.name"
       />
-      <div v-else class="aspect-[4/5] w-36 flex-none rounded-md object-cover h-full bg-yellow-100 text-black text-right">
-        <div class="p-4 text-sm">
-          <div class="text-xs">
-            {{ entity.subtitle }}
+      <div v-else class="h-full aspect-[4/5] w-36">
+        <img v-if="placeholder" :src="placeholder" :alt="entity.title" class="object-cover h-full rounded-md">
+        <div v-else class="w-36 flex-none rounded-md object-cover h-full bg-yellow-100 text-black text-right">
+          <div class="p-4 text-sm">
+            <div class="text-xs">
+              {{ entity.subtitle }}
+            </div>
+            <div class="mt-6 font-semibold">
+              {{ entity.title }}
+            </div>
+            <hr class="border-black mt-3">
           </div>
-          <div class="mt-6 font-semibold">
-            {{ entity.title }}
-          </div>
-          <hr class="border-black mt-3">
         </div>
       </div>
       <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />

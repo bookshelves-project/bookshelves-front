@@ -6,6 +6,7 @@ interface Props {
   type?: boolean
   entityName?: boolean
   card?: 'book' | 'full'
+  placeholder?: string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -29,6 +30,7 @@ withDefaults(defineProps<Props>(), {
         v-for="entity in entities"
         :key="entity.meta.slug"
         :entity="entity"
+        :placeholder="placeholder"
       />
     </div>
   </div>
