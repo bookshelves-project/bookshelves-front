@@ -62,7 +62,7 @@ const { date } = useDate()
           </div>
         </div>
       </div>
-      <book-overview-files :files="book.files" />
+      <!-- <book-overview-files :files="book.files" /> -->
     </div>
   </div>
 </template>

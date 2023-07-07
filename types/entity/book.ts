@@ -55,6 +55,7 @@ export interface Book {
   publisher?: Publisher
   tags?: Tag[]
   genres?: Tag[]
+  directDownloadUrl?: string
   download?: DownloadFile
   files?: DownloadList
   is_favorite?: boolean

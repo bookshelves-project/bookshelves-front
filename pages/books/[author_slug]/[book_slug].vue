@@ -35,7 +35,7 @@ useMetadata({
       favorite
     >
       <div class="mx-auto grid w-max space-y-3">
-        <book-cta-download :download="book.download" :files="book.files" />
+        <book-cta-download :direct="book.directDownloadUrl" :download="book.download" :files="book.files" />
         <book-cta-reader :download="book.download" :files="book.files" />
       </div>
       <template #extra>

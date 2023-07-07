@@ -2,6 +2,7 @@
 import type { DownloadFile, DownloadList } from '~/types'
 
 const props = defineProps<{
+  direct?: string
   download?: DownloadFile
   files?: DownloadList
 }>()
@@ -28,10 +29,13 @@ getOtherFormats()
 </script>
 
 <template>
-  <div v-if="download">
-    <app-button-group :action="download.url" :deployable="deployable" download title="Download">
+  <div v-if="direct">
+    <app-button :href="direct" download>
+      Download book
+    </app-button>
+    <!-- <app-button-group :action="download.url" :deployable="deployable" download title="Download">
       <div class="flex items-center justify-center w-full">
-        <!-- <svg-icon name="download" class="w-5 h-5 mr-1" /> -->
+        <svg-icon name="download" class="w-5 h-5 mr-1" />
         <span class="hidden md:block mr-1">Download</span>
         <div>
           {{ download.count ? download.count : '' }}
@@ -57,6 +61,6 @@ getOtherFormats()
           </span>
         </div>
       </template>
-    </app-button-group>
+    </app-button-group> -->
   </div>
 </template>
