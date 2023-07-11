@@ -5,7 +5,7 @@ const { show } = useScroll()
 const navigation = useNavigationStore()
 
 const config = useRuntimeConfig()
-const appName = config.public.appName
+const appName = config.public.appName as string
 function toggleSidebar() {
   navigation.toggleSidebar()
 }

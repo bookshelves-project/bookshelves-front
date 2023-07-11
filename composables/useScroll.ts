@@ -5,7 +5,7 @@ export function useScroll() {
 
   const handleScroll = () => {
     const currentScrollPosition
-      = window.pageYOffset || document.documentElement.scrollTop
+      = window.scrollY || document.documentElement.scrollTop
     if (currentScrollPosition < 0)
       return
     // Stop executing this function if the difference between
