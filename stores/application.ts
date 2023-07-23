@@ -42,7 +42,7 @@ export const useApplicationStore = defineStore('application', {
     },
     async fetchApplication() {
       const response = await useHttp<Application>({
-        name: '/application',
+        name: '/app',
         watch: false,
         // extractData: true,
       })

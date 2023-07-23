@@ -4,6 +4,9 @@ defineProps<{
     books: number
     series: number
     authors: number
+    tags: number
+    publishers: number
+    languages: number
   }
 }>()
 </script>
