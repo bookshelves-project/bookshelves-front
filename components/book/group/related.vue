@@ -14,7 +14,7 @@ const isAvailable = ref(true)
 
 const related: SelectedEntities = {
   key: 'selection',
-  name: '/entities/related/{author}/{book}',
+  endpoint: '/entities/related/{author}/{book}',
   params: {
     author: props.book.meta.author,
     book: props.book.meta.slug,
@@ -31,8 +31,8 @@ function success(payload: boolean) {
 </script>
 
 <template>
-  <div class="mt-8">
-    <div v-if="isAvailable">
+  <div v-if="isAvailable" class="mt-8">
+    <div>
       <book-group-swiper
         :selection="related"
         @success="success"

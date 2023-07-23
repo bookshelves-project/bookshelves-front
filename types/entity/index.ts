@@ -75,12 +75,12 @@ export interface EntityCard {
   text?: string
   details?: string
   media?: Media
+  type?: string
   // authors?: string
   // serie?: UseEntitySerie
   // language?: string
   // media?: Media
   // count?: string
-  // type?: string
   // entityName?: string
 }
 

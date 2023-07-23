@@ -4,6 +4,7 @@ import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
+import type { SwiperOptions } from 'swiper/types'
 import type { SelectedEntities } from '~/types'
 
 const props = defineProps<{
@@ -29,7 +30,7 @@ onMounted(async () => {
 })
 
 const modules = [Pagination, Navigation]
-const main = {
+const main: SwiperOptions = {
   loop: false,
   spaceBetween: 10,
   slidesPerView: 1,
@@ -39,7 +40,6 @@ const main = {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
-  paginationClickable: true,
   pagination: {
     el: '.swiper-pagination',
     clickable: true,

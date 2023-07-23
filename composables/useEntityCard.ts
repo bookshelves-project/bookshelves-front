@@ -1,6 +1,6 @@
 import type { Author, Book, Entity, EntityCard, EntityInstance, EntityType, Media, Serie } from '~/types'
 
-export function useEntityCard(current: EntityInstance, withType = false, withName = false): EntityCard {
+export function useEntityCard(current: EntityInstance): EntityCard {
   const { formatAuthors, instanceAuthor, instanceBook, instanceSerie } = useEntityMethods()
   const currentType = ref<EntityType>()
 
@@ -166,6 +166,7 @@ export function useEntityCard(current: EntityInstance, withType = false, withNam
     details: details.value,
     media: media.value,
     route: route.value,
+    type: type.value,
   }
 }
 

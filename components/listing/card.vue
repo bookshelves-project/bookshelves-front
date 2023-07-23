@@ -33,7 +33,10 @@ const entity = useEntityCard(props.entity)
           </div>
         </div>
       </div>
-      <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+      <div v-if="entity.type" class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80 z-10" />
+      <div v-if="entity.type" class="absolute bottom-3 left-3 z-20 text-lg">
+        {{ entity.type }}
+      </div>
     </div>
     <div class="flex-auto relative">
       <p v-if="entity.subtitle" class="mt-1 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
