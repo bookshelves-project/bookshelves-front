@@ -13,12 +13,14 @@ export type ApiBaseRoute =
   | '/tags/{tag}'
   | '/tags/{tag}/books'
   | '/entities/related/{author}/{entity}'
+  | '/entities/latest'
   | '/series/{author}/{serie}/{volume}/next'
-  | '/application'
   | '/search'
   | '/publishers'
   | '/publishers/{publisher}'
   | '/publishers/{publisher}/books'
+  | '/app'
+  | '/app/stats'
 
 export interface ApiBaseRouteParams {
   '/authors': never
@@ -56,12 +58,12 @@ export interface ApiBaseRouteParams {
     author: UrlParam
     entity: UrlParam
   }
+  '/entities/latest': never
   '/series/{author}/{serie}/{volume}/next': {
     author: UrlParam
     serie: UrlParam
     volume: UrlParam
   }
-  '/application': never
   '/search': never
   '/publishers': never
   '/publishers/{publisher}': {
@@ -70,6 +72,8 @@ export interface ApiBaseRouteParams {
   '/publishers/{publisher}/books': {
     publisher: UrlParam
   }
+  '/app': never
+  '/app/stats': never
 }
 
 export interface Query {

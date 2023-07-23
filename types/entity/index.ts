@@ -90,7 +90,7 @@ export type EntityType = 'book' | 'serie' | 'author'
 
 export interface SelectedEntities {
   key: string
-  name: ApiBaseRoute
+  endpoint: ApiBaseRoute
   params?: ApiBaseRouteParams[ApiBaseRoute]
   right?: boolean
   eyebrow?: string

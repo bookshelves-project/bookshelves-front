@@ -41,7 +41,7 @@ watch(
     >
       <div class="-mt-px flex w-0 flex-1">
         <nuxt-link :to="linkGen(1)" class="item extreme-link">
-          <SvgIcon name="arrow-narrow-right" class="mr-1 w-5 h-5 rotate-90" />
+          <SvgIcon name="arrow-narrow-right" class="mr-1 w-5 h-5 rotate-180" />
           First
         </nuxt-link>
       </div>
@@ -55,7 +55,7 @@ watch(
             aria-label="Previous"
             @click="navigate"
           >
-            <SvgIcon name="chevron-right" class="w-5 h-5 rotate-90" />
+            <SvgIcon name="chevron-right" class="w-5 h-5 rotate-180" />
           </component>
         </nuxt-link>
         <div v-if="showFirstDots" class="item dots">

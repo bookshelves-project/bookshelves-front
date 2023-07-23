@@ -1,12 +1,21 @@
 <script setup lang="ts">
+import type { SwiperOptions } from 'swiper/types'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation, Pagination } from 'swiper'
+import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
+import type { ApiBaseRoute } from 'types'
 
+// SelectedEntities
 const props = defineProps<{
-  selection: SelectedEntities
+  selection: {
+    key: string
+    endpoint: ApiBaseRoute
+    eyebrow: string
+    title: string
+    text: string
+  }
   right?: boolean
 }>()
 
@@ -30,7 +39,7 @@ onMounted(async () => {
 })
 
 const modules = [Pagination, Navigation]
-const main = {
+const main: SwiperOptions = {
   loop: false,
   spaceBetween: 10,
   slidesPerView: 1,
@@ -40,7 +49,6 @@ const main = {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
-  paginationClickable: true,
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
@@ -104,7 +112,7 @@ const main = {
                 :key="index"
                 class="swiper-lazy text-left"
               >
-                <entity-card :entity="slide" type />
+                <listing-card :entity="slide" />
               </SwiperSlide>
               <div class="swiper-pagination" />
               <div class="swiper-button swiper-button-prev">
