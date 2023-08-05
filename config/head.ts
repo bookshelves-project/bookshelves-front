@@ -115,6 +115,7 @@ const script: Script<any['script']>[] = [
     'async': true,
     'data-website-id': process.env.ANALYTICS_ID,
     'type': 'text/javascript',
+    'charset': 'utf-8',
   },
 ]
 
