@@ -114,6 +114,7 @@ const script: Script<any['script']>[] = [
     'src': process.env.ANALYTICS_URL,
     'async': true,
     'data-website-id': process.env.ANALYTICS_ID,
+    'type': 'text/javascript',
   },
 ]
 
