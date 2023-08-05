@@ -7,8 +7,8 @@ stages:
   - deploy
 
 variables:
-  NODE_VERSION: "18.12.1"
-  PM2_NAME: "portfolio"
+  NODE_VERSION: "18.17.0"
+  PM2_NAME: "bookshelves"
 
 deploy-job:
   stage: deploy
@@ -18,8 +18,8 @@ deploy-job:
     - apt-get update -qq && apt-get install -y -qq sshpass
     - apt-get install -y -qq rsync
     - echo "Setup..."
-    - git clone https://gitlab.com/ewilan-riviere/portfolio.git
-    - cd portfolio
+    - git clone https://gitlab.com/bookshelves-project/bookshelves.git
+    - cd bookshelves
     - touch .env
     - echo "NUXT_PUBLIC_SITE_URL=$NUXT_PUBLIC_SITE_URL" >> .env
     - echo "NUXT_PUBLIC_API_URL=$NUXT_PUBLIC_API_URL" >> .env
@@ -37,12 +37,12 @@ deploy-job:
     - ssh-keyscan $SSH_IP >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - rsync -azPhhr .output $SSH_USER@$SSH_IP:/home/ewilan/www/$CI_PROJECT_NAME/.output-$CI_JOB_ID
+    - rsync -azPhhr .output $SSH_USER@$SSH_IP:/home/$SSH_USER/www/$CI_PROJECT_NAME/.output-$CI_JOB_ID
     - ssh $SSH_USER@$SSH_IP "
       . ~/.zshrc &&
-      cd /home/ewilan/www/$CI_PROJECT_NAME &&
+      cd /home/$SSH_USER/www/$CI_PROJECT_NAME &&
       git pull &&
-      /home/ewilan/.nvm/versions/node/v$NODE_VERSION/bin/pnpm i &&
+      /home/$SSH_USER/.nvm/versions/node/v$NODE_VERSION/bin/pnpm i &&
       rm -rf .output &&
       mv .output-$CI_JOB_ID/.output .output &&
       rm -rf .output-* &&
