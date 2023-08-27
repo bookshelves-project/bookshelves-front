@@ -5,7 +5,7 @@ import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
-import type { ApiBaseRoute } from 'types'
+import type { ApiBaseRoute } from '~/types'
 
 // SelectedEntities
 const props = defineProps<{
@@ -23,9 +23,7 @@ const emit = defineEmits<{
   (e: 'success', payload: boolean): void
 }>()
 
-const { getData, isAvailable, isLoading, slides } = useEntityGroup(
-  props.selection,
-)
+const { getData, isAvailable, isLoading, slides } = useEntityGroup(props.selection)
 
 watch(
   () => isLoading.value,
