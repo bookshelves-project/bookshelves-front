@@ -92,6 +92,8 @@ export function usePagination() {
 
   const calcNumberOfLinks = (): number => {
     let numberOfLinks = limit.value
+
+    // If limit is greater than pages, show all pages
     if (showAllPages.value)
       numberOfLinks = pages.value
 

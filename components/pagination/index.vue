@@ -20,6 +20,8 @@ const {
 
 init(props.pages, props.current)
 
+console.log(numberOfLinks.value)
+
 watch(
   () => props.current,
   () => {
@@ -50,7 +52,7 @@ watch(
           <component
             :is="getTag(1)"
             :to="linkGen(current - 1)"
-            class="item page-link"
+            class="item page-link cursor-pointer"
             title="Previous"
             aria-label="Previous"
             @click="navigate"
@@ -78,8 +80,7 @@ watch(
         <nuxt-link
           v-if="showLastDots && displayLastPage"
           v-slot="{ navigate }"
-          :to="linkGen(1)"
-          custom
+          :to="linkGen(pages)"
         >
           <component
             :is="getTag(pages)"
@@ -95,7 +96,7 @@ watch(
         <nuxt-link v-slot="{ navigate }" :to="linkGen(current + 1)" custom>
           <component
             :is="getTag(pages)"
-            class="item page-link"
+            class="item page-link cursor-pointer"
             :to="linkGen(current + 1)"
             title="Next"
             aria-label="Next"
@@ -123,13 +124,13 @@ watch(
   @apply px-4;
 }
 .page-link {
-  @apply px-4 hover:border-gray-300 hover:text-gray-700 transition-colors duration-75;
+  @apply px-4 hover:border-gray-300 hover:text-gray-700 transition-colors duration-75 dark:hover:border-gray-700 dark:hover:text-gray-300;
 }
 .active {
   @apply border-primary-500 text-primary-600 dark:text-primary-500;
 }
 .extreme-link {
-  @apply pr-1 hover:border-gray-300 hover:text-gray-700 transition-colors duration-75;
+  @apply pr-1 hover:border-gray-300 hover:text-gray-700 transition-colors duration-75 dark:hover:border-gray-700 dark:hover:text-gray-300;
 }
 em {
   font-style: normal;
