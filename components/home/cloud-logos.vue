@@ -27,10 +27,10 @@ const items = [
     media: '/images/cloud/logo-kodoo.webp',
   },
   {
-    label: 'Lulu',
-    slug: 'lulu',
-    link: 'https://www.lulu.com',
-    media: '/images/cloud/logo-lulu.webp',
+    label: 'EDRLab',
+    slug: 'edrlab',
+    link: 'https://www.edrlab.org',
+    media: '/images/cloud/logo-edrlab.webp',
   },
   {
     label: 'OPDS',
