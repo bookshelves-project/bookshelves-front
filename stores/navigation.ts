@@ -34,8 +34,8 @@ export const useNavigationStore = defineStore('navigation', {
         },
       },
     ] as RouteLink[],
-    footerProject: {
-      title: 'discover',
+    footerSupport: {
+      title: 'support',
       links: [
         {
           label: 'about',
@@ -44,18 +44,6 @@ export const useNavigationStore = defineStore('navigation', {
             params: { slug: 'about' },
           },
         },
-        {
-          label: 'features',
-          route: {
-            name: 'slug',
-            params: { slug: 'features' },
-          },
-        },
-      ],
-    } as FooterColumn,
-    footerSupport: {
-      title: 'support',
-      links: [
         {
           label: 'more-ebooks',
           route: {
@@ -133,7 +121,6 @@ export const useNavigationStore = defineStore('navigation', {
     ] as RouteLink[],
   }),
   getters: {
-    getFooterProject: state => state.footerProject,
     getFooterSupport(state) {
       const config = useRuntimeConfig()
       const moduleContact = config.public.moduleContact

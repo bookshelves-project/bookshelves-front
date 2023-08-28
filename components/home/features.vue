@@ -1,5 +1,12 @@
 <script setup lang="ts">
-const items = [
+import type { IconType } from '#build/svg-transformer'
+
+const items: {
+  title: string
+  slug: string
+  text: string
+  media: IconType
+}[] = [
   {
     title: 'Open formats',
     slug: 'epub',

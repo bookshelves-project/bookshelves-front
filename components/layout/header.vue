@@ -54,13 +54,12 @@ function getHostname(url?: string) {
           class="mx-auto lg:mx-0"
         >
           <div class="flex">
-            <component
-              :is="imageOriginal ? 'a' : 'span'"
-              :href="imageOriginal"
+            <a
+              :href="image"
               target="_blank"
               rel="noopener noreferrer"
               :class="
-                imageOriginal
+                image
                   ? 'transition-shadow duration-100 hover:shadow'
                   : ''
               "
@@ -74,7 +73,7 @@ function getHostname(url?: string) {
                 :title="title"
                 class="h-20 w-20 rounded-md object-cover"
               />
-            </component>
+            </a>
           </div>
           <div :class="{ 'mt-3 sm:ml-5 lg:mt-0': image }">
             <div class="md:flex">

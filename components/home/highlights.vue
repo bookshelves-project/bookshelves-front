@@ -1,5 +1,20 @@
 <script setup lang="ts">
-const items = [
+import type { IconType } from '#build/svg-transformer'
+
+const config = useRuntimeConfig()
+
+const items: {
+  title: string
+  slug: string
+  text: string
+  icon: IconType
+  media: string
+  ctaText: string
+  ctaLink: string
+  externalLink?: boolean
+  quoteText?: string
+  quoteAuthor?: string
+}[] = [
   {
     title: 'Find the book that fits you!',
     slug: 'books',
@@ -12,24 +27,26 @@ const items = [
     quoteAuthor: 'An enthusiastic reader',
   },
   {
-    title: 'Want to know your eReader?',
+    title: 'Want to use OPDS?',
     slug: 'guides',
-    text: 'Detailed guides are there to explain how to best manage your eReader but also to get to know the books better in order to modify them if you wish.',
+    text: 'You can download directly books from your eReader with OPDS (Open Publication Distribution System) feed to get all books on your favorite application',
     icon: 'highlight-guides',
     media: '/images/highlight/guides.svg',
-    ctaText: 'Discover guides',
-    ctaLink: 'guides',
+    ctaText: 'Discover OPDS',
+    ctaLink: `${config.public.apiUrl}/opds`,
+    externalLink: true,
     quoteText: 'The world of eReaders is so vast!',
     quoteAuthor: 'A novice user',
   },
   {
-    title: 'Features, read as you wish',
+    title: 'Catalog or Webreader',
     slug: 'features',
-    text: 'Features offer a lot of extra options to find and read books. You can download directly books from your eReader with Catalog or you can use OPDS (Open Publication Distribution System) feed to get all books on your favorite application. And if you want to read eBook directly in your browser with Webreader.',
+    text: 'If your eReader can\'t use OPDS, you can use Catalog, a very basic UI to works on any device, search your book and download it. But you can read your eBook directly in your browser with Webreader, available on each book page.',
     icon: 'highlight-features',
     media: '/images/highlight/features.svg',
-    ctaText: 'Discover Features',
-    ctaLink: 'features',
+    ctaText: 'Discover Catalog',
+    ctaLink: `${config.public.apiUrl}/catalog`,
+    externalLink: true,
     quoteText: 'I am only interested in OPDS feeds adapted to my eReader with Koreader OS.',
     quoteAuthor: 'A very experimented reader',
   },
@@ -74,7 +91,8 @@ const items = [
             <div class="mt-6">
               <AppButton
                 color="white"
-                :to="highlight.ctaLink || { name: 'index' }"
+                :to="!highlight.externalLink ? highlight.ctaLink : undefined"
+                :href="highlight.externalLink ? highlight.ctaLink : undefined"
               >
                 {{ highlight.ctaText }}
               </AppButton>

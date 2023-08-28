@@ -22,7 +22,7 @@ defineProps<{
       <typed-link
         :to="{
           name: 'authors-author_slug',
-          params: { slug: author.meta.slug },
+          params: { author_slug: author.meta.slug },
         }"
         class="ml-1 internal-link"
       >{{ author.name }}</typed-link>
