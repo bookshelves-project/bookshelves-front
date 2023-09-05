@@ -37,7 +37,7 @@ deploy-job:
     - ssh-keyscan $SSH_IP >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - rsync -azPhhr .output $SSH_USER@$SSH_IP:/home/$SSH_USER/www/bookshelves/.output-$CI_JOB_ID
+    - rsync -azPhhr .output $SSH_USER@$SSH_IP:/home/$SSH_USER/www/bookshelves-front/.output-$CI_JOB_ID
     - ssh $SSH_USER@$SSH_IP "
       . ~/.zshrc &&
       cd /home/$SSH_USER/www/$CI_PROJECT_NAME &&
