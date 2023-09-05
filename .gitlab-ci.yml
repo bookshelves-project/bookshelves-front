@@ -19,7 +19,7 @@ deploy-job:
     - apt-get install -y -qq rsync
     - echo "Setup..."
     - git clone https://gitlab.com/bookshelves-project/bookshelves-front.git
-    - cd bookshelves
+    - cd bookshelves-front
     - touch .env
     - echo "NUXT_PUBLIC_SITE_URL=$NUXT_PUBLIC_SITE_URL" >> .env
     - echo "NUXT_PUBLIC_API_URL=$NUXT_PUBLIC_API_URL" >> .env
