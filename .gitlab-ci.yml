@@ -37,7 +37,7 @@ deploy-job:
     - ssh-keyscan $SSH_IP >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - rsync -azPhhr .output $SSH_USER@$SSH_IP:/home/$SSH_USER/www/$CI_PROJECT_NAME/.output-$CI_JOB_ID
+    - rsync -azPhhr .output $SSH_USER@$SSH_IP:/home/$SSH_USER/www/bookshelves/.output-$CI_JOB_ID
     - ssh $SSH_USER@$SSH_IP "
       . ~/.zshrc &&
       cd /home/$SSH_USER/www/$CI_PROJECT_NAME &&
@@ -47,6 +47,6 @@ deploy-job:
       mv .output-$CI_JOB_ID/.output .output &&
       rm -rf .output-* &&
       pm2 restart $PM2_NAME &&
-      notify main '$CI_PROJECT_TITLE deployed'"
+      notifier '$CI_PROJECT_TITLE deployed'"
   only:
     - main
