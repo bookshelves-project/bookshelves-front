@@ -14,9 +14,9 @@
 
 <https://jsonpath.com>
 
-📀 [**bookshelves-project**](https://github.com/bookshelves-project) : Bookshelves repository
-💻 [**bookshelves.ink**](https://bookshelves.ink): demo
-📚 [**documentation.bookshelves.ink**](https://bookshelves-documentation.netlify.app): documentation, if this link not work, you can check doc on [this repository](https://github.com/bookshelves-project/bookshelves-doc)
+- 📀 [**bookshelves-project**](https://github.com/bookshelves-project) : Bookshelves repository
+- 💻 [**bookshelves.ink**](https://bookshelves.ink): demo
+- 📚 [**documentation.bookshelves.ink**](https://bookshelves-documentation.netlify.app): documentation, if this link not work, you can check doc on [this repository](https://github.com/bookshelves-project/bookshelves-doc)
 
 Works with [documentation](https://nuxtjs.org).
 
