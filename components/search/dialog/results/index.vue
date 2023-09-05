@@ -1,11 +1,14 @@
 <script lang="ts" setup>
+import type { Entity, Search } from '~/types'
+
 defineProps<{
   search?: Search
 }>()
 
 const selected = ref<Entity>()
 const selectedId = ref('')
-const selectResult = (item:Entity) => {
+
+function selectResult(item: Entity) {
   selected.value = item
   selectedId.value = `${item.meta.entity}-${item.meta.slug}`
 }
@@ -25,7 +28,7 @@ const selectResult = (item:Entity) => {
             {{ search?.count }} results with "{{ search.query }}"
           </div>
           <transition-group name="list" tag="div">
-            <li v-for="(collection,collectionId) in search?.results" :key="collectionId">
+            <li v-for="(collection, collectionId) in search?.results" :key="collectionId">
               <div v-if="collection?.length" class="mb-6">
                 <div class="capitalize-first">
                   {{ collectionId }}
@@ -33,7 +36,7 @@ const selectResult = (item:Entity) => {
                 <ul class="space-y-1 mt-2">
                   <!-- Active: "bg-gray-100 text-gray-900" -->
                   <li
-                    v-for="(item,itemId) in collection"
+                    v-for="(item, itemId) in collection"
                     id="option-1"
                     :key="itemId"
                     :class="selectedId === `${item.meta.entity}-${item.meta.slug}` ? 'bg-gray-100 dark:bg-gray-700' : ''"
@@ -43,7 +46,7 @@ const selectResult = (item:Entity) => {
                     @click="selectResult(item)"
                   >
                     <div class="flex items-center">
-                      <app-img :src="item.media?.url" :alt="item.media?.name" :color="item.media?.color" class="h-6 w-6 flex-none rounded-full object-cover" />
+                      <app-img :src="item.media?.url" :alt="item.media?.name" :color="item.media?.color" class="h-10 w-10 flex-none rounded-full object-cover" />
                       <div class="ml-3">
                         <span class="block line-clamp-1">{{ item.title }}</span>
                         <span class="block line-clamp-1 text-sm text-gray-500 dark:text-gray-400 italic space-x-1">

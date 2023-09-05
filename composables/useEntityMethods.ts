@@ -1,6 +1,7 @@
-import { useApplicationStore } from '~~/store/application'
+import type { Author, Book, Entity, EntityInstance, Favoritable, Review, Serie, Tag } from '~/types'
+import { useApplicationStore } from '~~/stores/application'
 
-export const useEntityMethods = () => {
+export function useEntityMethods() {
   /**
    * Get a `string` from `Author[]`
    * @typeParam `Author[]`
@@ -13,13 +14,13 @@ export const useEntityMethods = () => {
    * ```
    */
   const formatAuthors = (authors: Author[] | undefined): string => {
-    let result = 'unknown'
-    const list = authors?.map(author => author.name?.trim()) as string[]
-    result = [list.slice(0, -1).join(', '), list.slice(-1)[0]].join(
-      list.length < 2 ? '' : ' & '
-    )
+    if (!authors)
+      return 'unknown'
 
-    return result
+    const list = authors?.map(author => author.name?.trim()) as string[]
+    const formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' })
+
+    return formatter.format(list)
   }
 
   /**
@@ -45,18 +46,13 @@ export const useEntityMethods = () => {
  * @returns `string`
  */
   const formatTags = (tags?: Tag[]) => {
-    if (tags) {
-      let entitiesToString = ''
-      tags.forEach((tag, tagId) => {
-        entitiesToString += `${tag.name}`
-        if (tags.length > 1 && tagId !== tags.length - 1) {
-          entitiesToString += ' & '
-        }
-      })
-      return entitiesToString
-    }
+    if (!tags)
+      return 'unknown'
 
-    return 'unknown'
+    const list = tags?.map(tag => tag.name?.trim()) as string[]
+    const formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' })
+
+    return formatter.format(list)
   }
 
   /**
@@ -76,16 +72,47 @@ export const useEntityMethods = () => {
     return type
   }
 
-  const instanceBook = (entity: EntityList): entity is Book => {
-    return entity.meta.entity === 'book'
+  const instanceBook = (entity: EntityInstance): entity is Book => {
+    return entity.meta?.entity === 'book'
   }
 
-  const instanceSerie = (entity: EntityList): entity is Serie => {
-    return entity.meta.entity === 'serie'
+  const instanceSerie = (entity: EntityInstance): entity is Serie => {
+    return entity.meta?.entity === 'serie'
   }
 
-  const instanceAuthor = (entity: EntityList): entity is Author => {
-    return entity.meta.entity === 'author'
+  const instanceAuthor = (entity: EntityInstance): entity is Author => {
+    return entity.meta?.entity === 'author'
+  }
+
+  const getDynamicRoute = (entity: Entity | Favoritable | Review) => {
+    const route: AppRoute = {
+      name: 'authors-author_slug',
+    }
+
+    const meta = entity.meta
+
+    if (meta.entity === 'book') {
+      route.name = 'books-author_slug-book_slug'
+      route.params = {
+        author_slug: meta.author,
+        book_slug: meta.slug,
+      }
+    }
+    else if (meta.entity === 'serie') {
+      route.name = 'series-author_slug-serie_slug'
+      route.params = {
+        author_slug: meta.author,
+        serie_slug: meta.slug,
+      }
+    }
+    else if (meta.entity === 'author') {
+      route.name = 'authors-author_slug'
+      route.params = {
+        author_slug: meta.slug,
+      }
+    }
+
+    return route
   }
 
   return {
@@ -95,6 +122,7 @@ export const useEntityMethods = () => {
     formatType,
     instanceBook,
     instanceSerie,
-    instanceAuthor
+    instanceAuthor,
+    getDynamicRoute,
   }
 }

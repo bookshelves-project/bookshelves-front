@@ -1,26 +1,36 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
-
 const props = defineProps<{
-  title?: string
+  crumbs?: string[]
 }>()
 
-interface Link {
+interface Crumb {
   title: string
-  route?: object
+  route?: {
+    name: string
+    params?: Keyable
+    query?: Keyable
+  }
 }
 
-const capitalizeEach = (string: string) => {
+const crumbs = ref<Crumb[]>([])
+
+function capitalizeEach(string: string) {
   const arr = string.split(' ')
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++)
     arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
-  }
 
   return arr.join(' ')
 }
 
-const crumbs = computed((): Link[] => {
+function translateSlug(slug: string): string {
+  const slugs: Keyable = {
+    // 'retours d experience': "retours d'experience",
+  }
+  return slugs[slug] || slug
+}
+
+const getCrumbsList = computed((): Crumb[] => {
   const route = useRoute()
   const router = useRouter()
 
@@ -32,7 +42,7 @@ const crumbs = computed((): Link[] => {
     ? fullPath.substring(1).split('/')
     : fullPath.split('/')
 
-  const crumbs: Link[] = []
+  const crumbsList: Crumb[] = []
 
   let path = ''
   params = params.filter(e => e.length > 3)
@@ -44,30 +54,27 @@ const crumbs = computed((): Link[] => {
       const title = param.replace(/-/g, ' ') // replace `-` with space
       const titleSplitted = title.split('#')
 
-      crumbs.push({
+      crumbsList.push({
         title: capitalizeEach(titleSplitted[0]),
-        route: match
+        // @ts-expect-error TODO: fix this
+        route: match,
       })
     }
   })
-  crumbs.forEach((crumb: any) => {
+  crumbsList.forEach((crumb: any) => {
     crumb.title = translateSlug(crumb.title)
   })
-  if (props.title) {
-    crumbs.splice(-1, 1, {
-      title: props.title
-    })
+  if (props.crumbs) {
+    for (let i = 0; i < crumbsList.length; i++) {
+      const element = crumbsList[i]
+      const currentTitle = props.crumbs[i]
+      element.title = currentTitle
+    }
   }
 
-  return crumbs
+  return crumbsList
 })
-
-const translateSlug = (slug: string): string => {
-  const slugs: Keyable = {
-    // 'retours d experience': "retours d'experience",
-  }
-  return slugs[slug] || slug
-}
+crumbs.value = getCrumbsList.value
 </script>
 
 <template>
@@ -75,14 +82,14 @@ const translateSlug = (slug: string): string => {
     <ol role="list" class="flex flex-wrap items-center space-x-2">
       <li>
         <div>
-          <router-link :to="$localePath({ name: 'index' })">
+          <typed-link :to="{ name: 'index' }">
             <svg-icon
               name="home"
               class="h-5 w-5 shrink-0 text-gray-400 transition-colors duration-100 hover:text-gray-500"
               aria-hidden="true"
             />
             <span class="sr-only">Home</span>
-          </router-link>
+          </typed-link>
         </div>
       </li>
 
@@ -92,20 +99,24 @@ const translateSlug = (slug: string): string => {
             name="chevron-right"
             class="h-5 w-5 shrink-0 text-gray-300"
           />
-          <component
-            :is="id >= crumbs.length - 1 ? 'span' : 'router-link'"
-            :to="$localePath(crumb.route)"
-            class="ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400 capitalize"
-            :class="
-              id >= crumbs.length - 1
-                ? ''
-                : 'hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-100'
-            "
+          <nuxt-link
+            :to="crumb.route"
+            class="breadcrumb-link"
+            :class="id >= crumbs.length - 1 ? '' : 'breadcrumb-link-active'"
           >
             {{ crumb.title }}
-          </component>
+          </nuxt-link>
         </div>
       </li>
     </ol>
   </nav>
 </template>
+
+<style lang="css" scoped>
+.breadcrumb-link {
+  @apply ml-1 rounded-md p-1 text-sm font-medium text-gray-500 transition-colors duration-100 dark:text-gray-400;
+}
+.breadcrumb-link-active {
+  @apply hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-gray-100;
+}
+</style>

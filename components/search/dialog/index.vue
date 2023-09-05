@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { useSearchStore } from '~~/store/search'
+import type { Search } from '~/types/search'
+import { useSearchStore } from '~~/stores/search'
 
-const { request } = useHttp()
+// const { request } = useHttp()
+function request<T>(options: any) {
+
+}
 
 const search = ref<HTMLInputElement>()
 const query = ref('')
@@ -11,29 +15,26 @@ const searchStore = useSearchStore()
 watch(
   () => query.value,
   (newVal) => {
-    if (newVal.length >= 3) {
+    if (newVal.length >= 3)
       fetchResults(newVal)
-    }
-  }
+  },
 )
 
 watch(
   () => searchStore.types,
   () => {
-    if (query.value.length >= 3) {
+    if (query.value.length >= 3)
       fetchResults(query.value)
-    }
   },
-  { deep: true }
+  { deep: true },
 )
 
-const fetchResults = async (input: string) => {
+async function fetchResults(input: string) {
   searchStore.setLoading(true)
   const types = []
   for (const [key, value] of Object.entries(searchStore.types)) {
-    if (value) {
+    if (value)
       types.push(key)
-    }
   }
 
   try {
@@ -41,19 +42,21 @@ const fetchResults = async (input: string) => {
     results.value = {
       count: 0,
       query: query.value,
-      type: 'meilisearch'
+      type: 'meilisearch',
     }
-    const data = await request<Search>({
-      endpoint: '/search',
+    const response = await useHttp<Search>({
+      name: '/search',
       query: {
         q: input,
-        types: types.join(',')
+        types: types.join(','),
       },
-      extractData: true
+      auto: true,
     })
 
-    results.value = data
-  } catch (error) {
+    if (response)
+      results.value = response
+  }
+  catch (error) {
     console.error(error)
   }
   searchStore.setLoading(false)

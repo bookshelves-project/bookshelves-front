@@ -3,13 +3,18 @@ import packageJson from '~/package.json'
 import LayoutFooterBackToTop from '@/components/layout/footer/back-to-top.vue'
 import LayoutFooterCreativeCommons from '@/components/layout/footer/creative-commons.vue'
 
-const config = useRuntimeConfig()
-const date = (begin: number) => {
+const appConfig = useAppConfig()
+
+const metaAuthor = appConfig.metaAuthor
+const linkLicense = appConfig.linkLicense
+const linkChangelog = appConfig.linkChangelog
+
+function date(begin: number) {
   const current = new Date().getFullYear()
   const year = `${begin} - ${current}`
-  if (begin === current) {
+  if (begin === current)
     return begin
-  }
+
   return year
 }
 </script>
@@ -30,29 +35,34 @@ const date = (begin: number) => {
           aria-label="Creative commons"
           class="mx-auto flex items-center space-x-2 transition-colors duration-100"
         >
-          <layout-footer-creative-commons />
+          <LayoutFooterCreativeCommons />
           <span>{{ date(2020) }}</span>
         </a>
       </div>
       <span class="flex">
         <span class="mx-auto md:flex">
           <span class="mx-1 hidden md:block">·</span>
-          <!-- <router-link
+          <!-- <typed-link
             v-if="team"
-            :to="$localePath(`/pages/about`)"
+            :to="{
+              name: 'slug',
+              params: {
+                slug: 'about'
+              }
+            }"
             class="transition-colors duration-100"
-            >{{ team }}</router-link
+            >{{ team }}</typed-link
           > -->
-          <span class="mx-auto">{{ config.metaAuthor }}</span>
+          <span class="mx-auto">{{ metaAuthor }}</span>
           <span class="mx-1 hidden md:block text-center">·</span><a
-            v-if="config.linkLicense"
-            :href="config.linkLicense"
+            v-if="linkLicense"
+            :href="linkLicense"
             target="_blank"
             rel="noopener noreferrer"
             class="block md:flex"
           >{{ packageJson.license }} license</a><span class="hidden md:block">,</span><a
-            v-if="config.linkChangelog"
-            :href="config.linkChangelog"
+            v-if="linkChangelog"
+            :href="linkChangelog"
             target="_blank"
             rel="noopener noreferrer"
             class="block italic md:ml-1 md:flex text-center"
@@ -61,7 +71,7 @@ const date = (begin: number) => {
       </span>
     </div>
     <div class="mt-6 flex lg:mt-0">
-      <layout-footer-back-to-top class="mx-auto" />
+      <LayoutFooterBackToTop class="mx-auto" />
     </div>
   </div>
 </template>

@@ -1,0 +1,28 @@
+{
+  "hello": "Bonjour, {name}!",
+  "language": "Langage",
+  "nav": {
+    "books": "Livres",
+    "series": "Séries",
+    "authors": "Auteurs",
+    "tags": "Tags",
+
+    "discover": "Découvrir",
+    "about": "À propos",
+    "features": "Fonctionnalités",
+
+    "support": "Support",
+    "more-ebooks": "Plus d'ebooks",
+    "faq": "FAQ",
+    "contact": "Contact",
+
+    "more": "Plus",
+    "guides": "Guides",
+    "languages": "Langues",
+    "publishers": "Éditeurs",
+
+    "legal": "Légal",
+    "legality": "Légalité",
+    "privacy": "Confidentialité"
+  }
+}

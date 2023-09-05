@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { useToastStore } from '~/store/toast'
+import type { IconType } from '~/.nuxt/svg-transformer'
+import { useToastStore } from '~/stores/toast'
+import type { Toast } from '~/types'
 
 const props = defineProps<{
   toast?: Toast
@@ -12,7 +14,7 @@ const bgColor = computed(() => {
     warning: 'bg-orange-100',
     error: 'bg-red-100',
     information: 'bg-blue-100',
-    default: 'bg-blue-100'
+    default: 'bg-blue-100',
   }
   return colors[type] || colors.default
 })
@@ -22,14 +24,21 @@ const color = computed(() => {
     warning: 'text-orange-400',
     error: 'text-red-400',
     information: 'text-blue-400',
-    default: 'text-blue-400'
+    default: 'text-blue-400',
   }
   return colors[type]
 })
-const clear = () => {
+function clear() {
   const toast = useToastStore()
   toast.deleteToast(props.toast!)
 }
+
+const icon = computed<IconType>(() => {
+  if (props.toast?.type)
+    return `toast-${props.toast.type}`
+
+  return 'toast-information'
+})
 </script>
 
 <template>
@@ -45,9 +54,8 @@ const clear = () => {
       <div class="flex items-start">
         <div class="shrink-0">
           <svg-icon
-            :name="toast.type ? `toast-${toast.type}` : 'information'"
+            :name="icon"
             :class="color"
-            class="h-6 w-6"
           />
         </div>
         <div class="ml-3 w-0 flex-1 pt-0.5">

@@ -1,36 +1,37 @@
-<script setup lang="ts">
-const { asyncRequest, paginate } = useHttpPage<Publisher>({
-  endpoint: '/publishers',
-  query: {
-    full: true,
-    'filter[negligible]': false
-  }
-})
-await asyncRequest()
+<script lang="ts" setup>
+import type { Publisher } from '~/types'
 
-const title = 'Publishers'
-const description = 'Discover your books by publisher'
+const publishers = await useHttp<Publisher[]>({
+  name: '/publishers',
+  query: {
+    'filter[negligible]': false,
+    'full': true,
+  },
+})
+
+const crumbs: string[] = [
+  'Publishers',
+]
 
 useMetadata({
-  title,
-  description
+  title: 'Publishers',
+  description: 'Discover your books by publisher',
 })
 </script>
 
 <template>
-  <main class="main-content">
-    <app-header :title="title" :subtitle="description">
-      <template #filters>
-        <filters negligible :total="paginate?.data.length" />
-      </template>
-    </app-header>
-    <relation-list
-      :entities="paginate?.data"
-      name="publishers"
-      :route="{
-        name: 'publishers-slug',
-        paramsList: {
-          slug: 'meta.slug',
+  <main v-if="publishers" class="main-content">
+    <layout-header
+      title="Publishers"
+      subtitle="Discover your books by publisher"
+      :crumbs="crumbs"
+    />
+    <listing-relation
+      :models="publishers"
+      :to="{
+        name: 'publishers-publisher_slug',
+        params: {
+          publisher_slug: 'meta.slug',
         },
       }"
     />

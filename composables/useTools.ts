@@ -15,63 +15,76 @@ export function useTools() {
     let s = ''
     const randomchar = function () {
       const n = Math.floor(Math.random() * 62)
-      if (n < 10) {
+      if (n < 10)
         return n
-      } // 1-10
-      if (n < 36) {
+      // 1-10
+      if (n < 36)
         return String.fromCharCode(n + 55)
-      } // A-Z
+      // A-Z
       return String.fromCharCode(n + 61) // a-z
     }
-    while (s.length < L) {
+    while (s.length < L)
       s += randomchar()
-    }
+
     return s
   }
 
   const objectIsEmpty = (object: object): boolean => {
-    const isEmpty =
-      object && Object.keys(object).length === 0 && object.constructor === Object
+    const isEmpty
+      = object && Object.keys(object).length === 0 && object.constructor === Object
     return isEmpty || object === undefined
   }
 
   const arrayPushIfNotExist = (array: any[], value: any) => {
     const index = array.findIndex(x => x === value)
-    if (index === -1) {
+    if (index === -1)
       array.push(value)
-    }
   }
 
   const objectContainsObject = (object: object, list: []): boolean => {
     let i
     for (i = 0; i < list.length; i++) {
-      if (list[i] === object) {
+      if (list[i] === object)
         return true
-      }
     }
 
     return false
   }
 
-  const objectGetValue = (obj: Keyable, path: string): any => {
-    if (!path) { return obj }
+  const objectGetValue = (obj: Keyable, path: string | number): any => {
+    if (!path)
+      return obj
+
+    if (typeof path === 'number')
+      path = path.toString()
+
     const properties = path.split('.')
     const key = properties.shift() as string
     return objectGetValue(obj[key], properties.join('.')) ?? path
   }
 
-  const arrayGroupBy = <T, K extends keyof T>(
-    array: T[],
-    groupOn: K | ((i: T) => string)
-  ): Record<string, T[]> => {
-    const groupFn = typeof groupOn === 'function' ? groupOn : (o: T) => o[groupOn]
+  function arrayGroupBy<T extends { [key: string]: any }>(
+    arr: T[],
+    firstCharKey: string,
+  ): Record<string, T[]> {
+    const sortedArray: Record<string, T[]> = {}
 
-    return Object.fromEntries(
-      array.reduce((acc, obj) => {
-        const groupKey = groupFn(obj)
-        return acc.set(groupKey, [...(acc.get(groupKey) || []), obj])
-      }, new Map())
-    ) as Record<string, T[]>
+    arr.forEach((item) => {
+      const firstChar = item[firstCharKey]
+      if (!sortedArray[firstChar])
+        sortedArray[firstChar] = []
+
+      sortedArray[firstChar].push(item)
+    })
+
+    const sortedKeys = Object.keys(sortedArray).sort()
+    const sortedObject: Record<string, T[]> = {}
+
+    sortedKeys.forEach((key) => {
+      sortedObject[key] = sortedArray[key]
+    })
+
+    return sortedObject
   }
 
   return {
@@ -81,6 +94,6 @@ export function useTools() {
     objectContainsObject,
     objectGetValue,
     arrayPushIfNotExist,
-    arrayGroupBy
+    arrayGroupBy,
   }
 }

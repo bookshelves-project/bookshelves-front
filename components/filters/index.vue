@@ -1,13 +1,7 @@
 <script setup lang="ts">
-import FiltersOption from '@/components/filters/option.vue'
-import FiltersQueries from '@/components/filters/queries.vue'
-import FiltersClear from '@/components/filters/clear.vue'
-import SvgIcon from '@/components/svg-icon.vue'
-
-import { useApplicationStore } from '~~/store/application'
-import { useFilterStore } from '~~/store/filter'
-
-const { objectIsEmpty } = useTools()
+import type { FilterOption } from '~/types'
+import { useApplicationStore } from '~~/stores/application'
+import { useFilterStore } from '~~/stores/filter'
 
 defineProps<{
   sort?: FilterOption[]
@@ -19,19 +13,21 @@ defineProps<{
   total?: number
 }>()
 
+const { objectIsEmpty } = useTools()
+
 const sizeOptions: FilterOption[] = [
   {
     label: '32 (default)',
-    value: '32'
+    value: '32',
   },
   {
     label: '64',
-    value: '64'
+    value: '64',
   },
   {
     label: '128',
-    value: '128'
-  }
+    value: '128',
+  },
 ]
 
 const route = useRoute()
@@ -50,14 +46,14 @@ const filterLanguages = computed(() => {
         value: lang.meta?.slug,
         query: { type: lang.meta?.slug },
         enabled: route.query[type]
-          ? route.query[type]!.includes(lang.meta?.slug!)
-          : false
+          ? route.query[type]!.includes(lang.meta?.slug)
+          : false,
       })
     })
   }
   return {
     type,
-    options
+    options,
   }
 })
 const filterTypes = computed(() => {
@@ -71,23 +67,23 @@ const filterTypes = computed(() => {
         label: value,
         value: key,
         query: { type: key },
-        enabled: route.query[type] ? route.query[type]!.includes(key) : false
+        enabled: route.query[type] ? route.query[type]!.includes(key) : false,
       })
     }
   }
 
   return {
     type,
-    options
+    options,
   }
 })
 const filterSerie = computed(() => {
   return {
     type: 'filter[disallow_serie]',
-    options: []
+    options: [],
   }
 })
-const reverseSort = (asc = false) => {
+function reverseSort(asc = false) {
   let newQuery = route.query
   const order = asc ? '' : '-'
   let sort = `${order}${newQuery.sort}`
@@ -140,7 +136,7 @@ const queryAvailable = computed(() => {
               @click="reverseSort(route.query.sort?.includes('-'))"
             >
               <svg-icon
-                name="arrow-sm-right"
+                name="arrow-narrow-right"
                 class="h-5 w-5 transform text-gray-500 duration-75 dark:text-gray-400"
                 :class="
                   route.query.sort?.includes('-') ? '-rotate-90' : 'rotate-90'

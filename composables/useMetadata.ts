@@ -1,5 +1,5 @@
-import { MetaObject } from '#app'
-import { ComputedGetter } from 'vue'
+import type { ComputedGetter } from 'vue'
+import type { UseHeadInput } from '@vueuse/head'
 
 interface HeadMeta {
   description?: string
@@ -10,110 +10,108 @@ interface HeadMeta {
   title?: string
 }
 
-export const useMetadata = (meta?: HeadMeta) => {
-  const config = useRuntimeConfig()
+export function useMetadata(meta?: HeadMeta) {
+  const appConfig = useAppConfig()
 
-  const appName = config.public.appName
-  const appDescription = config.public.metaDescription
+  const appName = appConfig.appName
+  const appDescription = appConfig.metaDescription
 
-  let title = appName
+  let metaTitle = appName
   if (meta?.title) {
-    title = `${meta.title} · ${appName}`
-    title = title.replace('APP_NAME', config.appName)
+    metaTitle = `${meta.title} · ${appName}`
+    metaTitle = metaTitle.replace('APP_NAME', appName)
   }
 
-  let description = appDescription
-  if (meta?.description) {
-    description = meta.description.substring(0, 155 - 3) + '...'
-  }
+  let metaDescription = appDescription
+  if (meta?.description)
+    metaDescription = `${meta.description.substring(0, 155 - 3)}...`
 
-  let image = '/default.jpg'
-  if (meta?.image) {
-    image = meta.image
-  }
+  let metaImage = '/default.jpg'
+  if (meta?.image)
+    metaImage = meta.image
 
   const { fullPath } = useRoute()
   const route = fullPath
 
   const { isDarkMode } = useDarkMode()
 
-  const metadata: MetaObject | ComputedGetter<MetaObject> = {
-    title,
+  const metadata: UseHeadInput | ComputedGetter<UseHeadInput> = {
+    title: metaTitle,
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: description
+        content: metaDescription,
       },
       {
         name: 'theme-color',
-        content: isDarkMode ? '#00aba9' : '#ffffff'
+        content: isDarkMode ? '#00aba9' : '#ffffff',
       },
       {
         hid: 'og:url',
         property: 'og:url',
-        content: route
+        content: route,
       },
       {
         hid: 'og:title',
         property: 'og:title',
-        content: title
+        content: metaTitle,
       },
       {
         hid: 'og:description',
         property: 'og:description',
-        content: description
+        content: metaDescription,
       },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: image
+        content: metaImage,
       },
       {
         hid: 'og:image:alt',
         property: 'og:image:alt',
-        content: title
+        content: metaTitle,
       },
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: title
+        content: metaTitle,
       },
       {
         hid: 'twitter:description',
         name: 'twitter:description',
-        content: description
+        content: metaDescription,
       },
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content: image
-      }
+        content: metaImage,
+      },
     ],
     link: [
       {
         rel: 'icon',
         type: 'image/svg+xml',
-        href: isDarkMode ? '/favicon-dark.svg' : '/favicon.svg'
-      }
-    ]
+        href: isDarkMode ? '/favicon-dark.svg' : '/favicon.svg',
+      },
+    ],
   }
 
   // https://github.com/vueuse/schema-org
   // https://vue-schema-org.netlify.app/guide/setup/nuxt.html
-  useSchemaOrg([
-    defineOrganization({
-      name: 'Nuxt.js',
-      logo: '/logo.png',
-      sameAs: [
-        'https://twitter.com/nuxt_js'
-      ]
-    }),
-    defineWebSite({
-      name: 'Nuxt'
-    })
-    // defineWebPage(),
-  ])
+  // useSchemaOrg([
+  //   defineOrganization({
+  //     name: 'Nuxt.js',
+  //     logo: '/logo.png',
+  //     sameAs: [
+  //       'https://twitter.com/nuxt_js'
+  //     ]
+  //   }),
+  //   defineWebSite({
+  //     name: 'Nuxt'
+  //   })
+  //   // defineWebPage(),
+  // ])
 
   useHead(metadata)
 }

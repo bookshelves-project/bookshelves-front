@@ -7,9 +7,10 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   open: false,
-  size: 'sm'
+  size: 'sm',
 })
 
+const emit = defineEmits(['close'])
 const target = ref<HTMLElement>()
 const modal = ref(false)
 const layer = ref(false)
@@ -25,7 +26,8 @@ watch(
         modal.value = newVal
       }, 150)
       scrollDisabled()
-    } else {
+    }
+    else {
       overlay.value = newVal
       modal.value = newVal
       setTimeout(() => {
@@ -33,18 +35,16 @@ watch(
       }, 250)
       scrollEnabled()
     }
-  }
+  },
 )
 
 onClickOutside(target, () => closeEvent())
 
-const emit = defineEmits(['close'])
-
-const closeEvent = () => {
+function closeEvent() {
   modal.value = false
   emit('close', modal.value)
 }
-const scrollDisabled = () => {
+function scrollDisabled() {
   document.body.classList.add('no-scroll')
   // // To get the scroll position of current webpage
   // const topScroll = window.pageYOffset || document.documentElement.scrollTop
@@ -57,7 +57,7 @@ const scrollDisabled = () => {
   //   window.scrollTo(leftcroll, topScroll)
   // }
 }
-const scrollEnabled = () => {
+function scrollEnabled() {
   document.body.classList.remove('no-scroll')
   // window.onscroll = () => ''
   // document.body.removeEventListener('touchmove', preventDefault)

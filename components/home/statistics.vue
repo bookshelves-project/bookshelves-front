@@ -1,6 +1,13 @@
 <script setup lang="ts">
-const props = defineProps<{
-  statistics?: CmsStatistics
+defineProps<{
+  statistics?: {
+    books: number
+    series: number
+    authors: number
+    tags: number
+    publishers: number
+    languages: number
+  }
 }>()
 </script>
 
@@ -24,34 +31,34 @@ const props = defineProps<{
         <h2
           class="text-sm font-semibold uppercase tracking-wide text-primary-600"
         >
-          {{ statistics.eyebrow }}
+          A quick tour of books count
         </h2>
         <p
           class="mt-3 font-handlee text-3xl font-extrabold text-gray-700 dark:text-gray-300"
         >
-          {{ statistics.title }}
+          Lots of books for ever more insatiable readers
         </p>
         <div class="mt-5 max-w-3xl text-lg text-gray-900 dark:text-gray-100">
-          {{ statistics.text }}
+          More and more books for more and more reading, each day brings its own novelties (or almost). Don't hesitate to come back from time to time to discover the new books.
         </div>
         <div
           class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 lg:grid-cols-3"
         >
           <div
-            v-for="(metric, id) in statistics.list"
-            :key="id"
-            class="rounded-md transition-colors duration-100 hover:bg-gray-300 hover:bg-opacity-50 dark:hover:bg-gray-600"
+            v-for="(value, name) in statistics"
+            :key="name"
+            class="rounded-md"
           >
             <div class="block p-2">
               <span
                 class="block text-2xl font-bold text-gray-700 dark:text-gray-300"
               >
-                {{ metric.count }}
+                {{ value }}
               </span>
               <span
                 class="mt-1 block text-base text-gray-900 dark:text-gray-100"
               ><span class="font-medium text-gray-700 dark:text-gray-300">
-                {{ metric.label }}
+                {{ name }}
               </span>
               </span>
             </div>

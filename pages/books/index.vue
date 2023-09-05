@@ -1,55 +1,57 @@
-<script setup lang="ts">
-const { asyncRequest, paginate } = useHttpPage<Book>('/books')
-await asyncRequest()
+<script lang="ts" setup>
+import type { Book, FilterOption } from '~/types'
+
+const books = await useHttpQuery<Book[]>({
+  name: '/books',
+})
 
 const title = 'All books available'
-const description =
-  "Discover all available books sorted by title and serie's title"
+const description = 'Discover all available books sorted by title and serie\'s title'
 const sortOptions: FilterOption[] = [
   {
-    label: "By series' title (default)",
-    value: 'slug_sort'
+    label: 'By series\' title (default)',
+    value: 'slug_sort',
   },
   {
     label: 'By title',
-    value: 'title'
+    value: 'title',
   },
   {
     label: 'Most recently published',
-    value: '-released_on'
+    value: '-released_on',
   },
   {
     label: 'Newest uploaded',
-    value: '-created_at'
-  }
+    value: '-created_at',
+  },
 ]
 
 useMetadata({
   title,
-  description
+  description,
 })
 </script>
 
 <template>
   <div class="main-content">
-    <app-header :title="title" :subtitle="description">
+    <layout-header :title="title" :subtitle="description">
       <template #filters>
-        <filters
+        <!-- <filters
           serie
           language
           type
           :sort="sortOptions"
           paginate
           size
-          :total="paginate?.meta?.total"
-        />
+          :total="books?.meta?.total"
+        /> -->
       </template>
-    </app-header>
-    <entity-list :entities="paginate?.data" type />
+    </layout-header>
+    <listing :entities="books?.data" />
     <pagination
-      v-if="paginate?.meta"
-      :pages="paginate?.meta.last_page"
-      :current="paginate?.meta.current_page"
+      v-if="books?.meta"
+      :pages="books?.meta.last_page"
+      :current="books?.meta.current_page"
     />
   </div>
 </template>

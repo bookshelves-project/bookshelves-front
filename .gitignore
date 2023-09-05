@@ -1,7 +1,13 @@
 node_modules
-*.log
+*.log*
 .nuxt
-nuxt.d.ts
+.nitro
+.cache
 .output
 .env
+dist
 .DS_Store
+
+assets/icons/cache
+
+assets/svg-transformer-list.ts

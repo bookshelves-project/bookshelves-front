@@ -1,12 +1,22 @@
 <script lang="ts" setup>
-import { useSearchStore } from '~~/store/search'
+import type { Entity } from '~/types'
+import { useSearchStore } from '~~/stores/search'
 
 defineProps<{
-  selected?:Entity
+  selected?: Entity
 }>()
 
-const { formatAuthors } = useEntityMethods()
+const router = useRouter()
+const { formatAuthors, getDynamicRoute } = useEntityMethods()
 const searchStore = useSearchStore()
+
+function selectPage(selected: Entity) {
+  const localePath = useLocalePath()
+  const route = getDynamicRoute(selected)
+  searchStore.setClear(true)
+  router.push(localePath(route))
+  searchStore.closeDialog()
+}
 </script>
 
 <template>
@@ -21,24 +31,15 @@ const searchStore = useSearchStore()
           {{ selected.meta.entity }}
         </p>
       </div>
-      <div class="flex flex-auto flex-col justify-between p-6">
+      <div class="justify-between px-6">
         <app-button
-          :to="$localePath({
-            name:
-              selected.meta.entity === 'author'
-                ? `authors-slug`
-                : `${selected.meta.entity}s-author-slug`,
-            params: {
-              author: selected.meta.author,
-              slug: selected.meta.slug,
-            },
-          })"
           align="center"
-          @click="searchStore.closeDialog()"
+          full
+          @click="selectPage(selected)"
         >
           Show
         </app-button>
-        <dl class="grid grid-cols-1 gap-x-6 gap-y-3 text-sm text-gray-700 dark:text-gray-300">
+        <dl class="grid grid-cols-1 gap-x-6 gap-y-3 text-sm text-gray-700 dark:text-gray-300 mt-5">
           <dt v-if="selected.authors">
             Authors
           </dt>

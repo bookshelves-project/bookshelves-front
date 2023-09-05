@@ -1,31 +1,30 @@
 <script lang="ts" setup>
-import { useSearchStore } from '~~/store/search'
+import { useSearchStore } from '~~/stores/search'
 
+const searchStore = useSearchStore()
 const metaKey = ref('Ctrl')
 const searchKey = ref('k')
 
-const isMacintosh = () => {
-  if (navigator.userAgent.includes('Mac')) {
+function isMacintosh() {
+  if (navigator.userAgent.includes('Mac'))
     metaKey.value = '&#8984;'
-  } else {
+  else
     metaKey.value = 'Ctrl'
-  }
 }
-const shortcutOpen = (e: KeyboardEvent) => {
+function shortcutOpen(e: KeyboardEvent) {
   if (e.key === searchKey.value && (e.ctrlKey || e.metaKey)) {
     e.preventDefault() // present "Save Page" from getting triggered.
 
     searchStore.openDialog()
   }
 }
-const shortcutClose = (e: KeyboardEvent) => {
+function shortcutClose(e: KeyboardEvent) {
   if (e.key === 'Escape') {
     e.preventDefault() // present "Save Page" from getting triggered.
 
     searchStore.closeDialog()
   }
 }
-const searchStore = useSearchStore()
 
 onMounted(() => {
   window.addEventListener('keydown', shortcutOpen)
@@ -36,7 +35,7 @@ onMounted(() => {
 
 <template>
   <button
-    class="search-bar h-full text-sm font-medium text-white px-4 relative"
+    class="search-bar h-full text-sm font-medium text-white md:px-4 relative w-full"
     @click="searchStore.toggleDialog()"
   >
     <label for="search" class="sr-only"> Search </label>

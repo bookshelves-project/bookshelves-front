@@ -1,58 +1,64 @@
 <script lang="ts" setup>
-import { useApplicationStore } from '~~/store/application'
+// import { useApplicationStore } from '~~/stores/application'
 
-const { request } = useHttp()
-const { objectIsEmpty } = useTools()
-const homePage = ref<CmsHomePage>()
+const statistics = await useHttp({
+  name: '/app/stats',
+})
 
-const store = useApplicationStore()
+// const { objectIsEmpty } = useTools()
+// const homePage = ref<CmsHomePage>()
 
-if (!objectIsEmpty(store.homePage)) {
-  homePage.value = store.homePage
-} else {
-  const response = await request<CmsHomePage>({
-    endpoint: '/cms/home-page',
-    extractData: true
-  })
-  store.setHomePage(response)
-  homePage.value = response
-}
+// const store = useApplicationStore()
 
-const selection: SelectedEntities = {
-  key: 'selection',
-  endpoint: '/entities/selection',
-  eyebrow: 'Want to read a good book?',
-  title: 'Selection of books & series',
-  text: 'If you search a new book to read, check this selection of eBooks.'
-}
-const latest: SelectedEntities = {
-  key: 'latest',
-  endpoint: '/entities/latest',
-  eyebrow: 'Hyped by new books?',
-  title: 'Latest books & series',
-  text: 'You check new books & series on? Here you have latest books!'
-}
+// if (!objectIsEmpty(store.homePage)) {
+//   homePage.value = store.homePage
+// }
+// else {
+//   const response = await request<CmsHomePage>({
+//     endpoint: '/pages/{slug}',
+//     params: {
+//       slug: 'homepage-en',
+//     },
+//     extractData: true,
+//   })
+//   if (response.success) {
+//     store.setHomePage(response.body)
+//     homePage.value = response.body
+//   }
+// }
+
+// const selection: SelectedEntities = {
+//   key: 'selection',
+//   endpoint: '/entities/selection',
+//   eyebrow: 'Want to read a good book?',
+//   title: 'Selection of books & series',
+//   text: 'If you search a new book to read, check this selection of eBooks.',
+// }
 useMetadata({
-  title: 'APP_NAME, reading in complete tranquility'
+  title: 'APP_NAME, reading in complete tranquility',
 })
 </script>
 
 <template>
-  <div v-if="homePage">
-    <home-hero :hero="homePage.hero" class="pt-5" />
-    <home-statistics :statistics="homePage.statistics" />
-    <home-cloud-logos :logos="homePage.logos" />
-    <entity-group-slider
-      class="mt-8 md:mt-16 main-block"
-      :selection="selection"
-    />
-    <home-features :features="homePage.features" />
-    <entity-group-slider
-      class="mt-8 lg:mt-16 main-block"
-      :selection="latest"
-      right
-    />
-    <home-features-highlights :highlights="homePage.highlights" />
-    <home-cta />
-  </div>
+  <home-hero class="pt-5" />
+  <home-statistics :statistics="statistics" />
+  <home-cloud-logos />
+  <listing-slider
+    class="mt-8 lg:mt-16 main-block"
+    :selection="{
+      key: 'latest',
+      endpoint: '/entities/latest',
+      eyebrow: 'Hyped by new books?',
+      title: 'Latest books & series',
+      text: 'You check new books & series on? Here you have latest books!',
+    }"
+    right
+  />
+  <home-features />
+  <!-- <entity-group-slider
+    class="mt-8 md:mt-16 main-block"
+    :selection="selection"
+  /> -->
+  <home-highlights />
+  <home-cta />
 </template>

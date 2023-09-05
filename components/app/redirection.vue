@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  to: Route
+  to: AppRoute
 }>()
 </script>
 

@@ -1,0 +1,48 @@
+# A pipeline is composed of independent jobs that run scripts, grouped into stages.
+# Stages run in sequential order, but jobs within stages run in parallel.
+#
+# For more information, see: https://docs.github.com/ee/ci/
+
+stages:
+  - test
+  - deploy
+
+variables:
+  NODE_VERSION: "18.12.1"
+  PM2: "bookshelves"
+
+build-job:
+  stage: test
+  image: node:$NODE_VERSION
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - npm i -g pnpm
+    - pnpm install --no-frozen-lockfile
+    - pnpm build
+  only:
+    - main
+
+deploy-job:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - "command -v ssh-agent >/dev/null || ( apk add --update openssh )"
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan $SSH_IP >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - ssh $SSH_USER@$SSH_IP "
+      . ~/.zshrc &&
+      cd /home/ewilan/www/$CI_PROJECT_NAME &&
+      git pull &&
+      /home/ewilan/.nvm/versions/node/v$NODE_VERSION/bin/pnpm i &&
+      /home/ewilan/.nvm/versions/node/v$NODE_VERSION/bin/pnpm build &&
+      pm2 restart $PM2 &&
+      notify main '$CI_PROJECT_TITLE'"
+  only:
+    - main

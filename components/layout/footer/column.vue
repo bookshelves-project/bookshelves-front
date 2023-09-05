@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const props = defineProps<{
+import type { FooterColumn } from '~/types/navigation'
+
+defineProps<{
   column: FooterColumn
 }>()
 </script>
@@ -17,9 +19,9 @@ const props = defineProps<{
         :key="index"
         class="text-base text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
       >
-        <router-link :to="$localePath(link.route)" class="block">
+        <typed-link :to="link.route" class="block">
           {{ $t(`nav.${link.label}`) }}
-        </router-link>
+        </typed-link>
       </li>
     </ul>
   </div>

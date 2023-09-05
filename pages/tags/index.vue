@@ -1,25 +1,26 @@
 <script lang="ts" setup>
-const { asyncRequest, paginate } = useHttpPage<Tag>({
-  endpoint: '/tags',
+import type { Tag } from '~/types'
+
+const response = await useHttpQuery<Tag[]>({
+  name: '/tags',
   query: {
     'filter[negligible]': false,
-    full: true
-  }
+    'full': true,
+  },
 })
-await asyncRequest()
 
 const tags = ref<Tag[]>()
 const genres = ref<Tag[]>()
 
-const setTags = () => {
-  genres.value = paginate.value?.data.filter(tag => tag.type === 'genre')
-  tags.value = paginate.value?.data.filter(tag => tag.type === 'tag')
+function setTags() {
+  genres.value = response.value?.data.filter(tag => tag.type === 'genre')
+  tags.value = response.value?.data.filter(tag => tag.type === 'tag')
 }
 setTags()
 
 watch(
-  () => paginate.value,
-  () => setTags()
+  () => response.value,
+  () => setTags(),
 )
 
 const title = 'Genres & Tags'
@@ -27,28 +28,28 @@ const description = 'Find books and series by their genres and tags.'
 
 useMetadata({
   title,
-  description
+  description,
 })
 </script>
 
 <template>
-  <div class="main-content">
-    <app-header :title="title" :subtitle="description">
-      <template #filters>
-        <filters negligible :total="paginate?.data.length" />
-      </template>
-    </app-header>
+  <main class="main-content">
+    <layout-header :title="title" :subtitle="description">
+      <!-- <template #filters>
+        <filters negligible :total="response?.data.length" />
+      </template> -->
+    </layout-header>
     <div v-if="genres" class="mb-10">
       <h2 class="mb-6 font-handlee text-2xl">
         Genres
       </h2>
-      <relation-list
-        :entities="genres"
+      <listing-relation
+        :models="genres"
         name="genres"
-        :route="{
-          name: 'tags-slug',
-          paramsList: {
-            slug: 'meta.slug',
+        :to="{
+          name: 'tags-tag_slug',
+          params: {
+            tag_slug: 'meta.slug',
           },
         }"
         group
@@ -58,16 +59,16 @@ useMetadata({
       <h2 class="mb-6 font-handlee text-2xl">
         Tags
       </h2>
-      <relation-list
-        :entities="tags"
+      <listing-relation
+        :models="tags"
         name="tags"
-        :route="{
-          name: 'tags-slug',
-          paramsList: {
-            slug: 'meta.slug',
+        :to="{
+          name: 'tags-tag_slug',
+          params: {
+            tag_slug: 'meta.slug',
           },
         }"
       />
     </div>
-  </div>
+  </main>
 </template>

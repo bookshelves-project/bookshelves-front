@@ -8,11 +8,11 @@ defineProps<{
 const isOpen = ref(false)
 const target = ref<HTMLElement>()
 
-const toggle = () => {
+function toggle() {
   isOpen.value = !isOpen.value
 }
 
-onClickOutside(target, event => (isOpen.value = false))
+onClickOutside(target, () => (isOpen.value = false))
 </script>
 
 <template>

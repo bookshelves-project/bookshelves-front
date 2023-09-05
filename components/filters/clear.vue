@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/svg-icon.vue'
-import { useFilterStore } from '~~/store/filter'
+import { useFilterStore } from '~~/stores/filter'
 
 defineProps<{
   paginate?: boolean
@@ -12,7 +11,7 @@ const store = useFilterStore()
 
 const queryAvailable = computed(() => !objectIsEmpty(route.query))
 
-const clearAll = () => {
+function clearAll() {
   store.clearQueries()
   store.setQueries({})
 }

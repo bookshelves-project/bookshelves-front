@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FieldCheckbox from '@/components/field/checkbox.vue'
+import type { FilterOption } from '~/types'
 
 const props = defineProps<{
   modelValue?: string[]
@@ -14,16 +14,15 @@ choices.value = props.modelValue!
 watch(
   () => props.modelValue,
   (newVal) => {
-    if (newVal) {
+    if (newVal)
       choices.value = newVal
-    }
-  }
+  },
 )
 watch(
   () => choices.value,
   (newVal) => {
     emit('update:modelValue', newVal)
-  }
+  },
 )
 </script>
 
