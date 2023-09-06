@@ -42,6 +42,7 @@ const tag = ref('button')
 const isLink = ref(false)
 const toLink = ref('/')
 const hrefLink = ref('')
+const attrs: any = {}
 
 function setupButton() {
   isLink.value = false
@@ -66,6 +67,14 @@ function setupButton() {
   }
 }
 setupButton()
+
+if (props.download) {
+  attrs.target = '_blank'
+  attrs.download = true
+}
+
+if (props.href)
+  attrs.rel = 'noopener noreferrer'
 
 const alignment = computed((): string => {
   const alignements: { [key: string]: any } = {
@@ -101,13 +110,11 @@ watch(
       :is="tag"
       v-else
       :href="href"
-      :target="href ? (download ? '' : '_blank') : null"
-      :rel="href ? 'noopener noreferrer' : null"
       :class="[color, { disabled }, size, { 'w-full': full }]"
       class="btn relative"
       :type="type"
       :disabled="disabled"
-      :download="download"
+      v-bind="attrs"
       @click.stop="$emit('click')"
     >
       <span class="absolute top-1/2 left-2 -translate-y-1/2 transform">
