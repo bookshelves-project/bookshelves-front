@@ -43,6 +43,8 @@ const main: SwiperOptions = {
   slidesPerView: 1,
   slidesPerGroup: 1,
   grabCursor: true,
+  allowTouchMove: true,
+  simulateTouch: true,
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
