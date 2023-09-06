@@ -11,6 +11,7 @@ interface Props {
   to?: RouteType
   disabled?: boolean
   download?: boolean
+  external?: boolean
   icon?: IconType
   loading?: boolean
   outlined?: boolean
@@ -75,6 +76,11 @@ if (props.download) {
 
 if (props.href)
   attrs.rel = 'noopener noreferrer'
+
+if (props.external) {
+  attrs.target = '_blank'
+  attrs.rel = 'noopener noreferrer'
+}
 
 const alignment = computed((): string => {
   const alignements: { [key: string]: any } = {
