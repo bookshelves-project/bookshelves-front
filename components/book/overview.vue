@@ -17,18 +17,20 @@ const hasGenres = computed(() => props.book.genres && props.book.genres.length)
       <book-overview-informations :book="book" />
       <book-overview-presentation class="mt-10 md:mt-0" :book="book" />
     </div>
-    <div
-      v-if="hasTags || hasGenres"
-      :class="related ? '' : 'hidden'"
-    >
-      <book-group-related
-        v-if="book.tags?.length || book.genres?.length"
-        :book="book"
-        @success="success"
-      />
-    </div>
-    <div class="lg:col-span-2 lg:pr-8">
+    <div>
+      <div
+        v-if="hasTags || hasGenres"
+        :class="related ? '' : 'hidden'"
+      >
+        <book-group-related
+          v-if="book.tags?.length || book.genres?.length"
+          :book="book"
+          @success="success"
+        />
+      </div>
+      <div class="lg:col-span-2 lg:pr-8">
       <!-- <entity-review :entity="book" /> -->
+      </div>
     </div>
   </div>
 </template>
