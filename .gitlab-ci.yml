@@ -48,6 +48,6 @@ deploy-job:
       mv .output-$CI_JOB_ID/.output .output &&
       rm -rf .output-* &&
       pm2 restart $PM2_NAME &&
-      notifier 'Bookshelves front deployed'"
+      notifier discord 'Bookshelves front deployed'"
   only:
     - main
