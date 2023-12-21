@@ -38,7 +38,7 @@ const meta: Meta<any['link']>[] = [
   {
     hid: 'author',
     name: 'author',
-    content: 'Ewilan Rivière',
+    content: 'Bookshelves',
   },
   {
     hid: 'language',
@@ -48,37 +48,27 @@ const meta: Meta<any['link']>[] = [
   {
     hid: 'designer',
     name: 'designer',
-    content: 'Ewilan Rivière',
+    content: 'Bookshelves',
   },
   {
     hid: 'publisher',
     name: 'publisher',
-    content: 'Ewilan Rivière Portfolio',
+    content: 'Bookshelves',
   },
   {
     hid: 'copyright',
     name: 'copyright',
-    content: 'Ewilan Rivière Portfolio',
+    content: 'Bookshelves',
   },
   {
     hid: 'og:site_name',
     property: 'og:site_name',
-    content: 'Ewilan Rivière',
+    content: 'Bookshelves',
   },
   {
     hid: 'og:locale',
     property: 'og:locale',
     content: 'en-US',
-  },
-  {
-    hid: 'twitter:site',
-    name: 'twitter:site',
-    content: '@ewilanriviere',
-  },
-  {
-    hid: 'twitter:creator',
-    name: 'twitter:creator',
-    content: '@ewilanriviere',
   },
   {
     hid: 'google-site-verification',
@@ -98,7 +88,7 @@ const meta: Meta<any['link']>[] = [
   {
     hid: 'og:image:alt',
     property: 'og:image:alt',
-    content: 'Ewilan Rivière',
+    content: 'Bookshelves',
   },
   {
     hid: 'twitter:card',

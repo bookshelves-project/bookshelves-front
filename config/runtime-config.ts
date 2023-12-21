@@ -7,7 +7,7 @@ const runtimeConfigPublic = {
   apiEndpoint: process.env.API_ENDPOINT ?? '/api',
 
   siteUrl: process.env.NUXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
-  siteName: 'Ewilan Rivière',
+  siteName: 'Bookshelves',
   siteDescription: 'Bookshelves',
   language: 'en',
 

@@ -7,8 +7,8 @@ export default defineAppConfig({
   metaDescription: 'For people with eReaders, download eBooks and reading in complete tranquility, your digital library that goes everywhere with you.',
   metaAuthor: 'Bookshelves Team',
   metaRobot: 'index, follow',
-  metaTwitter_creator: '@ewilanriviere',
-  metaTwitter_site: '@bookshelves_ink',
+  metaTwitter_creator: '',
+  metaTwitter_site: '',
   metaRobot_disallow: '/sign-in,/sign-up,/dashboard,/admin,/profile',
   metaLang: 'en_US',
 
