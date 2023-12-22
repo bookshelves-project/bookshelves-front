@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { IconType } from '~~/.nuxt/svg-transformer'
-
 const appConfig = useAppConfig()
 const config = useRuntimeConfig()
 
@@ -13,7 +11,7 @@ function url(endpoint: string) {
 }
 
 interface Feature {
-  icon: IconType
+  icon: SvgName
   label: string
   title: string
   link: string
@@ -82,7 +80,7 @@ const features: Feature[] = [
           :aria-label="feature.title"
           class="mx-auto block w-20 rounded-md p-2 text-gray-400 transition-colors duration-75 hover:bg-gray-200 hover:text-gray dark:hover:bg-gray-800 dark:hover:text-gray-300"
         >
-          <svg-icon :name="`${feature.icon}`" display="flex" class="mx-auto h-6 w-6" />
+          <svg-icon :name="`${feature.icon}`" display="flex" class="mx-auto h-6 w-6 flex justify-center" />
           <div class="mt-2 text-center text-xs">{{ feature.label }}</div>
         </a>
         <!-- <app-language-switch /> -->

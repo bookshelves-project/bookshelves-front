@@ -18,10 +18,14 @@ const i18n: NuxtConfig['i18n'] = {
   strategy: 'prefix_except_default',
 }
 
-// https://github.com/kiwilan/nuxt-svg-transformer
+// // https://github.com/kiwilan/nuxt-svg-transformer
+// const svgTransformer: NuxtConfig['svgTransformer'] = {
+//   title: false,
+//   sizeInherit: true,
+// }
+// https://github.com/kiwilan/unplugin-svg-transformer
 const svgTransformer: NuxtConfig['svgTransformer'] = {
-  title: false,
-  sizeInherit: true,
+  svg: { sizeInherit: true },
 }
 
 const modules = {
