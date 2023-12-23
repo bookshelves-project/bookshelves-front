@@ -20,8 +20,6 @@ const {
 
 init(props.pages, props.current)
 
-console.log(numberOfLinks.value)
-
 watch(
   () => props.current,
   () => {
