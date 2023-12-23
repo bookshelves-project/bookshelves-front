@@ -7,7 +7,4 @@ node_modules
 .env
 dist
 .DS_Store
-
-assets/icons/cache
-
-assets/svg-transformer-list.ts
+types/icons.d.ts
